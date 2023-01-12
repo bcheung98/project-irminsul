@@ -4,22 +4,20 @@ import { Typography } from "@mui/material";
 const CharacterBrowser = () => {
     return (
         <div>
-             <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: { xs: "none", md: "flex" },
-                            fontFamily: "Genshin",
-                            letterSpacing: ".3rem",
-                            color: "white",
-                            textDecoration: "none",
-                        }}
-                    >
-                        CHARACTERS
-                    </Typography>
+            <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                sx={{
+                    display: { xs: "none", md: "flex" },
+                    fontFamily: "Genshin",
+                    color: "white",
+                    textDecoration: "none",
+                    textAlign: "center",
+                }}
+            >
+                Characters
+            </Typography>
         </div>
     )
 }

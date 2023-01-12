@@ -1,27 +1,25 @@
 import * as React from "react";
 import { Typography } from "@mui/material";
 
-const WeaponBrowser = () => {
+const CharacterBrowser = () => {
     return (
         <div>
             <Typography
                 variant="h6"
                 noWrap
                 component="a"
-                href="/"
                 sx={{
-                    mr: 2,
                     display: { xs: "none", md: "flex" },
                     fontFamily: "Genshin",
-                    letterSpacing: ".3rem",
                     color: "white",
                     textDecoration: "none",
+                    textAlign: "center",
                 }}
             >
-                WEAPONS
+                Coming soon
             </Typography>
         </div>
     )
 }
 
-export default WeaponBrowser;
+export default CharacterBrowser;
