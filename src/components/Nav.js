@@ -2,24 +2,19 @@ import * as React from "react";
 import { AppBar, Box, Toolbar, Typography, Container, Button, Avatar, CardHeader } from "@mui/material";
 
 const Nav = () => {
-
     return (
         <AppBar position="static" sx={{
             backgroundColor: "rgb(0, 30, 60)",
             borderBottom: "1px solid rgb(30, 73, 118)"
         }}>
-            <Container maxWidth="xl">
+            <Container maxWidth="xl" sx={{ margin: 0 }}>
                 <Toolbar disableGutters>
                     <CardHeader
                         avatar={
                             <Avatar src={require("../assets/icons/Sumeru.png")} alt="PROJECT IRMINSUL" sx={{ height: "64px", width: "64px" }} />
                         }
                         title={
-                            <Typography
-                                variant="h6"
-                                noWrap
-                                component="a"
-                                href="/project-irminsul"
+                            <Typography variant="h6" noWrap component="a" href="/project-irminsul"
                                 sx={{
                                     mr: 2,
                                     display: { xs: "none", md: "flex" },
@@ -43,8 +38,7 @@ const Nav = () => {
                                     <Avatar src={require("../assets/icons/Aether.png")} alt="CHARACTERS" sx={{ height: "32px", width: "32px" }} />
                                 }
                                 title={
-                                    <Typography
-                                        variant="body1"
+                                    <Typography variant="body1"
                                         sx={{
                                             fontFamily: "Genshin, monospace",
                                             color: "white",
@@ -65,9 +59,7 @@ const Nav = () => {
                                     <Avatar src={require("../assets/icons/Weapons.png")} alt="WEAPONS" sx={{ height: "48px", width: "48px" }} />
                                 }
                                 title={
-                                    <Typography
-                                        variant="body1"
-                                        noWrap  
+                                    <Typography variant="body1" noWrap
                                         sx={{
                                             fontFamily: "Genshin, monospace",
                                             color: "white",
@@ -85,4 +77,5 @@ const Nav = () => {
         </AppBar>
     );
 }
+
 export default Nav;
