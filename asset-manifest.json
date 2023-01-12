@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/project-irminsul/static/css/main.ad3a1d5e.css",
-    "main.js": "/project-irminsul/static/js/main.36ff297e.js",
+    "main.js": "/project-irminsul/static/js/main.3f61bd5d.js",
     "static/media/ja-jp.ttf": "/project-irminsul/static/media/ja-jp.1f6e9f5930ddc1ce5c68.ttf",
     "static/media/Character_Mona_Thumb.png": "/project-irminsul/static/media/Character_Mona_Thumb.e816d348ba77dbe4c3d1.png",
     "static/media/Character_Nahida_Thumb.png": "/project-irminsul/static/media/Character_Nahida_Thumb.55e6542f08f721b606b2.png",
@@ -174,13 +174,14 @@
     "static/media/Geo_Gemstone.png": "/project-irminsul/static/media/Geo_Gemstone.80a364ff427117a4914c.png",
     "static/media/Jueyun_Chili.png": "/project-irminsul/static/media/Jueyun_Chili.34d3d31e62f089a4cd19.png",
     "static/media/Mudra_of_the_Malefic_General.png": "/project-irminsul/static/media/Mudra_of_the_Malefic_General.dd080a48d042a1a82859.png",
+    "static/media/Sumeru.png": "/project-irminsul/static/media/Sumeru.19b868db5fe6de944dd8.png",
     "static/media/Dragon_Lord's_Crown.png": "/project-irminsul/static/media/Dragon_Lord's_Crown.ef95424c50102e513f01.png",
     "index.html": "/project-irminsul/index.html",
     "main.ad3a1d5e.css.map": "/project-irminsul/static/css/main.ad3a1d5e.css.map",
-    "main.36ff297e.js.map": "/project-irminsul/static/js/main.36ff297e.js.map"
+    "main.3f61bd5d.js.map": "/project-irminsul/static/js/main.3f61bd5d.js.map"
   },
   "entrypoints": [
     "static/css/main.ad3a1d5e.css",
-    "static/js/main.36ff297e.js"
+    "static/js/main.3f61bd5d.js"
   ]
 }
