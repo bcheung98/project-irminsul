@@ -13,7 +13,7 @@ const Nav = () => {
                         variant="h6"
                         noWrap
                         component="a"
-                        href="/"
+                        href="/project-irminsul"
                         sx={{
                             mr: 2,
                             display: { xs: "none", md: "flex" },
@@ -28,7 +28,7 @@ const Nav = () => {
                     <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                         {pages.map((page) => (
                             <Button
-                                href={`/${page}`}
+                                href={`/project-irminsul/${page}`}
                                 key={page}
                                 sx={{ mx: 3, my: 2, color: "white", display: "block", fontFamily: "Genshin" }}
                             >
