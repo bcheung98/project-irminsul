@@ -6,7 +6,10 @@ const pages = ["characters", "weapons"];
 const Nav = () => {
 
     return (
-        <AppBar position="static" sx={{borderBottom: "2px solid rgb(18, 45, 73)"}}>
+        <AppBar position="static" sx={{
+            backgroundColor: "rgb(0, 30, 60)",
+            borderBottom: "1px solid rgb(30, 73, 118)"
+        }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
@@ -17,9 +20,9 @@ const Nav = () => {
                         sx={{
                             mr: 2,
                             display: { xs: "none", md: "flex" },
-                            fontFamily: "Genshin",
+                            fontFamily: "Genshin, monospace",
                             letterSpacing: ".3rem",
-                            color: "inherit",
+                            color: "white",
                             textDecoration: "none",
                         }}
                     >
