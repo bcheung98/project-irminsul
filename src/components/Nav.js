@@ -1,7 +1,5 @@
 import * as React from "react";
-import { AppBar, Box, Toolbar, Typography, Container, Button, Tooltip } from "@mui/material";
-
-const pages = ["characters", "weapons"];
+import { AppBar, Box, Toolbar, Typography, Container, Button, Avatar, CardHeader } from "@mui/material";
 
 const Nav = () => {
 
@@ -12,32 +10,75 @@ const Nav = () => {
         }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="/project-irminsul"
-                        sx={{
-                            mr: 2,
-                            display: { xs: "none", md: "flex" },
-                            fontFamily: "Genshin, monospace",
-                            letterSpacing: ".3rem",
-                            color: "white",
-                            textDecoration: "none",
-                        }}
-                    >
-                        PROJECT IRMINSUL
-                    </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                        {pages.map((page) => (
-                            <Button
-                                href={`/project-irminsul/${page}`}
-                                key={page}
-                                sx={{ mx: 3, my: 2, color: "white", display: "block", fontFamily: "Genshin" }}
+                    <CardHeader
+                        avatar={
+                            <Avatar src={require("../assets/icons/Sumeru.png")} alt="PROJECT IRMINSUL" sx={{ height: "64px", width: "64px" }} />
+                        }
+                        title={
+                            <Typography
+                                variant="h6"
+                                noWrap
+                                component="a"
+                                href="/project-irminsul"
+                                sx={{
+                                    mr: 2,
+                                    display: { xs: "none", md: "flex" },
+                                    fontFamily: "Genshin, monospace",
+                                    letterSpacing: ".3rem",
+                                    color: "white",
+                                    textDecoration: "none",
+                                }}
                             >
-                                {page}
-                            </Button>
-                        ))}
+                                PROJECT IRMINSUL
+                            </Typography>
+                        }
+                    />
+                    <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+                        <Button
+                            href={`/project-irminsul/characters`}
+                            key={"characters"}
+                        >
+                            <CardHeader
+                                avatar={
+                                    <Avatar src={require("../assets/icons/Aether.png")} alt="CHARACTERS" sx={{ height: "32px", width: "32px" }} />
+                                }
+                                title={
+                                    <Typography
+                                        variant="body1"
+                                        sx={{
+                                            fontFamily: "Genshin, monospace",
+                                            color: "white",
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        CHARACTERS
+                                    </Typography>
+                                }
+                            />
+                        </Button>
+                        <Button
+                            href={`/project-irminsul/weapons`}
+                            key={"weapons"}
+                        >
+                            <CardHeader
+                                avatar={
+                                    <Avatar src={require("../assets/icons/Weapons.png")} alt="WEAPONS" sx={{ height: "48px", width: "48px" }} />
+                                }
+                                title={
+                                    <Typography
+                                        variant="body1"
+                                        noWrap  
+                                        sx={{
+                                            fontFamily: "Genshin, monospace",
+                                            color: "white",
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        WEAPONS
+                                    </Typography>
+                                }
+                            />
+                        </Button>
                     </Box>
                 </Toolbar>
             </Container>
