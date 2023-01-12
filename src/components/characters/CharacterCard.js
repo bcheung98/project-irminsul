@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Typography, Card, CardContent, Avatar } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
+import CharacterMaterialGrid from "./CharacterMaterialGrid";
 import { MaterialTooltip } from "../../helpers/MaterialTooltip";
 
 const CharacterCard = (props) => {
@@ -23,26 +24,28 @@ const CharacterCard = (props) => {
                 borderRadius: "5px",
                 fontFamily: "Genshin, sans-serif"
             }}>
-                <CardContent>
+                <CardContent sx={{
+                    mt: "-8px",
+                }}>
                     <div id="top-row">
                         <Typography sx={{
                             fontFamily: "Genshin, sans-serif",
                             color: "white",
-                            marginBottom: "10px",
+                            ml: "-5px",
                         }} variant="h5">
                             {name}
                         </Typography>
                         <div id="circle-icons" style={{
                             display: "flex",
-                            position: "absolute",
-                            margin: "auto",
-                            marginTop: "-43px",
+                            position: "relative",
+                            marginTop: "-35px",
+                            marginBottom: "5px",
                             marginLeft: "225px",
                         }}>
                             <MaterialTooltip title={element} arrow placement="top">
                                 <Avatar sx={{
                                     height: "35px",
-                                    width: "35px"
+                                    width: "35px",
                                 }} src={require(`../../assets/elements/Element_${element}.png`)} alt={element} />
                             </MaterialTooltip>
                             <MaterialTooltip title={weapon} arrow placement="top">
@@ -55,11 +58,13 @@ const CharacterCard = (props) => {
                     </div>
                     <Grid container spacing={2}>
                         <Grid item xs sx={{
-                            ml: "-100px",
+                            marginTop: "5px",
+                            marginLeft: "-40px",
+                            width: "100px",
                         }}>
                             <Avatar variant="square" sx={{
                                 margin: "auto",
-                                border: "2px solid rgb(30, 73, 118)",
+                                border: "1px solid rgb(30, 73, 118)",
                                 borderRadius: "5px",
                                 width: '90px',
                                 height: '90px',
@@ -73,6 +78,7 @@ const CharacterCard = (props) => {
                                 marginTop: "2px",
                             }} src={require(`../../assets/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
                         </Grid>
+                        <CharacterMaterialGrid character={props.character} imageSize="48px" margin="-30px" />
                     </Grid>
                 </CardContent>
             </Card >
