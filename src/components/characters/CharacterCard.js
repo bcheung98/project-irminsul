@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Typography, Card, CardContent, Avatar } from "@mui/material";
+import { Typography, Card, CardContent, Avatar, ButtonBase } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import CharacterMaterialGrid from "./CharacterMaterialGrid";
 import { MaterialTooltip } from "../../helpers/MaterialTooltip";
@@ -80,9 +80,20 @@ const CharacterCard = (props) => {
                         </Grid>
                         <CharacterMaterialGrid character={props.character} imageSize="48px" margin="-30px" />
                     </Grid>
+                    <ButtonBase href={`/project-irminsul/character/${props.character.name.split(" ").join("_").toLowerCase()}`}>
+                        <Typography sx={{
+                            fontFamily: "Genshin, sans-serif",
+                            fontSize: "9pt",
+                            color: "rgb(10, 155, 201)",
+                            ml: "1px",
+                            mt: "5px",
+                        }}>
+                            MORE INFO
+                        </Typography>
+                    </ButtonBase>
                 </CardContent>
             </Card >
-        </React.Fragment>
+        </React.Fragment >
     )
 }
 

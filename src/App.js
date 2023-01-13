@@ -2,21 +2,34 @@ import * as React from "react";
 import {
 	BrowserRouter as Router,
 	Switch,
-	Route,
-	Redirect
+	Route
 } from "react-router-dom";
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import { fetchCharacters } from "./redux/actions/fetchCharacters";
 import Nav from "./components/Nav";
 import CharacterBrowser from "./components/characters/CharacterBrowser";
+import CharacterPage from "./components/characters/page/_CharacterPage";
 import WeaponBrowser from "./components/weapons/WeaponBrowser";
 import { AppBar, Typography } from "@mui/material";
 
-const App = () => {
+const App = (props) => {
+
+	useEffect(() => {
+		if (props.characters.characters.length === 0) {
+			fetchCharacters();
+		}
+	}, [])
+
+	let { fetchCharacters } = props;
+
 	return (
 		<Router basename="project-irminsul">
 			<Nav />
 			<Switch>
 				<Route exact path="/" component={CharacterBrowser} />
 				<Route path="/characters" component={CharacterBrowser} />
+				<Route path="/character/:char_name" children={<CharacterPage />} />
 				<Route path="/weapons" component={WeaponBrowser} />
 			</Switch>
 			<AppBar position="static" sx={{
@@ -33,4 +46,17 @@ const App = () => {
 	);
 }
 
-export default App;
+const mapStateToProps = (state) => {
+	return {
+		characters: state.characters,
+		filters: state.filters
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		fetchCharacters: () => dispatch(fetchCharacters())
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

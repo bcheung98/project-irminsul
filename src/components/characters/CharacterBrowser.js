@@ -1,7 +1,5 @@
 import * as React from "react";
-import { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchCharacters } from "../../redux/actions/fetchCharacters";
 import { Typography, Paper, InputBase } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import CharacterCard from "./CharacterCard";
@@ -10,29 +8,24 @@ import { filterCharacters } from "../../helpers/FilterCharacters";
 
 const CharacterBrowser = (props) => {
 
-    useEffect(() => {
-        fetchCharacters();
-    }, [])
-
     const [searchValue, setSearchValue] = React.useState("");
 
     const handleInputChange = (e) => {
         setSearchValue(e.target.value);
     }
 
-    let { characters, fetchCharacters, filters } = props;
+    let { characters, filters } = props;
 
     return (
         <React.Fragment>
             <Typography
-                variant="h6"
+                variant="h4"
                 noWrap
                 component="a"
                 sx={{
                     mx: "25px",
                     my: "20px",
                     display: { xs: "none", md: "flex" },
-                    fontSize: "20pt",
                     fontFamily: "Genshin, sans-serif",
                     letterSpacing: ".2rem",
                     color: "white",
@@ -42,7 +35,7 @@ const CharacterBrowser = (props) => {
             >
                 CHARACTERS
             </Typography>
-            <Grid container sx={{margin: "auto", width: "98%"}}>
+            <Grid container sx={{ margin: "auto", width: "98%" }}>
                 <Grid item xs={9}>
                     <Grid container>
                         {characters.characters.length > 0 &&
@@ -87,10 +80,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchCharacters: () => dispatch(fetchCharacters())
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CharacterBrowser);
+export default connect(mapStateToProps)(CharacterBrowser);
