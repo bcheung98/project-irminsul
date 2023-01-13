@@ -28,7 +28,7 @@ const Nav = () => {
                             </Typography>
                         }
                     />
-                    <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+                    {/* <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                         <Button
                             href={`/project-irminsul/characters`}
                             key={"characters"}
@@ -71,7 +71,7 @@ const Nav = () => {
                                 }
                             />
                         </Button>
-                    </Box>
+                    </Box> */}
                 </Toolbar>
             </Container>
         </AppBar>
