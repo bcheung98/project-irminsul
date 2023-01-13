@@ -4,6 +4,7 @@ import { Typography, Avatar } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useParams } from "react-router-dom";
 import { MaterialTooltip } from "../../../helpers/MaterialTooltip";
+import CharacterStatsTable from "./CharacterStatsTable";
 
 const CharacterPage = (props) => {
 
@@ -18,7 +19,7 @@ const CharacterPage = (props) => {
                 <Grid container>
                     <Grid xs="auto">
                         <img src={require(`../../../assets/characters/wish/Character_${name.split(" ").join("_")}_Wish.png`)} alt={name} style={{
-                            width: "750px",
+                            width: "40vw",
                             height: "600px",
                             objectFit: "cover",
                             borderRight: "1px solid rgb(30, 73, 118)",
@@ -76,7 +77,7 @@ const CharacterPage = (props) => {
                                 textAlign: "center",
                             }}
                         >
-                            {character.title}
+                            {title}
                         </Typography>
                         <img style={{
                             marginLeft: "20px",
@@ -84,7 +85,7 @@ const CharacterPage = (props) => {
                         }} src={require(`../../../assets/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
                         <br /><br />
                         <Typography
-                            variant="body1"
+                            variant="body2"
                             component="a"
                             sx={{
                                 mx: "25px",
@@ -94,8 +95,9 @@ const CharacterPage = (props) => {
                                 color: "white",
                             }}
                         >
-                            {character.description}
+                            {description}
                         </Typography>
+                        <CharacterStatsTable character={character} />
                     </Grid>
                 </Grid>
             </React.Fragment>
