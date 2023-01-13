@@ -61,8 +61,9 @@ const CharacterFilters = () => {
                 backgroundColor: "rgb(0, 30, 60)",
                 border: "1px solid rgb(30, 73, 118)",
             }}>
-                <Typography variant="h5" sx={{
-                    margin: "10px",
+                <Typography variant="h6" sx={{
+                    ml: "15px",
+                    my: "10px",
                     fontFamily: "Genshin, sans-serif",
                 }}>Filters
                 </Typography>
