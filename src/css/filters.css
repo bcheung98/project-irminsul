@@ -1,0 +1,36 @@
+.filter-text-off, .filter-text-on {
+    font-family: Genshin, sans-serif;
+    margin: 0;
+}
+
+.filter-text-off {
+    color: white;
+}
+
+.filter-text-on {
+    color: rgb(30, 175, 255);
+}
+
+.filter-off, .filter-on {
+    height: 32px;
+    padding: 3px;
+    margin: 3px;
+    border: 1px solid rgb(30, 73, 118);
+    border-radius: 5px;
+}
+
+.filter-off:hover, .filter-on:hover {
+    box-shadow: 0 0 5px 1px dodgerblue;
+    border: 1px solid dodgerblue;
+    cursor: pointer;
+}
+
+.filter-off {
+    background-color: rgb(9, 24, 39);
+    opacity: 0.35;
+}
+
+.filter-on {
+    background-color: rgb(0, 30, 60);
+    opacity: 1;
+}
