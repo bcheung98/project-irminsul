@@ -1,13 +1,20 @@
 {
   "files": {
-    "main.css": "/project-irminsul/static/css/main.ad3a1d5e.css",
-    "main.js": "/project-irminsul/static/js/main.3f61bd5d.js",
+    "main.css": "/project-irminsul/static/css/main.55aa3530.css",
+    "main.js": "/project-irminsul/static/js/main.03a14a2e.js",
     "static/media/ja-jp.ttf": "/project-irminsul/static/media/ja-jp.1f6e9f5930ddc1ce5c68.ttf",
+    "static/media/Azhdaha_Icon.png": "/project-irminsul/static/media/Azhdaha_Icon.d31a8f273b960fda23e0.png",
+    "static/media/La_Signora_Icon.png": "/project-irminsul/static/media/La_Signora_Icon.b527ef48a19996ae490a.png",
     "static/media/Character_Mona_Thumb.png": "/project-irminsul/static/media/Character_Mona_Thumb.e816d348ba77dbe4c3d1.png",
+    "static/media/Stormterror_Icon.png": "/project-irminsul/static/media/Stormterror_Icon.9a804dfc305fddfaf8c0.png",
     "static/media/Character_Nahida_Thumb.png": "/project-irminsul/static/media/Character_Nahida_Thumb.55e6542f08f721b606b2.png",
+    "static/media/Andrius_Icon.png": "/project-irminsul/static/media/Andrius_Icon.c57ce31110045a376071.png",
+    "static/media/Shouki_no_Kami.png": "/project-irminsul/static/media/Shouki_no_Kami.3e158c3a3157695e22f4.png",
     "static/media/Character_Itto_Thumb.png": "/project-irminsul/static/media/Character_Itto_Thumb.a13e3a396355f31a0855.png",
     "static/media/Character_Eula_Thumb.png": "/project-irminsul/static/media/Character_Eula_Thumb.1e18417949ab8ea90e29.png",
+    "static/media/Childe_Icon.png": "/project-irminsul/static/media/Childe_Icon.0bb7d8dabd8326cab9f7.png",
     "static/media/Character_Shinobu_Thumb.png": "/project-irminsul/static/media/Character_Shinobu_Thumb.05951d301e97bbf30550.png",
+    "static/media/Narukami_no_Mikoto_Icon.png": "/project-irminsul/static/media/Narukami_no_Mikoto_Icon.2f2807d3a9f7959e3f84.png",
     "static/media/Character_Xinyan_Thumb.png": "/project-irminsul/static/media/Character_Xinyan_Thumb.242af0eca9903862f740.png",
     "static/media/Character_Gorou_Thumb.png": "/project-irminsul/static/media/Character_Gorou_Thumb.e14777ca233c48fa2717.png",
     "static/media/Character_Noelle_Thumb.png": "/project-irminsul/static/media/Character_Noelle_Thumb.684bb07dbb3cfebb139f.png",
@@ -129,6 +136,7 @@
     "static/media/Basalt_Pillar.png": "/project-irminsul/static/media/Basalt_Pillar.4f767277bdde03fdd8d2.png",
     "static/media/Small_Lamp_Grass.png": "/project-irminsul/static/media/Small_Lamp_Grass.40f79ba5e911de1f3013.png",
     "static/media/Dandelion_Seed.png": "/project-irminsul/static/media/Dandelion_Seed.685668e648504c3be2c0.png",
+    "static/media/Inazuma.png": "/project-irminsul/static/media/Inazuma.56c9d5c866b341501c75.png",
     "static/media/Lightning_Prism.png": "/project-irminsul/static/media/Lightning_Prism.e430fb2d1afd0e5ab5fb.png",
     "static/media/Naku_Weed.png": "/project-irminsul/static/media/Naku_Weed.3c9aa5e5d562c47b343d.png",
     "static/media/Tusk_of_Monoceros_Caeli.png": "/project-irminsul/static/media/Tusk_of_Monoceros_Caeli.e69f7bede1603aea3241.png",
@@ -161,6 +169,7 @@
     "static/media/Ring_of_Boreas.png": "/project-irminsul/static/media/Ring_of_Boreas.cfafdbe60aaebc547fdc.png",
     "static/media/Riftborn_Regalia.png": "/project-irminsul/static/media/Riftborn_Regalia.38860d3c2600d26670f3.png",
     "static/media/Marionette_Core.png": "/project-irminsul/static/media/Marionette_Core.9a7937e90552dcb13142.png",
+    "static/media/Mondstadt.png": "/project-irminsul/static/media/Mondstadt.dc7336a54778e23a138d.png",
     "static/media/Treasure_Hoarder_Insignia3.png": "/project-irminsul/static/media/Treasure_Hoarder_Insignia3.a46350b03c42318d7398.png",
     "static/media/Slime3.png": "/project-irminsul/static/media/Slime3.be979b15ee595c238a03.png",
     "static/media/Spirit_Locket_of_Boreas.png": "/project-irminsul/static/media/Spirit_Locket_of_Boreas.442ad4e74ac4368a4645.png",
@@ -172,16 +181,17 @@
     "static/media/Anemo_Gemstone.png": "/project-irminsul/static/media/Anemo_Gemstone.8e700e7021972cc3e57f.png",
     "static/media/Arrow3.png": "/project-irminsul/static/media/Arrow3.29467e1e64f5808014ad.png",
     "static/media/Geo_Gemstone.png": "/project-irminsul/static/media/Geo_Gemstone.80a364ff427117a4914c.png",
+    "static/media/Liyue.png": "/project-irminsul/static/media/Liyue.6d9b6b149b3f3fcb4aea.png",
     "static/media/Jueyun_Chili.png": "/project-irminsul/static/media/Jueyun_Chili.34d3d31e62f089a4cd19.png",
     "static/media/Mudra_of_the_Malefic_General.png": "/project-irminsul/static/media/Mudra_of_the_Malefic_General.dd080a48d042a1a82859.png",
     "static/media/Sumeru.png": "/project-irminsul/static/media/Sumeru.19b868db5fe6de944dd8.png",
     "static/media/Dragon_Lord's_Crown.png": "/project-irminsul/static/media/Dragon_Lord's_Crown.ef95424c50102e513f01.png",
     "index.html": "/project-irminsul/index.html",
-    "main.ad3a1d5e.css.map": "/project-irminsul/static/css/main.ad3a1d5e.css.map",
-    "main.3f61bd5d.js.map": "/project-irminsul/static/js/main.3f61bd5d.js.map"
+    "main.55aa3530.css.map": "/project-irminsul/static/css/main.55aa3530.css.map",
+    "main.03a14a2e.js.map": "/project-irminsul/static/js/main.03a14a2e.js.map"
   },
   "entrypoints": [
-    "static/css/main.ad3a1d5e.css",
-    "static/js/main.3f61bd5d.js"
+    "static/css/main.55aa3530.css",
+    "static/js/main.03a14a2e.js"
   ]
 }
