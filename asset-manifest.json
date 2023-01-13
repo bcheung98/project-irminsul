@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/project-irminsul/static/css/main.55aa3530.css",
-    "main.js": "/project-irminsul/static/js/main.3974c29e.js",
+    "main.js": "/project-irminsul/static/js/main.dda0b65d.js",
     "static/media/ja-jp.ttf": "/project-irminsul/static/media/ja-jp.1f6e9f5930ddc1ce5c68.ttf",
     "static/media/Character_Mona_Wish.png": "/project-irminsul/static/media/Character_Mona_Wish.142d2f3cdc241bc5c5a2.png",
     "static/media/Character_Ayaka_Wish.png": "/project-irminsul/static/media/Character_Ayaka_Wish.1a846aae701d38315910.png",
@@ -248,10 +248,10 @@
     "static/media/Dragon_Lord's_Crown.png": "/project-irminsul/static/media/Dragon_Lord's_Crown.ef95424c50102e513f01.png",
     "index.html": "/project-irminsul/index.html",
     "main.55aa3530.css.map": "/project-irminsul/static/css/main.55aa3530.css.map",
-    "main.3974c29e.js.map": "/project-irminsul/static/js/main.3974c29e.js.map"
+    "main.dda0b65d.js.map": "/project-irminsul/static/js/main.dda0b65d.js.map"
   },
   "entrypoints": [
     "static/css/main.55aa3530.css",
-    "static/js/main.3974c29e.js"
+    "static/js/main.dda0b65d.js"
   ]
 }
