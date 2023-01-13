@@ -46,7 +46,6 @@ let puppetStringsIcon = require("../../../assets/materials/weekly_boss_mats/Pupp
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(() => ({
-    border: `1px solid rgb(30, 73, 118)`,
     '&:not(:last-child)': {
         borderBottom: 0,
     },

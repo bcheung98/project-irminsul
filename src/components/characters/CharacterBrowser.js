@@ -45,7 +45,7 @@ const CharacterBrowser = (props) => {
                 </Grid>
                 <Grid item xs={3}>
                     <Paper sx={{
-                        border: "1px solid rgb(30, 73, 118)",
+                        border: "2px solid rgb(30, 73, 118)",
                         borderRadius: "5px",
                         backgroundColor: "rgb(0, 30, 60)",
                         display: "flex",

@@ -17,9 +17,8 @@ import LocalSpecialtyFilter from "./LocalSpecialtyFilter";
 import NationFilter from "./NationFilter";
 
 const Accordion = styled((props) => (
-    <MuiAccordion disableGutters elevation={0} square {...props} />
+    <MuiAccordion disableGutters elevation={0} {...props} />
 ))(() => ({
-    border: `1px solid rgb(30, 73, 118)`,
     '&:not(:last-child)': {
         borderBottom: 0,
     },
@@ -56,10 +55,11 @@ const CharacterFilters = () => {
             width: "85%",
             marginLeft: "35px",
         }}>
-            <Paper sx={{
+            <Paper variant="outlined" square sx={{
                 color: "white",
                 backgroundColor: "rgb(0, 30, 60)",
-                border: "1px solid rgb(30, 73, 118)",
+                border: "2px solid rgb(30, 73, 118)",
+                borderRadius: "5px",
             }}>
                 <Typography variant="h6" sx={{
                     ml: "15px",

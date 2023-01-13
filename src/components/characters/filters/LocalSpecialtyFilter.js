@@ -51,7 +51,6 @@ let sgpIcon = require("../../../assets/materials/local_specialties/Sand_Grease_P
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(() => ({
-    border: `1px solid rgb(30, 73, 118)`,
     '&:not(:last-child)': {
         borderBottom: 0,
     },
