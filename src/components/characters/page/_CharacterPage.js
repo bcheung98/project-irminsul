@@ -10,6 +10,7 @@ import CharacterStatsTable from "./CharacterStatsTable";
 import CharacterAscensionTable from "./CharacterAscensionTable";
 import CharacterTalentDisplay from "./CharacterTalentDisplay";
 import CharacterTalentLevellingTable from "./CharacterTalentLevellingTable";
+import CharacterConstellationDisplay from "./CharacterConstellationDisplay";
 
 function TabPanel(props) {
 
@@ -190,6 +191,7 @@ const CharacterPage = (props) => {
                     </Grid>
                 </Grid>
                 <CharacterTalentDisplay character={character} />
+                <CharacterConstellationDisplay character={character} />
             </React.Fragment>
         )
     }
