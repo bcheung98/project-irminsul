@@ -111,8 +111,9 @@ const CharacterTalentDisplay = (props) => {
                             talents[key].splash &&
                             <React.Fragment>
                                 <br />
-                                <i style={{ fontSize: "15px", color: "rgb(225, 225, 225)", marginLeft: "20px" }}>{parse(talents[key].splash)}</i>
-                                <br />
+                                <Typography variant="body1" sx={{ fontSize: "15px", fontStyle: "italic", ml: "20px", color: "rgb(225, 225, 225)" }}>
+                                    {parse(talents[key].splash)}
+                                </Typography>
                             </React.Fragment>
                         }
                         <br />
@@ -132,11 +133,11 @@ const CharacterTalentDisplay = (props) => {
                                 </Accordion>
                             </Paper>
                         }
-                        <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+                        < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
                     </Box>
                 )
             })}
-        </Box>
+        </Box >
     )
 }
 
