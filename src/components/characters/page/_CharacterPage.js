@@ -46,7 +46,7 @@ const CharacterPage = (props) => {
                                 <Typography variant="body2"><b>EN:</b> {voiceActors["en"]}</Typography>
                                 <Typography variant="body2"><b>JP:</b> {voiceActors["jp"]}</Typography>
                             </div>
-                            <div style={{ marginLeft: "100px" }}>
+                            <div>
                                 <Typography variant="body2" sx={{ fontFamily: "Genshin" }}>Constellation:</Typography>
                                 <Typography variant="body2" sx={{ fontFamily: "Genshin" }}>Birthday:</Typography>
                                 <Typography variant="body2" sx={{ fontFamily: "Genshin" }}>Release Date:</Typography>
