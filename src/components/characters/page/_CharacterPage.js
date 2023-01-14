@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import CharacterStatsTable from "./CharacterStatsTable";
 import CharacterAscensionTable from "./CharacterAscensionTable";
 import CharacterTalentDisplay from "./CharacterTalentDisplay";
+import CharacterTalentLevellingTable from "./CharacterTalentLevellingTable";
 
 function TabPanel(props) {
 
@@ -174,12 +175,16 @@ const CharacterPage = (props) => {
                             <Tabs value={tabValue} onChange={handleTabChange} centered>
                                 <StyledTab label="Stats" />
                                 <StyledTab label="Ascension" />
+                                <StyledTab label="Talent Levelling" />
                             </Tabs>
                             <TabPanel value={tabValue} index={0}>
                                 <CharacterStatsTable character={character} />
                             </TabPanel>
                             <TabPanel value={tabValue} index={1}>
                                 <CharacterAscensionTable character={character} />
+                            </TabPanel>
+                            <TabPanel value={tabValue} index={2}>
+                                <CharacterTalentLevellingTable character={character} />
                             </TabPanel>
                         </Box>
                     </Grid>
