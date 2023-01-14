@@ -11,17 +11,16 @@ import CharacterAscensionTable from "./CharacterAscensionTable";
 import CharacterTalentDisplay from "./CharacterTalentDisplay";
 
 function TabPanel(props) {
-    const { children, value, index, ...other } = props;
 
+    const { children, value, index, ...other } = props;
     return (
         <div
-            role="tabpanel"
             hidden={value !== index}
             {...other}
         >
             {value === index && (
                 <Box sx={{ p: 3 }}>
-                    <Typography>{children}</Typography>
+                    <Typography component="span">{children}</Typography>
                 </Box>
             )}
         </div>
@@ -84,7 +83,6 @@ const CharacterPage = (props) => {
                             }}>
                             <Typography
                                 variant="body2"
-                                component="p"
                                 sx={{
                                     mb: "20px",
                                     fontFamily: "Genshin, sans-serif",
@@ -116,13 +114,12 @@ const CharacterPage = (props) => {
                         </Box>
                     </Grid>
                     <Grid xs>
-                        <div style={{ display: "flex" }}>
+                        <Box sx={{ display: "flex" }}>
                             <img style={{ marginRight: "-25px", height: "128px" }} src={require(`../../../assets/visions/Vision_${nation}_${element}.png`)} alt={`${nation} / ${element}`} />
                             <div style={{ marginLeft: "20px" }}>
                                 <Typography
                                     variant="h4"
                                     noWrap
-                                    component="p"
                                     sx={{
                                         mt: "20px",
                                         display: { xs: "none", md: "flex" },
@@ -137,7 +134,6 @@ const CharacterPage = (props) => {
                                 <Typography
                                     variant="body1"
                                     noWrap
-                                    component="p"
                                     sx={{
                                         my: "2px",
                                         display: { xs: "none", md: "flex" },
@@ -166,7 +162,7 @@ const CharacterPage = (props) => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Box>
                         <Box
                             sx={{
                                 border: "1px solid rgb(30, 73, 118)",

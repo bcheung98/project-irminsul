@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Table, TableBody, TableContainer, TableHead, Paper } from "@mui/material";
+import { Table, TableBody, TableContainer, TableHead } from "@mui/material";
 import { StyledTableCell, StyledTableRows } from "../../../helpers/StyledTable";
 
 const createTalentScaling = (level, a, b, c, d, e, f, g, h, i, j, k, l, m) => {
@@ -26,8 +26,8 @@ const CharacterTalentScalingTable = (props) => {
                     </StyledTableRows>
                 </TableHead>
                 <TableBody>
-                    {rows.map(row => (
-                        <StyledTableRows key={row.level}>
+                    {rows.map((row, index) => (
+                        <StyledTableRows key={index}>
                             <StyledTableCell component="th" scope="row" align="center">
                                 {row.level}
                             </StyledTableCell>
