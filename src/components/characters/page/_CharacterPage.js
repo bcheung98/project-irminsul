@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Typography, Avatar, Paper } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useParams } from "react-router-dom";
-import { MaterialTooltip } from "../../../helpers/MaterialTooltip";
 import CharacterStatsTable from "./CharacterStatsTable";
 
 const CharacterPage = (props) => {
@@ -40,6 +39,7 @@ const CharacterPage = (props) => {
                                 mt: "10px",
                                 px: "20px",
                                 py: "10px",
+                                width: "32.9vw",
                             }}>
                             <div>
                                 <Typography variant="body2" sx={{ fontFamily: "Genshin" }}>Voice Actors:</Typography>
@@ -60,69 +60,62 @@ const CharacterPage = (props) => {
                     </Grid>
                     <Grid xs>
                         <div style={{ display: "flex" }}>
-                            <Typography
-                                variant="h4"
-                                noWrap
-                                component="a"
-                                sx={{
-                                    mx: "25px",
-                                    mt: "20px",
-                                    display: { xs: "none", md: "flex" },
-                                    fontFamily: "Genshin, sans-serif",
-                                    color: "white",
-                                    textDecoration: "none",
-                                    textAlign: "center",
-                                }}
-                            >
-                                {character.fullname ? character.fullname : name}
-                            </Typography>
-                            <div id="circle-icons" style={{
-                                display: "flex",
-                                marginTop: "15px",
-                            }}>
-                                <MaterialTooltip title={element} arrow placement="top">
-                                    <Avatar sx={{
-                                        height: "48px",
-                                        width: "48px",
-                                    }} src={require(`../../../assets/elements/Element_${element}.png`)} alt={element} />
-                                </MaterialTooltip>
-                                <MaterialTooltip title={weapon} arrow placement="top">
-                                    <Avatar sx={{
-                                        height: "48px",
-                                        width: "48px"
-                                    }} src={require(`../../../assets/weapons/Weapon-class-${weapon.toLowerCase()}-icon.png`)} alt={weapon} />
-                                </MaterialTooltip>
+                            <img style={{ marginRight: "-25px", height: "128px" }} src={require(`../../../assets/visions/Vision_${nation}_${element}.png`)} alt={`${nation} / ${element}`} />
+                            <div style={{ marginLeft: "20px" }}>
+                                <Typography
+                                    variant="h4"
+                                    noWrap
+                                    component="a"
+                                    sx={{
+                                        mt: "20px",
+                                        display: { xs: "none", md: "flex" },
+                                        fontFamily: "Genshin, sans-serif",
+                                        color: "white",
+                                        textDecoration: "none",
+                                        textAlign: "center",
+                                    }}
+                                >
+                                    {character.fullname ? character.fullname : name}
+                                </Typography>
+                                <Typography
+                                    variant="body1"
+                                    noWrap
+                                    component="p"
+                                    sx={{
+                                        my: "2px",
+                                        display: { xs: "none", md: "flex" },
+                                        fontFamily: "Genshin, sans-serif",
+                                        color: "white",
+                                        fontStyle: "italic",
+                                        textAlign: "center",
+                                    }}
+                                >
+                                    {title}
+                                </Typography>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "left",
+                                        color: "white"
+                                    }}>
+                                    <div style={{ marginLeft: "-5px" }}>
+                                        <img style={{ height: "30px" }} src={require(`../../../assets/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
+                                    </div>
+                                    <div style={{ marginLeft: "5px" }}>
+                                        <Typography variant="body1" sx={{ fontFamily: "Genshin" }}>
+                                            • {weapon}
+                                        </Typography>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <Typography
-                            variant="body1"
-                            noWrap
-                            component="p"
-                            sx={{
-                                mx: "25px",
-                                mt: "5px",
-                                display: { xs: "none", md: "flex" },
-                                fontFamily: "Genshin, sans-serif",
-                                color: "white",
-                                fontStyle: "italic",
-                                textAlign: "center",
-                            }}
-                        >
-                            {title}
-                        </Typography>
-                        <img
-                            style={{
-                                marginLeft: "20px",
-                                marginTop: "2px",
-                            }} src={require(`../../../assets/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
-                        <br /><br />
+                        <br />
                         <Typography
                             variant="body2"
                             component="p"
                             sx={{
-                                mx: "25px",
-                                mt: "5px",
-                                display: { xs: "none", md: "flex" },
+                                mx: "40px",
                                 fontFamily: "Genshin, sans-serif",
                                 color: "white",
                             }}
