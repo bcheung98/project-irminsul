@@ -34,28 +34,42 @@ const CharacterPage = (props) => {
                                 backgroundColor: "rgb(7, 27, 47)",
                                 border: "1px solid rgb(30, 73, 118)",
                                 borderRadius: "5px", color: "white",
-                                display: "flex",
-                                justifyContent: "space-between",
                                 ml: "15px",
                                 mt: "10px",
                                 px: "20px",
                                 py: "10px",
                                 width: "32.9vw",
                             }}>
-                            <div>
-                                <Typography variant="body2" sx={{ fontFamily: "Genshin" }}>Voice Actors:</Typography>
-                                <Typography variant="body2"><b>EN:</b> {voiceActors["en"]}</Typography>
-                                <Typography variant="body2"><b>JP:</b> {voiceActors["jp"]}</Typography>
-                            </div>
-                            <div>
-                                <Typography variant="body2" sx={{ fontFamily: "Genshin" }}>Constellation:</Typography>
-                                <Typography variant="body2" sx={{ fontFamily: "Genshin" }}>Birthday:</Typography>
-                                <Typography variant="body2" sx={{ fontFamily: "Genshin" }}>Release Date:</Typography>
-                            </div>
-                            <div>
-                                <Typography variant="body2" sx={{ fontFamily: "Genshin" }}>{constellation.name}</Typography>
-                                <Typography variant="body2" sx={{ fontFamily: "Genshin" }}>{birthday}</Typography>
-                                <Typography variant="body2" sx={{ fontFamily: "Genshin" }}>{`${release.date} (${release.version})`}</Typography>
+                            <Typography
+                                variant="body2"
+                                component="p"
+                                sx={{
+                                    mb: "20px",
+                                    fontFamily: "Genshin, sans-serif",
+                                    color: "white",
+                                }}
+                            >
+                                {description}
+                            </Typography>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                }}>
+                                <div style={{ textAlign: "left" }}>
+                                    <Typography variant="body2"><b>Constellation</b></Typography>
+                                    <Typography variant="body2"><b>Birthday</b></Typography>
+                                    <Typography variant="body2"><b>Release Date</b></Typography>
+                                    <Typography variant="body2"><b>Voice Actor (EN)</b></Typography>
+                                    <Typography variant="body2"><b>Voice Actor (JP)</b></Typography>
+                                </div>
+                                <div style={{ textAlign: "right" }}>
+                                    <Typography variant="body2">{constellation.name}</Typography>
+                                    <Typography variant="body2">{birthday}</Typography>
+                                    <Typography variant="body2">{`${release.date} (${release.version})`}</Typography>
+                                    <Typography variant="body2">{voiceActors["en"]}</Typography>
+                                    <Typography variant="body2">{voiceActors["jp"]}</Typography>
+                                </div>
                             </div>
                         </Paper>
                     </Grid>
@@ -111,18 +125,6 @@ const CharacterPage = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <br />
-                        <Typography
-                            variant="body2"
-                            component="p"
-                            sx={{
-                                mx: "40px",
-                                fontFamily: "Genshin, sans-serif",
-                                color: "white",
-                            }}
-                        >
-                            {description}
-                        </Typography>
                         <CharacterStatsTable character={character} />
                         <CharacterAscensionTable character={character} />
                     </Grid>
