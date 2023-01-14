@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/project-irminsul/static/css/main.55aa3530.css",
-    "main.js": "/project-irminsul/static/js/main.dda0b65d.js",
+    "main.js": "/project-irminsul/static/js/main.4a75d980.js",
     "static/media/ja-jp.ttf": "/project-irminsul/static/media/ja-jp.1f6e9f5930ddc1ce5c68.ttf",
     "static/media/Character_Mona_Wish.png": "/project-irminsul/static/media/Character_Mona_Wish.142d2f3cdc241bc5c5a2.png",
     "static/media/Character_Ayaka_Wish.png": "/project-irminsul/static/media/Character_Ayaka_Wish.1a846aae701d38315910.png",
@@ -246,12 +246,38 @@
     "static/media/Mudra_of_the_Malefic_General.png": "/project-irminsul/static/media/Mudra_of_the_Malefic_General.dd080a48d042a1a82859.png",
     "static/media/Sumeru.png": "/project-irminsul/static/media/Sumeru.19b868db5fe6de944dd8.png",
     "static/media/Dragon_Lord's_Crown.png": "/project-irminsul/static/media/Dragon_Lord's_Crown.ef95424c50102e513f01.png",
+    "static/media/Vision_Inazuma_Dendro.png": "/project-irminsul/static/media/Vision_Inazuma_Dendro.36a48e099ca5ce9f29f2.png",
+    "static/media/Vision_Inazuma_Pyro.png": "/project-irminsul/static/media/Vision_Inazuma_Pyro.c149120e32c8b460815c.png",
+    "static/media/Vision_Inazuma_Geo.png": "/project-irminsul/static/media/Vision_Inazuma_Geo.6baf269e6eda653756b8.png",
+    "static/media/Vision_Inazuma_Anemo.png": "/project-irminsul/static/media/Vision_Inazuma_Anemo.d585549b85dec96c8d96.png",
+    "static/media/Vision_Inazuma_Hydro.png": "/project-irminsul/static/media/Vision_Inazuma_Hydro.b9d51b636747aa29fbb6.png",
+    "static/media/Vision_Inazuma_Cryo.png": "/project-irminsul/static/media/Vision_Inazuma_Cryo.d4c4b6aa6f390eadfba2.png",
+    "static/media/Vision_Inazuma_Electro.png": "/project-irminsul/static/media/Vision_Inazuma_Electro.8cb4888bf31802cbf585.png",
+    "static/media/Vision_Mondstadt_Dendro.png": "/project-irminsul/static/media/Vision_Mondstadt_Dendro.043252969ccf08ca63f8.png",
+    "static/media/Vision_Mondstadt_Electro.png": "/project-irminsul/static/media/Vision_Mondstadt_Electro.615aa0b46b0ddae77468.png",
+    "static/media/Vision_Mondstadt_Pyro.png": "/project-irminsul/static/media/Vision_Mondstadt_Pyro.e949a6d65e6c432e9cc1.png",
+    "static/media/Vision_Mondstadt_Geo.png": "/project-irminsul/static/media/Vision_Mondstadt_Geo.e4961eeae9c7a1a7231d.png",
+    "static/media/Vision_Mondstadt_Hydro.png": "/project-irminsul/static/media/Vision_Mondstadt_Hydro.dbcf1716df406b765926.png",
+    "static/media/Vision_Liyue_Electro.png": "/project-irminsul/static/media/Vision_Liyue_Electro.aaa974534857daec8595.png",
+    "static/media/Vision_Liyue_Anemo.png": "/project-irminsul/static/media/Vision_Liyue_Anemo.225f8a45b5a150ccfcd9.png",
+    "static/media/Vision_Sumeru_Dendro.png": "/project-irminsul/static/media/Vision_Sumeru_Dendro.6a481af6e7512add5541.png",
+    "static/media/Vision_Liyue_Dendro.png": "/project-irminsul/static/media/Vision_Liyue_Dendro.1e367ebbe07f545fb2a3.png",
+    "static/media/Vision_Mondstadt_Cryo.png": "/project-irminsul/static/media/Vision_Mondstadt_Cryo.39f401d6c0976617c96e.png",
+    "static/media/Vision_Sumeru_Pyro.png": "/project-irminsul/static/media/Vision_Sumeru_Pyro.5e6b307666c835df9b7e.png",
+    "static/media/Vision_Liyue_Hydro.png": "/project-irminsul/static/media/Vision_Liyue_Hydro.9baa8132a6fb0071cc7a.png",
+    "static/media/Vision_Liyue_Pyro.png": "/project-irminsul/static/media/Vision_Liyue_Pyro.fe5a06cf46591235c23c.png",
+    "static/media/Vision_Sumeru_Electro.png": "/project-irminsul/static/media/Vision_Sumeru_Electro.fe9732588e06c2053294.png",
+    "static/media/Vision_Mondstadt_Anemo.png": "/project-irminsul/static/media/Vision_Mondstadt_Anemo.498f11a40ef005d17a99.png",
+    "static/media/Vision_Sumeru_Geo.png": "/project-irminsul/static/media/Vision_Sumeru_Geo.6bee18d103f793d69451.png",
+    "static/media/Vision_Sumeru_Anemo.png": "/project-irminsul/static/media/Vision_Sumeru_Anemo.83bcc67a97448b10d78f.png",
+    "static/media/Vision_Liyue_Geo.png": "/project-irminsul/static/media/Vision_Liyue_Geo.8a9621cb4266455262ca.png",
+    "static/media/Vision_Sumeru_Hydro.png": "/project-irminsul/static/media/Vision_Sumeru_Hydro.cd8f1698ff99fa364693.png",
     "index.html": "/project-irminsul/index.html",
     "main.55aa3530.css.map": "/project-irminsul/static/css/main.55aa3530.css.map",
-    "main.dda0b65d.js.map": "/project-irminsul/static/js/main.dda0b65d.js.map"
+    "main.4a75d980.js.map": "/project-irminsul/static/js/main.4a75d980.js.map"
   },
   "entrypoints": [
     "static/css/main.55aa3530.css",
-    "static/js/main.dda0b65d.js"
+    "static/js/main.4a75d980.js"
   ]
 }
