@@ -1,8 +1,8 @@
 import React from "react";
 import "../../../css/AscensionTable.css";
-import { Table, TableBody, TableContainer, TableHead, Paper, Typography } from "@mui/material";
+import { Table, TableBody, TableContainer, TableHead, TableRow, Paper, Typography } from "@mui/material";
 import { MaterialTooltip } from "../../../helpers/MaterialTooltip";
-import { StyledTableCell, StyledTableRows } from "../../../helpers/StyledTable";
+import { StyledTableCell } from "../../../helpers/StyledTable";
 import { formatCommonMats, formatBossMats, formatGemstone } from "../../../helpers/TooltipText";
 let background1star = require("../../../assets/backgrounds/Background_1_Star.png");
 let background2star = require("../../../assets/backgrounds/Background_2_Star.png");
@@ -81,22 +81,22 @@ const CharacterAscensionTable = (props) => {
         <TableContainer sx={{
             border: "2px solid rgb(30, 73, 118)",
             borderRadius: "5px",
-            ml: "40px",
+            ml: "30px",
             mt: "25px",
-            width: "75%",
+            width: "95%",
         }} component={Paper}>
             <Table sx={{ backgroundColor: "rgb(0, 30, 60)" }}>
                 <TableHead>
-                    <StyledTableRows>
+                    <TableRow>
                         <StyledTableCell className="genshinFont" align="center">Phase</StyledTableCell>
                         <StyledTableCell className="genshinFont" align="center">Level</StyledTableCell>
                         <StyledTableCell className="genshinFont" align="center">Ascension Materials</StyledTableCell>
                         <StyledTableCell className="genshinFont" align="center">Total Ascension Materials</StyledTableCell>
-                    </StyledTableRows>
+                    </TableRow>
                 </TableHead>
                 <TableBody>
                     {characterAscStatRows.map((row) => (
-                        <StyledTableRows key={row.ascLevel}>
+                        <TableRow key={row.ascLevel}>
                             <StyledTableCell component="th" scope="row" align="center">
                                 {row.phase}
                             </StyledTableCell>
@@ -271,7 +271,7 @@ const CharacterAscensionTable = (props) => {
                                     <Typography style={{ textAlign: "center" }}>———</Typography>
                                 }
                             </StyledTableCell>
-                        </StyledTableRows>
+                        </TableRow>
                     ))}
                 </TableBody>
             </Table>

@@ -16,9 +16,9 @@ const CharacterStatsTable = (props) => {
         <TableContainer sx={{
             border: "2px solid rgb(30, 73, 118)",
             borderRadius: "5px",
-            ml: "40px",
+            ml: "30px",
             mt: "25px",
-            width: "75%",
+            width: "95%",
         }} component={Paper} >
             <Table sx={{ backgroundColor: "rgb(0, 30, 60)" }}>
                 <TableHead>
