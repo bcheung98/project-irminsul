@@ -1,16 +1,56 @@
 import * as React from "react";
+import PropTypes from 'prop-types';
+import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
-import { Typography, Paper } from "@mui/material";
+import { Typography, Tabs, Tab, Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useParams } from "react-router-dom";
 import CharacterStatsTable from "./CharacterStatsTable";
 import CharacterAscensionTable from "./CharacterAscensionTable";
+
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{ p: 3 }}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
+}
+
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.number.isRequired,
+    value: PropTypes.number.isRequired,
+};
+
+const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
+    () => ({
+        fontFamily: "Genshin, sans-serif",
+        fontSize: "14px",
+        color: "white",
+    }),
+);
 
 const CharacterPage = (props) => {
 
     let { char_name } = useParams();
     let { characters } = props;
     let character = characters.characters.find(char => char.name.split(" ").join("_").toLowerCase() === char_name);
+
+    const [tabValue, setTabValue] = React.useState(0);
+
+    const handleTabChange = (event, newValue) => {
+        setTabValue(newValue);
+    };
 
     if (character !== undefined) {
         let { name, title, rarity, element, weapon, constellation, description, birthday, nation, voiceActors, release } = character;
@@ -29,9 +69,8 @@ const CharacterPage = (props) => {
                                 borderBottom: "1px solid rgb(30, 73, 118)",
                                 borderRadius: "0px 0px 5px 5px"
                             }} />
-                        <Paper
+                        <Box
                             sx={{
-                                backgroundColor: "rgb(7, 27, 47)",
                                 border: "1px solid rgb(30, 73, 118)",
                                 borderRadius: "5px", color: "white",
                                 ml: "15px",
@@ -71,7 +110,7 @@ const CharacterPage = (props) => {
                                     <Typography variant="body2">{voiceActors["jp"]}</Typography>
                                 </div>
                             </div>
-                        </Paper>
+                        </Box>
                     </Grid>
                     <Grid xs>
                         <div style={{ display: "flex" }}>
@@ -80,7 +119,7 @@ const CharacterPage = (props) => {
                                 <Typography
                                     variant="h4"
                                     noWrap
-                                    component="a"
+                                    component="p"
                                     sx={{
                                         mt: "20px",
                                         display: { xs: "none", md: "flex" },
@@ -125,8 +164,25 @@ const CharacterPage = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <CharacterStatsTable character={character} />
-                        <CharacterAscensionTable character={character} />
+                        <Box
+                            sx={{
+                                border: "1px solid rgb(30, 73, 118)",
+                                borderRadius: "5px",
+                                mx: "20px",
+                                mt: "15px",
+                            }}
+                        >
+                            <Tabs value={tabValue} onChange={handleTabChange} centered>
+                                <StyledTab label="Stats" />
+                                <StyledTab label="Ascension" />
+                            </Tabs>
+                            <TabPanel value={tabValue} index={0}>
+                                <CharacterStatsTable character={character} />
+                            </TabPanel>
+                            <TabPanel value={tabValue} index={1}>
+                                <CharacterAscensionTable character={character} />
+                            </TabPanel>
+                        </Box>
                     </Grid>
                 </Grid>
             </React.Fragment>
