@@ -1,5 +1,6 @@
 import * as React from "react";
 import PropTypes from 'prop-types';
+import "../../../css/CharacterPage.css";
 import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
 import { Typography, Tabs, Tab, Box } from "@mui/material";
@@ -7,6 +8,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { useParams } from "react-router-dom";
 import CharacterStatsTable from "./CharacterStatsTable";
 import CharacterAscensionTable from "./CharacterAscensionTable";
+import CharacterTalentDisplay from "./CharacterTalentDisplay";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -56,7 +58,7 @@ const CharacterPage = (props) => {
         let { name, title, rarity, element, weapon, constellation, description, birthday, nation, voiceActors, release } = character;
         return (
             <React.Fragment>
-                <Grid container>
+                <Grid container sx={{mb: "20px"}}>
                     <Grid xs="auto">
                         <img src={require(`../../../assets/characters/wish/Character_${name.split(" ").join("_")}_Wish.png`)} alt={name}
                             style={{
@@ -72,7 +74,8 @@ const CharacterPage = (props) => {
                         <Box
                             sx={{
                                 border: "1px solid rgb(30, 73, 118)",
-                                borderRadius: "5px", color: "white",
+                                borderRadius: "5px",
+                                color: "white",
                                 ml: "15px",
                                 mt: "10px",
                                 px: "20px",
@@ -185,6 +188,7 @@ const CharacterPage = (props) => {
                         </Box>
                     </Grid>
                 </Grid>
+                <CharacterTalentDisplay character={character} />
             </React.Fragment>
         )
     }
