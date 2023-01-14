@@ -1,9 +1,10 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { Typography, Avatar, Paper } from "@mui/material";
+import { Typography, Paper } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useParams } from "react-router-dom";
 import CharacterStatsTable from "./CharacterStatsTable";
+import CharacterAscensionTable from "./CharacterAscensionTable";
 
 const CharacterPage = (props) => {
 
@@ -123,6 +124,7 @@ const CharacterPage = (props) => {
                             {description}
                         </Typography>
                         <CharacterStatsTable character={character} />
+                        <CharacterAscensionTable character={character} />
                     </Grid>
                 </Grid>
             </React.Fragment>
