@@ -81,8 +81,8 @@ const CharacterTalentLevellingTable = (props) => {
     let { talentBook, weeklyBossMat, commonMat } = props.character.materials;
 
     const talentLevels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    const materialQuantity = [["0", "0", "0", "0"], ["6", "3", "0", "0"], ["3", "2", "0", "0"], ["4", "4", "0", "0"], ["6", "6", "0", "0"], ["9", "9", "0", "0"], ["4", "4", "1", "0"], ["6", "6", "1", "0"], ["9", "12", "2", "0"], ["12", "16", "2", "1"]]
-    const totalMaterialQuantity = [["0", "0", "0", "0", "0", "0", "0", "0"], ["6", "0", "0", "3", "0", "0", "0", "0"], ["6", "3", "0", "3", "2", "0", "0", "0"], ["6", "7", "0", "3", "6", "0", "0", "0"], ["6", "13", "0", "3", "12", "0", "0", "0"], ["6", "22", "0", "3", "21", "0", "0", "0"], ["6", "22", "4", "3", "21", "4", "1", "0"], ["6", "22", "10", "3", "21", "10", "2", "0"], ["6", "22", "19", "3", "21", "22", "4", "0"], ["6", "22", "31", "3", "21", "38", "6", "1"]]
+    const materialQuantity = [["0", "0", "0", "0", "0"], ["6", "3", "0", "0", "12,500"], ["3", "2", "0", "0", "17,500"], ["4", "4", "0", "0", "25,000"], ["6", "6", "0", "0", "30,000"], ["9", "9", "0", "0", "37,500"], ["4", "4", "1", "0", "120,000"], ["6", "6", "1", "0", "260,000"], ["9", "12", "2", "0", "450,000"], ["12", "16", "2", "1", "700,000"]]
+    const totalMaterialQuantity = [["0", "0", "0", "0", "0", "0", "0", "0", "0"], ["6", "0", "0", "3", "0", "0", "0", "0", "12,500"], ["6", "3", "0", "3", "2", "0", "0", "0", "30,000"], ["6", "7", "0", "3", "6", "0", "0", "0", "55,000"], ["6", "13", "0", "3", "12", "0", "0", "0", "85,000"], ["6", "22", "0", "3", "21", "0", "0", "0", "122,500"], ["6", "22", "4", "3", "21", "4", "1", "0", "242,500"], ["6", "22", "10", "3", "21", "10", "2", "0", "502,500"], ["6", "22", "19", "3", "21", "22", "4", "0", "952,500"], ["6", "22", "31", "3", "21", "38", "6", "1", "1,652,500"]]
 
     const talentLevelRows = talentLevels.map((level, index) => createRow(level, materialQuantity[index], totalMaterialQuantity[index]))
 
@@ -91,7 +91,7 @@ const CharacterTalentLevellingTable = (props) => {
             border: "2px solid rgb(30, 73, 118)",
             borderRadius: "5px",
             margin: "auto",
-            width: "95%",
+            width: "100%",
         }} component={Paper}>
             <Table sx={{ backgroundColor: "rgb(0, 30, 60)" }}>
                 <TableHead>
@@ -110,6 +110,16 @@ const CharacterTalentLevellingTable = (props) => {
                             <StyledTableCell component="th" scope="row" align="left">
                                 {row.talentLevel !== "1" ?
                                     <div style={{ display: "flex" }}>
+
+                                         {/* Mora */}
+                                         <div className="materialImageRoot">
+                                            <MaterialTooltip title="Mora" arrow placement="top">
+                                                <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={require(`../../../assets/Item_Mora.png`)} alt={commonMat} />
+                                            </MaterialTooltip>
+                                            <div className="materialTextContainer">
+                                                {row.quantity[4]}
+                                            </div>
+                                        </div>
 
                                         {/* Common Material */}
                                         {row.quantity[0] !== "0" &&
@@ -167,6 +177,16 @@ const CharacterTalentLevellingTable = (props) => {
                             <StyledTableCell component="th" scope="row" align="left">
                                 {row.talentLevel !== "1" ?
                                     <div style={{ display: "flex" }}>
+
+                                         {/* Mora Total */}
+                                         <div className="materialImageRoot">
+                                            <MaterialTooltip title="Mora" arrow placement="top">
+                                                <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={require(`../../../assets/Item_Mora.png`)} alt={commonMat} />
+                                            </MaterialTooltip>
+                                            <div className="materialTextContainer">
+                                                {row.total[8]}
+                                            </div>
+                                        </div>
 
                                         {/* Tier 1 Common Material Total */}
                                         {row.total[0] !== "0" &&

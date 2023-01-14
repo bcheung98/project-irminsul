@@ -72,8 +72,8 @@ const CharacterAscensionTable = (props) => {
     let { bossMat, localMat, commonMat } = props.character.materials;
 
     const ascLevels = ["1-20", "20-40", "40-50", "50-60", "60-70", "70-80", "80-90"]
-    const materialQuantity = [["0", "0", "0", "0"], ["1", "0", "3", "3"], ["3", "2", "10", "15"], ["6", "4", "20", "12"], ["3", "8", "30", "18"], ["6", "12", "45", "12"], ["6", "20", "60", "24"]]
-    const totalMaterialQuantity = [["0", "0", "0", "0"], ["1", "0", "0", "0", "0", "3", "3", "0", "0"], ["1", "3", "0", "0", "2", "13", "18", "0", "0"], ["1", "9", "0", "0", "6", "33", "18", "12", "0"], ["1", "9", "3", "0", "14", "63", "18", "30", "0"], ["1", "9", "9", "0", "26", "108", "18", "30", "12"], ["1", "9", "9", "6", "46", "168", "18", "30", "36"]]
+    const materialQuantity = [["0", "0", "0", "0", "0"], ["1", "0", "3", "3", "20,000"], ["3", "2", "10", "15", "40,000"], ["6", "4", "20", "12", "60,000"], ["3", "8", "30", "18", "80,000"], ["6", "12", "45", "12", "100,000"], ["6", "20", "60", "24", "120,000"]]
+    const totalMaterialQuantity = [["0", "0", "0", "0", "0"], ["1", "0", "0", "0", "0", "3", "3", "0", "0", "20,000"], ["1", "3", "0", "0", "2", "13", "18", "0", "0", "60,000"], ["1", "9", "0", "0", "6", "33", "18", "12", "0", "120,000"], ["1", "9", "3", "0", "14", "63", "18", "30", "0", "200,000"], ["1", "9", "9", "0", "26", "108", "18", "30", "12", "300,000"], ["1", "9", "9", "6", "46", "168", "18", "30", "36", "420,000"]]
 
     const characterAscStatRows = ascLevels.map((level, index) => createAscStats(index, level, materialQuantity[index], totalMaterialQuantity[index]))
 
@@ -82,7 +82,7 @@ const CharacterAscensionTable = (props) => {
             border: "2px solid rgb(30, 73, 118)",
             borderRadius: "5px",
             margin: "auto",
-            width: "95%",
+            width: "100%",
         }} component={Paper}>
             <Table sx={{ backgroundColor: "rgb(0, 30, 60)" }}>
                 <TableHead>
@@ -105,6 +105,16 @@ const CharacterAscensionTable = (props) => {
                             <StyledTableCell component="th" scope="row" align="left">
                                 {row.ascLevel !== "1-20" ?
                                     <div style={{ display: "flex" }}>
+
+                                        {/* Mora */}
+                                        <div className="materialImageRoot">
+                                            <MaterialTooltip title="Mora" arrow placement="top">
+                                                <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={require(`../../../assets/Item_Mora.png`)} alt={commonMat} />
+                                            </MaterialTooltip>
+                                            <div className="materialTextContainer">
+                                                {row.quantity[4]}
+                                            </div>
+                                        </div>
 
                                         {/* Boss Material */}
                                         {row.quantity[1] !== "0" &&
@@ -156,6 +166,16 @@ const CharacterAscensionTable = (props) => {
                             <StyledTableCell component="th" scope="row" align="left" style={{ width: "55%" }}>
                                 {row.ascLevel !== "1-20" ?
                                     <div style={{ display: "flex" }}>
+
+                                        {/* Mora Total */}
+                                        <div className="materialImageRoot">
+                                            <MaterialTooltip title="Mora" arrow placement="top">
+                                                <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={require(`../../../assets/Item_Mora.png`)} alt={commonMat} />
+                                            </MaterialTooltip>
+                                            <div className="materialTextContainer">
+                                                {row.total[9]}
+                                            </div>
+                                        </div>
 
                                         {/* Boss Material Total */}
                                         {row.total[4] !== "0" &&
@@ -241,8 +261,8 @@ const CharacterAscensionTable = (props) => {
                                             </div>
                                         }
 
-                                          {/* Tier 2 Common Material Total */}
-                                          {row.total[7] !== "0" &&
+                                        {/* Tier 2 Common Material Total */}
+                                        {row.total[7] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatCommonMats(`${commonMat}2`)} arrow placement="top">
                                                     <img className="materialImage" style={{ backgroundImage: "url(" + background2star + ")" }} src={require(`../../../assets/materials/common_mats/${commonMat.split(" ").join("_")}2.png`)} alt={commonMat} />
@@ -253,8 +273,8 @@ const CharacterAscensionTable = (props) => {
                                             </div>
                                         }
 
-                                          {/* Tier 3 Common Material Total */}
-                                          {row.total[8] !== "0" &&
+                                        {/* Tier 3 Common Material Total */}
+                                        {row.total[8] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatCommonMats(`${commonMat}3`)} arrow placement="top">
                                                     <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={require(`../../../assets/materials/common_mats/${commonMat.split(" ").join("_")}3.png`)} alt={commonMat} />
