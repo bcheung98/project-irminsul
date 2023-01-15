@@ -52,7 +52,7 @@ const CharacterCard = (props) => {
                                 <Avatar sx={{
                                     height: "35px",
                                     width: "35px"
-                                }} src={require(`../../assets/weapons/Weapon-class-${weapon.toLowerCase()}-icon.png`)} alt={weapon} />
+                                }} src={require(`../../assets/weapons/icons/Weapon-class-${weapon.toLowerCase()}-icon.png`)} alt={weapon} />
                             </MaterialTooltip>
                         </div>
                     </div>

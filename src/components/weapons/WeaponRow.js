@@ -56,7 +56,7 @@ const WeaponRow = (props) => {
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <CardHeader sx={{ p: 0 }}
                             avatar={
-                                <img alt={row.weapon} src={require(`../../assets/weapons/Weapon-class-${row.type.toLowerCase()}-icon.png`)}
+                                <img alt={row.weapon} src={require(`../../assets/weapons/icons/Weapon-class-${row.type.toLowerCase()}-icon.png`)}
                                     style={{
                                         width: "32px",
                                         border: "1px solid rgba(0, 30, 60, 0)",

@@ -2,11 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { FilterTooltip } from "../../../helpers/FilterTooltip";
 
-let swordIcon = require("../../../assets/weapons/Weapon-class-sword-icon.png");
-let claymoreIcon = require("../../../assets/weapons/Weapon-class-claymore-icon.png");
-let polearmIcon = require("../../../assets/weapons/Weapon-class-polearm-icon.png");
-let bowIcon = require("../../../assets/weapons/Weapon-class-bow-icon.png");
-let catalystIcon = require("../../../assets/weapons/Weapon-class-catalyst-icon.png");
+let swordIcon = require("../../../assets/weapons/icons/Weapon-class-sword-icon.png");
+let claymoreIcon = require("../../../assets/weapons/icons/Weapon-class-claymore-icon.png");
+let polearmIcon = require("../../../assets/weapons/icons/Weapon-class-polearm-icon.png");
+let bowIcon = require("../../../assets/weapons/icons/Weapon-class-bow-icon.png");
+let catalystIcon = require("../../../assets/weapons/icons/Weapon-class-catalyst-icon.png");
 
 const WeaponFilter = (props) => {
     return (
