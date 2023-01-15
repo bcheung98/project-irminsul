@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AppBar, Box, Toolbar, Typography, Container, Button, Avatar, CardHeader } from "@mui/material";
+import { AppBar, Box, Toolbar, Typography, Container, ButtonBase, Avatar, CardHeader } from "@mui/material";
 
 const Nav = () => {
     return (
@@ -9,27 +9,34 @@ const Nav = () => {
         }}>
             <Container maxWidth="xl" sx={{ margin: 0 }}>
                 <Toolbar disableGutters>
-                    <CardHeader
-                        avatar={
-                            <Avatar src={require("../assets/icons/Sumeru.png")} alt="PROJECT IRMINSUL" sx={{ height: "64px", width: "64px" }} />
-                        }
-                        title={
-                            <Typography variant="h6" noWrap component="a" href="/project-irminsul"
-                                sx={{
-                                    mr: 2,
-                                    display: { xs: "none", md: "flex" },
-                                    fontFamily: "Genshin, monospace",
-                                    letterSpacing: ".3rem",
-                                    color: "white",
-                                    textDecoration: "none",
-                                }}
-                            >
-                                PROJECT IRMINSUL
-                            </Typography>
-                        }
-                    />
-                    {/* <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                        <Button
+                    <ButtonBase
+                        disableRipple
+                        href={`/project-irminsul/`}
+                        key={"characters"}
+                    >
+                        <CardHeader
+                            avatar={
+                                <Avatar src={require("../assets/icons/Sumeru.png")} alt="PROJECT IRMINSUL" sx={{ height: "64px", width: "64px" }} />
+                            }
+                            title={
+                                <Typography variant="h6" noWrap
+                                    sx={{
+                                        mr: 2,
+                                        display: { xs: "none", md: "flex" },
+                                        fontFamily: "Genshin, monospace",
+                                        letterSpacing: ".3rem",
+                                        color: "white",
+                                        textDecoration: "none",
+                                    }}
+                                >
+                                    PROJECT IRMINSUL
+                                </Typography>
+                            }
+                        />
+                    </ButtonBase>
+                    <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+                        <ButtonBase
+                            disableRipple
                             href={`/project-irminsul/characters`}
                             key={"characters"}
                         >
@@ -49,8 +56,9 @@ const Nav = () => {
                                     </Typography>
                                 }
                             />
-                        </Button>
-                        <Button
+                        </ButtonBase>
+                        <ButtonBase
+                            disableRipple
                             href={`/project-irminsul/weapons`}
                             key={"weapons"}
                         >
@@ -70,8 +78,8 @@ const Nav = () => {
                                     </Typography>
                                 }
                             />
-                        </Button>
-                    </Box> */}
+                        </ButtonBase>
+                    </Box>
                 </Toolbar>
             </Container>
         </AppBar>

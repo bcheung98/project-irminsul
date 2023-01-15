@@ -7,6 +7,7 @@ import {
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchCharacters } from "./redux/actions/fetchCharacters";
+import { fetchWeapons } from "./redux/actions/fetchWeapons";
 import Nav from "./components/Nav";
 import CharacterBrowser from "./components/characters/CharacterBrowser";
 import CharacterPage from "./components/characters/page/_CharacterPage";
@@ -19,9 +20,12 @@ const App = (props) => {
 		if (props.characters.characters.length === 0) {
 			fetchCharacters();
 		}
+		
+		fetchWeapons();
+		
 	}, [])
 
-	let { fetchCharacters } = props;
+	let { fetchCharacters, fetchWeapons } = props;
 
 	return (
 		<Router basename="project-irminsul">
@@ -49,13 +53,15 @@ const App = (props) => {
 const mapStateToProps = (state) => {
 	return {
 		characters: state.characters,
+		weapons: state.weapons,
 		filters: state.filters
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		fetchCharacters: () => dispatch(fetchCharacters())
+		fetchCharacters: () => dispatch(fetchCharacters()),
+		fetchWeapons: () => dispatch(fetchWeapons())
 	}
 }
 

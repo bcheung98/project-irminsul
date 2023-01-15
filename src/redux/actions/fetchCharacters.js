@@ -1,5 +1,5 @@
 export const fetchCharacters = () => {
-    const url = "https://bcheung98.github.io/genshin-impact-character-db-2.0/characters.json";
+    const url = "https://bcheung98.github.io/project-irminsul-db/characters.json";
     return (dispatch) => {
         dispatch({ type: "START_GETTING_CHARS_REQUEST" });
         fetch(url)
