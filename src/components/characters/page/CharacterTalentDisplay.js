@@ -80,7 +80,7 @@ const CharacterTalentDisplay = (props) => {
                             }}
                             avatar={
                                 key === "attack" ?
-                                    <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={require(`../../../assets/characters/talents/attack_${weapon.toLowerCase()}.png`)} style={ElementalBorderColor(element)}
+                                    <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={(`${process.env.REACT_APP_URL}/characters/talents/attack_${weapon.toLowerCase()}.png`)} style={ElementalBorderColor(element)}
                                         sx={{
                                             display: "flex",
                                             flexDirection: "column",
@@ -89,7 +89,7 @@ const CharacterTalentDisplay = (props) => {
                                             border: "2px solid rgb(30, 73, 118)",
                                         }} />
                                     :
-                                    <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={require(`../../../assets/characters/talents/${name.split(" ").join("_").toLowerCase()}_${key}.png`)} style={ElementalBorderColor(element)}
+                                    <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={(`${process.env.REACT_APP_URL}/characters/talents/${name.split(" ").join("_").toLowerCase()}_${key}.png`)} style={ElementalBorderColor(element)}
                                         sx={{
                                             display: "flex",
                                             flexDirection: "column",

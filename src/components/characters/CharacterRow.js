@@ -18,7 +18,7 @@ const CharacterRow = (props) => {
                         <CardHeader sx={{ p: 0 }}
                             avatar={
                                 <ButtonBase disableRipple href={`/project-irminsul/character/${currentCharacter.name.split(" ").join("_").toLowerCase()}`}>
-                                    <img alt={row.name} src={require(`../../assets/characters/thumbs/Character_${row.name.split(" ").join("_")}_Thumb.png`)}
+                                    <img alt={row.name} src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${row.name.split(" ").join("_")}_Thumb.png`)}
                                         style={{ width: "48px", cursor: "pointer" }}
                                     />
                                 </ButtonBase>
@@ -46,7 +46,7 @@ const CharacterRow = (props) => {
                 { /* Rarity */}
                 <StyledTableCellNoVert>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <img src={require(`../../assets/stars/Icon_${row.rarity}_Stars.png`)} alt={row.rarity} style={{ height: "25px" }} />
+                        <img src={(`${process.env.REACT_APP_URL}/stars/Icon_${row.rarity}_Stars.png`)} alt={row.rarity} style={{ height: "25px" }} />
                     </Box>
                 </StyledTableCellNoVert>
 
@@ -55,7 +55,7 @@ const CharacterRow = (props) => {
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <CardHeader sx={{ p: 0 }}
                             avatar={
-                                <img alt={row.element} src={require(`../../assets/elements/Element_${row.element}.png`)}
+                                <img alt={row.element} src={(`${process.env.REACT_APP_URL}/elements/Element_${row.element}.png`)}
                                     style={{ width: "32px" }}
                                 />
                             }
@@ -73,7 +73,7 @@ const CharacterRow = (props) => {
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <CardHeader sx={{ p: 0 }}
                             avatar={
-                                <img alt={row.weapon} src={require(`../../assets/weapons/icons/Weapon-class-${row.weapon.toLowerCase()}-icon.png`)}
+                                <img alt={row.weapon} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${row.weapon.toLowerCase()}-icon.png`)}
                                     style={{
                                         width: "32px",
                                         border: "1px solid rgba(0, 30, 60, 0)",
@@ -95,7 +95,7 @@ const CharacterRow = (props) => {
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <CardHeader sx={{ p: 0 }}
                             avatar={
-                                <img alt={row.nation} src={require(`../../assets/nations/${row.nation}.png`)}
+                                <img alt={row.nation} src={(`${process.env.REACT_APP_URL}/nations/${row.nation}.png`)}
                                     style={{
                                         width: "48px",
                                     }}

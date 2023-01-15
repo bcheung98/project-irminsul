@@ -61,7 +61,7 @@ const CharacterPage = (props) => {
             <React.Fragment>
                 <Grid container sx={{mb: "20px"}}>
                     <Grid xs="auto">
-                        <img src={require(`../../../assets/characters/wish/Character_${name.split(" ").join("_")}_Wish.png`)} alt={name}
+                        <img src={(`${process.env.REACT_APP_URL}/characters/wish/Character_${name.split(" ").join("_")}_Wish.png`)} alt={name}
                             style={{
                                 width: "35vw",
                                 height: "600px",
@@ -117,7 +117,7 @@ const CharacterPage = (props) => {
                     </Grid>
                     <Grid xs>
                         <Box sx={{ display: "flex" }}>
-                            <img style={{ marginRight: "-25px", height: "128px" }} src={require(`../../../assets/visions/Vision_${nation}_${element}.png`)} alt={`${nation} / ${element}`} />
+                            <img style={{ marginRight: "-25px", height: "128px" }} src={(`${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}.png`)} alt={`${nation} / ${element}`} />
                             <div style={{ marginLeft: "20px" }}>
                                 <Typography
                                     variant="h4"
@@ -155,7 +155,7 @@ const CharacterPage = (props) => {
                                         color: "white"
                                     }}>
                                     <div style={{ marginLeft: "-5px" }}>
-                                        <img style={{ height: "30px" }} src={require(`../../../assets/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
+                                        <img style={{ height: "30px" }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
                                     </div>
                                     <div style={{ marginLeft: "5px" }}>
                                         <Typography variant="body1" sx={{ fontFamily: "Genshin" }}>

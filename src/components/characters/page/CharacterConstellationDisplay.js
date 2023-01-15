@@ -37,7 +37,7 @@ const CharacterConstellationDisplay = (props) => {
                     alignItems: "center",
                 }}
                 avatar={
-                    <Avatar alt={constellation.c1.name} src={require(`../../../assets/characters/constellations/${name.split(" ").join("_").toLowerCase()}_c1.png`)} style={ElementalBorderColor(element)}
+                    <Avatar alt={constellation.c1.name} src={(`${process.env.REACT_APP_URL}/characters/constellations/${name.split(" ").join("_").toLowerCase()}_c1.png`)} style={ElementalBorderColor(element)}
                         sx={{
                             display: "flex",
                             flexDirection: "column",
@@ -65,7 +65,7 @@ const CharacterConstellationDisplay = (props) => {
                     alignItems: "center",
                 }}
                 avatar={
-                    <Avatar alt={constellation.c2.name} src={require(`../../../assets/characters/constellations/${name.split(" ").join("_").toLowerCase()}_c2.png`)} style={ElementalBorderColor(element)}
+                    <Avatar alt={constellation.c2.name} src={(`${process.env.REACT_APP_URL}/characters/constellations/${name.split(" ").join("_").toLowerCase()}_c2.png`)} style={ElementalBorderColor(element)}
                         sx={{
                             display: "flex",
                             flexDirection: "column",
@@ -93,7 +93,7 @@ const CharacterConstellationDisplay = (props) => {
                     alignItems: "center",
                 }}
                 avatar={
-                    <Avatar alt={constellation.c3.name} src={require(`../../../assets/characters/constellations/${name.split(" ").join("_").toLowerCase()}_c3.png`)} style={ElementalBorderColor(element)}
+                    <Avatar alt={constellation.c3.name} src={(`${process.env.REACT_APP_URL}/characters/constellations/${name.split(" ").join("_").toLowerCase()}_c3.png`)} style={ElementalBorderColor(element)}
                         sx={{
                             display: "flex",
                             flexDirection: "column",
@@ -121,7 +121,7 @@ const CharacterConstellationDisplay = (props) => {
                     alignItems: "center",
                 }}
                 avatar={
-                    <Avatar alt={constellation.c4.name} src={require(`../../../assets/characters/constellations/${name.split(" ").join("_").toLowerCase()}_c4.png`)} style={ElementalBorderColor(element)}
+                    <Avatar alt={constellation.c4.name} src={(`${process.env.REACT_APP_URL}/characters/constellations/${name.split(" ").join("_").toLowerCase()}_c4.png`)} style={ElementalBorderColor(element)}
                         sx={{
                             display: "flex",
                             flexDirection: "column",
@@ -149,7 +149,7 @@ const CharacterConstellationDisplay = (props) => {
                     alignItems: "center",
                 }}
                 avatar={
-                    <Avatar alt={constellation.c5.name} src={require(`../../../assets/characters/constellations/${name.split(" ").join("_").toLowerCase()}_c5.png`)} style={ElementalBorderColor(element)}
+                    <Avatar alt={constellation.c5.name} src={(`${process.env.REACT_APP_URL}/characters/constellations/${name.split(" ").join("_").toLowerCase()}_c5.png`)} style={ElementalBorderColor(element)}
                         sx={{
                             display: "flex",
                             flexDirection: "column",
@@ -177,7 +177,7 @@ const CharacterConstellationDisplay = (props) => {
                     alignItems: "center",
                 }}
                 avatar={
-                    <Avatar alt={constellation.c6.name} src={require(`../../../assets/characters/constellations/${name.split(" ").join("_").toLowerCase()}_c6.png`)} style={ElementalBorderColor(element)}
+                    <Avatar alt={constellation.c6.name} src={(`${process.env.REACT_APP_URL}/characters/constellations/${name.split(" ").join("_").toLowerCase()}_c6.png`)} style={ElementalBorderColor(element)}
                         sx={{
                             display: "flex",
                             flexDirection: "column",

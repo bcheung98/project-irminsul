@@ -8,40 +8,40 @@ import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import { FilterTooltip } from "../../../helpers/FilterTooltip";
 
-let stormterrorIcon = require("../../../assets/bosses/Stormterror_Icon.png");
-let clawIcon = require("../../../assets/materials/weekly_boss_mats/Dvalin's_Claw.png");
-let plumeIcon = require("../../../assets/materials/weekly_boss_mats/Dvalin's_Plume.png");
-let sighIcon = require("../../../assets/materials/weekly_boss_mats/Dvalin's_Sigh.png");
+let stormterrorIcon = (`${process.env.REACT_APP_URL}/bosses/Stormterror_Icon.png`);
+let clawIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Dvalin's_Claw.png`);
+let plumeIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Dvalin's_Plume.png`);
+let sighIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Dvalin's_Sigh.png`);
 
-let andriusIcon = require("../../../assets/bosses/Andrius_Icon.png");
-let ringIcon = require("../../../assets/materials/weekly_boss_mats/Ring_of_Boreas.png");
-let locketIcon = require("../../../assets/materials/weekly_boss_mats/Spirit_Locket_of_Boreas.png");
-let tailIcon = require("../../../assets/materials/weekly_boss_mats/Tail_of_Boreas.png");
+let andriusIcon = (`${process.env.REACT_APP_URL}/bosses/Andrius_Icon.png`);
+let ringIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Ring_of_Boreas.png`);
+let locketIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Spirit_Locket_of_Boreas.png`);
+let tailIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Tail_of_Boreas.png`);
 
-let childeIcon = require("../../../assets/bosses/Childe_Icon.png");
-let shadowIcon = require("../../../assets/materials/weekly_boss_mats/Shadow_of_the_Warrior.png");
-let shardIcon = require("../../../assets/materials/weekly_boss_mats/Shard_of_a_Foul_Legacy.png");
-let tuskIcon = require("../../../assets/materials/weekly_boss_mats/Tusk_of_Monoceros_Caeli.png");
+let childeIcon = (`${process.env.REACT_APP_URL}/bosses/Childe_Icon.png`);
+let shadowIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Shadow_of_the_Warrior.png`);
+let shardIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Shard_of_a_Foul_Legacy.png`);
+let tuskIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Tusk_of_Monoceros_Caeli.png`);
 
-let azhdahaIcon = require("../../../assets/bosses/Azhdaha_Icon.png");
-let branchIcon = require("../../../assets/materials/weekly_boss_mats/Bloodjade_Branch.png");
-let crownIcon = require("../../../assets/materials/weekly_boss_mats/Dragon_Lord's_Crown.png");
-let scaleIcon = require("../../../assets/materials/weekly_boss_mats/Gilded_Scale.png");
+let azhdahaIcon = (`${process.env.REACT_APP_URL}/bosses/Azhdaha_Icon.png`);
+let branchIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Bloodjade_Branch.png`);
+let crownIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Dragon_Lord's_Crown.png`);
+let scaleIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Gilded_Scale.png`);
 
-let signoraIcon = require("../../../assets/bosses/La_Signora_Icon.png");
-let heartIcon = require("../../../assets/materials/weekly_boss_mats/Ashen_Heart.png");
-let butterflyIcon = require("../../../assets/materials/weekly_boss_mats/Hellfire_Butterfly.png");
-let momentIcon = require("../../../assets/materials/weekly_boss_mats/Molten_Moment.png");
+let signoraIcon = (`${process.env.REACT_APP_URL}/bosses/La_Signora_Icon.png`);
+let heartIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Ashen_Heart.png`);
+let butterflyIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Hellfire_Butterfly.png`);
+let momentIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Molten_Moment.png`);
 
-let raidenIcon = require("../../../assets/bosses/Narukami_no_Mikoto_Icon.png");
-let mudraIcon = require("../../../assets/materials/weekly_boss_mats/Mudra_of_the_Malefic_General.png");
-let tearsIcon = require("../../../assets/materials/weekly_boss_mats/Tears_of_the_Calamitous_God.png");
-let aeonsIcon = require("../../../assets/materials/weekly_boss_mats/The_Meaning_of_Aeons.png");
+let raidenIcon = (`${process.env.REACT_APP_URL}/bosses/Narukami_no_Mikoto_Icon.png`);
+let mudraIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Mudra_of_the_Malefic_General.png`);
+let tearsIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Tears_of_the_Calamitous_God.png`);
+let aeonsIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/The_Meaning_of_Aeons.png`);
 
-let balladeerIcon = require("../../../assets/bosses/Shouki_no_Kami.png");
-let dakaIcon = require("../../../assets/materials/weekly_boss_mats/Daka's_Bell.png");
-let mirrorMushinIcon = require("../../../assets/materials/weekly_boss_mats/Mirror_of_Mushin.png");
-let puppetStringsIcon = require("../../../assets/materials/weekly_boss_mats/Puppet_Strings.png");
+let balladeerIcon = (`${process.env.REACT_APP_URL}/bosses/Shouki_no_Kami.png`);
+let dakaIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Daka's_Bell.png`);
+let mirrorMushinIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Mirror_of_Mushin.png`);
+let puppetStringsIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Puppet_Strings.png`);
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />

@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { FilterTooltip } from "../../../helpers/FilterTooltip";
 
-let mondstadtIcon = require("../../../assets/nations/Mondstadt.png");
-let liyueIcon = require("../../../assets/nations/Liyue.png");
-let inazumaIcon = require("../../../assets/nations/Inazuma.png");
-let sumeruIcon = require("../../../assets/nations/Sumeru.png");
+let mondstadtIcon = (`${process.env.REACT_APP_URL}/nations/Mondstadt.png`);
+let liyueIcon = (`${process.env.REACT_APP_URL}/nations/Liyue.png`);
+let inazumaIcon = (`${process.env.REACT_APP_URL}/nations/Inazuma.png`);
+let sumeruIcon = (`${process.env.REACT_APP_URL}/nations/Sumeru.png`);
 
 const NationFilter = (props) => {
     return (

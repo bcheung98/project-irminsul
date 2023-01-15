@@ -3,21 +3,21 @@ import { connect } from "react-redux";
 import { FilterTooltip } from "../../../helpers/FilterTooltip";
 import { formatTalents } from "../../../helpers/TooltipText";
 
-let freedomIcon = require("../../../assets/materials/talent_mats/Freedom3.png");
-let resistanceIcon = require("../../../assets/materials/talent_mats/Resistance3.png");
-let balladIcon = require("../../../assets/materials/talent_mats/Ballad3.png");
+let freedomIcon = (`${process.env.REACT_APP_URL}/materials/talent_mats/Freedom3.png`);
+let resistanceIcon = (`${process.env.REACT_APP_URL}/materials/talent_mats/Resistance3.png`);
+let balladIcon = (`${process.env.REACT_APP_URL}/materials/talent_mats/Ballad3.png`);
 
-let prosperityIcon = require("../../../assets/materials/talent_mats/Prosperity3.png");
-let diligenceIcon = require("../../../assets/materials/talent_mats/Diligence3.png");
-let goldIcon = require("../../../assets/materials/talent_mats/Gold3.png");
+let prosperityIcon = (`${process.env.REACT_APP_URL}/materials/talent_mats/Prosperity3.png`);
+let diligenceIcon = (`${process.env.REACT_APP_URL}/materials/talent_mats/Diligence3.png`);
+let goldIcon = (`${process.env.REACT_APP_URL}/materials/talent_mats/Gold3.png`);
 
-let transienceIcon = require("../../../assets/materials/talent_mats/Transience3.png");
-let eleganceIcon = require("../../../assets/materials/talent_mats/Elegance3.png");
-let lightIcon = require("../../../assets/materials/talent_mats/Light3.png");
+let transienceIcon = (`${process.env.REACT_APP_URL}/materials/talent_mats/Transience3.png`);
+let eleganceIcon = (`${process.env.REACT_APP_URL}/materials/talent_mats/Elegance3.png`);
+let lightIcon = (`${process.env.REACT_APP_URL}/materials/talent_mats/Light3.png`);
 
-let admonitionIcon = require("../../../assets/materials/talent_mats/Admonition3.png");
-let ingenuityIcon = require("../../../assets/materials/talent_mats/Ingenuity3.png");
-let praxisIcon = require("../../../assets/materials/talent_mats/Praxis3.png");
+let admonitionIcon = (`${process.env.REACT_APP_URL}/materials/talent_mats/Admonition3.png`);
+let ingenuityIcon = (`${process.env.REACT_APP_URL}/materials/talent_mats/Ingenuity3.png`);
+let praxisIcon = (`${process.env.REACT_APP_URL}/materials/talent_mats/Praxis3.png`);
 
 const TalentFilter = (props) => {
     return (

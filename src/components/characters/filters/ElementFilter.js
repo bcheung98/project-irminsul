@@ -2,13 +2,13 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { FilterTooltip } from "../../../helpers/FilterTooltip";
 
-let pyroIcon = require("../../../assets/elements/Element_Pyro.png");
-let hydroIcon = require("../../../assets/elements/Element_Hydro.png");
-let electroIcon = require("../../../assets/elements/Element_Electro.png");
-let cryoIcon = require("../../../assets/elements/Element_Cryo.png");
-let anemoIcon = require("../../../assets/elements/Element_Anemo.png");
-let geoIcon = require("../../../assets/elements/Element_Geo.png");
-let dendroIcon = require("../../../assets/elements/Element_Dendro.png");
+let pyroIcon = (`${process.env.REACT_APP_URL}/elements/Element_Pyro.png`);
+let hydroIcon = (`${process.env.REACT_APP_URL}/elements/Element_Hydro.png`);
+let electroIcon = (`${process.env.REACT_APP_URL}/elements/Element_Electro.png`);
+let cryoIcon = (`${process.env.REACT_APP_URL}/elements/Element_Cryo.png`);
+let anemoIcon = (`${process.env.REACT_APP_URL}/elements/Element_Anemo.png`);
+let geoIcon = (`${process.env.REACT_APP_URL}/elements/Element_Geo.png`);
+let dendroIcon = (`${process.env.REACT_APP_URL}/elements/Element_Dendro.png`);
 
 const ElementFilter = (props) => {
     return (

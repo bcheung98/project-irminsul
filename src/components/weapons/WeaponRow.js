@@ -19,7 +19,7 @@ const WeaponRow = (props) => {
                         <CardHeader sx={{ p: 0 }}
                             avatar={
                                 // <ButtonBase disableRipple href={`/project-irminsul/weapon/${currentWeapon.name.split(" ").join("_").toLowerCase()}`}>
-                                <img alt={row.name} src={require(`../../assets/weapons/Weapon_${row.name.split(" ").join("_")}.png`)}
+                                <img alt={row.name} src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${row.name.split(" ").join("_")}.png`)}
                                     style={{ width: "48px", cursor: "pointer" }}
                                 />
                                 // </ButtonBase>
@@ -47,7 +47,7 @@ const WeaponRow = (props) => {
                 { /* Rarity */}
                 <StyledTableCellNoVert>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <img src={require(`../../assets/stars/Icon_${row.rarity}_Stars.png`)} alt={row.rarity} style={{ height: "25px" }} />
+                        <img src={(`${process.env.REACT_APP_URL}/stars/Icon_${row.rarity}_Stars.png`)} alt={row.rarity} style={{ height: "25px" }} />
                     </Box>
                 </StyledTableCellNoVert>
 
@@ -56,7 +56,7 @@ const WeaponRow = (props) => {
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <CardHeader sx={{ p: 0 }}
                             avatar={
-                                <img alt={row.weapon} src={require(`../../assets/weapons/icons/Weapon-class-${row.type.toLowerCase()}-icon.png`)}
+                                <img alt={row.weapon} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${row.type.toLowerCase()}-icon.png`)}
                                     style={{
                                         width: "32px",
                                         border: "1px solid rgba(0, 30, 60, 0)",

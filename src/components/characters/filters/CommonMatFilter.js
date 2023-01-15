@@ -3,17 +3,17 @@ import { connect } from "react-redux";
 import { FilterTooltip } from "../../../helpers/FilterTooltip";
 import { formatCommonMats } from "../../../helpers/TooltipText";
 
-let arrowIcon = require("../../../assets/materials/common_mats/Arrow3.png");
-let fatuiIcon = require("../../../assets/materials/common_mats/Fatui_Insignia3.png");
-let fungiIcon = require("../../../assets/materials/common_mats/Fungi3.png");
-let handguardIcon = require("../../../assets/materials/common_mats/Handguard3.png");
-let headbandIcon = require("../../../assets/materials/common_mats/Headband3.png");
-let maskIcon = require("../../../assets/materials/common_mats/Mask3.png");
-let nectarIcon = require("../../../assets/materials/common_mats/Nectar3.png");
-let scrollIcon = require("../../../assets/materials/common_mats/Scroll3.png");
-let slimeIcon = require("../../../assets/materials/common_mats/Slime3.png");
-let specterIcon = require("../../../assets/materials/common_mats/Specter3.png");
-let thIcon = require("../../../assets/materials/common_mats/Treasure_Hoarder_Insignia3.png");
+let arrowIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Arrow3.png`);
+let fatuiIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Fatui_Insignia3.png`);
+let fungiIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Fungi3.png`);
+let handguardIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Handguard3.png`);
+let headbandIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Headband3.png`);
+let maskIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Mask3.png`);
+let nectarIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Nectar3.png`);
+let scrollIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Scroll3.png`);
+let slimeIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Slime3.png`);
+let specterIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Specter3.png`);
+let thIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Treasure_Hoarder_Insignia3.png`);
 
 const CommonMatFilter = (props) => {
     return (

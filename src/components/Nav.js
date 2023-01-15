@@ -16,7 +16,7 @@ const Nav = () => {
                     >
                         <CardHeader
                             avatar={
-                                <Avatar src={require("../assets/icons/Sumeru.png")} alt="PROJECT IRMINSUL" sx={{ height: "64px", width: "64px" }} />
+                                <Avatar src={(`${process.env.REACT_APP_URL}/icons/Sumeru.png`)} alt="PROJECT IRMINSUL" sx={{ height: "64px", width: "64px" }} />
                             }
                             title={
                                 <Typography variant="h6" noWrap
@@ -42,7 +42,7 @@ const Nav = () => {
                         >
                             <CardHeader
                                 avatar={
-                                    <Avatar src={require("../assets/icons/Aether.png")} alt="CHARACTERS" sx={{ height: "32px", width: "32px" }} />
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Aether.png`)} alt="CHARACTERS" sx={{ height: "32px", width: "32px" }} />
                                 }
                                 title={
                                     <Typography variant="body1"
@@ -64,7 +64,7 @@ const Nav = () => {
                         >
                             <CardHeader
                                 avatar={
-                                    <Avatar src={require("../assets/icons/Weapons.png")} alt="WEAPONS" sx={{ height: "48px", width: "48px" }} />
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Weapons.png`)} alt="WEAPONS" sx={{ height: "48px", width: "48px" }} />
                                 }
                                 title={
                                     <Typography variant="body1" noWrap

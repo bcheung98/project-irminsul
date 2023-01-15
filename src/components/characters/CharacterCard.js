@@ -8,7 +8,7 @@ const CharacterCard = (props) => {
 
     let { name, rarity, element, weapon } = props.character;
     const characterIconBackground = {
-        backgroundImage: "url(" + require(`../../assets/backgrounds/Background_${rarity}_Star.png`) + ")",
+        backgroundImage: "url(" + (`${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png`) + ")",
         backgroundSize: "100%"
     }
 
@@ -46,13 +46,13 @@ const CharacterCard = (props) => {
                                 <Avatar sx={{
                                     height: "35px",
                                     width: "35px",
-                                }} src={require(`../../assets/elements/Element_${element}.png`)} alt={element} />
+                                }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} />
                             </MaterialTooltip>
                             <MaterialTooltip title={weapon} arrow placement="top">
                                 <Avatar sx={{
                                     height: "35px",
                                     width: "35px"
-                                }} src={require(`../../assets/weapons/icons/Weapon-class-${weapon.toLowerCase()}-icon.png`)} alt={weapon} />
+                                }} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${weapon.toLowerCase()}-icon.png`)} alt={weapon} />
                             </MaterialTooltip>
                         </div>
                     </div>
@@ -69,14 +69,14 @@ const CharacterCard = (props) => {
                                 width: '90px',
                                 height: '90px',
                                 backgroundColor: "rgb(32, 32, 32)",
-                            }} src={require(`../../assets/characters/thumbs/Character_${name.split(" ").join("_")}_Thumb.png`)} alt={name} style={characterIconBackground} />
+                            }} src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${name.split(" ").join("_")}_Thumb.png`)} alt={name} style={characterIconBackground} />
                             <img style={{
                                 display: "block",
                                 height: "25px",
                                 marginLeft: "auto",
                                 marginRight: "auto",
                                 marginTop: "2px",
-                            }} src={require(`../../assets/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
+                            }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
                         </Grid>
                         <CharacterMaterialGrid character={props.character} imageSize="48px" margin="-30px" />
                     </Grid>

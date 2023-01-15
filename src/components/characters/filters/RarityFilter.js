@@ -5,8 +5,8 @@ const RarityFilter = (props) => {
 
     return (
         <div style={{ display: "flex" }}>
-            <img className="filter-off" id="5-button" src={require("../../../assets/stars/Icon_5_Stars.png")} alt="5" onClick={(e) => props.setFilter(e.target.alt)} />
-            <img className="filter-off" id="4-button" src={require("../../../assets/stars/Icon_4_Stars.png")} alt="4" onClick={(e) => props.setFilter(e.target.alt)} />
+            <img className="filter-off" id="5-button" src={(`${process.env.REACT_APP_URL}/stars/Icon_5_Stars.png`)} alt="5" onClick={(e) => props.setFilter(e.target.alt)} />
+            <img className="filter-off" id="4-button" src={(`${process.env.REACT_APP_URL}/stars/Icon_4_Stars.png`)} alt="4" onClick={(e) => props.setFilter(e.target.alt)} />
         </div>
     )
 }
