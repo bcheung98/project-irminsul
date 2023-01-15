@@ -40,7 +40,7 @@ const ElementFilter = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setFilter: (target) => dispatch({ type: "SET_ELEMENT_FILTERS", target })
+        setFilter: (target) => dispatch({ type: "SET_CHAR_ELEMENT_FILTERS", target })
     }
 }
 

@@ -72,7 +72,7 @@ const TalentFilter = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setFilter: (target) => dispatch({ type: "SET_TALENT_FILTERS", target })
+        setFilter: (target) => dispatch({ type: "SET_CHAR_TALENT_FILTERS", target })
     }
 }
 

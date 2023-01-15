@@ -35,7 +35,7 @@ const CharacterBrowser = (props) => {
         }
     }
 
-    let { characters, filters } = props;
+    let { characters, characterFilters } = props;
 
     return (
         <React.Fragment>
@@ -81,9 +81,9 @@ const CharacterBrowser = (props) => {
                             <React.Fragment>
                                 {
                                     view === "grid" ?
-                                        filterCharacters(characters.characters, filters, searchValue).map(char => <CharacterCard key={char.id} character={char} />)
+                                        filterCharacters(characters.characters, characterFilters, searchValue).map(char => <CharacterCard key={char.id} character={char} />)
                                         :
-                                        <CharacterList characters={filterCharacters(characters.characters, filters, searchValue)} />
+                                        <CharacterList characters={filterCharacters(characters.characters, characterFilters, searchValue)} />
                                 }
                             </React.Fragment>
                         }
@@ -122,7 +122,7 @@ const CharacterBrowser = (props) => {
 const mapStateToProps = (state) => {
     return {
         characters: state.characters,
-        filters: state.filters
+        characterFilters: state.characterFilters
     }
 }
 

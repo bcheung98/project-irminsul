@@ -32,7 +32,7 @@ const WeaponFilter = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setFilter: (target) => dispatch({ type: "SET_WEAPON_FILTERS", target })
+        setFilter: (target) => dispatch({ type: "SET_CHAR_WEAPON_FILTERS", target })
     }
 }
 

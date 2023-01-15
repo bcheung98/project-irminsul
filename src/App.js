@@ -54,7 +54,7 @@ const mapStateToProps = (state) => {
 	return {
 		characters: state.characters,
 		weapons: state.weapons,
-		filters: state.filters
+		characterFilters: state.characterFilters
 	}
 }
 

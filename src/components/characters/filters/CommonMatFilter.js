@@ -57,7 +57,7 @@ const CommonMatFilter = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setFilter: (target) => dispatch({ type: "SET_COMMON_MAT_FILTERS", target })
+        setFilter: (target) => dispatch({ type: "SET_CHAR_COMMON_MAT_FILTERS", target })
     }
 }
 

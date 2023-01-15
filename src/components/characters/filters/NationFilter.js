@@ -28,7 +28,7 @@ const NationFilter = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setFilter: (target) => dispatch({ type: "SET_NATION_FILTERS", target })
+        setFilter: (target) => dispatch({ type: "SET_CHAR_NATION_FILTERS", target })
     }
 }
 

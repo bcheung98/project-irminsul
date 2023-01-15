@@ -294,7 +294,7 @@ const LocalMatFilter = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setFilter: (target) => dispatch({ type: "SET_LOCAL_MAT_FILTERS", target })
+        setFilter: (target) => dispatch({ type: "SET_CHAR_LOCAL_MAT_FILTERS", target })
     }
 }
 

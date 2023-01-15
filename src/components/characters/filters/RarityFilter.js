@@ -13,7 +13,7 @@ const RarityFilter = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setFilter: (target) => dispatch({ type: "SET_RARITY_FILTERS", target })
+        setFilter: (target) => dispatch({ type: "SET_CHAR_RARITY_FILTERS", target })
     }
 }
 

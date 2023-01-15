@@ -101,7 +101,7 @@ const BossMatFilter = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setFilter: (target) => dispatch({ type: "SET_BOSS_MAT_FILTERS", target })
+        setFilter: (target) => dispatch({ type: "SET_CHAR_BOSS_MAT_FILTERS", target })
     }
 }
 
