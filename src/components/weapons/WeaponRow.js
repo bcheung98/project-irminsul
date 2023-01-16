@@ -86,7 +86,7 @@ const WeaponRow = (props) => {
                 <StyledTableCellNoVert>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif" }}>
-                            {row.subStat} {row.subStatValue}
+                            {row.subStatString}
                         </Typography>
                     </Box>
                 </StyledTableCellNoVert>

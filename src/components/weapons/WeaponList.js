@@ -65,7 +65,7 @@ const headCells = [
     { id: "rarity", label: "Rarity" },
     { id: "type", label: "Type" },
     { id: "atk", label: "ATK" },
-    { id: "subStat", label: "Substat" },
+    { id: "subStatString", label: "Substat" },
 ];
 
 function EnhancedTableHead(props) {
@@ -107,8 +107,8 @@ EnhancedTableHead.propTypes = {
     rowCount: PropTypes.number.isRequired,
 };
 
-const createData = (name, rarity, type, atk, subStat, subStatValue) => {
-    return { name, rarity, type, atk, subStat, subStatValue };
+const createData = (name, rarity, type, atk, subStatString) => {
+    return { name, rarity, type, atk, subStatString };
 }
 
 const WeaponList = (props) => {
@@ -127,11 +127,12 @@ const WeaponList = (props) => {
         let atk = baseATKScaling[weapon.stats.atk][baseATKScaling[weapon.stats.atk].length - 1];
 
         let subStat = weapon.stats.subStat;
-        let subStatValue = "";
+        let subStatValue = "—";
         if (subStat !== "") {
             subStatValue = subStatScaling[weapon.stats.atk][subStat][subStatScaling[weapon.stats.atk][subStat].length - 1]
         }
-        return createData(weapon.name, weapon.rarity, weapon.type, atk, subStat, subStatValue)
+        let subStatString = `${subStat} ${subStatValue}`
+        return createData(weapon.name, weapon.rarity, weapon.type, atk, subStatString)
     })
 
     return (
