@@ -10,9 +10,9 @@ const WeaponRow = (props) => {
 
     return (
         <React.Fragment>
-            <StyledTableRows key={index}>
+            <StyledTableRows key={index} >
 
-            
+
                 { /* Name + Icon */}
                 <StyledTableCellNoVert className="genshinFont">
                     <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -86,16 +86,7 @@ const WeaponRow = (props) => {
                 <StyledTableCellNoVert>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif" }}>
-                            {row.secondaryStat}
-                        </Typography>
-                    </Box>
-                </StyledTableCellNoVert>
-
-                { /* 2nd Stat Value */}
-                <StyledTableCellNoVert>
-                    <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif" }}>
-                            {row.secondaryStatValue}
+                            {row.subStat} {row.subStatValue}
                         </Typography>
                     </Box>
                 </StyledTableCellNoVert>

@@ -14,6 +14,7 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
 import WeaponRow from "./WeaponRow";
+import { baseATKScaling, subStatScaling } from "../../helpers/WeaponScalings";
 
 const IconActive = styled((props) => (
     <KeyboardArrowDownSharpIcon {...props} />
@@ -30,10 +31,6 @@ const IconInactive = styled((props) => (
         color: "white !important"
     }
 }))
-
-const createData = (name, rarity, type, atk, secondaryStat, secondaryStatValue) => {
-    return { name, rarity, type, atk, secondaryStat, secondaryStatValue };
-}
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -67,9 +64,8 @@ const headCells = [
     { id: "name", label: "Name" },
     { id: "rarity", label: "Rarity" },
     { id: "type", label: "Type" },
-    { id: "atk", label: "Base ATK (Level 90)" },
-    { id: "secondaryStat", label: "2nd Stat" },
-    { id: "secondaryStatValue", label: "2nd Stat Value" }
+    { id: "atk", label: "ATK" },
+    { id: "subStat", label: "Substat" },
 ];
 
 function EnhancedTableHead(props) {
@@ -111,9 +107,13 @@ EnhancedTableHead.propTypes = {
     rowCount: PropTypes.number.isRequired,
 };
 
+const createData = (name, rarity, type, atk, subStat, subStatValue) => {
+    return { name, rarity, type, atk, subStat, subStatValue };
+}
+
 const WeaponList = (props) => {
 
-    const [order, setOrder] = React.useState("asc");
+    const [order, setOrder] = React.useState("desc");
     const [orderBy, setOrderBy] = React.useState("rarity");
 
     const handleRequestSort = (event, property) => {
@@ -123,12 +123,15 @@ const WeaponList = (props) => {
     };
 
     const rows = props.weapons.map((weapon) => {
-        let atk = weapon.stats.baseATK[weapon.stats.baseATK.length - 1]
-        let secondaryStatValue = "———"
-        if (weapon.stats.secondaryStatScaling.length !== 0) { secondaryStatValue = weapon.stats.secondaryStatScaling[weapon.stats.secondaryStatScaling.length - 1] }
-        return (
-            createData(weapon.name, weapon.rarity, weapon.type, atk, weapon.stats.secondaryStat, secondaryStatValue)
-        )
+
+        let atk = baseATKScaling[weapon.stats.atk][baseATKScaling[weapon.stats.atk].length - 1];
+
+        let subStat = weapon.stats.subStat;
+        let subStatValue = "";
+        if (subStat !== "") {
+            subStatValue = subStatScaling[weapon.stats.atk][subStat][subStatScaling[weapon.stats.atk][subStat].length - 1]
+        }
+        return createData(weapon.name, weapon.rarity, weapon.type, atk, subStat, subStatValue)
     })
 
     return (
