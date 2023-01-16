@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Typography, Grid, Paper, InputBase } from "@mui/material";
 import { Box } from "@mui/system";
 import WeaponList from "./WeaponList";
+import { filterWeapons } from "../../helpers/FilterWeapons";
 
 const WeaponBrowser = (props) => {
 
@@ -45,12 +46,12 @@ const WeaponBrowser = (props) => {
                 <Grid item xs={9}>
                     <Grid container>
                         {weapons.weapons.length > 0 &&
-                            <WeaponList weapons={weapons.weapons} />
+                            <WeaponList weapons={filterWeapons(weapons.weapons, "", searchValue)} />
                         }
                     </Grid>
                 </Grid>
                 <Grid item xs={3}>
-                    {/* <Paper sx={{
+                    <Paper sx={{
                         border: "2px solid rgb(30, 73, 118)",
                         borderRadius: "5px",
                         backgroundColor: "rgb(0, 30, 60)",
@@ -71,7 +72,7 @@ const WeaponBrowser = (props) => {
                             placeholder="Search"
                             onChange={handleInputChange}
                         />
-                    </Paper> */}
+                    </Paper>
                 </Grid>
             </Grid>
         </React.Fragment>
