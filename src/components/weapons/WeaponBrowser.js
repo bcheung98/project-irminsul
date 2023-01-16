@@ -38,9 +38,8 @@ const WeaponBrowser = (props) => {
                         textAlign: "center",
                     }}
                 >
-                    WEAPONS
+                    WEAPONS (WIP)
                 </Typography>
-        
             </Box>
             <Grid container sx={{ margin: "auto", width: "98%" }}>
                 <Grid item xs={9}>
@@ -51,7 +50,7 @@ const WeaponBrowser = (props) => {
                     </Grid>
                 </Grid>
                 <Grid item xs={3}>
-                    <Paper sx={{
+                    {/* <Paper sx={{
                         border: "2px solid rgb(30, 73, 118)",
                         borderRadius: "5px",
                         backgroundColor: "rgb(0, 30, 60)",
@@ -72,8 +71,7 @@ const WeaponBrowser = (props) => {
                             placeholder="Search"
                             onChange={handleInputChange}
                         />
-                    </Paper>
-                    
+                    </Paper> */}
                 </Grid>
             </Grid>
         </React.Fragment>
