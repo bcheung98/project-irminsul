@@ -12,7 +12,7 @@ const initialState = {
 
 const characterFilterReducer = (state = initialState, action) => {
     let { target, type } = action;
-    if (target !== undefined) {
+    if (target !== undefined && type.startsWith("SET_CHAR")) {
         let targetButton;
         if (target === "4" || target === "5") {
             targetButton = document.getElementById(`${target}-button`);

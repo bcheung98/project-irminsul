@@ -4,6 +4,7 @@ import { Typography, Grid, Paper, InputBase } from "@mui/material";
 import { Box } from "@mui/system";
 import WeaponList from "./WeaponList";
 import { filterWeapons } from "../../helpers/FilterWeapons";
+import WeaponFilters from "./filters/_WeaponFilters";
 
 const WeaponBrowser = (props) => {
 
@@ -13,7 +14,7 @@ const WeaponBrowser = (props) => {
         setSearchValue(e.target.value);
     }
 
-    let { weapons } = props;
+    let { weapons, weaponFilters } = props;
 
     return (
         <React.Fragment>
@@ -46,7 +47,7 @@ const WeaponBrowser = (props) => {
                 <Grid item xs={9}>
                     <Grid container>
                         {weapons.weapons.length > 0 &&
-                            <WeaponList weapons={filterWeapons(weapons.weapons, "", searchValue)} />
+                            <WeaponList weapons={filterWeapons(weapons.weapons, weaponFilters, searchValue)} />
                         }
                     </Grid>
                 </Grid>
@@ -73,6 +74,7 @@ const WeaponBrowser = (props) => {
                             onChange={handleInputChange}
                         />
                     </Paper>
+                    <WeaponFilters />
                 </Grid>
             </Grid>
         </React.Fragment>
@@ -82,6 +84,7 @@ const WeaponBrowser = (props) => {
 const mapStateToProps = (state) => {
     return {
         weapons: state.weapons,
+        weaponFilters: state.weaponFilters
     }
 }
 
