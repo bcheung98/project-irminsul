@@ -1,6 +1,7 @@
 const initialState = {
     wep_weapon: [],
-    wep_rarity: []
+    wep_rarity: [],
+    wep_substat: []
 }
 
 const weaponFilterReducer = (state = initialState, action) => {
@@ -33,6 +34,15 @@ const weaponFilterReducer = (state = initialState, action) => {
             return {
                 ...state,
                 wep_rarity: tempRarity
+            }
+        case "SET_WEP_SUBSTAT_FILTERS":
+            let tempSubstat = [...state.wep_substat];
+            !state.wep_substat.includes(target) ? tempSubstat.push(target) : tempSubstat.splice(tempSubstat.indexOf(target), 1);
+            let substatText = document.getElementById(`wep-${type.split("_")[2].toLowerCase()}-filter-text`);
+            substatText.className === "filter-text-on" && tempSubstat.length === 0 ? substatText.className = "filter-text-off" : substatText.className = "filter-text-on";
+            return {
+                ...state,
+                wep_substat: tempSubstat
             }
         default:
             return state

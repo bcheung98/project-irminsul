@@ -9,6 +9,7 @@ import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import WeaponTypeFilter from "./WeaponTypeFilter";
 import WeaponRarityFilter from "./WeaponRarityFilter";
+import WeaponSubstatFilter from "./WeaponSubstatFilter";
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} {...props} />
@@ -74,13 +75,23 @@ const WeaponFilters = () => {
                     </AccordionDetails>
                 </Accordion>
 
-                {/* WEAPON */}
+                {/* RARITY */}
                 <Accordion>
                     <AccordionSummary>
                         <Typography variant="body1" className="filter-text-off" id="wep-rarity-filter-text" sx={{ fontFamily: "Genshin", color: "white" }}>Rarity</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <WeaponRarityFilter />
+                    </AccordionDetails>
+                </Accordion>
+
+                {/* SUBSTAT */}
+                <Accordion>
+                    <AccordionSummary>
+                        <Typography variant="body1" className="filter-text-off" id="wep-substat-filter-text" sx={{ fontFamily: "Genshin", color: "white" }}>Substat</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <WeaponSubstatFilter />
                     </AccordionDetails>
                 </Accordion>
 
