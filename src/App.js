@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchCharacters } from "./redux/actions/fetchCharacters";
 import { fetchWeapons } from "./redux/actions/fetchWeapons";
+import Home from "./components/Home";
 import Nav from "./components/Nav";
 import CharacterBrowser from "./components/characters/CharacterBrowser";
 import CharacterPage from "./components/characters/page/_CharacterPage";
@@ -20,9 +21,9 @@ const App = (props) => {
 		if (props.characters.characters.length === 0) {
 			fetchCharacters();
 		}
-		
-		fetchWeapons();
-		
+		if (props.weapons.weapons.length === 0) {
+			fetchWeapons();
+		}
 	}, [])
 
 	let { fetchCharacters, fetchWeapons } = props;
@@ -31,7 +32,7 @@ const App = (props) => {
 		<Router basename="project-irminsul">
 			<Nav />
 			<Switch>
-				<Route exact path="/" component={CharacterBrowser} />
+				<Route exact path="/" component={Home} />
 				<Route path="/characters" component={CharacterBrowser} />
 				<Route path="/character/:char_name" children={<CharacterPage />} />
 				<Route path="/weapons" component={WeaponBrowser} />

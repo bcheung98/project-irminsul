@@ -12,7 +12,6 @@ const Nav = () => {
                     <ButtonBase
                         disableRipple
                         href={`/project-irminsul/`}
-                        key={"characters"}
                     >
                         <CardHeader
                             avatar={
@@ -38,7 +37,6 @@ const Nav = () => {
                         <ButtonBase
                             disableRipple
                             href={`/project-irminsul/characters`}
-                            key={"characters"}
                         >
                             <CardHeader
                                 avatar={
@@ -60,7 +58,6 @@ const Nav = () => {
                         <ButtonBase
                             disableRipple
                             href={`/project-irminsul/weapons`}
-                            key={"weapons"}
                         >
                             <CardHeader
                                 avatar={
