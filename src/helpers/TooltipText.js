@@ -207,6 +207,152 @@ export const formatCommonMats = (material) => {
     return material;
 }
 
+export const formatEliteMats = (material) => {
+    switch (material) {
+        case "Horn1":
+            material += " Heavy Horn";
+            break;
+        case "Horn2":
+            material += " Black Bronze Horn";
+            break;
+        case "Horn3":
+            material += " Black Crystal Horn";
+            break;
+        case "Horn":
+            material += " Hilichurl Horn";
+            break;
+        case "Ley Line Branch1":
+            material += " Dead Ley Line Branch";
+            break;
+        case "Ley Line Branch2":
+            material += " Dead Ley Line Leaves";
+            break;
+        case "Ley Line Branch3":
+            material += " Ley Line Sprout";
+            break;
+        case "Chaos Part1":
+            material += " Chaos Device";
+            break;
+        case "Chaos Part2":
+            material += " Chaos Circuit";
+            break;
+        case "Chaos Part3":
+            material += " Chaos Core";
+            break;
+        case "Mist Grass1":
+            material += " Mist Grass Pollen";
+            break;
+        case "Mist Grass2":
+            material += " Mist Grass";
+            break;
+        case "Mist Grass3":
+            material += " Mist Grass Wick";
+            break;
+        case "Mist Grass":
+            material += " Cicin Mage Mist Grass";
+            break;
+        case "Sacrificial Knife1":
+            material += " Hunter's Sacrificial Knife";
+            break;
+        case "Sacrificial Knife2":
+            material += " Agent's Sacrificial Knife";
+            break;
+        case "Sacrificial Knife3":
+            material += " Inspector's Sacrificial Knife";
+            break;
+        case "Sacrificial Knife":
+            material += " Pyro Agent Knife";
+            break;
+        case "Bone Shard1":
+            material += " Fragile Bone Shard";
+            break;
+        case "Bone Shard2":
+            material += " Sturdy Bone Shard";
+            break;
+        case "Bone Shard3":
+            material += " Fossilized Bone Shard";
+            break;
+        case "Bone Shard":
+            material += " Vishap Bone Shard";
+            break;
+        case "Sentinel Chaos Part1":
+            material += " Chaos Gear";
+            break;
+        case "Sentinel Chaos Part2":
+            material += " Chaos Axis";
+            break;
+        case "Sentinel Chaos Part3":
+            material += " Chaos Oculus";
+            break;
+        case "Sentinel Chaos Part":
+            material += " Ruin Sentinel Chaos Part";
+            break;
+        case "Mirror Maiden Prism1":
+            material += " Dismal Prism";
+            break;
+        case "Mirror Maiden Prism2":
+            material += " Crystal Prism";
+            break;
+        case "Mirror Maiden Prism3":
+            material += " Polarizing Prism";
+            break;
+        case "Riftwolf Claw1":
+            material += " Concealed Claw";
+            break;
+        case "Riftwolf Claw2":
+            material += " Concealed Unguis";
+            break;
+        case "Riftwolf Claw3":
+            material += " Concealed Talon";
+            break;
+        case "Statuette1":
+            material += " Gloomy Statuette";
+            break;
+        case "Statuette2":
+            material += " Dark Statuette";
+            break;
+        case "Statuette3":
+            material += " Deathly Statuette";
+            break;
+        case "Statuette":
+            material += " Abyss Statuette";
+            break;
+        case "Fungal Nucleus1":
+            material += " Inactivated Fungal Nucleus";
+            break;
+        case "Fungal Nucleus2":
+            material += " Dormant Fungal Nucleus";
+            break;
+        case "Fungal Nucleus3":
+            material += " Robust Fungal Nucleus";
+            break;
+        case "Drake Chaos Part1":
+            material += " Chaos Storage";
+            break;
+        case "Drake Chaos Part2":
+            material += " Chaos Module";
+            break;
+        case "Drake Chaos Part3":
+            material += " Chaos Bolt";
+            break;
+        case "Drake Chaos Part":
+            material += " Ruin Drake Chaos Part";
+            break;
+        case "Primal Construct Prism1":
+            material += " Damaged Prism";
+            break;
+        case "Primal Construct Prism2":
+            material += " Turbid Prism";
+            break;
+        case "Primal Construct Prism3":
+            material += " Radiant Prism";
+            break;
+        default:
+            material += "";
+    }
+    return material;
+}
+
 export const formatBossMats = (material) => {
     switch (material) {
         case "Basalt Pillar":
@@ -374,6 +520,14 @@ export const formatGemstone = (material) => {
         case "Dendro":
             material = "Nagadus Emerald Gemstone";
             break;
+        default:
+            material += "";
+    }
+    return material;
+}
+
+export const formatWeaponAscMats = (material) => {
+    switch (material) {
         default:
             material += "";
     }

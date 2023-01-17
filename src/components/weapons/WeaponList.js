@@ -66,6 +66,7 @@ const headCells = [
     { id: "type", label: "Type" },
     { id: "atk", label: "ATK" },
     { id: "subStatString", label: "Substat" },
+    { id: "materialString", label: "Materials" }
 ];
 
 function EnhancedTableHead(props) {
@@ -107,8 +108,8 @@ EnhancedTableHead.propTypes = {
     rowCount: PropTypes.number.isRequired,
 };
 
-const createData = (name, rarity, type, atk, subStatString) => {
-    return { name, rarity, type, atk, subStatString };
+const createData = (name, rarity, type, atk, subStatString, ascensionMat, eliteMat, commonMat, materialString) => {
+    return { name, rarity, type, atk, subStatString, ascensionMat, eliteMat, commonMat, materialString };
 }
 
 const WeaponList = (props) => {
@@ -125,14 +126,15 @@ const WeaponList = (props) => {
     const rows = props.weapons.map((weapon) => {
 
         let atk = baseATKScaling[weapon.stats.atk][baseATKScaling[weapon.stats.atk].length - 1];
-
         let subStat = weapon.stats.subStat;
         let subStatValue = "—";
         if (subStat !== "") {
             subStatValue = subStatScaling[weapon.stats.atk][subStat][subStatScaling[weapon.stats.atk][subStat].length - 1]
         }
         let subStatString = `${subStat} ${subStatValue}`
-        return createData(weapon.name, weapon.rarity, weapon.type, atk, subStatString)
+        let materialString = `${weapon.materials.ascensionMat} ${weapon.materials.eliteMat} ${weapon.materials.commonMat}`
+
+        return createData(weapon.name, weapon.rarity, weapon.type, atk, subStatString, weapon.materials.ascensionMat, weapon.materials.eliteMat, weapon.materials.commonMat, materialString)
     })
 
     return (
