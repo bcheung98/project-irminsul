@@ -545,27 +545,116 @@ export const formatGemstone = (material) => {
 }
 
 export const formatWeaponAscMats = (material) => {
-    switch (material) {
+    let materialNames = {
+        "Decarabian": {
+            "1": "Tile of Decarabian's Tower",
+            "2": "Debris of Decarabian's City",
+            "3": "Fragment of Decarabian's Epic",
+            "4": "Scattered Piece of Decarabian's Dream",
+        },
+        "Boreal Wolf": {
+            "1": "Boreal Wolf's Milk Tooth",
+            "2": "Boreal Wolf's Cracked Tooth",
+            "3": "Boreal Wolf's Broken Fang",
+            "4": "Boreal Wolf's Nostalgia",
+        },
+        "Dandelion Gladiator": {
+            "1": "Fetters of the Dandelion Gladiator",
+            "2": "Chains of the Dandelion Gladiator",
+            "3": "Shackles of the Dandelion Gladiator",
+            "4": "Dream of the Dandelion Gladiator",
+        },
+        "Guyun": {
+            "1": "Luminous Sands from Guyun",
+            "2": "Lustrous Stone from Guyun",
+            "3": "Relic from Guyun",
+            "4": "Divine Body from Guyun",
+        },
+        "Mist Veiled Elixir": {
+            "1": "Mist Veiled Lead Elixir",
+            "2": "Mist Veiled Mercury Elixir",
+            "3": "Mist Veiled Gold Elixir",
+            "4": "Mist Veiled Primo Elixir",
+        },
+        "Aerosiderite": {
+            "1": "Grain of Aerosiderite",
+            "2": "Piece of Aerosiderite",
+            "3": "Bit of Aerosiderite",
+            "4": "Chunk of Aerosiderite",
+        },
+        "Sea Branch": {
+            "1": "Coral Branch of a Distant Sea",
+            "2": "Jeweled Branch of a Distant Sea",
+            "3": "Jade Branch of a Distant Sea",
+            "4": "Golden Branch of a Distant Sea",
+        },
+        "Narukami": {
+            "1": "Narukami's Wisdom",
+            "2": "Narukami's Joy",
+            "3": "Narukami's Affection",
+            "4": "Narukami's Valor",
+        },
+        "Oni Mask": {
+            "1": "Mask of the Wicked Lieutenant",
+            "2": "Mask of the Tiger's Bite",
+            "3": "Mask of the One-Horned",
+            "4": "Mask of the Kijin",
+        },
+        "Forest Dew": {
+            "1": "Copper Talisman of the Forest Dew",
+            "2": "Iron Talisman of the Forest Dew",
+            "3": "Silver Talisman of the Forest Dew",
+            "4": "Golden Talisman of the Forest Dew",
+        },
+        "Oasis Garden": {
+            "1": "Oasis Garden's Reminiscence",
+            "2": "Oasis Garden's Kindness",
+            "3": "Oasis Garden's Mourning",
+            "4": "Oasis Garden's Truth",
+        },
+        "Scorching Might": {
+            "1": "Echo of Scorching Might",
+            "2": "Remnant Glow of Scorching Might",
+            "3": "Dream of Scorching Might",
+            "4": "Olden Days of Scorching Might",
+        },
+    }
+    let materialKey = ""; // Raw name of material (no number attached)
+    let materialIndex = ""; // Number of material if there is one
+    if (["1", "2", "3", "4"].includes(material.charAt(material.length - 1))) {
+        materialKey = material.slice(0, material.length - 1);
+        materialIndex = material.charAt(material.length - 1);
+    }
+    else {
+        materialKey = material;
+    }
+    let materialDate = ""; // Day tag to be appended
+    switch (materialKey) {
         case "Decarabian":
         case "Guyun":
         case "Sea Branch":
         case "Forest Dew":
-            material += " (Mon/Thu)";
+            materialDate = "(Mon/Thu)";
             break;
         case "Boreal Wolf":
         case "Mist Veiled Elixir":
         case "Narukami":
         case "Oasis Garden":
-            material += " (Tue/Fri)"
+            materialDate = "(Tue/Fri)"
             break;
         case "Dandelion Gladiator":
         case "Aerosiderite":
         case "Oni Mask":
-        case "Scorching Mask":
-            material += " (Wed/Sat)"
+        case "Scorching Might":
+            materialDate = "(Wed/Sat)"
             break;
         default:
-            material += "";
+            materialDate = "";
     }
-    return material;
+    if (materialIndex !== "") {
+        return `${materialNames[materialKey][materialIndex]} ${materialDate}`;
+    }
+    else {
+        return `${materialKey} ${materialDate}`;
+    }
 }

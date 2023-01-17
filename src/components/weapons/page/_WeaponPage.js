@@ -1,17 +1,57 @@
 import * as React from "react";
+import PropTypes from 'prop-types';
 import "../../../css/WeaponPage.css";
 import parse from "html-react-parser";
+import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Typography, Tabs, Tab, Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import WeaponStatsTable from "./WeaponStatsTable";
+import WeaponAscensionTable from "./WeaponAscensionTable";
+
+function TabPanel(props) {
+
+    const { children, value, index, ...other } = props;
+    return (
+        <div
+            hidden={value !== index}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{ p: 3 }}>
+                    <Typography component="span">{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
+}
+
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.number.isRequired,
+    value: PropTypes.number.isRequired,
+};
+
+const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
+    () => ({
+        fontFamily: "Genshin, sans-serif",
+        fontSize: "14px",
+        color: "white",
+    }),
+);
 
 const WeaponPage = (props) => {
 
     let { weapon_name } = useParams();
     let { weapons } = props;
     let weapon = weapons.weapons.find(weapon => weapon.name.split(" ").join("_").toLowerCase() === weapon_name)
+
+    const [tabValue, setTabValue] = React.useState(0);
+
+    const handleTabChange = (event, newValue) => {
+        setTabValue(newValue);
+    };
 
     if (weapon !== undefined) {
         let { name, rarity, type, description } = weapon;
@@ -98,8 +138,23 @@ const WeaponPage = (props) => {
                         }
                     </Grid>
                 </Grid>
-                <Box>
-                    <WeaponStatsTable weapon={weapon} />
+                <Box
+                    sx={{
+                        border: "1px solid rgb(30, 73, 118)",
+                        borderRadius: "5px",
+                        mt: "15px",
+                    }}
+                >
+                    <Tabs value={tabValue} onChange={handleTabChange} centered>
+                        <StyledTab label="Stats" />
+                        <StyledTab label="Ascension" />
+                    </Tabs>
+                    <TabPanel value={tabValue} index={0}>
+                        <WeaponStatsTable weapon={weapon} />
+                    </TabPanel>
+                    <TabPanel value={tabValue} index={1}>
+                        <WeaponAscensionTable weapon={weapon} />
+                    </TabPanel>
                 </Box>
             </Box>
         )
