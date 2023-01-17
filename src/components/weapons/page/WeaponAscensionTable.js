@@ -217,7 +217,7 @@ const WeaponAscensionTable = (props) => {
                                         {row.total[2] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatWeaponAscMats(`${ascensionMat}3`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat.split(" ").join("_")}3.png`)} alt={ascensionMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background4star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat.split(" ").join("_")}3.png`)} alt={ascensionMat} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[2]}
