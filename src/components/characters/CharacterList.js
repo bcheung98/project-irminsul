@@ -69,7 +69,7 @@ const headCells = [
     { id: "element", label: "Element" },
     { id: "weapon", label: "Weapon" },
     { id: "nation", label: "Nation" },
-    { id: "gender", label: "Sex" },
+    { id: "gender", label: "Gender" },
     { id: "id", label: "Release Date" }
 ];
 

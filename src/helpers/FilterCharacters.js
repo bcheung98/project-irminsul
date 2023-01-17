@@ -27,6 +27,9 @@ export const filterCharacters = (characters, filters, searchValue) => {
     if (filters.nation.length > 0) {
         chars = chars.filter(char => filters.nation.includes(char.nation));
     }
+    if (filters.gender.length > 0) {
+        chars = chars.filter(char => filters.gender.includes(char.gender));
+    }
     if (searchValue !== "") {
         chars = chars.filter(char => char.name.toLowerCase().includes(searchValue.toLowerCase()))
     }

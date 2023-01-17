@@ -15,6 +15,7 @@ import BossMatFilter from "./BossMatFilter";
 import WeeklyBossMatFilter from "./WeeklyBossMatFilter";
 import LocalSpecialtyFilter from "./LocalSpecialtyFilter";
 import NationFilter from "./NationFilter";
+import GenderFilter from "./GenderFilter";
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} {...props} />
@@ -155,6 +156,16 @@ const CharacterFilters = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <NationFilter />
+                    </AccordionDetails>
+                </Accordion>
+
+                {/* GENDER */}
+                <Accordion>
+                    <AccordionSummary>
+                        <Typography variant="body1" className="filter-text-off" id="gender-filter-text" sx={{ fontFamily: "Genshin", color: "white" }}>Gender</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <GenderFilter />
                     </AccordionDetails>
                 </Accordion>
 

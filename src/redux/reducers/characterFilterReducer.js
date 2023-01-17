@@ -7,7 +7,8 @@ const initialState = {
     bossMat: [],
     weeklyBossMat: [],
     localMat: [],
-    nation: []
+    nation: [],
+    gender: []
 }
 
 const characterFilterReducer = (state = initialState, action) => {
@@ -103,6 +104,15 @@ const characterFilterReducer = (state = initialState, action) => {
             return {
                 ...state,
                 nation: tempNation
+            }
+        case "SET_CHAR_GENDER_FILTERS":
+            let tempGender = [...state.gender];
+            !state.gender.includes(target) ? tempGender.push(target) : tempGender.splice(tempGender.indexOf(target), 1);
+            let genderText = document.getElementById(`${type.split("_")[2].toLowerCase()}-filter-text`);
+            genderText.className === "filter-text-on" && tempGender.length === 0 ? genderText.className = "filter-text-off" : genderText.className = "filter-text-on";
+            return {
+                ...state,
+                gender: tempGender
             }
         default:
             return state
