@@ -353,6 +353,18 @@ export const formatEliteMats = (material) => {
         case "Primal Construct Prism3":
             material = "Radiant Prism";
             break;
+        case "Shell1":
+            material = "Desiccated Shell";
+            break;
+        case "Shell2":
+            material = "Sturdy Shell";
+            break;
+        case "Shell3":
+            material = "Marked Shell";
+            break;
+        case "Shell":
+            material = "Consecrated Beast Shell";
+            break;
         default:
             material += "";
     }
