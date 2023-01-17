@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Typography, Tabs, Tab, Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
+import WeaponStatsTable from "./WeaponStatsTable";
 
 const WeaponPage = (props) => {
 
@@ -97,6 +98,9 @@ const WeaponPage = (props) => {
                         }
                     </Grid>
                 </Grid>
+                <Box>
+                    <WeaponStatsTable weapon={weapon} />
+                </Box>
             </Box>
         )
     }
