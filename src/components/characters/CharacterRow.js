@@ -17,14 +17,14 @@ const CharacterRow = (props) => {
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <CardHeader sx={{ p: 0 }}
                             avatar={
-                                <ButtonBase disableRipple href={`/project-irminsul/character/${currentCharacter.name.split(" ").join("_").toLowerCase()}`}>
+                                <ButtonBase disableRipple href={`/project-irminsul/character/${currentCharacter.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                                     <img alt={row.name} src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${row.name.split(" ").join("_")}_Thumb.png`)}
                                         style={{ width: "48px", cursor: "pointer" }}
                                     />
                                 </ButtonBase>
                             }
                             title={
-                                <ButtonBase disableRipple href={`/project-irminsul/character/${currentCharacter.name.split(" ").join("_").toLowerCase()}`}>
+                                <ButtonBase disableRipple href={`/project-irminsul/character/${currentCharacter.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                                     <Typography variant="body1"
                                         sx={{
                                             fontFamily: "Genshin, sans-serif",

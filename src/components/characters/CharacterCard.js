@@ -80,7 +80,7 @@ const CharacterCard = (props) => {
                         </Grid>
                         <CharacterMaterialGrid character={props.character} imageSize="48px" margin="-30px" />
                     </Grid>
-                    <ButtonBase disableRipple href={`/project-irminsul/character/${props.character.name.split(" ").join("_").toLowerCase()}`}>
+                    <ButtonBase disableRipple href={`/project-irminsul/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                         <Typography sx={{
                             fontFamily: "Genshin, sans-serif",
                             fontSize: "9pt",
