@@ -10,6 +10,9 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import WeaponTypeFilter from "./WeaponTypeFilter";
 import WeaponRarityFilter from "./WeaponRarityFilter";
 import WeaponSubstatFilter from "./WeaponSubstatFilter";
+import WeaponAscensionMatFilter from "./WeaponAscensionMatFilter";
+import WeaponEliteMatFilter from "./WeaponEliteMatFilter";
+import WeaponCommonMatFilter from "./WeaponCommonMatFilter";
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} {...props} />
@@ -92,6 +95,36 @@ const WeaponFilters = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <WeaponSubstatFilter />
+                    </AccordionDetails>
+                </Accordion>
+
+                {/* ASCENSION MAT */}
+                <Accordion>
+                    <AccordionSummary>
+                        <Typography variant="body1" className="filter-text-off" id="wep-ascmat-filter-text" sx={{ fontFamily: "Genshin", color: "white" }}>Ascension Material</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <WeaponAscensionMatFilter />
+                    </AccordionDetails>
+                </Accordion>
+
+                 {/* ELITE MATERIAL */}
+                 <Accordion>
+                    <AccordionSummary>
+                        <Typography variant="body1" className="filter-text-off" id="wep-elitemat-filter-text" sx={{ fontFamily: "Genshin", color: "white" }}>Elite Material</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <WeaponEliteMatFilter />
+                    </AccordionDetails>
+                </Accordion>
+
+                 {/* COMMON MATERIAL */}
+                 <Accordion>
+                    <AccordionSummary>
+                        <Typography variant="body1" className="filter-text-off" id="wep-common-filter-text" sx={{ fontFamily: "Genshin", color: "white" }}>Common Material</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <WeaponCommonMatFilter />
                     </AccordionDetails>
                 </Accordion>
 

@@ -1,7 +1,10 @@
 const initialState = {
     wep_weapon: [],
     wep_rarity: [],
-    wep_substat: []
+    wep_substat: [],
+    wep_ascMat: [],
+    wep_eliteMat: [],
+    wep_commonMat: []
 }
 
 const weaponFilterReducer = (state = initialState, action) => {
@@ -43,6 +46,33 @@ const weaponFilterReducer = (state = initialState, action) => {
             return {
                 ...state,
                 wep_substat: tempSubstat
+            }
+        case "SET_WEP_ASCMAT_FILTERS":
+            let tempAscMat = [...state.wep_ascMat];
+            !state.wep_ascMat.includes(target) ? tempAscMat.push(target) : tempAscMat.splice(tempAscMat.indexOf(target), 1);
+            let ascMatText = document.getElementById(`wep-${type.split("_")[2].toLowerCase()}-filter-text`);
+            ascMatText.className === "filter-text-on" && tempAscMat.length === 0 ? ascMatText.className = "filter-text-off" : ascMatText.className = "filter-text-on";
+            return {
+                ...state,
+                wep_ascMat: tempAscMat
+            }
+        case "SET_WEP_ELITEMAT_FILTERS":
+            let tempEliteMat = [...state.wep_eliteMat];
+            !state.wep_eliteMat.includes(target) ? tempEliteMat.push(target) : tempEliteMat.splice(tempEliteMat.indexOf(target), 1);
+            let eliteMatText = document.getElementById(`wep-${type.split("_")[2].toLowerCase()}-filter-text`);
+            eliteMatText.className === "filter-text-on" && tempEliteMat.length === 0 ? eliteMatText.className = "filter-text-off" : eliteMatText.className = "filter-text-on";
+            return {
+                ...state,
+                wep_eliteMat: tempEliteMat
+            }
+        case "SET_WEP_COMMON_MAT_FILTERS":
+            let tempCommonMat = [...state.wep_commonMat];
+            !state.wep_commonMat.includes(target) ? tempCommonMat.push(target) : tempCommonMat.splice(tempCommonMat.indexOf(target), 1);
+            let commonMatText = document.getElementById(`wep-${type.split("_")[2].toLowerCase()}-filter-text`);
+            commonMatText.className === "filter-text-on" && tempCommonMat.length === 0 ? commonMatText.className = "filter-text-off" : commonMatText.className = "filter-text-on";
+            return {
+                ...state,
+                wep_commonMat: tempCommonMat
             }
         default:
             return state
