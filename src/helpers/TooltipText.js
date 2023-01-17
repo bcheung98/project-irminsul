@@ -534,6 +534,24 @@ export const formatGemstone = (material) => {
 
 export const formatWeaponAscMats = (material) => {
     switch (material) {
+        case "Decarabian":
+        case "Guyun":
+        case "Sea Branch":
+        case "Forest Dew":
+            material += " (Mon/Thu)";
+            break;
+        case "Boreal Wolf":
+        case "Mist Veiled Elixir":
+        case "Narukami":
+        case "Oasis Garden":
+            material += " (Tue/Fri)"
+            break;
+        case "Dandelion Gladiator":
+        case "Aerosiderite":
+        case "Oni Mask":
+        case "Scorching Mask":
+            material += " (Wed/Sat)"
+            break;
         default:
             material += "";
     }
