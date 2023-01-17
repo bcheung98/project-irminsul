@@ -8,7 +8,7 @@ const CharacterCard = (props) => {
 
     let { name, rarity, element, weapon } = props.character;
     const characterIconBackground = {
-        backgroundImage: "url(" + (`${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png`) + ")",
+        backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
         backgroundSize: "100%"
     }
 

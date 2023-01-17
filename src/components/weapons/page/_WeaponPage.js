@@ -60,7 +60,7 @@ const WeaponPage = (props) => {
             marginTop: "15px",
             border: "1px solid rgb(30, 73, 118)",
             borderRadius: "5px",
-            backgroundImage: "url(" + (`${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png`) + ")",
+            backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
             backgroundSize: "100%"
         }
         return (
@@ -107,7 +107,6 @@ const WeaponPage = (props) => {
                         <Box
                             sx={{
                                 color: "white",
-                                mt: "15px",
                                 px: "10px",
                                 py: "10px",
                                 width: "55vw",
@@ -122,7 +121,7 @@ const WeaponPage = (props) => {
                                     border: "1px solid rgb(30, 73, 118)",
                                     borderRadius: "5px",
                                     color: "white",
-                                    mt: "15px",
+                                    mt: "10px",
                                     px: "20px",
                                     py: "10px",
                                     width: "50vw",

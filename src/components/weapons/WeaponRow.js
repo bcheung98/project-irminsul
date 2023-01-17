@@ -3,7 +3,7 @@ import { StyledTableCellNoVert, StyledTableRows } from "../../helpers/StyledTabl
 import { Box } from "@mui/system";
 import { ButtonBase, CardHeader, Typography } from "@mui/material";
 import { MaterialTooltip } from "../../helpers/MaterialTooltip";
-import { formatCommonMats, formatEliteMats } from "../../helpers/TooltipText";
+import { formatCommonMats, formatEliteMats, formatWeaponAscMats } from "../../helpers/TooltipText";
 
 const WeaponRow = (props) => {
 
@@ -103,7 +103,7 @@ const WeaponRow = (props) => {
                 { /* Materials */}
                 <StyledTableCellNoVert>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <MaterialTooltip title={row.ascensionMat} arrow placement="top">
+                        <MaterialTooltip title={formatWeaponAscMats(row.ascensionMat)} arrow placement="top">
                             <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${row.ascensionMat.split(" ").join("_")}4.png`)} alt={row.ascensionMat} />
                         </MaterialTooltip>
                         <MaterialTooltip title={formatEliteMats(row.eliteMat)} arrow placement="top">
