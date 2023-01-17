@@ -21,7 +21,9 @@ let praxisIcon = (`${process.env.REACT_APP_URL}/materials/talent_mats/Praxis3.pn
 
 const TalentFilter = (props) => {
     return (
-        <div>
+        <React.Fragment>
+
+            {/* MONDSTADT MATERIALS */}
             <div>
                 <FilterTooltip title={formatTalents("Freedom")} arrow placement="top">
                     <img className="filter-off" id="freedom-button" src={freedomIcon} alt="Freedom" onClick={(e) => props.setFilter(e.target.alt)} />
@@ -33,6 +35,8 @@ const TalentFilter = (props) => {
                     <img className="filter-off" id="ballad-button" src={balladIcon} alt="Ballad" onClick={(e) => props.setFilter(e.target.alt)} />
                 </FilterTooltip>
             </div>
+
+            {/* LIYUE MATERIALS */}
             <div>
                 <FilterTooltip title={formatTalents("Prosperity")} arrow placement="top">
                     <img className="filter-off" id="prosperity-button" src={prosperityIcon} alt="Prosperity" onClick={(e) => props.setFilter(e.target.alt)} />
@@ -44,6 +48,8 @@ const TalentFilter = (props) => {
                     <img className="filter-off" id="gold-button" src={goldIcon} alt="Gold" onClick={(e) => props.setFilter(e.target.alt)} />
                 </FilterTooltip>
             </div>
+
+            {/* INAZUMA MATERIALS */}
             <div>
                 <FilterTooltip title={formatTalents("Transience")} arrow placement="top">
                     <img className="filter-off" id="transience-button" src={transienceIcon} alt="Transience" onClick={(e) => props.setFilter(e.target.alt)} />
@@ -55,6 +61,8 @@ const TalentFilter = (props) => {
                     <img className="filter-off" id="light-button" src={lightIcon} alt="Light" onClick={(e) => props.setFilter(e.target.alt)} />
                 </FilterTooltip>
             </div>
+
+            {/* SUMERU MATERIALS */}
             <div>
                 <FilterTooltip title={formatTalents("Admonition")} arrow placement="top">
                     <img className="filter-off" id="admonition-button" src={admonitionIcon} alt="Admonition" onClick={(e) => props.setFilter(e.target.alt)} />
@@ -66,7 +74,7 @@ const TalentFilter = (props) => {
                     <img className="filter-off" id="praxis-button" src={praxisIcon} alt="Praxis" onClick={(e) => props.setFilter(e.target.alt)} />
                 </FilterTooltip>
             </div>
-        </div>
+        </React.Fragment>
     )
 }
 

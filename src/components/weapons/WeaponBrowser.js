@@ -40,7 +40,7 @@ const WeaponBrowser = (props) => {
                         textAlign: "center",
                     }}
                 >
-                    WEAPONS (WIP)
+                    WEAPONS
                 </Typography>
             </Box>
             <Grid container sx={{ margin: "auto", width: "98%" }}>

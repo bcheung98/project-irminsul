@@ -3,7 +3,7 @@ import { StyledTableCellNoVert, StyledTableRows } from "../../helpers/StyledTabl
 import { Box } from "@mui/system";
 import { ButtonBase, CardHeader, Typography } from "@mui/material";
 import { MaterialTooltip } from "../../helpers/MaterialTooltip";
-import { formatCommonMats, formatEliteMats, formatWeaponAscMats } from "../../helpers/TooltipText";
+import { formatCommonMats, formatEliteMats } from "../../helpers/TooltipText";
 
 const WeaponRow = (props) => {
 

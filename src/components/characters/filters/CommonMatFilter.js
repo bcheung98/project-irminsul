@@ -5,15 +5,15 @@ import { formatCommonMats } from "../../../helpers/TooltipText";
 
 let arrowIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Arrow3.png`);
 let fatuiIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Fatui_Insignia3.png`);
-let fungiIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Fungi3.png`);
-let handguardIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Handguard3.png`);
-let headbandIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Headband3.png`);
 let maskIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Mask3.png`);
 let nectarIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Nectar3.png`);
 let scrollIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Scroll3.png`);
 let slimeIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Slime3.png`);
-let specterIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Specter3.png`);
 let thIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Treasure_Hoarder_Insignia3.png`);
+let handguardIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Handguard3.png`);
+let specterIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Specter3.png`);
+let fungiIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Fungi3.png`);
+let headbandIcon = (`${process.env.REACT_APP_URL}/materials/common_mats/Headband3.png`);
 
 const CommonMatFilter = (props) => {
     return (
@@ -23,15 +23,6 @@ const CommonMatFilter = (props) => {
             </FilterTooltip>
             <FilterTooltip title={formatCommonMats("Fatui Insignia")} arrow placement="top">
                 <img className="filter-off" id="fatui insignia-button" src={fatuiIcon} alt="Fatui Insignia" onClick={(e) => props.setFilter(e.target.alt)} />
-            </FilterTooltip>
-            <FilterTooltip title={formatCommonMats("Fungi")} arrow placement="top">
-                <img className="filter-off" id="fungi-button" src={fungiIcon} alt="Fungi" onClick={(e) => props.setFilter(e.target.alt)} />
-            </FilterTooltip>
-            <FilterTooltip title={formatCommonMats("Handguard")} arrow placement="top">
-                <img className="filter-off" id="handguard-button" src={handguardIcon} alt="Handguard" onClick={(e) => props.setFilter(e.target.alt)} />
-            </FilterTooltip>
-            <FilterTooltip title={formatCommonMats("Headband")} arrow placement="top">
-                <img className="filter-off" id="headband-button" src={headbandIcon} alt="Headband" onClick={(e) => props.setFilter(e.target.alt)} />
             </FilterTooltip>
             <FilterTooltip title={formatCommonMats("Mask")} arrow placement="top">
                 <img className="filter-off" id="mask-button" src={maskIcon} alt="Mask" onClick={(e) => props.setFilter(e.target.alt)} />
@@ -45,11 +36,20 @@ const CommonMatFilter = (props) => {
             <FilterTooltip title={formatCommonMats("Slime")} arrow placement="top">
                 <img className="filter-off" id="slime-button" src={slimeIcon} alt="Slime" onClick={(e) => props.setFilter(e.target.alt)} />
             </FilterTooltip>
+            <FilterTooltip title={formatCommonMats("Treasure Hoarder Insignia")} arrow placement="top">
+                <img className="filter-off" id="treasure hoarder insignia-button" src={thIcon} alt="Treasure Hoarder Insignia" onClick={(e) => props.setFilter(e.target.alt)} />
+            </FilterTooltip>
+            <FilterTooltip title={formatCommonMats("Handguard")} arrow placement="top">
+                <img className="filter-off" id="handguard-button" src={handguardIcon} alt="Handguard" onClick={(e) => props.setFilter(e.target.alt)} />
+            </FilterTooltip>
             <FilterTooltip title={formatCommonMats("Specter")} arrow placement="top">
                 <img className="filter-off" id="specter-button" src={specterIcon} alt="Specter" onClick={(e) => props.setFilter(e.target.alt)} />
             </FilterTooltip>
-            <FilterTooltip title={formatCommonMats("Treasure Hoarder Insignia")} arrow placement="top">
-                <img className="filter-off" id="treasure hoarder insignia-button" src={thIcon} alt="Treasure Hoarder Insignia" onClick={(e) => props.setFilter(e.target.alt)} />
+            <FilterTooltip title={formatCommonMats("Fungi")} arrow placement="top">
+                <img className="filter-off" id="fungi-button" src={fungiIcon} alt="Fungi" onClick={(e) => props.setFilter(e.target.alt)} />
+            </FilterTooltip>
+            <FilterTooltip title={formatCommonMats("Headband")} arrow placement="top">
+                <img className="filter-off" id="headband-button" src={headbandIcon} alt="Headband" onClick={(e) => props.setFilter(e.target.alt)} />
             </FilterTooltip>
         </React.Fragment>
     )

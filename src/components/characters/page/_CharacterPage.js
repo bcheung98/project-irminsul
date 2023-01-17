@@ -158,7 +158,7 @@ const CharacterPage = (props) => {
                                         <img style={{ height: "30px" }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
                                     </div>
                                     <div style={{ marginLeft: "5px" }}>
-                                        <Typography variant="body1" sx={{ fontFamily: "Genshin" }}>
+                                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif" }}>
                                             • {weapon}
                                         </Typography>
                                     </div>
