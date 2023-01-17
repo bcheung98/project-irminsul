@@ -56,8 +56,7 @@ const App = (props) => {
 const mapStateToProps = (state) => {
 	return {
 		characters: state.characters,
-		weapons: state.weapons,
-		characterFilters: state.characterFilters
+		weapons: state.weapons
 	}
 }
 
