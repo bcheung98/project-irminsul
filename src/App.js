@@ -13,6 +13,7 @@ import Nav from "./components/Nav";
 import CharacterBrowser from "./components/characters/CharacterBrowser";
 import CharacterPage from "./components/characters/page/_CharacterPage";
 import WeaponBrowser from "./components/weapons/WeaponBrowser";
+import WeaponPage from "./components/weapons/page/_WeaponPage";
 import { AppBar, Typography } from "@mui/material";
 
 const App = (props) => {
@@ -36,6 +37,7 @@ const App = (props) => {
 				<Route path="/characters" component={CharacterBrowser} />
 				<Route path="/character/:char_name" children={<CharacterPage />} />
 				<Route path="/weapons" component={WeaponBrowser} />
+				<Route path="/weapon/:weapon_name" children={<WeaponPage />} />
 			</Switch>
 			<AppBar position="static" sx={{
 				mt: 10,

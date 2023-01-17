@@ -7,8 +7,8 @@ import { formatCommonMats, formatEliteMats } from "../../helpers/TooltipText";
 
 const WeaponRow = (props) => {
 
-    let { row, index } = props;
-    // const currentWeapon = weapons.filter(weapon => weapon.name === row.name)[0];
+    let { row, index, weapons } = props;
+    const currentWeapon = weapons.filter(weapon => weapon.name === row.name)[0];
 
     const materialImage = {
         height: "48px",
@@ -27,27 +27,27 @@ const WeaponRow = (props) => {
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <CardHeader sx={{ p: 0 }}
                             avatar={
-                                // <ButtonBase disableRipple href={`/project-irminsul/weapon/${currentWeapon.name.split(" ").join("_").toLowerCase()}`}>
-                                <img alt={row.name} src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${row.name.split(" ").join("_")}.png`)}
-                                    style={{ width: "48px", cursor: "pointer" }}
-                                />
-                                // </ButtonBase>
+                                <ButtonBase disableRipple href={`/project-irminsul/weapon/${currentWeapon.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                                    <img alt={row.name} src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${row.name.split(" ").join("_")}.png`)}
+                                        style={{ width: "48px", cursor: "pointer" }}
+                                    />
+                                </ButtonBase>
                             }
                             title={
-                                // <ButtonBase disableRipple href={`/project-irminsul/weapon/${currentWeapon.name.split(" ").join("_").toLowerCase()}`}>
-                                <Typography variant="body1"
-                                    sx={{
-                                        fontFamily: "Genshin, sans-serif",
-                                        cursor: "pointer",
-                                        "&:hover": {
-                                            color: "rgb(30, 175, 255)",
-                                            textDecoration: "underline",
-                                        },
-                                    }}
-                                >
-                                    {row.name}
-                                </Typography>
-                                // </ButtonBase>
+                                <ButtonBase disableRipple href={`/project-irminsul/weapon/${currentWeapon.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                                    <Typography variant="body1"
+                                        sx={{
+                                            fontFamily: "Genshin, sans-serif",
+                                            cursor: "pointer",
+                                            "&:hover": {
+                                                color: "rgb(30, 175, 255)",
+                                                textDecoration: "underline",
+                                            },
+                                        }}
+                                    >
+                                        {row.name}
+                                    </Typography>
+                                </ButtonBase>
                             }
                         />
                     </Box>
@@ -116,7 +116,7 @@ const WeaponRow = (props) => {
                 </StyledTableCellNoVert>
 
             </StyledTableRows>
-        </React.Fragment>
+        </React.Fragment >
     )
 }
 
