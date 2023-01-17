@@ -14,7 +14,34 @@ import CharacterBrowser from "./components/characters/CharacterBrowser";
 import CharacterPage from "./components/characters/page/_CharacterPage";
 import WeaponBrowser from "./components/weapons/WeaponBrowser";
 import WeaponPage from "./components/weapons/page/_WeaponPage";
-import { AppBar, Typography } from "@mui/material";
+import { AppBar, Typography, Box, Fade, useScrollTrigger, Fab } from "@mui/material";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+
+function ScrollTop(props) {
+	const { children } = props;
+	const trigger = useScrollTrigger({ threshold: 600 });
+	const handleClick = (event) => {
+		const anchor = (event.target.ownerDocument || document).querySelector(
+			"#back-to-top-anchor",
+		);
+		if (anchor) {
+			anchor.scrollIntoView({
+				block: "center",
+			});
+		}
+	};
+
+	return (
+		<Fade in={trigger}>
+			<Box
+				onClick={handleClick}
+				sx={{ position: "fixed", bottom: 48, right: 16 }}
+			>
+				{children}
+			</Box>
+		</Fade>
+	);
+}
 
 const App = (props) => {
 
@@ -31,6 +58,7 @@ const App = (props) => {
 
 	return (
 		<Router basename="project-irminsul">
+			<Box id="back-to-top-anchor" />
 			<Nav />
 			<Switch>
 				<Route exact path="/" component={Home} />
@@ -49,6 +77,11 @@ const App = (props) => {
 			}}>
 				<Typography sx={{ fontFamily: "Genshin, sans-serif" }} variant="subtitle2">Project Irminsul is not affiliated with HoYoverse.<br />Genshin Impact, images and data are registered trademarks of HoYoverse.</Typography>
 			</AppBar>
+			<ScrollTop {...props}>
+				<Fab size="medium" disableRipple color="primary">
+					<KeyboardArrowUpIcon sx={{ color: "white" }} />
+				</Fab>
+			</ScrollTop>
 		</Router>
 	);
 }
