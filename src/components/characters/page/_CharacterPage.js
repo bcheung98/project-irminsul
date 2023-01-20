@@ -12,6 +12,7 @@ import CharacterTalentDisplay from "./CharacterTalentDisplay";
 import CharacterTalentLevellingTable from "./CharacterTalentLevellingTable";
 import CharacterConstellationDisplay from "./CharacterConstellationDisplay";
 import CharacterMaterialGrid from "../CharacterMaterialGrid";
+import { MaterialTooltip } from "../../../helpers/MaterialTooltip";
 
 function TabPanel(props) {
 
@@ -118,7 +119,9 @@ const CharacterPage = (props) => {
                     </Grid>
                     <Grid xs>
                         <Box sx={{ display: "flex" }}>
-                            <img style={{ marginRight: "-25px", height: "128px" }} src={(`${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}.png`)} alt={`${nation} / ${element}`} />
+                            <MaterialTooltip title={`${nation} / ${element}`} arrow placement="bottom">
+                                <img style={{ marginRight: "-25px", height: "128px" }} src={(`${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}.png`)} alt={`${nation} / ${element}`} />
+                            </MaterialTooltip>
                             <div style={{ marginLeft: "20px" }}>
                                 <Typography
                                     variant="h4"
