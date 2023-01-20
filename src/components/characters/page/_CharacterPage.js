@@ -11,6 +11,7 @@ import CharacterAscensionTable from "./CharacterAscensionTable";
 import CharacterTalentDisplay from "./CharacterTalentDisplay";
 import CharacterTalentLevellingTable from "./CharacterTalentLevellingTable";
 import CharacterConstellationDisplay from "./CharacterConstellationDisplay";
+import CharacterMaterialGrid from "../CharacterMaterialGrid";
 
 function TabPanel(props) {
 
@@ -59,7 +60,7 @@ const CharacterPage = (props) => {
         let { name, title, rarity, element, weapon, constellation, description, birthday, nation, voiceActors, release } = character;
         return (
             <React.Fragment>
-                <Grid container sx={{mb: "20px"}}>
+                <Grid container sx={{ mb: "20px" }}>
                     <Grid xs="auto">
                         <img src={(`${process.env.REACT_APP_URL}/characters/wish/Character_${name.split(" ").join("_")}_Wish.png`)} alt={name}
                             style={{
@@ -164,6 +165,9 @@ const CharacterPage = (props) => {
                                     </div>
                                 </div>
                             </div>
+                            <Box sx={{ mt: "15px", ml: "20px" }}>
+                                <CharacterMaterialGrid character={character} />
+                            </Box>
                         </Box>
                         <Box
                             sx={{
