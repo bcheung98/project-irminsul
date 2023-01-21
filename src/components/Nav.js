@@ -82,7 +82,7 @@ const Nav = () => {
                         >
                             <CardHeader
                                 avatar={
-                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Wish.png`)} alt="BANNERS" sx={{ height: "48px", width: "48px" }} />
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Wish.png`)} alt="BANNERS" sx={{ height: "40px", width: "40px" }} />
                                 }
                                 title={
                                     <Typography variant="body1" noWrap
