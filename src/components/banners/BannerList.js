@@ -60,7 +60,7 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-    { id: "version", label: "Version" },
+    { id: "subVersion", label: "Version" },
 ];
 
 function EnhancedTableHead(props) {
@@ -102,14 +102,14 @@ EnhancedTableHead.propTypes = {
     rowCount: PropTypes.number.isRequired,
 };
 
-const createData = (version, banner) => {
-    return { version, banner };
+const createData = (version, subVersion, banner) => {
+    return { version, subVersion, banner };
 }
 
 const BannerList = (props) => {
 
-    const [order, setOrder] = React.useState("asc");
-    const [orderBy, setOrderBy] = React.useState("version");
+    const [order, setOrder] = React.useState("desc");
+    const [orderBy, setOrderBy] = React.useState("subVersion");
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === "asc";
@@ -118,8 +118,8 @@ const BannerList = (props) => {
     };
 
     let banners = []
-    props.banners.forEach(version => Object.keys(version).slice(1).forEach(phase => banners.push([version.version, version[phase].banner])));
-    const rows = banners.map(banner => createData(banner[0], banner[1]))
+    props.banners.forEach(version => Object.keys(version).slice(1).forEach(phase => banners.push([version.version, `${version.version}.${phase.slice(-1)}`, version[phase].banner])));
+    const rows = banners.map(banner => createData(banner[0], banner[1], banner[2]))
 
     return (
         <Box sx={{ width: "100%" }}>
