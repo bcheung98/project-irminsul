@@ -8,12 +8,14 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchCharacters } from "./redux/actions/fetchCharacters";
 import { fetchWeapons } from "./redux/actions/fetchWeapons";
+import { fetchBanners } from "./redux/actions/fetchBanners";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
 import CharacterBrowser from "./components/characters/CharacterBrowser";
 import CharacterPage from "./components/characters/page/_CharacterPage";
 import WeaponBrowser from "./components/weapons/WeaponBrowser";
 import WeaponPage from "./components/weapons/page/_WeaponPage";
+import BannerArchive from "./components/banners/BannerArchive";
 import { AppBar, Typography, Box, Fade, useScrollTrigger, Fab } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
@@ -52,9 +54,10 @@ const App = (props) => {
 		if (props.weapons.weapons.length === 0) {
 			fetchWeapons();
 		}
+		fetchBanners();
 	}, [])
 
-	let { fetchCharacters, fetchWeapons } = props;
+	let { fetchCharacters, fetchWeapons, fetchBanners } = props;
 
 	return (
 		<Router basename="project-irminsul">
@@ -66,6 +69,7 @@ const App = (props) => {
 				<Route path="/character/:char_name" children={<CharacterPage />} />
 				<Route path="/weapons" component={WeaponBrowser} />
 				<Route path="/weapon/:weapon_name" children={<WeaponPage />} />
+				<Route path="/banners/" component={BannerArchive} />
 			</Switch>
 			<AppBar position="static" sx={{
 				mt: 10,
@@ -89,14 +93,17 @@ const App = (props) => {
 const mapStateToProps = (state) => {
 	return {
 		characters: state.characters,
-		weapons: state.weapons
+		weapons: state.weapons,
+		characterBanners: state.characterBanners,
+		weaponBanners: state.weaponBanners,
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchCharacters: () => dispatch(fetchCharacters()),
-		fetchWeapons: () => dispatch(fetchWeapons())
+		fetchWeapons: () => dispatch(fetchWeapons()),
+		fetchBanners: () => dispatch(fetchBanners())
 	}
 }
 

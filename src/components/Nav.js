@@ -76,6 +76,27 @@ const Nav = () => {
                                 }
                             />
                         </ButtonBase>
+                        <ButtonBase
+                            disableRipple
+                            href={`/project-irminsul/banners`}
+                        >
+                            <CardHeader
+                                avatar={
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Wish.png`)} alt="BANNERS" sx={{ height: "48px", width: "48px" }} />
+                                }
+                                title={
+                                    <Typography variant="body1" noWrap
+                                        sx={{
+                                            fontFamily: "Genshin, monospace",
+                                            color: "white",
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        BANNERS
+                                    </Typography>
+                                }
+                            />
+                        </ButtonBase>
                     </Box>
                 </Toolbar>
             </Container>
