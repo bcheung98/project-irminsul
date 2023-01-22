@@ -102,8 +102,8 @@ EnhancedTableHead.propTypes = {
     rowCount: PropTypes.number.isRequired,
 };
 
-const createData = (version, subVersion, banner) => {
-    return { version, subVersion, banner };
+const createData = (version, subVersion, startDate, endDate, banner) => {
+    return { version, subVersion, startDate, endDate, banner };
 }
 
 const BannerList = (props) => {
@@ -118,8 +118,8 @@ const BannerList = (props) => {
     };
 
     let banners = []
-    props.banners.forEach(version => Object.keys(version).slice(1).forEach(phase => banners.push([version.version, `${version.version}.${phase.slice(-1)}`, version[phase].banner])));
-    const rows = banners.map(banner => createData(banner[0], banner[1], banner[2]))
+    props.banners.forEach(version => Object.keys(version).slice(1).forEach(phase => banners.push([version.version, `${version.version}.${phase.slice(-1)}`, version[phase].startDate, version[phase].endDate, version[phase].banner])));
+    const rows = banners.map(banner => createData(banner[0], banner[1], banner[2], banner[3], banner[4]))
 
     return (
         <Box sx={{ width: "100%" }}>

@@ -27,12 +27,13 @@ const CharacterBannerRow = (props) => {
             <StyledTableRows key={index} >
 
                 { /* Version */}
-                <StyledTableCell className="genshinFont">
-                    <Typography>{row.version}</Typography>
+                <StyledTableCell>
+                    <Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{row.version}</Typography>
+                    <Typography variant="body2">{row.startDate} — {row.endDate}</Typography>
                 </StyledTableCell>
 
                 { /* Banners */}
-                <StyledTableCell className="genshinFont">
+                <StyledTableCell>
                     {
                         <Box sx={{ display: "flex" }}>
                             {row.banner.map((wep, index) => (
