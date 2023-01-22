@@ -86,12 +86,13 @@ const FarmableToday = (props) => {
                             farmableMats["talents"].map((mat, index) => (
                                 <Box key={index}>
                                     <CardHeader
-                                        avatar={<img src={`${process.env.REACT_APP_URL}/materials/talent_mats/${mat}3.png`} alt={mat} style={{ width: "48px" }} />}
+                                        avatar={<img src={`${process.env.REACT_APP_URL}/materials/talent_mats/${mat}3.png`} alt={mat} style={{ width: "48px", marginRight: "-10px" }} />}
                                         title={
                                             <Typography variant="h6" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
                                                 {mat}
                                             </Typography>
                                         }
+                                        sx={{p: 0, mb: "5px"}}
                                     />
                                     <Grid>
                                         {
@@ -113,6 +114,7 @@ const FarmableToday = (props) => {
                                             ))
                                         }
                                     </Grid>
+                                    < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
                                 </Box>
                             ))
                         }
@@ -122,12 +124,13 @@ const FarmableToday = (props) => {
                             farmableMats["weapons"].map((mat, index) => (
                                 <Box key={index}>
                                     <CardHeader
-                                        avatar={<img src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${mat.split(" ").join("_")}4.png`} alt={mat} style={{ width: "48px" }} />}
+                                        avatar={<img src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${mat.split(" ").join("_")}4.png`} alt={mat} style={{ width: "48px", marginRight: "-10px" }} />}
                                         title={
                                             <Typography variant="h6" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
                                                 {mat}
                                             </Typography>
                                         }
+                                        sx={{p: 0, mb: "5px"}}
                                     />
                                     <Grid>
                                         {
@@ -149,6 +152,7 @@ const FarmableToday = (props) => {
                                             ))
                                         }
                                     </Grid>
+                                    < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
                                 </Box>
                             ))
                         }
