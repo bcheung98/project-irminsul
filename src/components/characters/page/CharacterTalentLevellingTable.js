@@ -124,7 +124,7 @@ const CharacterTalentLevellingTable = (props) => {
                                         {/* Common Material */}
                                         {row.quantity[0] !== "0" &&
                                             <div className="materialImageRoot">
-                                                <MaterialTooltip title={formatCommonMats(`${commonMat}${ascensionLegend.commonMat[row.ascLevel]}`)} arrow placement="top">
+                                                <MaterialTooltip title={formatCommonMats(`${commonMat}${ascensionLegend.commonMat[row.talentLevel]}`)} arrow placement="top">
                                                     <img className="materialImage" style={commonMatBackgroundImageLegend(row.talentLevel)} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}${ascensionLegend.commonMat[row.talentLevel]}.png`)} alt={commonMat} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
