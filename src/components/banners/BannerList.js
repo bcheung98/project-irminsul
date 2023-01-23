@@ -11,6 +11,7 @@ import TableRow from "@mui/material/TableRow";
 import TableSortLabel, { tableSortLabelClasses } from "@mui/material/TableSortLabel";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
+import { InputBase } from "@mui/material";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
 import CharacterBannerRow from "./CharacterBannerRow";
 import WeaponBannerRow from "./WeaponBannerRow";
@@ -102,6 +103,13 @@ EnhancedTableHead.propTypes = {
     rowCount: PropTypes.number.isRequired,
 };
 
+const filterBanners = (banners, searchValue) => {
+    if (searchValue !== "") {
+        banners = banners.filter(banner => banner[4].map(char => char.toLowerCase()).join("|").includes(searchValue.toLowerCase()))
+    }
+    return banners;
+}
+
 const createData = (version, subVersion, startDate, endDate, banner) => {
     return { version, subVersion, startDate, endDate, banner };
 }
@@ -117,12 +125,39 @@ const BannerList = (props) => {
         setOrderBy(property);
     };
 
+    const [searchValue, setSearchValue] = React.useState("");
+
+    const handleInputChange = (e) => {
+        setSearchValue(e.target.value);
+    }
+
     let banners = []
     props.banners.forEach(version => Object.keys(version).slice(1).forEach(phase => banners.push([version.version, `${version.version}.${phase.slice(-1)}`, version[phase].startDate, version[phase].endDate, version[phase].banner])));
-    const rows = banners.map(banner => createData(banner[0], banner[1], banner[2], banner[3], banner[4]))
+    const rows = filterBanners(banners, searchValue).map(banner => createData(banner[0], banner[1], banner[2], banner[3], banner[4]))
 
     return (
         <Box sx={{ width: "100%" }}>
+            <Paper sx={{
+                border: "2px solid rgb(30, 73, 118)",
+                borderRadius: "5px",
+                backgroundColor: "rgb(0, 30, 60)",
+                display: "flex",
+                margin: "auto",
+                height: "40px",
+                width: "90%",
+                marginBottom: "10px",
+            }}>
+                <InputBase
+                    sx={{
+                        marginLeft: "10px",
+                        flex: 1,
+                        color: "white",
+                        fontFamily: "Genshin, sans-serif",
+                    }}
+                    placeholder="Search"
+                    onChange={handleInputChange}
+                />
+            </Paper>
             <Paper sx={{
                 border: "2px solid rgb(30, 73, 118)",
                 borderRadius: "5px",
