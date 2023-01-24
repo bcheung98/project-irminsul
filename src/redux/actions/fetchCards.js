@@ -1,5 +1,5 @@
 export const fetchCards = () => {
-    const url = "http://localhost:3000/cards"; // https://bcheung98.github.io/project-irminsul-db/cards.json
+    const url = "https://bcheung98.github.io/project-irminsul-db/cards.json";
     return (dispatch) => {
         dispatch({ type: "START_GETTING_CARDS_REQUEST" });
         fetch(url)

@@ -42,7 +42,7 @@ const TCGBrowser = (props) => {
                 <Grid container>
                     {cards.cards.length > 0 &&
                         <React.Fragment>
-                            {cards.cards[0][0].cards.map(card => <TCGCharacterCard key={card.name} char={card} />)}
+                            {cards.cards[0].cards.map(card => <TCGCharacterCard key={card.name} char={card} />)}
                         </React.Fragment>
                     }
                 </Grid>
