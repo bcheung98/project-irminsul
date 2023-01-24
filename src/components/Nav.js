@@ -97,6 +97,27 @@ const Nav = () => {
                                 }
                             />
                         </ButtonBase>
+                        <ButtonBase
+                            disableRipple
+                            href={`/project-irminsul/tcg`}
+                        >
+                            <CardHeader
+                                avatar={
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/tcg.png`)} alt="TCG" sx={{ height: "40px", width: "40px" }} />
+                                }
+                                title={
+                                    <Typography variant="body1" noWrap
+                                        sx={{
+                                            fontFamily: "Genshin, monospace",
+                                            color: "white",
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        TCG
+                                    </Typography>
+                                }
+                            />
+                        </ButtonBase>
                     </Box>
                 </Toolbar>
             </Container>

@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { fetchCharacters } from "./redux/actions/fetchCharacters";
 import { fetchWeapons } from "./redux/actions/fetchWeapons";
 import { fetchBanners } from "./redux/actions/fetchBanners";
+import { fetchCards } from "./redux/actions/fetchCards";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
 import CharacterBrowser from "./components/characters/CharacterBrowser";
@@ -16,6 +17,7 @@ import CharacterPage from "./components/characters/page/_CharacterPage";
 import WeaponBrowser from "./components/weapons/WeaponBrowser";
 import WeaponPage from "./components/weapons/page/_WeaponPage";
 import BannerArchive from "./components/banners/BannerArchive";
+import TCGBrowser from "./components/tcg/TCGBrowser";
 import { AppBar, Typography, Box, Fade, useScrollTrigger, Fab } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
@@ -55,9 +57,10 @@ const App = (props) => {
 			fetchWeapons();
 		}
 		fetchBanners();
+		fetchCards();
 	}, [])
 
-	let { fetchCharacters, fetchWeapons, fetchBanners } = props;
+	let { fetchCharacters, fetchWeapons, fetchBanners, fetchCards } = props;
 
 	return (
 		<Router basename="project-irminsul">
@@ -70,6 +73,7 @@ const App = (props) => {
 				<Route path="/weapons" component={WeaponBrowser} />
 				<Route path="/weapon/:weapon_name" children={<WeaponPage />} />
 				<Route path="/banners/" component={BannerArchive} />
+				<Route path="/tcg/" component={TCGBrowser} />
 			</Switch>
 			<AppBar position="static" sx={{
 				mt: 10,
@@ -96,6 +100,7 @@ const mapStateToProps = (state) => {
 		weapons: state.weapons,
 		characterBanners: state.characterBanners,
 		weaponBanners: state.weaponBanners,
+		cards: state.cards
 	}
 }
 
@@ -103,7 +108,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchCharacters: () => dispatch(fetchCharacters()),
 		fetchWeapons: () => dispatch(fetchWeapons()),
-		fetchBanners: () => dispatch(fetchBanners())
+		fetchBanners: () => dispatch(fetchBanners()),
+		fetchCards: () => dispatch(fetchCards())
 	}
 }
 
