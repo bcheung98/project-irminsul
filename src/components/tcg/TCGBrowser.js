@@ -2,6 +2,8 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
+import TCGCharacterCard from "./TCGCharacterCard";
 
 const TCGBrowser = (props) => {
 
@@ -34,6 +36,17 @@ const TCGBrowser = (props) => {
                     TCG
                 </Typography>
             </Box>
+
+            {/* Character Cards */}
+            <Grid item xs={9}>
+                <Grid container>
+                    {cards.cards.length > 0 &&
+                        <React.Fragment>
+                            {cards.cards[0][0].cards.map(card => <TCGCharacterCard key={card.name} char={card} />)}
+                        </React.Fragment>
+                    }
+                </Grid>
+            </Grid>
         </React.Fragment>
     )
 
