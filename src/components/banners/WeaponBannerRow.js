@@ -1,7 +1,7 @@
 import * as React from "react";
-import { StyledTableCell, StyledTableRows } from "../../helpers/StyledTable";
+import { StyledTableCell } from "../../helpers/StyledTable";
 import { Box } from "@mui/system";
-import { Typography, ButtonBase, Avatar } from "@mui/material";
+import { Typography, ButtonBase, Avatar, TableRow } from "@mui/material";
 
 const WeaponIconBackground = (index) => {
     if (index <= 1) {
@@ -18,13 +18,20 @@ const WeaponIconBackground = (index) => {
     }
 }
 
+let CurrentBanner = (startDate, endDate) => {
+    let today = new Date();
+    if (today >= new Date(startDate) && today < new Date(endDate)) {
+        return { backgroundColor: "rgb(0, 128, 225)" }
+    }
+}
+
 const CharacterBannerRow = (props) => {
 
     let { row, index } = props;
 
     return (
         <React.Fragment>
-            <StyledTableRows key={index} >
+            <TableRow key={index} sx={CurrentBanner(row.startDate, row.endDate)} >
 
                 { /* Version */}
                 <StyledTableCell>
@@ -56,7 +63,7 @@ const CharacterBannerRow = (props) => {
                     }
                 </StyledTableCell>
 
-            </StyledTableRows>
+            </TableRow>
         </React.Fragment >
     )
 }
