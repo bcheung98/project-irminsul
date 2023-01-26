@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
+import { Typography, Dialog } from "@mui/material";
+import TCGCharacterCardPopup from "./TCGCharacterCardPopup";
 
 const TCGCharacterCard = (props) => {
 
@@ -9,6 +10,14 @@ const TCGCharacterCard = (props) => {
     // Generates an array of numbers
     const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + (i * step));
 
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return (
         <Box sx={{ mb: "20px" }}>
             <Box
@@ -16,8 +25,10 @@ const TCGCharacterCard = (props) => {
                     width: "150",
                     ml: "30px",
                     mb: "45px",
-                    position: "relative"
+                    position: "relative",
+                    cursor: "pointer"
                 }}
+                onClick={() => handleClickOpen()}
             >
                 {/* HP Icon */}
                 <Box
@@ -35,7 +46,7 @@ const TCGCharacterCard = (props) => {
                     >
                         <img src={`${process.env.REACT_APP_URL}/tcg/icons/hp.png`} alt={hp} style={{ width: "40px" }} />
                         <Typography
-                            variant="h6"
+                            variant="h5"
                             sx={{
                                 fontFamily: "Genshin, sans-serif",
                                 position: "absolute",
@@ -59,8 +70,8 @@ const TCGCharacterCard = (props) => {
                 >
                     {
                         range(1, talents.burst.energy, 1).map(index => (
-                            <Box>
-                                <img key={index} src={`${process.env.REACT_APP_URL}/tcg/icons/Energy_Card.png`} alt="Energy" style={{ width: "40px", marginBottom: "-15px" }} />
+                            <Box key={index}>
+                                <img src={`${process.env.REACT_APP_URL}/tcg/icons/Energy_Card.png`} alt="Energy" style={{ width: "40px", marginBottom: "-15px" }} />
                             </Box>
                         ))
                     }
@@ -78,6 +89,13 @@ const TCGCharacterCard = (props) => {
                     </Typography>
                 </Box>
             </Box>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                maxWidth={false}
+            >
+                <TCGCharacterCardPopup key={name} char={props.char} />
+            </Dialog>
         </Box>
     )
 }
