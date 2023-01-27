@@ -150,7 +150,7 @@ const TCGCharacterCardPopup = (props) => {
                                                 </React.Fragment>
                                             }
                                         />
-                                        <TCGDiceCost cost={talents[key].cost} type={key} />
+                                        <TCGDiceCost cost={talents[key].cost} type={"popup"} />
                                         <Typography variant="body1" sx={{ ml: "20px" }}>
                                             {parse(talents[key].description)}
                                         </Typography>

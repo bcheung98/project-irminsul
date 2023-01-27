@@ -8,6 +8,37 @@ const TCGDiceCost = (props) => {
         cost = props.cost.split(" ");
     }
 
+    const position = (type) => {
+        if (type === "card") {
+            return {
+                position: "absolute",
+                top: "5px",
+                left: "-10px"
+            }
+        }
+        else {
+            return {
+                display: "flex",
+                position: "absolute",
+                right: "5px",
+                bottom: "20px"
+            }
+        }
+    }
+
+    const size = (type) => {
+        if (type === "card") {
+            return {
+                width: "56px"
+            }
+        }
+        else {
+            return {
+                width: "48px"
+            }
+        }
+    }
+
     return (
         <Box
             sx={{
@@ -16,12 +47,7 @@ const TCGDiceCost = (props) => {
             }}
         >
             <Box
-                sx={{
-                    display: "flex",
-                    position: "absolute",
-                    right: "5px",
-                    bottom: "20px"
-                }}
+                sx={position(props.type)}
             >
                 {
                     cost.map((dice, index) => {
@@ -32,10 +58,7 @@ const TCGDiceCost = (props) => {
                                     textAlign: "center"
                                 }}
                             >
-                                <img src={`${process.env.REACT_APP_URL}/tcg/icons/${dice.slice(-1)}.png`} alt={dice.slice(-1)} key={index}
-                                    style={{
-                                        width: "48px"
-                                    }}
+                                <img src={`${process.env.REACT_APP_URL}/tcg/icons/${dice.slice(-1)}.png`} alt={dice.slice(-1)} key={index} style={size(props.type)}
                                 />
                                 <Typography
                                     variant="h5"
