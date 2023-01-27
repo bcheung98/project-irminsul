@@ -13,7 +13,14 @@ const TCGDiceCost = (props) => {
             return {
                 position: "absolute",
                 top: "5px",
-                left: "-10px"
+                left: "-2px"
+            }
+        }
+        else if (type === "card-large") {
+            return {
+                position: "absolute",
+                top: "2px",
+                left: "-16px"
             }
         }
         else {
@@ -32,10 +39,27 @@ const TCGDiceCost = (props) => {
                 width: "56px"
             }
         }
+        else if (type === "card-large") {
+            return {
+                width: "96px"
+            }
+        }
         else {
             return {
                 width: "48px"
             }
+        }
+    }
+
+    const fontSize = (type) => {
+        if (type === "card") {
+            return "h5"
+        }
+        else if (type === "card-large") {
+            return "h3"
+        }
+        else {
+            return "h5"
         }
     }
 
@@ -55,13 +79,14 @@ const TCGDiceCost = (props) => {
                             <Box
                                 sx={{
                                     position: "relative",
-                                    textAlign: "center"
+                                    textAlign: "center",
                                 }}
+                                key={index}
                             >
-                                <img src={`${process.env.REACT_APP_URL}/tcg/icons/${dice.slice(-1)}.png`} alt={dice.slice(-1)} key={index} style={size(props.type)}
+                                <img src={`${process.env.REACT_APP_URL}/tcg/icons/${dice.slice(-1)}.png`} alt={dice.slice(-1)} style={size(props.type)}
                                 />
                                 <Typography
-                                    variant="h5"
+                                    variant={fontSize(props.type)}
                                     sx={{
                                         fontFamily: "Genshin, sans-serif",
                                         position: "absolute",

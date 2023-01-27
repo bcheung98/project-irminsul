@@ -2,10 +2,19 @@ import * as React from "react";
 import { Box } from "@mui/system";
 import { Typography, Dialog } from "@mui/material";
 import TCGDiceCost from "./TCGDiceCost";
+import TCGActionCardPopup from "./TCGActionCardPopup";
 
 const TCGActionCard = (props) => {
 
     let { name, type, cost } = props.card;
+
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <Box sx={{ mb: "20px" }}>
@@ -17,8 +26,8 @@ const TCGActionCard = (props) => {
                     position: "relative",
                     cursor: "pointer"
                 }}
+                onClick={() => handleClickOpen()}
             >
-                {/* HP Icon */}
                 <Box
                     sx={{
                         position: "absolute",
@@ -41,6 +50,13 @@ const TCGActionCard = (props) => {
                     </Typography>
                 </Box>
             </Box>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                maxWidth={false}
+            >
+                <TCGActionCardPopup key={name} card={props.card} />
+            </Dialog>
         </Box>
     )
 }
