@@ -6,6 +6,8 @@ import { Typography, Stack, ToggleButton, ToggleButtonGroup, Paper, InputBase } 
 import Grid from "@mui/material/Unstable_Grid2";
 import TCGCharacterCard from "./TCGCharacterCard";
 import TCGActionCard from "./TCGActionCard";
+import InfoSharpIcon from '@mui/icons-material/InfoSharp';
+import { MaterialTooltip } from "../../helpers/MaterialTooltip";
 
 const StyledToggleButton = styled(ToggleButton)(() => ({
     "&.MuiToggleButton-root": {
@@ -103,6 +105,10 @@ const TCGBrowser = (props) => {
                 >
                     TCG
                 </Typography>
+                {/* WIP tag, don't forget to remove later */}
+                <MaterialTooltip title="WIP, will be adding more features later!">
+                    <InfoSharpIcon sx={{mr: "20px"}} color="primary" fontSize="large" />
+                </MaterialTooltip>
                 <Stack direction="row" spacing={4}>
                     <ToggleButtonGroup value={view} exclusive onChange={handleView}>
                         <StyledToggleButton value="char">
