@@ -18,13 +18,16 @@ const StyledToggleButton = styled(ToggleButton)(() => ({
     }
 }));
 
-const FilterTCGActionCards = (cards, filters, searchValue) => {
+const FilterTCGActionCards = (cardList, filters, searchValue) => {
+    let cards = [...cardList];
     if (filters.length > 0) {
         cards = cards.filter(card => filters.includes(card.subType));
     }
     if (searchValue !== "") {
         cards = cards.filter(card => card.name.toLowerCase().includes(searchValue.toLowerCase()));
     }
+    cards.sort((a, b) => a.subType.toLowerCase() > b.subType.toLowerCase() ? 1 : -1);
+    cards.sort((a, b) => a.subType.toLowerCase() > b.subType.toLowerCase() ? 1 : -1);
     return cards;
 }
 
@@ -166,7 +169,7 @@ const TCGBrowser = (props) => {
                             </Box>
                             <Grid item xs={9}>
                                 <Grid container>
-                                    {FilterTCGActionCards(cards.cards[1].cards.sort((a, b) => a.subType > b.subType ? 1 : -1), filters, searchValue).map(card => <TCGActionCard key={card.name} card={card} />)}
+                                    {FilterTCGActionCards(cards.cards[1].cards, filters, searchValue).map(card => <TCGActionCard key={card.name} card={card} />)}
                                 </Grid>
                             </Grid>
                         </React.Fragment>
