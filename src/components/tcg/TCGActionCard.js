@@ -43,6 +43,7 @@ const TCGActionCard = (props) => {
                     <Typography
                         sx={{
                             fontFamily: "Genshin, sans-serif",
+                            fontSize: "9.5pt",
                             color: "white",
                         }}
                         variant="body2">
