@@ -26,6 +26,11 @@ const FilterTCGActionCards = (cardList, filters, searchValue) => {
     if (searchValue !== "") {
         cards = cards.filter(card => card.name.toLowerCase().includes(searchValue.toLowerCase()));
     }
+    /*    
+    Don't ask why I'm sorting twice here. 
+    I honestly don't know why but this is the only way I could keep the cards alphabetically sorted.
+    Maybe I'm just a doofus who doesn't know how array.sort() actually works. 
+    */
     cards.sort((a, b) => a.subType.toLowerCase() > b.subType.toLowerCase() ? 1 : -1);
     cards.sort((a, b) => a.subType.toLowerCase() > b.subType.toLowerCase() ? 1 : -1);
     return cards;
@@ -110,7 +115,7 @@ const TCGBrowser = (props) => {
                 </Typography>
                 {/* WIP tag, don't forget to remove later */}
                 <MaterialTooltip title="WIP, will be adding more features later!">
-                    <InfoSharpIcon sx={{mr: "20px"}} color="primary" fontSize="large" />
+                    <InfoSharpIcon sx={{ mr: "20px" }} color="primary" fontSize="large" />
                 </MaterialTooltip>
                 <Stack direction="row" spacing={4}>
                     <ToggleButtonGroup value={view} exclusive onChange={handleView}>
@@ -177,7 +182,6 @@ const TCGBrowser = (props) => {
             }
         </React.Fragment>
     )
-
 }
 
 const mapStateToProps = (state) => {
@@ -185,6 +189,5 @@ const mapStateToProps = (state) => {
         cards: state.cards
     }
 }
-
 
 export default connect(mapStateToProps)(TCGBrowser);

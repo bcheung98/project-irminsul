@@ -1,6 +1,6 @@
 import * as React from "react";
 import parse from "html-react-parser";
-import { Typography, Box, Avatar, CardHeader, Paper } from "@mui/material";
+import { Typography, Box, Avatar, CardHeader } from "@mui/material";
 import { ElementalBorderColor } from "../../../helpers/ElementalColors";
 
 const CharacterConstellationDisplay = (props) => {

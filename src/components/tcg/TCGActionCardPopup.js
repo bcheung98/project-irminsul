@@ -1,7 +1,7 @@
 import * as React from "react";
 import parse from "html-react-parser";
 import { Box } from "@mui/system";
-import { Typography, CardHeader, Avatar } from "@mui/material";
+import { Typography, CardHeader } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import TCGDiceCost from "./TCGDiceCost";
 
