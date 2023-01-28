@@ -166,7 +166,7 @@ const TCGBrowser = (props) => {
                             </Box>
                             <Grid item xs={9}>
                                 <Grid container>
-                                    {FilterTCGActionCards(cards.cards[1].cards, filters, searchValue).sort((a, b) => a.subType > b.subType ? 1 : -1).map(card => <TCGActionCard key={card.name} card={card} />)}
+                                    {FilterTCGActionCards(cards.cards[1].cards.sort((a, b) => a.subType > b.subType ? 1 : -1), filters, searchValue).map(card => <TCGActionCard key={card.name} card={card} />)}
                                 </Grid>
                             </Grid>
                         </React.Fragment>
