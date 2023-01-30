@@ -1,7 +1,8 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import parse from "html-react-parser";
 import { Box } from "@mui/system";
-import { Typography, CardHeader, Avatar } from "@mui/material";
+import { Typography, CardHeader, Avatar, Button } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { MaterialTooltip } from "../../helpers/MaterialTooltip";
 import { ElementalBorderColor } from "../../helpers/ElementalColors";
@@ -63,40 +64,50 @@ const TCGCharacterCardPopup = (props) => {
             <Grid container sx={{ mt: "10px" }}>
                 <Box
                     sx={{
-                        position: "relative",
-                        mx: "25px",
+                        display: "flex",
+                        flexDirection: "column"
                     }}
                 >
                     <Box
                         sx={{
-                            position: "absolute",
-                            top: "-20px",
-                            left: "-20px",
+                            position: "relative",
+                            mx: "25px",
                         }}
                     >
                         <Box
                             sx={{
-                                position: "relative",
-                                textAlign: "center",
+                                position: "absolute",
+                                top: "-20px",
+                                left: "-20px",
                             }}
                         >
-                            <img src={`${process.env.REACT_APP_URL}/tcg/icons/hp.png`} alt={hp} style={{ width: "80px" }} />
-                            <Typography
-                                variant="h3"
+                            <Box
                                 sx={{
-                                    fontFamily: "Genshin, sans-serif",
-                                    position: "absolute",
-                                    top: "50%",
-                                    left: "50%",
-                                    transform: "translate(-50%, -50%)",
-                                    color: "white",
-                                    textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
-                                }}>
-                                {hp}
-                            </Typography>
+                                    position: "relative",
+                                    textAlign: "center",
+                                }}
+                            >
+                                <img src={`${process.env.REACT_APP_URL}/tcg/icons/hp.png`} alt={hp} style={{ width: "80px" }} />
+                                <Typography
+                                    variant="h3"
+                                    sx={{
+                                        fontFamily: "Genshin, sans-serif",
+                                        position: "absolute",
+                                        top: "50%",
+                                        left: "50%",
+                                        transform: "translate(-50%, -50%)",
+                                        color: "white",
+                                        textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+                                    }}>
+                                    {hp}
+                                </Typography>
+                            </Box>
                         </Box>
+                        <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}_Character_Card.png`} alt={name} style={{ width: "250px" }} />
                     </Box>
-                    <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}_Character_Card.png`} alt={name} style={{ width: "250px" }} />
+                    <Button variant="contained" sx={{ m: "20px" }} onClick={() => props.addCharCardToDeck(props.char)}>
+                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Add to Deck</Typography>
+                    </Button>
                 </Box>
                 <Grid xs={9}>
                     <Box
@@ -166,4 +177,16 @@ const TCGCharacterCardPopup = (props) => {
     )
 }
 
-export default TCGCharacterCardPopup;
+const mapStateToProps = (state) => {
+    return {
+        deck: state.deck
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addCharCardToDeck: (card) => dispatch({ type: "ADD_CHAR_CARD", card })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TCGCharacterCardPopup);

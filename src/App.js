@@ -106,7 +106,8 @@ const mapStateToProps = (state) => {
 		weapons: state.weapons,
 		characterBanners: state.characterBanners,
 		weaponBanners: state.weaponBanners,
-		cards: state.cards
+		cards: state.cards,
+		deck: state.deck
 	}
 }
 
