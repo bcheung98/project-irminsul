@@ -169,7 +169,7 @@ const TCGBrowser = (props) => {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Grid container>
-                                <TCGDeck cards={deck.deck}/>
+                                <TCGDeck cards={deck.deck} />
                             </Grid>
                         </AccordionDetails>
                     </Accordion>

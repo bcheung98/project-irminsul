@@ -1,11 +1,13 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import { Box } from "@mui/system";
 import { Typography, Dialog } from "@mui/material";
 import TCGCharacterCardPopup from "./TCGCharacterCardPopup";
 
 const TCGCharacterCard = (props) => {
 
-    let { name, hp, talents } = props.char
+    let { name, hp, talents } = props.char;
+    let { deck } = props.deck;
 
     // Generates an array of numbers
     const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + (i * step));
@@ -94,10 +96,16 @@ const TCGCharacterCard = (props) => {
                 onClose={handleClose}
                 maxWidth={false}
             >
-                <TCGCharacterCardPopup key={name} char={props.char} />
+                <TCGCharacterCardPopup key={name} char={props.char} inDeck={deck.characterCards.includes(props.char)} />
             </Dialog>
         </Box>
     )
 }
 
-export default TCGCharacterCard;
+const mapStateToProps = (state) => {
+    return {
+        deck: state.deck
+    }
+}
+
+export default connect(mapStateToProps)(TCGCharacterCard);

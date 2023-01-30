@@ -11,7 +11,7 @@ import { FormatTCGTalentKey } from "../../helpers/FormatTCGTalentKey";
 
 const TCGCharacterCardPopup = (props) => {
 
-    let { name, element, weapon, nation, hp, talents } = props.char
+    let { name, element, weapon, nation, hp, talents } = props.char;
 
     return (
         <Box
@@ -105,9 +105,16 @@ const TCGCharacterCardPopup = (props) => {
                         </Box>
                         <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}_Character_Card.png`} alt={name} style={{ width: "250px" }} />
                     </Box>
-                    <Button variant="contained" sx={{ m: "20px" }} onClick={() => props.addCharCardToDeck(props.char)}>
-                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Add to Deck</Typography>
-                    </Button>
+                    {
+                        props.inDeck === false ?
+                            <Button variant="contained" sx={{ m: "20px" }} onClick={() => props.addCharCardToDeck(props.char)}>
+                                <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Add to Deck</Typography>
+                            </Button>
+                            :
+                            <Button variant="contained" sx={{ m: "20px" }} onClick={() => props.removeCharCardToDeck(props.char)}>
+                                <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Remove from Deck</Typography>
+                            </Button>
+                    }
                 </Box>
                 <Grid xs={9}>
                     <Box
@@ -185,7 +192,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addCharCardToDeck: (card) => dispatch({ type: "ADD_CHAR_CARD", card })
+        addCharCardToDeck: (card) => dispatch({ type: "ADD_CHAR_CARD", card }),
+        removeCharCardToDeck: (card) => dispatch({ type: "REMOVE_CHAR_CARD", card })
     }
 }
 
