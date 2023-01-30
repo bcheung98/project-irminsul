@@ -117,17 +117,16 @@ const TCGBrowser = (props) => {
                 <MaterialTooltip title="WIP, will be adding more features later!">
                     <InfoSharpIcon sx={{ mr: "20px" }} color="primary" fontSize="large" />
                 </MaterialTooltip>
-                <Stack direction="row" spacing={4}>
-                    <ToggleButtonGroup value={view} exclusive onChange={handleView}>
-                        <StyledToggleButton value="char">
-                            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Character Cards</Typography>
-                        </StyledToggleButton>
-                        <StyledToggleButton value="action">
-                            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Action Cards</Typography>
-                        </StyledToggleButton>
-                    </ToggleButtonGroup>
-                </Stack>
             </Box>
+
+            <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ mx: "30px", mb: "30px" }}>
+                <StyledToggleButton value="char">
+                    <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Character Cards</Typography>
+                </StyledToggleButton>
+                <StyledToggleButton value="action">
+                    <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Action Cards</Typography>
+                </StyledToggleButton>
+            </ToggleButtonGroup>
 
             {/* Cards */}
             {
