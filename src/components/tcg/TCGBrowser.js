@@ -142,10 +142,13 @@ const TCGBrowser = (props) => {
                         <React.Fragment>
                             <Box
                                 sx={{
-                                    display: "flex"
+                                    display: "flex",
+                                    mt: "-15px",
+                                    mb: "20px",
+                                    mx: "30px",
                                 }}
                             >
-                                <ToggleButtonGroup value={filters} onChange={handleFilters} sx={{ mx: "30px", mb: "20px" }}>
+                                <ToggleButtonGroup value={filters} onChange={handleFilters}>
                                     {buttons}
                                 </ToggleButtonGroup>
                                 <Paper sx={{
@@ -155,9 +158,7 @@ const TCGBrowser = (props) => {
                                     display: "flex",
                                     height: "40px",
                                     width: "30%",
-                                    mt: "0px",
-                                    ml: "-5px",
-                                    mr: "15px",
+                                    mx: "15px",
                                 }}>
                                     <InputBase
                                         sx={{
