@@ -18,8 +18,9 @@ import WeaponBrowser from "./components/weapons/WeaponBrowser";
 import WeaponPage from "./components/weapons/page/_WeaponPage";
 import BannerArchive from "./components/banners/BannerArchive";
 import TCGBrowser from "./components/tcg/TCGBrowser";
-import { AppBar, Typography, Box, Fade, useScrollTrigger, Fab } from "@mui/material";
+import { AppBar, Typography, Box, Fade, useScrollTrigger, Fab, IconButton } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 function ScrollTop(props) {
 	const { children } = props;
@@ -78,19 +79,24 @@ const App = (props) => {
 			<AppBar position="static" sx={{
 				mt: 10,
 				mb: -5,
-				padding: 2,
+				pt: 2,
 				textAlign: "center",
 				backgroundColor: "rgb(0, 30, 60)",
 				borderTop: "1px solid rgb(30, 73, 118)",
 			}}>
-				<Typography sx={{ fontFamily: "Genshin, sans-serif" }} variant="subtitle2">Project Irminsul is not affiliated with HoYoverse.<br />Genshin Impact, images and data are registered trademarks of HoYoverse.</Typography>
+				<Typography sx={{ fontFamily: "Genshin, sans-serif", mb: "5px" }} variant="body2">Project Irminsul is not affiliated with HoYoverse.<br />Genshin Impact, images and data are registered trademarks of HoYoverse.</Typography>
+				<Box>
+					<IconButton disableRipple href={"https://github.com/bcheung98/project-irminsul"} target="_blank" color="inherit">
+						<GitHubIcon />
+					</IconButton>
+				</Box>
 			</AppBar>
 			<ScrollTop {...props}>
 				<Fab size="medium" disableRipple color="primary">
 					<KeyboardArrowUpIcon sx={{ color: "white" }} />
 				</Fab>
 			</ScrollTop>
-		</Router>
+		</Router >
 	);
 }
 
