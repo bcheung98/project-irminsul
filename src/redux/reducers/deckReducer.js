@@ -36,7 +36,7 @@ const deckReducer = (state = initialState, action) => {
                 ...state,
                 deck: {
                     ...state.deck,
-                    actionCards: tempActionCardArr
+                    actionCards: tempActionCardArr.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)
                 }
             };
         case "REMOVE_ACTION_CARD":
@@ -46,7 +46,7 @@ const deckReducer = (state = initialState, action) => {
                 ...state,
                 deck: {
                     ...state.deck,
-                    actionCards: tempActionCardArr
+                    actionCards: tempActionCardArr.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)
                 }
             };
         default:
