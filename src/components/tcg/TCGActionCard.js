@@ -58,7 +58,7 @@ const TCGActionCard = (props) => {
                 onClose={handleClose}
                 maxWidth={false}
             >
-                <TCGActionCardPopup key={name} card={props.card} inDeck={deck.actionCards.includes(props.card)} />
+                <TCGActionCardPopup key={name} card={props.card} inDeck={deck.actionCards.includes(props.card)} count={deck.actionCards.filter(card => card === props.card).length} />
             </Dialog>
         </Box>
     )

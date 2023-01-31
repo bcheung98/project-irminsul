@@ -165,7 +165,7 @@ const TCGBrowser = (props) => {
                 }}>
                     <Accordion>
                         <AccordionSummary>
-                            <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Deck ({deck.deck.characterCards.length})</Typography>
+                            <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Deck ({deck.deck.characterCards.length}, {deck.deck.actionCards.length})</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <TCGDeck cards={deck.deck} />

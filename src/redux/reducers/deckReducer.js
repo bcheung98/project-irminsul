@@ -31,7 +31,17 @@ const deckReducer = (state = initialState, action) => {
             };
         case "ADD_ACTION_CARD":
             tempActionCardArr = [...state.deck.actionCards];
-            state.deck.actionCards.filter(card => card === action.card).length < 2 && tempActionCardArr.push(action.card);
+            state.deck.actionCards.filter(card => card === action.card).length < 2 && state.deck.actionCards.length < 30 && tempActionCardArr.push(action.card);
+            return {
+                ...state,
+                deck: {
+                    ...state.deck,
+                    actionCards: tempActionCardArr
+                }
+            };
+        case "REMOVE_ACTION_CARD":
+            tempActionCardArr = [...state.deck.actionCards];
+            tempActionCardArr.splice(tempActionCardArr.indexOf(action.card), 1)
             return {
                 ...state,
                 deck: {

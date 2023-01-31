@@ -77,9 +77,18 @@ const TCGActionCardPopup = (props) => {
                         </Box>
                         <img src={`${process.env.REACT_APP_URL}/tcg/action_cards/${name.split(" ").join("_")}_${type}_Card.png`} alt={name} style={{ width: "250px" }} />
                     </Box>
-                    <Button variant="contained" sx={{ m: "20px" }} onClick={() => props.addActionCardToDeck(props.card)}>
-                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Add to Deck</Typography>
-                    </Button>
+                    {
+                        props.count < 2 &&
+                        <Button variant="contained" sx={{ mx: "20px", my: "5px" }} onClick={() => props.addActionCardToDeck(props.card)}>
+                            <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Add to Deck</Typography>
+                        </Button>
+                    }
+                    {
+                        props.inDeck === true &&
+                        <Button variant="contained" sx={{ mx: "20px", my: "5px" }} onClick={() => props.removeActionCardToDeck(props.card)}>
+                            <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Remove from Deck</Typography>
+                        </Button>
+                    }
                 </Box>
                 <Grid xs={9}>
                     <Box
