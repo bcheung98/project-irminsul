@@ -1,7 +1,8 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import { styled } from '@mui/material/styles';
 import { Box } from "@mui/system";
-import { Typography, Paper } from "@mui/material";
+import { Typography, Paper, Button } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
@@ -44,7 +45,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(() => ({
 
 const TCGDeck = (props) => {
 
-    let { cards } = props;
+    let { deck } = props;
 
     return (
         <Box sx={{ mx: "20px", mb: "20px" }}>
@@ -57,14 +58,28 @@ const TCGDeck = (props) => {
             }}>
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Deck ({cards.characterCards.length}, {cards.actionCards.length})</Typography>
+                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>
+                            Deck ({deck.deck.characterCards.length}, {deck.deck.actionCards.length})
+                        </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
+                        <Button onClick={() => props.saveDeck(deck.deck)}
+                            variant="contained"
+                            sx={{
+                                mx: "20px",
+                                mt: "5px",
+                                mb: "30px",
+                                backgroundColor: "rgb(0, 127, 255)"
+                            }}>
+                            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>
+                                Save Deck
+                            </Typography>
+                        </Button>
                         <Grid container>
-                            {cards.characterCards.map(card => <TCGCharacterCard key={card.name} char={card} />)}
+                            {deck.deck.characterCards.map(card => <TCGCharacterCard key={card.name} char={card} />)}
                         </Grid>
                         <Grid container>
-                            {cards.actionCards.map((card, index) => <TCGActionCard key={index} card={card} />)}
+                            {deck.deck.actionCards.map((card, index) => <TCGActionCard key={index} card={card} />)}
                         </Grid>
                     </AccordionDetails>
                 </Accordion>
@@ -73,4 +88,16 @@ const TCGDeck = (props) => {
     )
 }
 
-export default TCGDeck;
+const mapStateToProps = (state) => {
+    return {
+        deck: state.deck
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        saveDeck: (deck) => dispatch({ type: "SAVE_DECK", deck })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TCGDeck);

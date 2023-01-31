@@ -49,6 +49,15 @@ const deckReducer = (state = initialState, action) => {
                     actionCards: tempActionCardArr.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)
                 }
             };
+        case "SAVE_DECK":
+            let deckData = JSON.stringify(action.deck);
+            let blob = new Blob([deckData], { type: "text/plain" });
+            let URL = window.URL.createObjectURL(blob);
+            let link = document.createElement("a");
+            link.download = "deck.json";
+            link.href = URL;
+            link.click();
+            window.URL.revokeObjectURL(URL);
         default:
             return state;
     }
