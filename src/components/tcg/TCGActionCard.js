@@ -1,4 +1,5 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import { Box } from "@mui/system";
 import { Typography, Dialog } from "@mui/material";
 import TCGDiceCost from "./TCGDiceCost";
@@ -7,6 +8,7 @@ import TCGActionCardPopup from "./TCGActionCardPopup";
 const TCGActionCard = (props) => {
 
     let { name, type, cost } = props.card;
+    let { deck } = props.deck;
 
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
@@ -56,10 +58,16 @@ const TCGActionCard = (props) => {
                 onClose={handleClose}
                 maxWidth={false}
             >
-                <TCGActionCardPopup key={name} card={props.card} />
+                <TCGActionCardPopup key={name} card={props.card} inDeck={deck.actionCards.includes(props.card)} />
             </Dialog>
         </Box>
     )
 }
 
-export default TCGActionCard;
+const mapStateToProps = (state) => {
+    return {
+        deck: state.deck
+    }
+}
+
+export default connect(mapStateToProps)(TCGActionCard);

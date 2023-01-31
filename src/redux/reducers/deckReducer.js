@@ -7,6 +7,7 @@ const initialState = {
 
 const deckReducer = (state = initialState, action) => {
     let tempCharCardArr;
+    let tempActionCardArr;
     switch (action.type) {
         case "ADD_CHAR_CARD":
             tempCharCardArr = [...state.deck.characterCards];
@@ -26,6 +27,16 @@ const deckReducer = (state = initialState, action) => {
                 deck: {
                     ...state.deck,
                     characterCards: tempCharCardArr
+                }
+            };
+        case "ADD_ACTION_CARD":
+            tempActionCardArr = [...state.deck.actionCards];
+            state.deck.actionCards.filter(card => card === action.card).length < 2 && tempActionCardArr.push(action.card);
+            return {
+                ...state,
+                deck: {
+                    ...state.deck,
+                    actionCards: tempActionCardArr
                 }
             };
         default:

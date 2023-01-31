@@ -1,7 +1,8 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import parse from "html-react-parser";
 import { Box } from "@mui/system";
-import { Typography, CardHeader } from "@mui/material";
+import { Typography, CardHeader, Button } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import TCGDiceCost from "./TCGDiceCost";
 
@@ -55,20 +56,30 @@ const TCGActionCardPopup = (props) => {
             <Grid container sx={{ mt: "10px" }}>
                 <Box
                     sx={{
-                        position: "relative",
-                        mx: "25px",
+                        display: "flex",
+                        flexDirection: "column"
                     }}
                 >
                     <Box
                         sx={{
-                            position: "absolute",
-                            top: "-15px",
-                            left: "-15px"
+                            position: "relative",
+                            mx: "25px",
                         }}
                     >
-                        <TCGDiceCost cost={cost} type={"card-large"} />
+                        <Box
+                            sx={{
+                                position: "absolute",
+                                top: "-15px",
+                                left: "-15px"
+                            }}
+                        >
+                            <TCGDiceCost cost={cost} type={"card-large"} />
+                        </Box>
+                        <img src={`${process.env.REACT_APP_URL}/tcg/action_cards/${name.split(" ").join("_")}_${type}_Card.png`} alt={name} style={{ width: "250px" }} />
                     </Box>
-                    <img src={`${process.env.REACT_APP_URL}/tcg/action_cards/${name.split(" ").join("_")}_${type}_Card.png`} alt={name} style={{ width: "250px" }} />
+                    <Button variant="contained" sx={{ m: "20px" }} onClick={() => props.addActionCardToDeck(props.card)}>
+                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Add to Deck</Typography>
+                    </Button>
                 </Box>
                 <Grid xs={9}>
                     <Box
@@ -92,4 +103,17 @@ const TCGActionCardPopup = (props) => {
     )
 }
 
-export default TCGActionCardPopup;
+const mapStateToProps = (state) => {
+    return {
+        deck: state.deck
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addActionCardToDeck: (card) => dispatch({ type: "ADD_ACTION_CARD", card }),
+        removeActionCardToDeck: (card) => dispatch({ type: "REMOVE_ACTION_CARD", card })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TCGActionCardPopup);
