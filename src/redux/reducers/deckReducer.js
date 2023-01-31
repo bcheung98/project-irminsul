@@ -50,14 +50,19 @@ const deckReducer = (state = initialState, action) => {
                 }
             };
         case "SAVE_DECK":
-            let deckData = JSON.stringify(action.deck);
-            let blob = new Blob([deckData], { type: "text/plain" });
-            let URL = window.URL.createObjectURL(blob);
-            let link = document.createElement("a");
-            link.download = "deck.deck";
-            link.href = URL;
-            link.click();
-            window.URL.revokeObjectURL(URL);
+            if (action.deck.characterCards.length > 0 && action.deck.actionCards.length > 0) {
+                let deckData = JSON.stringify(action.deck);
+                let blob = new Blob([deckData], { type: "text/plain" });
+                let URL = window.URL.createObjectURL(blob);
+                let link = document.createElement("a");
+                link.download = "deck.deck";
+                link.href = URL;
+                link.click();
+                window.URL.revokeObjectURL(URL);
+            }
+            else {
+                console.error("Cannot save an empty deck!");
+            }
             return state;
         case "LOAD_DECK":
             return {
