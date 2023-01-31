@@ -54,10 +54,16 @@ const deckReducer = (state = initialState, action) => {
             let blob = new Blob([deckData], { type: "text/plain" });
             let URL = window.URL.createObjectURL(blob);
             let link = document.createElement("a");
-            link.download = "deck.json";
+            link.download = "deck.deck";
             link.href = URL;
             link.click();
             window.URL.revokeObjectURL(URL);
+            return state;
+        case "LOAD_DECK":
+            return {
+                ...state,
+                deck: action.deck
+            };
         default:
             return state;
     }

@@ -47,6 +47,15 @@ const TCGDeck = (props) => {
 
     let { deck } = props;
 
+    const getDeckFromFile = (file) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            let deckData = JSON.parse(e.target.result);
+            props.loadDeck(deckData);
+        }
+        reader.readAsText(file, "UTF-8");
+    }
+
     return (
         <Box sx={{ mx: "20px", mb: "20px" }}>
             <Paper variant="outlined" sx={{
@@ -75,6 +84,20 @@ const TCGDeck = (props) => {
                                 Save Deck
                             </Typography>
                         </Button>
+                        <Button
+                            variant="contained"
+                            component="label"
+                            sx={{
+                                mx: "20px",
+                                mt: "5px",
+                                mb: "30px",
+                                backgroundColor: "rgb(0, 127, 255)"
+                            }}>
+                            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>
+                                Load Deck
+                            </Typography>
+                            <input id="deck-input" hidden accept=".deck" type="file" onChange={(e) => getDeckFromFile(e.target.files[0])} />
+                        </Button>
                         <Grid container>
                             {deck.deck.characterCards.map(card => <TCGCharacterCard key={card.name} char={card} />)}
                         </Grid>
@@ -96,7 +119,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        saveDeck: (deck) => dispatch({ type: "SAVE_DECK", deck })
+        saveDeck: (deck) => dispatch({ type: "SAVE_DECK", deck }),
+        loadDeck: (deck) => dispatch({ type: "LOAD_DECK", deck })
     }
 }
 
