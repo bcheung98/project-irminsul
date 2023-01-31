@@ -1,5 +1,6 @@
 const initialState = {
     deck: {
+        name: "Deck",
         characterCards: [],
         actionCards: []
     }
@@ -53,6 +54,14 @@ const deckReducer = (state = initialState, action) => {
             return {
                 ...state,
                 deck: action.deck
+            };
+        case "RENAME_DECK":
+            return {
+                ...state,
+                deck: {
+                    ...state.deck,
+                    name: action.name
+                }
             };
         default:
             return state;
