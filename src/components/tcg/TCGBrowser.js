@@ -56,22 +56,6 @@ const TCGBrowser = (props) => {
         setSearchValue(e.target.value);
     }
 
-    const saveDeck = (deck) => {
-        if (deck.characterCards.length > 0 && deck.actionCards.length > 0) {
-            let deckData = JSON.stringify(deck);
-            let blob = new Blob([deckData], { type: "text/plain" });
-            let URL = window.URL.createObjectURL(blob);
-            let link = document.createElement("a");
-            link.download = "deck.deck";
-            link.href = URL;
-            link.click();
-            window.URL.revokeObjectURL(URL);
-        }
-        else {
-            console.error("Cannot save an empty deck!");
-        }
-    }
-
     const buttons = [
         <StyledToggleButton value="" key="General">
             <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>General</Typography>
@@ -136,7 +120,7 @@ const TCGBrowser = (props) => {
                 </MaterialTooltip>
             </Box>
 
-            <TCGDeck cards={deck.deck} saveDeck={saveDeck} />
+            <TCGDeck cards={deck.deck} />
 
             <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ mx: "30px", mb: "30px" }}>
                 <StyledToggleButton value="char">

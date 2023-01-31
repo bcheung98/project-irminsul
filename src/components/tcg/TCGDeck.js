@@ -45,7 +45,21 @@ const AccordionDetails = styled(MuiAccordionDetails)(() => ({
 
 const TCGDeck = (props) => {
 
-    let { deck } = props;
+    const saveDeck = (deck) => {
+        if (deck.characterCards.length > 0 || deck.actionCards.length > 0) {
+            let deckData = JSON.stringify(deck);
+            let blob = new Blob([deckData], { type: "text/plain" });
+            let URL = window.URL.createObjectURL(blob);
+            let link = document.createElement("a");
+            link.download = "deck.deck";
+            link.href = URL;
+            link.click();
+            window.URL.revokeObjectURL(URL);
+        }
+        else {
+            alert("Cannot save an empty deck!");
+        }
+    }
 
     const getDeckFromFile = (file) => {
         const reader = new FileReader();
@@ -55,6 +69,10 @@ const TCGDeck = (props) => {
         }
         reader.readAsText(file, "UTF-8");
     }
+
+    let { deck } = props;
+    let characterCards = deck.deck.characterCards;
+    let actionCards = deck.deck.actionCards;
 
     return (
         <Box sx={{ mx: "20px", mb: "20px" }}>
@@ -68,11 +86,11 @@ const TCGDeck = (props) => {
                 <Accordion>
                     <AccordionSummary>
                         <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>
-                            Deck ({deck.deck.characterCards.length}, {deck.deck.actionCards.length})
+                            Deck ({characterCards.length}, {actionCards.length})
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <Button onClick={() => props.saveDeck(deck.deck)}
+                        <Button onClick={() => saveDeck(deck.deck)}
                             variant="contained"
                             sx={{
                                 mx: "20px",
@@ -99,10 +117,10 @@ const TCGDeck = (props) => {
                             <input id="deck-input" hidden accept=".deck" type="file" onChange={(e) => getDeckFromFile(e.target.files[0])} />
                         </Button>
                         <Grid container>
-                            {deck.deck.characterCards.map(card => <TCGCharacterCard key={card.name} char={card} />)}
+                            {characterCards.map(card => <TCGCharacterCard key={card.name} char={card} />)}
                         </Grid>
                         <Grid container>
-                            {deck.deck.actionCards.map((card, index) => <TCGActionCard key={index} card={card} />)}
+                            {actionCards.map((card, index) => <TCGActionCard key={index} card={card} />)}
                         </Grid>
                     </AccordionDetails>
                 </Accordion>
