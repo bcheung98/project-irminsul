@@ -119,7 +119,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        saveDeck: (deck) => dispatch({ type: "SAVE_DECK", deck }),
         loadDeck: (deck) => dispatch({ type: "LOAD_DECK", deck })
     }
 }
