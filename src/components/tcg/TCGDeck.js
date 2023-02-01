@@ -107,7 +107,7 @@ const TCGDeck = (props) => {
                 <Accordion>
                     <AccordionSummary>
                         <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>
-                            {deck.deck.name} ({characterCards.length}, {actionCards.length})
+                            {deck.deck.name} — ({characterCards.length}/3 Character Cards, {actionCards.length}/30 Action Cards)
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
