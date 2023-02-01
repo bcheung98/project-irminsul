@@ -19,6 +19,20 @@ const StyledToggleButton = styled(ToggleButton)(() => ({
     }
 }));
 
+// Filters out Character Cards that are already in the deck
+const CurrentCharacterCards = (cards, deck) => {
+    let deckNames = deck.map(card => card.name);
+    return cards.filter(card => !deckNames.includes(card.name));
+}
+
+// FIlters out Action Cards that have been added twice to the deck
+const CurrentActionCards = (cards, deck) => {
+    let deckNames = deck.map(card => card.name);
+    let counts = {};
+    deckNames.forEach(card => counts[card] === undefined ? counts[card] = 1 : counts[card] += 1);
+    return cards.filter(card => counts[card.name] !== 2);
+}
+
 const FilterTCGActionCards = (cardList, filters, searchValue) => {
     let cards = [...cardList];
     if (filters.length > 0) {
@@ -138,7 +152,7 @@ const TCGBrowser = (props) => {
                     view === "char" ?
                         <Grid item xs={9}>
                             <Grid container>
-                                {cards.cards[0].cards.map(card => <TCGCharacterCard key={card.name} char={card} />)}
+                                {CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards).map(card => <TCGCharacterCard key={card.name} char={card} />)}
                             </Grid>
                         </Grid>
                         :
@@ -177,7 +191,7 @@ const TCGBrowser = (props) => {
                             </Box>
                             <Grid item xs={9}>
                                 <Grid container>
-                                    {FilterTCGActionCards(cards.cards[1].cards, filters, searchValue).map(card => <TCGActionCard key={card.name} card={card} />)}
+                                    {FilterTCGActionCards(CurrentActionCards(cards.cards[1].cards, deck.deck.actionCards), filters, searchValue).map(card => <TCGActionCard key={card.name} card={card} />)}
                                 </Grid>
                             </Grid>
                         </React.Fragment>
