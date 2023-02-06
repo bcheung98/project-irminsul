@@ -135,7 +135,7 @@ const CharacterTalentDisplay = (props) => {
                                 </Accordion>
                             </Paper>
                         }
-                        < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+                        {index !== Object.keys(talents).length - 1 && <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "10px", marginBottom: "15px" }} />}
                     </Box>
                 )
             })}

@@ -57,7 +57,7 @@ const CharacterConstellationDisplay = (props) => {
                             {parse(constellation[key].description)}
                         </Typography>
                         <br />
-                        <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "5px", marginBottom: "15px" }} />
+                        {key !== "c6" && <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "5px", marginBottom: "15px" }} />}
                     </React.Fragment>
                 )
             })}
