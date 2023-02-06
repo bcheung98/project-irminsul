@@ -33,11 +33,17 @@ const IconInactive = styled((props) => (
 }))
 
 function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
+    // Special case for sorting the substat column (which includes numeric strings)
+    if (orderBy === "subStatString") {
+        return b[orderBy].localeCompare(a[orderBy], undefined, { numeric: true });
     }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
+    else {
+        if (b[orderBy] < a[orderBy]) {
+            return -1;
+        }
+        if (b[orderBy] > a[orderBy]) {
+            return 1;
+        }
     }
     return 0;
 }
