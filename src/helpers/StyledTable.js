@@ -11,7 +11,7 @@ export const StyledTableCell = styled((props) => (
         fontFamily: "Genshin, sans-serif",
     },
     color: "white",
-    fontSize: "14px",
+    fontSize: "13.5px",
     fontFamily: "Roboto, sans-serif",
     border: "1px solid rgb(30, 73, 118)",
 }))
