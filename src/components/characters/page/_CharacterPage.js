@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 import "../../../css/CharacterPage.css";
 import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
-import { Typography, Tabs, Tab, Box } from "@mui/material";
+import { Typography, Tabs, Tab, Box, Dialog } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useParams } from "react-router-dom";
+import { MaterialTooltip } from "../../../helpers/MaterialTooltip";
 import CharacterStatsTable from "./CharacterStatsTable";
 import CharacterAscensionTable from "./CharacterAscensionTable";
 import CharacterTalentDisplay from "./CharacterTalentDisplay";
 import CharacterTalentLevellingTable from "./CharacterTalentLevellingTable";
 import CharacterConstellationDisplay from "./CharacterConstellationDisplay";
 import CharacterMaterialGrid from "../CharacterMaterialGrid";
-import { MaterialTooltip } from "../../../helpers/MaterialTooltip";
+import CharacterOutfitDisplay from "./CharacterOutfitDisplay";
 
 function TabPanel(props) {
 
@@ -52,9 +53,16 @@ const CharacterPage = (props) => {
     let character = characters.characters.find(char => char.name.split(" ").join("_").toLowerCase() === char_name);
 
     const [tabValue, setTabValue] = React.useState(0);
-
     const handleTabChange = (event, newValue) => {
         setTabValue(newValue);
+    };
+
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
     };
 
     if (character !== undefined) {
@@ -64,6 +72,7 @@ const CharacterPage = (props) => {
                 <Grid container sx={{ mb: "20px" }}>
                     <Grid xs="auto">
                         <img src={(`${process.env.REACT_APP_URL}/characters/wish/Character_${name.split(" ").join("_")}_Wish.png`)} alt={name}
+                            onClick={() => handleClickOpen()}
                             style={{
                                 width: "35vw",
                                 height: "600px",
@@ -72,7 +81,8 @@ const CharacterPage = (props) => {
                                 borderLeft: "1px solid rgb(30, 73, 118)",
                                 borderRight: "1px solid rgb(30, 73, 118)",
                                 borderBottom: "1px solid rgb(30, 73, 118)",
-                                borderRadius: "0px 0px 5px 5px"
+                                borderRadius: "0px 0px 5px 5px",
+                                cursor: "pointer",
                             }} />
                         <Box
                             sx={{
@@ -199,6 +209,13 @@ const CharacterPage = (props) => {
                 </Grid>
                 <CharacterTalentDisplay character={character} />
                 <CharacterConstellationDisplay character={character} />
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    maxWidth={false}
+                >
+                    <CharacterOutfitDisplay character={character} />
+                </Dialog>
             </React.Fragment>
         )
     }
