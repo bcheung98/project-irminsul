@@ -53,7 +53,7 @@ const CharacterConstellationDisplay = (props) => {
                                 </Typography>
                             }
                         />
-                        <Typography variant="body1" sx={{ fontSize: "15px", ml: "20px" }}>
+                        <Typography variant="body1" sx={{ fontSize: "11pt", ml: "20px" }}>
                             {parse(constellation[key].description)}
                         </Typography>
                         <br />
