@@ -5,11 +5,12 @@ import { MaterialTooltip } from "../../helpers/MaterialTooltip";
 import { Box } from "@mui/material";
 
 const CharacterMaterialGrid = (props) => {
+
     let { element } = props.character;
     let { talentBook, bossMat, localMat, commonMat, weeklyBossMat } = props.character.materials;
 
     const materialImage = {
-        height: "48px",
+        height: props.size,
         border: "1px solid rgb(30, 73, 118)",
         borderRadius: "5px",
         backgroundColor: "rgb(9, 24, 39)",
@@ -51,6 +52,10 @@ const CharacterMaterialGrid = (props) => {
             </Grid>
         </Box>
     )
+}
+
+CharacterMaterialGrid.defaultProps = {
+    size: "48px",
 }
 
 export default CharacterMaterialGrid;

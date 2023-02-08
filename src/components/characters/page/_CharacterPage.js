@@ -178,9 +178,9 @@ const CharacterPage = (props) => {
                                     </div>
                                 </div>
                             </div>
-                            <Box sx={{ mt: "15px", ml: "20px" }}>
-                                <CharacterMaterialGrid character={character} />
-                            </Box>
+                        </Box>
+                        <Box sx={{ mt: "15px", mx: "10px" }}>
+                            <CharacterMaterialGrid character={character} size={"60px"} />
                         </Box>
                         <Box
                             sx={{
