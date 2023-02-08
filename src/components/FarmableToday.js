@@ -71,13 +71,13 @@ const FarmableToday = (props) => {
                     margin: "auto",
                     mt: "20px",
                     p: "10px",
-                    width: "40vw",
+                    width: "50vw",
                     color: "white",
                 }}
             >
                 <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "10px" }}>Farmable Today ({today})</Typography>
                 <Box>
-                    <Tabs value={tabValue} onChange={handleTabChange} centered>
+                    <Tabs value={tabValue} onChange={handleTabChange}>
                         <StyledTab label="Characters" />
                         <StyledTab label="Weapons" />
                     </Tabs>
@@ -92,7 +92,7 @@ const FarmableToday = (props) => {
                                                 {mat}
                                             </Typography>
                                         }
-                                        sx={{p: 0, mb: "5px"}}
+                                        sx={{ p: 0, mb: "5px" }}
                                     />
                                     <Grid>
                                         {
@@ -114,7 +114,7 @@ const FarmableToday = (props) => {
                                             ))
                                         }
                                     </Grid>
-                                    < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+                                    {index !== farmableMats["talents"].length - 1 && < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />}
                                 </Box>
                             ))
                         }
@@ -130,7 +130,7 @@ const FarmableToday = (props) => {
                                                 {mat}
                                             </Typography>
                                         }
-                                        sx={{p: 0, mb: "5px"}}
+                                        sx={{ p: 0, mb: "5px" }}
                                     />
                                     <Grid>
                                         {
@@ -152,7 +152,7 @@ const FarmableToday = (props) => {
                                             ))
                                         }
                                     </Grid>
-                                    < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+                                    {index !== farmableMats["weapons"].length - 1 && < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />}
                                 </Box>
                             ))
                         }
