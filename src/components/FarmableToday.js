@@ -134,7 +134,7 @@ const FarmableToday = (props) => {
                                     />
                                     <Grid>
                                         {
-                                            weapons.filter(wep => farmableMats["weapons"][index].includes(wep.materials.ascensionMat)).map((wep, index) => (
+                                            weapons.filter(wep => farmableMats["weapons"][index].includes(wep.materials.ascensionMat)).sort((a, b) => b.rarity - a.rarity).map((wep, index) => (
                                                 <ButtonBase disableRipple href={`/project-irminsul/weapon/${wep.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
                                                     <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${wep.name.split(" ").join("_")}.png`)} alt={wep.name}
                                                         sx={{
