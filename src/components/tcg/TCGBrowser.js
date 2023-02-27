@@ -128,10 +128,6 @@ const TCGBrowser = (props) => {
                 >
                     TCG
                 </Typography>
-                {/* WIP tag, don't forget to remove later */}
-                <MaterialTooltip title="WIP, will be adding more features later!">
-                    <InfoSharpIcon sx={{ mr: "20px" }} color="primary" fontSize="large" />
-                </MaterialTooltip>
             </Box>
 
             <TCGDeck cards={deck.deck} />
