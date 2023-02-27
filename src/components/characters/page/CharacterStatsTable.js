@@ -12,7 +12,7 @@ const CharacterStatsTable = (props) => {
 
     const levels = ["1", "20", "20+", "40", "40+", "50", "50+", "60", "60+", "70", "70+", "80", "80+", "90"];
     const specialStats = CharacterAscensionStatScalings(rarity, stats.ascensionStat);
-    const characterStatRows = levels.map((level, index) => stats.special ? createCharacterStats(level, stats.hp[index], stats.atk[index], stats.def[index], specialStats.critRate[index], specialStats.critDMG[index], specialStats[stats.ascensionStat][index]) : createCharacterStats(level, stats.hp[index], stats.atk[index], stats.def[index], specialStats.critRate[index], specialStats.critDMG[index]));
+    const characterStatRows = levels.map((level, index) => !["CRIT Rate", "CRIT DMG"].includes(stats.ascensionStat) ? createCharacterStats(level, stats.hp[index], stats.atk[index], stats.def[index], specialStats.critRate[index], specialStats.critDMG[index], specialStats[stats.ascensionStat][index]) : createCharacterStats(level, stats.hp[index], stats.atk[index], stats.def[index], specialStats.critRate[index], specialStats.critDMG[index]));
 
     return (
         <TableContainer
@@ -32,7 +32,7 @@ const CharacterStatsTable = (props) => {
                         <StyledTableCell>Base DEF</StyledTableCell>
                         <StyledTableCell>CRIT Rate</StyledTableCell>
                         <StyledTableCell>CRIT DMG</StyledTableCell>
-                        {stats.special && <StyledTableCell>{stats.ascensionStat}</StyledTableCell>}
+                        {!["CRIT Rate", "CRIT DMG"].includes(stats.ascensionStat) && <StyledTableCell>{stats.ascensionStat}</StyledTableCell>}
                     </StyledTableRows>
                 </TableHead>
                 <TableBody>
@@ -46,7 +46,7 @@ const CharacterStatsTable = (props) => {
                             <StyledTableCell>{row.def}</StyledTableCell>
                             <StyledTableCell>{row.critRate}</StyledTableCell>
                             <StyledTableCell>{row.critDMG}</StyledTableCell>
-                            {stats.special && <StyledTableCell>{row.special}</StyledTableCell>}
+                            {row.special && <StyledTableCell>{row.special}</StyledTableCell>}
                         </StyledTableRows>
                     ))}
                 </TableBody>
