@@ -49,10 +49,10 @@ export const CharacterAscensionStatScalings = (rarity, ascensionStat) => {
     // Elemental Mastery ascension
     if (ascensionStat === "Elemental Mastery") {
         if (rarity === 4) {
-            stats[ascensionStat] = [0, 0, 0, 0, 24, 24, 48, 48, 48, 48, 72, 72, 96, 96];
+            stats[ascensionStat] = ["0", "0", "0", "0", "24", "24", "48", "48", "48", "48", "72", "72", "96", "96"];
         }
         if (rarity === 5) {
-            stats[ascensionStat] = [0, 0, 0, 0, 28.8, 28.8, 57.6, 57.6, 57.6, 57.6, 86.4, 86.4, 115.2, 115.2];
+            stats[ascensionStat] = ["0", "0", "0", "0", "28.8", "28.8", "57.6", "57.6", "57.6", "57.6", "86.4", "86.4", "115.2", "115.2"];
         }
     }
 
