@@ -23,20 +23,20 @@ const WeaponSubstatFilter = (props) => {
             <FilterTooltip title="DEF%" arrow placement="top">
                 <img className="filter-off" id="wep-def-button" src={defIcon} alt="DEF" onClick={(e) => props.setWeaponFilter(e.target.alt)} />
             </FilterTooltip>
-            <FilterTooltip title="Physical DMG Bonus" arrow placement="top">
-                <img className="filter-off" id="wep-physical dmg bonus-button" src={physicalIcon} alt="Physical DMG Bonus" onClick={(e) => props.setWeaponFilter(e.target.alt)} />
-            </FilterTooltip>
-            <FilterTooltip title="Energy Recharge" arrow placement="top">
-                <img className="filter-off" id="wep-energy recharge-button" src={erIcon} alt="Energy Recharge" onClick={(e) => props.setWeaponFilter(e.target.alt)} />
-            </FilterTooltip>
             <FilterTooltip title="CRIT Rate" arrow placement="top">
                 <img className="filter-off" id="wep-crit rate-button" src={crIcon} alt="CRIT Rate" onClick={(e) => props.setWeaponFilter(e.target.alt)} />
             </FilterTooltip>
             <FilterTooltip title="CRIT DMG" arrow placement="top">
                 <img className="filter-off" id="wep-crit dmg-button" src={cdIcon} alt="CRIT DMG" onClick={(e) => props.setWeaponFilter(e.target.alt)} />
             </FilterTooltip>
+            <FilterTooltip title="Energy Recharge" arrow placement="top">
+                <img className="filter-off" id="wep-energy recharge-button" src={erIcon} alt="Energy Recharge" onClick={(e) => props.setWeaponFilter(e.target.alt)} />
+            </FilterTooltip>
             <FilterTooltip title="Elemental Mastery" arrow placement="top">
                 <img className="filter-off" id="wep-elemental mastery-button" src={emIcon} alt="Elemental Mastery" onClick={(e) => props.setWeaponFilter(e.target.alt)} />
+            </FilterTooltip>
+            <FilterTooltip title="Physical DMG Bonus" arrow placement="top">
+                <img className="filter-off" id="wep-physical dmg bonus-button" src={physicalIcon} alt="Physical DMG Bonus" onClick={(e) => props.setWeaponFilter(e.target.alt)} />
             </FilterTooltip>
         </React.Fragment>
     )

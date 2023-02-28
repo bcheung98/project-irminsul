@@ -30,20 +30,20 @@ const AscensionStatFilters = (props) => {
             <FilterTooltip title="DEF%" arrow placement="top">
                 <img className="filter-off" id="def-button" src={defIcon} alt="DEF" onClick={(e) => props.setFilter(e.target.alt)} />
             </FilterTooltip>
-            <FilterTooltip title="Physical DMG Bonus" arrow placement="top">
-                <img className="filter-off" id="physical dmg bonus-button" src={physicalIcon} alt="Physical DMG Bonus" onClick={(e) => props.setFilter(e.target.alt)} />
-            </FilterTooltip>
-            <FilterTooltip title="Energy Recharge" arrow placement="top">
-                <img className="filter-off" id="energy recharge-button" src={erIcon} alt="Energy Recharge" onClick={(e) => props.setFilter(e.target.alt)} />
-            </FilterTooltip>
             <FilterTooltip title="CRIT Rate" arrow placement="top">
                 <img className="filter-off" id="crit rate-button" src={crIcon} alt="CRIT Rate" onClick={(e) => props.setFilter(e.target.alt)} />
             </FilterTooltip>
             <FilterTooltip title="CRIT DMG" arrow placement="top">
                 <img className="filter-off" id="crit dmg-button" src={cdIcon} alt="CRIT DMG" onClick={(e) => props.setFilter(e.target.alt)} />
             </FilterTooltip>
+            <FilterTooltip title="Energy Recharge" arrow placement="top">
+                <img className="filter-off" id="energy recharge-button" src={erIcon} alt="Energy Recharge" onClick={(e) => props.setFilter(e.target.alt)} />
+            </FilterTooltip>
             <FilterTooltip title="Elemental Mastery" arrow placement="top">
                 <img className="filter-off" id="elemental mastery-button" src={emIcon} alt="Elemental Mastery" onClick={(e) => props.setFilter(e.target.alt)} />
+            </FilterTooltip>
+            <FilterTooltip title="Physical DMG Bonus" arrow placement="top">
+                <img className="filter-off" id="physical dmg bonus-button" src={physicalIcon} alt="Physical DMG Bonus" onClick={(e) => props.setFilter(e.target.alt)} />
             </FilterTooltip>
             <FilterTooltip title="Pyro DMG Bonus" arrow placement="top">
                 <img className="filter-off" id="pyro dmg bonus-button" src={pyroIcon} alt="Pyro DMG Bonus" onClick={(e) => props.setFilter(e.target.alt)} />
