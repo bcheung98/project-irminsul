@@ -17,3 +17,20 @@ code {
   font-family: Genshin;
   src: url("./fonts/ja-jp.ttf");
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(16, 16 ,16);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: gray;
+}
