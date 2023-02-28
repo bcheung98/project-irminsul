@@ -9,6 +9,9 @@ export const filterCharacters = (characters, filters, searchValue) => {
     if (filters.rarity.length > 0) {
         chars = chars.filter(char => filters.rarity.includes(char.rarity));
     }
+    if (filters.ascStat.length > 0) {
+        chars = chars.filter(char => filters.ascStat.includes(char.stats.ascensionStat));
+    }
     if (filters.talent.length > 0) {
         chars = chars.filter(char => filters.talent.includes(char.materials.talentBook));
     }

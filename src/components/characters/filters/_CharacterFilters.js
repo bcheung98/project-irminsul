@@ -9,6 +9,7 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import ElementFilter from "./ElementFilter";
 import WeaponFilter from "./WeaponFilter";
 import RarityFilter from "./RarityFilter";
+import AscensionStatFilters from "./AscensionStatFilters";
 import TalentFilter from "./TalentFilter";
 import CommonMatFilter from "./CommonMatFilter";
 import BossMatFilter from "./BossMatFilter";
@@ -96,6 +97,16 @@ const CharacterFilters = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <RarityFilter />
+                    </AccordionDetails>
+                </Accordion>
+
+                {/* ASCENSION STAT */}
+                <Accordion>
+                    <AccordionSummary>
+                        <Typography variant="body1" className="filter-text-off" id="ascstat-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Ascension Stat</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <AscensionStatFilters />
                     </AccordionDetails>
                 </Accordion>
 

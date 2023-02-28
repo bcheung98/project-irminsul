@@ -2,6 +2,7 @@ const initialState = {
     element: [],
     weapon: [],
     rarity: [],
+    ascStat: [],
     talent: [],
     commonMat: [],
     bossMat: [],
@@ -50,6 +51,15 @@ const characterFilterReducer = (state = initialState, action) => {
             return {
                 ...state,
                 rarity: tempRarity
+            }
+        case "SET_CHAR_ASCSTAT_FILTERS":
+            let tempStat = [...state.ascStat];
+            !state.ascStat.includes(target) ? tempStat.push(target) : tempStat.splice(tempStat.indexOf(target), 1);
+            let statText = document.getElementById(`${type.split("_")[2].toLowerCase()}-filter-text`);
+            statText.className === "filter-text-on" && tempStat.length === 0 ? statText.className = "filter-text-off" : statText.className = "filter-text-on";
+            return {
+                ...state,
+                ascStat: tempStat
             }
         case "SET_CHAR_TALENT_FILTERS":
             let tempTalent = [...state.talent];
