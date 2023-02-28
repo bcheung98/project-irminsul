@@ -48,9 +48,14 @@ const CharacterConstellationDisplay = (props) => {
                                     }} />
                             }
                             title={
-                                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif" }}>
-                                    {constellation[key].name}
-                                </Typography>
+                                <React.Fragment>
+                                    <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                        {constellation[key].name}
+                                    </Typography>
+                                    <Typography variant="subtitle2" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                        <i>{key.toUpperCase()}</i>
+                                    </Typography>
+                                </React.Fragment>
                             }
                         />
                         <Typography variant="body1" sx={{ fontSize: "11pt", ml: "20px" }}>
