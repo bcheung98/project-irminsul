@@ -11,13 +11,13 @@ let emIcon = (`${process.env.REACT_APP_URL}/icons/Elemental Mastery.png`);
 let erIcon = (`${process.env.REACT_APP_URL}/icons/Energy Recharge.png`);
 let hbIcon = (`${process.env.REACT_APP_URL}/icons/Healing Bonus.png`);
 let physicalIcon = (`${process.env.REACT_APP_URL}/icons/Physical DMG Bonus.png`);
-let pyroIcon = (`${process.env.REACT_APP_URL}/elements/Element_Pyro.png`);
-let hydroIcon = (`${process.env.REACT_APP_URL}/elements/Element_Hydro.png`);
-let electroIcon = (`${process.env.REACT_APP_URL}/elements/Element_Electro.png`);
-let cryoIcon = (`${process.env.REACT_APP_URL}/elements/Element_Cryo.png`);
-let anemoIcon = (`${process.env.REACT_APP_URL}/elements/Element_Anemo.png`);
-let geoIcon = (`${process.env.REACT_APP_URL}/elements/Element_Geo.png`);
-let dendroIcon = (`${process.env.REACT_APP_URL}/elements/Element_Dendro.png`);
+let pyroIcon = (`${process.env.REACT_APP_URL}/icons/Pyro.png`);
+let hydroIcon = (`${process.env.REACT_APP_URL}/icons/Hydro.png`);
+let electroIcon = (`${process.env.REACT_APP_URL}/icons/Electro.png`);
+let cryoIcon = (`${process.env.REACT_APP_URL}/icons/Cryo.png`);
+let anemoIcon = (`${process.env.REACT_APP_URL}/icons/Anemo.png`);
+let geoIcon = (`${process.env.REACT_APP_URL}/icons/Geo.png`);
+let dendroIcon = (`${process.env.REACT_APP_URL}/icons/Dendro.png`);
 
 const AscensionStatFilters = (props) => {
     return (
