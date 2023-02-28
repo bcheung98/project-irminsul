@@ -22,7 +22,7 @@ const StyledToggleButton = styled(ToggleButton)(() => ({
 // Filters out Character Cards that are already in the deck
 const CurrentCharacterCards = (cards, deck) => {
     let deckNames = deck.map(card => card.name);
-    return cards.filter(card => !deckNames.includes(card.name));
+    return cards.filter(card => !deckNames.includes(card.name)).sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1);
 }
 
 // FIlters out Action Cards that have been added twice to the deck
@@ -30,7 +30,7 @@ const CurrentActionCards = (cards, deck) => {
     let deckNames = deck.map(card => card.name);
     let counts = {};
     deckNames.forEach(card => counts[card] === undefined ? counts[card] = 1 : counts[card] += 1);
-    return cards.filter(card => counts[card.name] !== 2);
+    return cards.filter(card => counts[card.name] !== 2).sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1);
 }
 
 const FilterTCGActionCards = (cardList, filters, searchValue) => {
