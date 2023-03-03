@@ -3,6 +3,7 @@ import "../App.css";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import FarmableToday from "./FarmableToday";
+import VersionHighlights from "./VersionHighlights";
 
 const Home = () => {
     return (
@@ -25,6 +26,7 @@ const Home = () => {
                     <Typography variant="h3" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>Welcome to PROJECT IRMINSUL</Typography>
                 </Box>
                 <FarmableToday />
+                <VersionHighlights />
             </Box>
         </React.Fragment>
     )
