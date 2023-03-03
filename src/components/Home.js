@@ -2,6 +2,7 @@ import * as React from "react";
 import "../App.css";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import FarmableToday from "./FarmableToday";
 import VersionHighlights from "./VersionHighlights";
 
@@ -25,8 +26,10 @@ const Home = () => {
                 >
                     <Typography variant="h3" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>Welcome to PROJECT IRMINSUL</Typography>
                 </Box>
-                <FarmableToday />
-                <VersionHighlights />
+                <Grid container>
+                    <FarmableToday />
+                    <VersionHighlights />
+                </Grid>
             </Box>
         </React.Fragment>
     )

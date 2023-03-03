@@ -75,7 +75,10 @@ const FarmableToday = (props) => {
                     color: "white",
                 }}
             >
-                <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "10px" }}>Farmable Today ({today})</Typography>
+                <Typography variant="h4" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "10px" }}>
+                    Farmable Today ({today})
+                </Typography>
+                <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
                 <Box>
                     <Tabs value={tabValue} onChange={handleTabChange}>
                         <StyledTab label="Characters" />
