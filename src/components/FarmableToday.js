@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
 import { Box } from "@mui/system";
-import { ButtonBase, Typography, Avatar, CardHeader, Tabs, Tab } from "@mui/material";
+import { Button, ButtonBase, Typography, Avatar, CardHeader, Tabs, Tab } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { MaterialDates } from "../helpers/MaterialDates";
 
@@ -117,10 +117,15 @@ const FarmableToday = (props) => {
                                             ))
                                         }
                                     </Grid>
-                                    {index !== farmableMats["talents"].length - 1 && < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />}
+                                    < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
                                 </Box>
                             ))
                         }
+                        <Button variant="contained" href={`/project-irminsul/characters`}>
+                            <Typography variant="subtitle2" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                > See all characters
+                            </Typography>
+                        </Button>
                     </TabPanel>
                     <TabPanel value={tabValue} index={1}>
                         {
@@ -155,10 +160,15 @@ const FarmableToday = (props) => {
                                             ))
                                         }
                                     </Grid>
-                                    {index !== farmableMats["weapons"].length - 1 && < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />}
+                                    < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
                                 </Box>
                             ))
                         }
+                        <Button variant="contained" href={`/project-irminsul/weapons`}>
+                            <Typography variant="subtitle2" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                > See all weapons
+                            </Typography>
+                        </Button>
                     </TabPanel>
 
                 </Box>
