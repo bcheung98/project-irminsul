@@ -21,7 +21,7 @@ const VersionHighlights = (props) => {
                 margin: "auto",
                 mt: "20px",
                 p: "10px",
-                width: "40vw",
+                width: "50vw",
                 color: "white",
             }}
         >
@@ -36,7 +36,7 @@ const VersionHighlights = (props) => {
                     New Characters
                 </Typography>
                 <Box>
-                    <Grid>
+                    <Grid container spacing={2}>
                         {
                             characters.sort((a, b) => a.id > b.id ? 1 : -1).map((char, index) => {
                                 return (

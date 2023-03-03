@@ -71,7 +71,7 @@ const FarmableToday = (props) => {
                     margin: "auto",
                     mt: "20px",
                     p: "10px",
-                    width: "50vw",
+                    width: "40vw",
                     color: "white",
                 }}
             >
@@ -123,7 +123,7 @@ const FarmableToday = (props) => {
                         }
                         <Button variant="contained" href={`/project-irminsul/characters`}>
                             <Typography variant="subtitle2" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
-                                > See all characters
+                                See all characters
                             </Typography>
                         </Button>
                     </TabPanel>
@@ -166,7 +166,7 @@ const FarmableToday = (props) => {
                         }
                         <Button variant="contained" href={`/project-irminsul/weapons`}>
                             <Typography variant="subtitle2" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
-                                > See all weapons
+                                See all weapons
                             </Typography>
                         </Button>
                     </TabPanel>
