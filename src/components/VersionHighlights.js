@@ -25,7 +25,7 @@ const VersionHighlights = (props) => {
                 color: "white",
             }}
         >
-            <Typography variant="h4" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "10px" }}>
+            <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "10px" }}>
                 {`Version ${version} Highlights`}
             </Typography>
             <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
