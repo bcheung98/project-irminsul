@@ -6,8 +6,6 @@ import { Typography, ToggleButton, ToggleButtonGroup, Paper, InputBase } from "@
 import Grid from "@mui/material/Unstable_Grid2";
 import TCGCharacterCard from "./TCGCharacterCard";
 import TCGActionCard from "./TCGActionCard";
-import InfoSharpIcon from '@mui/icons-material/InfoSharp';
-import { MaterialTooltip } from "../../helpers/MaterialTooltip";
 import TCGDeck from "./TCGDeck";
 
 const StyledToggleButton = styled(ToggleButton)(() => ({
