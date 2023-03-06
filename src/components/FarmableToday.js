@@ -1,9 +1,9 @@
 import * as React from "react";
-import PropTypes from 'prop-types';
-import { styled } from '@mui/material/styles';
+import PropTypes from "prop-types";
+import { styled } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { Box } from "@mui/system";
-import { Button, ButtonBase, Typography, Avatar, CardHeader, Tabs, Tab } from "@mui/material";
+import { Button, ButtonBase, Typography, Avatar, CardHeader, Tabs, Tab, Select, InputBase, MenuItem } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { MaterialDates } from "../helpers/MaterialDates";
 
@@ -38,6 +38,26 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
     }),
 );
 
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+    "label + &": {
+        marginTop: theme.spacing(3),
+    },
+    "& .MuiInputBase-input": {
+        borderRadius: 5,
+        backgroundColor: "white",
+        border: "1px solid #ced4da",
+        fontFamily: "Genshin, sans-serif",
+        fontSize: 16,
+        padding: "10px 26px 10px 12px",
+        "&:focus": {
+            borderRadius: 4,
+            borderColor: "#80bdff",
+            boxShadow: "0 0 0 0.2rem rgba(0,12,255,.25)",
+            backgroundColor: "white",
+        },
+    },
+}));
+
 const IconBackground = (rarity) => {
     return {
         backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
@@ -47,18 +67,24 @@ const IconBackground = (rarity) => {
 
 const FarmableToday = (props) => {
 
-    const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const d = new Date();
-    let today = weekday[d.getDay()];
-    let farmableMats = MaterialDates(today);
-    let characters = props.characters.characters.filter(char => farmableMats["talents"].includes(char.materials.talentBook));
-    let weapons = props.weapons.weapons.filter(wep => farmableMats["weapons"].includes(wep.materials.ascensionMat));
-
     const [tabValue, setTabValue] = React.useState(0);
 
     const handleTabChange = (event, newValue) => {
         setTabValue(newValue);
     };
+
+    const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const d = new Date();
+    let today = weekday[d.getDay()];
+
+    const [day, setDay] = React.useState(today);
+    const handleDayChange = (event) => {
+        setDay(event.target.value);
+    }
+
+    let farmableMats = MaterialDates(day);
+    let characters = props.characters.characters.filter(char => farmableMats["talents"].includes(char.materials.talentBook));
+    let weapons = props.weapons.weapons.filter(wep => farmableMats["weapons"].includes(wep.materials.ascensionMat));
 
     return (
         <React.Fragment>
@@ -75,9 +101,19 @@ const FarmableToday = (props) => {
                     color: "white",
                 }}
             >
-                <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "10px" }}>
-                    Farmable Today ({today})
-                </Typography>
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "space-between"
+                    }}
+                >
+                    <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", mt: "5px" }}>
+                        Farming Schedule
+                    </Typography>
+                    <Select value={day} label="Day" onChange={handleDayChange} input={<BootstrapInput />}>
+                        {weekday.map((day, index) => <MenuItem key={index} value={day}><Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{day}</Typography></MenuItem>)}
+                    </Select>
+                </Box>
                 <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
                 <Box>
                     <Tabs value={tabValue} onChange={handleTabChange}>
