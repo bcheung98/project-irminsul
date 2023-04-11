@@ -43,6 +43,11 @@ let dakaIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Daka's_
 let mirrorMushinIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Mirror_of_Mushin.png`);
 let puppetStringsIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Puppet_Strings.png`);
 
+let apepIcon = (`${process.env.REACT_APP_URL}/bosses/Apep.png`);
+let worldspanFernIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Worldspan_Fern.png`);
+let greenbloomIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Primordial_Greenbloom.png`);
+let everamberIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Everamber.png`);
+
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(() => ({
@@ -322,6 +327,41 @@ const BossMatFilter = (props) => {
                         </FilterTooltip>
                         <FilterTooltip title="Puppet Strings" arrow placement="top">
                             <img className="filter-off" id="puppet strings-button" src={puppetStringsIcon} alt="Puppet Strings" onClick={(e) => props.setFilter(e.target.alt)} />
+                        </FilterTooltip>
+                    </div>
+                </AccordionDetails>
+            </Accordion>
+
+            {/* Apep */}
+            <Accordion>
+                <AccordionSummary>
+                    <CardHeader
+                        avatar={
+                            <Avatar src={apepIcon} alt="Shouki no Kami" sx={{ height: "32px", width: "32px", border: "1px solid rgb(30, 73, 118)", borderRadius: "5px" }} />
+                        }
+                        title={
+                            <Typography variant="body1"
+                                sx={{
+                                    fontFamily: "Genshin, monospace",
+                                    color: "white",
+                                    textDecoration: "none",
+                                }}
+                            >
+                                Apep
+                            </Typography>
+                        }
+                    />
+                </AccordionSummary>
+                <AccordionDetails>
+                    <div>
+                        <FilterTooltip title="Everamber" arrow placement="top">
+                            <img className="filter-off" id="everamber-button" src={everamberIcon} alt="Everamber" onClick={(e) => props.setFilter(e.target.alt)} />
+                        </FilterTooltip>
+                        <FilterTooltip title="Primordial Greenbloom" arrow placement="top">
+                            <img className="filter-off" id="primordial greenbloom-button" src={greenbloomIcon} alt="Primordial Greenbloom" onClick={(e) => props.setFilter(e.target.alt)} />
+                        </FilterTooltip>
+                        <FilterTooltip title="Worldspan Fern" arrow placement="top">
+                            <img className="filter-off" id="worldspan fern-button" src={worldspanFernIcon} alt="Worldspan Fern" onClick={(e) => props.setFilter(e.target.alt)} />
                         </FilterTooltip>
                     </div>
                 </AccordionDetails>

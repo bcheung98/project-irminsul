@@ -17,6 +17,7 @@ let fungalNucleusIcon = (`${process.env.REACT_APP_URL}/materials/elite_mats/Fung
 let drakeChaosPart = (`${process.env.REACT_APP_URL}/materials/elite_mats/Drake_Chaos_Part3.png`);
 let primalConstructPrismIcon = (`${process.env.REACT_APP_URL}/materials/elite_mats/Primal_Construct_Prism3.png`);
 let shellIcon = (`${process.env.REACT_APP_URL}/materials/elite_mats/Shell3.png`);
+let flowerIcon = (`${process.env.REACT_APP_URL}/materials/elite_mats/Flower3.png`);
 
 const WeaponEliteMatFilter = (props) => {
     return (
@@ -62,6 +63,9 @@ const WeaponEliteMatFilter = (props) => {
             </FilterTooltip>
             <FilterTooltip title={formatEliteMats("Shell")} arrow placement="top">
                 <img className="filter-off" id="wep-shell-button" src={shellIcon} alt="Shell" onClick={(e) => props.setWeaponFilter(e.target.alt)} />
+            </FilterTooltip>
+            <FilterTooltip title={formatEliteMats("Flower")} arrow placement="top">
+                <img className="filter-off" id="wep-flower-button" src={flowerIcon} alt="Flower" onClick={(e) => props.setWeaponFilter(e.target.alt)} />
             </FilterTooltip>
         </React.Fragment>
     )

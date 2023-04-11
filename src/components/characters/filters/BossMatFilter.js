@@ -25,6 +25,7 @@ let lgtIcon = (`${process.env.REACT_APP_URL}/materials/boss_mats/Light_Guiding_T
 let perpetualCaliberIcon = (`${process.env.REACT_APP_URL}/materials/boss_mats/Perpetual_Caliber.png`);
 let quelledCreeperIcon = (`${process.env.REACT_APP_URL}/materials/boss_mats/Quelled_Creeper.png`);
 let pseudoStamensIcon = (`${process.env.REACT_APP_URL}/materials/boss_mats/Pseudo-Stamens.png`);
+let evergloomRingIcon = (`${process.env.REACT_APP_URL}/materials/boss_mats/Evergloom_Ring.png`);
 
 const BossMatFilter = (props) => {
     return (
@@ -94,6 +95,9 @@ const BossMatFilter = (props) => {
             </FilterTooltip>
             <FilterTooltip title={formatBossMats("Pseudo-Stamens")} arrow placement="top">
                 <img className="filter-off" id="pseudo-stamens-button" src={pseudoStamensIcon} alt="Pseudo-Stamens" onClick={(e) => props.setFilter(e.target.alt)} />
+            </FilterTooltip>
+            <FilterTooltip title={formatBossMats("Evergloom Ring")} arrow placement="top">
+                <img className="filter-off" id="evergloom ring-button" src={evergloomRingIcon} alt="Evergloom Ring" onClick={(e) => props.setFilter(e.target.alt)} />
             </FilterTooltip>
         </React.Fragment>
     )

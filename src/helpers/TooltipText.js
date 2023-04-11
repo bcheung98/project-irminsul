@@ -72,6 +72,11 @@ export const formatWeeklyBossMats = (material) => {
         case "Puppet Strings":
             material += " (Shouki no Kami)";
             break;
+        case "Worldspan Fern":
+        case "Primordial Greenbloom":
+        case "Everamber":
+            material += " (Apep)";
+            break;
         default:
             material += "";
     }
@@ -365,6 +370,18 @@ export const formatEliteMats = (material) => {
         case "Shell":
             material = "Consecrated Beast Shell";
             break;
+        case "Flower":
+            material = "Hilichurl Flower";
+            break;
+        case "Flower1":
+            material = "A Flower Yet to Bloom";
+            break;
+        case "Flower2":
+            material = "Treasured Flower";
+            break;
+        case "Flower3":
+            material = "Wanderer's Blooming Flower";
+            break;
         default:
             material += "";
     }
@@ -438,6 +455,9 @@ export const formatBossMats = (material) => {
             break;
         case "Pseudo-Stamens":
             material += " (Setekh Wenut)";
+            break;
+        case "Evergloom Ring":
+            material += " (Iniquitous Baptist)";
             break;
         default:
             material += "";
