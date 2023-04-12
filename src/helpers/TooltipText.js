@@ -75,7 +75,7 @@ export const formatWeeklyBossMats = (material) => {
         case "Worldspan Fern":
         case "Primordial Greenbloom":
         case "Everamber":
-            material += " (Apep)";
+            material += " (Guardian of Apep's Oasis)";
             break;
         default:
             material += "";

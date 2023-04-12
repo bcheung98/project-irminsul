@@ -82,6 +82,12 @@ const AccordionDetails = styled(MuiAccordionDetails)(() => ({
     marginTop: "-5px",
 }));
 
+const BossNameText = styled(Typography)(() => ({
+    fontFamily: "Genshin, monospace",
+    color: "white",
+    textDecoration: "none",
+}))
+
 const BossMatFilter = (props) => {
 
     return (
@@ -94,17 +100,7 @@ const BossMatFilter = (props) => {
                         avatar={
                             <Avatar src={stormterrorIcon} alt="Stormterror" sx={{ height: "32px", width: "32px", border: "1px solid rgb(30, 73, 118)", borderRadius: "5px" }} />
                         }
-                        title={
-                            <Typography variant="body1"
-                                sx={{
-                                    fontFamily: "Genshin, monospace",
-                                    color: "white",
-                                    textDecoration: "none",
-                                }}
-                            >
-                                Stormterror
-                            </Typography>
-                        }
+                        title={<BossNameText>Stormterror</BossNameText>}
                     />
                 </AccordionSummary>
                 <AccordionDetails>
@@ -129,17 +125,7 @@ const BossMatFilter = (props) => {
                         avatar={
                             <Avatar src={andriusIcon} alt="Lupus Boreas" sx={{ height: "32px", width: "32px", border: "1px solid rgb(30, 73, 118)", borderRadius: "5px" }} />
                         }
-                        title={
-                            <Typography variant="body1"
-                                sx={{
-                                    fontFamily: "Genshin, monospace",
-                                    color: "white",
-                                    textDecoration: "none",
-                                }}
-                            >
-                                Lupus Boreas
-                            </Typography>
-                        }
+                        title={<BossNameText>Lupus Boreas</BossNameText>}
                     />
                 </AccordionSummary>
                 <AccordionDetails>
@@ -164,17 +150,7 @@ const BossMatFilter = (props) => {
                         avatar={
                             <Avatar src={childeIcon} alt="Childe" sx={{ height: "32px", width: "32px", border: "1px solid rgb(30, 73, 118)", borderRadius: "5px" }} />
                         }
-                        title={
-                            <Typography variant="body1"
-                                sx={{
-                                    fontFamily: "Genshin, monospace",
-                                    color: "white",
-                                    textDecoration: "none",
-                                }}
-                            >
-                                Childe
-                            </Typography>
-                        }
+                        title={<BossNameText>Childe</BossNameText>}
                     />
                 </AccordionSummary>
                 <AccordionDetails>
@@ -199,17 +175,7 @@ const BossMatFilter = (props) => {
                         avatar={
                             <Avatar src={azhdahaIcon} alt="Azhdaha" sx={{ height: "32px", width: "32px", border: "1px solid rgb(30, 73, 118)", borderRadius: "5px" }} />
                         }
-                        title={
-                            <Typography variant="body1"
-                                sx={{
-                                    fontFamily: "Genshin, monospace",
-                                    color: "white",
-                                    textDecoration: "none",
-                                }}
-                            >
-                                Azhdaha
-                            </Typography>
-                        }
+                        title={<BossNameText>Azhdaha</BossNameText>}
                     />
                 </AccordionSummary>
                 <AccordionDetails>
@@ -234,17 +200,7 @@ const BossMatFilter = (props) => {
                         avatar={
                             <Avatar src={signoraIcon} alt="La Signora" sx={{ height: "32px", width: "32px", border: "1px solid rgb(30, 73, 118)", borderRadius: "5px" }} />
                         }
-                        title={
-                            <Typography variant="body1"
-                                sx={{
-                                    fontFamily: "Genshin, monospace",
-                                    color: "white",
-                                    textDecoration: "none",
-                                }}
-                            >
-                                La Signora
-                            </Typography>
-                        }
+                        title={<BossNameText>La Signora</BossNameText>}
                     />
                 </AccordionSummary>
                 <AccordionDetails>
@@ -269,17 +225,7 @@ const BossMatFilter = (props) => {
                         avatar={
                             <Avatar src={raidenIcon} alt="Narukami no Mikoto" sx={{ height: "32px", width: "32px", border: "1px solid rgb(30, 73, 118)", borderRadius: "5px" }} />
                         }
-                        title={
-                            <Typography variant="body1"
-                                sx={{
-                                    fontFamily: "Genshin, monospace",
-                                    color: "white",
-                                    textDecoration: "none",
-                                }}
-                            >
-                                Narukami no Mikoto
-                            </Typography>
-                        }
+                        title={<BossNameText>Narukami no Mikoto</BossNameText>}
                     />
                 </AccordionSummary>
                 <AccordionDetails>
@@ -304,17 +250,7 @@ const BossMatFilter = (props) => {
                         avatar={
                             <Avatar src={balladeerIcon} alt="Shouki no Kami" sx={{ height: "32px", width: "32px", border: "1px solid rgb(30, 73, 118)", borderRadius: "5px" }} />
                         }
-                        title={
-                            <Typography variant="body1"
-                                sx={{
-                                    fontFamily: "Genshin, monospace",
-                                    color: "white",
-                                    textDecoration: "none",
-                                }}
-                            >
-                                Shouki no Kami
-                            </Typography>
-                        }
+                        title={<BossNameText>Shouki no Kami</BossNameText>}
                     />
                 </AccordionSummary>
                 <AccordionDetails>
@@ -332,24 +268,14 @@ const BossMatFilter = (props) => {
                 </AccordionDetails>
             </Accordion>
 
-            {/* Apep */}
+            {/* Guardian of Apep's Oasis */}
             <Accordion>
                 <AccordionSummary>
                     <CardHeader
                         avatar={
-                            <Avatar src={apepIcon} alt="Shouki no Kami" sx={{ height: "32px", width: "32px", border: "1px solid rgb(30, 73, 118)", borderRadius: "5px" }} />
+                            <Avatar src={apepIcon} alt="Guardian of Apep's Oasis" sx={{ height: "32px", width: "32px", border: "1px solid rgb(30, 73, 118)", borderRadius: "5px" }} />
                         }
-                        title={
-                            <Typography variant="body1"
-                                sx={{
-                                    fontFamily: "Genshin, monospace",
-                                    color: "white",
-                                    textDecoration: "none",
-                                }}
-                            >
-                                Apep
-                            </Typography>
-                        }
+                        title={<BossNameText>Guardian of Apep's Oasis</BossNameText>}
                     />
                 </AccordionSummary>
                 <AccordionDetails>
