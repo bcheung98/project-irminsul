@@ -5,6 +5,8 @@ import { Box } from "@mui/system";
 import { Typography, ButtonBase, Avatar, Select, MenuItem, InputBase } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { MaterialTooltip } from "../helpers/MaterialTooltip";
+import TCGCharacterCard from "./tcg/TCGCharacterCard";
+import TCGActionCard from "./tcg/TCGActionCard";
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
     "label + &": {
@@ -62,6 +64,10 @@ const VersionHighlights = (props) => {
 
     let characters = props.characters.characters.filter(char => char.release.version === version);
     let weapons = props.weapons.weapons.filter(wep => wep.release.version === version);
+    let characterCards = [];
+    let actionCards = [];
+    if (props.cards.cards[0] !== undefined) { characterCards = props.cards.cards[0].cards.filter(card => card.release.version === version) };
+    if (props.cards.cards[1] !== undefined) { actionCards = props.cards.cards[1].cards.filter(card => card.release.version === version).sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1).sort((a, b) => a.subType.toLowerCase() > b.subType.toLowerCase() ? 1 : -1).sort((a, b) => a.subType.toLowerCase() > b.subType.toLowerCase() ? 1 : -1) };
 
     return (
         <Box
@@ -169,7 +175,6 @@ const VersionHighlights = (props) => {
                             }
                         </Grid>
                     </Box>
-                    <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
                 </Box>
             }
 
@@ -177,6 +182,7 @@ const VersionHighlights = (props) => {
             {
                 weapons.length > 0 &&
                 <Box>
+                    <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
                     <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "10px" }}>
                         New Weapons
                     </Typography>
@@ -239,6 +245,35 @@ const VersionHighlights = (props) => {
                     </Box>
                 </Box>
             }
+
+            {/* NEW TCG CARDS */}
+            {
+                characterCards.length > 0 && actionCards.length > 0 &&
+                <Box>
+                    <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+                    <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "30px" }}>
+                        New TCG Cards
+                    </Typography>
+                    <Grid container>
+                        {
+                            characterCards.map((card, index) => (
+                                <Box sx={{ mx: "auto", my: "10px" }} key={index}>
+                                    <TCGCharacterCard key={card.name} char={card} preview />
+                                </Box>
+                            ))
+                        }
+                    </Grid>
+                    <Grid container>
+                        {
+                            actionCards.map((card, index) => (
+                                <Box sx={{ mx: "auto", my: "10px" }} key={index}>
+                                    <TCGActionCard key={card.name} card={card} preview />
+                                </Box>
+                            ))
+                        }
+                    </Grid>
+                </Box>
+            }
         </Box>
     )
 }
@@ -246,7 +281,8 @@ const VersionHighlights = (props) => {
 const mapStateToProps = (state) => {
     return {
         characters: state.characters,
-        weapons: state.weapons
+        weapons: state.weapons,
+        cards: state.cards
     }
 }
 

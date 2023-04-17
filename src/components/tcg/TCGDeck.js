@@ -150,10 +150,10 @@ const TCGDeck = (props) => {
                             </Typography>
                         </Button>
                         <Grid container>
-                            {characterCards.map(card => <TCGCharacterCard key={card.name} char={card} />)}
+                            {characterCards.map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
                         </Grid>
                         <Grid container>
-                            {actionCards.map((card, index) => <TCGActionCard key={index} card={card} />)}
+                            {actionCards.map((card, index) => <TCGActionCard key={index} card={card} preview={false} />)}
                         </Grid>
                     </AccordionDetails>
                 </Accordion>

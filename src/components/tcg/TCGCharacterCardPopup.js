@@ -106,14 +106,19 @@ const TCGCharacterCardPopup = (props) => {
                         <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}_Character_Card.png`} alt={name} style={{ width: "250px" }} />
                     </Box>
                     {
-                        props.inDeck === false ?
-                            <Button variant="contained" sx={{ m: "20px" }} onClick={() => props.addCharCardToDeck(props.char)}>
-                                <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Add to Deck</Typography>
-                            </Button>
-                            :
-                            <Button variant="contained" sx={{ m: "20px" }} onClick={() => props.removeCharCardToDeck(props.char)}>
-                                <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Remove from Deck</Typography>
-                            </Button>
+                        props.preview === false &&
+                        <React.Fragment>
+                            {
+                                props.inDeck === false ?
+                                    <Button variant="contained" sx={{ m: "20px" }} onClick={() => props.addCharCardToDeck(props.char)}>
+                                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Add to Deck</Typography>
+                                    </Button>
+                                    :
+                                    <Button variant="contained" sx={{ m: "20px" }} onClick={() => props.removeCharCardToDeck(props.char)}>
+                                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Remove from Deck</Typography>
+                                    </Button>
+                            }
+                        </React.Fragment>
                     }
                 </Box>
                 <Grid xs={9}>

@@ -23,7 +23,7 @@ const CurrentCharacterCards = (cards, deck) => {
     return cards.filter(card => !deckNames.includes(card.name)).sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1);
 }
 
-// FIlters out Action Cards that have been added twice to the deck
+// Filters out Action Cards that have been added twice to the deck
 const CurrentActionCards = (cards, deck) => {
     let deckNames = deck.map(card => card.name);
     let counts = {};
@@ -31,6 +31,7 @@ const CurrentActionCards = (cards, deck) => {
     return cards.filter(card => counts[card.name] !== 2).sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1);
 }
 
+// Applies current filters
 const FilterTCGActionCards = (cardList, filters, searchValue) => {
     let cards = [...cardList];
     if (filters.length > 0) {
@@ -145,8 +146,8 @@ const TCGBrowser = (props) => {
                 (
                     view === "char" ?
                         <Grid item xs={9}>
-                            <Grid container>
-                                {CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards).map(card => <TCGCharacterCard key={card.name} char={card} />)}
+                            <Grid container sx={{ ml: "15px" }}>
+                                {CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
                             </Grid>
                         </Grid>
                         :
@@ -184,8 +185,8 @@ const TCGBrowser = (props) => {
                                 </Paper>
                             </Box>
                             <Grid item xs={9}>
-                                <Grid container>
-                                    {FilterTCGActionCards(CurrentActionCards(cards.cards[1].cards, deck.deck.actionCards), filters, searchValue).map(card => <TCGActionCard key={card.name} card={card} />)}
+                                <Grid container sx={{ ml: "15px" }}>
+                                    {FilterTCGActionCards(CurrentActionCards(cards.cards[1].cards, deck.deck.actionCards), filters, searchValue).map(card => <TCGActionCard key={card.name} card={card} preview={false} />)}
                                 </Grid>
                             </Grid>
                         </React.Fragment>

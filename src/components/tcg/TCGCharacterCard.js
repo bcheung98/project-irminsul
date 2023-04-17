@@ -25,7 +25,7 @@ const TCGCharacterCard = (props) => {
             <Box
                 sx={{
                     width: "150",
-                    ml: "30px",
+                    mx: "15px",
                     mb: "45px",
                     position: "relative",
                     cursor: "pointer"
@@ -96,7 +96,7 @@ const TCGCharacterCard = (props) => {
                 onClose={handleClose}
                 maxWidth={false}
             >
-                <TCGCharacterCardPopup key={name} char={props.char} inDeck={deck.characterCards.includes(props.char)} />
+                <TCGCharacterCardPopup key={name} char={props.char} inDeck={deck.characterCards.includes(props.char)} preview={props.preview} />
             </Dialog>
         </Box>
     )

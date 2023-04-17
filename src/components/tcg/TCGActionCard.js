@@ -23,7 +23,7 @@ const TCGActionCard = (props) => {
             <Box
                 sx={{
                     width: "150",
-                    ml: "30px",
+                    mx: "15px",
                     mb: "45px",
                     position: "relative",
                     cursor: "pointer"
@@ -58,7 +58,7 @@ const TCGActionCard = (props) => {
                 onClose={handleClose}
                 maxWidth={false}
             >
-                <TCGActionCardPopup key={name} card={props.card} inDeck={deck.actionCards.includes(props.card)} count={deck.actionCards.filter(card => card === props.card).length} />
+                <TCGActionCardPopup key={name} card={props.card} inDeck={deck.actionCards.includes(props.card)} count={deck.actionCards.filter(card => card === props.card).length} preview={props.preview} />
             </Dialog>
         </Box>
     )
