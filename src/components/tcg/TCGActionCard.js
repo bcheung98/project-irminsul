@@ -49,7 +49,7 @@ const TCGActionCard = (props) => {
                             color: "white",
                         }}
                         variant="body2">
-                        {name}
+                        {props.card.displayName ? props.card.displayName : name}
                     </Typography>
                 </Box>
             </Box>

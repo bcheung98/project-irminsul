@@ -34,7 +34,7 @@ const TCGActionCardPopup = (props) => {
                     }}
                     title={
                         <Typography sx={{ fontFamily: "Genshin, sans-serif", color: "white" }} variant="h4">
-                            {name}
+                            {props.card.displayName ? props.card.displayName : name}
                         </Typography>
                     }
                 />

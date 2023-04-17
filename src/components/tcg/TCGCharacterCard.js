@@ -87,7 +87,7 @@ const TCGCharacterCard = (props) => {
                             color: "white",
                         }}
                         variant="body1">
-                        {name}
+                        {props.char.displayName ? props.char.displayName : name}
                     </Typography>
                 </Box>
             </Box>
