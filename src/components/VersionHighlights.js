@@ -31,8 +31,9 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 const VersionHighlights = (props) => {
 
     // MAKE SURE TO CHANGE THIS EVERY UPDATE!
-    let versions = ["3.6", "3.5", "3.4", "3.3", "3.2", "3.1", "3.0", "2.8", "2.7", "2.6", "2.5", "2.4", "2.3", "2.2", "2.1", "2.0", "1.6", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0"]
+    let versions = ["3.7", "3.6", "3.5", "3.4", "3.3", "3.2", "3.1", "3.0", "2.8", "2.7", "2.6", "2.5", "2.4", "2.3", "2.2", "2.1", "2.0", "1.6", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0"]
     let versionNames = [
+        "Version 3.7",
         "A Parade of Providence",
         "Windblume's Breath",
         "The Exquisite Night Chimes",
@@ -248,7 +249,7 @@ const VersionHighlights = (props) => {
 
             {/* NEW TCG CARDS */}
             {
-                characterCards.length > 0 && actionCards.length > 0 &&
+                characterCards.length > 0 || actionCards.length > 0 ?
                 <Box>
                     <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
                     <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "30px" }}>
@@ -273,6 +274,8 @@ const VersionHighlights = (props) => {
                         }
                     </Grid>
                 </Box>
+                :
+                null
             }
         </Box>
     )
