@@ -24,9 +24,8 @@ const TCGCharacterCard = (props) => {
         <Box sx={{ mb: "20px" }}>
             <Box
                 sx={{
-                    width: "150",
+                    width: "150px",
                     mx: "15px",
-                    mb: "45px",
                     position: "relative",
                     cursor: "pointer"
                 }}
@@ -80,13 +79,15 @@ const TCGCharacterCard = (props) => {
                 </Box>
                 <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}_Character_Card.png`} alt={name} style={{ width: "150px" }} />
                 {/* Card Name */}
-                <Box sx={{ position: "absolute" }}>
+                <Box>
                     <Typography
                         sx={{
                             fontFamily: "Genshin, sans-serif",
                             color: "white",
                         }}
-                        variant="body1">
+                        variant="body1"
+                        align="center"
+                    >
                         {props.char.displayName ? props.char.displayName : name}
                     </Typography>
                 </Box>

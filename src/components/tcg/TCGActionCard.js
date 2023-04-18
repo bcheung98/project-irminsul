@@ -22,9 +22,8 @@ const TCGActionCard = (props) => {
         <Box sx={{ mb: "20px" }}>
             <Box
                 sx={{
-                    width: "150",
+                    width: "150px",
                     mx: "15px",
-                    mb: "45px",
                     position: "relative",
                     cursor: "pointer"
                 }}
@@ -41,14 +40,15 @@ const TCGActionCard = (props) => {
                 </Box>
                 <img src={`${process.env.REACT_APP_URL}/tcg/action_cards/${name.split(" ").join("_")}_${type}_Card.png`} alt={name} style={{ width: "150px" }} />
                 {/* Card Name */}
-                <Box sx={{ position: "absolute" }}>
+                <Box>
                     <Typography
                         sx={{
                             fontFamily: "Genshin, sans-serif",
-                            fontSize: "9.5pt",
                             color: "white",
                         }}
-                        variant="body2">
+                        variant="body2"
+                        align="center"
+                    >
                         {props.card.displayName ? props.card.displayName : name}
                     </Typography>
                 </Box>
