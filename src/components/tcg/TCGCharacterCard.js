@@ -66,7 +66,7 @@ const TCGCharacterCard = (props) => {
                     sx={{
                         position: "absolute",
                         top: "10px",
-                        right: "-18px"
+                        right: "-23px"
                     }}
                 >
                     {
@@ -77,7 +77,13 @@ const TCGCharacterCard = (props) => {
                         ))
                     }
                 </Box>
-                <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}_Character_Card.png`} alt={name} style={{ width: "150px" }} />
+                <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}_Character_Card.png`} alt={name}
+                    style={{
+                        width: "150px",
+                        border: "2px solid rgb(30, 73, 118)",
+                        borderRadius: "18px",
+                    }}
+                />
                 {/* Card Name */}
                 <Box>
                     <Typography

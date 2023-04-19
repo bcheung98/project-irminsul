@@ -38,7 +38,13 @@ const TCGActionCard = (props) => {
                 >
                     <TCGDiceCost cost={cost} type={"card"} />
                 </Box>
-                <img src={`${process.env.REACT_APP_URL}/tcg/action_cards/${name.split(" ").join("_")}_${type}_Card.png`} alt={name} style={{ width: "150px" }} />
+                <img src={`${process.env.REACT_APP_URL}/tcg/action_cards/${name.split(" ").join("_")}_${type}_Card.png`} alt={name}
+                    style={{
+                        width: "150px",
+                        border: "2px solid rgb(30, 73, 118)",
+                        borderRadius: "18px",
+                    }}
+                />
                 {/* Card Name */}
                 <Box>
                     <Typography
