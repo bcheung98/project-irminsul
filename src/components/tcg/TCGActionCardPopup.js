@@ -8,12 +8,12 @@ import TCGDiceCost from "./TCGDiceCost";
 
 const TCGActionCardPopup = (props) => {
 
-    let { name, type, subType, cost, description } = props.card;
+    let { name, type, subType, cost, description, splash } = props.card;
 
     return (
         <Box
             sx={{
-                width: "75vw",
+                width: "80vw",
                 p: "15px",
                 backgroundColor: "rgb(0, 30, 60)",
                 border: "2px solid rgb(30, 73, 118)",
@@ -75,25 +75,27 @@ const TCGActionCardPopup = (props) => {
                         >
                             <TCGDiceCost cost={cost} type={"card-large"} />
                         </Box>
-                        <img src={`${process.env.REACT_APP_URL}/tcg/action_cards/${name.split(" ").join("_")}_${type}_Card.png`} alt={name} style={{ width: "250px" }} />
+                        <img src={`${process.env.REACT_APP_URL}/tcg/action_cards/${name.split(" ").join("_")}_${type}_Card.png`} alt={name}
+                            style={{
+                                width: "250px",
+                                border: "2px solid rgb(30, 73, 118)",
+                                borderRadius: "28px",
+                            }}
+                        />
+                        {
+                            splash !== undefined &&
+                            <Box
+                                sx={{
+                                    maxWidth: "250px",
+                                    my: "20px"
+                                }}
+                            >
+                                <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>
+                                    <i>{parse(splash.description)}</i>
+                                </Typography>
+                            </Box>
+                        }
                     </Box>
-                    {
-                        props.preview === false &&
-                        <React.Fragment>
-                            {
-                                props.count < 2 &&
-                                <Button variant="contained" sx={{ mx: "20px", my: "5px" }} onClick={() => props.addActionCardToDeck(props.card)}>
-                                    <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Add to Deck</Typography>
-                                </Button>
-                            }
-                            {
-                                props.inDeck === true &&
-                                <Button variant="contained" sx={{ mx: "20px", my: "5px" }} onClick={() => props.removeActionCardToDeck(props.card)}>
-                                    <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Remove from Deck</Typography>
-                                </Button>
-                            }
-                        </React.Fragment>
-                    }
                 </Box>
                 <Grid xs={9}>
                     <Box
@@ -111,6 +113,23 @@ const TCGActionCardPopup = (props) => {
                             {parse(description)}
                         </Typography>
                     </Box>
+                    {
+                        props.preview === false &&
+                        <React.Fragment>
+                            {
+                                props.count < 2 &&
+                                <Button variant="contained" sx={{ mr: "10px", my: "20px" }} onClick={() => props.addActionCardToDeck(props.card)}>
+                                    <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Add to Deck</Typography>
+                                </Button>
+                            }
+                            {
+                                props.inDeck === true &&
+                                <Button variant="contained" color="secondary" sx={{ my: "20px" }} onClick={() => props.removeActionCardToDeck(props.card)}>
+                                    <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Remove from Deck</Typography>
+                                </Button>
+                            }
+                        </React.Fragment>
+                    }
                 </Grid>
             </Grid>
         </Box>

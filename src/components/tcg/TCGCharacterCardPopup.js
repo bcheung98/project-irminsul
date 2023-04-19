@@ -11,12 +11,12 @@ import { FormatTCGTalentKey } from "../../helpers/FormatTCGTalentKey";
 
 const TCGCharacterCardPopup = (props) => {
 
-    let { name, element, weapon, nation, hp, talents } = props.char;
+    let { name, element, weapon, nation, hp, talents, splash } = props.char;
 
     return (
         <Box
             sx={{
-                width: "75vw",
+                width: "80vw",
                 p: "15px",
                 backgroundColor: "rgb(0, 30, 60)",
                 border: "2px solid rgb(30, 73, 118)",
@@ -103,23 +103,27 @@ const TCGCharacterCardPopup = (props) => {
                                 </Typography>
                             </Box>
                         </Box>
-                        <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}_Character_Card.png`} alt={name} style={{ width: "250px" }} />
+                        <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}_Character_Card.png`} alt={name}
+                            style={{
+                                width: "250px",
+                                border: "2px solid rgb(30, 73, 118)",
+                                borderRadius: "28px",
+                            }}
+                        />
+                        {
+                            splash !== undefined &&
+                            <Box
+                                sx={{
+                                    maxWidth: "250px",
+                                    my: "20px"
+                                }}
+                            >
+                                <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>
+                                    <i>{parse(splash.description)}</i>
+                                </Typography>
+                            </Box>
+                        }
                     </Box>
-                    {
-                        props.preview === false &&
-                        <React.Fragment>
-                            {
-                                props.inDeck === false ?
-                                    <Button variant="contained" sx={{ m: "20px" }} onClick={() => props.addCharCardToDeck(props.char)}>
-                                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Add to Deck</Typography>
-                                    </Button>
-                                    :
-                                    <Button variant="contained" sx={{ m: "20px" }} onClick={() => props.removeCharCardToDeck(props.char)}>
-                                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Remove from Deck</Typography>
-                                    </Button>
-                            }
-                        </React.Fragment>
-                    }
                 </Box>
                 <Grid xs={9}>
                     <Box
@@ -183,6 +187,21 @@ const TCGCharacterCardPopup = (props) => {
                             })
                         }
                     </Box>
+                    {
+                        props.preview === false &&
+                        <React.Fragment>
+                            {
+                                props.inDeck === false ?
+                                    <Button variant="contained" sx={{ my: "20px" }} onClick={() => props.addCharCardToDeck(props.char)}>
+                                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Add to Deck</Typography>
+                                    </Button>
+                                    :
+                                    <Button variant="contained" sx={{ my: "20px" }} onClick={() => props.removeCharCardToDeck(props.char)}>
+                                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Remove from Deck</Typography>
+                                    </Button>
+                            }
+                        </React.Fragment>
+                    }
                 </Grid>
             </Grid>
         </Box>
