@@ -24,12 +24,12 @@ const ElementalIcon = {
 }
 
 const Pyro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Pyro.png`} alt="Pyro" sx={ElementalIcon} />
-const Hydro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Hydro.png`} alt="" sx={ElementalIcon} />
-const Electro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Electro.png`} alt="" sx={ElementalIcon} />
-const Cryo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Cryo.png`} alt="" sx={ElementalIcon} />
-const Anemo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Anemo.png`} alt="" sx={ElementalIcon} />
-const Geo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Geo.png`} alt="" sx={ElementalIcon} />
-const Dendro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Dendro.png`} alt="" sx={ElementalIcon} />
+const Hydro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Hydro.png`} alt="Hydro" sx={ElementalIcon} />
+const Electro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Electro.png`} alt="Electro" sx={ElementalIcon} />
+const Cryo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Cryo.png`} alt="Cryo" sx={ElementalIcon} />
+const Anemo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Anemo.png`} alt="Anemo" sx={ElementalIcon} />
+const Geo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Geo.png`} alt="Geo" sx={ElementalIcon} />
+const Dendro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Dendro.png`} alt="Dendro" sx={ElementalIcon} />
 
 const Plus = () => <Typography sx={{ mx: "5px", mt: "5px", color: "white" }}>+</Typography>
 const Slash = () => <Typography sx={{ mx: "2.5px", mt: "5px", color: "white" }}>/</Typography>
