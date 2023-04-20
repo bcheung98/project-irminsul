@@ -53,7 +53,7 @@ const TCGGlossary = () => {
             < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
 
             <GenshinFont variant="h5">
-                Damage Types
+                Damage
             </GenshinFont>
             <br />
             <GenshinFont variant="h6">
@@ -75,7 +75,13 @@ const TCGGlossary = () => {
                         Piercing DMG cannot be increased by any bonuses, but cannot be defended against using Shields or DMG Immunity either.
                     </Typography>
                 </Box>
-            </GenshinFont >
+                <Box sx={MainBoxStyle}>
+                    Shield
+                    <Typography sx={DescriptionText} variant="body1">
+                        This Shield will be consumed to protect the character who equips it from DMG.
+                    </Typography>
+                </Box>
+            </GenshinFont>
 
             < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
 
@@ -214,6 +220,51 @@ const TCGGlossary = () => {
                     DMG +2 for this instance
                 </Typography>
             </Box>
+
+            < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+
+            <GenshinFont variant="h5">
+                General Terms
+            </GenshinFont>
+            <br />
+            <GenshinFont variant="h6">
+                <Box sx={MainBoxStyle}>
+                    Combat Action
+                    <Typography sx={DescriptionText} variant="body1">
+                        You can continue with other actions after conducting 1 Fast Action.<br />
+                        Only after conducting 1 Combat Action will the turn pass over to your opponent.
+                    </Typography>
+                </Box>
+                <Box sx={MainBoxStyle}>
+                    Fast Action
+                    <Typography sx={DescriptionText} variant="body1">
+                        After you finish 1 Combat Action, it will be your opponent's turn.<br />
+                        <b>Playing a card from your Hand with this rule is also a Combat Action rather than a Fast Action.</b>
+                    </Typography>
+                </Box>
+                <Box sx={MainBoxStyle}>
+                    Usage(s)
+                    <Typography sx={DescriptionText} variant="body1">
+                        After this card's effect is triggered, 1 <b>Usage</b> of it will be consumed.<br />
+                        This card will be discarded immediately once it has 0 <b>Usages</b> remaining.
+                    </Typography>
+                </Box>
+                <Box sx={MainBoxStyle}>
+                    Duration (Rounds)
+                    <Typography sx={DescriptionText} variant="body1">
+                        Each time you reach the end of a Round, <b>Duration (Rounds)</b> -1.<br />
+                        This card will be discarded immediately once <b>Duration (Rounds)</b> runs out.
+                    </Typography>
+                </Box>
+                <Box sx={MainBoxStyle}>
+                    Prepare Skill
+                    <Typography sx={DescriptionText} variant="body1">
+                        Some Skills cannot be used directly. Instead they need to be <b>prepared</b> over a certain number of turns.<br />
+                        When it is a certain player's turn, and this player's active character is currently <b>preparing</b> a Skill, this player's turn will be skipped. If the Skill has finished being <b>prepared</b>, the character will directly use that Skill at this time. (Skills that require <b>preparing</b> cannot activate effects triggered by "using a Skill")<br />
+                        Only active characters can <b>prepare</b> Skills, and if an active character who is <b>preparing</b> a Skill gets switched off-field, their <b>preparation</b> will be interrupted.
+                    </Typography>
+                </Box>
+            </GenshinFont>
 
         </Box >
     )
