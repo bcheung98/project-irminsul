@@ -18,6 +18,7 @@ import WeaponCommonMatFilter from "./WeaponCommonMatFilter";
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} {...props} />
 ))(({ theme }) => ({
+    backgroundColor: `${theme.paper.backgroundColor}`,
     '&:not(:last-child)': {
         borderBottom: 0,
     },
@@ -32,7 +33,7 @@ const AccordionSummary = styled((props) => (
         {...props}
     />
 ))(({ theme }) => ({
-    backgroundColor: "rgb(9, 24, 39)",
+    backgroundColor: `${theme.paper.backgroundColor}`,
     flexDirection: 'row-reverse',
     '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
         transform: 'rotate(90deg)',
@@ -43,7 +44,7 @@ const AccordionSummary = styled((props) => (
 }));
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-    backgroundColor: "rgb(9, 24, 39)",
+    backgroundColor: `${theme.paper.backgroundColor}`,
     padding: "10px",
 }));
 
@@ -59,12 +60,14 @@ const WeaponFilters = () => {
                 ml: "35px",
             }}
         >
-            <Paper variant="outlined" square sx={{
-                color: `${theme.text.color}`,
-                backgroundColor: "rgb(0, 30, 60)",
-                border: "2px solid rgb(30, 73, 118)",
-                borderRadius: "5px",
-            }}>
+            <Paper variant="outlined" square
+                sx={{
+                    color: `${theme.text.color}`,
+                    backgroundColor: `${theme.appbar.backgroundColor}`,
+                    border: `2px solid ${theme.border.color}`,
+                    borderRadius: "5px",
+                }}
+            >
                 <Typography variant="h6" sx={{
                     ml: "15px",
                     my: "10px",

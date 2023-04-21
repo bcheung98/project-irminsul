@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { StyledTableCell } from "../../helpers/StyledTable";
 import { Box } from "@mui/system";
 import { Typography, ButtonBase, Avatar, TableRow } from "@mui/material";
@@ -39,11 +40,13 @@ let CurrentBanner = (startDate, endDate) => {
 
 const CharacterBannerRow = (props) => {
 
+    const theme = useTheme();
+
     let { row, index } = props;
 
     return (
         <React.Fragment>
-            <TableRow key={index} sx={CurrentBanner(row.startDate, row.endDate)} >
+            <TableRow key={index} sx={CurrentBanner(row.startDate, row.endDate)}>
 
                 { /* Version */}
                 <StyledTableCell>
@@ -61,11 +64,11 @@ const CharacterBannerRow = (props) => {
                                         sx={{
                                             margin: "auto",
                                             ml: "2px",
-                                            border: "1px solid rgb(30, 73, 118)",
+                                            border: `1px solid ${theme.border.color}`,
                                             borderRadius: "5px",
                                             width: "64px",
                                             height: "64px",
-                                            backgroundColor: "rgb(9, 24, 39)",
+                                            backgroundColor: `${theme.materialImage.backgroundColor}`,
                                         }}
                                         style={CharIconBackground(index, row.banner.length)}
                                     />

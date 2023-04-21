@@ -14,7 +14,7 @@ import TCGGlossary from "./TCGGlossary";
 
 const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
     "&.MuiToggleButton-root": {
-        border: "1px solid rgb(30, 73, 118)",
+        border: `2px solid ${theme.border.color}`,
         "&.Mui-selected": {
             backgroundColor: "rgb(0, 127, 255)"
         }
@@ -182,7 +182,7 @@ const TCGBrowser = (props) => {
                                     {buttons}
                                 </ToggleButtonGroup>
                                 <Paper sx={{
-                                    border: "2px solid rgb(30, 73, 118)",
+                                    border: `2px solid ${theme.border.color}`,
                                     borderRadius: "5px",
                                     backgroundColor: "rgb(0, 30, 60)",
                                     display: "flex",

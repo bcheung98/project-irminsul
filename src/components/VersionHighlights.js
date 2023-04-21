@@ -75,8 +75,8 @@ const VersionHighlights = (props) => {
     return (
         <Box
             sx={{
-                backgroundColor: "rgba(0, 30, 60)",
-                border: "1px solid rgb(30, 73, 118)",
+                backgroundColor: `${theme.paper.backgroundColor}`,
+                border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
                 display: "block",
                 margin: "auto",
@@ -99,7 +99,7 @@ const VersionHighlights = (props) => {
                     {versions.map((version, index) => <MenuItem key={index} value={version}><Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{version} - {versionNames[index]}</Typography></MenuItem>)}
                 </Select>
             </Box>
-            <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+            <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
 
             {/* NEW CHARACTERS */}
             {
@@ -115,7 +115,7 @@ const VersionHighlights = (props) => {
                                     return (
                                         <Box
                                             sx={{
-                                                border: "1px solid rgb(30, 73, 118)",
+                                                border: `1px solid ${theme.border.color}`,
                                                 borderRadius: "5px",
                                                 width: "195px",
                                                 mx: "auto",
@@ -129,7 +129,7 @@ const VersionHighlights = (props) => {
                                                         width: "195px",
                                                         height: "450px",
                                                         objectFit: "cover",
-                                                        borderBottom: "1px solid rgb(30, 73, 118)",
+                                                        borderBottom: `1px solid ${theme.border.color}`,
                                                         cursor: "pointer",
                                                     }}
                                                 />
@@ -185,7 +185,7 @@ const VersionHighlights = (props) => {
             {
                 weapons.length > 0 &&
                 <Box>
-                    <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+                    <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
                     <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "10px" }}>
                         New Weapons
                     </Typography>
@@ -197,7 +197,7 @@ const VersionHighlights = (props) => {
                                         width: "240px",
                                         height: "240px",
                                         borderRadius: "5px",
-                                        borderBottom: "1px solid rgb(30, 73, 118)",
+                                        borderBottom: `1px solid ${theme.border.color}`,
                                         cursor: "pointer",
                                         backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${wep.rarity}_Star.png)`,
                                         backgroundSize: "100%"
@@ -205,7 +205,7 @@ const VersionHighlights = (props) => {
                                     return (
                                         <Box
                                             sx={{
-                                                border: "1px solid rgb(30, 73, 118)",
+                                                border: `1px solid ${theme.border.color}`,
                                                 borderRadius: "5px",
                                                 width: "240px",
                                                 mx: "auto",
@@ -253,7 +253,7 @@ const VersionHighlights = (props) => {
             {
                 characterCards.length > 0 || actionCards.length > 0 ?
                 <Box>
-                    <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+                    <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
                     <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "30px" }}>
                         New TCG Cards
                     </Typography>

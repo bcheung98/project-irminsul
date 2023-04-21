@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "@mui/material/styles";
 import { Table, TableBody, TableContainer, TableHead, TableRow, Paper, Typography } from "@mui/material";
 import { formatCommonMats, formatTalents, formatWeeklyBossMats } from "../../../helpers/TooltipText";
 import { MaterialTooltip } from "../../../helpers/MaterialTooltip";
@@ -78,6 +79,8 @@ const createRow = (talentLevel, quantity, total) => {
 
 const CharacterTalentLevellingTable = (props) => {
 
+    const theme = useTheme();
+
     let { talentBook, weeklyBossMat, commonMat } = props.character.materials;
 
     const talentLevels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
@@ -87,13 +90,13 @@ const CharacterTalentLevellingTable = (props) => {
     const talentLevelRows = talentLevels.map((level, index) => createRow(level, materialQuantity[index], totalMaterialQuantity[index]))
 
     return (
-        <TableContainer sx={{
-            border: "2px solid rgb(30, 73, 118)",
-            borderRadius: "5px",
-            margin: "auto",
-            width: "100%",
-        }} component={Paper}>
-            <Table sx={{ backgroundColor: "rgb(0, 30, 60)" }}>
+        <TableContainer component={Paper}
+            sx={{
+                border: "2px solid rgb(30, 73, 118)",
+                borderRadius: "5px",
+            }}
+        >
+            <Table sx={{ backgroundColor: `${theme.table.body.backgroundColor}` }}>
                 <TableHead>
                     <TableRow>
                         <StyledTableCell className="genshinFont" align="center">Talent Level</StyledTableCell>
@@ -111,8 +114,8 @@ const CharacterTalentLevellingTable = (props) => {
                                 {row.talentLevel !== "1" ?
                                     <div style={{ display: "flex" }}>
 
-                                         {/* Mora */}
-                                         <div className="materialImageRoot">
+                                        {/* Mora */}
+                                        <div className="materialImageRoot">
                                             <MaterialTooltip title="Mora" arrow placement="top">
                                                 <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/Item_Mora.png`)} alt={commonMat} />
                                             </MaterialTooltip>
@@ -178,8 +181,8 @@ const CharacterTalentLevellingTable = (props) => {
                                 {row.talentLevel !== "1" ?
                                     <div style={{ display: "flex" }}>
 
-                                         {/* Mora Total */}
-                                         <div className="materialImageRoot">
+                                        {/* Mora Total */}
+                                        <div className="materialImageRoot">
                                             <MaterialTooltip title="Mora" arrow placement="top">
                                                 <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/Item_Mora.png`)} alt={commonMat} />
                                             </MaterialTooltip>

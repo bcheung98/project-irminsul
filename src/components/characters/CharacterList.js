@@ -84,7 +84,7 @@ function EnhancedTableHead(props) {
     };
 
     return (
-        <TableHead sx={{ borderBottom: "2px solid rgb(30, 73, 118)" }}>
+        <TableHead sx={{ borderBottom: `2px solid ${theme.border.color}` }}>
             <TableRow>
                 {headCells.map((headCell) => (
                     <TableCell
@@ -141,7 +141,7 @@ const CharacterList = (props) => {
                     color: `${theme.text.color}`,
                 }}
             >
-                <Toolbar>
+                <Toolbar sx={{ backgroundColor: `${theme.toolbar.backgroundColor}` }}>
                     <Typography variant="h5" component="div"
                         sx={{
                             fontFamily: "Genshin, sans-serif",

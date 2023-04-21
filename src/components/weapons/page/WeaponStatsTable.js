@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { Table, TableBody, TableContainer, TableHead, Paper } from "@mui/material";
 import { StyledTableCell, StyledTableRows } from "../../../helpers/StyledTable";
 import { baseATKScaling, subStatScaling } from "../../../helpers/WeaponScalings";
@@ -8,6 +9,8 @@ const createWeaponStats = (level, atk, subStat) => {
 }
 
 const WeaponStatsTable = (props) => {
+
+    const theme = useTheme();
 
     let { stats } = props.weapon;
 
@@ -19,11 +22,13 @@ const WeaponStatsTable = (props) => {
     const weaponStatRows = levels.map((level, index) => stats.subStat ? createWeaponStats(level, atkArray[index], subStatArray[index]) : createWeaponStats(level, atkArray[index], ""));
 
     return (
-        <TableContainer sx={{
-            border: "2px solid rgb(30, 73, 118)",
-            borderRadius: "5px",
-        }} component={Paper} >
-            <Table sx={{ backgroundColor: "rgb(0, 30, 60)" }}>
+        <TableContainer component={Paper}
+            sx={{
+                border: "2px solid rgb(30, 73, 118)",
+                borderRadius: "5px",
+            }}
+        >
+            <Table sx={{ backgroundColor: `${theme.table.body.backgroundColor}` }}>
                 <TableHead>
                     <StyledTableRows>
                         <StyledTableCell>Level</StyledTableCell>

@@ -19,7 +19,7 @@ const TCGActionCardPopup = (props) => {
                 width: "80vw",
                 p: "15px",
                 backgroundColor: "rgb(0, 30, 60)",
-                border: "2px solid rgb(30, 73, 118)",
+                border: `2px solid ${theme.border.color}`,
                 borderRadius: "5px",
             }}
         >
@@ -81,7 +81,7 @@ const TCGActionCardPopup = (props) => {
                         <img src={`${process.env.REACT_APP_URL}/tcg/action_cards/${name.split(" ").join("_")}_${type}_Card.png`} alt={name}
                             style={{
                                 width: "250px",
-                                border: "2px solid rgb(30, 73, 118)",
+                                border: `2px solid ${theme.border.color}`,
                                 borderRadius: "28px",
                             }}
                         />
@@ -104,7 +104,7 @@ const TCGActionCardPopup = (props) => {
                     <Box
                         sx={{
                             backgroundColor: "rgb(9, 24, 39)",
-                            border: "1px solid rgb(30, 73, 118)",
+                            border: `2px solid ${theme.border.color}`,
                             borderRadius: "5px",
                             color: `${theme.text.color}`,
                             maxHeight: "60vh",

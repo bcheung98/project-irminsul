@@ -23,7 +23,7 @@ const CharacterCard = (props) => {
                     height: 185,
                     mx: "auto",
                     my: "10px",
-                    backgroundColor: `${theme.paper.backgroundColor}`,
+                    backgroundColor: `${theme.card.backgroundColor}`,
                     border: `1px solid ${theme.border.color}`,
                     borderRadius: "5px",
                     fontFamily: "Genshin, sans-serif"

@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useTheme } from "@mui/material/styles";
 import { Table, TableBody, TableContainer, TableHead } from "@mui/material";
 import { StyledTableCell, StyledTableRows } from "../../../helpers/StyledTable";
 
@@ -8,17 +9,19 @@ const createTalentScaling = (level, a, b, c, d, e, f, g, h, i, j, k, l, m) => {
 
 const CharacterTalentScalingTable = (props) => {
 
+    const theme = useTheme();
+
     const rows = props.stats.map(stat => createTalentScaling(stat[0], stat[1], stat[2], stat[3], stat[4], stat[5], stat[6], stat[7], stat[8], stat[9], stat[10], stat[11], stat[12], stat[13]));
 
     return (
         <TableContainer
             sx={{
-                border: "2px solid rgb(30, 73, 118)",
+                border: `2px solid ${theme.border.color}`,
                 borderRadius: "5px",
                 margin: "auto",
                 width: "95%",
             }}>
-            <Table sx={{ backgroundColor: "rgb(0, 30, 60)" }}>
+            <Table sx={{ backgroundColor: `${theme.table.body.backgroundColor}` }}>
                 <TableHead>
                     <StyledTableRows>
                         <StyledTableCell align="center">LVL</StyledTableCell>

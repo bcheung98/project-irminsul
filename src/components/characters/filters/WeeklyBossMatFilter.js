@@ -1,5 +1,4 @@
 import React from "react";
-import { useTheme } from "@mui/material/styles";
 import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
@@ -51,7 +50,8 @@ let everamberIcon = (`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/Ev
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
-))(() => ({
+))(({ theme }) => ({
+    backgroundColor: `${theme.paper.backgroundColor}`,
     '&:not(:last-child)': {
         borderBottom: 0,
     },
@@ -65,9 +65,9 @@ const AccordionSummary = styled((props) => (
         expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem', color: "dodgerblue" }} />}
         {...props}
     />
-))(() => ({
+))(({ theme }) => ({
     height: "32px",
-    backgroundColor: "rgb(9, 24, 39)",
+    backgroundColor: `${theme.paper.backgroundColor}`,
     flexDirection: 'row-reverse',
     '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
         transform: 'rotate(90deg)',
@@ -77,8 +77,8 @@ const AccordionSummary = styled((props) => (
     },
 }));
 
-const AccordionDetails = styled(MuiAccordionDetails)(() => ({
-    backgroundColor: "rgb(9, 24, 39)",
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+    backgroundColor: `${theme.paper.backgroundColor}`,
     padding: "10px",
     marginTop: "-5px",
 }));
@@ -90,8 +90,6 @@ const BossNameText = styled(Typography)(({ theme }) => ({
 }))
 
 const BossMatFilter = (props) => {
-
-    const theme = useTheme();
 
     return (
         <div style={{ margin: "auto", width: "99%" }}>

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import "../../../css/AscensionTable.css";
 import { Table, TableBody, TableContainer, TableHead, TableRow, Paper, Typography } from "@mui/material";
 import { MaterialTooltip } from "../../../helpers/MaterialTooltip";
@@ -93,6 +94,8 @@ const createAscStats = (phase, ascLevel, quantity, total) => {
 
 const WeaponAscensionTable = (props) => {
 
+    const theme = useTheme();
+
     let { rarity } = props.weapon;
     let { ascensionMat, eliteMat, commonMat } = props.weapon.materials;
 
@@ -101,14 +104,15 @@ const WeaponAscensionTable = (props) => {
     const weaponAscStatRows = ascLevels.map((level, index) => createAscStats(index, level, WeaponMaterialQuantity[rarity][index], TotalWeaponMaterialQuantity[rarity][index]))
 
     return (
-        <TableContainer
+        <TableContainer component={Paper}
             sx={{
                 border: "2px solid rgb(30, 73, 118)",
                 borderRadius: "5px",
                 margin: "auto",
                 width: "100%",
-            }} component={Paper}>
-            <Table sx={{ backgroundColor: "rgb(0, 30, 60)" }}>
+            }}
+        >
+            <Table sx={{ backgroundColor: `${theme.table.body.backgroundColor}` }}>
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>Phase</StyledTableCell>

@@ -22,7 +22,7 @@ const TCGCharacterCardPopup = (props) => {
                 width: "80vw",
                 p: "15px",
                 backgroundColor: "rgb(0, 30, 60)",
-                border: "2px solid rgb(30, 73, 118)",
+                border: `2px solid ${theme.border.color}`,
                 borderRadius: "5px",
             }}
         >
@@ -109,7 +109,7 @@ const TCGCharacterCardPopup = (props) => {
                         <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}_Character_Card.png`} alt={name}
                             style={{
                                 width: "250px",
-                                border: "2px solid rgb(30, 73, 118)",
+                                border: `2px solid ${theme.border.color}`,
                                 borderRadius: "28px",
                             }}
                         />
@@ -132,7 +132,7 @@ const TCGCharacterCardPopup = (props) => {
                     <Box
                         sx={{
                             backgroundColor: "rgb(9, 24, 39)",
-                            border: "1px solid rgb(30, 73, 118)",
+                            border: `1px solid ${theme.border.color}`,
                             borderRadius: "5px",
                             color: `${theme.text.color}`,
                             maxHeight: "60vh",
@@ -157,7 +157,7 @@ const TCGCharacterCardPopup = (props) => {
                                                             flexDirection: "column",
                                                             width: "48px",
                                                             height: "48px",
-                                                            border: "2px solid rgb(30, 73, 118)",
+                                                            border: `2px solid ${theme.border.color}`,
                                                         }} />
                                                     :
                                                     <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={(`${process.env.REACT_APP_URL}/tcg/character_talent_icons/${name.split(" ").join("_").toLowerCase()}_${key}.png`)} style={ElementalBorderColor(element)}
@@ -166,7 +166,7 @@ const TCGCharacterCardPopup = (props) => {
                                                             flexDirection: "column",
                                                             width: "48px",
                                                             height: "48px",
-                                                            border: "2px solid rgb(30, 73, 118)",
+                                                            border: `2px solid ${theme.border.color}`,
                                                         }} />
                                             }
                                             title={
@@ -184,7 +184,7 @@ const TCGCharacterCardPopup = (props) => {
                                         <Typography variant="body1" sx={{ ml: "20px" }}>
                                             {parse(talents[key].description)}
                                         </Typography>
-                                        < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px" }} />
+                                        < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px" }} />
                                     </Box>
                                 )
                             })

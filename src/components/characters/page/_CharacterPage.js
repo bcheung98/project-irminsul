@@ -81,17 +81,19 @@ const CharacterPage = (props) => {
                                 height: "600px",
                                 objectFit: "cover",
                                 marginLeft: "15px",
-                                borderLeft: "1px solid rgb(30, 73, 118)",
-                                borderRight: "1px solid rgb(30, 73, 118)",
-                                borderBottom: "1px solid rgb(30, 73, 118)",
-                                borderRadius: "0px 0px 5px 5px",
+                                marginTop: "15px",
+                                border: `1px solid ${theme.border.color}`,
+                                borderRadius: "5px",
+                                backgroundColor: `${theme.paper.backgroundColor}`,
                                 cursor: "pointer",
-                            }} />
+                            }}
+                        />
                         <Box
                             sx={{
-                                border: "1px solid rgb(30, 73, 118)",
+                                border: `1px solid ${theme.border.color}`,
                                 borderRadius: "5px",
                                 color: `${theme.text.color}`,
+                                backgroundColor: `${theme.paper.backgroundColor}`,
                                 ml: "15px",
                                 mt: "10px",
                                 px: "20px",
@@ -108,29 +110,36 @@ const CharacterPage = (props) => {
                             >
                                 {description}
                             </Typography>
-                            <div
-                                style={{
+                            <Box
+                                sx={{
                                     display: "flex",
                                     justifyContent: "space-between",
                                 }}>
-                                <div style={{ textAlign: "left" }}>
+                                <Box sx={{ textAlign: "left" }}>
                                     <Typography variant="body2"><b>Constellation</b></Typography>
                                     <Typography variant="body2"><b>Birthday</b></Typography>
                                     <Typography variant="body2"><b>Release Date</b></Typography>
                                     <Typography variant="body2"><b>Voice Actor (EN)</b></Typography>
                                     <Typography variant="body2"><b>Voice Actor (JP)</b></Typography>
-                                </div>
-                                <div style={{ textAlign: "right" }}>
+                                </Box>
+                                <Box sx={{ textAlign: "right" }}>
                                     <Typography variant="body2">{constellation.name}</Typography>
                                     <Typography variant="body2">{birthday}</Typography>
                                     <Typography variant="body2">{`${release.date} (${release.version})`}</Typography>
                                     <Typography variant="body2">{voiceActors["en"]}</Typography>
                                     <Typography variant="body2">{voiceActors["jp"]}</Typography>
-                                </div>
-                            </div>
+                                </Box>
+                            </Box>
                         </Box>
                     </Grid>
-                    <Grid xs>
+                    <Grid xs
+                        sx={{
+                            border: `1px solid ${theme.border.color}`,
+                            borderRadius: "5px",
+                            backgroundColor: `${theme.paper.backgroundColor}`,
+                            m: 2,
+                        }}
+                    >
                         <Box sx={{ display: "flex" }}>
                             <MaterialTooltip title={`${nation} / ${element}`} arrow placement="bottom">
                                 <img style={{ marginRight: "-25px", height: "128px" }} src={(`${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}.png`)} alt={`${nation} / ${element}`} />
@@ -187,13 +196,11 @@ const CharacterPage = (props) => {
                         </Box>
                         <Box
                             sx={{
-                                border: "1px solid rgb(30, 73, 118)",
-                                borderRadius: "5px",
                                 mx: "20px",
-                                mt: "15px",
+                                my: "15px",
                             }}
                         >
-                            <Tabs value={tabValue} onChange={handleTabChange} centered>
+                            <Tabs value={tabValue} onChange={handleTabChange}>
                                 <StyledTab label="Stats" />
                                 <StyledTab label="Ascension" />
                                 <StyledTab label="Talent Levelling" />

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "@mui/material/styles";
 import "../../../css/AscensionTable.css";
 import { Table, TableBody, TableContainer, TableHead, TableRow, Paper, Typography } from "@mui/material";
 import { MaterialTooltip } from "../../../helpers/MaterialTooltip";
@@ -68,6 +69,8 @@ const createAscStats = (phase, ascLevel, quantity, total) => {
 
 const CharacterAscensionTable = (props) => {
 
+    const theme = useTheme();
+
     let { element } = props.character;
     let { bossMat, localMat, commonMat } = props.character.materials;
 
@@ -78,13 +81,13 @@ const CharacterAscensionTable = (props) => {
     const characterAscStatRows = ascLevels.map((level, index) => createAscStats(index, level, materialQuantity[index], totalMaterialQuantity[index]))
 
     return (
-        <TableContainer sx={{
-            border: "2px solid rgb(30, 73, 118)",
-            borderRadius: "5px",
-            margin: "auto",
-            width: "100%",
-        }} component={Paper}>
-            <Table sx={{ backgroundColor: "rgb(0, 30, 60)" }}>
+        <TableContainer component={Paper}
+            sx={{
+                border: "2px solid rgb(30, 73, 118)",
+                borderRadius: "5px",
+            }}
+        >
+            <Table sx={{ backgroundColor: `${theme.table.body.backgroundColor}` }}>
                 <TableHead>
                     <TableRow>
                         <StyledTableCell className="genshinFont" align="center">Phase</StyledTableCell>

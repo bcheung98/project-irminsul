@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "@mui/material/styles";
 import { Table, TableBody, TableContainer, TableHead, Paper } from "@mui/material";
 import { StyledTableCell, StyledTableRows } from "../../../helpers/StyledTable";
 import { CharacterAscensionStatScalings } from "../../../helpers/CharacterAscensionStatScalings";
@@ -8,6 +9,9 @@ const createCharacterStats = (level, hp, atk, def, critRate, critDMG, special) =
 }
 
 const CharacterStatsTable = (props) => {
+
+    const theme = useTheme();
+    
     let { rarity, stats } = props.character;
 
     const levels = ["1", "20", "20+", "40", "40+", "50", "50+", "60", "60+", "70", "70+", "80", "80+", "90"];
@@ -20,10 +24,9 @@ const CharacterStatsTable = (props) => {
             sx={{
                 border: "2px solid rgb(30, 73, 118)",
                 borderRadius: "5px",
-                margin: "auto",
-                width: "95%",
-            }}>
-            <Table sx={{ backgroundColor: "rgb(0, 30, 60)" }}>
+            }}
+        >
+            <Table sx={{ backgroundColor: `${theme.table.body.backgroundColor}` }}>
                 <TableHead>
                     <StyledTableRows>
                         <StyledTableCell>Level</StyledTableCell>
@@ -51,7 +54,7 @@ const CharacterStatsTable = (props) => {
                     ))}
                 </TableBody>
             </Table>
-        </TableContainer >
+        </TableContainer>
     )
 }
 

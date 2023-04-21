@@ -44,7 +44,9 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
     }),
 );
 
-const WeaponPage = (props, { theme }) => {
+const WeaponPage = (props) => {
+
+    const theme = useTheme();
 
     let { weapon_name } = useParams();
     let { weapons } = props;
@@ -59,16 +61,16 @@ const WeaponPage = (props, { theme }) => {
     const materialImage = {
         height: "60px",
         marginRight: "10px",
-        border: "1px solid rgb(30, 73, 118)",
+        border: `1px solid ${theme.border.color}`,
         borderRadius: "5px",
-        backgroundColor: "rgb(9, 24, 39)",
+        backgroundColor: `${theme.materialImage.backgroundColor}`,
     }
 
     if (weapon !== undefined) {
         let { name, rarity, type, description } = weapon;
         const weaponIcon = {
             width: "256px",
-            border: "1px solid rgb(30, 73, 118)",
+            border: `1px solid ${theme.border.color}`,
             borderRadius: "5px",
             backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
             backgroundSize: "100%"
@@ -140,13 +142,15 @@ const WeaponPage = (props, { theme }) => {
                         {weapon.stats.passive.name !== "" &&
                             <Box
                                 sx={{
-                                    border: "1px solid rgb(30, 73, 118)",
+                                    border: `1px solid ${theme.border.color}`,
                                     borderRadius: "5px",
                                     color: `${theme.text.color}`,
+                                    backgroundColor: `${theme.paper.backgroundColor}`,
                                     px: "20px",
                                     py: "10px",
                                     width: "50vw",
-                                }}>
+                                }}
+                            >
                                 <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif" }}>
                                     {weapon.stats.passive.name}
                                 </Typography>
@@ -160,8 +164,9 @@ const WeaponPage = (props, { theme }) => {
                 </Grid>
                 <Box
                     sx={{
-                        border: "1px solid rgb(30, 73, 118)",
+                        border: `1px solid ${theme.border.color}`,
                         borderRadius: "5px",
+                        backgroundColor: `${theme.paper.backgroundColor}`,
                         mt: "15px",
                     }}
                 >

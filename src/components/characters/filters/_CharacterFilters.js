@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { styled } from '@mui/material/styles';
-import "../../../css/filters.css";
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import { Typography, Paper } from "@mui/material";
 import MuiAccordion from '@mui/material/Accordion';
@@ -21,7 +20,8 @@ import GenderFilter from "./GenderFilter";
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} {...props} />
-))(() => ({
+))(({ theme }) => ({
+    backgroundColor: `${theme.paper.backgroundColor}`,
     '&:not(:last-child)': {
         borderBottom: 0,
     },
@@ -35,8 +35,8 @@ const AccordionSummary = styled((props) => (
         expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem', color: "dodgerblue" }} />}
         {...props}
     />
-))(() => ({
-    backgroundColor: "rgb(9, 24, 39)",
+))(({ theme }) => ({
+    backgroundColor: `${theme.paper.backgroundColor}`,
     flexDirection: 'row-reverse',
     '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
         transform: 'rotate(90deg)',
@@ -46,8 +46,8 @@ const AccordionSummary = styled((props) => (
     },
 }));
 
-const AccordionDetails = styled(MuiAccordionDetails)(() => ({
-    backgroundColor: "rgb(9, 24, 39)",
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+    backgroundColor: `${theme.paper.backgroundColor}`,
     padding: "10px",
 }));
 
@@ -61,12 +61,14 @@ const CharacterFilters = () => {
             width: "85%",
             marginLeft: "35px",
         }}>
-            <Paper variant="outlined" square sx={{
-                color: `${theme.text.color}`,
-                backgroundColor: "rgb(0, 30, 60)",
-                border: "2px solid rgb(30, 73, 118)",
-                borderRadius: "5px",
-            }}>
+            <Paper variant="outlined" square
+                sx={{
+                    color: `${theme.text.color}`,
+                    backgroundColor: `${theme.appbar.backgroundColor}`,
+                    border: `2px solid ${theme.border.color}`,
+                    borderRadius: "5px",
+                }}
+            >
                 <Typography variant="h6" sx={{
                     ml: "15px",
                     my: "10px",

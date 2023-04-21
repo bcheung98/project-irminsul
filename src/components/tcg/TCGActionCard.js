@@ -44,7 +44,7 @@ const TCGActionCard = (props) => {
                 <img src={`${process.env.REACT_APP_URL}/tcg/action_cards/${name.split(" ").join("_")}_${type}_Card.png`} alt={name}
                     style={{
                         width: "150px",
-                        border: "2px solid rgb(30, 73, 118)",
+                        border: `2px solid ${theme.border.color}`,
                         borderRadius: "18px",
                     }}
                 />

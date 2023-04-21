@@ -42,9 +42,9 @@ const CharacterOutfitDisplay = (props) => {
         <Box
             sx={{
                 width: "80vw",
-                p: "15px",
-                backgroundColor: "rgb(0, 30, 60)",
-                border: "2px solid rgb(30, 73, 118)",
+
+                backgroundColor: `${theme.paper.backgroundColor}`,
+                border: `2px solid ${theme.border.color}`,
                 borderRadius: "5px",
             }}
         >
@@ -52,6 +52,7 @@ const CharacterOutfitDisplay = (props) => {
                 variant="scrollable"
                 value={tabValue}
                 onChange={handleChangeTab}
+                sx={{ backgroundColor: `${theme.toolbar.backgroundColor}` }}
             >
                 {outfits.map((outfit, index) => (
                     <Tab key={index} label={outfit.name}
@@ -87,16 +88,18 @@ const CharacterOutfitDisplay = (props) => {
                                     <img src={(`${process.env.REACT_APP_URL}/characters/wish/Character_${name.split(" ").join("_")}_Wish.png`)} alt={outfit.name}
                                         style={{
                                             width: "95%",
-                                            border: "1px solid rgb(30, 73, 118)",
+                                            border: `1px solid ${theme.border.color}`,
                                             borderRadius: "5px",
+                                            backgroundColor: `${theme.materialImage.backgroundColor}`
                                         }}
                                     />
                                     :
                                     <img src={(`${process.env.REACT_APP_URL}/characters/outfits/Outfit_${outfit.name.split(" ").join("_")}_Preview.png`)} alt={outfit.name}
                                         style={{
                                             width: "95%",
-                                            border: "1px solid rgb(30, 73, 118)",
+                                            border: `1px solid ${theme.border.color}`,
                                             borderRadius: "5px",
+                                            backgroundColor: `${theme.materialImage.backgroundColor}`
                                         }}
                                     />
                             }

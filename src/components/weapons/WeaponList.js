@@ -86,7 +86,7 @@ function EnhancedTableHead(props) {
     };
 
     return (
-        <TableHead sx={{ borderBottom: "2px solid rgb(30, 73, 118)" }}>
+        <TableHead sx={{ borderBottom: `2px solid ${theme.border.color}` }}>
             <TableRow>
                 {headCells.map((headCell) => (
                     <TableCell
@@ -151,13 +151,15 @@ const WeaponList = (props) => {
 
     return (
         <Box sx={{ width: "100%" }}>
-            <Paper sx={{
-                border: "2px solid rgb(30, 73, 118)",
-                borderRadius: "5px",
-                backgroundColor: "rgb(0, 30, 60)",
-                color: `${theme.text.color}`,
-            }}>
-                <Toolbar>
+            <Paper
+                sx={{
+                    backgroundColor: `${theme.paper.backgroundColor}`,
+                    border: `2px solid ${theme.border.color}`,
+                    borderRadius: "5px",
+                    color: `${theme.text.color}`,
+                }}
+            >
+                <Toolbar sx={{ backgroundColor: `${theme.toolbar.backgroundColor}` }}>
                     <Typography variant="h5" component="div"
                         sx={{
                             fontFamily: "Genshin, sans-serif",
@@ -168,7 +170,7 @@ const WeaponList = (props) => {
                         {props.weapons.length} {props.weapons.length === 1 ? "Weapon" : "Weapons"}
                     </Typography>
                 </Toolbar>
-                < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "0px" }} />
+                < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "0px" }} />
                 <TableContainer>
                     <Table>
                         <EnhancedTableHead

@@ -13,9 +13,10 @@ const CharacterConstellationDisplay = (props) => {
     return (
         <Box
             sx={{
-                border: "1px solid rgb(30, 73, 118)",
+                border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
                 color: `${theme.text.color}`,
+                backgroundColor: `${theme.paper.backgroundColor}`,
                 width: "95vw",
                 margin: "auto",
                 mt: "20px",

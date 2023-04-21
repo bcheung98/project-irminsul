@@ -93,8 +93,8 @@ const FarmableToday = (props) => {
         <React.Fragment>
             <Box
                 sx={{
-                    backgroundColor: "rgba(0, 30, 60)",
-                    border: "1px solid rgb(30, 73, 118)",
+                    backgroundColor: `${theme.paper.backgroundColor}`,
+                    border: `1px solid ${theme.border.color}`,
                     borderRadius: "5px",
                     display: "block",
                     margin: "auto",
@@ -117,7 +117,7 @@ const FarmableToday = (props) => {
                         {weekday.map((day, index) => <MenuItem key={index} value={day}><Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{day}</Typography></MenuItem>)}
                     </Select>
                 </Box>
-                <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+                <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
                 <Box>
                     <Tabs value={tabValue} onChange={handleTabChange}>
                         <StyledTab label="Characters" />
@@ -144,7 +144,7 @@ const FarmableToday = (props) => {
                                                         sx={{
                                                             margin: "auto",
                                                             ml: "2px",
-                                                            border: "1px solid rgb(30, 73, 118)",
+                                                            border: `1px solid ${theme.border.color}`,
                                                             borderRadius: "5px",
                                                             width: "64px",
                                                             height: "64px",
@@ -156,7 +156,7 @@ const FarmableToday = (props) => {
                                             ))
                                         }
                                     </Grid>
-                                    < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+                                    < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
                                 </Box>
                             ))
                         }
@@ -187,7 +187,7 @@ const FarmableToday = (props) => {
                                                         sx={{
                                                             margin: "auto",
                                                             ml: "2px",
-                                                            border: "1px solid rgb(30, 73, 118)",
+                                                            border: `1px solid ${theme.border.color}`,
                                                             borderRadius: "5px",
                                                             width: "64px",
                                                             height: "64px",
@@ -199,7 +199,7 @@ const FarmableToday = (props) => {
                                             ))
                                         }
                                     </Grid>
-                                    < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+                                    < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
                                 </Box>
                             ))
                         }

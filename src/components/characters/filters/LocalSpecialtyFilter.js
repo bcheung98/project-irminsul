@@ -52,6 +52,7 @@ let sgpIcon = (`${process.env.REACT_APP_URL}/materials/local_specialties/Sand_Gr
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
+    backgroundColor: `${theme.paper.backgroundColor}`,
     '&:not(:last-child)': {
         borderBottom: 0,
     },
@@ -67,7 +68,7 @@ const AccordionSummary = styled((props) => (
     />
 ))(({ theme }) => ({
     height: "32px",
-    backgroundColor: "rgb(9, 24, 39)",
+    backgroundColor: `${theme.paper.backgroundColor}`,
     flexDirection: 'row-reverse',
     '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
         transform: 'rotate(90deg)',
@@ -78,7 +79,7 @@ const AccordionSummary = styled((props) => (
 }));
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-    backgroundColor: "rgb(9, 24, 39)",
+    backgroundColor: `${theme.paper.backgroundColor}`,
     padding: "10px",
     marginTop: "-5px",
 }));

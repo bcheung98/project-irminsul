@@ -13,7 +13,7 @@ import CharacterTalentScalingTable from "./CharacterTalentScalingTable";
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} {...props} />
-))(() => ({
+))(({ theme }) => ({
     '&:not(:last-child)': {
         borderBottom: 0,
     },
@@ -27,8 +27,8 @@ const AccordionSummary = styled((props) => (
         expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem', color: "dodgerblue" }} />}
         {...props}
     />
-))(() => ({
-    backgroundColor: "rgb(9, 24, 39)",
+))(({ theme }) => ({
+    backgroundColor: `${theme.paper.backgroundColor}`,
     flexDirection: 'row-reverse',
     '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
         transform: 'rotate(90deg)',
@@ -38,8 +38,8 @@ const AccordionSummary = styled((props) => (
     },
 }));
 
-const AccordionDetails = styled(MuiAccordionDetails)(() => ({
-    backgroundColor: "rgb(9, 24, 39)",
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+    backgroundColor: `${theme.paper.backgroundColor}`,
     padding: "10px",
 }));
 
@@ -52,9 +52,10 @@ const CharacterTalentDisplay = (props) => {
     return (
         <Box
             sx={{
-                border: "1px solid rgb(30, 73, 118)",
+                border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
                 color: `${theme.text.color}`,
+                backgroundColor: `${theme.paper.backgroundColor}`,
                 width: "95vw",
                 margin: "auto",
                 padding: "15px",
@@ -124,10 +125,12 @@ const CharacterTalentDisplay = (props) => {
                         <br />
                         {
                             ["attack", "skill", "burst", "altsprint"].includes(key) &&
-                            <Paper variant="outlined" sx={{
-                                color: `${theme.text.color}`,
-                                border: "none",
-                            }}>
+                            <Paper variant="outlined"
+                                sx={{
+                                    color: `${theme.text.color}`,
+                                    border: "none",
+                                }}
+                            >
                                 <Accordion>
                                     <AccordionSummary>
                                         <Typography variant="body1" sx={{ color: `${theme.text.color}`, fontWeight: "bold" }}>Talent Scaling</Typography>

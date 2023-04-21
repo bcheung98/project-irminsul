@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { StyledTableCellNoVert, StyledTableRows } from "../../helpers/StyledTable";
 import { Box } from "@mui/system";
 import { ButtonBase, CardHeader, Typography } from "@mui/material";
@@ -7,13 +8,15 @@ import { formatCommonMats, formatEliteMats, formatWeaponAscMats } from "../../he
 
 const WeaponRow = (props) => {
 
+    const theme = useTheme();
+
     let { row, index, weapons } = props;
     const currentWeapon = weapons.filter(weapon => weapon.name === row.name)[0];
 
     const materialImage = {
         height: "48px",
         marginRight: "3.5px",
-        border: "1px solid rgb(30, 73, 118)",
+        border: `1px solid ${theme.border.color}`,
         borderRadius: "5px",
         backgroundColor: "rgb(9, 24, 39)",
     }
@@ -68,7 +71,7 @@ const WeaponRow = (props) => {
                                 <img alt={row.weapon} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${row.type.toLowerCase()}-icon.png`)}
                                     style={{
                                         width: "32px",
-                                        border: "1px solid rgba(0, 30, 60, 0)",
+                                        border: "1px solid rgba(0, 0, 0, 0)",
                                         borderRadius: "64px",
                                     }}
                                 />

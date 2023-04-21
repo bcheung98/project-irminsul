@@ -75,7 +75,7 @@ function EnhancedTableHead(props) {
     };
 
     return (
-        <TableHead sx={{ borderBottom: "2px solid rgb(30, 73, 118)" }}>
+        <TableHead sx={{ borderBottom: `2px solid ${theme.border.color}` }}>
             <TableRow>
                 {headCells.map((headCell) => (
                     <TableCell
@@ -137,22 +137,24 @@ const BannerList = (props) => {
         setSearchValue(e.target.value);
     }
 
-    let banners = []
+    let banners = [];
     props.banners.forEach(version => Object.keys(version).slice(1).forEach(phase => banners.push([version.version, `${version.version}.${phase.slice(-1)}`, version[phase].startDate, version[phase].endDate, version[phase].banner])));
-    const rows = filterBanners(banners, searchValue).map(banner => createData(banner[0], banner[1], banner[2], banner[3], banner[4]))
+    const rows = filterBanners(banners, searchValue).map(banner => createData(banner[0], banner[1], banner[2], banner[3], banner[4]));
 
     return (
         <Box sx={{ width: "100%" }}>
-            <Paper sx={{
-                border: "2px solid rgb(30, 73, 118)",
-                borderRadius: "5px",
-                backgroundColor: "rgb(0, 30, 60)",
-                display: "flex",
-                margin: "auto",
-                height: "40px",
-                width: "90%",
-                marginBottom: "10px",
-            }}>
+            <Paper
+                sx={{
+                    border: `2px solid ${theme.border.color}`,
+                    borderRadius: "5px",
+                    backgroundColor: `${theme.paper.backgroundColor}`,
+                    display: "flex",
+                    margin: "auto",
+                    height: "40px",
+                    width: "90%",
+                    marginBottom: "10px",
+                }}
+            >
                 <InputBase
                     sx={{
                         marginLeft: "10px",
@@ -164,15 +166,17 @@ const BannerList = (props) => {
                     onChange={handleInputChange}
                 />
             </Paper>
-            <Paper sx={{
-                border: "2px solid rgb(30, 73, 118)",
-                borderRadius: "5px",
-                backgroundColor: "rgb(0, 30, 60)",
-                color: `${theme.text.color}`,
-                display: "block",
-                margin: "auto",
-                mx: "20px",
-            }}>
+            <Paper
+                sx={{
+                    border: `2px solid ${theme.border.color}`,
+                    borderRadius: "5px",
+                    backgroundColor: `${theme.paper.backgroundColor}`,
+                    color: `${theme.text.color}`,
+                    display: "block",
+                    margin: "auto",
+                    mx: "20px",
+                }}
+            >
                 <TableContainer>
                     <Table>
                         <EnhancedTableHead
