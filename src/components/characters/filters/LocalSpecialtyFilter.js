@@ -287,6 +287,12 @@ const LocalMatFilter = (props) => {
                         <FilterTooltip title="Sand Grease Pupa" arrow placement="top">
                             <img className="filter-off" id="sand grease pupa-button" src={sgpIcon} alt="Sand Grease Pupa" onClick={(e) => props.setFilter(e.target.alt)} />
                         </FilterTooltip>
+                        <FilterTooltip title="Mourning Flower" arrow placement="top">
+                            <img className="filter-off" id="mourning flower-button" src={`${process.env.REACT_APP_URL}/materials/local_specialties/Mourning_Flower.png`} alt="Mourning Flower" onClick={(e) => props.setFilter(e.target.alt)} />
+                        </FilterTooltip>
+                        <FilterTooltip title="Trishiraite" arrow placement="top">
+                            <img className="filter-off" id="trishiraite-button" src={`${process.env.REACT_APP_URL}/materials/local_specialties/Trishiraite.png`} alt="Trishiraite" onClick={(e) => props.setFilter(e.target.alt)} />
+                        </FilterTooltip>
                     </div>
                 </AccordionDetails>
             </Accordion>
