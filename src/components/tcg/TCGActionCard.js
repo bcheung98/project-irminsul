@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { Box } from "@mui/system";
 import { Typography, Dialog } from "@mui/material";
@@ -6,6 +7,8 @@ import TCGDiceCost from "./TCGDiceCost";
 import TCGActionCardPopup from "./TCGActionCardPopup";
 
 const TCGActionCard = (props) => {
+
+    const theme = useTheme();
 
     let { name, type, cost } = props.card;
     let { deck } = props.deck;
@@ -50,7 +53,7 @@ const TCGActionCard = (props) => {
                     <Typography
                         sx={{
                             fontFamily: "Genshin, sans-serif",
-                            color: "white",
+                            color: `${theme.text.color}`,
                         }}
                         variant="body2"
                         align="center"

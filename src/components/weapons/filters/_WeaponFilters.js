@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { styled } from '@mui/material/styles';
 import "../../../css/filters.css";
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
@@ -16,7 +17,7 @@ import WeaponCommonMatFilter from "./WeaponCommonMatFilter";
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} {...props} />
-))(() => ({
+))(({ theme }) => ({
     '&:not(:last-child)': {
         borderBottom: 0,
     },
@@ -30,7 +31,7 @@ const AccordionSummary = styled((props) => (
         expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem', color: "dodgerblue" }} />}
         {...props}
     />
-))(() => ({
+))(({ theme }) => ({
     backgroundColor: "rgb(9, 24, 39)",
     flexDirection: 'row-reverse',
     '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
@@ -41,12 +42,15 @@ const AccordionSummary = styled((props) => (
     },
 }));
 
-const AccordionDetails = styled(MuiAccordionDetails)(() => ({
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     backgroundColor: "rgb(9, 24, 39)",
     padding: "10px",
 }));
 
 const WeaponFilters = () => {
+
+    const theme = useTheme();
+
     return (
         <Box
             sx={{
@@ -56,7 +60,7 @@ const WeaponFilters = () => {
             }}
         >
             <Paper variant="outlined" square sx={{
-                color: "white",
+                color: `${theme.text.color}`,
                 backgroundColor: "rgb(0, 30, 60)",
                 border: "2px solid rgb(30, 73, 118)",
                 borderRadius: "5px",
@@ -71,7 +75,7 @@ const WeaponFilters = () => {
                 {/* WEAPON */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="wep-weapon-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Weapon</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="wep-weapon-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Weapon</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <WeaponTypeFilter />
@@ -81,7 +85,7 @@ const WeaponFilters = () => {
                 {/* RARITY */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="wep-rarity-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Rarity</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="wep-rarity-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Rarity</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <WeaponRarityFilter />
@@ -91,7 +95,7 @@ const WeaponFilters = () => {
                 {/* SUBSTAT */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="wep-substat-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Substat</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="wep-substat-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Substat</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <WeaponSubstatFilter />
@@ -101,27 +105,27 @@ const WeaponFilters = () => {
                 {/* ASCENSION MAT */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="wep-ascmat-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Ascension Material</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="wep-ascmat-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Ascension Material</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <WeaponAscensionMatFilter />
                     </AccordionDetails>
                 </Accordion>
 
-                 {/* ELITE MATERIAL */}
-                 <Accordion>
+                {/* ELITE MATERIAL */}
+                <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="wep-elitemat-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Elite Material</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="wep-elitemat-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Elite Material</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <WeaponEliteMatFilter />
                     </AccordionDetails>
                 </Accordion>
 
-                 {/* COMMON MATERIAL */}
-                 <Accordion>
+                {/* COMMON MATERIAL */}
+                <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="wep-common-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Common Material</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="wep-common-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Common Material</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <WeaponCommonMatFilter />

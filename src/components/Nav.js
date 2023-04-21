@@ -1,12 +1,18 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { AppBar, Box, Toolbar, Typography, Container, ButtonBase, Avatar, CardHeader } from "@mui/material";
 
 const Nav = () => {
+
+    const theme = useTheme();
+
     return (
-        <AppBar position="static" sx={{
-            backgroundColor: "rgb(0, 30, 60)",
-            borderBottom: "1px solid rgb(30, 73, 118)"
-        }}>
+        <AppBar position="static"
+            sx={{
+                backgroundColor: `${theme.appbar.backgroundColor}`,
+                borderBottom: `1px solid ${theme.border.color}`
+            }}
+        >
             <Container maxWidth="xl" sx={{ margin: 0 }}>
                 <Toolbar disableGutters>
                     <ButtonBase
@@ -123,6 +129,7 @@ const Nav = () => {
             </Container>
         </AppBar>
     );
+
 }
 
 export default Nav;

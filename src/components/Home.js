@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../App.css";
+import { useTheme } from "@mui/material/styles";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -7,13 +7,16 @@ import FarmableToday from "./FarmableToday";
 import VersionHighlights from "./VersionHighlights";
 
 const Home = () => {
+
+    const theme = useTheme();
+
     return (
         <React.Fragment>
             <Box>
                 <Box
                     sx={{
-                        backgroundColor: "rgba(0, 30, 60, .8)",
-                        border: "1px solid rgb(30, 73, 118)",
+                        backgroundColor: `${theme.paper.backgroundColor}`,
+                        border: `1px solid ${theme.border.color}`,
                         borderRadius: "5px",
                         display: "block",
                         margin: "auto",
@@ -21,7 +24,7 @@ const Home = () => {
                         width: "70%",
                         p: "20px",
                         textAlign: "center",
-                        color: "white",
+                        color: `${theme.text.color}`,
                     }}
                 >
                     <Typography variant="h3" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>Welcome to PROJECT IRMINSUL</Typography>

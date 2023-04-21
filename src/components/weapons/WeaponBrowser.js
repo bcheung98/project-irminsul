@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { Typography, Grid, Paper, InputBase } from "@mui/material";
 import { Box } from "@mui/system";
@@ -7,6 +8,8 @@ import { filterWeapons } from "../../helpers/FilterWeapons";
 import WeaponFilters from "./filters/_WeaponFilters";
 
 const WeaponBrowser = (props) => {
+
+    const theme = useTheme();
 
     const [searchValue, setSearchValue] = React.useState("");
 
@@ -35,7 +38,7 @@ const WeaponBrowser = (props) => {
                         display: { xs: "none", md: "flex" },
                         fontFamily: "Genshin, sans-serif",
                         letterSpacing: ".2rem",
-                        color: "white",
+                        color: `${theme.text.color}`,
                         textDecoration: "none",
                         textAlign: "center",
                     }}
@@ -67,7 +70,7 @@ const WeaponBrowser = (props) => {
                             sx={{
                                 marginLeft: "10px",
                                 flex: 1,
-                                color: "white",
+                                color: `${theme.text.color}`,
                                 fontFamily: "Genshin, sans-serif",
                             }}
                             placeholder="Search"

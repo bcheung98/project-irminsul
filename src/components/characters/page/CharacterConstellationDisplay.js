@@ -1,9 +1,12 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import parse from "html-react-parser";
 import { Typography, Box, Avatar, CardHeader } from "@mui/material";
 import { ElementalBorderColor } from "../../../helpers/ElementalColors";
 
 const CharacterConstellationDisplay = (props) => {
+
+    const theme = useTheme();
 
     let { name, element, constellation } = props.character;
 
@@ -12,7 +15,7 @@ const CharacterConstellationDisplay = (props) => {
             sx={{
                 border: "1px solid rgb(30, 73, 118)",
                 borderRadius: "5px",
-                color: "white",
+                color: `${theme.text.color}`,
                 width: "95vw",
                 margin: "auto",
                 mt: "20px",

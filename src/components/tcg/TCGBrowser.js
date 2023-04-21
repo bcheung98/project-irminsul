@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
 import { Box } from "@mui/system";
@@ -11,7 +12,7 @@ import TCGActionCard from "./TCGActionCard";
 import TCGDeck from "./TCGDeck";
 import TCGGlossary from "./TCGGlossary";
 
-const StyledToggleButton = styled(ToggleButton)(() => ({
+const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
     "&.MuiToggleButton-root": {
         border: "1px solid rgb(30, 73, 118)",
         "&.Mui-selected": {
@@ -55,6 +56,8 @@ const FilterTCGActionCards = (cardList, filters, searchValue) => {
 
 const TCGBrowser = (props) => {
 
+    const theme = useTheme();
+
     const [view, setView] = React.useState("char");
     const handleView = (event, newView) => {
         if (newView !== null) {
@@ -83,31 +86,31 @@ const TCGBrowser = (props) => {
 
     const buttons = [
         <StyledToggleButton value="" key="General">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>General</Typography>
+            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>General</Typography>
         </StyledToggleButton>,
         <StyledToggleButton value="Artifact" key="Artifact">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Artifact</Typography>
+            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Artifact</Typography>
         </StyledToggleButton>,
         <StyledToggleButton value="Companion" key="Companion">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Companion</Typography>
+            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Companion</Typography>
         </StyledToggleButton>,
         <StyledToggleButton value="Elemental Resonance" key="Elemental Resonance">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Elemental Resonance</Typography>
+            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Elemental Resonance</Typography>
         </StyledToggleButton>,
         <StyledToggleButton value="Food" key="Food">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Food</Typography>
+            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Food</Typography>
         </StyledToggleButton>,
         <StyledToggleButton value="Item" key="Item">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Item</Typography>
+            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Item</Typography>
         </StyledToggleButton>,
         <StyledToggleButton value="Location" key="Location">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Location</Typography>
+            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Location</Typography>
         </StyledToggleButton>,
         <StyledToggleButton value="Talent" key="Talent">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Talent</Typography>
+            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Talent</Typography>
         </StyledToggleButton>,
         <StyledToggleButton value="Weapon" key="Weapon">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Weapon</Typography>
+            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Weapon</Typography>
         </StyledToggleButton>,
     ]
 
@@ -132,7 +135,7 @@ const TCGBrowser = (props) => {
                         display: { xs: "none", md: "flex" },
                         fontFamily: "Genshin, sans-serif",
                         letterSpacing: ".2rem",
-                        color: "white",
+                        color: `${theme.text.color}`,
                         textDecoration: "none",
                         textAlign: "center",
                     }}
@@ -148,10 +151,10 @@ const TCGBrowser = (props) => {
 
             <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ mx: "30px", mb: "30px" }}>
                 <StyledToggleButton value="char">
-                    <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Character Cards</Typography>
+                    <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Character Cards</Typography>
                 </StyledToggleButton>
                 <StyledToggleButton value="action">
-                    <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Action Cards</Typography>
+                    <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Action Cards</Typography>
                 </StyledToggleButton>
             </ToggleButtonGroup>
 
@@ -191,7 +194,7 @@ const TCGBrowser = (props) => {
                                         sx={{
                                             marginLeft: "10px",
                                             flex: 1,
-                                            color: "white",
+                                            color: `${theme.text.color}`,
                                             fontFamily: "Genshin, sans-serif",
                                         }}
                                         placeholder="Search"

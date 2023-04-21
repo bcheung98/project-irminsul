@@ -1,10 +1,13 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { Box } from "@mui/system";
 import { Typography, Dialog } from "@mui/material";
 import TCGCharacterCardPopup from "./TCGCharacterCardPopup";
 
 const TCGCharacterCard = (props) => {
+
+    const theme = useTheme();
 
     let { name, hp, talents } = props.char;
     let { deck } = props.deck;
@@ -54,7 +57,7 @@ const TCGCharacterCard = (props) => {
                                 top: "50%",
                                 left: "50%",
                                 transform: "translate(-50%, -50%)",
-                                color: "white",
+                                color: `${theme.text.color}`,
                                 textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
                             }}>
                             {hp}
@@ -89,7 +92,7 @@ const TCGCharacterCard = (props) => {
                     <Typography
                         sx={{
                             fontFamily: "Genshin, sans-serif",
-                            color: "white",
+                            color: `${theme.text.color}`,
                         }}
                         variant="body1"
                         align="center"

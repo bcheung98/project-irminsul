@@ -1,10 +1,13 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { Typography, Card, CardContent, Avatar, ButtonBase, Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import CharacterMaterialGrid from "./CharacterMaterialGrid";
 import { MaterialTooltip } from "../../helpers/MaterialTooltip";
 
 const CharacterCard = (props) => {
+
+    const theme = useTheme();
 
     let { name, rarity, element, weapon } = props.character;
     const characterIconBackground = {
@@ -14,26 +17,29 @@ const CharacterCard = (props) => {
 
     return (
         <React.Fragment>
-            <Card variant="outlined" sx={{
-                width: 320,
-                height: 185,
-                mx: "auto",
-                my: "10px",
-                backgroundColor: "rgb(0, 30, 60)",
-                border: "1px solid rgb(30, 73, 118)",
-                borderRadius: "5px",
-                fontFamily: "Genshin, sans-serif"
-            }}>
+            <Card variant="outlined"
+                sx={{
+                    width: 320,
+                    height: 185,
+                    mx: "auto",
+                    my: "10px",
+                    backgroundColor: `${theme.paper.backgroundColor}`,
+                    border: `1px solid ${theme.border.color}`,
+                    borderRadius: "5px",
+                    fontFamily: "Genshin, sans-serif"
+                }}
+            >
                 <CardContent sx={{ py: "10px" }}>
                     <Box
                         sx={{
                             display: "flex",
                             position: "relative"
-                        }}>
+                        }}
+                    >
                         <ButtonBase disableRipple href={`/project-irminsul/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <Typography sx={{
                                 fontFamily: "Genshin, sans-serif",
-                                color: "white",
+                                color: `${theme.text.color}`,
                             }} variant="h5">
                                 {name}
                             </Typography>
@@ -46,31 +52,28 @@ const CharacterCard = (props) => {
                             }}
                         >
                             <MaterialTooltip title={element} arrow placement="top">
-                                <Avatar sx={{
-                                    height: "30px",
-                                    width: "30px",
-                                }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} />
+                                <Avatar sx={{ height: "30px", width: "30px" }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} />
                             </MaterialTooltip>
                             <MaterialTooltip title={weapon} arrow placement="top">
-                                <Avatar sx={{
-                                    height: "30px",
-                                    width: "30px"
-                                }} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${weapon.toLowerCase()}-icon.png`)} alt={weapon} />
+                                <Avatar sx={{ height: "30px", width: "30px" }} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${weapon.toLowerCase()}-icon.png`)} alt={weapon} />
                             </MaterialTooltip>
                         </Box>
                     </Box>
                     <Grid container sx={{ mt: "10px" }}>
                         <Grid xs>
                             <ButtonBase disableRipple href={`/project-irminsul/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                                <Avatar variant="square" sx={{
-                                    margin: "auto",
-                                    ml: "2px",
-                                    border: "1px solid rgb(30, 73, 118)",
-                                    borderRadius: "5px",
-                                    width: "90px",
-                                    height: "90px",
-                                    backgroundColor: "rgb(32, 32, 32)",
-                                }} src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${name.split(" ").join("_")}_Thumb.png`)} alt={name} style={characterIconBackground} />
+                                <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${name.split(" ").join("_")}_Thumb.png`)} alt={name}
+                                    style={characterIconBackground}
+                                    sx={{
+                                        margin: "auto",
+                                        ml: "2px",
+                                        border: "1px solid rgb(30, 73, 118)",
+                                        borderRadius: "5px",
+                                        width: "90px",
+                                        height: "90px",
+                                        backgroundColor: "rgb(32, 32, 32)",
+                                    }}
+                                />
                             </ButtonBase>
                             <img style={{
                                 display: "block",
@@ -87,6 +90,7 @@ const CharacterCard = (props) => {
             </Card >
         </React.Fragment >
     )
+    
 }
 
 export default CharacterCard;

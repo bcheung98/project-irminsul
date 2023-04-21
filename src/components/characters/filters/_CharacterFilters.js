@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { styled } from '@mui/material/styles';
 import "../../../css/filters.css";
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
@@ -51,6 +52,9 @@ const AccordionDetails = styled(MuiAccordionDetails)(() => ({
 }));
 
 const CharacterFilters = () => {
+
+    const theme = useTheme();
+
     return (
         <div style={{
             margin: "auto",
@@ -58,7 +62,7 @@ const CharacterFilters = () => {
             marginLeft: "35px",
         }}>
             <Paper variant="outlined" square sx={{
-                color: "white",
+                color: `${theme.text.color}`,
                 backgroundColor: "rgb(0, 30, 60)",
                 border: "2px solid rgb(30, 73, 118)",
                 borderRadius: "5px",
@@ -73,7 +77,7 @@ const CharacterFilters = () => {
                 {/* ELEMENT */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="element-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Element</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="element-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Element</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <ElementFilter />
@@ -83,7 +87,7 @@ const CharacterFilters = () => {
                 {/* WEAPON */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="weapon-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Weapon</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="weapon-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Weapon</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <WeaponFilter />
@@ -93,7 +97,7 @@ const CharacterFilters = () => {
                 {/* RARITY */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="rarity-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Rarity</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="rarity-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Rarity</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <RarityFilter />
@@ -103,7 +107,7 @@ const CharacterFilters = () => {
                 {/* ASCENSION STAT */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="ascstat-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Ascension Stat</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="ascstat-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Ascension Stat</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <AscensionStatFilters />
@@ -113,7 +117,7 @@ const CharacterFilters = () => {
                 {/* TALENT BOOK */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="talent-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Talent Book</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="talent-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Talent Book</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <TalentFilter />
@@ -123,7 +127,7 @@ const CharacterFilters = () => {
                 {/* COMMON MATERIAL */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="common-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Common Material</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="common-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Common Material</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <CommonMatFilter />
@@ -133,7 +137,7 @@ const CharacterFilters = () => {
                 {/* NORMAL BOSS */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="boss-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Normal Boss</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="boss-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Normal Boss</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <BossMatFilter />
@@ -143,7 +147,7 @@ const CharacterFilters = () => {
                 {/* WEEKLY BOSS */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="weeklyboss-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Weekly Boss</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="weeklyboss-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Weekly Boss</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <WeeklyBossMatFilter />
@@ -153,7 +157,7 @@ const CharacterFilters = () => {
                 {/* LOCAL SPECIALTY */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="local-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Local Specialty</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="local-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Local Specialty</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <LocalSpecialtyFilter />
@@ -163,7 +167,7 @@ const CharacterFilters = () => {
                 {/* NATION */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="nation-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Nation</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="nation-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Nation</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <NationFilter />
@@ -173,7 +177,7 @@ const CharacterFilters = () => {
                 {/* GENDER */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="gender-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Gender</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="gender-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Gender</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <GenderFilter />

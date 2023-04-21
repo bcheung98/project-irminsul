@@ -1,12 +1,13 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { styled } from '@mui/material/styles';
 import { Box } from "@mui/system";
 import { Typography, Avatar } from "@mui/material";
 
-const GenshinFont = styled(Typography)(() => ({
+const GenshinFont = styled(Typography)(({ theme }) => ({
     "&.MuiTypography-root": {
         fontFamily: "Genshin, sans-serif",
-        color: "white",
+        color: `${theme.text.color}`,
     }
 }));
 
@@ -23,19 +24,23 @@ const ElementalIcon = {
     height: "32px",
 }
 
-const Pyro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Pyro.png`} alt="Pyro" sx={ElementalIcon} />
-const Hydro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Hydro.png`} alt="Hydro" sx={ElementalIcon} />
-const Electro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Electro.png`} alt="Electro" sx={ElementalIcon} />
-const Cryo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Cryo.png`} alt="Cryo" sx={ElementalIcon} />
-const Anemo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Anemo.png`} alt="Anemo" sx={ElementalIcon} />
-const Geo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Geo.png`} alt="Geo" sx={ElementalIcon} />
-const Dendro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Dendro.png`} alt="Dendro" sx={ElementalIcon} />
 
-const Plus = () => <Typography sx={{ mx: "5px", mt: "5px", color: "white" }}>+</Typography>
-const Slash = () => <Typography sx={{ mx: "2.5px", mt: "5px", color: "white" }}>/</Typography>
 
 const TCGGlossary = () => {
 
+    const theme = useTheme();
+
+    const Pyro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Pyro.png`} alt="Pyro" sx={ElementalIcon} />
+    const Hydro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Hydro.png`} alt="Hydro" sx={ElementalIcon} />
+    const Electro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Electro.png`} alt="Electro" sx={ElementalIcon} />
+    const Cryo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Cryo.png`} alt="Cryo" sx={ElementalIcon} />
+    const Anemo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Anemo.png`} alt="Anemo" sx={ElementalIcon} />
+    const Geo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Geo.png`} alt="Geo" sx={ElementalIcon} />
+    const Dendro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Dendro.png`} alt="Dendro" sx={ElementalIcon} />
+
+    const Plus = () => <Typography sx={{ mx: "5px", mt: "5px", color: `${theme.text.color}` }}>+</Typography>
+    const Slash = () => <Typography sx={{ mx: "2.5px", mt: "5px", color: `${theme.text.color}` }}>/</Typography>
+    
     return (
         <Box
             sx={{

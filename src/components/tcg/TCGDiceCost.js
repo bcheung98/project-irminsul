@@ -1,7 +1,10 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { Typography, Box } from "@mui/material";
 
 const TCGDiceCost = (props) => {
+
+    const theme = useTheme();
 
     let cost = []
     if (props.cost !== undefined) {
@@ -93,7 +96,7 @@ const TCGDiceCost = (props) => {
                                         top: "50%",
                                         left: "50%",
                                         transform: "translate(-50%, -50%)",
-                                        color: "white",
+                                        color: `${theme.text.color}`,
                                         textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
                                     }}>
                                     {dice.slice(0, -1)}

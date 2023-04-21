@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "@mui/material/styles";
 import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
@@ -82,13 +83,15 @@ const AccordionDetails = styled(MuiAccordionDetails)(() => ({
     marginTop: "-5px",
 }));
 
-const BossNameText = styled(Typography)(() => ({
+const BossNameText = styled(Typography)(({ theme }) => ({
     fontFamily: "Genshin, monospace",
-    color: "white",
+    color: `${theme.text.color}`,
     textDecoration: "none",
 }))
 
 const BossMatFilter = (props) => {
+
+    const theme = useTheme();
 
     return (
         <div style={{ margin: "auto", width: "99%" }}>

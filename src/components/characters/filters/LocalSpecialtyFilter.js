@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "@mui/material/styles";
 import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
@@ -50,7 +51,7 @@ let sgpIcon = (`${process.env.REACT_APP_URL}/materials/local_specialties/Sand_Gr
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
-))(() => ({
+))(({ theme }) => ({
     '&:not(:last-child)': {
         borderBottom: 0,
     },
@@ -64,7 +65,7 @@ const AccordionSummary = styled((props) => (
         expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem', color: "dodgerblue" }} />}
         {...props}
     />
-))(() => ({
+))(({ theme }) => ({
     height: "32px",
     backgroundColor: "rgb(9, 24, 39)",
     flexDirection: 'row-reverse',
@@ -76,13 +77,15 @@ const AccordionSummary = styled((props) => (
     },
 }));
 
-const AccordionDetails = styled(MuiAccordionDetails)(() => ({
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     backgroundColor: "rgb(9, 24, 39)",
     padding: "10px",
     marginTop: "-5px",
 }));
 
 const LocalMatFilter = (props) => {
+
+    const theme = useTheme();
 
     return (
         <div style={{ margin: "auto", width: "99%" }}>
@@ -98,7 +101,7 @@ const LocalMatFilter = (props) => {
                             <Typography variant="body1"
                                 sx={{
                                     fontFamily: "Genshin, monospace",
-                                    color: "white",
+                                    color: `${theme.text.color}`,
                                     textDecoration: "none",
                                 }}
                             >
@@ -148,7 +151,7 @@ const LocalMatFilter = (props) => {
                             <Typography variant="body1"
                                 sx={{
                                     fontFamily: "Genshin, monospace",
-                                    color: "white",
+                                    color: `${theme.text.color}`,
                                     textDecoration: "none",
                                 }}
                             >
@@ -198,7 +201,7 @@ const LocalMatFilter = (props) => {
                             <Typography variant="body1"
                                 sx={{
                                     fontFamily: "Genshin, monospace",
-                                    color: "white",
+                                    color: `${theme.text.color}`,
                                     textDecoration: "none",
                                 }}
                             >
@@ -251,7 +254,7 @@ const LocalMatFilter = (props) => {
                             <Typography variant="body1"
                                 sx={{
                                     fontFamily: "Genshin, monospace",
-                                    color: "white",
+                                    color: `${theme.text.color}`,
                                     textDecoration: "none",
                                 }}
                             >

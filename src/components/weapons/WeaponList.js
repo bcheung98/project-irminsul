@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { styled } from '@mui/material/styles';
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
@@ -76,6 +77,9 @@ const headCells = [
 ];
 
 function EnhancedTableHead(props) {
+
+    const theme = useTheme();
+
     const { order, orderBy, onRequestSort } = props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
@@ -96,7 +100,7 @@ function EnhancedTableHead(props) {
                             onClick={createSortHandler(headCell.id)}
                             IconComponent={((orderBy === headCell.id) ? IconActive : IconInactive)}
                         >
-                            <Typography variant="body1" sx={{ color: "white", fontFamily: "Genshin, sans-serif" }}>
+                            <Typography variant="body1" sx={{ color: `${theme.text.color}`, fontFamily: "Genshin, sans-serif" }}>
                                 {headCell.label}
                             </Typography>
                         </TableSortLabel>
@@ -119,6 +123,8 @@ const createData = (name, rarity, type, atk, subStatString, ascensionMat, eliteM
 }
 
 const WeaponList = (props) => {
+
+    const theme = useTheme();
 
     const [order, setOrder] = React.useState("desc");
     const [orderBy, setOrderBy] = React.useState("rarity");
@@ -149,7 +155,7 @@ const WeaponList = (props) => {
                 border: "2px solid rgb(30, 73, 118)",
                 borderRadius: "5px",
                 backgroundColor: "rgb(0, 30, 60)",
-                color: "white",
+                color: `${theme.text.color}`,
             }}>
                 <Toolbar>
                     <Typography variant="h5" component="div"

@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import { useEffect } from "react";
 import { connect } from "react-redux";
+import { ThemeProvider } from '@mui/material/styles';
+import { defaultTheme as theme } from "./Theme";
 import { fetchCharacters } from "./redux/actions/fetchCharacters";
 import { fetchWeapons } from "./redux/actions/fetchWeapons";
 import { fetchBanners } from "./redux/actions/fetchBanners";
@@ -64,39 +66,42 @@ const App = (props) => {
 	let { fetchCharacters, fetchWeapons, fetchBanners, fetchCards } = props;
 
 	return (
-		<Router basename="project-irminsul">
-			<Box id="back-to-top-anchor" />
-			<Nav />
-			<Switch>
-				<Route exact path="/" component={Home} />
-				<Route path="/characters" component={CharacterBrowser} />
-				<Route path="/character/:char_name" children={<CharacterPage />} />
-				<Route path="/weapons" component={WeaponBrowser} />
-				<Route path="/weapon/:weapon_name" children={<WeaponPage />} />
-				<Route path="/banners/" component={BannerArchive} />
-				<Route path="/tcg/" component={TCGBrowser} />
-			</Switch>
-			<AppBar position="static" sx={{
-				mt: 10,
-				mb: -5,
-				pt: 2,
-				textAlign: "center",
-				backgroundColor: "rgb(0, 30, 60)",
-				borderTop: "1px solid rgb(30, 73, 118)",
-			}}>
-				<Typography sx={{ fontFamily: "Genshin, sans-serif", mb: "5px" }} variant="body2">Project Irminsul is not affiliated with HoYoverse.<br />Genshin Impact, images and data are registered trademarks of HoYoverse.</Typography>
-				<Box>
-					<IconButton disableRipple href={"https://github.com/bcheung98/project-irminsul"} target="_blank" color="inherit">
-						<GitHubIcon />
-					</IconButton>
-				</Box>
-			</AppBar>
-			<ScrollTop {...props}>
-				<Fab size="medium" disableRipple color="primary">
-					<KeyboardArrowUpIcon sx={{ color: "white" }} />
-				</Fab>
-			</ScrollTop>
-		</Router >
+		<ThemeProvider theme={theme}>
+			<Router basename="project-irminsul">
+				<Box id="back-to-top-anchor" />
+				<Nav />
+				<Switch>
+					<Route exact path="/" component={Home} />
+					<Route path="/characters" component={CharacterBrowser} />
+					<Route path="/character/:char_name" children={<CharacterPage />} />
+					<Route path="/weapons" component={WeaponBrowser} />
+					<Route path="/weapon/:weapon_name" children={<WeaponPage />} />
+					<Route path="/banners/" component={BannerArchive} />
+					<Route path="/tcg/" component={TCGBrowser} />
+				</Switch>
+				<AppBar position="static" sx={{
+					mt: 10,
+					mb: -5,
+					pt: 2,
+					textAlign: "center",
+					backgroundColor: `${theme.appbar.backgroundColor}`,
+					borderTop: `1px solid ${theme.border.color}`,
+				}}>
+					<Typography sx={{ fontFamily: "Genshin, sans-serif", mb: "5px" }} variant="body2">Project Irminsul is not affiliated with HoYoverse.<br />Genshin Impact, images and data are registered trademarks of HoYoverse.</Typography>
+					<Box>
+						<IconButton disableRipple href={"https://github.com/bcheung98/project-irminsul"} target="_blank" color="inherit">
+							<GitHubIcon />
+						</IconButton>
+					</Box>
+				</AppBar>
+				<ScrollTop {...props}>
+					<Fab size="medium" disableRipple color="primary">
+						<KeyboardArrowUpIcon sx={{ color: `${theme.text.color}` }} />
+					</Fab>
+				</ScrollTop>
+			</Router >
+		</ThemeProvider>
+		
 	);
 }
 

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { styled } from '@mui/material/styles';
 import parse from "html-react-parser";
 import { Typography, Box, Avatar, CardHeader, Paper } from "@mui/material";
@@ -44,6 +45,8 @@ const AccordionDetails = styled(MuiAccordionDetails)(() => ({
 
 const CharacterTalentDisplay = (props) => {
 
+    const theme = useTheme();
+
     let { name, element, weapon, talents } = props.character;
 
     return (
@@ -51,7 +54,7 @@ const CharacterTalentDisplay = (props) => {
             sx={{
                 border: "1px solid rgb(30, 73, 118)",
                 borderRadius: "5px",
-                color: "white",
+                color: `${theme.text.color}`,
                 width: "95vw",
                 margin: "auto",
                 padding: "15px",
@@ -122,12 +125,12 @@ const CharacterTalentDisplay = (props) => {
                         {
                             ["attack", "skill", "burst", "altsprint"].includes(key) &&
                             <Paper variant="outlined" sx={{
-                                color: "white",
+                                color: `${theme.text.color}`,
                                 border: "none",
                             }}>
                                 <Accordion>
                                     <AccordionSummary>
-                                        <Typography variant="body1" sx={{ color: "white", fontWeight: "bold" }}>Talent Scaling</Typography>
+                                        <Typography variant="body1" sx={{ color: `${theme.text.color}`, fontWeight: "bold" }}>Talent Scaling</Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
                                         <CharacterTalentScalingTable attackType={key} stats={talents[key].scaling} />

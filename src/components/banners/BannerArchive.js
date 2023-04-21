@@ -1,10 +1,13 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import BannerList from "./BannerList";
 
 const BannerArchive = (props) => {
+
+    const theme = useTheme();
 
     let { banners } = props;
 
@@ -27,7 +30,7 @@ const BannerArchive = (props) => {
                         display: { xs: "none", md: "flex" },
                         fontFamily: "Genshin, sans-serif",
                         letterSpacing: ".2rem",
-                        color: "white",
+                        color: `${theme.text.color}`,
                         textDecoration: "none",
                         textAlign: "center",
                     }}
@@ -36,7 +39,7 @@ const BannerArchive = (props) => {
                 </Typography>
             </Box>
             {banners.characterBanners.length > 0 && banners.weaponBanners.length > 0 &&
-                <Box sx={{display: "flex"}}>
+                <Box sx={{ display: "flex" }}>
                     <BannerList banners={banners.characterBanners} type="character" />
                     <BannerList banners={banners.weaponBanners} type="weapon" />
                 </Box>

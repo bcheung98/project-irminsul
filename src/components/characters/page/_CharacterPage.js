@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import PropTypes from 'prop-types';
 import "../../../css/CharacterPage.css";
 import { styled } from '@mui/material/styles';
@@ -39,14 +40,16 @@ TabPanel.propTypes = {
 };
 
 const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
-    () => ({
+    ({ theme }) => ({
         fontFamily: "Genshin, sans-serif",
         fontSize: "14px",
-        color: "white",
+        color: `${theme.text.color}`,
     }),
 );
 
 const CharacterPage = (props) => {
+
+    const theme = useTheme();
 
     let { char_name } = useParams();
     let { characters } = props;
@@ -88,7 +91,7 @@ const CharacterPage = (props) => {
                             sx={{
                                 border: "1px solid rgb(30, 73, 118)",
                                 borderRadius: "5px",
-                                color: "white",
+                                color: `${theme.text.color}`,
                                 ml: "15px",
                                 mt: "10px",
                                 px: "20px",
@@ -100,7 +103,7 @@ const CharacterPage = (props) => {
                                 sx={{
                                     mb: "20px",
                                     fontFamily: "Genshin, sans-serif",
-                                    color: "white",
+                                    color: `${theme.text.color}`,
                                 }}
                             >
                                 {description}
@@ -140,7 +143,7 @@ const CharacterPage = (props) => {
                                         mt: "20px",
                                         display: { xs: "none", md: "flex" },
                                         fontFamily: "Genshin, sans-serif",
-                                        color: "white",
+                                        color: `${theme.text.color}`,
                                         textDecoration: "none",
                                         textAlign: "center",
                                     }}
@@ -154,7 +157,7 @@ const CharacterPage = (props) => {
                                         my: "2px",
                                         display: { xs: "none", md: "flex" },
                                         fontFamily: "Genshin, sans-serif",
-                                        color: "white",
+                                        color: `${theme.text.color}`,
                                         fontStyle: "italic",
                                         textAlign: "center",
                                     }}
@@ -166,7 +169,7 @@ const CharacterPage = (props) => {
                                         display: "flex",
                                         alignItems: "center",
                                         justifyContent: "left",
-                                        color: "white"
+                                        color: `${theme.text.color}`
                                     }}>
                                     <div style={{ marginLeft: "-5px" }}>
                                         <img style={{ height: "30px" }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />

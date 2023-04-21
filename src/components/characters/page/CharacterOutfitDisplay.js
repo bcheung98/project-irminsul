@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import PropTypes from 'prop-types';
 import parse from "html-react-parser";
 import { Typography, Box, Tabs, Tab } from "@mui/material";
@@ -28,6 +29,8 @@ TabPanel.propTypes = {
 
 const CharacterOutfitDisplay = (props) => {
 
+    const theme = useTheme();
+
     let { name, outfits } = props.character;
 
     const [tabValue, setTabValue] = React.useState(0);
@@ -55,7 +58,7 @@ const CharacterOutfitDisplay = (props) => {
                         sx={{
                             fontFamily: "Genshin, sans-serif",
                             fontSize: "14pt",
-                            color: "white",
+                            color: `${theme.text.color}`,
                             textTransform: "none",
                         }}
                     />
@@ -74,7 +77,7 @@ const CharacterOutfitDisplay = (props) => {
                                 sx={{
                                     mb: "20px",
                                     fontFamily: "Genshin, sans-serif",
-                                    color: "white",
+                                    color: `${theme.text.color}`,
                                 }}
                             >
                                 {parse(outfit.description)}

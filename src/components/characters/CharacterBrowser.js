@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
 import { Box } from "@mui/system";
@@ -21,6 +22,8 @@ const StyledToggleButton = styled(ToggleButton)(() => ({
 }));
 
 const CharacterBrowser = (props) => {
+
+    const theme = useTheme();
 
     const [searchValue, setSearchValue] = React.useState("");
     const [view, setView] = React.useState("grid");
@@ -46,17 +49,14 @@ const CharacterBrowser = (props) => {
                     justifyContent: "left",
                 }}
             >
-                <Typography
-                    variant="h4"
-                    noWrap
-                    component="a"
+                <Typography variant="h4"
                     sx={{
                         mx: "25px",
                         my: "20px",
                         display: { xs: "none", md: "flex" },
                         fontFamily: "Genshin, sans-serif",
                         letterSpacing: ".2rem",
-                        color: "white",
+                        color: `${theme.text.color}`,
                         textDecoration: "none",
                         textAlign: "center",
                     }}
@@ -90,22 +90,24 @@ const CharacterBrowser = (props) => {
                     </Grid>
                 </Grid>
                 <Grid item xs={3}>
-                    <Paper sx={{
-                        border: "2px solid rgb(30, 73, 118)",
-                        borderRadius: "5px",
-                        backgroundColor: "rgb(0, 30, 60)",
-                        display: "flex",
-                        margin: "auto",
-                        height: "40px",
-                        width: "84.5%",
-                        marginBottom: "10px",
-                        marginLeft: "35px",
-                    }}>
+                    <Paper
+                        sx={{
+                            border: `2px solid ${theme.border.color}`,
+                            borderRadius: "5px",
+                            backgroundColor: `${theme.paper.backgroundColor}`,
+                            display: "flex",
+                            margin: "auto",
+                            height: "40px",
+                            width: "84.5%",
+                            marginBottom: "10px",
+                            marginLeft: "35px",
+                        }}
+                    >
                         <InputBase
                             sx={{
                                 marginLeft: "10px",
                                 flex: 1,
-                                color: "white",
+                                color: `${theme.text.color}`,
                                 fontFamily: "Genshin, sans-serif",
                             }}
                             placeholder="Search"

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import PropTypes from 'prop-types';
 import "../../../css/WeaponPage.css";
 import parse from "html-react-parser";
@@ -36,14 +37,14 @@ TabPanel.propTypes = {
 };
 
 const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
-    () => ({
+    ({ theme }) => ({
         fontFamily: "Genshin, sans-serif",
         fontSize: "14px",
-        color: "white",
+        color: `${theme.text.color}`,
     }),
 );
 
-const WeaponPage = (props) => {
+const WeaponPage = (props, { theme }) => {
 
     let { weapon_name } = useParams();
     let { weapons } = props;
@@ -83,7 +84,7 @@ const WeaponPage = (props) => {
                                 mt: "20px",
                                 display: { xs: "none", md: "flex" },
                                 fontFamily: "Genshin, sans-serif",
-                                color: "white",
+                                color: `${theme.text.color}`,
                                 textDecoration: "none",
                                 textAlign: "center",
                             }}
@@ -95,7 +96,7 @@ const WeaponPage = (props) => {
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "left",
-                                color: "white"
+                                color: `${theme.text.color}`
                             }}>
                             <Box style={{ marginLeft: "-5px" }}>
                                 <img style={{ height: "30px" }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
@@ -108,7 +109,7 @@ const WeaponPage = (props) => {
                         </Box>
                         <Box
                             sx={{
-                                color: "white",
+                                color: `${theme.text.color}`,
                                 px: "10px",
                                 py: "10px",
                                 width: "55vw",
@@ -141,7 +142,7 @@ const WeaponPage = (props) => {
                                 sx={{
                                     border: "1px solid rgb(30, 73, 118)",
                                     borderRadius: "5px",
-                                    color: "white",
+                                    color: `${theme.text.color}`,
                                     px: "20px",
                                     py: "10px",
                                     width: "50vw",

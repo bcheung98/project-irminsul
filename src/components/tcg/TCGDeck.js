@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { styled } from '@mui/material/styles';
 import { Box } from "@mui/system";
@@ -44,6 +45,8 @@ const AccordionDetails = styled(MuiAccordionDetails)(() => ({
 }));
 
 const TCGDeck = (props) => {
+
+    const theme = useTheme();
 
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
@@ -98,7 +101,7 @@ const TCGDeck = (props) => {
     return (
         <Box sx={{ mx: "20px", mb: "20px" }}>
             <Paper variant="outlined" sx={{
-                color: "white",
+                color: `${theme.text.color}`,
                 backgroundColor: "rgb(0, 30, 60)",
                 border: "2px solid rgb(30, 73, 118)",
                 borderRadius: "5px",
@@ -106,7 +109,7 @@ const TCGDeck = (props) => {
             }}>
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>
+                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>
                             {deck.deck.name} — ({characterCards.length}/3 Character Cards, {actionCards.length}/30 Action Cards)
                         </Typography>
                     </AccordionSummary>
@@ -119,7 +122,7 @@ const TCGDeck = (props) => {
                                 mb: "30px",
                                 backgroundColor: "rgb(0, 127, 255)"
                             }}>
-                            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>
+                            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>
                                 Save Deck
                             </Typography>
                         </Button>
@@ -132,7 +135,7 @@ const TCGDeck = (props) => {
                                 mb: "30px",
                                 backgroundColor: "rgb(0, 127, 255)"
                             }}>
-                            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>
+                            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>
                                 Load Deck
                             </Typography>
                             <input id="deck-input" hidden accept=".deck" type="file" onChange={(e) => getDeckFromFile(e.target.files[0])} />
@@ -145,7 +148,7 @@ const TCGDeck = (props) => {
                                 mb: "30px",
                                 backgroundColor: "rgb(0, 127, 255)"
                             }}>
-                            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>
+                            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>
                                 Rename Deck
                             </Typography>
                         </Button>
@@ -179,7 +182,7 @@ const TCGDeck = (props) => {
                             marginLeft: "10px",
                             flex: 1,
                             px: "10px",
-                            color: "white",
+                            color: `${theme.text.color}`,
                             backgroundColor: "rgb(9, 24, 39)",
                             border: "2px solid rgb(30, 73, 118)",
                             borderRadius: "5px",
@@ -197,7 +200,7 @@ const TCGDeck = (props) => {
                             mb: "5px",
                             backgroundColor: "rgb(0, 127, 255)"
                         }}>
-                        <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>
+                        <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>
                             Rename
                         </Typography>
                     </Button>
@@ -210,7 +213,7 @@ const TCGDeck = (props) => {
                             mt: "15px",
                             mb: "5px",
                         }}>
-                        <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>
+                        <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>
                             Cancel
                         </Typography>
                     </Button>

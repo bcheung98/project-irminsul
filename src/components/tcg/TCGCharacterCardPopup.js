@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import parse from "html-react-parser";
 import { Box } from "@mui/system";
@@ -10,6 +11,8 @@ import TCGDiceCost from "./TCGDiceCost";
 import { FormatTCGTalentKey } from "../../helpers/FormatTCGTalentKey";
 
 const TCGCharacterCardPopup = (props) => {
+
+    const theme = useTheme();
 
     let { name, element, weapon, nation, hp, talents, splash } = props.char;
 
@@ -41,7 +44,7 @@ const TCGCharacterCardPopup = (props) => {
                         </MaterialTooltip>
                     }
                     title={
-                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: "white" }} variant="h4">
+                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="h4">
                             {props.char.fullname ? props.char.fullname : name}
                         </Typography>
                     }
@@ -53,10 +56,10 @@ const TCGCharacterCardPopup = (props) => {
                         top: "20px",
                     }}
                 >
-                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: "white" }} variant="subtitle1">
+                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="subtitle1">
                         {weapon}
                     </Typography>
-                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: "white" }} variant="subtitle1">
+                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="subtitle1">
                         {nation}
                     </Typography>
                 </Box>
@@ -96,7 +99,7 @@ const TCGCharacterCardPopup = (props) => {
                                         top: "50%",
                                         left: "50%",
                                         transform: "translate(-50%, -50%)",
-                                        color: "white",
+                                        color: `${theme.text.color}`,
                                         textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
                                     }}>
                                     {hp}
@@ -118,7 +121,7 @@ const TCGCharacterCardPopup = (props) => {
                                     my: "20px"
                                 }}
                             >
-                                <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>
+                                <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
                                     <i>{parse(splash.description)}</i>
                                 </Typography>
                             </Box>
@@ -131,7 +134,7 @@ const TCGCharacterCardPopup = (props) => {
                             backgroundColor: "rgb(9, 24, 39)",
                             border: "1px solid rgb(30, 73, 118)",
                             borderRadius: "5px",
-                            color: "white",
+                            color: `${theme.text.color}`,
                             maxHeight: "60vh",
                             overflowY: "auto",
                         }}
@@ -168,10 +171,10 @@ const TCGCharacterCardPopup = (props) => {
                                             }
                                             title={
                                                 <React.Fragment>
-                                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: "white" }} variant="h6">
+                                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="h6">
                                                         {talents[key].name}
                                                     </Typography>
-                                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: "white" }} variant="body2">
+                                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
                                                         <i>{FormatTCGTalentKey(key).toUpperCase()}</i>
                                                     </Typography>
                                                 </React.Fragment>
@@ -193,11 +196,11 @@ const TCGCharacterCardPopup = (props) => {
                             {
                                 props.inDeck === false ?
                                     <Button variant="contained" sx={{ my: "20px" }} onClick={() => props.addCharCardToDeck(props.char)}>
-                                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Add to Deck</Typography>
+                                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>Add to Deck</Typography>
                                     </Button>
                                     :
                                     <Button variant="contained" sx={{ my: "20px" }} onClick={() => props.removeCharCardToDeck(props.char)}>
-                                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Remove from Deck</Typography>
+                                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>Remove from Deck</Typography>
                                     </Button>
                             }
                         </React.Fragment>

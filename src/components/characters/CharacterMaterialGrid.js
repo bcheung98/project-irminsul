@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "@mui/material/styles";
 import { formatTalents, formatCommonMats, formatBossMats, formatWeeklyBossMats, formatGemstone } from "../../helpers/TooltipText";
 import Grid from "@mui/material/Unstable_Grid2";
 import { MaterialTooltip } from "../../helpers/MaterialTooltip";
@@ -6,14 +7,16 @@ import { Box } from "@mui/material";
 
 const CharacterMaterialGrid = (props) => {
 
+    const theme = useTheme();
+
     let { element } = props.character;
     let { talentBook, bossMat, localMat, commonMat, weeklyBossMat } = props.character.materials;
 
     const materialImage = {
         height: props.size,
-        border: "1px solid rgb(30, 73, 118)",
+        border: `1px solid ${theme.border.color}`,
         borderRadius: "5px",
-        backgroundColor: "rgb(9, 24, 39)",
+        backgroundColor: `${theme.materialImage.backgroundColor}`,
     }
 
     return (

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import { connect } from "react-redux";
@@ -31,10 +32,10 @@ TabPanel.propTypes = {
 };
 
 const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
-    () => ({
+    ({ theme }) => ({
         fontFamily: "Genshin, sans-serif",
         fontSize: "14px",
-        color: "white",
+        color: `${theme.text.color}`,
     }),
 );
 
@@ -67,6 +68,8 @@ const IconBackground = (rarity) => {
 
 const FarmableToday = (props) => {
 
+    const theme = useTheme();
+
     const [tabValue, setTabValue] = React.useState(0);
 
     const handleTabChange = (event, newValue) => {
@@ -98,7 +101,7 @@ const FarmableToday = (props) => {
                     mt: "20px",
                     p: "10px",
                     width: "40vw",
-                    color: "white",
+                    color: `${theme.text.color}`,
                 }}
             >
                 <Box

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import parse from "html-react-parser";
 import { Box } from "@mui/system";
@@ -7,6 +8,8 @@ import Grid from "@mui/material/Unstable_Grid2";
 import TCGDiceCost from "./TCGDiceCost";
 
 const TCGActionCardPopup = (props) => {
+
+    const theme = useTheme();
 
     let { name, type, subType, cost, description, splash } = props.card;
 
@@ -33,7 +36,7 @@ const TCGActionCardPopup = (props) => {
                         alignItems: "center",
                     }}
                     title={
-                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: "white" }} variant="h4">
+                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="h4">
                             {props.card.displayName ? props.card.displayName : name}
                         </Typography>
                     }
@@ -45,10 +48,10 @@ const TCGActionCardPopup = (props) => {
                         top: "20px",
                     }}
                 >
-                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: "white" }} variant="subtitle1">
+                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="subtitle1">
                         {type}
                     </Typography>
-                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: "white" }} variant="subtitle1">
+                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="subtitle1">
                         {subType}
                     </Typography>
                 </Box>
@@ -90,7 +93,7 @@ const TCGActionCardPopup = (props) => {
                                     my: "20px"
                                 }}
                             >
-                                <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>
+                                <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
                                     <i>{parse(splash.description)}</i>
                                 </Typography>
                             </Box>
@@ -103,7 +106,7 @@ const TCGActionCardPopup = (props) => {
                             backgroundColor: "rgb(9, 24, 39)",
                             border: "1px solid rgb(30, 73, 118)",
                             borderRadius: "5px",
-                            color: "white",
+                            color: `${theme.text.color}`,
                             maxHeight: "60vh",
                             overflowY: "auto",
                             p: "15px",
@@ -119,13 +122,13 @@ const TCGActionCardPopup = (props) => {
                             {
                                 props.count < 2 &&
                                 <Button variant="contained" sx={{ mr: "10px", my: "20px" }} onClick={() => props.addActionCardToDeck(props.card)}>
-                                    <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Add to Deck</Typography>
+                                    <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>Add to Deck</Typography>
                                 </Button>
                             }
                             {
                                 props.inDeck === true &&
                                 <Button variant="contained" color="secondary" sx={{ my: "20px" }} onClick={() => props.removeActionCardToDeck(props.card)}>
-                                    <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "white", }}>Remove from Deck</Typography>
+                                    <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>Remove from Deck</Typography>
                                 </Button>
                             }
                         </React.Fragment>
