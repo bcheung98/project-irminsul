@@ -133,7 +133,7 @@ const TCGCharacterCardPopup = (props) => {
                 <Grid xs={9}>
                     <Box
                         sx={{
-                            backgroundColor: "rgb(9, 24, 39)",
+                            backgroundColor: `${theme.paper.backgroundColor}`,
                             border: `1px solid ${theme.border.color}`,
                             borderRadius: "5px",
                             color: `${theme.text.color}`,

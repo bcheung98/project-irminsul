@@ -24,8 +24,6 @@ const ElementalIcon = {
     height: "32px",
 }
 
-
-
 const TCGGlossary = () => {
 
     const theme = useTheme();
@@ -46,8 +44,8 @@ const TCGGlossary = () => {
             sx={{
                 width: "80vw",
                 p: "15px",
-                backgroundColor: "rgb(0, 30, 60)",
-                border: "2px solid rgb(30, 73, 118)",
+                backgroundColor: `${theme.paper.backgroundColor}`,
+                border: `2px solid ${theme.border.color}`,
                 borderRadius: "5px",
             }}
         >
@@ -55,7 +53,7 @@ const TCGGlossary = () => {
                 TCG Glossary
             </GenshinFont>
 
-            < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+            < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
 
             <GenshinFont variant="h5">
                 Damage
@@ -88,7 +86,7 @@ const TCGGlossary = () => {
                 </Box>
             </GenshinFont>
 
-            < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+            < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
 
             <GenshinFont variant="h5">
                 Elemental Reactions
@@ -226,7 +224,7 @@ const TCGGlossary = () => {
                 </Typography>
             </Box>
 
-            < hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+            < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
 
             <GenshinFont variant="h5">
                 General Terms
