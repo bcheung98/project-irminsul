@@ -5,6 +5,7 @@ import { Box } from "@mui/system";
 import { Typography, Dialog } from "@mui/material";
 import TCGDiceCost from "./TCGDiceCost";
 import TCGActionCardPopup from "./TCGActionCardPopup";
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const TCGActionCard = (props) => {
 
@@ -47,6 +48,7 @@ const TCGActionCard = (props) => {
                         border: `2px solid ${theme.border.color}`,
                         borderRadius: "18px",
                     }}
+                    onError={ErrorLoadingImage}
                 />
                 {/* Card Name */}
                 <Box>

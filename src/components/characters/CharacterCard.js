@@ -1,9 +1,10 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import { Typography, Card, CardContent, Avatar, ButtonBase, Box } from "@mui/material";
+import { Typography, Card, CardContent, ButtonBase, Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import CharacterMaterialGrid from "./CharacterMaterialGrid";
 import { MaterialTooltip } from "../../helpers/MaterialTooltip";
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const CharacterCard = (props) => {
 
@@ -11,6 +12,13 @@ const CharacterCard = (props) => {
 
     let { name, rarity, element, weapon } = props.character;
     const characterIconBackground = {
+        margin: "auto",
+        marginLeft: "2px",
+        border: "1px solid rgb(30, 73, 118)",
+        borderRadius: "5px",
+        width: "90px",
+        height: "90px",
+        backgroundColor: "rgb(32, 32, 32)",
         backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
         backgroundSize: "100%"
     }
@@ -52,35 +60,26 @@ const CharacterCard = (props) => {
                             }}
                         >
                             <MaterialTooltip title={element} arrow placement="top">
-                                <Avatar sx={{ height: "30px", width: "30px" }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} />
+                                <img style={{ height: "30px", width: "30px" }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
                             </MaterialTooltip>
                             <MaterialTooltip title={weapon} arrow placement="top">
-                                <Avatar sx={{ height: "30px", width: "30px" }} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${weapon.toLowerCase()}-icon.png`)} alt={weapon} />
+                                <img style={{ height: "30px", width: "30px" }} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${weapon.toLowerCase()}-icon.png`)} alt={weapon} onError={ErrorLoadingImage} />
                             </MaterialTooltip>
                         </Box>
                     </Box>
                     <Grid container sx={{ mt: "10px" }}>
                         <Grid xs>
                             <ButtonBase disableRipple href={`/project-irminsul/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                                <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${name.split(" ").join("_")}_Thumb.png`)} alt={name}
+                                <img src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${name.split(" ").join("_")}_Thumb.png`)} alt={name}
                                     style={characterIconBackground}
-                                    sx={{
-                                        margin: "auto",
-                                        ml: "2px",
-                                        border: "1px solid rgb(30, 73, 118)",
-                                        borderRadius: "5px",
-                                        width: "90px",
-                                        height: "90px",
-                                        backgroundColor: "rgb(32, 32, 32)",
-                                    }}
-                                />
+                                    onError={ErrorLoadingImage} />
                             </ButtonBase>
                             <img style={{
                                 display: "block",
                                 margin: "auto",
                                 marginTop: "5px",
                                 height: "25px",
-                            }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
+                            }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} onError={ErrorLoadingImage} />
                         </Grid>
                         <Grid xs={8}>
                             <CharacterMaterialGrid character={props.character} />
@@ -90,7 +89,7 @@ const CharacterCard = (props) => {
             </Card >
         </React.Fragment >
     )
-    
+
 }
 
 export default CharacterCard;

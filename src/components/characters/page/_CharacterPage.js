@@ -15,6 +15,7 @@ import CharacterTalentLevellingTable from "./CharacterTalentLevellingTable";
 import CharacterConstellationDisplay from "./CharacterConstellationDisplay";
 import CharacterMaterialGrid from "../CharacterMaterialGrid";
 import CharacterOutfitDisplay from "./CharacterOutfitDisplay";
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 function TabPanel(props) {
 
@@ -87,6 +88,7 @@ const CharacterPage = (props) => {
                                 backgroundColor: `${theme.paper.backgroundColor}`,
                                 cursor: "pointer",
                             }}
+                            onError={ErrorLoadingImage}
                         />
                         <Box
                             sx={{
@@ -142,7 +144,7 @@ const CharacterPage = (props) => {
                     >
                         <Box sx={{ display: "flex" }}>
                             <MaterialTooltip title={`${nation} / ${element}`} arrow placement="bottom">
-                                <img style={{ marginRight: "-25px", height: "128px" }} src={(`${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}.png`)} alt={`${nation} / ${element}`} />
+                                <img style={{ marginRight: "-25px", height: "128px" }} src={(`${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}.png`)} alt={`${nation} / ${element}`} onError={ErrorLoadingImage} />
                             </MaterialTooltip>
                             <div style={{ marginLeft: "20px" }}>
                                 <Typography
@@ -173,22 +175,23 @@ const CharacterPage = (props) => {
                                 >
                                     {title}
                                 </Typography>
-                                <div
-                                    style={{
+                                <Box
+                                    sx={{
                                         display: "flex",
                                         alignItems: "center",
                                         justifyContent: "left",
                                         color: `${theme.text.color}`
-                                    }}>
-                                    <div style={{ marginLeft: "-5px" }}>
-                                        <img style={{ height: "30px" }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
-                                    </div>
-                                    <div style={{ marginLeft: "5px" }}>
+                                    }}
+                                >
+                                    <Box sx={{ marginLeft: "-5px" }}>
+                                        <img style={{ height: "30px" }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} onError={ErrorLoadingImage} />
+                                    </Box>
+                                    <Box sx={{ marginLeft: "5px" }}>
                                         <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif" }}>
                                             • {weapon}
                                         </Typography>
-                                    </div>
-                                </div>
+                                    </Box>
+                                </Box>
                             </div>
                         </Box>
                         <Box sx={{ mt: "15px", mx: "10px" }}>

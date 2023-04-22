@@ -4,6 +4,8 @@ import { Table, TableBody, TableContainer, TableHead, TableRow, Paper, Typograph
 import { formatCommonMats, formatTalents, formatWeeklyBossMats } from "../../../helpers/TooltipText";
 import { MaterialTooltip } from "../../../helpers/MaterialTooltip";
 import { StyledTableCell } from "../../../helpers/StyledTable";
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+
 let background1star = (`${process.env.REACT_APP_URL}/backgrounds/Background_1_Star.png`);
 let background2star = (`${process.env.REACT_APP_URL}/backgrounds/Background_2_Star.png`);
 let background3star = (`${process.env.REACT_APP_URL}/backgrounds/Background_3_Star.png`);
@@ -117,7 +119,7 @@ const CharacterTalentLevellingTable = (props) => {
                                         {/* Mora */}
                                         <div className="materialImageRoot">
                                             <MaterialTooltip title="Mora" arrow placement="top">
-                                                <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/Item_Mora.png`)} alt={commonMat} />
+                                                <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/Item_Mora.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                                             </MaterialTooltip>
                                             <div className="materialTextContainer">
                                                 {row.quantity[4]}
@@ -128,7 +130,7 @@ const CharacterTalentLevellingTable = (props) => {
                                         {row.quantity[0] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatCommonMats(`${commonMat}${ascensionLegend.commonMat[row.talentLevel]}`)} arrow placement="top">
-                                                    <img className="materialImage" style={commonMatBackgroundImageLegend(row.talentLevel)} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}${ascensionLegend.commonMat[row.talentLevel]}.png`)} alt={commonMat} />
+                                                    <img className="materialImage" style={commonMatBackgroundImageLegend(row.talentLevel)} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}${ascensionLegend.commonMat[row.talentLevel]}.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.quantity[0]}
@@ -140,7 +142,7 @@ const CharacterTalentLevellingTable = (props) => {
                                         {row.quantity[1] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatTalents(`${talentBook}${ascensionLegend.talent[row.talentLevel]}`)} arrow placement="top">
-                                                    <img className="materialImage" style={talentBackgroundImageLegend(row.talentLevel)} src={(`${process.env.REACT_APP_URL}/materials/talent_mats/${talentBook.split(" ").join("_")}${ascensionLegend.talent[row.talentLevel]}.png`)} alt={talentBook} />
+                                                    <img className="materialImage" style={talentBackgroundImageLegend(row.talentLevel)} src={(`${process.env.REACT_APP_URL}/materials/talent_mats/${talentBook.split(" ").join("_")}${ascensionLegend.talent[row.talentLevel]}.png`)} alt={talentBook} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.quantity[1]}
@@ -152,7 +154,7 @@ const CharacterTalentLevellingTable = (props) => {
                                         {row.quantity[2] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatWeeklyBossMats(`${weeklyBossMat}`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background5star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${weeklyBossMat.split(" ").join("_")}.png`)} alt={weeklyBossMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background5star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${weeklyBossMat.split(" ").join("_")}.png`)} alt={weeklyBossMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.quantity[2]}
@@ -164,7 +166,7 @@ const CharacterTalentLevellingTable = (props) => {
                                         {row.quantity[3] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title="Crown of Insight" arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background5star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/talent_mats/Crown_of_Insight.png`)} alt="Crown of Insight" />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background5star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/talent_mats/Crown_of_Insight.png`)} alt="Crown of Insight" onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.quantity[3]}
@@ -184,7 +186,7 @@ const CharacterTalentLevellingTable = (props) => {
                                         {/* Mora Total */}
                                         <div className="materialImageRoot">
                                             <MaterialTooltip title="Mora" arrow placement="top">
-                                                <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/Item_Mora.png`)} alt={commonMat} />
+                                                <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/Item_Mora.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                                             </MaterialTooltip>
                                             <div className="materialTextContainer">
                                                 {row.total[8]}
@@ -195,7 +197,7 @@ const CharacterTalentLevellingTable = (props) => {
                                         {row.total[0] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatCommonMats(`${commonMat}1`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background1star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}1.png`)} alt={commonMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background1star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}1.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[0]}
@@ -207,7 +209,7 @@ const CharacterTalentLevellingTable = (props) => {
                                         {row.total[1] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatCommonMats(`${commonMat}2`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background2star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}2.png`)} alt={commonMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background2star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}2.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[1]}
@@ -219,7 +221,7 @@ const CharacterTalentLevellingTable = (props) => {
                                         {row.total[2] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatCommonMats(`${commonMat}3`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}3.png`)} alt={commonMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}3.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[2]}
@@ -231,7 +233,7 @@ const CharacterTalentLevellingTable = (props) => {
                                         {row.total[3] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatTalents(`${talentBook}1`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background2star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/talent_mats/${talentBook.split(" ").join("_")}1.png`)} alt={talentBook} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background2star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/talent_mats/${talentBook.split(" ").join("_")}1.png`)} alt={talentBook} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[3]}
@@ -243,7 +245,7 @@ const CharacterTalentLevellingTable = (props) => {
                                         {row.total[4] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatTalents(`${talentBook}2`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/talent_mats/${talentBook.split(" ").join("_")}2.png`)} alt={talentBook} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/talent_mats/${talentBook.split(" ").join("_")}2.png`)} alt={talentBook} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[4]}
@@ -255,7 +257,7 @@ const CharacterTalentLevellingTable = (props) => {
                                         {row.total[5] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatTalents(`${talentBook}3`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background4star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/talent_mats/${talentBook.split(" ").join("_")}3.png`)} alt={talentBook} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background4star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/talent_mats/${talentBook.split(" ").join("_")}3.png`)} alt={talentBook} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[5]}
@@ -267,7 +269,7 @@ const CharacterTalentLevellingTable = (props) => {
                                         {row.total[6] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatWeeklyBossMats(`${weeklyBossMat}`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background5star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${weeklyBossMat.split(" ").join("_")}.png`)} alt={weeklyBossMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background5star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${weeklyBossMat.split(" ").join("_")}.png`)} alt={weeklyBossMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[6]}
@@ -279,7 +281,7 @@ const CharacterTalentLevellingTable = (props) => {
                                         {row.total[7] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title="Crown of Insight" arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background5star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/talent_mats/Crown_of_Insight.png`)} alt="Crown of Insight" />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background5star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/talent_mats/Crown_of_Insight.png`)} alt="Crown of Insight" onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[7]}

@@ -6,6 +6,8 @@ import { MaterialTooltip } from "../../../helpers/MaterialTooltip";
 import { StyledTableCell } from "../../../helpers/StyledTable";
 import { formatWeaponAscMats, formatEliteMats, formatCommonMats } from "../../../helpers/TooltipText";
 import { WeaponMaterialQuantity, TotalWeaponMaterialQuantity } from "../../../helpers/WeaponAscensionMaterialCount";
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+
 let background1star = (`${process.env.REACT_APP_URL}/backgrounds/Background_1_Star.png`);
 let background2star = (`${process.env.REACT_APP_URL}/backgrounds/Background_2_Star.png`);
 let background3star = (`${process.env.REACT_APP_URL}/backgrounds/Background_3_Star.png`);
@@ -137,7 +139,7 @@ const WeaponAscensionTable = (props) => {
                                         {/* Mora */}
                                         <div className="materialImageRoot">
                                             <MaterialTooltip title="Mora" arrow placement="top">
-                                                <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/Item_Mora.png`)} alt="Mora" />
+                                                <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/Item_Mora.png`)} alt="Mora" onError={ErrorLoadingImage} />
                                             </MaterialTooltip>
                                             <div className="materialTextContainer">
                                                 {row.quantity[3]}
@@ -147,7 +149,7 @@ const WeaponAscensionTable = (props) => {
                                         {/* Ascension Material */}
                                         <div className="materialImageRoot">
                                             <MaterialTooltip title={formatWeaponAscMats(`${ascensionMat}${ascensionLegend.ascensionMat[row.ascLevel]}`)} arrow placement="top">
-                                                <img className="materialImage" style={ascMatBackgroundImageLegend(row.ascLevel)} src={(`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat.split(" ").join("_")}${ascensionLegend.ascensionMat[row.ascLevel]}.png`)} alt={ascensionMat} />
+                                                <img className="materialImage" style={ascMatBackgroundImageLegend(row.ascLevel)} src={(`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat.split(" ").join("_")}${ascensionLegend.ascensionMat[row.ascLevel]}.png`)} alt={ascensionMat} onError={ErrorLoadingImage} />
                                             </MaterialTooltip>
                                             <div className="materialTextContainer">
                                                 {row.quantity[0]}
@@ -157,7 +159,7 @@ const WeaponAscensionTable = (props) => {
                                         {/* Elite Material */}
                                         <div className="materialImageRoot">
                                             <MaterialTooltip title={formatEliteMats(`${eliteMat}${ascensionLegend.eliteMat[row.ascLevel]}`)} arrow placement="top">
-                                                <img className="materialImage" style={eliteMatBackgroundImageLegend(row.ascLevel)} src={(`${process.env.REACT_APP_URL}/materials/elite_mats/${eliteMat.split(" ").join("_")}${ascensionLegend.eliteMat[row.ascLevel]}.png`)} alt={eliteMat} />
+                                                <img className="materialImage" style={eliteMatBackgroundImageLegend(row.ascLevel)} src={(`${process.env.REACT_APP_URL}/materials/elite_mats/${eliteMat.split(" ").join("_")}${ascensionLegend.eliteMat[row.ascLevel]}.png`)} alt={eliteMat} onError={ErrorLoadingImage} />
                                             </MaterialTooltip>
                                             <div className="materialTextContainer">
                                                 {row.quantity[1]}
@@ -167,7 +169,7 @@ const WeaponAscensionTable = (props) => {
                                         {/* Common Material */}
                                         <div className="materialImageRoot">
                                             <MaterialTooltip title={formatCommonMats(`${commonMat}${ascensionLegend.commonMat[row.ascLevel]}`)} arrow placement="top">
-                                                <img className="materialImage" style={commonMatBackgroundImageLegend(row.ascLevel)} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}${ascensionLegend.commonMat[row.ascLevel]}.png`)} alt={commonMat} />
+                                                <img className="materialImage" style={commonMatBackgroundImageLegend(row.ascLevel)} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}${ascensionLegend.commonMat[row.ascLevel]}.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                                             </MaterialTooltip>
                                             <div className="materialTextContainer">
                                                 {row.quantity[2]}
@@ -186,7 +188,7 @@ const WeaponAscensionTable = (props) => {
                                         {/* Mora Total */}
                                         <div className="materialImageRoot">
                                             <MaterialTooltip title="Mora" arrow placement="top">
-                                                <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/Item_Mora.png`)} alt="Mora" />
+                                                <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/Item_Mora.png`)} alt="Mora" onError={ErrorLoadingImage} />
                                             </MaterialTooltip>
                                             <div className="materialTextContainer">
                                                 {row.total[10]}
@@ -197,7 +199,7 @@ const WeaponAscensionTable = (props) => {
                                         {row.total[0] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatWeaponAscMats(`${ascensionMat}1`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background2star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat.split(" ").join("_")}1.png`)} alt={ascensionMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background2star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat.split(" ").join("_")}1.png`)} alt={ascensionMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[0]}
@@ -209,7 +211,7 @@ const WeaponAscensionTable = (props) => {
                                         {row.total[1] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatWeaponAscMats(`${ascensionMat}2`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat.split(" ").join("_")}2.png`)} alt={ascensionMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat.split(" ").join("_")}2.png`)} alt={ascensionMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[1]}
@@ -221,7 +223,7 @@ const WeaponAscensionTable = (props) => {
                                         {row.total[2] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatWeaponAscMats(`${ascensionMat}3`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background4star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat.split(" ").join("_")}3.png`)} alt={ascensionMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background4star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat.split(" ").join("_")}3.png`)} alt={ascensionMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[2]}
@@ -233,7 +235,7 @@ const WeaponAscensionTable = (props) => {
                                         {row.total[3] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatWeaponAscMats(`${ascensionMat}4`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background5star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat.split(" ").join("_")}4.png`)} alt={ascensionMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background5star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat.split(" ").join("_")}4.png`)} alt={ascensionMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[3]}
@@ -245,7 +247,7 @@ const WeaponAscensionTable = (props) => {
                                         {row.total[4] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatEliteMats(`${eliteMat}1`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background2star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/elite_mats/${eliteMat.split(" ").join("_")}1.png`)} alt={eliteMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background2star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/elite_mats/${eliteMat.split(" ").join("_")}1.png`)} alt={eliteMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[4]}
@@ -257,7 +259,7 @@ const WeaponAscensionTable = (props) => {
                                         {row.total[5] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatEliteMats(`${eliteMat}2`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/elite_mats/${eliteMat.split(" ").join("_")}2.png`)} alt={eliteMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/elite_mats/${eliteMat.split(" ").join("_")}2.png`)} alt={eliteMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[5]}
@@ -269,7 +271,7 @@ const WeaponAscensionTable = (props) => {
                                         {row.total[6] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatEliteMats(`${eliteMat}3`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background4star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/elite_mats/${eliteMat.split(" ").join("_")}3.png`)} alt={eliteMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background4star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/elite_mats/${eliteMat.split(" ").join("_")}3.png`)} alt={eliteMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[6]}
@@ -281,7 +283,7 @@ const WeaponAscensionTable = (props) => {
                                         {row.total[7] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatCommonMats(`${commonMat}1`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background1star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}1.png`)} alt={commonMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background1star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}1.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[7]}
@@ -293,7 +295,7 @@ const WeaponAscensionTable = (props) => {
                                         {row.total[8] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatCommonMats(`${commonMat}2`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background2star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}2.png`)} alt={commonMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background2star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}2.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[8]}
@@ -305,7 +307,7 @@ const WeaponAscensionTable = (props) => {
                                         {row.total[9] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatCommonMats(`${commonMat}3`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}3.png`)} alt={commonMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}3.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[9]}

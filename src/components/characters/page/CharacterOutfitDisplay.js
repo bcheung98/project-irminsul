@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import PropTypes from 'prop-types';
 import parse from "html-react-parser";
 import { Typography, Box, Tabs, Tab } from "@mui/material";
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 function TabPanel(props) {
 
@@ -42,7 +43,6 @@ const CharacterOutfitDisplay = (props) => {
         <Box
             sx={{
                 width: "80vw",
-
                 backgroundColor: `${theme.paper.backgroundColor}`,
                 border: `2px solid ${theme.border.color}`,
                 borderRadius: "5px",
@@ -92,6 +92,7 @@ const CharacterOutfitDisplay = (props) => {
                                             borderRadius: "5px",
                                             backgroundColor: `${theme.materialImage.backgroundColor}`
                                         }}
+                                        onError={ErrorLoadingImage}
                                     />
                                     :
                                     <img src={(`${process.env.REACT_APP_URL}/characters/outfits/Outfit_${outfit.name.split(" ").join("_")}_Preview.png`)} alt={outfit.name}
@@ -101,6 +102,7 @@ const CharacterOutfitDisplay = (props) => {
                                             borderRadius: "5px",
                                             backgroundColor: `${theme.materialImage.backgroundColor}`
                                         }}
+                                        onError={ErrorLoadingImage}
                                     />
                             }
                         </TabPanel>

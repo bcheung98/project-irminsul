@@ -56,5 +56,9 @@ export const CharacterAscensionStatScalings = (rarity, ascensionStat) => {
         }
     }
 
+    if (ascensionStat === "") {
+        stats[ascensionStat] = ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"];
+    }
+
     return stats;
 }

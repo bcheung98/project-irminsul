@@ -9,6 +9,7 @@ import { MaterialTooltip } from "../../helpers/MaterialTooltip";
 import { ElementalBorderColor } from "../../helpers/ElementalColors";
 import TCGDiceCost from "./TCGDiceCost";
 import { FormatTCGTalentKey } from "../../helpers/FormatTCGTalentKey";
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const TCGCharacterCardPopup = (props) => {
 
@@ -40,7 +41,7 @@ const TCGCharacterCardPopup = (props) => {
                     }}
                     avatar={
                         <MaterialTooltip title={element} arrow placement="top">
-                            <img src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} />
+                            <img src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
                         </MaterialTooltip>
                     }
                     title={
@@ -112,6 +113,7 @@ const TCGCharacterCardPopup = (props) => {
                                 border: `2px solid ${theme.border.color}`,
                                 borderRadius: "28px",
                             }}
+                            onError={ErrorLoadingImage}
                         />
                         {
                             splash !== undefined &&
@@ -158,7 +160,10 @@ const TCGCharacterCardPopup = (props) => {
                                                             width: "48px",
                                                             height: "48px",
                                                             border: `2px solid ${theme.border.color}`,
-                                                        }} />
+                                                        }}
+                                                    >
+                                                        <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
+                                                    </Avatar>
                                                     :
                                                     <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={(`${process.env.REACT_APP_URL}/tcg/character_talent_icons/${name.split(" ").join("_").toLowerCase()}_${key}.png`)} style={ElementalBorderColor(element)}
                                                         sx={{
@@ -167,7 +172,9 @@ const TCGCharacterCardPopup = (props) => {
                                                             width: "48px",
                                                             height: "48px",
                                                             border: `2px solid ${theme.border.color}`,
-                                                        }} />
+                                                        }}>
+                                                        <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
+                                                    </Avatar>
                                             }
                                             title={
                                                 <React.Fragment>

@@ -2,6 +2,7 @@ import * as React from "react";
 import { StyledTableCellNoVert, StyledTableRows } from "../../helpers/StyledTable";
 import { Box } from "@mui/system";
 import { ButtonBase, CardHeader, Typography } from "@mui/material";
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const CharacterRow = (props) => {
 
@@ -18,9 +19,7 @@ const CharacterRow = (props) => {
                         <CardHeader sx={{ p: 0 }}
                             avatar={
                                 <ButtonBase disableRipple href={`/project-irminsul/character/${currentCharacter.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                                    <img alt={row.name} src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${row.name.split(" ").join("_")}_Thumb.png`)}
-                                        style={{ width: "48px", cursor: "pointer" }}
-                                    />
+                                    <img alt={row.name} src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${row.name.split(" ").join("_")}_Thumb.png`)} style={{ width: "48px", cursor: "pointer" }} onError={ErrorLoadingImage} />
                                 </ButtonBase>
                             }
                             title={
@@ -46,7 +45,7 @@ const CharacterRow = (props) => {
                 { /* Rarity */}
                 <StyledTableCellNoVert>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <img src={(`${process.env.REACT_APP_URL}/stars/Icon_${row.rarity}_Stars.png`)} alt={row.rarity} style={{ height: "25px" }} />
+                        <img src={(`${process.env.REACT_APP_URL}/stars/Icon_${row.rarity}_Stars.png`)} alt={row.rarity} style={{ height: "25px" }} onError={ErrorLoadingImage} />
                     </Box>
                 </StyledTableCellNoVert>
 
@@ -55,9 +54,7 @@ const CharacterRow = (props) => {
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <CardHeader sx={{ p: 0 }}
                             avatar={
-                                <img alt={row.element} src={(`${process.env.REACT_APP_URL}/elements/Element_${row.element}.png`)}
-                                    style={{ width: "32px" }}
-                                />
+                                <img alt={row.element} src={(`${process.env.REACT_APP_URL}/elements/Element_${row.element}.png`)} style={{ width: "32px" }} onError={ErrorLoadingImage} />
                             }
                             title={
                                 <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif" }}>
@@ -79,6 +76,7 @@ const CharacterRow = (props) => {
                                         border: "1px solid rgba(0, 30, 60, 0)",
                                         borderRadius: "64px",
                                     }}
+                                    onError={ErrorLoadingImage}
                                 />
                             }
                             title={
@@ -99,6 +97,7 @@ const CharacterRow = (props) => {
                                     style={{
                                         width: "48px",
                                     }}
+                                    onError={ErrorLoadingImage}
                                 />
                             }
                             title={

@@ -6,6 +6,7 @@ import { Box } from "@mui/system";
 import { Typography, CardHeader, Button } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import TCGDiceCost from "./TCGDiceCost";
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const TCGActionCardPopup = (props) => {
 
@@ -84,6 +85,7 @@ const TCGActionCardPopup = (props) => {
                                 border: `2px solid ${theme.border.color}`,
                                 borderRadius: "28px",
                             }}
+                            onError={ErrorLoadingImage}
                         />
                         {
                             splash !== undefined &&

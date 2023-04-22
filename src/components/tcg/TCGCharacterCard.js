@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Box } from "@mui/system";
 import { Typography, Dialog } from "@mui/material";
 import TCGCharacterCardPopup from "./TCGCharacterCardPopup";
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const TCGCharacterCard = (props) => {
 
@@ -86,6 +87,7 @@ const TCGCharacterCard = (props) => {
                         border: `2px solid ${theme.border.color}`,
                         borderRadius: "18px",
                     }}
+                    onError={ErrorLoadingImage}
                 />
                 {/* Card Name */}
                 <Box>

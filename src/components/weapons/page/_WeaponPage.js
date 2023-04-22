@@ -12,6 +12,7 @@ import WeaponStatsTable from "./WeaponStatsTable";
 import WeaponAscensionTable from "./WeaponAscensionTable";
 import { MaterialTooltip } from "../../../helpers/MaterialTooltip";
 import { formatCommonMats, formatEliteMats, formatWeaponAscMats } from "../../../helpers/TooltipText";
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 function TabPanel(props) {
 
@@ -130,16 +131,17 @@ const WeaponPage = (props) => {
                     <Grid xs={8}>
                         <Box sx={{ display: "flex", alignItems: "center", mb: "15px" }}>
                             <MaterialTooltip title={formatWeaponAscMats(weapon.materials.ascensionMat)} arrow placement="top">
-                                <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${weapon.materials.ascensionMat.split(" ").join("_")}4.png`)} alt={weapon.materials.ascensionMat} />
+                                <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${weapon.materials.ascensionMat.split(" ").join("_")}4.png`)} alt={weapon.materials.ascensionMat} onError={ErrorLoadingImage} />
                             </MaterialTooltip>
                             <MaterialTooltip title={formatEliteMats(weapon.materials.eliteMat)} arrow placement="top">
-                                <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/elite_mats/${weapon.materials.eliteMat.split(" ").join("_")}3.png`)} alt={weapon.materials.eliteMat} />
+                                <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/elite_mats/${weapon.materials.eliteMat.split(" ").join("_")}3.png`)} alt={weapon.materials.eliteMat} onError={ErrorLoadingImage} />
                             </MaterialTooltip>
                             <MaterialTooltip title={formatCommonMats(weapon.materials.commonMat)} arrow placement="top">
-                                <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${weapon.materials.commonMat.split(" ").join("_")}3.png`)} alt={weapon.materials.commonMat} />
+                                <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${weapon.materials.commonMat.split(" ").join("_")}3.png`)} alt={weapon.materials.commonMat} onError={ErrorLoadingImage} />
                             </MaterialTooltip>
                         </Box>
-                        {weapon.stats.passive.name !== "" &&
+                        {
+                            weapon.stats.passive.name !== "" &&
                             <Box
                                 sx={{
                                     border: `1px solid ${theme.border.color}`,

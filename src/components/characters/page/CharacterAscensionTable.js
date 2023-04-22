@@ -5,6 +5,8 @@ import { Table, TableBody, TableContainer, TableHead, TableRow, Paper, Typograph
 import { MaterialTooltip } from "../../../helpers/MaterialTooltip";
 import { StyledTableCell } from "../../../helpers/StyledTable";
 import { formatCommonMats, formatBossMats, formatGemstone } from "../../../helpers/TooltipText";
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+
 let background1star = (`${process.env.REACT_APP_URL}/backgrounds/Background_1_Star.png`);
 let background2star = (`${process.env.REACT_APP_URL}/backgrounds/Background_2_Star.png`);
 let background3star = (`${process.env.REACT_APP_URL}/backgrounds/Background_3_Star.png`);
@@ -112,7 +114,7 @@ const CharacterAscensionTable = (props) => {
                                         {/* Mora */}
                                         <div className="materialImageRoot">
                                             <MaterialTooltip title="Mora" arrow placement="top">
-                                                <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/Item_Mora.png`)} alt={commonMat} />
+                                                <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/Item_Mora.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                                             </MaterialTooltip>
                                             <div className="materialTextContainer">
                                                 {row.quantity[4]}
@@ -123,7 +125,7 @@ const CharacterAscensionTable = (props) => {
                                         {row.quantity[1] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatBossMats(bossMat)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background4star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/boss_mats/${bossMat.split(" ").join("_")}.png`)} alt={bossMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background4star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/boss_mats/${bossMat.split(" ").join("_")}.png`)} alt={bossMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.quantity[1]}
@@ -134,7 +136,7 @@ const CharacterAscensionTable = (props) => {
                                         {/* Local Specialty */}
                                         <div className="materialImageRoot">
                                             <MaterialTooltip title={localMat} arrow placement="top">
-                                                <img className="materialImage" style={{ backgroundImage: "url(" + background1star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/local_specialties/${localMat.split(" ").join("_")}.png`)} alt={localMat} />
+                                                <img className="materialImage" style={{ backgroundImage: "url(" + background1star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/local_specialties/${localMat.split(" ").join("_")}.png`)} alt={localMat} onError={ErrorLoadingImage} />
                                             </MaterialTooltip>
                                             <div className="materialTextContainer">
                                                 {row.quantity[2]}
@@ -144,7 +146,7 @@ const CharacterAscensionTable = (props) => {
                                         {/* Gemstones */}
                                         <div className="materialImageRoot">
                                             <MaterialTooltip title={formatGemstone(`${element}_${ascensionLegend.gemstone[row.ascLevel]}`)} arrow placement="top">
-                                                <img className="materialImage" style={gemstoneBackgroundImageLegend(row.ascLevel)} src={(`${process.env.REACT_APP_URL}/materials/ascension_gems/${element}_${ascensionLegend.gemstone[row.ascLevel]}.png`)} alt={element} />
+                                                <img className="materialImage" style={gemstoneBackgroundImageLegend(row.ascLevel)} src={(`${process.env.REACT_APP_URL}/materials/ascension_gems/${element}_${ascensionLegend.gemstone[row.ascLevel]}.png`)} alt={element} onError={ErrorLoadingImage} />
                                             </MaterialTooltip>
                                             <div className="materialTextContainer">
                                                 {row.quantity[0]}
@@ -154,7 +156,7 @@ const CharacterAscensionTable = (props) => {
                                         {/* Common Material */}
                                         <div className="materialImageRoot">
                                             <MaterialTooltip title={formatCommonMats(`${commonMat}${ascensionLegend.commonMat[row.ascLevel]}`)} arrow placement="top">
-                                                <img className="materialImage" style={commonMatBackgroundImageLegend(row.ascLevel)} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}${ascensionLegend.commonMat[row.ascLevel]}.png`)} alt={commonMat} />
+                                                <img className="materialImage" style={commonMatBackgroundImageLegend(row.ascLevel)} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}${ascensionLegend.commonMat[row.ascLevel]}.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                                             </MaterialTooltip>
                                             <div className="materialTextContainer">
                                                 {row.quantity[3]}
@@ -173,7 +175,7 @@ const CharacterAscensionTable = (props) => {
                                         {/* Mora Total */}
                                         <div className="materialImageRoot">
                                             <MaterialTooltip title="Mora" arrow placement="top">
-                                                <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/Item_Mora.png`)} alt={commonMat} />
+                                                <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/Item_Mora.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                                             </MaterialTooltip>
                                             <div className="materialTextContainer">
                                                 {row.total[9]}
@@ -184,7 +186,7 @@ const CharacterAscensionTable = (props) => {
                                         {row.total[4] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatBossMats(bossMat)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background4star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/boss_mats/${bossMat.split(" ").join("_")}.png`)} alt={bossMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background4star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/boss_mats/${bossMat.split(" ").join("_")}.png`)} alt={bossMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[4]}
@@ -196,7 +198,7 @@ const CharacterAscensionTable = (props) => {
                                         {row.total[5] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={localMat} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background1star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/local_specialties/${localMat.split(" ").join("_")}.png`)} alt={localMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background1star + ")", backgroundSize: "100%" }} src={(`${process.env.REACT_APP_URL}/materials/local_specialties/${localMat.split(" ").join("_")}.png`)} alt={localMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[5]}
@@ -208,7 +210,7 @@ const CharacterAscensionTable = (props) => {
                                         {row.total[0] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatGemstone(`${element}_Sliver`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background2star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/ascension_gems/${element}_Sliver.png`)} alt={element} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background2star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/ascension_gems/${element}_Sliver.png`)} alt={element} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[0]}
@@ -220,7 +222,7 @@ const CharacterAscensionTable = (props) => {
                                         {row.total[1] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatGemstone(`${element}_Fragment`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/ascension_gems/${element}_Fragment.png`)} alt={element} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/ascension_gems/${element}_Fragment.png`)} alt={element} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[1]}
@@ -232,7 +234,7 @@ const CharacterAscensionTable = (props) => {
                                         {row.total[2] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatGemstone(`${element}_Chunk`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background4star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/ascension_gems/${element}_Chunk.png`)} alt={element} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background4star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/ascension_gems/${element}_Chunk.png`)} alt={element} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[2]}
@@ -244,7 +246,7 @@ const CharacterAscensionTable = (props) => {
                                         {row.total[3] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatGemstone(`${element}_Gemstone`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background5star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/ascension_gems/${element}_Gemstone.png`)} alt={element} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background5star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/ascension_gems/${element}_Gemstone.png`)} alt={element} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[3]}
@@ -256,7 +258,7 @@ const CharacterAscensionTable = (props) => {
                                         {row.total[6] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatCommonMats(`${commonMat}1`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background1star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}1.png`)} alt={commonMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background1star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}1.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[6]}
@@ -268,7 +270,7 @@ const CharacterAscensionTable = (props) => {
                                         {row.total[7] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatCommonMats(`${commonMat}2`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background2star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}2.png`)} alt={commonMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background2star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}2.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[7]}
@@ -280,7 +282,7 @@ const CharacterAscensionTable = (props) => {
                                         {row.total[8] !== "0" &&
                                             <div className="materialImageRoot">
                                                 <MaterialTooltip title={formatCommonMats(`${commonMat}3`)} arrow placement="top">
-                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}3.png`)} alt={commonMat} />
+                                                    <img className="materialImage" style={{ backgroundImage: "url(" + background3star + ")" }} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}3.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                                                 </MaterialTooltip>
                                                 <div className="materialTextContainer">
                                                     {row.total[8]}

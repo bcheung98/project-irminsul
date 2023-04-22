@@ -49,7 +49,10 @@ const CharacterConstellationDisplay = (props) => {
                                         width: "48px",
                                         height: "48px",
                                         border: "2px solid rgb(30, 73, 118)",
-                                    }} />
+                                    }}
+                                >
+                                    <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
+                                </Avatar>
                             }
                             title={
                                 <React.Fragment>
