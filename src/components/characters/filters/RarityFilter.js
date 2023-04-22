@@ -1,13 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const RarityFilter = (props) => {
 
     return (
-        <div style={{ display: "flex" }}>
-            <img className="filter-off" id="5-button" src={(`${process.env.REACT_APP_URL}/stars/Icon_5_Stars.png`)} alt="5" onClick={(e) => props.setFilter(e.target.alt)} />
-            <img className="filter-off" id="4-button" src={(`${process.env.REACT_APP_URL}/stars/Icon_4_Stars.png`)} alt="4" onClick={(e) => props.setFilter(e.target.alt)} />
-        </div>
+        <React.Fragment>
+            <img className="filter-off" id="5-button" src={(`${process.env.REACT_APP_URL}/stars/Icon_5_Stars.png`)} alt="5" onClick={(e) => props.setFilter(e.target.alt)} onError={ErrorLoadingImage} />
+            <img className="filter-off" id="4-button" src={(`${process.env.REACT_APP_URL}/stars/Icon_4_Stars.png`)} alt="4" onClick={(e) => props.setFilter(e.target.alt)} onError={ErrorLoadingImage} />
+        </React.Fragment>
     )
 }
 

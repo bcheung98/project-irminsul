@@ -1,16 +1,17 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { FilterTooltip } from "../../../helpers/FilterTooltip";
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
-const elements = ["Pyro", "Hydro", "Electro", "Cryo", "Anemo", "Geo", "Dendro"];
+const Elements = ["Pyro", "Hydro", "Electro", "Cryo", "Anemo", "Geo", "Dendro"];
 
 const ElementFilter = (props) => {
     return (
         <React.Fragment>
             {
-                elements.map((element, index) => (
+                Elements.map((element, index) => (
                     <FilterTooltip key={index} title={element} arrow placement="top">
-                        <img className="filter-off" id={`${element.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/elements/Element_${element}.png`} alt={element} onClick={(e) => props.setFilter(e.target.alt)} />
+                        <img className="filter-off" id={`${element.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/elements/Element_${element}.png`} alt={element} onClick={(e) => props.setFilter(e.target.alt)} onError={ErrorLoadingImage} />
                     </FilterTooltip>
                 ))
             }

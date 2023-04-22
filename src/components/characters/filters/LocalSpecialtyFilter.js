@@ -1,39 +1,40 @@
 import React from "react";
 import { useTheme } from "@mui/material/styles";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { connect } from "react-redux";
-import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import { Box, CardHeader, Typography } from "@mui/material";
-import MuiAccordion from '@mui/material/Accordion';
-import MuiAccordionSummary from '@mui/material/AccordionSummary';
-import MuiAccordionDetails from '@mui/material/AccordionDetails';
+import MuiAccordion from "@mui/material/Accordion";
+import MuiAccordionSummary from "@mui/material/AccordionSummary";
+import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import { FilterTooltip } from "../../../helpers/FilterTooltip";
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
     backgroundColor: `${theme.paper.backgroundColor}`,
-    '&:not(:last-child)': {
+    "&:not(:last-child)": {
         borderBottom: 0,
     },
-    '&:before': {
-        display: 'none',
+    "&:before": {
+        display: "none",
     },
 }));
 
 const AccordionSummary = styled((props) => (
     <MuiAccordionSummary
-        expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem', color: "dodgerblue" }} />}
+        expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem", color: "dodgerblue" }} />}
         {...props}
     />
 ))(({ theme }) => ({
     height: "32px",
     backgroundColor: `${theme.paper.backgroundColor}`,
-    flexDirection: 'row-reverse',
-    '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-        transform: 'rotate(90deg)',
+    flexDirection: "row-reverse",
+    "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+        transform: "rotate(90deg)",
     },
-    '& .MuiAccordionSummary-content': {
+    "& .MuiAccordionSummary-content": {
         marginLeft: "-5px",
     },
 }));
@@ -63,7 +64,7 @@ const LocalMatFilter = (props) => {
                         <AccordionSummary>
                             <CardHeader
                                 avatar={
-                                    <img src={`${process.env.REACT_APP_URL}/nations/${nation}.png`} alt={nation} style={{ height: "32px", width: "32px", borderRadius: "5px" }} />
+                                    <img src={`${process.env.REACT_APP_URL}/nations/${nation}.png`} alt={nation} style={{ height: "32px", width: "32px", borderRadius: "5px" }} onError={ErrorLoadingImage} />
                                 }
                                 title={
                                     <Typography variant="body1"
@@ -82,7 +83,7 @@ const LocalMatFilter = (props) => {
                             {
                                 LocalSpecialties[nation].sort().map((material, index) => (
                                     <FilterTooltip key={index} title={material} arrow placement="top">
-                                        <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/local_specialties/${material.split(" ").join("_")}.png`} alt={material} onClick={(e) => props.setFilter(e.target.alt)} />
+                                        <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/local_specialties/${material.split(" ").join("_")}.png`} alt={material} onClick={(e) => props.setFilter(e.target.alt)} onError={ErrorLoadingImage} />
                                     </FilterTooltip>
                                 ))
                             }

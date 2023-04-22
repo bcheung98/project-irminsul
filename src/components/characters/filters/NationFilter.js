@@ -1,27 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 import { FilterTooltip } from "../../../helpers/FilterTooltip";
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
-let mondstadtIcon = (`${process.env.REACT_APP_URL}/nations/Mondstadt.png`);
-let liyueIcon = (`${process.env.REACT_APP_URL}/nations/Liyue.png`);
-let inazumaIcon = (`${process.env.REACT_APP_URL}/nations/Inazuma.png`);
-let sumeruIcon = (`${process.env.REACT_APP_URL}/nations/Sumeru.png`);
+const Nations = ["Mondstadt", "Liyue", "Inazuma", "Sumeru"];
 
 const NationFilter = (props) => {
     return (
         <React.Fragment>
-            <FilterTooltip title="Mondstadt" arrow placement="top">
-                <img className="filter-off" id="mondstadt-button" src={mondstadtIcon} alt="Mondstadt" onClick={(e) => props.setFilter(e.target.alt)} />
-            </FilterTooltip>
-            <FilterTooltip title="Liyue" arrow placement="top">
-                <img className="filter-off" id="liyue-button" src={liyueIcon} alt="Liyue" onClick={(e) => props.setFilter(e.target.alt)} />
-            </FilterTooltip>
-            <FilterTooltip title="Inazuma" arrow placement="top">
-                <img className="filter-off" id="inazuma-button" src={inazumaIcon} alt="Inazuma" onClick={(e) => props.setFilter(e.target.alt)} />
-            </FilterTooltip>
-            <FilterTooltip title="Sumeru" arrow placement="top">
-                <img className="filter-off" id="sumeru-button" src={sumeruIcon} alt="Sumeru" onClick={(e) => props.setFilter(e.target.alt)} />
-            </FilterTooltip>
+            {
+                Nations.map((nation, index) => (
+                    <FilterTooltip key={index} title={nation} arrow placement="top">
+                        <img className="filter-off" id={`${nation.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/nations/${nation}.png`} alt={nation} onClick={(e) => props.setFilter(e.target.alt)} onError={ErrorLoadingImage} />
+                    </FilterTooltip>
+                ))
+            }
         </React.Fragment>
     )
 }

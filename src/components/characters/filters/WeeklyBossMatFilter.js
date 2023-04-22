@@ -1,39 +1,39 @@
 import React from "react";
 import { useTheme } from "@mui/material/styles";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { connect } from "react-redux";
-import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import { Avatar, Box, CardHeader, Typography } from "@mui/material";
-import MuiAccordion from '@mui/material/Accordion';
-import MuiAccordionSummary from '@mui/material/AccordionSummary';
-import MuiAccordionDetails from '@mui/material/AccordionDetails';
+import MuiAccordion from "@mui/material/Accordion";
+import MuiAccordionSummary from "@mui/material/AccordionSummary";
+import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import { FilterTooltip } from "../../../helpers/FilterTooltip";
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
     backgroundColor: `${theme.paper.backgroundColor}`,
-    '&:not(:last-child)': {
+    "&:not(:last-child)": {
         borderBottom: 0,
     },
-    '&:before': {
-        display: 'none',
+    "&:before": {
+        display: "none",
     },
 }));
 
 const AccordionSummary = styled((props) => (
     <MuiAccordionSummary
-        expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem', color: "dodgerblue" }} />}
+        expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem", color: "dodgerblue" }} />}
         {...props}
     />
 ))(({ theme }) => ({
     height: "32px",
     backgroundColor: `${theme.paper.backgroundColor}`,
-    flexDirection: 'row-reverse',
-    '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-        transform: 'rotate(90deg)',
+    flexDirection: "row-reverse",
+    "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+        transform: "rotate(90deg)",
     },
-    '& .MuiAccordionSummary-content': {
+    "& .MuiAccordionSummary-content": {
         marginLeft: "-5px",
     },
 }));
