@@ -34,8 +34,9 @@ const VersionHighlights = (props) => {
     const theme = useTheme();
 
     // MAKE SURE TO CHANGE THIS EVERY UPDATE!
-    let versions = ["3.6", "3.5", "3.4", "3.3", "3.2", "3.1", "3.0", "2.8", "2.7", "2.6", "2.5", "2.4", "2.3", "2.2", "2.1", "2.0", "1.6", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0"]
+    let versions = ["3.7", "3.6", "3.5", "3.4", "3.3", "3.2", "3.1", "3.0", "2.8", "2.7", "2.6", "2.5", "2.4", "2.3", "2.2", "2.1", "2.0", "1.6", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0"]
     let versionNames = [
+        "Duel! The Summoners' Summit!",
         "A Parade of Providence",
         "Windblume's Breath",
         "The Exquisite Night Chimes",
