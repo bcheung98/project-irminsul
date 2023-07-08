@@ -34,8 +34,9 @@ const VersionHighlights = (props) => {
     const theme = useTheme();
 
     // MAKE SURE TO CHANGE THIS EVERY UPDATE!
-    let versions = ["3.7", "3.6", "3.5", "3.4", "3.3", "3.2", "3.1", "3.0", "2.8", "2.7", "2.6", "2.5", "2.4", "2.3", "2.2", "2.1", "2.0", "1.6", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0"]
+    let versions = ["3.8", "3.7", "3.6", "3.5", "3.4", "3.3", "3.2", "3.1", "3.0", "2.8", "2.7", "2.6", "2.5", "2.4", "2.3", "2.2", "2.1", "2.0", "1.6", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0"]
     let versionNames = [
+        "Secret Summer Paradise",
         "Duel! The Summoners' Summit!",
         "A Parade of Providence",
         "Windblume's Breath",
@@ -100,12 +101,12 @@ const VersionHighlights = (props) => {
                     {versions.map((version, index) => <MenuItem key={index} value={version}><Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{version} - {versionNames[index]}</Typography></MenuItem>)}
                 </Select>
             </Box>
-            <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
 
             {/* NEW CHARACTERS */}
             {
                 characters.length > 0 &&
                 <Box>
+                    <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
                     <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "10px" }}>
                         New Characters
                     </Typography>
@@ -253,32 +254,32 @@ const VersionHighlights = (props) => {
             {/* NEW TCG CARDS */}
             {
                 characterCards.length > 0 || actionCards.length > 0 ?
-                <Box>
-                    <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
-                    <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "30px" }}>
-                        New TCG Cards
-                    </Typography>
-                    <Grid container>
-                        {
-                            characterCards.map((card, index) => (
-                                <Box sx={{ mx: "auto", my: "10px" }} key={index}>
-                                    <TCGCharacterCard key={card.name} char={card} preview />
-                                </Box>
-                            ))
-                        }
-                    </Grid>
-                    <Grid container>
-                        {
-                            actionCards.map((card, index) => (
-                                <Box sx={{ mx: "auto", my: "10px" }} key={index}>
-                                    <TCGActionCard key={card.name} card={card} preview />
-                                </Box>
-                            ))
-                        }
-                    </Grid>
-                </Box>
-                :
-                null
+                    <Box>
+                        <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
+                        <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "30px" }}>
+                            New TCG Cards
+                        </Typography>
+                        <Grid container>
+                            {
+                                characterCards.map((card, index) => (
+                                    <Box sx={{ mx: "auto", my: "10px" }} key={index}>
+                                        <TCGCharacterCard key={card.name} char={card} preview />
+                                    </Box>
+                                ))
+                            }
+                        </Grid>
+                        <Grid container>
+                            {
+                                actionCards.map((card, index) => (
+                                    <Box sx={{ mx: "auto", my: "10px" }} key={index}>
+                                        <TCGActionCard key={card.name} card={card} preview />
+                                    </Box>
+                                ))
+                            }
+                        </Grid>
+                    </Box>
+                    :
+                    null
             }
         </Box>
     )
