@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import "../../../css/CharacterPage.css";
 import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
-import { Typography, Tabs, Tab, Box, Dialog } from "@mui/material";
+import { Typography, Tabs, Tab, Box, Dialog, Avatar } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useParams } from "react-router-dom";
 import { MaterialTooltip } from "../../../helpers/MaterialTooltip";
@@ -144,7 +144,9 @@ const CharacterPage = (props) => {
                     >
                         <Box sx={{ display: "flex" }}>
                             <MaterialTooltip title={`${nation} / ${element}`} arrow placement="bottom">
-                                <img style={{ marginRight: "-25px", height: "128px" }} src={(`${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}.png`)} alt={`${nation} / ${element}`} onError={ErrorLoadingImage} />
+                                <Avatar sx={{ marginRight: "-20px", height: "128px", width: "128px", backgroundColor: `${theme.paper.backgroundColor}` }} src={(`${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}.png`)} alt={`${nation} / ${element}`}>
+                                    <img style={{ height: "72px", width: "72px" }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={`${element}`} onError={ErrorLoadingImage} />
+                                </Avatar>
                             </MaterialTooltip>
                             <div style={{ marginLeft: "20px" }}>
                                 <Typography
