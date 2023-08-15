@@ -8,6 +8,7 @@ Project Irminsul (aka Genshin Impact Reference Sheet 3.0) is the next evolution 
 
 - Character viewer
 - Weapon viewer
+- Ascension planner
 - Banner history
 - TCG viewer
 
