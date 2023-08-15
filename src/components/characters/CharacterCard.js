@@ -30,7 +30,7 @@ const CharacterCard = (props) => {
                 width: 320,
                 height: 185,
                 mx: "auto",
-                mb: "10px",
+                mb: "15px",
                 backgroundColor: `${theme.card.backgroundColor}`,
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
@@ -45,10 +45,7 @@ const CharacterCard = (props) => {
                     }}
                 >
                     <ButtonBase disableRipple href={`/project-irminsul/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                        <Typography sx={{
-                            fontFamily: "Genshin, sans-serif",
-                            color: `${theme.text.color}`,
-                        }} variant="h5">
+                        <Typography variant="h5" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
                             {name}
                         </Typography>
                     </ButtonBase>
