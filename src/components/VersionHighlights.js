@@ -102,7 +102,7 @@ const VersionHighlights = (props) => {
             {/* NEW CHARACTERS */}
             {
                 characters.length > 0 &&
-                <Box sx={{ my: "20px" }}>
+                <Box sx={{ mx: "30px", my: "20px" }}>
                     <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "20px" }}>
                         New Characters
                     </Typography>
@@ -122,7 +122,7 @@ const VersionHighlights = (props) => {
             {/* NEW WEAPONS */}
             {
                 weapons.length > 0 &&
-                <Box sx={{ my: "20px" }}>
+                <Box sx={{ mx: "30px", my: "20px" }}>
                     <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "20px" }}>
                         New Weapons
                     </Typography>
@@ -142,7 +142,7 @@ const VersionHighlights = (props) => {
             {/* NEW TCG CARDS */}
             {
                 characterCards.length > 0 || actionCards.length > 0 ?
-                    <Box sx={{ my: "20px" }}>
+                    <Box sx={{ mx: "10px", my: "20px" }}>
                         <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "30px" }}>
                             New TCG Cards
                         </Typography>
