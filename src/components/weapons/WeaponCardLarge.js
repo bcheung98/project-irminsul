@@ -32,7 +32,6 @@ const WeaponCardLarge = (props) => {
         <Card
             sx={{
                 width: width,
-                minHeight: "300px",
                 mx: "auto",
                 mb: "20px",
                 backgroundColor: `${theme.card.backgroundColor}`,
@@ -45,12 +44,11 @@ const WeaponCardLarge = (props) => {
                     <Box
                         sx={{
                             width: width,
-                            height: "225px",
+                            height: "200px",
                         }}
                     >
                         <img src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${name.split(" ").join("_")}.png`)} alt={name} style={weaponIcon} onError={ErrorLoadingImage} />
                     </Box>
-                    <Box sx={{ mt: "-25px" }} />
                 </Box>
             </ButtonBase>
             <CardContent
