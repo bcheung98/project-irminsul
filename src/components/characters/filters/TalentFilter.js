@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Box } from "@mui/material";
-import { FilterTooltip } from "../../../helpers/FilterTooltip";
+import { CustomTooltip } from "../../../helpers/CustomTooltip";
 import { formatTalents } from "../../../helpers/TooltipText";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
@@ -9,7 +9,8 @@ const TalentBooks = {
     "Mondstadt": ["Freedom", "Resistance", "Ballad"],
     "Liyue": ["Prosperity", "Diligence", "Gold"],
     "Inazuma": ["Transience", "Elegance", "Light"],
-    "Sumeru": ["Admonition", "Ingenuity", "Praxis"]
+    "Sumeru": ["Admonition", "Ingenuity", "Praxis"],
+    "Fontaine": ["Equity", "Justice", "Order"]
 }
 
 const TalentFilter = (props) => {
@@ -20,9 +21,9 @@ const TalentFilter = (props) => {
                     <Box key={index}>
                         {
                             TalentBooks[nation].map((talent, index) => (
-                                <FilterTooltip key={index} title={formatTalents(`${talent}`)} arrow placement="top">
+                                <CustomTooltip key={index} title={formatTalents(`${talent}`)} arrow placement="top">
                                     <img className="filter-off" id={`${talent.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/talent_mats/${talent}3.png`} alt={talent} onClick={(e) => props.setFilter(e.target.alt)} onError={ErrorLoadingImage} />
-                                </FilterTooltip>
+                                </CustomTooltip>
                             ))
                         }
                     </Box>

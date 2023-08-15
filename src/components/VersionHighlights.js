@@ -1,68 +1,49 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
-import { styled } from "@mui/material/styles";
 import { Box } from "@mui/system";
-import { Typography, ButtonBase, Avatar, Select, MenuItem, InputBase } from "@mui/material";
+import { Typography, Select, MenuItem, AppBar } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import { MaterialTooltip } from "../helpers/MaterialTooltip";
+import { CustomSelect } from "../helpers/CustomSelect";
 import TCGCharacterCard from "./tcg/TCGCharacterCard";
 import TCGActionCard from "./tcg/TCGActionCard";
-
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
-    "label + &": {
-        marginTop: theme.spacing(3),
-    },
-    "& .MuiInputBase-input": {
-        borderRadius: 5,
-        backgroundColor: "white",
-        border: "1px solid #ced4da",
-        fontFamily: "Genshin, sans-serif",
-        fontSize: 16,
-        padding: "10px 26px 10px 12px",
-        "&:focus": {
-            borderRadius: 4,
-            borderColor: "#80bdff",
-            boxShadow: "0 0 0 0.2rem rgba(0, 12, 255, .25)",
-            backgroundColor: "white",
-        },
-    },
-}));
+import CharacterCardLarge from "./characters/CharacterCardLarge";
+import WeaponCardLarge from "./weapons/WeaponCardLarge";
 
 const VersionHighlights = (props) => {
 
     const theme = useTheme();
 
     // MAKE SURE TO CHANGE THIS EVERY UPDATE!
-    let versions = ["3.8", "3.7", "3.6", "3.5", "3.4", "3.3", "3.2", "3.1", "3.0", "2.8", "2.7", "2.6", "2.5", "2.4", "2.3", "2.2", "2.1", "2.0", "1.6", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0"]
-    let versionNames = [
-        "Secret Summer Paradise",
-        "Duel! The Summoners' Summit!",
-        "A Parade of Providence",
-        "Windblume's Breath",
-        "The Exquisite Night Chimes",
-        "All Senses Clear, All Existence Void",
-        "Akasha Pulses, the Kalpa Flame Rises",
-        "King Deshret and the Three Magi",
-        "The Morn a Thousand Roses Brings",
-        "Summer Fantasia",
-        "Hidden Dreams in the Depths",
-        "Zephyr of the Violet Garden",
-        "When the Sakura Bloom",
-        "Fleeting Colors in Flight",
-        "Shadows Amidst Snowstorms",
-        "Into the Perilous Labyrinth of Fog",
-        "Floating World Under the Moonlight",
-        "The Immovable God and the Eternal Euthymia",
-        "Midsummer Island Adventure",
-        "Beneath the Light of Jadeite",
-        "Invitation of Windblume",
-        "All That Glitters",
-        "The Chalk Prince and the Dragon",
-        "A New Star Approaches",
-        "Welcome to Teyvat"
+    let updates = [
+        { version: "4.0", name: "As Light Rain Falls Without Reason" },
+        { version: "3.8", name: "Secret Summer Paradise" },
+        { version: "3.7", name: "Duel! The Summoners' Summit!" },
+        { version: "3.6", name: "A Parade of Providence" },
+        { version: "3.5", name: "Windblume's Breath" },
+        { version: "3.4", name: "The Exquisite Night Chimes" },
+        { version: "3.3", name: "All Senses Clear, All Existence Void" },
+        { version: "3.2", name: "Akasha Pulses, the Kalpa Flame Rises" },
+        { version: "3.1", name: "King Deshret and the Three Magi" },
+        { version: "3.0", name: "The Morn a Thousand Roses Brings" },
+        { version: "2.8", name: "Summer Fantasia" },
+        { version: "2.7", name: "Hidden Dreams in the Depths" },
+        { version: "2.6", name: "Zephyr of the Violet Garden" },
+        { version: "2.5", name: "When the Sakura Bloom" },
+        { version: "2.4", name: "Fleeting Colors in Flight" },
+        { version: "2.3", name: "Shadows Amidst Snowstorms" },
+        { version: "2.2", name: "Into the Perilous Labyrinth of Fog" },
+        { version: "2.1", name: "Floating World Under the Moonlight" },
+        { version: "2.0", name: "The Immovable God and the Eternal Euthymia" },
+        { version: "1.6", name: "Midsummer Island Adventure" },
+        { version: "1.5", name: "Beneath the Light of Jadeite" },
+        { version: "1.4", name: "Invitation of Windblume" },
+        { version: "1.3", name: "All That Glitters" },
+        { version: "1.2", name: "The Chalk Prince and the Dragon" },
+        { version: "1.1", name: "A New Star Approaches" },
+        { version: "1.0", name: "Welcome to Teyvat" }
     ]
-    const [version, setVersion] = React.useState(versions[0]);
+    const [version, setVersion] = React.useState(updates[0].version);
     const handleVersionChange = (event) => {
         setVersion(event.target.value);
     }
@@ -83,179 +64,85 @@ const VersionHighlights = (props) => {
                 display: "block",
                 margin: "auto",
                 mt: "20px",
-                p: "10px",
                 width: "50vw",
                 color: `${theme.text.color}`,
             }}
         >
-            <Box
+            <AppBar position="static"
                 sx={{
-                    display: "flex",
-                    justifyContent: "space-between"
+                    backgroundColor: `${theme.appbar.backgroundColor}`,
+                    borderBottom: `1px solid ${theme.border.color}`,
+                    borderRadius: "5px 5px 0px 0px",
+                    p: "10px",
                 }}
             >
-                <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", mt: "5px" }}>
-                    {`Version Highlights`}
-                </Typography>
-                <Select value={version} label="Day" onChange={handleVersionChange} input={<BootstrapInput />}>
-                    {versions.map((version, index) => <MenuItem key={index} value={version}><Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{version} - {versionNames[index]}</Typography></MenuItem>)}
-                </Select>
-            </Box>
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "space-between"
+                    }}
+                >
+                    <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", mt: "5px" }}>
+                        {`Version Highlights`}
+                    </Typography>
+                    <Select value={version} label="Version" onChange={handleVersionChange} input={<CustomSelect />}>
+                        {
+                            updates.map((version, index) => {
+                                return (
+                                    <MenuItem key={index} value={version.version}>
+                                        <Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{version.version} - {version.name}</Typography>
+                                    </MenuItem>
+                                )
+                            })
+                        }
+                    </Select>
+                </Box>
+            </AppBar>
 
             {/* NEW CHARACTERS */}
             {
                 characters.length > 0 &&
-                <Box>
-                    <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
-                    <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "10px" }}>
+                <Box sx={{ my: "20px" }}>
+                    <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "20px" }}>
                         New Characters
                     </Typography>
                     <Box>
                         <Grid container spacing={2}>
                             {
-                                characters.sort((a, b) => a.id > b.id ? 1 : -1).map((char, index) => {
-                                    return (
-                                        <Box
-                                            sx={{
-                                                border: `1px solid ${theme.border.color}`,
-                                                borderRadius: "5px",
-                                                width: "195px",
-                                                mx: "auto",
-                                                my: "10px"
-                                            }}
-                                            key={index}
-                                        >
-                                            <ButtonBase disableRipple href={`/project-irminsul/character/${char.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index}>
-                                                <img src={(`${process.env.REACT_APP_URL}/characters/wish/Character_${char.name.split(" ").join("_")}_Wish.png`)} alt={char.name}
-                                                    style={{
-                                                        width: "195px",
-                                                        height: "450px",
-                                                        objectFit: "cover",
-                                                        borderBottom: `1px solid ${theme.border.color}`,
-                                                        cursor: "pointer",
-                                                    }}
-                                                />
-                                            </ButtonBase>
-                                            <Typography variant="h6" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mt: "5px" }}>
-                                                <ButtonBase disableRipple href={`/project-irminsul/character/${char.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index}>
-                                                    {char.name}
-                                                </ButtonBase>
-                                            </Typography>
-                                            <Box>
-                                                <img src={(`${process.env.REACT_APP_URL}/stars/Icon_${char.rarity}_Stars.png`)} alt={char.rarity}
-                                                    style={{
-                                                        height: "25px",
-                                                        display: "block",
-                                                        margin: "auto",
-                                                        marginBottom: "5px"
-                                                    }}
-                                                />
-                                            </Box>
-                                            <Box
-                                                sx={{
-                                                    display: "block",
-                                                    width: "30%",
-                                                    mx: "auto",
-                                                    mb: "5px"
-                                                }}
-                                            >
-                                                <Box sx={{ display: "flex" }}>
-                                                    <MaterialTooltip title={char.element} arrow placement="top">
-                                                        <Avatar sx={{
-                                                            height: "30px",
-                                                            width: "30px",
-                                                        }} src={(`${process.env.REACT_APP_URL}/elements/Element_${char.element}.png`)} alt={char.element} />
-                                                    </MaterialTooltip>
-                                                    <MaterialTooltip title={char.weapon} arrow placement="top">
-                                                        <Avatar sx={{
-                                                            height: "30px",
-                                                            width: "30px"
-                                                        }} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${char.weapon.toLowerCase()}-icon.png`)} alt={char.weapon} />
-                                                    </MaterialTooltip>
-                                                </Box>
-                                            </Box>
-                                        </Box>
-                                    )
-                                })
+                                characters.sort((a, b) => a.id > b.id ? 1 : -1).map((char, index) => <CharacterCardLarge key={index} character={char} />)
                             }
                         </Grid>
                     </Box>
+                    {
+                        weapons.length > 0 && <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "15px" }} />
+                    }
                 </Box>
             }
 
             {/* NEW WEAPONS */}
             {
                 weapons.length > 0 &&
-                <Box>
-                    <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
-                    <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "10px" }}>
+                <Box sx={{ my: "20px" }}>
+                    <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "20px" }}>
                         New Weapons
                     </Typography>
                     <Box>
                         <Grid container spacing={2}>
                             {
-                                weapons.sort((a, b) => a.rarity < b.rarity ? 1 : -1).sort((a, b) => a.rarity < b.rarity ? 1 : -1).map((wep, index) => {
-                                    const weaponIcon = {
-                                        width: "240px",
-                                        height: "240px",
-                                        borderRadius: "5px",
-                                        borderBottom: `1px solid ${theme.border.color}`,
-                                        cursor: "pointer",
-                                        backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${wep.rarity}_Star.png)`,
-                                        backgroundSize: "100%"
-                                    }
-                                    return (
-                                        <Box
-                                            sx={{
-                                                border: `1px solid ${theme.border.color}`,
-                                                borderRadius: "5px",
-                                                width: "240px",
-                                                mx: "auto",
-                                                my: "10px",
-                                            }}
-                                            key={index}
-                                        >
-                                            <ButtonBase disableRipple href={`/project-irminsul/weapon/${wep.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index}>
-                                                <img src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${wep.name.split(" ").join("_")}.png`)} alt={wep.name} style={weaponIcon} />
-                                            </ButtonBase>
-                                            <Typography variant="h6" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mt: "5px" }}>
-                                                <ButtonBase disableRipple href={`/project-irminsul/weapon/${wep.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index}>
-                                                    {wep.name}
-                                                </ButtonBase>
-                                            </Typography>
-                                            <Box>
-                                                <img src={(`${process.env.REACT_APP_URL}/stars/Icon_${wep.rarity}_Stars.png`)} alt={wep.rarity}
-                                                    style={{
-                                                        height: "25px",
-                                                        display: "block",
-                                                        margin: "auto",
-                                                        marginBottom: "5px"
-                                                    }}
-                                                />
-                                            </Box>
-                                            <MaterialTooltip title={wep.type} arrow placement="top">
-                                                <Avatar sx={{
-                                                    height: "30px",
-                                                    width: "30px",
-                                                    display: "block",
-                                                    mx: "auto",
-                                                    mb: "5px"
-                                                }} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${wep.type.toLowerCase()}-icon.png`)} alt={wep.type} />
-                                            </MaterialTooltip>
-                                        </Box>
-                                    )
-                                })
+                                weapons.sort((a, b) => a.rarity < b.rarity ? 1 : -1).sort((a, b) => a.rarity < b.rarity ? 1 : -1).map((wep, index) => <WeaponCardLarge key={index} weapon={wep} />)
                             }
                         </Grid>
                     </Box>
+                    {
+                        characterCards.length > 0 || actionCards.length > 0 ? <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "15px" }} /> : null
+                    }
                 </Box>
             }
 
             {/* NEW TCG CARDS */}
             {
                 characterCards.length > 0 || actionCards.length > 0 ?
-                    <Box>
-                        <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
+                    <Box sx={{ my: "20px" }}>
                         <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "30px" }}>
                             New TCG Cards
                         </Typography>

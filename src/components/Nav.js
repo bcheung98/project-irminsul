@@ -49,7 +49,7 @@ const Nav = () => {
                                     <Avatar src={(`${process.env.REACT_APP_URL}/icons/Aether.png`)} alt="CHARACTERS" sx={{ height: "32px", width: "32px" }} />
                                 }
                                 title={
-                                    <Typography variant="body1"
+                                    <Typography variant="body2"
                                         sx={{
                                             fontFamily: "Genshin, monospace",
                                             color: "white",
@@ -70,7 +70,7 @@ const Nav = () => {
                                     <Avatar src={(`${process.env.REACT_APP_URL}/icons/Weapons.png`)} alt="WEAPONS" sx={{ height: "48px", width: "48px" }} />
                                 }
                                 title={
-                                    <Typography variant="body1" noWrap
+                                    <Typography variant="body2" noWrap
                                         sx={{
                                             fontFamily: "Genshin, monospace",
                                             color: "white",
@@ -84,6 +84,27 @@ const Nav = () => {
                         </ButtonBase>
                         <ButtonBase
                             disableRipple
+                            href={`/project-irminsul/planner`}
+                        >
+                            <CardHeader
+                                avatar={
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Ascension.png`)} alt="Ascension" sx={{ height: "36px", width: "36px", mt: "5px" }} />
+                                }
+                                title={
+                                    <Typography variant="body2" noWrap
+                                        sx={{
+                                            fontFamily: "Genshin, monospace",
+                                            color: "white",
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        ASCENSION PLANNER
+                                    </Typography>
+                                }
+                            />
+                        </ButtonBase>
+                        <ButtonBase
+                            disableRipple
                             href={`/project-irminsul/banners`}
                         >
                             <CardHeader
@@ -91,7 +112,7 @@ const Nav = () => {
                                     <Avatar src={(`${process.env.REACT_APP_URL}/icons/Wish.png`)} alt="BANNERS" sx={{ height: "40px", width: "40px" }} />
                                 }
                                 title={
-                                    <Typography variant="body1" noWrap
+                                    <Typography variant="body2" noWrap
                                         sx={{
                                             fontFamily: "Genshin, monospace",
                                             color: "white",
@@ -112,7 +133,7 @@ const Nav = () => {
                                     <Avatar src={(`${process.env.REACT_APP_URL}/icons/tcg.png`)} alt="TCG" sx={{ height: "40px", width: "40px" }} />
                                 }
                                 title={
-                                    <Typography variant="body1" noWrap
+                                    <Typography variant="body2" noWrap
                                         sx={{
                                             fontFamily: "Genshin, monospace",
                                             color: "white",

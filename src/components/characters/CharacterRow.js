@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyledTableCellNoVert, StyledTableRows } from "../../helpers/StyledTable";
+import { StyledTableCellNoVert, StyledTableRows } from "../../helpers/CustomTable";
 import { Box } from "@mui/system";
 import { ButtonBase, CardHeader, Typography } from "@mui/material";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";

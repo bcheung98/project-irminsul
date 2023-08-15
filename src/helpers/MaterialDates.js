@@ -1,27 +1,40 @@
 export const MaterialDates = (day) => {
+
+    const talents = ["Freedom", "Resistance", "Ballad", "Prosperity", "Diligence", "Gold", "Transience", "Elegance", "Light", "Admonition", "Ingenuity", "Praxis", "Equity", "Justice", "Order"];
+    const weapons = ["Decarabian", "Boreal Wolf", "Dandelion Gladiator", "Guyun", "Mist Veiled Elixir", "Aerosiderite", "Sea Branch", "Narukami", "Oni Mask", "Forest Dew", "Oasis Garden", "Scorching Might", "Chord", "Dewdrop", "Pristine Sea"];
+
     switch (day) {
         case "Monday":
         case "Thursday":
             return {
-                "talents": ["Freedom", "Prosperity", "Transience", "Admonition"],
-                "weapons": ["Decarabian", "Guyun", "Sea Branch", "Forest Dew"]
+                "talents": GetMaterials(talents, 0),
+                "weapons": GetMaterials(weapons, 0)
             }
         case "Tuesday":
         case "Friday":
             return {
-                "talents": ["Resistance", "Diligence", "Elegance", "Ingenuity"],
-                "weapons": ["Boreal Wolf", "Mist Veiled Elixir", "Narukami", "Oasis Garden"]
+                "talents": GetMaterials(talents, 1),
+                "weapons": GetMaterials(weapons, 1)
             }
         case "Wednesday":
         case "Saturday":
             return {
-                "talents": ["Ballad", "Gold", "Light", "Praxis"],
-                "weapons": ["Dandelion Gladiator", "Aerosiderite", "Oni Mask", "Scorching Might"]
+                "talents": GetMaterials(talents, 2),
+                "weapons": GetMaterials(weapons, 2)
             }
         default:
             return {
-                "talents": ["Freedom", "Resistance", "Ballad", "Prosperity", "Diligence", "Gold", "Transience", "Elegance", "Light", "Admonition", "Ingenuity", "Praxis"],
-                "weapons": ["Decarabian", "Boreal Wolf", "Dandelion Gladiator", "Guyun", "Mist Veiled Elixir", "Aerosiderite", "Sea Branch", "Narukami", "Oni Mask", "Forest Dew", "Oasis Garden", "Scorching Might"]
+                "talents": talents,
+                "weapons": weapons
             }
     }
+
+}
+
+const GetMaterials = (arr, start) => {
+    let output = [];
+    for (let i = start; i < arr.length; i += 3) {
+        output.push(arr[i])
+    }
+    return output
 }

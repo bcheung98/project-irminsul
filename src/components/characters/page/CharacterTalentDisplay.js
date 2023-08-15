@@ -1,47 +1,12 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import { styled } from '@mui/material/styles';
 import parse from "html-react-parser";
-import { Typography, Box, Avatar, CardHeader, Paper } from "@mui/material";
-import MuiAccordion from '@mui/material/Accordion';
-import MuiAccordionSummary from '@mui/material/AccordionSummary';
-import MuiAccordionDetails from '@mui/material/AccordionDetails';
-import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import { Typography, Box, Avatar, CardHeader, Paper, AppBar } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary } from "../../../helpers/CustomAccordion";
 import { FormatTalentKey } from "../../../helpers/FormatTalentKey";
 import { ElementalBorderColor } from "../../../helpers/ElementalColors";
 import CharacterTalentScalingTable from "./CharacterTalentScalingTable";
-
-const Accordion = styled((props) => (
-    <MuiAccordion disableGutters elevation={0} {...props} />
-))(({ theme }) => ({
-    '&:not(:last-child)': {
-        borderBottom: 0,
-    },
-    '&:before': {
-        display: 'none',
-    },
-}));
-
-const AccordionSummary = styled((props) => (
-    <MuiAccordionSummary
-        expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem', color: "dodgerblue" }} />}
-        {...props}
-    />
-))(({ theme }) => ({
-    backgroundColor: `${theme.paper.backgroundColor}`,
-    flexDirection: 'row-reverse',
-    '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-        transform: 'rotate(90deg)',
-    },
-    '& .MuiAccordionSummary-content': {
-        marginLeft: "10px",
-    },
-}));
-
-const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-    backgroundColor: `${theme.paper.backgroundColor}`,
-    padding: "10px",
-}));
+import CharacterTalentLevelling from "./CharacterTalentLevelling";
 
 const CharacterTalentDisplay = (props) => {
 
@@ -52,25 +17,32 @@ const CharacterTalentDisplay = (props) => {
     return (
         <Box
             sx={{
-                border: `1px solid ${theme.border.color}`,
-                borderRadius: "5px",
+                mx: "15px",
                 color: `${theme.text.color}`,
                 backgroundColor: `${theme.paper.backgroundColor}`,
-                width: "95vw",
-                margin: "auto",
-                padding: "15px",
-            }}>
-            <Typography
-                variant="h5"
-                noWrap
-                component="p"
+                border: `1px solid ${theme.border.color}`,
+                borderRadius: "5px",
+            }}
+        >
+            <AppBar position="static"
                 sx={{
-                    fontFamily: "Genshin, sans-serif",
-                    mb: "15px",
+                    backgroundColor: `${theme.appbar.backgroundColor}`,
+                    borderBottom: `1px solid ${theme.border.color}`,
+                    borderRadius: "5px 5px 0px 0px",
                 }}
             >
-                Talents
-            </Typography>
+                <Typography
+                    variant="h6"
+                    component="p"
+                    sx={{
+                        m: 2,
+                        color: `${theme.text.color}`,
+                        fontFamily: "Genshin, sans-serif",
+                    }}
+                >
+                    Talents
+                </Typography>
+            </AppBar>
             {Object.keys(talents).map((key, index) => {
                 return (
                     <Box key={key}>
@@ -81,7 +53,7 @@ const CharacterTalentDisplay = (props) => {
                             }}
                             avatar={
                                 key === "attack" ?
-                                    <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={(`${process.env.REACT_APP_URL}/characters/talents/attack_${weapon.toLowerCase()}.png`)} style={ElementalBorderColor(element)}
+                                    <Avatar alt={`${name.split(" ").join("_").toLowerCase()}_${key}`} src={(`${process.env.REACT_APP_URL}/characters/talents/attack_${weapon.toLowerCase()}.png`)} style={ElementalBorderColor(element)}
                                         sx={{
                                             display: "flex",
                                             flexDirection: "column",
@@ -90,10 +62,10 @@ const CharacterTalentDisplay = (props) => {
                                             border: "2px solid rgb(30, 73, 118)",
                                         }}
                                     >
-                                        <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{width: "48px", backgroundColor: `${theme.paper.backgroundColor}`}} />
+                                        <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
                                     </Avatar>
                                     :
-                                    <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={(`${process.env.REACT_APP_URL}/characters/talents/${name.split(" ").join("_").toLowerCase()}_${key}.png`)} style={ElementalBorderColor(element)}
+                                    <Avatar alt={`${name.split(" ").join("_").toLowerCase()}_${key}`} src={(`${process.env.REACT_APP_URL}/characters/talents/${name.split(" ").join("_").toLowerCase()}_${key}.png`)} style={ElementalBorderColor(element)}
                                         sx={{
                                             display: "flex",
                                             flexDirection: "column",
@@ -102,7 +74,7 @@ const CharacterTalentDisplay = (props) => {
                                             border: "2px solid rgb(30, 73, 118)",
                                         }}
                                     >
-                                        <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{width: "48px", backgroundColor: `${theme.paper.backgroundColor}`}} />
+                                        <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
                                     </Avatar>
                             }
                             title={
@@ -145,9 +117,17 @@ const CharacterTalentDisplay = (props) => {
                                         <CharacterTalentScalingTable attackType={key} stats={talents[key].scaling} />
                                     </AccordionDetails>
                                 </Accordion>
+                                <Accordion>
+                                    <AccordionSummary>
+                                        <Typography variant="body1" sx={{ color: `${theme.text.color}`, fontWeight: "bold" }}>Level Up Cost</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <CharacterTalentLevelling character={props.character} />
+                                    </AccordionDetails>
+                                </Accordion>
                             </Paper>
                         }
-                        {index !== Object.keys(talents).length - 1 && <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "10px", marginBottom: "15px" }} />}
+                        {index !== Object.keys(talents).length - 1 && <hr style={{ border: ".5px solid rgb(30, 73, 118)", margin: "10px" }} />}
                     </Box>
                 )
             })}

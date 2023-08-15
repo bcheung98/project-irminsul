@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useTheme } from "@mui/material/styles";
 import { Table, TableBody, TableContainer, TableHead } from "@mui/material";
-import { StyledTableCell, StyledTableRows } from "../../../helpers/StyledTable";
+import { StyledTableCell, StyledTableRows } from "../../../helpers/CustomTable";
 
 const createTalentScaling = (level, a, b, c, d, e, f, g, h, i, j, k, l, m) => {
     return { level, a, b, c, d, e, f, g, h, i, j, k, l, m }

@@ -15,18 +15,21 @@ export const formatTalents = (talent) => {
         case "Prosperity":
         case "Transience":
         case "Admonition":
+        case "Equity":
             talent += " (Mon/Thu)";
             break;
         case "Resistance":
         case "Diligence":
         case "Elegance":
         case "Ingenuity":
+        case "Justice":
             talent += " (Tue/Fri)"
             break;
         case "Ballad":
         case "Gold":
         case "Light":
         case "Praxis":
+        case "Order":
             talent += " (Wed/Sat)"
             break;
         default:
@@ -206,6 +209,30 @@ export const formatCommonMats = (material) => {
         case "Headband":
             material = "Eremite Headband";
             break;
+        case "Aberrant1":
+            material = "Transoceanic Pearl";
+            break;
+        case "Aberrant2":
+            material = "Transoceanic Chunk";
+            break;
+        case "Aberrant3":
+            material = "Xenochromatic Crystal";
+            break;
+        case "Aberrant":
+            material = "Aberrant Pearl";
+            break;
+        case "Gear1":
+            material = "Meshing Gear";
+            break;
+        case "Gear2":
+            material = "Mechanical Spur Gear";
+            break;
+        case "Gear3":
+            material = "Artificed Dynamic Gear";
+            break;
+        case "Gear":
+            material = "Clockwork Meka Gear";
+            break;
         default:
             material += "";
     }
@@ -382,6 +409,30 @@ export const formatEliteMats = (material) => {
         case "Flower3":
             material = "Wanderer's Blooming Flower";
             break;
+        case "Tainted Water1":
+            material = "Drop of Tainted Water";
+            break;
+        case "Tainted Water2":
+            material = "Scoop of Tainted Water";
+            break;
+        case "Tainted Water3":
+            material = "Newborn Tainted Hydro Phantasm";
+            break;
+        case "Tainted Water":
+            material = "Phantasm Tainted Water";
+            break;
+        case "Rift Core1":
+            material = "Rift Core";
+            break;
+        case "Rift Core2":
+            material = "Foreign Synapse";
+            break;
+        case "Rift Core3":
+            material = "Alien Life Core";
+            break;
+        case "Rift Core":
+            material = "Breacher Primus Core";
+            break;
         default:
             material += "";
     }
@@ -458,6 +509,15 @@ export const formatBossMats = (material) => {
             break;
         case "Evergloom Ring":
             material += " (Iniquitous Baptist)";
+            break;
+        case "Clockwork Coppelius":
+            material = "Artificed Spare Clockwork Component — Coppelius (Icewind Suites)";
+            break;
+        case "Clockwork Geppelia":
+            material = "Artificed Spare Clockwork Component — Geppelia (Icewind Suites)";
+            break;
+        case "Emperor's Resolution":
+            material += " (Emperor of Fire and Iron)";
             break;
         default:
             material += "";
@@ -638,6 +698,24 @@ export const formatWeaponAscMats = (material) => {
             "3": "Dream of Scorching Might",
             "4": "Olden Days of Scorching Might",
         },
+        "Chord": {
+            "1": "Fragment of an Ancient Chord",
+            "2": "Chapter of an Ancient Chord",
+            "3": "Movement of an Ancient Chord",
+            "4": "Echo of an Ancient Chord"
+        },
+        "Dewdrop": {
+            "1": "Dross of Pure Sacred Dewdrop",
+            "2": "Sublimation of Pure Sacred Dewdrop",
+            "3": "Spring of Pure Sacred Dewdrop",
+            "4": "Essense of Pure Sacred Dewdrop"
+        },
+        "Pristine Sea": {
+            "1": "Broken Goblet of the Pristine Sea",
+            "2": "Wine Goblet of the Pristine Sea",
+            "3": "Silver Goblet of the Pristine Sea",
+            "4": "Golden Goblet of the Pristine Sea"
+        }
     }
     let materialKey = ""; // Raw name of material (no number attached)
     let materialIndex = ""; // Number of material if there is one
@@ -654,18 +732,21 @@ export const formatWeaponAscMats = (material) => {
         case "Guyun":
         case "Sea Branch":
         case "Forest Dew":
+        case "Chord":
             materialDate = "(Mon/Thu)";
             break;
         case "Boreal Wolf":
         case "Mist Veiled Elixir":
         case "Narukami":
         case "Oasis Garden":
+        case "Dewdrop":
             materialDate = "(Tue/Fri)"
             break;
         case "Dandelion Gladiator":
         case "Aerosiderite":
         case "Oni Mask":
         case "Scorching Might":
+        case "Pristine Sea":
             materialDate = "(Wed/Sat)"
             break;
         default:
@@ -677,4 +758,30 @@ export const formatWeaponAscMats = (material) => {
     else {
         return `${materialKey} ${materialDate}`;
     }
+}
+
+export const formatXPMats = (material) => {
+    switch (material) {
+        case "char_xp1":
+            material = "Wanderer's Advice";
+            break;
+        case "char_xp2":
+            material = "Adventurer's Experience";
+            break;
+        case "char_xp3":
+            material = "Hero's Wit";
+            break;
+        case "wep_xp1":
+            material = "Enhancement Ore";
+            break;
+        case "wep_xp2":
+            material = "Fine Enhancement Ore";
+            break;
+        case "wep_xp3":
+            material = "Mystic Enhancement Ore";
+            break;
+        default:
+            break;
+    }
+    return material;
 }

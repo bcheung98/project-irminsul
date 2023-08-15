@@ -1,48 +1,12 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
-import { styled } from '@mui/material/styles';
 import { Box } from "@mui/system";
 import { Typography, Paper, Button, Dialog, InputBase } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import MuiAccordion from '@mui/material/Accordion';
-import MuiAccordionSummary from '@mui/material/AccordionSummary';
-import MuiAccordionDetails from '@mui/material/AccordionDetails';
-import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/CustomAccordion";
 import TCGCharacterCard from "./TCGCharacterCard";
 import TCGActionCard from "./TCGActionCard";
-
-const Accordion = styled((props) => (
-    <MuiAccordion disableGutters elevation={0} {...props} />
-))(() => ({
-    '&:not(:last-child)': {
-        borderBottom: 0,
-    },
-    '&:before': {
-        display: 'none',
-    },
-}));
-
-const AccordionSummary = styled((props) => (
-    <MuiAccordionSummary
-        expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem', color: "dodgerblue" }} />}
-        {...props}
-    />
-))(() => ({
-    backgroundColor: "rgb(9, 24, 39)",
-    flexDirection: 'row-reverse',
-    '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-        transform: 'rotate(90deg)',
-    },
-    '& .MuiAccordionSummary-content': {
-        marginLeft: "10px",
-    },
-}));
-
-const AccordionDetails = styled(MuiAccordionDetails)(() => ({
-    backgroundColor: "rgb(9, 24, 39)",
-    padding: "15px",
-}));
 
 const TCGDeck = (props) => {
 

@@ -4,7 +4,7 @@ const initialState = {
     requesting: false
 }
 
-const bannerReducer = (state = initialState, action) => {
+const BannerReducer = (state = initialState, action) => {
     switch (action.type) {
         case "START_GETTING_CHAR_BANNERS_REQUEST":
             return {
@@ -35,4 +35,4 @@ const bannerReducer = (state = initialState, action) => {
     }
 }
 
-export default bannerReducer;
+export default BannerReducer;

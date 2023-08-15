@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import { StyledTableCell } from "../../helpers/StyledTable";
+import { StyledTableCell } from "../../helpers/CustomTable";
 import { Box } from "@mui/system";
 import { Typography, ButtonBase, Avatar, TableRow } from "@mui/material";
 
