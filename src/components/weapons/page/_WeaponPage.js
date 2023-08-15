@@ -42,22 +42,26 @@ const WeaponPage = (props) => {
         })
     }
 
+
     if (weapon !== undefined) {
+
         let { name, rarity, type, description } = weapon;
+
+        const weaponIcon = {
+            marginLeft: "15px",
+            marginTop: "5px",
+            border: `1px solid ${theme.border.color}`,
+            borderRadius: "5px",
+            backgroundColor: `${theme.paper.backgroundColor}`,
+            backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
+            backgroundSize: "100%",
+        }
+
         return (
             <React.Fragment>
                 <Grid container sx={{ mb: "20px", mt: "10px" }}>
                     <Grid xs="auto">
-                        <img src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${name.split(" ").join("_")}.png`)} alt={name}
-                            style={{
-                                marginLeft: "15px",
-                                marginTop: "5px",
-                                border: `1px solid ${theme.border.color}`,
-                                borderRadius: "5px",
-                                backgroundColor: `${theme.paper.backgroundColor}`,
-                            }}
-                            onError={ErrorLoadingImage}
-                        />
+                        <img src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${name.split(" ").join("_")}.png`)} alt={name} style={weaponIcon} onError={ErrorLoadingImage} />
                     </Grid>
                     <Grid xs>
                         <Box
