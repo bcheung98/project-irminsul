@@ -71,9 +71,13 @@ const WeaponCardLarge = (props) => {
                 <CustomTooltip title={type} arrow placement="top">
                     <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${type.toLowerCase()}-icon.png`)} alt={type} onError={ErrorLoadingImage} />
                 </CustomTooltip>
-                <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
-                    {name}
-                </Typography>
+                <Box>
+                    <ButtonBase disableRipple href={`/project-irminsul/character/${name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                            {name}
+                        </Typography>
+                    </ButtonBase>
+                </Box>
             </CardContent>
         </Card >
     )

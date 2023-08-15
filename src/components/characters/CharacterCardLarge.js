@@ -16,7 +16,7 @@ const CharacterCardLarge = (props) => {
         marginLeft: "1.5px",
         marginRight: "1.5px"
     }
-    
+
     const width = "200px";
 
     return (
@@ -92,9 +92,13 @@ const CharacterCardLarge = (props) => {
                 <CustomTooltip title={weapon} arrow placement="top">
                     <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${weapon.toLowerCase()}-icon.png`)} alt={weapon} onError={ErrorLoadingImage} />
                 </CustomTooltip>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
-                    {name}
-                </Typography>
+                <Box>
+                    <ButtonBase disableRipple href={`/project-irminsul/character/${name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                        <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                            {name}
+                        </Typography>
+                    </ButtonBase>
+                </Box>
             </CardContent>
         </Card>
     )
