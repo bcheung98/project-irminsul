@@ -56,7 +56,7 @@ const CharacterBrowser = (props) => {
                     CHARACTERS
                 </Typography>
                 <Stack direction="row" spacing={4}>
-                    <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ border: "1px solid rgb(30, 73, 118)" }}>
+                    <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ border: `1px solid ${theme.border.color}` }}>
                         <CustomToggleButton value="grid">
                             <AppsSharpIcon sx={{ color: blue[50] }} />
                         </CustomToggleButton>
