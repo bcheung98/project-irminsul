@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { Typography, Card, CardContent, ButtonBase, Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import CharacterMaterialGrid from "./CharacterMaterialGrid";
-import { MaterialTooltip } from "../../helpers/MaterialTooltip";
+import { CustomTooltip } from "../../helpers/CustomTooltip";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const CharacterCard = (props) => {
@@ -59,12 +59,12 @@ const CharacterCard = (props) => {
                                 right: "-5px"
                             }}
                         >
-                            <MaterialTooltip title={element} arrow placement="top">
+                            <CustomTooltip title={element} arrow placement="top">
                                 <img style={{ height: "30px", width: "30px" }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
-                            </MaterialTooltip>
-                            <MaterialTooltip title={weapon} arrow placement="top">
+                            </CustomTooltip>
+                            <CustomTooltip title={weapon} arrow placement="top">
                                 <img style={{ height: "30px", width: "30px" }} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${weapon.toLowerCase()}-icon.png`)} alt={weapon} onError={ErrorLoadingImage} />
-                            </MaterialTooltip>
+                            </CustomTooltip>
                         </Box>
                     </Box>
                     <Grid container sx={{ mt: "10px" }}>

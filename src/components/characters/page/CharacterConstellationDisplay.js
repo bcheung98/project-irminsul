@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import parse from "html-react-parser";
-import { Typography, Box, Avatar, CardHeader } from "@mui/material";
+import { Typography, Box, Avatar, CardHeader, AppBar } from "@mui/material";
 import { ElementalBorderColor } from "../../../helpers/ElementalColors";
 
 const CharacterConstellationDisplay = (props) => {
@@ -13,26 +13,33 @@ const CharacterConstellationDisplay = (props) => {
     return (
         <Box
             sx={{
-                border: `1px solid ${theme.border.color}`,
-                borderRadius: "5px",
+                mx: "15px",
+                mt: "15px",
                 color: `${theme.text.color}`,
                 backgroundColor: `${theme.paper.backgroundColor}`,
-                width: "95vw",
-                margin: "auto",
-                mt: "20px",
-                padding: "15px",
-            }}>
-            <Typography
-                variant="h5"
-                noWrap
-                component="p"
+                border: `1px solid ${theme.border.color}`,
+                borderRadius: "5px",
+            }}
+        >
+            <AppBar position="static"
                 sx={{
-                    fontFamily: "Genshin, sans-serif",
-                    mb: "15px",
+                    backgroundColor: `${theme.appbar.backgroundColor}`,
+                    borderBottom: `1px solid ${theme.border.color}`,
+                    borderRadius: "5px 5px 0px 0px",
                 }}
             >
-                Constellation
-            </Typography>
+                <Typography
+                    variant="h6"
+                    component="p"
+                    sx={{
+                        m: 2,
+                        color: `${theme.text.color}`,
+                        fontFamily: "Genshin, sans-serif",
+                    }}
+                >
+                    Constellation
+                </Typography>
+            </AppBar>
             {Object.keys(constellation).splice(1).map((key, index) => {
                 return (
                     <React.Fragment key={index}>
@@ -69,7 +76,7 @@ const CharacterConstellationDisplay = (props) => {
                             {parse(constellation[key].description)}
                         </Typography>
                         <br />
-                        {key !== "c6" && <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "5px", marginBottom: "15px" }} />}
+                        {key !== "c6" && <hr style={{ border: ".5px solid rgb(30, 73, 118)", margin: "10px" }} />}
                     </React.Fragment>
                 )
             })}

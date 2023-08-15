@@ -34,3 +34,90 @@ code {
 ::-webkit-scrollbar-thumb:hover {
   background: gray;
 }
+
+.material-image {
+  width: 48px;
+  background-color: rgb(20, 20, 20);
+  background-size: contain;
+  border-radius: 5px 5px 15px 0px
+}
+
+.material-image-big {
+  width: 72px;
+  background-color: rgb(20, 20, 20);
+  background-size: contain;
+  border-radius: 5px 5px 15px 0px
+}
+
+.text-pyro {
+  color: #e46052
+}
+
+.text-hydro {
+  color: #4faaff
+}
+
+.text-electro {
+  color: #d85dd8
+}
+
+.text-cryo {
+  color: #90e1fa
+}
+
+.text-anemo {
+  color: #4bcfa3
+}
+
+.text-geo {
+  color: #ecd133
+}
+
+.text-dendro {
+  color: #9cdf3f
+}
+
+.text-highlight {
+  color: #ffe7b9
+}
+
+.text-refinement {
+  color: rgb(59, 177, 255)
+}
+
+.filter-text-off, .filter-text-on {
+  font-family: Genshin, sans-serif;
+  margin: 0;
+}
+
+.filter-text-off {
+  color: white;
+}
+
+.filter-text-on {
+  color: rgb(30, 175, 255);
+}
+
+.filter-off, .filter-on {
+  height: 32px;
+  padding: 3px;
+  margin: 3px;
+  border: 1px solid rgb(30, 73, 118);
+  border-radius: 5px;
+}
+
+.filter-off:hover, .filter-on:hover {
+  box-shadow: 0 0 5px 1px dodgerblue;
+  border: 1px solid dodgerblue;
+  cursor: pointer;
+}
+
+.filter-off {
+  background-color: rgb(9, 24, 39);
+  opacity: 0.35;
+}
+
+.filter-on {
+  background-color: rgb(0, 30, 60);
+  opacity: 1;
+}

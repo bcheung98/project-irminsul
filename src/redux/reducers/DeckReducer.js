@@ -6,7 +6,7 @@ const initialState = {
     }
 }
 
-const deckReducer = (state = initialState, action) => {
+const DeckReducer = (state = initialState, action) => {
     let tempCharCardArr;
     let tempActionCardArr;
     switch (action.type) {
@@ -68,4 +68,4 @@ const deckReducer = (state = initialState, action) => {
     }
 }
 
-export default deckReducer;
+export default DeckReducer;

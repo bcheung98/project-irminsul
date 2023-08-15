@@ -7,7 +7,7 @@ const initialState = {
     wep_commonMat: []
 }
 
-const weaponFilterReducer = (state = initialState, action) => {
+const WeaponFilterReducer = (state = initialState, action) => {
     let { target, type } = action;
     if (target !== undefined && type.startsWith("SET_WEP")) {
         let targetButton;
@@ -80,4 +80,4 @@ const weaponFilterReducer = (state = initialState, action) => {
     }
 }
 
-export default weaponFilterReducer;
+export default WeaponFilterReducer;

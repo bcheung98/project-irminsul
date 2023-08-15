@@ -3,7 +3,7 @@ const initialState = {
     requesting: false
 }
 
-const tcgReducer = (state = initialState, action) => {
+const TCGReducer = (state = initialState, action) => {
     switch (action.type) {
         case "START_GETTING_CARDS_REQUEST":
             return {
@@ -22,4 +22,4 @@ const tcgReducer = (state = initialState, action) => {
     }
 }
 
-export default tcgReducer;
+export default TCGReducer;

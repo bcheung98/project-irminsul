@@ -7,7 +7,7 @@ import { Avatar, Box, CardHeader, Typography } from "@mui/material";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import { FilterTooltip } from "../../../helpers/FilterTooltip";
+import { CustomTooltip } from "../../../helpers/CustomTooltip";
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -81,9 +81,9 @@ const BossMatFilter = (props) => {
                         <AccordionDetails>
                             {
                                 BossMats[boss].sort().map((material, index) => (
-                                    <FilterTooltip key={index} title={material} arrow placement="top">
+                                    <CustomTooltip key={index} title={material} arrow placement="top">
                                         <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${material.split(" ").join("_")}.png`} alt={material} onClick={(e) => props.setFilter(e.target.alt)} />
-                                    </FilterTooltip>
+                                    </CustomTooltip>
                                 ))
                             }
                         </AccordionDetails>

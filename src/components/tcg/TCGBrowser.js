@@ -6,7 +6,7 @@ import { Box } from "@mui/system";
 import { Typography, ToggleButton, ToggleButtonGroup, Paper, InputBase, Dialog } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import HelpSharpIcon from '@mui/icons-material/HelpSharp';
-import { MaterialTooltip } from "../../helpers/MaterialTooltip";
+import { CustomTooltip } from "../../helpers/CustomTooltip";
 import TCGCharacterCard from "./TCGCharacterCard";
 import TCGActionCard from "./TCGActionCard";
 import TCGDeck from "./TCGDeck";
@@ -142,9 +142,9 @@ const TCGBrowser = (props) => {
                 >
                     TCG
                 </Typography>
-                <MaterialTooltip title="Click to open the TCG glossary">
+                <CustomTooltip title="Click to open the TCG glossary">
                     <HelpSharpIcon sx={{ cursor: "pointer" }} color="primary" fontSize="large" onClick={() => handleClickOpen()} />
-                </MaterialTooltip>
+                </CustomTooltip>
             </Box>
 
             <TCGDeck cards={deck.deck} />

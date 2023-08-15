@@ -3,7 +3,7 @@ const initialState = {
     requesting: false
 }
 
-const weaponReducer = (state = initialState, action) => {
+const WeaponReducer = (state = initialState, action) => {
     switch (action.type) {
         case "START_GETTING_WEAPONS_REQUEST":
             return {
@@ -22,4 +22,4 @@ const weaponReducer = (state = initialState, action) => {
     }
 }
 
-export default weaponReducer;
+export default WeaponReducer;

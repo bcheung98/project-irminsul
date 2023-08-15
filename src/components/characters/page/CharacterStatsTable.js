@@ -1,7 +1,7 @@
 import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Table, TableBody, TableContainer, TableHead, Paper } from "@mui/material";
-import { StyledTableCell, StyledTableRows } from "../../../helpers/StyledTable";
+import { StyledTableCell, StyledTableRows } from "../../../helpers/CustomTable";
 import { CharacterAscensionStatScalings } from "../../../helpers/CharacterAscensionStatScalings";
 
 const createCharacterStats = (level, hp, atk, def, critRate, critDMG, special) => {

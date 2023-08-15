@@ -1,9 +1,8 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
 import { Box } from "@mui/system";
-import { Typography, Paper, InputBase, Stack, ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { Typography, Paper, InputBase, Stack, ToggleButtonGroup } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import CharacterCard from "./CharacterCard";
 import CharacterList from "./CharacterList";
@@ -11,15 +10,8 @@ import CharacterFilters from "./filters/_CharacterFilters";
 import { filterCharacters } from "../../helpers/FilterCharacters";
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import ListSharpIcon from '@mui/icons-material/ListSharp';
+import { CustomToggleButton } from "../../helpers/CustomToggleButton";
 import { blue } from '@mui/material/colors';
-
-const StyledToggleButton = styled(ToggleButton)(() => ({
-    "&.MuiToggleButton-root": {
-        "&.Mui-selected": {
-            backgroundColor: "rgb(0, 127, 255)"
-        }
-    }
-}));
 
 const CharacterBrowser = (props) => {
 
@@ -65,12 +57,12 @@ const CharacterBrowser = (props) => {
                 </Typography>
                 <Stack direction="row" spacing={4}>
                     <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ border: "1px solid rgb(30, 73, 118)" }}>
-                        <StyledToggleButton value="grid">
+                        <CustomToggleButton value="grid">
                             <AppsSharpIcon sx={{ color: blue[50] }} />
-                        </StyledToggleButton>
-                        <StyledToggleButton value="list">
+                        </CustomToggleButton>
+                        <CustomToggleButton value="list">
                             <ListSharpIcon sx={{ color: blue[50] }} />
-                        </StyledToggleButton>
+                        </CustomToggleButton>
                     </ToggleButtonGroup>
                 </Stack>
             </Box>

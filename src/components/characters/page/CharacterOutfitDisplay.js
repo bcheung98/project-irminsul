@@ -1,32 +1,9 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import PropTypes from 'prop-types';
 import parse from "html-react-parser";
-import { Typography, Box, Tabs, Tab } from "@mui/material";
+import { Typography, Box, Tabs } from "@mui/material";
+import { StyledTab, TabPanel } from "../../../helpers/CustomTabs";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
-
-function TabPanel(props) {
-
-    const { children, value, index, ...other } = props;
-    return (
-        <div
-            hidden={value !== index}
-            {...other}
-        >
-            {value === index && (
-                <Box sx={{ p: 3 }}>
-                    <Typography component="span">{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-};
 
 const CharacterOutfitDisplay = (props) => {
 
@@ -55,7 +32,7 @@ const CharacterOutfitDisplay = (props) => {
                 sx={{ backgroundColor: `${theme.toolbar.backgroundColor}` }}
             >
                 {outfits.map((outfit, index) => (
-                    <Tab key={index} label={outfit.name}
+                    <StyledTab key={index} label={outfit.name}
                         sx={{
                             fontFamily: "Genshin, sans-serif",
                             fontSize: "14pt",
@@ -73,6 +50,9 @@ const CharacterOutfitDisplay = (props) => {
                             index={index}
                             value={tabValue}
                         >
+                            <Box sx={{ marginLeft: "-5px" }}>
+                                <img style={{ height: "30px" }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${outfit.rarity}_Stars.png`)} alt={outfit.rarity} onError={ErrorLoadingImage} />
+                            </Box>
                             <Typography
                                 variant="body2"
                                 sx={{

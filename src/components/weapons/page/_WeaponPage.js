@@ -1,49 +1,15 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import PropTypes from 'prop-types';
-import "../../../css/WeaponPage.css";
 import parse from "html-react-parser";
-import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Typography, Tabs, Tab, Box } from "@mui/material";
+import { Typography, Tabs, Box, AppBar } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
+import { TabPanel, StyledTab } from "../../../helpers/CustomTabs";
 import WeaponStatsTable from "./WeaponStatsTable";
-import WeaponAscensionTable from "./WeaponAscensionTable";
-import { MaterialTooltip } from "../../../helpers/MaterialTooltip";
-import { formatCommonMats, formatEliteMats, formatWeaponAscMats } from "../../../helpers/TooltipText";
+import WeaponAscension from "./WeaponAscension";
+import { CustomSlider } from "../../../helpers/CustomSlider";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
-
-function TabPanel(props) {
-
-    const { children, value, index, ...other } = props;
-    return (
-        <div
-            hidden={value !== index}
-            {...other}
-        >
-            {value === index && (
-                <Box sx={{ p: 3 }}>
-                    <Typography component="span">{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-};
-
-const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
-    ({ theme }) => ({
-        fontFamily: "Genshin, sans-serif",
-        fontSize: "14px",
-        color: `${theme.text.color}`,
-    }),
-);
 
 const WeaponPage = (props) => {
 
@@ -59,98 +25,95 @@ const WeaponPage = (props) => {
         setTabValue(newValue);
     };
 
-    const materialImage = {
-        height: "60px",
-        marginRight: "10px",
-        border: `1px solid ${theme.border.color}`,
-        borderRadius: "5px",
-        backgroundColor: `${theme.materialImage.backgroundColor}`,
+    let maxValue = 5;
+    const [sliderValue, setSliderValue] = React.useState(1);
+    const handleSliderChange = (event, newValue) => {
+        setSliderValue(newValue);
+    };
+    let scaling;
+    if (weapon !== undefined) {
+        scaling = weapon.stats.passive.scaling;
+    }
+    let targets = document.getElementsByClassName("text-refinement");
+    if (scaling !== undefined) {
+        scaling.forEach((subScaling, index) => {
+            let target = targets[index];
+            if (target !== undefined) { target.innerHTML = subScaling[sliderValue - 1]; }
+        })
     }
 
     if (weapon !== undefined) {
         let { name, rarity, type, description } = weapon;
-        const weaponIcon = {
-            width: "256px",
-            border: `1px solid ${theme.border.color}`,
-            borderRadius: "5px",
-            backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
-            backgroundSize: "100%"
-        }
         return (
-            <Box sx={{ margin: "auto", display: "block", width: "65%" }}>
-                <Box sx={{ display: "flex" }}>
-                    <Box>
-                        <Typography
-                            variant="h4"
-                            noWrap
+            <React.Fragment>
+                <Grid container sx={{ mb: "20px", mt: "10px" }}>
+                    <Grid xs="auto">
+                        <img src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${name.split(" ").join("_")}.png`)} alt={name}
+                            style={{
+                                marginLeft: "15px",
+                                marginTop: "5px",
+                                border: `1px solid ${theme.border.color}`,
+                                borderRadius: "5px",
+                                backgroundColor: `${theme.paper.backgroundColor}`,
+                            }}
+                            onError={ErrorLoadingImage}
+                        />
+                    </Grid>
+                    <Grid xs>
+                        <Box
                             sx={{
-                                mt: "20px",
-                                display: { xs: "none", md: "flex" },
-                                fontFamily: "Genshin, sans-serif",
-                                color: `${theme.text.color}`,
-                                textDecoration: "none",
-                                textAlign: "center",
+                                p: "15px",
+                                mx: "15px",
+                                mt: "5px",
+                                border: `1px solid ${theme.border.color}`,
+                                borderRadius: "5px",
+                                backgroundColor: `${theme.paper.backgroundColor}`,
                             }}
                         >
-                            {name}
-                        </Typography>
-                        <Box
-                            sx={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "left",
-                                color: `${theme.text.color}`
-                            }}>
-                            <Box style={{ marginLeft: "-5px" }}>
-                                <img style={{ height: "30px" }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
-                            </Box>
-                            <Box style={{ marginLeft: "5px" }}>
-                                <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif" }}>
-                                    • {type}
-                                </Typography>
-                            </Box>
-                        </Box>
-                        <Box
-                            sx={{
-                                color: `${theme.text.color}`,
-                                px: "10px",
-                                py: "10px",
-                                width: "55vw",
-                                ml: "-10px"
-                            }}>
-                            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif" }}>
-                                {description}
+                            <Typography
+                                variant="h4"
+                                noWrap
+                                sx={{
+                                    display: { xs: "none", md: "flex" },
+                                    fontFamily: "Genshin, sans-serif",
+                                    color: `${theme.text.color}`,
+                                    textDecoration: "none",
+                                    textAlign: "center",
+                                }}
+                            >
+                                {weapon.displayName ? weapon.displayName : name}
                             </Typography>
-                        </Box>
-                    </Box>
-                </Box>
-                <Grid container spacing={2} sx={{ mb: "20px", mt: "10px" }}>
-                    <Grid>
-                        <img src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${name.split(" ").join("_")}.png`)} alt={name} style={weaponIcon} />
-                    </Grid>
-                    <Grid xs={8}>
-                        <Box sx={{ display: "flex", alignItems: "center", mb: "15px" }}>
-                            <MaterialTooltip title={formatWeaponAscMats(weapon.materials.ascensionMat)} arrow placement="top">
-                                <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${weapon.materials.ascensionMat.split(" ").join("_")}4.png`)} alt={weapon.materials.ascensionMat} onError={ErrorLoadingImage} />
-                            </MaterialTooltip>
-                            <MaterialTooltip title={formatEliteMats(weapon.materials.eliteMat)} arrow placement="top">
-                                <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/elite_mats/${weapon.materials.eliteMat.split(" ").join("_")}3.png`)} alt={weapon.materials.eliteMat} onError={ErrorLoadingImage} />
-                            </MaterialTooltip>
-                            <MaterialTooltip title={formatCommonMats(weapon.materials.commonMat)} arrow placement="top">
-                                <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${weapon.materials.commonMat.split(" ").join("_")}3.png`)} alt={weapon.materials.commonMat} onError={ErrorLoadingImage} />
-                            </MaterialTooltip>
+                            <Box
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    color: `${theme.text.color}`
+                                }}>
+                                <Box sx={{ ml: "-5px", mt: "5px" }}>
+                                    <img style={{ height: "30px" }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
+                                </Box>
+                                <Box sx={{ ml: "5px", mt: "3px" }}>
+                                    <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                        • {type}
+                                    </Typography>
+                                </Box>
+                            </Box>
+                            <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+                            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", fontSize: "10pt", color: `${theme.text.color}` }}>
+                                <i>{description}</i>
+                            </Typography>
                         </Box>
                         {
                             weapon.stats.passive.name !== "" &&
                             <Box
                                 sx={{
+                                    p: "15px",
+                                    mx: "15px",
+                                    my: "15px",
                                     border: `1px solid ${theme.border.color}`,
                                     borderRadius: "5px",
-                                    color: `${theme.text.color}`,
                                     backgroundColor: `${theme.paper.backgroundColor}`,
-                                    px: "20px",
-                                    py: "10px",
-                                    width: "50vw",
+                                    color: `${theme.text.color}`,
                                 }}
                             >
                                 <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif" }}>
@@ -160,30 +123,49 @@ const WeaponPage = (props) => {
                                 <Typography variant="body1" sx={{ fontSize: "11pt" }}>
                                     {parse(weapon.stats.passive.description)}
                                 </Typography>
+                                {
+                                    weapon.stats.passive.scaling &&
+                                    <Box sx={{ display: "inlineFlex", alignItems: "center", width: "20%", mt: "15px" }}>
+                                        <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, width: "30px", mr: "25px", mt: "-4px" }}>
+                                            R{sliderValue}
+                                        </Typography>
+                                        <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} />
+                                    </Box>
+                                }
                             </Box>
                         }
+                        <Box
+                            sx={{
+                                p: 0,
+                                mx: "15px",
+                                marginTop: "15px",
+                                border: `1px solid ${theme.border.color}`,
+                                borderRadius: "5px",
+                                backgroundColor: `${theme.paper.backgroundColor}`,
+                            }}
+                        >
+                            <AppBar position="static"
+                                sx={{
+                                    backgroundColor: `${theme.appbar.backgroundColor}`,
+                                    borderBottom: `1px solid ${theme.border.color}`,
+                                    borderRadius: "5px 5px 0px 0px",
+                                }}
+                            >
+                                <Tabs value={tabValue} onChange={handleTabChange}>
+                                    <StyledTab label="Stats" />
+                                    <StyledTab label="Ascension" />
+                                </Tabs>
+                            </AppBar>
+                            <TabPanel value={tabValue} index={0}>
+                                <WeaponStatsTable weapon={weapon} />
+                            </TabPanel>
+                            <TabPanel value={tabValue} index={1}>
+                                <WeaponAscension weapon={weapon} />
+                            </TabPanel>
+                        </Box>
                     </Grid>
                 </Grid>
-                <Box
-                    sx={{
-                        border: `1px solid ${theme.border.color}`,
-                        borderRadius: "5px",
-                        backgroundColor: `${theme.paper.backgroundColor}`,
-                        mt: "15px",
-                    }}
-                >
-                    <Tabs value={tabValue} onChange={handleTabChange} centered>
-                        <StyledTab label="Stats" />
-                        <StyledTab label="Ascension" />
-                    </Tabs>
-                    <TabPanel value={tabValue} index={0}>
-                        <WeaponStatsTable weapon={weapon} />
-                    </TabPanel>
-                    <TabPanel value={tabValue} index={1}>
-                        <WeaponAscensionTable weapon={weapon} />
-                    </TabPanel>
-                </Box>
-            </Box>
+            </React.Fragment>
         )
     }
 }

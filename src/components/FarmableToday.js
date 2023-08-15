@@ -1,66 +1,26 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import PropTypes from "prop-types";
-import { styled } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { Box } from "@mui/system";
-import { Button, ButtonBase, Typography, Avatar, CardHeader, Tabs, Tab, Select, InputBase, MenuItem } from "@mui/material";
+import { Button, ButtonBase, Typography, CardHeader, Tabs, Select, MenuItem, AppBar } from "@mui/material";
+import { TabPanel, StyledTab } from "../helpers/CustomTabs";
+import { CustomSelect } from "../helpers/CustomSelect";
 import Grid from "@mui/material/Unstable_Grid2";
 import { MaterialDates } from "../helpers/MaterialDates";
-
-function TabPanel(props) {
-
-    const { children, value, index, ...other } = props;
-    return (
-        <div
-            hidden={value !== index}
-            {...other}
-        >
-            {value === index && (
-                <Box sx={{ p: "10px" }}>
-                    <Typography component="span">{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-};
-
-const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
-    ({ theme }) => ({
-        fontFamily: "Genshin, sans-serif",
-        fontSize: "14px",
-        color: `${theme.text.color}`,
-    }),
-);
-
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
-    "label + &": {
-        marginTop: theme.spacing(3),
-    },
-    "& .MuiInputBase-input": {
-        borderRadius: 5,
-        backgroundColor: "white",
-        border: "1px solid #ced4da",
-        fontFamily: "Genshin, sans-serif",
-        fontSize: 16,
-        padding: "10px 26px 10px 12px",
-        "&:focus": {
-            borderRadius: 4,
-            borderColor: "#80bdff",
-            boxShadow: "0 0 0 0.2rem rgba(0,12,255,.25)",
-            backgroundColor: "white",
-        },
-    },
-}));
+import ErrorLoadingImage from "../helpers/ErrorLoadingImage";
 
 const IconBackground = (rarity) => {
+
+    const theme = useTheme();
+
     return {
+        margin: "auto",
+        ml: "2px",
+        border: `1px solid ${theme.border.color}`,
+        borderRadius: "5px",
+        width: "64px",
+        height: "64px",
+        backgroundColor: "rgb(9, 24, 39)",
         backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
         backgroundSize: "100%"
     }
@@ -90,18 +50,24 @@ const FarmableToday = (props) => {
     let weapons = props.weapons.weapons.filter(wep => farmableMats["weapons"].includes(wep.materials.ascensionMat));
 
     return (
-        <React.Fragment>
-            <Box
+        <Box
+            sx={{
+                backgroundColor: `${theme.paper.backgroundColor}`,
+                border: `1px solid ${theme.border.color}`,
+                borderRadius: "5px",
+                display: "block",
+                margin: "auto",
+                mt: "20px",
+                width: "40vw",
+                color: `${theme.text.color}`,
+            }}
+        >
+            <AppBar position="static"
                 sx={{
-                    backgroundColor: `${theme.paper.backgroundColor}`,
-                    border: `1px solid ${theme.border.color}`,
-                    borderRadius: "5px",
-                    display: "block",
-                    margin: "auto",
-                    mt: "20px",
+                    backgroundColor: `${theme.appbar.backgroundColor}`,
+                    borderBottom: `1px solid ${theme.border.color}`,
+                    borderRadius: "5px 5px 0px 0px",
                     p: "10px",
-                    width: "40vw",
-                    color: `${theme.text.color}`,
                 }}
             >
                 <Box
@@ -113,106 +79,83 @@ const FarmableToday = (props) => {
                     <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", mt: "5px" }}>
                         Farming Schedule
                     </Typography>
-                    <Select value={day} label="Day" onChange={handleDayChange} input={<BootstrapInput />}>
+                    <Select value={day} label="Day" onChange={handleDayChange} input={<CustomSelect />}>
                         {weekday.map((day, index) => <MenuItem key={index} value={day}><Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{day}</Typography></MenuItem>)}
                     </Select>
                 </Box>
-                <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
-                <Box>
-                    <Tabs value={tabValue} onChange={handleTabChange}>
-                        <StyledTab label="Characters" />
-                        <StyledTab label="Weapons" />
-                    </Tabs>
-                    <TabPanel value={tabValue} index={0}>
-                        {
-                            farmableMats["talents"].map((mat, index) => (
-                                <Box key={index}>
-                                    <CardHeader
-                                        avatar={<img src={`${process.env.REACT_APP_URL}/materials/talent_mats/${mat}3.png`} alt={mat} style={{ width: "48px", marginRight: "-10px" }} />}
-                                        title={
-                                            <Typography variant="h6" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
-                                                {mat}
-                                            </Typography>
-                                        }
-                                        sx={{ p: 0, mb: "5px" }}
-                                    />
-                                    <Grid>
-                                        {
-                                            characters.filter(char => farmableMats["talents"][index].includes(char.materials.talentBook)).map((char, index) => (
-                                                <ButtonBase disableRipple href={`/project-irminsul/character/${char.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
-                                                    <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${char.name.split(" ").join("_")}_Thumb.png`)} alt={char.name}
-                                                        sx={{
-                                                            margin: "auto",
-                                                            ml: "2px",
-                                                            border: `1px solid ${theme.border.color}`,
-                                                            borderRadius: "5px",
-                                                            width: "64px",
-                                                            height: "64px",
-                                                            backgroundColor: "rgb(9, 24, 39)",
-                                                        }}
-                                                        style={IconBackground(char.rarity)}
-                                                    />
-                                                </ButtonBase>
-                                            ))
-                                        }
-                                    </Grid>
-                                    < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
-                                </Box>
-                            ))
-                        }
-                        <Button variant="contained" href={`/project-irminsul/characters`}>
-                            <Typography variant="subtitle2" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
-                                See all characters
-                            </Typography>
-                        </Button>
-                    </TabPanel>
-                    <TabPanel value={tabValue} index={1}>
-                        {
-                            farmableMats["weapons"].map((mat, index) => (
-                                <Box key={index}>
-                                    <CardHeader
-                                        avatar={<img src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${mat.split(" ").join("_")}4.png`} alt={mat} style={{ width: "48px", marginRight: "-10px" }} />}
-                                        title={
-                                            <Typography variant="h6" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
-                                                {mat}
-                                            </Typography>
-                                        }
-                                        sx={{ p: 0, mb: "5px" }}
-                                    />
-                                    <Grid>
-                                        {
-                                            weapons.filter(wep => farmableMats["weapons"][index].includes(wep.materials.ascensionMat)).sort((a, b) => b.rarity - a.rarity).map((wep, index) => (
-                                                <ButtonBase disableRipple href={`/project-irminsul/weapon/${wep.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
-                                                    <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${wep.name.split(" ").join("_")}.png`)} alt={wep.name}
-                                                        sx={{
-                                                            margin: "auto",
-                                                            ml: "2px",
-                                                            border: `1px solid ${theme.border.color}`,
-                                                            borderRadius: "5px",
-                                                            width: "64px",
-                                                            height: "64px",
-                                                            backgroundColor: "rgb(9, 24, 39)",
-                                                        }}
-                                                        style={IconBackground(wep.rarity)}
-                                                    />
-                                                </ButtonBase>
-                                            ))
-                                        }
-                                    </Grid>
-                                    < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
-                                </Box>
-                            ))
-                        }
-                        <Button variant="contained" href={`/project-irminsul/weapons`}>
-                            <Typography variant="subtitle2" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
-                                See all weapons
-                            </Typography>
-                        </Button>
-                    </TabPanel>
+            </AppBar>
+            <Box>
+                <Tabs value={tabValue} onChange={handleTabChange}>
+                    <StyledTab label="Characters" />
+                    <StyledTab label="Weapons" />
+                </Tabs>
+                <TabPanel value={tabValue} index={0}>
+                    {
+                        farmableMats["talents"].map((mat, index) => (
+                            <Box key={index}>
+                                <CardHeader
+                                    avatar={<img src={`${process.env.REACT_APP_URL}/materials/talent_mats/${mat}3.png`} alt={mat} style={{ width: "48px", marginRight: "-10px" }} />}
+                                    title={
+                                        <Typography variant="h6" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                            {mat}
+                                        </Typography>
+                                    }
+                                    sx={{ p: 0, mb: "5px" }}
+                                />
+                                <Grid>
+                                    {
+                                        characters.filter(char => farmableMats["talents"][index].includes(char.materials.talentBook)).map((char, index) => (
+                                            <ButtonBase disableRipple href={`/project-irminsul/character/${char.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
+                                                <img src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${char.name.split(" ").join("_")}_Thumb.png`)} alt={char.name} style={IconBackground(char.rarity)} onError={ErrorLoadingImage} />
+                                            </ButtonBase>
+                                        ))
+                                    }
+                                </Grid>
+                                < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
+                            </Box>
+                        ))
+                    }
+                    <Button variant="contained" href={`/project-irminsul/characters`}>
+                        <Typography variant="subtitle2" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                            See all characters
+                        </Typography>
+                    </Button>
+                </TabPanel>
+                <TabPanel value={tabValue} index={1}>
+                    {
+                        farmableMats["weapons"].map((mat, index) => (
+                            <Box key={index}>
+                                <CardHeader
+                                    avatar={<img src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${mat.split(" ").join("_")}4.png`} alt={mat} style={{ width: "48px", marginRight: "-10px" }} />}
+                                    title={
+                                        <Typography variant="h6" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                            {mat}
+                                        </Typography>
+                                    }
+                                    sx={{ p: 0, mb: "5px" }}
+                                />
+                                <Grid>
+                                    {
+                                        weapons.filter(wep => farmableMats["weapons"][index].includes(wep.materials.ascensionMat)).sort((a, b) => b.rarity - a.rarity).map((wep, index) => (
+                                            <ButtonBase disableRipple href={`/project-irminsul/weapon/${wep.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
+                                                <img variant="square" src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${wep.name.split(" ").join("_")}.png`)} alt={wep.name} style={IconBackground(wep.rarity)} onError={ErrorLoadingImage} />
+                                            </ButtonBase>
+                                        ))
+                                    }
+                                </Grid>
+                                < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
+                            </Box>
+                        ))
+                    }
+                    <Button variant="contained" href={`/project-irminsul/weapons`}>
+                        <Typography variant="subtitle2" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                            See all weapons
+                        </Typography>
+                    </Button>
+                </TabPanel>
 
-                </Box>
             </Box>
-        </React.Fragment>
+        </Box>
     )
 
 }

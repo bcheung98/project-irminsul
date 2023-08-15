@@ -5,7 +5,7 @@ import parse from "html-react-parser";
 import { Box } from "@mui/system";
 import { Typography, CardHeader, Avatar, Button } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import { MaterialTooltip } from "../../helpers/MaterialTooltip";
+import { CustomTooltip } from "../../helpers/CustomTooltip";
 import { ElementalBorderColor } from "../../helpers/ElementalColors";
 import TCGDiceCost from "./TCGDiceCost";
 import { FormatTCGTalentKey } from "../../helpers/FormatTCGTalentKey";
@@ -40,9 +40,9 @@ const TCGCharacterCardPopup = (props) => {
                         alignItems: "center",
                     }}
                     avatar={
-                        <MaterialTooltip title={element} arrow placement="top">
+                        <CustomTooltip title={element} arrow placement="top">
                             <img src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
-                        </MaterialTooltip>
+                        </CustomTooltip>
                     }
                     title={
                         <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="h4">

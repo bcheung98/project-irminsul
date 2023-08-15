@@ -12,7 +12,7 @@ const initialState = {
     gender: []
 }
 
-const characterFilterReducer = (state = initialState, action) => {
+const CharacterFilterReducer = (state = initialState, action) => {
     let { target, type } = action;
     if (target !== undefined && type.startsWith("SET_CHAR")) {
         let targetButton;
@@ -129,4 +129,4 @@ const characterFilterReducer = (state = initialState, action) => {
     }
 }
 
-export default characterFilterReducer;
+export default CharacterFilterReducer;

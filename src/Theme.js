@@ -1,6 +1,17 @@
 import { createTheme } from '@mui/material/styles';
 
 export const defaultTheme = createTheme({
+    components: {
+        MuiAutocomplete: {
+            styleOverrides: {
+                noOptions: {
+                    color: "white",
+                    backgroundColor: "rgb(0, 23, 47)",
+                    fontFamily: "Genshin, sans-serif",
+                }
+            }
+        }
+    },
     appbar: {
         backgroundColor: "rgb(0, 16, 32)",
     },
@@ -31,4 +42,7 @@ export const defaultTheme = createTheme({
     text: {
         color: "white",
     },
+    button: {
+        selected: "rgb(0, 127, 255)"
+    }
 });
