@@ -514,7 +514,7 @@ export const formatBossMats = (material) => {
             material = "Artificed Spare Clockwork Component — Coppelius (Icewind Suites)";
             break;
         case "Clockwork Geppelia":
-            material = "Artificed Spare Clockwork Component — Geppelia (Icewind Suites)";
+            material = "Artificed Spare Clockwork Component — Coppelia (Icewind Suites)";
             break;
         case "Emperor's Resolution":
             material += " (Emperor of Fire and Iron)";
