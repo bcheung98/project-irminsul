@@ -50,7 +50,7 @@ const CharacterCardLarge = (props) => {
                             <img src={`${process.env.REACT_APP_URL}/characters/wish/Character_${name.split(" ").join("_")}_Wish.png`} alt={name}
                                 style={{
                                     width: width,
-                                    height: "400px",
+                                    height: "500px",
                                     objectFit: "cover",
                                     objectPosition: "50% -50px",
                                 }}
