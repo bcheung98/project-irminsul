@@ -129,8 +129,8 @@ const WeaponPage = (props) => {
                                 </Typography>
                                 {
                                     weapon.stats.passive.scaling &&
-                                    <Box sx={{ display: "inlineFlex", alignItems: "center", width: "20%", mt: "15px" }}>
-                                        <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, width: "30px", mr: "25px", mt: "-4px" }}>
+                                    <Box sx={{ display: "flex", alignItems: "center", width: "20%", mt: "15px" }}>
+                                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, width: "75px" }}>
                                             R{sliderValue}
                                         </Typography>
                                         <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} />
