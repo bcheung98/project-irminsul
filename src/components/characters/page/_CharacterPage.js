@@ -35,12 +35,16 @@ const CharacterPage = (props) => {
     };
 
     if (character !== undefined) {
+
         let { name, title, rarity, element, weapon, constellation, description, birthday, nation, voiceActors, release } = character;
+
+        let visionIcon = nation === "Fontaine" ? `${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}_${character.arkhe}.png` : `${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}.png`
+
         return (
             <React.Fragment>
                 <Grid container sx={{ mb: "20px" }}>
                     <Grid xs="auto">
-                        <img src={(`${process.env.REACT_APP_URL}/characters/wish/Character_${name.split(" ").join("_")}_Wish.png`)} alt={name}
+                        <img src={`${process.env.REACT_APP_URL}/characters/wish/Character_${name.split(" ").join("_")}_Wish.png`} alt={name}
                             onClick={() => handleClickOpen()}
                             style={{
                                 width: "35vw",
@@ -103,8 +107,8 @@ const CharacterPage = (props) => {
                         >
                             <Box sx={{ display: "flex" }}>
                                 <CustomTooltip title={`${nation} / ${element}`} arrow placement="bottom">
-                                    <Avatar sx={{ marginRight: "-20px", height: "128px", width: "128px", backgroundColor: `${theme.paper.backgroundColor}` }} src={(`${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}.png`)} alt={`${nation} / ${element}`}>
-                                        <img style={{ height: "72px", width: "72px" }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={`${element}`} onError={ErrorLoadingImage} />
+                                    <Avatar sx={{ marginRight: "-20px", height: "128px", width: "128px", backgroundColor: `${theme.paper.backgroundColor}` }} src={visionIcon} alt={`${nation} / ${element}`}>
+                                        <img style={{ height: "72px", width: "72px" }} src={`${process.env.REACT_APP_URL}/elements/Element_${element}.png`} alt={`${element}`} onError={ErrorLoadingImage} />
                                     </Avatar>
                                 </CustomTooltip>
                                 <Box sx={{ ml: "20px" }}>
@@ -145,7 +149,7 @@ const CharacterPage = (props) => {
                                         }}
                                     >
                                         <Box sx={{ marginLeft: "-5px" }}>
-                                            <img style={{ height: "30px" }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} onError={ErrorLoadingImage} />
+                                            <img style={{ height: "30px" }} src={`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`} alt={rarity} onError={ErrorLoadingImage} />
                                         </Box>
                                         <Box sx={{ marginLeft: "5px" }}>
                                             <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif" }}>
