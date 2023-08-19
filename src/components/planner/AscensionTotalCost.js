@@ -35,6 +35,13 @@ const AscensionTotalCost = (props) => {
         fontSize: "11.5px"
     }
 
+    let CommonMatArray = ExpandMaterialArray(Materials.CommonMats, 3);
+    let LocalMatArray = Object.values(Materials.LocalMats).flat();
+    let TalentBookArray = ExpandMaterialArray(Object.values(Materials.TalentBooks).flat(), 3);
+    let WeeklyBossMatArray = Object.values(Materials.WeeklyBossMats).flat()
+    let WepAscensionMatArray = ExpandMaterialArray(Object.values(Materials.WepAscensionMats).flat(), 4);
+    let EliteMatArray = ExpandMaterialArray(Materials.EliteMats, 4)
+
     return (
         <React.Fragment>
             {
@@ -115,7 +122,7 @@ const AscensionTotalCost = (props) => {
                                         }
                                         {
                                             /* Common Materials */
-                                            Materials.CommonMats.includes(material) && totalCost[material] !== 0 &&
+                                            CommonMatArray.includes(material) && totalCost[material] !== 0 &&
                                             <Box sx={MaterialImageRootBig}>
                                                 <CustomTooltip title={formatCommonMats(material)} arrow placement="top">
                                                     <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[material.length - 1])] + ")" }} alt={formatCommonMats(material)} className="material-image-big" onError={ErrorLoadingImage} />
@@ -129,7 +136,7 @@ const AscensionTotalCost = (props) => {
                                         }
                                         {
                                             /* Local Specialties */
-                                            Object.values(Materials.LocalMats).flat().includes(material) && totalCost[material] !== 0 &&
+                                            LocalMatArray.includes(material) && totalCost[material] !== 0 &&
                                             <Box sx={MaterialImageRootBig}>
                                                 <CustomTooltip title={material} arrow placement="top">
                                                     <img src={`${process.env.REACT_APP_URL}/materials/local_specialties/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[1] + ")" }} alt={material} className="material-image-big" onError={ErrorLoadingImage} />
@@ -157,7 +164,7 @@ const AscensionTotalCost = (props) => {
                                         }
                                         {
                                             /* Talent Books */
-                                            Materials.TalentBooks.includes(material) && totalCost[material] !== 0 &&
+                                            TalentBookArray.includes(material) && totalCost[material] !== 0 &&
                                             <Box sx={MaterialImageRootBig}>
                                                 <CustomTooltip title={formatTalents(material)} arrow placement="top">
                                                     <img src={`${process.env.REACT_APP_URL}/materials/talent_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[material.length - 1]) + 1] + ")" }} alt={formatTalents(material)} className="material-image-big" onError={ErrorLoadingImage} />
@@ -171,7 +178,7 @@ const AscensionTotalCost = (props) => {
                                         }
                                         {
                                             /* Weekly Boss Materials */
-                                            Object.values(Materials.WeeklyBossMats).flat().includes(material) && totalCost[material] !== 0 &&
+                                            WeeklyBossMatArray.includes(material) && totalCost[material] !== 0 &&
                                             <Box sx={MaterialImageRootBig}>
                                                 <CustomTooltip title={formatWeeklyBossMats(material)} arrow placement="top">
                                                     <img src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[5] + ")" }} alt={formatWeeklyBossMats(material)} className="material-image-big" onError={ErrorLoadingImage} />
@@ -199,7 +206,7 @@ const AscensionTotalCost = (props) => {
                                         }
                                         {
                                             /* Weapon Ascension Materials */
-                                            Materials.WepAscensionMats.includes(material) && totalCost[material] !== 0 &&
+                                            WepAscensionMatArray.includes(material) && totalCost[material] !== 0 &&
                                             <Box sx={MaterialImageRootBig}>
                                                 <CustomTooltip title={formatWeaponAscMats(material)} arrow placement="top">
                                                     <img src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[material.length - 1]) + 1] + ")" }} alt={formatWeaponAscMats(material)} className="material-image-big" onError={ErrorLoadingImage} />
@@ -213,7 +220,7 @@ const AscensionTotalCost = (props) => {
                                         }
                                         {
                                             /* Elite Materials */
-                                            Materials.EliteMats.includes(material) && totalCost[material] !== 0 &&
+                                            EliteMatArray.includes(material) && totalCost[material] !== 0 &&
                                             <Box sx={MaterialImageRootBig}>
                                                 <CustomTooltip title={formatEliteMats(material)} arrow placement="top">
                                                     <img src={`${process.env.REACT_APP_URL}/materials/elite_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[material.length - 1]) + 1] + ")" }} alt={formatEliteMats(material)} className="material-image-big" onError={ErrorLoadingImage} />
@@ -259,4 +266,14 @@ const GetGemstoneBackground = (material) => {
         default:
             return 1;
     }
+}
+
+const ExpandMaterialArray = (arr, n) => {
+    let output = [];
+    for (const material in arr) {
+        for (let i = 1; i <= n; i++) {
+            output.push(`${arr[material]}${i}`)
+        }
+    }
+    return output;
 }

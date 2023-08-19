@@ -3,17 +3,17 @@ import { connect } from "react-redux";
 import { Box } from "@mui/system";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
 import { formatWeaponAscMats } from "../../../helpers/TooltipText";
-import { WepAscensionMatsGeneral } from "../../../helpers/MaterialList";
+import { WepAscensionMats } from "../../../helpers/MaterialList";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const WeaponAscensionMatFilter = (props) => {
     return (
         <React.Fragment>
             {
-                Object.keys(WepAscensionMatsGeneral).map((material, index) => (
+                Object.keys(WepAscensionMats).map((material, index) => (
                     <Box key={index}>
                         {
-                            WepAscensionMatsGeneral[material].map((material, index) => (
+                            WepAscensionMats[material].map((material, index) => (
                                 <CustomTooltip key={index} title={formatWeaponAscMats(`${material}`)} arrow placement="top">
                                     <img className="filter-off" id={`wep-${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${material.split(" ").join("_")}4.png`} alt={material} onClick={(e) => props.setWeaponFilter(e.target.alt)} onError={ErrorLoadingImage} />
                                 </CustomTooltip>
