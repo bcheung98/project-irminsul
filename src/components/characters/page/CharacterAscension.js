@@ -36,7 +36,7 @@ const CharacterAscension = (props) => {
         <Box sx={{ my: "10px" }}>
             <CharacterAscensionMaterials materials={props.character.materials} element={props.character.element} values={sliderValue} />
             <Box sx={{ display: "flex", alignItems: "center", width: "50%", mt: "15px", ml: "20px" }}>
-                <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, width: "180px", mr: "25px"}}>
+                <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, width: "200px", mr: "25px"}}>
                     Lv. {levels[sliderValue[0] - 1]} → Lv. {levels[sliderValue[1] - 1]}
                 </Typography>
                 <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={props.character.element} disableSwap />
