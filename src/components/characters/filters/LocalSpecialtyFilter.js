@@ -7,6 +7,7 @@ import { Box, CardHeader, Typography } from "@mui/material";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
+import { LocalMats } from "../../../helpers/MaterialList";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
@@ -45,14 +46,6 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     marginTop: "-5px",
 }));
 
-const LocalSpecialties = {
-    "Mondstadt": ["Calla Lily", "Cecilia", "Dandelion Seed", "Philanemo Mushroom", "Small Lamp Grass", "Valberry", "Windwheel Aster", "Wolfhook"],
-    "Liyue": ["Cor Lapis", "Glaze Lily", "Jueyun Chili", "Noctilucous Jade", "Qingxin", "Silk Flower", "Starconch", "Violetgrass"],
-    "Inazuma": ["Crystal Marrow", "Dendrobium", "Naku Weed", "Onikabuto", "Sakura Bloom", "Sea Ganoderma", "Amakumo Fruit", "Sango Pearl", "Fluorescent Fungus"],
-    "Sumeru": ["Kalpalata Lotus", "Nilotpala Lotus", "Padisarah", "Rukkhashava Mushrooms", "Henna Berry", "Scarab", "Sand Grease Pupa", "Mourning Flower", "Trishiraite"],
-    "Fontaine": ["Beryl Conch", "Lumidouce Bell", "Rainbow Rose", "Romaritime Flower"]
-}
-
 const LocalMatFilter = (props) => {
 
     const theme = useTheme();
@@ -60,7 +53,7 @@ const LocalMatFilter = (props) => {
     return (
         <Box sx={{ margin: "auto", width: "99%" }}>
             {
-                Object.keys(LocalSpecialties).map((nation, index) => (
+                Object.keys(LocalMats).map((nation, index) => (
                     <Accordion key={index}>
                         <AccordionSummary>
                             <CardHeader
@@ -82,7 +75,7 @@ const LocalMatFilter = (props) => {
                         </AccordionSummary>
                         <AccordionDetails>
                             {
-                                LocalSpecialties[nation].sort().map((material, index) => (
+                                LocalMats[nation].sort().map((material, index) => (
                                     <CustomTooltip key={index} title={material} arrow placement="top">
                                         <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/local_specialties/${material.split(" ").join("_")}.png`} alt={material} onClick={(e) => props.setFilter(e.target.alt)} onError={ErrorLoadingImage} />
                                     </CustomTooltip>

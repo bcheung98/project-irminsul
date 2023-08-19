@@ -129,7 +129,7 @@ const AscensionTotalCost = (props) => {
                                         }
                                         {
                                             /* Local Specialties */
-                                            Materials.LocalMats.includes(material) && totalCost[material] !== 0 &&
+                                            Object.values(Materials.LocalMats).flat().includes(material) && totalCost[material] !== 0 &&
                                             <Box sx={MaterialImageRootBig}>
                                                 <CustomTooltip title={material} arrow placement="top">
                                                     <img src={`${process.env.REACT_APP_URL}/materials/local_specialties/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[1] + ")" }} alt={material} className="material-image-big" onError={ErrorLoadingImage} />
@@ -171,7 +171,7 @@ const AscensionTotalCost = (props) => {
                                         }
                                         {
                                             /* Weekly Boss Materials */
-                                            Materials.WeeklyBossMats.includes(material) && totalCost[material] !== 0 &&
+                                            Object.values(Materials.WeeklyBossMats).flat().includes(material) && totalCost[material] !== 0 &&
                                             <Box sx={MaterialImageRootBig}>
                                                 <CustomTooltip title={formatWeeklyBossMats(material)} arrow placement="top">
                                                     <img src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[5] + ")" }} alt={formatWeeklyBossMats(material)} className="material-image-big" onError={ErrorLoadingImage} />

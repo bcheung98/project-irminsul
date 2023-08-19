@@ -3,24 +3,17 @@ import { connect } from "react-redux";
 import { Box } from "@mui/system";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
 import { formatWeaponAscMats } from "../../../helpers/TooltipText";
+import { WepAscensionMatsGeneral } from "../../../helpers/MaterialList";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
-
-const AscensionMaterials = {
-    "Mondstadt": ["Decarabian", "Boreal Wolf", "Dandelion Gladiator"],
-    "Liyue": ["Guyun", "Mist Veiled Elixir", "Aerosiderite"],
-    "Inazuma": ["Sea Branch", "Narukami", "Oni Mask"],
-    "Sumeru": ["Forest Dew", "Oasis Garden", "Scorching Might"],
-    "Fontaine": ["Chord", "Dewdrop", "Pristine Sea"]
-}
 
 const WeaponAscensionMatFilter = (props) => {
     return (
         <React.Fragment>
             {
-                Object.keys(AscensionMaterials).map((material, index) => (
+                Object.keys(WepAscensionMatsGeneral).map((material, index) => (
                     <Box key={index}>
                         {
-                            AscensionMaterials[material].map((material, index) => (
+                            WepAscensionMatsGeneral[material].map((material, index) => (
                                 <CustomTooltip key={index} title={formatWeaponAscMats(`${material}`)} arrow placement="top">
                                     <img className="filter-off" id={`wep-${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${material.split(" ").join("_")}4.png`} alt={material} onClick={(e) => props.setWeaponFilter(e.target.alt)} onError={ErrorLoadingImage} />
                                 </CustomTooltip>
