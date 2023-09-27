@@ -433,6 +433,18 @@ export const formatEliteMats = (material) => {
         case "Rift Core":
             material = "Breacher Primus Core";
             break;
+        case "Watch1":
+            material = "Old Operative's Pocket Watch";
+            break;
+        case "Watch2":
+            material = "Operative's Standard Pocket Watch";
+            break;
+        case "Watch3":
+            material = "Operative's Constancy";
+            break;
+        case "Watch":
+            material = "Fatui Operative Watch";
+            break;
         default:
             material += "";
     }
@@ -518,6 +530,12 @@ export const formatBossMats = (material) => {
             break;
         case "Emperor's Resolution":
             material += " (Emperor of Fire and Iron)";
+            break;
+        case "Tubion Device":
+            material = "\"Tourbillon Device\" (Experimental Field Generators)";
+            break;
+        case "Fontemer Horn":
+            material = "Fontemer Unihorn (Millennial Pearl Seahorses)";
             break;
         default:
             material += "";
