@@ -1,7 +1,7 @@
 import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
-import { Avatar, Box, CardHeader, Typography } from "@mui/material";
+import { Box, CardHeader, Typography } from "@mui/material";
 import { SmallAccordion, SmallAccordionDetails, SmallAccordionSummary } from "../../../helpers/CustomAccordion";
 import { WeeklyBossMats } from "../../../helpers/MaterialList";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
@@ -19,7 +19,7 @@ const BossMatFilter = (props) => {
                         <SmallAccordionSummary>
                             <CardHeader
                                 avatar={
-                                    <Avatar src={`${process.env.REACT_APP_URL}/bosses/${boss.split(" ").join("_")}_Icon.png`} alt={boss} sx={{ height: "32px", width: "32px", border: `1px solid ${theme.border.color}`, borderRadius: "5px" }} onError={ErrorLoadingImage} />
+                                    <img src={`${process.env.REACT_APP_URL}/bosses/${boss.split(" ").join("_")}_Icon.png`} alt={boss} style={{ height: "32px", width: "32px", border: `1px solid ${theme.border.color}`, borderRadius: "5px" }} onError={ErrorLoadingImage} />
                                 }
                                 title={
                                     <Typography
