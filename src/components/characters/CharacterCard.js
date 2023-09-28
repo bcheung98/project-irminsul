@@ -15,20 +15,27 @@ const CharacterCard = (props) => {
     const characterIconBackground = {
         margin: "auto",
         marginLeft: "2px",
-        border: "1px solid rgb(30, 73, 118)",
+        border: `1px solid ${theme.border.color}`,
+        borderBottom: `5px solid ${GetRarityColor(rarity)}`,
         borderRadius: "5px",
-        width: "90px",
-        height: "90px",
-        backgroundColor: "rgb(32, 32, 32)",
-        backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
-        backgroundSize: "100%"
+        width: "100px",
+        height: "100px",
+
+        // Comment out following 3 lines for new icon
+        // backgroundColor: "rgb(32, 32, 32)",
+        // backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
+        // backgroundSize: "100%",
+
+        // Comment out following 2 lines for old icon
+        objectFit: "cover",
+        objectPosition: "50% 20%",
     }
 
     return (
         <Card variant="outlined"
             sx={{
                 width: 320,
-                height: 185,
+                height: 195,
                 mx: "auto",
                 mb: "15px",
                 backgroundColor: `${theme.card.backgroundColor}`,
@@ -66,20 +73,25 @@ const CharacterCard = (props) => {
                 </Box>
                 <Grid container sx={{ mt: "10px" }}>
                     <Grid xs>
-                        <ButtonBase disableRipple href={`/project-irminsul/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                            <img src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${name.split(" ").join("_")}_Thumb.png`)} alt={name} style={characterIconBackground} onError={ErrorLoadingImage} />
-                        </ButtonBase>
-                        <img src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity}
-                            style={{
-                                display: "block",
-                                margin: "auto",
-                                marginTop: "5px",
-                                height: "25px",
-                            }}
-                            onError={ErrorLoadingImage}
-                        />
+                        <Box sx={{ width: "105px" }}>
+                            <ButtonBase disableRipple href={`/project-irminsul/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                                {/* Old Icon */}
+                                {/* <img src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${name.split(" ").join("_")}_Thumb.png`)} alt={name} style={characterIconBackground} onError={ErrorLoadingImage} /> */}
+                                {/* New Icon */}
+                                <img src={`${process.env.REACT_APP_URL}/characters/wish_multi/${name.split(" ").join("_")}_Multi_Wish.png`} alt={name} style={characterIconBackground} onError={ErrorLoadingImage} />
+                            </ButtonBase>
+                            <img src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity}
+                                style={{
+                                    display: "block",
+                                    margin: "auto",
+                                    marginTop: "5px",
+                                    height: "25px",
+                                }}
+                                onError={ErrorLoadingImage}
+                            />
+                        </Box>
                     </Grid>
-                    <Grid xs={8}>
+                    <Grid xs={7.5}>
                         <CharacterMaterialGrid character={props.character} />
                     </Grid>
                 </Grid>
@@ -90,3 +102,15 @@ const CharacterCard = (props) => {
 }
 
 export default CharacterCard;
+
+const GetRarityColor = (rarity) => {
+    if (rarity === 5) {
+        return "rgb(255, 208, 112)";
+    }
+    if (rarity === 4) {
+        return "rgb(175, 134, 255)";
+    }
+    if (rarity === 3) {
+        return "rgb(105, 157, 237)";
+    }
+}
