@@ -88,7 +88,7 @@ const CharacterTalentDisplay = (props) => {
                                 </React.Fragment>
                             }
                         />
-                        <Typography variant="body1" sx={{ fontSize: "11pt", ml: "20px" }}>
+                        <Typography variant="body1" sx={{ fontSize: "11pt", mx: "20px" }}>
                             {parse(talents[key].description)}
                         </Typography>
                         {
