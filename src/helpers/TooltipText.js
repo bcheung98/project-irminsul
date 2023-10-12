@@ -532,10 +532,10 @@ export const formatBossMats = (material) => {
             material += " (Emperor of Fire and Iron)";
             break;
         case "Tubion Device":
-            material = "\"Tourbillon Device\" (Experimental Field Generators)";
+            material = "\"Tourbillon Device\" (Experimental Field Generator)";
             break;
         case "Fontemer Horn":
-            material = "Fontemer Unihorn (Millennial Pearl Seahorses)";
+            material = "Fontemer Unihorn (Millennial Pearl Seahorse)";
             break;
         default:
             material += "";
