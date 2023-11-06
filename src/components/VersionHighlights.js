@@ -16,6 +16,7 @@ const VersionHighlights = (props) => {
 
     // MAKE SURE TO CHANGE THIS EVERY UPDATE!
     let updates = [
+        { version: "4.2", name: "Masquerade of the Guilty" },
         { version: "4.1", name: "To the Stars Shining in the Depths" },
         { version: "4.0", name: "As Light Rain Falls Without Reason" },
         { version: "3.8", name: "Secret Summer Paradise" },

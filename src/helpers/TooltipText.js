@@ -80,6 +80,11 @@ export const formatWeeklyBossMats = (material) => {
         case "Everamber":
             material += " (Guardian of Apep's Oasis)";
             break;
+        case "Lightless Eye of the Maelstrom":
+        case "Lightless Mass":
+        case "Lightless Silk String":
+            material += " (All-Devouring Narwhal)";
+            break;
         default:
             material += "";
     }
@@ -536,6 +541,9 @@ export const formatBossMats = (material) => {
             break;
         case "Fontemer Horn":
             material = "Fontemer Unihorn (Millennial Pearl Seahorse)";
+            break;
+        case "Water That Failed To Transcend":
+            material += " (Hydro Tulpa)";
             break;
         default:
             material += "";
