@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { StyledTableCell } from "../../helpers/CustomTable";
 import { Box } from "@mui/system";
 import { Typography, ButtonBase, Avatar, TableRow } from "@mui/material";
+import { CustomTooltip } from "../../helpers/CustomTooltip";
 
 const WeaponIconBackground = (index) => {
     if (index <= 1) {
@@ -48,18 +49,20 @@ const CharacterBannerRow = (props) => {
                         <Box sx={{ display: "flex" }}>
                             {row.banner.map((wep, index) => (
                                 <ButtonBase disableRipple href={`/project-irminsul/weapon/${wep.split(" ").join("_").toLowerCase()}`} target="_blank" key={wep} sx={{ m: "2px" }}>
-                                    <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${wep.split(" ").join("_")}.png`)} alt={wep}
-                                        sx={{
-                                            margin: "auto",
-                                            ml: "2px",
-                                            border: `1px solid ${theme.border.color}`,
-                                            borderRadius: "5px",
-                                            width: "64px",
-                                            height: "64px",
-                                            backgroundColor: "rgb(9, 24, 39)",
-                                        }}
-                                        style={WeaponIconBackground(index)}
-                                    />
+                                    <CustomTooltip title={wep} arrow placement="top">
+                                        <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${wep.split(" ").join("_")}.png`)} alt={wep}
+                                            sx={{
+                                                margin: "auto",
+                                                ml: "2px",
+                                                border: `1px solid ${theme.border.color}`,
+                                                borderRadius: "5px",
+                                                width: "64px",
+                                                height: "64px",
+                                                backgroundColor: "rgb(9, 24, 39)",
+                                            }}
+                                            style={WeaponIconBackground(index)}
+                                        />
+                                    </CustomTooltip>
                                 </ButtonBase>
                             ))}
                         </Box>
