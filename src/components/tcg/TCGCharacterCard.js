@@ -81,7 +81,7 @@ const TCGCharacterCard = (props) => {
                         ))
                     }
                 </Box>
-                <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}_Character_Card.png`} alt={name}
+                <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/Card_${name.split(" ").join("_")}.png`} alt={name}
                     style={{
                         width: "150px",
                         border: `2px solid ${theme.border.color}`,
