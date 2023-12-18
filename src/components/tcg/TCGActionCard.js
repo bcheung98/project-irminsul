@@ -11,7 +11,7 @@ const TCGActionCard = (props) => {
 
     const theme = useTheme();
 
-    let { name, type, cost } = props.card;
+    let { name, cost } = props.card;
     let { deck } = props.deck;
 
     const [open, setOpen] = React.useState(false);
