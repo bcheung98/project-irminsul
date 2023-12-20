@@ -16,6 +16,7 @@ const VersionHighlights = (props) => {
 
     // MAKE SURE TO CHANGE THIS EVERY UPDATE!
     let updates = [
+        { version: "4.3", name: "Roses and Muskets" },
         { version: "4.2", name: "Masquerade of the Guilty" },
         { version: "4.1", name: "To the Stars Shining in the Depths" },
         { version: "4.0", name: "As Light Rain Falls Without Reason" },
@@ -92,7 +93,7 @@ const VersionHighlights = (props) => {
                             updates.map((version, index) => {
                                 return (
                                     <MenuItem key={index} value={version.version}>
-                                        <Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{version.version} - {version.name}</Typography>
+                                        <Typography sx={{ fontFamily: "Genshin, sans-serif", fontSize: "11pt" }}>{version.version} - {version.name}</Typography>
                                     </MenuItem>
                                 )
                             })
