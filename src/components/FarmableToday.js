@@ -81,7 +81,15 @@ const FarmableToday = (props) => {
                         Farming Schedule
                     </Typography>
                     <Select value={day} label="Day" onChange={handleDayChange} input={<CustomSelect />}>
-                        {weekday.map((day, index) => <MenuItem key={index} value={day}><Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{day}</Typography></MenuItem>)}
+                        {
+                            weekday.map((day, index) => (
+                                <MenuItem key={index} value={day}>
+                                    {
+                                        day === today ? <Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{day} {"(Today)"}</Typography> : <Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{day}</Typography>
+                                    }
+                                </MenuItem>
+                            ))
+                        }
                     </Select>
                 </Box>
             </AppBar>
