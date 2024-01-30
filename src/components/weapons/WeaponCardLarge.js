@@ -69,7 +69,7 @@ const WeaponCardLarge = (props) => {
                     onError={ErrorLoadingImage}
                 />
                 <CustomTooltip title={type} arrow placement="top">
-                    <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${type.toLowerCase()}-icon.png`)} alt={type} onError={ErrorLoadingImage} />
+                    <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/weapons/icons/Icon_${type}.png`)} alt={type} onError={ErrorLoadingImage} />
                 </CustomTooltip>
                 <Box>
                     <ButtonBase disableRipple href={`/project-irminsul/character/${name.split(" ").join("_").toLowerCase()}`} target="_blank">

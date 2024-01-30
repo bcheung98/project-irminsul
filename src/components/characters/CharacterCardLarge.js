@@ -10,13 +10,6 @@ const CharacterCardLarge = (props) => {
 
     let { name, rarity, element, weapon } = props.character;
 
-    const smallIcon = {
-        width: "30px",
-        marginTop: "5px",
-        marginLeft: "1.5px",
-        marginRight: "1.5px"
-    }
-
     const width = "200px";
 
     return (
@@ -87,10 +80,10 @@ const CharacterCardLarge = (props) => {
                     onError={ErrorLoadingImage}
                 />
                 <CustomTooltip title={element} arrow placement="top">
-                    <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
+                    <img style={{ width: "30px", marginTop: "5px", marginLeft: "1.5px", marginRight: "1.5px" }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
                 </CustomTooltip>
                 <CustomTooltip title={weapon} arrow placement="top">
-                    <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${weapon.toLowerCase()}-icon.png`)} alt={weapon} onError={ErrorLoadingImage} />
+                    <img style={{ width: "33px", marginTop: "5px", marginLeft: "1.5px", marginRight: "1.5px" }} src={(`${process.env.REACT_APP_URL}/weapons/icons/Icon_${weapon}.png`)} alt={weapon} onError={ErrorLoadingImage} />
                 </CustomTooltip>
                 <Box>
                     <ButtonBase disableRipple href={`/project-irminsul/character/${name.split(" ").join("_").toLowerCase()}`} target="_blank">

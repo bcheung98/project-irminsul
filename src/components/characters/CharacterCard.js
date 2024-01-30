@@ -64,10 +64,10 @@ const CharacterCard = (props) => {
                         }}
                     >
                         <CustomTooltip title={element} arrow placement="top">
-                            <img style={{ height: "30px", width: "30px", marginRight: "5px" }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
+                            <img style={{ height: "32px", width: "32px", marginRight: "1px" }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
                         </CustomTooltip>
                         <CustomTooltip title={weapon} arrow placement="top">
-                            <img style={{ height: "30px", width: "30px" }} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${weapon.toLowerCase()}-icon.png`)} alt={weapon} onError={ErrorLoadingImage} />
+                            <img style={{ height: "36px", width: "36px", marginTop: "-2px" }} src={(`${process.env.REACT_APP_URL}/weapons/icons/Icon_${weapon}.png`)} alt={weapon} onError={ErrorLoadingImage} />
                         </CustomTooltip>
                     </Box>
                 </Box>

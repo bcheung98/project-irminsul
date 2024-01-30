@@ -11,7 +11,7 @@ const WeaponFilter = (props) => {
             {
                 Weapons.map((weapon, index) => (
                     <CustomTooltip key={index} title={weapon} arrow placement="top">
-                        <img className="filter-off" id={`${weapon.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${weapon.toLowerCase()}-icon.png`} alt={weapon} onClick={(e) => props.setFilter(e.target.alt)} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`${weapon.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/weapons/icons/Icon_${weapon}.png`} alt={weapon} onClick={(e) => props.setFilter(e.target.alt)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }

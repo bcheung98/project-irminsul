@@ -59,7 +59,7 @@ const CharacterAscensionCard = (props) => {
                         </Box>
                         <Box sx={{ position: "absolute", top: "50px", left: "45px" }}>
                             <CustomTooltip title={weapon} arrow placement="top">
-                                <img style={smallIcon} src={`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${weapon.toLowerCase()}-icon.png`} alt={weapon} onError={ErrorLoadingImage} />
+                                <img style={smallIcon} src={`${process.env.REACT_APP_URL}/weapons/icons/Icon_${weapon}.png`} alt={weapon} onError={ErrorLoadingImage} />
                             </CustomTooltip>
                         </Box>
                     </Box>

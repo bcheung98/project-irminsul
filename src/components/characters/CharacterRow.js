@@ -70,9 +70,9 @@ const CharacterRow = (props) => {
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <CardHeader sx={{ p: 0 }}
                             avatar={
-                                <img alt={row.weapon} src={(`${process.env.REACT_APP_URL}/weapons/icons/Weapon-class-${row.weapon.toLowerCase()}-icon.png`)}
+                                <img alt={row.weapon} src={(`${process.env.REACT_APP_URL}/weapons/icons/Icon_${row.weapon}.png`)}
                                     style={{
-                                        width: "32px",
+                                        width: "36px",
                                         border: "1px solid rgba(0, 30, 60, 0)",
                                         borderRadius: "64px",
                                     }}
