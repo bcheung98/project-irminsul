@@ -16,6 +16,7 @@ const VersionHighlights = (props) => {
 
     // MAKE SURE TO CHANGE THIS EVERY UPDATE!
     let updates = [
+        { version: "4.4", name: "Vibrant Harriers Aloft in Spring Breeze" },
         { version: "4.3", name: "Roses and Muskets" },
         { version: "4.2", name: "Masquerade of the Guilty" },
         { version: "4.1", name: "To the Stars Shining in the Depths" },
@@ -55,7 +56,7 @@ const VersionHighlights = (props) => {
     let weapons = props.weapons.weapons.filter(wep => wep.release.version === version);
     let characterCards = [];
     let actionCards = [];
-    if (props.cards.cards[0] !== undefined) { characterCards = props.cards.cards[0].cards.filter(card => card.release.version === version) };
+    if (props.cards.cards[0] !== undefined) { characterCards = props.cards.cards[0].cards.filter(card => card.release.version === version).sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1) };
     if (props.cards.cards[1] !== undefined) { actionCards = props.cards.cards[1].cards.filter(card => card.release.version === version).sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1).sort((a, b) => a.subType.toLowerCase() > b.subType.toLowerCase() ? 1 : -1).sort((a, b) => a.subType.toLowerCase() > b.subType.toLowerCase() ? 1 : -1) };
 
     return (

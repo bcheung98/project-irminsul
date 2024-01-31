@@ -450,6 +450,18 @@ export const formatEliteMats = (material) => {
         case "Watch":
             material = "Fatui Operative Watch";
             break;
+        case "Fin1":
+            material = "Feathery Fin";
+            break;
+        case "Fin2":
+            material = "Lunar Fin";
+            break;
+        case "Fin3":
+            material = "Chasmlight Fin";
+            break;
+        case "Fin":
+            material = "Xuanwen Beast Fin";
+            break;
         default:
             material += "";
     }
@@ -544,6 +556,9 @@ export const formatBossMats = (material) => {
             break;
         case "Water That Failed To Transcend":
             material += " (Hydro Tulpa)";
+            break;
+        case "Cloudseam Scale":
+            material += " (Solitary Suanni)";
             break;
         default:
             material += "";
