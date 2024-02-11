@@ -1,4 +1,5 @@
 export const fetchWeapons = () => {
+    // https://bcheung98.github.io/project-irminsul-db/weapons.json
     const url = "https://bcheung98.github.io/project-irminsul-db/weapons.json";
     return (dispatch) => {
         dispatch({ type: "START_GETTING_WEAPONS_REQUEST" });
