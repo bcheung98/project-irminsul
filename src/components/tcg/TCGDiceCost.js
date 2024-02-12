@@ -86,7 +86,7 @@ const TCGDiceCost = (props) => {
                                 }}
                                 key={index}
                             >
-                                <img src={`${process.env.REACT_APP_URL}/tcg/icons/${dice.slice(-1)}.png`} alt={dice.slice(-1)} style={size(props.type)}
+                                <img src={`${process.env.REACT_APP_URL}/tcg/icons/dice/${dice.slice(-1)}.png`} alt={dice.slice(-1)} style={size(props.type)}
                                 />
                                 <Typography
                                     variant={fontSize(props.type)}
