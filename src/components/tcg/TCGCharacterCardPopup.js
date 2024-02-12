@@ -3,12 +3,13 @@ import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import parse from "html-react-parser";
 import { Box } from "@mui/system";
-import { Typography, CardHeader, Avatar, Button } from "@mui/material";
+import { Typography, CardHeader, Avatar, Button, Dialog } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import { ElementalBorderColor } from "../../helpers/ElementalColors";
 import TCGDiceCost from "./TCGDiceCost";
 import { FormatTCGTalentKey } from "../../helpers/FormatTCGTalentKey";
+import { Keywords } from "./TCGKeywords";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const TCGCharacterCardPopup = (props) => {
@@ -16,6 +17,50 @@ const TCGCharacterCardPopup = (props) => {
     const theme = useTheme();
 
     let { name, element, weapon, nation, hp, talents, splash } = props.char;
+
+    const [open, setOpen] = React.useState(false);
+    const [tag, setTag] = React.useState("");
+    const handleClickOpen = (e) => {
+        setTag(e.target.className.split("-")[1])
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    // The following code block transforms certain keywords into underlined elements
+    // When clicked on, these elements will open up a dialog box showing info about the corresponding keyword
+    const { domToReact } = parse;
+    const options = {
+        replace: ({ attribs, children }) => {
+            if (!attribs) {
+                return;
+            }
+            if (attribs.class !== undefined && attribs.class.split("-")[0] === "tooltip") {
+                let dataTag = attribs.class.split("-")[1]
+                return React.createElement(
+                    "u",
+                    {
+                        className: `tooltip-${dataTag}`,
+                        style: { cursor: "pointer" },
+                        onClick: (e) => handleClickOpen(e)
+                    },
+                    domToReact(children, options)
+                )
+            }
+        }
+    }
+
+    let keywordName;
+    let keywordDescription;
+    if (Keywords[tag]) {
+        keywordName = Keywords[tag].name;
+        keywordDescription = Keywords[tag].description;
+    }
+    else if (props.keywords) {
+        keywordName = props.keywords.name;
+        keywordDescription = props.keywords.description;
+    }
 
     return (
         <Box
@@ -188,8 +233,8 @@ const TCGCharacterCardPopup = (props) => {
                                             }
                                         />
                                         <TCGDiceCost cost={talents[key].cost} type={"popup"} />
-                                        <Typography variant="body1" sx={{ ml: "20px" }}>
-                                            {parse(talents[key].description)}
+                                        <Typography variant="body1" sx={{ ml: "20px", color: "rgb(218, 219, 222)", }}>
+                                            {parse(talents[key].description, options)}
                                         </Typography>
                                         < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px" }} />
                                     </Box>
@@ -211,6 +256,32 @@ const TCGCharacterCardPopup = (props) => {
                                     </Button>
                             }
                         </React.Fragment>
+                    }
+                    {
+                        keywordName && keywordDescription &&
+                        <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            maxWidth={false}
+                        >
+                            <Box
+                                sx={{
+                                    width: "45vw",
+                                    p: "15px",
+                                    backgroundColor: `${theme.paper.backgroundColor}`,
+                                    border: `2px solid ${theme.border.color}`,
+                                    borderRadius: "5px",
+                                }}
+                            >
+                                <Typography variant="h5" component="span" sx={{ fontWeight: "bold" }}>
+                                    {keywordName}
+                                </Typography>
+                                <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "10px" }} />
+                                <Typography variant="body1" component="span" sx={{ color: `${theme.text.colorAlt}`, mb: "5px" }}>
+                                    {keywordDescription}
+                                </Typography>
+                            </Box>
+                        </Dialog>
                     }
                 </Grid>
             </Grid>
