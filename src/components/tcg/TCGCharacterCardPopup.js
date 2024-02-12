@@ -276,7 +276,7 @@ const TCGCharacterCardPopup = (props) => {
                                 <Typography variant="h5" component="span" sx={{ fontWeight: "bold" }}>
                                     {keywordName}
                                 </Typography>
-                                <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "10px" }} />
+                                <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "5px", marginBottom: "10px" }} />
                                 <Typography variant="body1" component="span" sx={{ color: `${theme.text.colorAlt}`, mb: "5px" }}>
                                     {keywordDescription}
                                 </Typography>
