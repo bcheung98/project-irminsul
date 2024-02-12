@@ -10,7 +10,7 @@ const MainBoxStyle = {
 
 const TitleText = () => {
     const theme = useTheme();
-    return { fontFamily: "Genshin, sans-serif", color: `${theme.text.colorAlt}`, ml: "5px" }
+    return { fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, ml: "5px" }
 }
 
 const DescriptionText = () => {
