@@ -130,7 +130,8 @@ code {
     opacity: 1;
 }
 
-.tooltip-physical {
+.tcg-bold,
+[class^="tooltip-"] {
     color: white;
     font-weight: bold;
 }
