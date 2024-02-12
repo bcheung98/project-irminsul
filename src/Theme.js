@@ -41,6 +41,7 @@ export const defaultTheme = createTheme({
     },
     text: {
         color: "white",
+        colorAlt: "rgb(218, 219, 222)"
     },
     button: {
         selected: "rgb(0, 127, 255)"
