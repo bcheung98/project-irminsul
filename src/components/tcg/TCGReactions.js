@@ -34,9 +34,16 @@ export const Bloom = (props) => {
                     Bloom
                 </Typography>
             </Box>
-            <Typography sx={DescriptionText}>
-                DMG +1 for this instance, creates a [<b style={{ color: "white" }}>Dendro Core</b>] that grants +2 DMG to the next instance of Pyro/Electro DMG
-            </Typography>
+            {
+                !props.application ?
+                    <Typography sx={DescriptionText}>
+                        DMG +1 for this instance, creates a [<b style={{ color: "white" }}>Dendro Core</b>] that grants +2 DMG to the next instance of Pyro/Electro DMG
+                    </Typography>
+                    :
+                    <Typography sx={DescriptionText}>
+                        Creates a [<b style={{ color: "white" }}>Dendro Core</b>] that grants +2 DMG to the next instance of Pyro/Electro DMG
+                    </Typography>
+            }
         </Box>
     )
 }
@@ -86,9 +93,16 @@ export const Electrocharged = (props) => {
                     Electro-Charged
                 </Typography>
             </Box>
-            <Typography sx={DescriptionText}>
-                DMG +1 for this instance, deal 1 Piercing DMG to all opposing characters except the target
-            </Typography>
+            {
+                !props.application ?
+                    <Typography sx={DescriptionText}>
+                        DMG +1 for this instance, deal 1 Piercing DMG to all opposing characters except the target
+                    </Typography>
+                    :
+                    <Typography sx={DescriptionText}>
+                        No effect
+                    </Typography>
+            }
         </Box>
     )
 }
@@ -104,9 +118,16 @@ export const Frozen = (props) => {
                     Frozen
                 </Typography>
             </Box>
-            <Typography sx={DescriptionText}>
-                DMG +1 for this instance, the target is unable to perform any Actions this round (Can be removed in advance after the target receives Physical or Pyro DMG, in which case they will take +2 DMG)
-            </Typography>
+            {
+                !props.application ?
+                    <Typography sx={DescriptionText}>
+                        DMG +1 for this instance, the target is unable to perform any Actions this round (Can be removed in advance after the target receives Physical or Pyro DMG, in which case they will take +2 DMG)
+                    </Typography>
+                    :
+                    <Typography sx={DescriptionText}>
+                        The target is unable to perform any Actions this Round (Can be removed in advance after the target receives Physical or Pyro DMG, in which case they will take +2 DMG)
+                    </Typography>
+            }
         </Box>
     )
 }
@@ -122,9 +143,16 @@ export const Melt = (props) => {
                     Melt
                 </Typography>
             </Box>
-            <Typography sx={DescriptionText}>
-                DMG +2 for this instance
-            </Typography>
+            {
+                !props.application ?
+                    <Typography sx={DescriptionText}>
+                        DMG +2 for this instance
+                    </Typography>
+                    :
+                    <Typography sx={DescriptionText}>
+                        No effect
+                    </Typography>
+            }
         </Box>
     )
 }
@@ -176,9 +204,16 @@ export const Superconduct = (props) => {
                     Superconduct
                 </Typography>
             </Box>
-            <Typography sx={DescriptionText}>
-                DMG +1 for this instance, deal 1 Piercing DMG to all opposing characters except the target
-            </Typography>
+            {
+                !props.application ?
+                    <Typography sx={DescriptionText}>
+                        DMG +1 for this instance, deal 1 Piercing DMG to all opposing characters except the target
+                    </Typography>
+                    :
+                    <Typography sx={DescriptionText}>
+                        No effect
+                    </Typography>
+            }
         </Box>
     )
 }
@@ -210,9 +245,16 @@ export const Vaporize = (props) => {
                     Vaporize
                 </Typography>
             </Box>
-            <Typography sx={DescriptionText}>
-                DMG +2 for this instance
-            </Typography>
+            {
+                !props.application ?
+                    <Typography sx={DescriptionText}>
+                        DMG +2 for this instance
+                    </Typography>
+                    :
+                    <Typography sx={DescriptionText}>
+                        No effect
+                    </Typography>
+            }
         </Box>
     )
 }
