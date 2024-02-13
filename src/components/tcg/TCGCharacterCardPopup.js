@@ -10,6 +10,7 @@ import { ElementalBorderColor } from "../../helpers/ElementalColors";
 import TCGDiceCost from "./TCGDiceCost";
 import { FormatTCGTalentKey } from "../../helpers/FormatTCGTalentKey";
 import { Keywords } from "./TCGKeywords";
+import TCGKeywordPopup from "./TCGKeywordPopup";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const TCGCharacterCardPopup = (props) => {
@@ -53,13 +54,15 @@ const TCGCharacterCardPopup = (props) => {
 
     let keywordName;
     let keywordDescription;
+    let currentKeyword = { name: "", description: "" }; // Initialize a blank object to avoid "undefined" errors
     if (Keywords[tag]) {
         keywordName = Keywords[tag].name;
         keywordDescription = Keywords[tag].description;
     }
-    else if (props.keywords) {
-        keywordName = props.keywords.name;
-        keywordDescription = props.keywords.description;
+    else if (props.char.keywords && tag !== "") {
+        currentKeyword = props.char.keywords.find(kw => kw.tag === tag);
+        keywordName = currentKeyword.name;
+        keywordDescription = currentKeyword.description;
     }
 
     return (
@@ -233,7 +236,7 @@ const TCGCharacterCardPopup = (props) => {
                                             }
                                         />
                                         <TCGDiceCost cost={talents[key].cost} type={"popup"} />
-                                        <Typography variant="body1" sx={{ ml: "20px", color: "rgb(218, 219, 222)", }}>
+                                        <Typography variant="body1" sx={{ ml: "20px", color: `${theme.text.colorAlt}`, }}>
                                             {parse(talents[key].description, options)}
                                         </Typography>
                                         < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px" }} />
@@ -264,23 +267,7 @@ const TCGCharacterCardPopup = (props) => {
                             onClose={handleClose}
                             maxWidth={false}
                         >
-                            <Box
-                                sx={{
-                                    width: "45vw",
-                                    p: "15px",
-                                    backgroundColor: `${theme.paper.backgroundColor}`,
-                                    border: `2px solid ${theme.border.color}`,
-                                    borderRadius: "5px",
-                                }}
-                            >
-                                <Typography variant="h5" component="span" sx={{ fontWeight: "bold" }}>
-                                    {keywordName}
-                                </Typography>
-                                <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "5px", marginBottom: "10px" }} />
-                                <Typography variant="body1" component="span" sx={{ color: `${theme.text.colorAlt}`, mb: "5px" }}>
-                                    {keywordDescription}
-                                </Typography>
-                            </Box>
+                            <TCGKeywordPopup name={keywordName} description={keywordDescription} />
                         </Dialog>
                     }
                 </Grid>
