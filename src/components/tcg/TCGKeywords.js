@@ -150,7 +150,6 @@ export const Keywords = {
         "description":
             <React.Fragment>
                 <CustomTypography>
-                    <b className="text-highlight">Status</b><br />
                     The character to which this is attached has their <u className="tooltip-physical">Physical DMG</u> dealt converted to <u className="tooltip-cryo">Cryo DMG</u>.<br />
                     (Lasts until the Round ends)
                 </CustomTypography>
