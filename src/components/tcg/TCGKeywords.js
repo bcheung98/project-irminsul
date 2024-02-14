@@ -142,19 +142,6 @@ export const Keywords = {
                 <Reactions.Frozen element="Cryo" application />
             </React.Fragment>
     },
-    "cryo infusion": {
-        "name":
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Cryo Elemental Infusion</Typography>
-            </CustomBox>,
-        "description":
-            <React.Fragment>
-                <CustomTypography>
-                    The character to which this is attached has their <u className="tooltip-physical">Physical DMG</u> dealt converted to <u className="tooltip-cryo">Cryo DMG</u>.<br />
-                    (Lasts until the Round ends)
-                </CustomTypography>
-            </React.Fragment>
-    },
     "anemo": {
         "name":
             <CustomBox sx={{ display: "inline-flex" }}>
