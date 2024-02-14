@@ -54,13 +54,12 @@ const TCGCharacterCardPopup = (props) => {
 
     let keywordName;
     let keywordDescription;
-    let currentKeyword = { name: "", description: "" }; // Initialize a blank object to avoid "undefined" errors
     if (Keywords[tag]) {
         keywordName = Keywords[tag].name;
         keywordDescription = Keywords[tag].description;
     }
     else if (props.char.keywords && tag !== "") {
-        currentKeyword = props.char.keywords.find(kw => kw.tag === tag);
+        let currentKeyword = props.char.keywords.find(kw => kw.tag === tag);
         keywordName = currentKeyword.name;
         keywordDescription = currentKeyword.description;
     }
@@ -267,7 +266,7 @@ const TCGCharacterCardPopup = (props) => {
                             onClose={handleClose}
                             maxWidth={false}
                         >
-                            <TCGKeywordPopup name={keywordName} description={keywordDescription} />
+                            <TCGKeywordPopup keywords={props.char.keywords} name={keywordName} description={keywordDescription} />
                         </Dialog>
                     }
                 </Grid>

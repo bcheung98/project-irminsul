@@ -36,7 +36,7 @@ const TCGKeywordPopup = (props) => {
                     {
                         className: `tooltip-${dataTag}`,
                         style: { cursor: "pointer" },
-                        onClick: (e) => handleClickOpen(e)
+                        onClick: (e) => { handleClickOpen(e) }
                     },
                     domToReact(children, options)
                 )
@@ -50,9 +50,10 @@ const TCGKeywordPopup = (props) => {
         keywordName = Keywords[tag].name;
         keywordDescription = Keywords[tag].description;
     }
-    else if (props.name && props.description) {
-        keywordName = props.name;
-        keywordDescription = props.description;
+    else if (tag !== "") {
+        let currentKeyword = props.keywords.find(kw => kw.tag === tag);
+        keywordName = currentKeyword.name;
+        keywordDescription = currentKeyword.description;
     }
 
     return (
@@ -70,7 +71,6 @@ const TCGKeywordPopup = (props) => {
             </Typography>
             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "5px", marginBottom: "10px" }} />
             <Typography variant="body1" component="span" sx={{ color: `${theme.text.colorAlt}`, mb: "5px" }}>
-                {console.log(description)}
                 {
                     typeof (description) === "object" ?
                         description
