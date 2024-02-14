@@ -163,7 +163,7 @@ const TCGBrowser = (props) => {
                 cards.cards.length > 0 &&
                 (
                     view === "char" ?
-                        <Grid item xs={9}>
+                        <Grid xs={9}>
                             <Grid container sx={{ ml: "15px" }}>
                                 {CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
                             </Grid>
