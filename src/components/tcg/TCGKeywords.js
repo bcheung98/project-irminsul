@@ -291,6 +291,28 @@ export const Keywords = {
             <CustomTypography>
                 Certain effects will grant characters an <b style={{ color: "white" }}>immunity to being defeated</b> when their HP hits 0, and will heal them for a certain amount thereafter.<br />When this occurs, characters will not be regarded as having experienced a <b style={{ color: "white" }}>defeat</b>.<br />(Hence, their attached equipment and statuses will not be removed, and their Energy will remain uncleared.)
             </CustomTypography>
-    }
+    },
+    "energy": {
+        "name":
+            <CustomBox sx={{ display: "inline-flex" }}>
+                <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/dice/N.png`} alt="Energy" sx={{ width: "32px", height: "32px" }} />
+                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px", color: "white" }}>Energy </Typography>
+            </CustomBox>,
+        "description":
+            <CustomTypography>
+                Characters must consume Energy to use their Elemental Bursts.<br />When characters use an Elemental Skill or a Normal Attack, they will gain 1 Energy.
+            </CustomTypography>
+    },
+    "unaligned element": {
+        "name":
+            <CustomBox sx={{ display: "inline-flex" }}>
+                <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/dice/U.png`} alt="Energy" sx={{ width: "32px", height: "32px" }} />
+                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px", color: "white" }}>Unaligned Element </Typography>
+            </CustomBox>,
+        "description":
+            <CustomTypography>
+                You may use Elemental Dice of any element to pay this type of cost.
+            </CustomTypography>
+    },
 
 }
