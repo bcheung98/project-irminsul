@@ -202,7 +202,7 @@ const TCGBrowser = (props) => {
                                     />
                                 </Paper>
                             </Box>
-                            <Grid item xs={9}>
+                            <Grid xs={9}>
                                 <Grid container sx={{ ml: "15px" }}>
                                     {FilterTCGActionCards(CurrentActionCards(cards.cards[1].cards, deck.deck.actionCards), filters, searchValue).map(card => <TCGActionCard key={card.name} card={card} preview={false} />)}
                                 </Grid>
