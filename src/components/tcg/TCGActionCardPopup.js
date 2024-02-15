@@ -114,7 +114,7 @@ const TCGActionCardPopup = (props) => {
                             p: "15px",
                         }}
                     >
-                        <Typography variant="body1" sx={{ ml: "20px" }}>
+                        <Typography variant="body1" sx={{ ml: "20px", color: `${theme.text.colorAlt}` }}>
                             {parse(description)}
                         </Typography>
                     </Box>
