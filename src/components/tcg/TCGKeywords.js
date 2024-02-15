@@ -314,5 +314,15 @@ export const Keywords = {
                 You may use Elemental Dice of any element to pay this type of cost.
             </CustomTypography>
     },
+    "char closest to current active char": {
+        "name":
+            <CustomBox sx={{ display: "inline-flex" }}>
+                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px", color: "white" }}>Character Closest to Your Current Active Character</Typography>
+            </CustomBox>,
+        "description":
+            <CustomTypography>
+                The opposing "character closest to your current active character" is the opposing character whose position is closest to that of your active character.<br />If multiple such characters exist, the one with the foremost position will be viewd as being "closest".
+            </CustomTypography>
+    }
 
 }
