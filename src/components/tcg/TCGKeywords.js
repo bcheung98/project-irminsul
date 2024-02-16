@@ -303,6 +303,16 @@ export const Keywords = {
                 Characters must consume Energy to use their Elemental Bursts.<br />When characters use an Elemental Skill or a Normal Attack, they will gain 1 Energy.
             </CustomTypography>
     },
+    "omni element": {
+        "name":
+            <CustomBox sx={{ display: "inline-flex" }}>
+                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Omni Element </Typography>
+            </CustomBox>,
+        "description":
+            <CustomTypography>
+                The Omni Element can be considered as any kind of element, and can be used to pay for costs of various kinds.
+            </CustomTypography>
+    },
     "unaligned element": {
         "name":
             <CustomBox sx={{ display: "inline-flex" }}>
@@ -317,7 +327,7 @@ export const Keywords = {
     "char closest to current active char": {
         "name":
             <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px", color: "white" }}>Character Closest to Your Current Active Character</Typography>
+                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Character Closest to Your Current Active Character</Typography>
             </CustomBox>,
         "description":
             <CustomTypography>
