@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import parse from "html-react-parser";
 import { Box } from "@mui/system";
-import { Typography, CardHeader, Button, Dialog } from "@mui/material";
+import { Typography, CardHeader, Button, Dialog, Chip } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import TCGDiceCost from "./TCGDiceCost";
 import { Keywords } from "./TCGKeywords";
@@ -67,46 +67,13 @@ const TCGActionCardPopup = (props) => {
     return (
         <Box
             sx={{
-                width: "80vw",
+                width: "70vw",
                 p: "15px",
                 backgroundColor: "rgb(0, 30, 60)",
                 border: `2px solid ${theme.border.color}`,
                 borderRadius: "5px",
             }}
         >
-            <Box
-                sx={{
-                    display: "flex",
-                    position: "relative",
-                    mb: "20px",
-                }}
-            >
-                <CardHeader
-                    sx={{
-                        display: "flex",
-                        alignItems: "center",
-                    }}
-                    title={
-                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="h4">
-                            {props.card.displayName ? props.card.displayName : name}
-                        </Typography>
-                    }
-                />
-                <Box
-                    sx={{
-                        position: "absolute",
-                        right: "30px",
-                        top: "20px",
-                    }}
-                >
-                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="subtitle1">
-                        {type}
-                    </Typography>
-                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="subtitle1">
-                        {subType}
-                    </Typography>
-                </Box>
-            </Box>
             <Grid container sx={{ mt: "10px" }}>
                 <Box
                     sx={{
@@ -153,6 +120,31 @@ const TCGActionCardPopup = (props) => {
                     </Box>
                 </Box>
                 <Grid xs={9}>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            mb: "10px",
+                        }}
+                    >
+                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="h4">
+                            {props.card.displayName ? props.card.displayName : name}
+                        </Typography>
+                    </Box>
+                    <Box sx={{ mb: "10px" }}>
+                        {
+                            subType &&
+                            <Chip
+                                label={
+                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="subtitle1">
+                                        {subType}
+                                    </Typography>
+                                }
+                                color="primary"
+                                sx={{ mr: "10px" }}
+                            />
+                        }
+                    </Box>
                     <Box
                         sx={{
                             backgroundColor: `${theme.paper.backgroundColor}`,

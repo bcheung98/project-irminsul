@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import parse from "html-react-parser";
 import { Box } from "@mui/system";
-import { Typography, CardHeader, Avatar, Button, Dialog } from "@mui/material";
+import { Typography, CardHeader, Avatar, Button, Dialog, Chip } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import { ElementalBorderColor } from "../../helpers/ElementalColors";
@@ -70,51 +70,13 @@ const TCGCharacterCardPopup = (props) => {
     return (
         <Box
             sx={{
-                width: "80vw",
+                width: "70vw",
                 p: "15px",
                 backgroundColor: "rgb(0, 30, 60)",
                 border: `2px solid ${theme.border.color}`,
                 borderRadius: "5px",
             }}
         >
-            <Box
-                sx={{
-                    display: "flex",
-                    position: "relative",
-                    mb: "20px",
-                }}
-            >
-                <CardHeader
-                    sx={{
-                        display: "flex",
-                        alignItems: "center",
-                    }}
-                    avatar={
-                        <CustomTooltip title={element} arrow placement="top">
-                            <img src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
-                        </CustomTooltip>
-                    }
-                    title={
-                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="h4">
-                            {props.char.fullname ? props.char.fullname : name}
-                        </Typography>
-                    }
-                />
-                <Box
-                    sx={{
-                        position: "absolute",
-                        right: "30px",
-                        top: "20px",
-                    }}
-                >
-                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="subtitle1">
-                        {weapon}
-                    </Typography>
-                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="subtitle1">
-                        {nation}
-                    </Typography>
-                </Box>
-            </Box>
             <Grid container sx={{ mt: "10px" }}>
                 <Box
                     sx={{
@@ -183,6 +145,40 @@ const TCGCharacterCardPopup = (props) => {
                 <Grid xs={9}>
                     <Box
                         sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            mb: "10px",
+                        }}
+                    >
+                        <CustomTooltip title={element} arrow placement="top">
+                            <img src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} style={{ marginRight: "10px", width: "64px", height: "64px" }} />
+                        </CustomTooltip>
+                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="h4">
+                            {props.char.fullname ? props.char.fullname : name}
+                        </Typography>
+                    </Box>
+                    <Box sx={{ mb: "10px" }}>
+                        <Chip
+                            label={
+                                <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="subtitle1">
+                                    {weapon}
+                                </Typography>
+                            }
+                            color="primary"
+                            sx={{ mr: "10px" }}
+                        />
+                        <Chip
+                            label={
+                                <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="subtitle1">
+                                    {nation}
+                                </Typography>
+                            }
+                            color="primary"
+                            sx={{ mr: "10px" }}
+                        />
+                    </Box>
+                    <Box
+                        sx={{
                             backgroundColor: `${theme.paper.backgroundColor}`,
                             border: `1px solid ${theme.border.color}`,
                             borderRadius: "5px",
@@ -192,14 +188,13 @@ const TCGCharacterCardPopup = (props) => {
                         }}
                     >
                         {
-                            Object.keys(talents).map(key => {
+                            Object.keys(talents).map((key, index) => {
                                 return (
-                                    <Box key={key} sx={{ p: "10px" }}>
+                                    <Box key={key} sx={{ px: "10px" }}>
                                         <CardHeader
                                             sx={{
                                                 display: "flex",
-                                                alignItems: "center",
-                                                mt: "-10px",
+                                                alignItems: "center"
                                             }}
                                             avatar={
                                                 key === "attack" ?
@@ -238,10 +233,10 @@ const TCGCharacterCardPopup = (props) => {
                                             }
                                         />
                                         <TCGDiceCost cost={talents[key].cost} type={"popup"} />
-                                        <Typography variant="body1" sx={{ ml: "20px", color: `${theme.text.colorAlt}`, }}>
+                                        <Typography variant="body1" sx={{ ml: "20px", mb: "10px", color: `${theme.text.colorAlt}`, }}>
                                             {parse(talents[key].description, options)}
                                         </Typography>
-                                        < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px" }} />
+                                        {index !== Object.keys(talents).length - 1 && <hr style={{ border: `0.5px solid ${theme.border.color}`, marginBottom: "0px" }} />}
                                     </Box>
                                 )
                             })
