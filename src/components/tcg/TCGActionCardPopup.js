@@ -3,9 +3,11 @@ import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import parse from "html-react-parser";
 import { Box } from "@mui/system";
-import { Typography, CardHeader, Button } from "@mui/material";
+import { Typography, CardHeader, Button, Dialog } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import TCGDiceCost from "./TCGDiceCost";
+import { Keywords } from "./TCGKeywords";
+import TCGKeywordPopup from "./TCGKeywordPopup";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const TCGActionCardPopup = (props) => {
@@ -13,6 +15,54 @@ const TCGActionCardPopup = (props) => {
     const theme = useTheme();
 
     let { name, type, subType, cost, description, splash } = props.card;
+
+    const [open, setOpen] = React.useState(false);
+    const [tag, setTag] = React.useState("");
+    const handleClickOpen = (e) => {
+        setTag(e.target.className.split("-")[1]);
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    // The following code block transforms certain keywords into underlined elements
+    // When clicked on, these elements will open up a dialog box showing info about the corresponding keyword
+    const { domToReact } = parse;
+    const options = {
+        replace: ({ attribs, children }) => {
+            if (!attribs) {
+                return;
+            }
+            if (attribs.class !== undefined && attribs.class.split("-")[0].startsWith("tooltip")) {
+                let dataTag = attribs.class.split("-")[1]
+                return React.createElement(
+                    "u",
+                    {
+                        className: `${attribs.class.split("-")[0]}-${dataTag}`,
+                        style: { cursor: "pointer" },
+                        onClick: (e) => { handleClickOpen(e) }
+                    },
+                    domToReact(children, options)
+                )
+            }
+        }
+    }
+
+    let keywordName;
+    let keywordType;
+    let keywordDescription;
+    if (Keywords[tag]) {
+        keywordName = Keywords[tag].name;
+        keywordType = Keywords[tag].type;
+        keywordDescription = Keywords[tag].description;
+    }
+    else if (props.card.keywords && tag !== "") {
+        let currentKeyword = props.card.keywords.find(kw => kw.tag === tag);
+        keywordName = currentKeyword.name;
+        keywordType = currentKeyword.type;
+        keywordDescription = currentKeyword.description;
+    }
 
     return (
         <Box
@@ -115,7 +165,7 @@ const TCGActionCardPopup = (props) => {
                         }}
                     >
                         <Typography variant="body1" sx={{ ml: "20px", color: `${theme.text.colorAlt}` }}>
-                            {parse(description)}
+                            {parse(description, options)}
                         </Typography>
                     </Box>
                     {
@@ -134,6 +184,16 @@ const TCGActionCardPopup = (props) => {
                                 </Button>
                             }
                         </React.Fragment>
+                    }
+                    {
+                        keywordName && keywordDescription &&
+                        <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            maxWidth={false}
+                        >
+                            <TCGKeywordPopup keywords={props.card.keywords} name={keywordName} type={keywordType} description={keywordDescription} />
+                        </Dialog>
                     }
                 </Grid>
             </Grid>
