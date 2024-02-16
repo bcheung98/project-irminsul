@@ -91,7 +91,7 @@ const TCGKeywordPopup = (props) => {
                     onClose={handleClose}
                     maxWidth={false}
                 >
-                    <TCGKeywordPopup name={keywordName} description={keywordDescription} />
+                    <TCGKeywordPopup keywords={props.keywords} name={keywordName} description={keywordDescription} />
                 </Dialog>
             }
         </Box>
