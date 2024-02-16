@@ -70,7 +70,7 @@ const TCGCharacterCardPopup = (props) => {
     return (
         <Box
             sx={{
-                width: "70vw",
+                width: "80vw",
                 p: "15px",
                 backgroundColor: "rgb(0, 30, 60)",
                 border: `2px solid ${theme.border.color}`,

@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import parse from "html-react-parser";
 import { Box } from "@mui/system";
-import { Typography, CardHeader, Button, Dialog, Chip } from "@mui/material";
+import { Typography, Button, Dialog, Chip } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import TCGDiceCost from "./TCGDiceCost";
 import { Keywords } from "./TCGKeywords";
@@ -14,7 +14,7 @@ const TCGActionCardPopup = (props) => {
 
     const theme = useTheme();
 
-    let { name, type, subType, cost, description, splash } = props.card;
+    let { name, subType, cost, description, splash } = props.card;
 
     const [open, setOpen] = React.useState(false);
     const [tag, setTag] = React.useState("");
@@ -67,7 +67,7 @@ const TCGActionCardPopup = (props) => {
     return (
         <Box
             sx={{
-                width: "70vw",
+                width: "80vw",
                 p: "15px",
                 backgroundColor: "rgb(0, 30, 60)",
                 border: `2px solid ${theme.border.color}`,
