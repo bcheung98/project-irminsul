@@ -22,7 +22,7 @@ const TCGCharacterCardPopup = (props) => {
     const [open, setOpen] = React.useState(false);
     const [tag, setTag] = React.useState("");
     const handleClickOpen = (e) => {
-        setTag(e.target.className.split("-")[1])
+        setTag(e.target.className.split("-")[1]);
         setOpen(true);
     };
     const handleClose = () => {
@@ -37,14 +37,14 @@ const TCGCharacterCardPopup = (props) => {
             if (!attribs) {
                 return;
             }
-            if (attribs.class !== undefined && attribs.class.split("-")[0] === "tooltip") {
+            if (attribs.class !== undefined && attribs.class.split("-")[0].startsWith("tooltip")) {
                 let dataTag = attribs.class.split("-")[1]
                 return React.createElement(
                     "u",
                     {
-                        className: `tooltip-${dataTag}`,
+                        className: `${attribs.class.split("-")[0]}-${dataTag}`,
                         style: { cursor: "pointer" },
-                        onClick: (e) => handleClickOpen(e)
+                        onClick: (e) => { handleClickOpen(e) }
                     },
                     domToReact(children, options)
                 )
@@ -53,14 +53,17 @@ const TCGCharacterCardPopup = (props) => {
     }
 
     let keywordName;
+    let keywordType;
     let keywordDescription;
     if (Keywords[tag]) {
         keywordName = Keywords[tag].name;
+        keywordType = Keywords[tag].type;
         keywordDescription = Keywords[tag].description;
     }
     else if (props.char.keywords && tag !== "") {
         let currentKeyword = props.char.keywords.find(kw => kw.tag === tag);
         keywordName = currentKeyword.name;
+        keywordType = currentKeyword.type;
         keywordDescription = currentKeyword.description;
     }
 
@@ -266,7 +269,7 @@ const TCGCharacterCardPopup = (props) => {
                             onClose={handleClose}
                             maxWidth={false}
                         >
-                            <TCGKeywordPopup keywords={props.char.keywords} name={keywordName} description={keywordDescription} />
+                            <TCGKeywordPopup keywords={props.char.keywords} name={keywordName} type={keywordType} description={keywordDescription} />
                         </Dialog>
                     }
                 </Grid>

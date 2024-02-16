@@ -9,12 +9,12 @@ const TCGKeywordPopup = (props) => {
 
     const theme = useTheme();
 
-    let { name, description } = props;
+    let { name, type, description } = props;
 
     const [open, setOpen] = React.useState(false);
     const [tag, setTag] = React.useState("");
     const handleClickOpen = (e) => {
-        setTag(e.target.className.split("-")[1])
+        setTag(e.target.className.split("-")[1]);
         setOpen(true);
     };
     const handleClose = () => {
@@ -29,12 +29,12 @@ const TCGKeywordPopup = (props) => {
             if (!attribs) {
                 return;
             }
-            if (attribs.class !== undefined && attribs.class.split("-")[0] === "tooltip") {
+            if (attribs.class !== undefined && attribs.class.split("-")[0].startsWith("tooltip")) {
                 let dataTag = attribs.class.split("-")[1]
                 return React.createElement(
                     "u",
                     {
-                        className: `tooltip-${dataTag}`,
+                        className: `${attribs.class.split("-")[0]}-${dataTag}`,
                         style: { cursor: "pointer" },
                         onClick: (e) => { handleClickOpen(e) }
                     },
@@ -70,6 +70,12 @@ const TCGKeywordPopup = (props) => {
                 {name}
             </Typography>
             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "5px", marginBottom: "10px" }} />
+            {
+                type &&
+                <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "#ffe7b9", mb: "5px" }}>
+                    {type}
+                </Typography>
+            }
             <Typography variant="body1" component="span" sx={{ color: `${theme.text.colorAlt}`, mb: "5px" }}>
                 {
                     typeof (description) === "object" ?

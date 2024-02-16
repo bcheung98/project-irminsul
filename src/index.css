@@ -53,7 +53,6 @@ code {
     color: white
 }
 
-
 .text-pyro {
     color: #e46052
 }
@@ -133,6 +132,11 @@ code {
 .tcg-bold,
 [class^="tooltip-"] {
     color: white;
+    font-weight: bold;
+}
+
+[class^="tooltipHighlight-"] {
+    color: #ffe7b9;
     font-weight: bold;
 }
 
