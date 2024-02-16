@@ -72,7 +72,7 @@ const TCGKeywordPopup = (props) => {
             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "5px", marginBottom: "10px" }} />
             {
                 type &&
-                <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: "#ffe7b9", mb: "5px" }}>
+                <Typography variant="body1" sx={{ color: "#ffe7b9", mb: "5px", fontWeight: "bold" }}>
                     {type}
                 </Typography>
             }
