@@ -3,14 +3,11 @@ import { useTheme } from "@mui/material/styles";
 import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
 import { Box } from "@mui/system";
-import { Typography, ToggleButton, ToggleButtonGroup, Paper, InputBase, Dialog } from "@mui/material";
+import { Typography, ToggleButton, ToggleButtonGroup, Paper, InputBase } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import HelpSharpIcon from '@mui/icons-material/HelpSharp';
-import { CustomTooltip } from "../../helpers/CustomTooltip";
 import TCGCharacterCard from "./TCGCharacterCard";
 import TCGActionCard from "./TCGActionCard";
 import TCGDeck from "./TCGDeck";
-import TCGGlossary from "./TCGGlossary";
 
 const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
     "&.MuiToggleButton-root": {
@@ -75,15 +72,6 @@ const TCGBrowser = (props) => {
         setSearchValue(e.target.value);
     }
 
-    const [open, setOpen] = React.useState(false);
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-
     const buttons = [
         <StyledToggleButton value="" key="General">
             <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>General</Typography>
@@ -142,9 +130,6 @@ const TCGBrowser = (props) => {
                 >
                     TCG
                 </Typography>
-                <CustomTooltip title="Click to open the TCG glossary">
-                    <HelpSharpIcon sx={{ cursor: "pointer" }} color="primary" fontSize="large" onClick={() => handleClickOpen()} />
-                </CustomTooltip>
             </Box>
 
             <TCGDeck cards={deck.deck} />
@@ -210,13 +195,6 @@ const TCGBrowser = (props) => {
                         </React.Fragment>
                 )
             }
-            <Dialog
-                open={open}
-                onClose={handleClose}
-                maxWidth={false}
-            >
-                <TCGGlossary />
-            </Dialog>
         </React.Fragment>
     )
 }
