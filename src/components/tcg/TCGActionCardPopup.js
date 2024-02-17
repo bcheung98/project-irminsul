@@ -14,7 +14,7 @@ const TCGActionCardPopup = (props) => {
 
     const theme = useTheme();
 
-    let { name, subType, cost, description, splash } = props.card;
+    let { name, type, subType, cost, description, splash } = props.card;
 
     const [open, setOpen] = React.useState(false);
     const [tag, setTag] = React.useState("");
@@ -132,6 +132,14 @@ const TCGActionCardPopup = (props) => {
                         </Typography>
                     </Box>
                     <Box sx={{ mb: "10px" }}>
+                        <Chip
+                            label={
+                                <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="subtitle1">
+                                    {type} Card
+                                </Typography>
+                            }
+                            sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(98, 98, 98)" }}
+                        />
                         {
                             subType &&
                             <Chip
@@ -140,8 +148,7 @@ const TCGActionCardPopup = (props) => {
                                         {subType}
                                     </Typography>
                                 }
-                                color="primary"
-                                sx={{ mr: "10px" }}
+                                sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(25, 118, 210)" }}
                             />
                         }
                     </Box>
