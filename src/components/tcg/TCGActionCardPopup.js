@@ -179,7 +179,7 @@ const TCGActionCardPopup = (props) => {
                             }
                             {
                                 props.inDeck === true &&
-                                <Button variant="contained" color="secondary" sx={{ my: "20px" }} onClick={() => props.removeActionCardToDeck(props.card)}>
+                                <Button variant="contained" color="error" sx={{ my: "20px" }} onClick={() => props.removeActionCardToDeck(props.card)}>
                                     <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>Remove from Deck</Typography>
                                 </Button>
                             }

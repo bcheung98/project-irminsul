@@ -252,7 +252,7 @@ const TCGCharacterCardPopup = (props) => {
                                         <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>Add to Deck</Typography>
                                     </Button>
                                     :
-                                    <Button variant="contained" sx={{ my: "20px" }} onClick={() => props.removeCharCardToDeck(props.char)}>
+                                    <Button variant="contained" color="error" sx={{ my: "20px" }} onClick={() => props.removeCharCardToDeck(props.char)}>
                                         <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>Remove from Deck</Typography>
                                     </Button>
                             }
