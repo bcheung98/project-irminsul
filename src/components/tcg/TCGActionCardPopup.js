@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import parse from "html-react-parser";
 import { Box } from "@mui/system";
-import { Typography, Button, Dialog, Chip } from "@mui/material";
+import { Typography, Button, Dialog, Chip, Avatar } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import TCGDiceCost from "./TCGDiceCost";
 import { Keywords } from "./TCGKeywords";
@@ -143,6 +143,7 @@ const TCGActionCardPopup = (props) => {
                         {
                             subType &&
                             <Chip
+                                avatar={<Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/${subType}.png`} alt={subType} />}
                                 label={
                                     <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="subtitle1">
                                         {subType}
