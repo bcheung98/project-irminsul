@@ -76,6 +76,9 @@ const TCGBrowser = (props) => {
         <StyledToggleButton value="" key="General">
             <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>General</Typography>
         </StyledToggleButton>,
+        <StyledToggleButton value="Arcane Legend" key="Arcane Legend">
+            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Arcane Legend</Typography>
+        </StyledToggleButton>,
         <StyledToggleButton value="Artifact" key="Artifact">
             <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Artifact</Typography>
         </StyledToggleButton>,
