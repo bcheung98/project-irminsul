@@ -166,7 +166,7 @@ const TCGCharacterCardPopup = (props) => {
                                     {weapon}
                                 </Typography>
                             }
-                            sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(98, 98, 98)" }}
+                            sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
                         />
                         <Chip
                             avatar={<Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${nation}.png`} alt={nation} />}
@@ -175,7 +175,7 @@ const TCGCharacterCardPopup = (props) => {
                                     {nation}
                                 </Typography>
                             }
-                            sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(25, 118, 210)" }}
+                            sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
                         />
                     </Box>
                     <Box

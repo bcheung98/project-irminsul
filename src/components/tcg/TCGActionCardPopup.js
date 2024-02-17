@@ -138,7 +138,7 @@ const TCGActionCardPopup = (props) => {
                                     {type} Card
                                 </Typography>
                             }
-                            sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(98, 98, 98)" }}
+                            sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
                         />
                         {
                             subType &&
@@ -148,7 +148,7 @@ const TCGActionCardPopup = (props) => {
                                         {subType}
                                     </Typography>
                                 }
-                                sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(25, 118, 210)" }}
+                                sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
                             />
                         }
                     </Box>
