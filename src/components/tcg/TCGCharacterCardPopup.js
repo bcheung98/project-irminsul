@@ -227,7 +227,7 @@ const TCGCharacterCardPopup = (props) => {
                                                     <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="h6">
                                                         {talents[key].name}
                                                     </Typography>
-                                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: "rgb(211, 188, 142)" }} variant="body2">
+                                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: "#ffe7b9" }} variant="body2">
                                                         {FormatTCGTalentKey(key)}
                                                     </Typography>
                                                 </React.Fragment>
