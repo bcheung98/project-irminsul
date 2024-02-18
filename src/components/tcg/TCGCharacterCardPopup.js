@@ -209,7 +209,11 @@ const TCGCharacterCardPopup = (props) => {
                                 return (
                                     <Chip
                                         key={index}
-                                        avatar={<Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${faction}.png`} alt={faction} />}
+                                        avatar={
+                                            <Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${faction}.png`} alt={faction}>
+                                                <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "24px", backgroundColor: "rgb(69, 84, 103)" }} />
+                                            </Avatar>
+                                        }
                                         label={
                                             <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
                                                 {faction}

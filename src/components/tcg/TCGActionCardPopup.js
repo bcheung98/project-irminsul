@@ -143,7 +143,11 @@ const TCGActionCardPopup = (props) => {
                         {
                             subType &&
                             <Chip
-                                avatar={<Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/${subType}.png`} alt={subType} />}
+                                avatar={
+                                    <Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/${subType}.png`} alt={subType}>
+                                        <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "24px", backgroundColor: "rgb(69, 84, 103)" }} />
+                                    </Avatar>
+                                }
                                 label={
                                     <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
                                         {subType}
