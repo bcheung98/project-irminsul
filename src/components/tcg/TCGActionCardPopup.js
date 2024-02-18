@@ -14,7 +14,7 @@ const TCGActionCardPopup = (props) => {
 
     const theme = useTheme();
 
-    let { name, type, subType, cost, description, splash } = props.card;
+    let { name, type, subType, weaponType, cost, description, splash } = props.card;
 
     const [open, setOpen] = React.useState(false);
     const [tag, setTag] = React.useState("");
@@ -151,6 +151,38 @@ const TCGActionCardPopup = (props) => {
                                 label={
                                     <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
                                         {subType}
+                                    </Typography>
+                                }
+                                sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
+                            />
+                        }
+                        {
+                            props.card.combatAction &&
+                            <Chip
+                                avatar={
+                                    <Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/Combat Action.png`} alt="Combat Action">
+                                        <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "24px", backgroundColor: "rgb(69, 84, 103)" }} />
+                                    </Avatar>
+                                }
+                                label={
+                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
+                                        Combat Action
+                                    </Typography>
+                                }
+                                sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
+                            />
+                        }
+                        {
+                            weaponType &&
+                            <Chip
+                                avatar={
+                                    <Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/weapons/${weaponType}.png`} alt={weaponType}>
+                                        <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "24px", backgroundColor: "rgb(69, 84, 103)" }} />
+                                    </Avatar>
+                                }
+                                label={
+                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
+                                        {weaponType}
                                     </Typography>
                                 }
                                 sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
