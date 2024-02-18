@@ -17,7 +17,7 @@ const TCGCharacterCardPopup = (props) => {
 
     const theme = useTheme();
 
-    let { name, element, weapon, factions, hp, talents, splash } = props.char;
+    let { name, element, arkhe, weapon, factions, hp, talents, splash } = props.char;
 
     const [open, setOpen] = React.useState(false);
     const [tag, setTag] = React.useState("");
@@ -223,6 +223,22 @@ const TCGCharacterCardPopup = (props) => {
                                     />
                                 )
                             })
+                        }
+                        {
+                            arkhe &&
+                            <Chip
+                                avatar={
+                                    <Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${arkhe}.png`} alt={arkhe}>
+                                        <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "24px", backgroundColor: "rgb(69, 84, 103)" }} />
+                                    </Avatar>
+                                }
+                                label={
+                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
+                                        Arkhe: {arkhe}
+                                    </Typography>
+                                }
+                                sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
+                            />
                         }
                     </Box>
                     <Box
