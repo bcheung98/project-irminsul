@@ -118,56 +118,65 @@ const TCGCharacterCardPopup = (props) => {
                             mt: "5px",
                         }}
                     >
-                        <Box
-                            sx={{
-                                position: "absolute",
-                                top: "-20px",
-                                left: "-20px",
-                            }}
-                        >
+                        {/* HP Icon */}
+                        <React.Fragment>
                             <Box
                                 sx={{
-                                    position: "relative",
-                                    textAlign: "center",
+                                    position: "absolute",
+                                    top: "-20px",
+                                    left: "-20px",
                                 }}
                             >
-                                <img src={`${process.env.REACT_APP_URL}/tcg/icons/hp.png`} alt={hp} style={{ width: "80px" }} />
-                                <Typography
-                                    variant="h3"
+                                <Box
                                     sx={{
-                                        fontFamily: "Genshin, sans-serif",
-                                        position: "absolute",
-                                        top: "50%",
-                                        left: "50%",
-                                        transform: "translate(-50%, -50%)",
-                                        color: `${theme.text.color}`,
-                                        textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
-                                    }}>
-                                    {hp}
-                                </Typography>
+                                        position: "relative",
+                                        textAlign: "center",
+                                    }}
+                                >
+                                    <img src={`${process.env.REACT_APP_URL}/tcg/icons/hp.png`} alt={hp} style={{ width: "80px" }} />
+                                    <Typography
+                                        variant="h3"
+                                        sx={{
+                                            fontFamily: "Genshin, sans-serif",
+                                            position: "absolute",
+                                            top: "50%",
+                                            left: "50%",
+                                            transform: "translate(-50%, -50%)",
+                                            color: `${theme.text.color}`,
+                                            textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+                                        }}>
+                                        {hp}
+                                    </Typography>
+                                </Box>
                             </Box>
-                        </Box>
-                        <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/Card_${name.split(" ").join("_")}.png`} alt={name}
-                            style={{
-                                width: "250px",
-                                border: `2px solid ${theme.border.color}`,
-                                borderRadius: "28px",
-                            }}
-                            onError={ErrorLoadingImage}
-                        />
-                        {
-                            splash !== undefined &&
-                            <Box
-                                sx={{
-                                    maxWidth: "250px",
-                                    my: "20px"
+                        </React.Fragment>
+                        {/* Card Image */}
+                        <React.Fragment>
+                            <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/Card_${name.split(" ").join("_")}.png`} alt={name}
+                                style={{
+                                    width: "250px",
+                                    border: `2px solid ${theme.border.color}`,
+                                    borderRadius: "28px",
                                 }}
-                            >
-                                <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
-                                    <i>{parse(splash.description)}</i>
-                                </Typography>
-                            </Box>
-                        }
+                                onError={ErrorLoadingImage}
+                            />
+                        </React.Fragment>
+                        {/* Card Splash Text */}
+                        <React.Fragment>
+                            {
+                                splash !== undefined &&
+                                <Box
+                                    sx={{
+                                        maxWidth: "250px",
+                                        my: "20px"
+                                    }}
+                                >
+                                    <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                                        <i>{parse(splash.description)}</i>
+                                    </Typography>
+                                </Box>
+                            }
+                        </React.Fragment>
                     </Box>
                 </Box>
                 <Grid xs={9}>
