@@ -198,7 +198,7 @@ const TCGCharacterCardPopup = (props) => {
                         <Chip
                             avatar={<Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/weapons/${weapon}.png`} alt={weapon} />}
                             label={
-                                <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="subtitle1">
+                                <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
                                     {weapon}
                                 </Typography>
                             }
@@ -207,7 +207,7 @@ const TCGCharacterCardPopup = (props) => {
                         <Chip
                             avatar={<Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${nation}.png`} alt={nation} />}
                             label={
-                                <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="subtitle1">
+                                <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
                                     {nation}
                                 </Typography>
                             }
