@@ -67,6 +67,33 @@ const TCGCharacterCardPopup = (props) => {
         keywordDescription = currentKeyword.description;
     }
 
+    const GetAttackIcon = (key, weapon, element, talents) => {
+
+        let src = `${process.env.REACT_APP_URL}/tcg/character_talent_icons/attack_${weapon.split(" ").join("_").toLowerCase()}.png`;
+        if (weapon === "Other Weapons") {
+            if (talents.attack.description.includes("Physical DMG")) {
+                src = `${process.env.REACT_APP_URL}/tcg/character_talent_icons/attack_other_weapons.png`;
+            }
+            else {
+                src = `${process.env.REACT_APP_URL}/tcg/character_talent_icons/attack_catalyst.png`;
+            }
+        }
+        return (
+            <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={src} style={ElementalBorderColor(element)}
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "48px",
+                    height: "48px",
+                    border: `2px solid ${theme.border.color}`,
+                }}
+            >
+                <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
+            </Avatar>
+        )
+
+    }
+
     return (
         <Box
             sx={{
@@ -199,17 +226,7 @@ const TCGCharacterCardPopup = (props) => {
                                             }}
                                             avatar={
                                                 key === "attack" ?
-                                                    <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={(`${process.env.REACT_APP_URL}/tcg/character_talent_icons/attack_${weapon.split(" ").join("_").toLowerCase()}.png`)} style={ElementalBorderColor(element)}
-                                                        sx={{
-                                                            display: "flex",
-                                                            flexDirection: "column",
-                                                            width: "48px",
-                                                            height: "48px",
-                                                            border: `2px solid ${theme.border.color}`,
-                                                        }}
-                                                    >
-                                                        <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
-                                                    </Avatar>
+                                                    GetAttackIcon(key, weapon, element, talents)
                                                     :
                                                     <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={(`${process.env.REACT_APP_URL}/tcg/character_talent_icons/${name.split(" ").join("_").toLowerCase()}_${key}.png`)} style={ElementalBorderColor(element)}
                                                         sx={{
