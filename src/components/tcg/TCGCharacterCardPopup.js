@@ -17,7 +17,7 @@ const TCGCharacterCardPopup = (props) => {
 
     const theme = useTheme();
 
-    let { name, element, weapon, nation, hp, talents, splash } = props.char;
+    let { name, element, weapon, factions, hp, talents, splash } = props.char;
 
     const [open, setOpen] = React.useState(false);
     const [tag, setTag] = React.useState("");
@@ -204,15 +204,22 @@ const TCGCharacterCardPopup = (props) => {
                             }
                             sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
                         />
-                        <Chip
-                            avatar={<Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${nation}.png`} alt={nation} />}
-                            label={
-                                <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
-                                    {nation}
-                                </Typography>
-                            }
-                            sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
-                        />
+                        {
+                            factions.map((faction, index) => {
+                                return (
+                                    <Chip
+                                        key={index}
+                                        avatar={<Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${faction}.png`} alt={faction} />}
+                                        label={
+                                            <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
+                                                {faction}
+                                            </Typography>
+                                        }
+                                        sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
+                                    />
+                                )
+                            })
+                        }
                     </Box>
                     <Box
                         sx={{
