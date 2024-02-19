@@ -129,6 +129,34 @@ code {
     opacity: 1;
 }
 
+.filter-button-off,
+.filter-button-on {
+    font-family: Genshin, sans-serif;
+    color: white;
+    height: 24px;
+    padding: 5px;
+    margin: 3px;
+    border: 1px solid rgb(30, 73, 118);
+    border-radius: 5px;
+}
+
+.filter-button-off:hover,
+.filter-button-on:hover {
+    box-shadow: 0 0 5px 1px dodgerblue;
+    border: 1px solid dodgerblue;
+    cursor: pointer;
+}
+
+.filter-button-off {
+    background-color: rgb(9, 24, 39);
+    opacity: 0.35;
+}
+
+.filter-button-on {
+    background-color: rgb(0, 30, 60);
+    opacity: 1;
+}
+
 .tcg-bold,
 [class^="tooltip-"] {
     color: white;
