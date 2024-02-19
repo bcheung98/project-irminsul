@@ -8,6 +8,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import TCGCharacterCard from "./TCGCharacterCard";
 import TCGActionCard from "./TCGActionCard";
 import TCGDeck from "./TCGDeck";
+import { filterTCGCharacterCards } from "../../helpers/FilterTCGCharacterCards";
 import TCGCharacterCardFilter from "./TCGCharacterCardFilter";
 
 const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
@@ -106,7 +107,7 @@ const TCGBrowser = (props) => {
         </StyledToggleButton>,
     ]
 
-    let { cards, deck } = props;
+    let { cards, deck, cardCharFilters } = props;
 
     return (
         <React.Fragment>
@@ -155,7 +156,7 @@ const TCGBrowser = (props) => {
                         <Grid container >
                             <Grid xs={9.5}>
                                 <Grid container sx={{ ml: "15px" }} xs={9}>
-                                    {CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
+                                    {CurrentCharacterCards(filterTCGCharacterCards(cards.cards[0].cards, cardCharFilters, ""), deck.deck.characterCards).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
                                 </Grid>
                             </Grid>
                             <Grid xs>
@@ -211,7 +212,8 @@ const TCGBrowser = (props) => {
 const mapStateToProps = (state) => {
     return {
         cards: state.cards,
-        deck: state.deck
+        deck: state.deck,
+        cardCharFilters: state.cardCharFilters,
     }
 }
 
