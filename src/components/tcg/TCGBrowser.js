@@ -10,8 +10,8 @@ import TCGActionCard from "./TCGActionCard";
 import TCGDeck from "./TCGDeck";
 import { filterTCGCharacterCards } from "../../helpers/FilterTCGCharacterCards";
 import { filterTCGActionCards } from "../../helpers/FilterTCGActionCards";
-import TCGCharacterCardFilter from "./TCGCharacterCardFilter";
-import TCGActionCardFilter from "./TCGActionCardFilter";
+import TCGCharacterCardFilter from "./filters/character/_TCGCharacterCardFilter";
+import TCGActionCardFilter from "./filters/action/_TCGActionCardFilter";
 
 const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
     "&.MuiToggleButton-root": {

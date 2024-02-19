@@ -2,10 +2,10 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box } from "@mui/system";
 import { Typography, Paper } from "@mui/material";
-import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/CustomAccordion";
-import TCGCharacterElementFilter from "./filters/character/TCGCharacterElementFilter";
-import TCGCharacterWeaponFilter from "./filters/character/TCGCharacterWeaponFilter";
-import TCGCharacterFactionFilter from "./filters/character/TCGCharacterFactionFilter";
+import { Accordion, AccordionDetails, AccordionSummary } from "../../../../helpers/CustomAccordion";
+import TCGCharacterElementFilter from "./TCGCharacterElementFilter";
+import TCGCharacterWeaponFilter from "./TCGCharacterWeaponFilter";
+import TCGCharacterFactionFilter from "./TCGCharacterFactionFilter";
 
 const TCGCharacterCardFilter = (props) => {
 

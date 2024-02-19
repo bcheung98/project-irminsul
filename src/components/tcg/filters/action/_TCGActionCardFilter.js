@@ -2,9 +2,9 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box } from "@mui/system";
 import { Typography, Paper } from "@mui/material";
-import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/CustomAccordion";
-import TCGActionTypeFilter from "./filters/action/TCGActionTypeFilter";
-import TCGActionSubTypeFilter from "./filters/action/TCGActionSubTypeFilter";
+import { Accordion, AccordionDetails, AccordionSummary } from "../../../../helpers/CustomAccordion";
+import TCGActionTypeFilter from "./TCGActionTypeFilter";
+import TCGActionSubTypeFilter from "./TCGActionSubTypeFilter";
 
 const TCGActionCardFilter = (props) => {
 
