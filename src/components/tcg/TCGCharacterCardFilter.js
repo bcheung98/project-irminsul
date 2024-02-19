@@ -44,7 +44,7 @@ const TCGCharacterCardFilter = (props) => {
                 {/* WEAPON */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="element-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Weapon</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="characterweapon-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Weapon</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <TCGCharacterWeaponFilter />
@@ -54,7 +54,7 @@ const TCGCharacterCardFilter = (props) => {
                 {/* FACTION */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="element-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Faction</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="faction-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Faction</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <TCGCharacterFactionFilter />

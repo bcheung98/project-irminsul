@@ -21,7 +21,7 @@ const TCGCharacterWeaponFilter = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setFilter: (target) => dispatch({ type: "SET_TCG_weapon_FILTERS", target })
+        setFilter: (target) => dispatch({ type: "SET_TCG_CHARACTERWEAPON_FILTERS", target })
     }
 }
 
