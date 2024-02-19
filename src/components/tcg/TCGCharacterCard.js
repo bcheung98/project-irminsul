@@ -96,7 +96,7 @@ const TCGCharacterCard = (props) => {
                             fontFamily: "Genshin, sans-serif",
                             color: `${theme.text.color}`,
                         }}
-                        variant="body1"
+                        variant="body2"
                         align="center"
                     >
                         {props.char.displayName ? props.char.displayName : name}
