@@ -3,6 +3,9 @@ import { useTheme } from "@mui/material/styles";
 import { Box } from "@mui/system";
 import { Typography, Paper } from "@mui/material";
 import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/CustomAccordion";
+import TCGCharacterElementFilter from "./filters/character/TCGCharacterElementFilter";
+import TCGCharacterWeaponFilter from "./filters/character/TCGCharacterWeaponFilter";
+import TCGCharacterFactionFilter from "./filters/character/TCGCharacterFactionFilter";
 
 const TCGCharacterCardFilter = (props) => {
 
@@ -27,6 +30,37 @@ const TCGCharacterCardFilter = (props) => {
                     fontFamily: "Genshin, sans-serif",
                 }}>Filters
                 </Typography>
+
+                {/* ELEMENT */}
+                <Accordion>
+                    <AccordionSummary>
+                        <Typography variant="body1" className="filter-text-off" id="element-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Element</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <TCGCharacterElementFilter />
+                    </AccordionDetails>
+                </Accordion>
+
+                {/* WEAPON */}
+                <Accordion>
+                    <AccordionSummary>
+                        <Typography variant="body1" className="filter-text-off" id="element-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Weapon</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <TCGCharacterWeaponFilter />
+                    </AccordionDetails>
+                </Accordion>
+
+                {/* FACTION */}
+                <Accordion>
+                    <AccordionSummary>
+                        <Typography variant="body1" className="filter-text-off" id="element-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Faction</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <TCGCharacterFactionFilter />
+                    </AccordionDetails>
+                </Accordion>
+
             </Paper>
         </Box>
     )
