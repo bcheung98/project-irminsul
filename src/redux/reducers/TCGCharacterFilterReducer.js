@@ -6,12 +6,12 @@ const initialState = {
 
 const TCGCharacterFilterReducer = (state = initialState, action) => {
     let { target, type } = action;
-    if (target !== undefined && type.startsWith("SET_TCG")) {
+    if (target !== undefined && type.startsWith("SET_TCGCHAR")) {
         let targetButton = document.getElementById(`${target.toLowerCase()}-button`);
         targetButton.className === "filter-off" ? targetButton.className = "filter-on" : targetButton.className = "filter-off";
     }
     switch (type) {
-        case "SET_TCG_ELEMENT_FILTERS":
+        case "SET_TCGCHAR_ELEMENT_FILTERS":
             let tempElement = [...state.element];
             !state.element.includes(target) ? tempElement.push(target) : tempElement.splice(tempElement.indexOf(target), 1);
             let elementText = document.getElementById(`${type.split("_")[2].toLowerCase()}-filter-text`);
@@ -20,7 +20,7 @@ const TCGCharacterFilterReducer = (state = initialState, action) => {
                 ...state,
                 element: tempElement
             }
-        case "SET_TCG_CHARACTERWEAPON_FILTERS":
+        case "SET_TCGCHAR_CHARACTERWEAPON_FILTERS":
             let tempWeapon = [...state.weapon];
             !state.weapon.includes(target) ? tempWeapon.push(target) : tempWeapon.splice(tempWeapon.indexOf(target), 1);
             let weaponText = document.getElementById(`${type.split("_")[2].toLowerCase()}-filter-text`);
@@ -29,7 +29,7 @@ const TCGCharacterFilterReducer = (state = initialState, action) => {
                 ...state,
                 weapon: tempWeapon
             }
-        case "SET_TCG_FACTION_FILTERS":
+        case "SET_TCGCHAR_FACTION_FILTERS":
             let tempFaction = [...state.faction];
             !state.faction.includes(target) ? tempFaction.push(target) : tempFaction.splice(tempFaction.indexOf(target), 1);
             let factionText = document.getElementById(`${type.split("_")[2].toLowerCase()}-filter-text`);

@@ -21,7 +21,7 @@ const TCGCharacterElementFilter = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setFilter: (target) => dispatch({ type: "SET_TCG_ELEMENT_FILTERS", target })
+        setFilter: (target) => dispatch({ type: "SET_TCGCHAR_ELEMENT_FILTERS", target })
     }
 }
 
