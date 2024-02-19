@@ -9,7 +9,9 @@ import TCGCharacterCard from "./TCGCharacterCard";
 import TCGActionCard from "./TCGActionCard";
 import TCGDeck from "./TCGDeck";
 import { filterTCGCharacterCards } from "../../helpers/FilterTCGCharacterCards";
+import { filterTCGActionCards } from "../../helpers/FilterTCGActionCards";
 import TCGCharacterCardFilter from "./TCGCharacterCardFilter";
+import TCGActionCardFilter from "./TCGActionCardFilter";
 
 const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
     "&.MuiToggleButton-root": {
@@ -34,80 +36,24 @@ const CurrentActionCards = (cards, deck) => {
     return cards.filter(card => counts[card.name] !== 2).sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1);
 }
 
-// Applies current filters
-const FilterTCGActionCards = (cardList, filters, searchValue) => {
-    let cards = [...cardList];
-    if (filters.length > 0) {
-        cards = cards.filter(card => filters.includes(card.subType));
-    }
-    if (searchValue !== "") {
-        cards = cards.filter(card => card.name.toLowerCase().includes(searchValue.toLowerCase()));
-    }
-    /*    
-    Don't ask why I'm sorting twice here. 
-    I honestly don't know why but this is the only way I could keep the cards alphabetically sorted.
-    Maybe I'm just a doofus who doesn't know how array.sort() actually works. 
-    */
-    cards.sort((a, b) => a.subType.toLowerCase() > b.subType.toLowerCase() ? 1 : -1);
-    cards.sort((a, b) => a.subType.toLowerCase() > b.subType.toLowerCase() ? 1 : -1);
-    return cards;
-}
-
 const TCGBrowser = (props) => {
 
     const theme = useTheme();
+
+    const [actionSearchValue, setActionSearchValue] = React.useState("");
+    const handleActionInputChange = (e) => {
+        setActionSearchValue(e.target.value);
+    }
 
     const [view, setView] = React.useState("char");
     const handleView = (event, newView) => {
         if (newView !== null) {
             setView(newView);
+            setActionSearchValue("");
         }
     }
 
-    const [filters, setFilters] = React.useState([]);
-    const handleFilters = (event, newFilters) => {
-        setFilters(newFilters);
-    }
-
-    const [searchValue, setSearchValue] = React.useState("");
-    const handleInputChange = (e) => {
-        setSearchValue(e.target.value);
-    }
-
-    const buttons = [
-        <StyledToggleButton value="" key="General">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>General</Typography>
-        </StyledToggleButton>,
-        <StyledToggleButton value="Arcane Legend" key="Arcane Legend">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Arcane Legend</Typography>
-        </StyledToggleButton>,
-        <StyledToggleButton value="Artifact" key="Artifact">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Artifact</Typography>
-        </StyledToggleButton>,
-        <StyledToggleButton value="Companion" key="Companion">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Companion</Typography>
-        </StyledToggleButton>,
-        <StyledToggleButton value="Elemental Resonance" key="Elemental Resonance">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Elemental Resonance</Typography>
-        </StyledToggleButton>,
-        <StyledToggleButton value="Food" key="Food">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Food</Typography>
-        </StyledToggleButton>,
-        <StyledToggleButton value="Item" key="Item">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Item</Typography>
-        </StyledToggleButton>,
-        <StyledToggleButton value="Location" key="Location">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Location</Typography>
-        </StyledToggleButton>,
-        <StyledToggleButton value="Talent" key="Talent">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Talent</Typography>
-        </StyledToggleButton>,
-        <StyledToggleButton value="Weapon" key="Weapon">
-            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Weapon</Typography>
-        </StyledToggleButton>,
-    ]
-
-    let { cards, deck, cardCharFilters } = props;
+    let { cards, deck, cardCharFilters, cardActionFilters } = props;
 
     return (
         <React.Fragment>
@@ -156,7 +102,7 @@ const TCGBrowser = (props) => {
                         <Grid container >
                             <Grid xs={9.5}>
                                 <Grid container sx={{ ml: "15px" }} xs={9}>
-                                    {CurrentCharacterCards(filterTCGCharacterCards(cards.cards[0].cards, cardCharFilters, ""), deck.deck.characterCards).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
+                                    {filterTCGCharacterCards(CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards), cardCharFilters, "").map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
                                 </Grid>
                             </Grid>
                             <Grid xs>
@@ -164,26 +110,22 @@ const TCGBrowser = (props) => {
                             </Grid>
                         </Grid>
                         :
-                        <React.Fragment>
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    mt: "-15px",
-                                    mb: "20px",
-                                    mx: "30px",
-                                }}
-                            >
-                                <ToggleButtonGroup value={filters} onChange={handleFilters}>
-                                    {buttons}
-                                </ToggleButtonGroup>
+                        <Grid container>
+                            <Grid xs={9.5}>
+                                <Grid container sx={{ ml: "15px" }} xs={9}>
+                                    {filterTCGActionCards(CurrentActionCards(cards.cards[1].cards, deck.deck.actionCards), cardActionFilters, actionSearchValue).map(card => <TCGActionCard key={card.name} card={card} preview={false} />)}
+                                </Grid>
+                            </Grid>
+                            <Grid xs>
                                 <Paper sx={{
                                     border: `2px solid ${theme.border.color}`,
                                     borderRadius: "5px",
                                     backgroundColor: "rgb(0, 30, 60)",
                                     display: "flex",
                                     height: "40px",
-                                    width: "30%",
-                                    mx: "15px",
+                                    width: "89%",
+                                    margin: "auto",
+                                    mb: "10px"
                                 }}>
                                     <InputBase
                                         sx={{
@@ -193,16 +135,12 @@ const TCGBrowser = (props) => {
                                             fontFamily: "Genshin, sans-serif",
                                         }}
                                         placeholder="Search"
-                                        onChange={handleInputChange}
+                                        onChange={handleActionInputChange}
                                     />
                                 </Paper>
-                            </Box>
-                            <Grid xs={9}>
-                                <Grid container sx={{ ml: "15px" }}>
-                                    {FilterTCGActionCards(CurrentActionCards(cards.cards[1].cards, deck.deck.actionCards), filters, searchValue).map(card => <TCGActionCard key={card.name} card={card} preview={false} />)}
-                                </Grid>
+                                <TCGActionCardFilter />
                             </Grid>
-                        </React.Fragment>
+                        </Grid>
                 )
             }
         </React.Fragment>
@@ -214,6 +152,7 @@ const mapStateToProps = (state) => {
         cards: state.cards,
         deck: state.deck,
         cardCharFilters: state.cardCharFilters,
+        cardActionFilters: state.cardActionFilters,
     }
 }
 
