@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { CustomTooltip } from "../../../../helpers/CustomTooltip";
 import ErrorLoadingImage from "../../../../helpers/ErrorLoadingImage";
 
-const Weapons = ["Sword", "Claymore", "Polearm", "Bow", "Catalyst"];
+const Weapons = ["Sword", "Claymore", "Polearm", "Bow", "Catalyst", "Other Weapons"];
 
 const TCGCharacterWeaponFilter = (props) => {
     return (
