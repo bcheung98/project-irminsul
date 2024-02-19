@@ -63,14 +63,16 @@ const TCGDeck = (props) => {
     let actionCards = deck.deck.actionCards;
 
     return (
-        <Box sx={{ mx: "20px", mb: "20px" }}>
-            <Paper variant="outlined" sx={{
-                color: `${theme.text.color}`,
-                backgroundColor: "rgb(0, 30, 60)",
-                border: "2px solid rgb(30, 73, 118)",
-                borderRadius: "5px",
-                mb: "10px",
-            }}>
+        <Box sx={{ mx: "30px", mb: "20px" }}>
+            <Paper variant="outlined"
+                sx={{
+                    color: `${theme.text.color}`,
+                    backgroundColor: `${theme.table.body.backgroundColor}`,
+                    border: `2px solid ${theme.border.color}`,
+                    borderRadius: "5px",
+                    mb: "10px",
+                }}
+            >
                 <Accordion>
                     <AccordionSummary>
                         <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>
