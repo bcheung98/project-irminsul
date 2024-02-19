@@ -40,6 +40,13 @@ const TCGBrowser = (props) => {
 
     const theme = useTheme();
 
+    let { cards, deck, cardCharFilters, cardActionFilters } = props;
+
+    const [charSearchValue, setCharSearchValue] = React.useState("");
+    const handleCharInputChange = (e) => {
+        setCharSearchValue(e.target.value);
+    }
+
     const [actionSearchValue, setActionSearchValue] = React.useState("");
     const handleActionInputChange = (e) => {
         setActionSearchValue(e.target.value);
@@ -49,11 +56,28 @@ const TCGBrowser = (props) => {
     const handleView = (event, newView) => {
         if (newView !== null) {
             setView(newView);
+            setCharSearchValue("");
             setActionSearchValue("");
         }
     }
 
-    let { cards, deck, cardCharFilters, cardActionFilters } = props;
+    const SearchBar = {
+        border: `2px solid ${theme.border.color}`,
+        borderRadius: "5px",
+        backgroundColor: "rgb(0, 30, 60)",
+        display: "flex",
+        height: "40px",
+        width: "89%",
+        margin: "auto",
+        mb: "10px"
+    }
+
+    const SearchBarInput = {
+        marginLeft: "10px",
+        flex: 1,
+        color: `${theme.text.color}`,
+        fontFamily: "Genshin, sans-serif",
+    }
 
     return (
         <React.Fragment>
@@ -102,10 +126,18 @@ const TCGBrowser = (props) => {
                         <Grid container >
                             <Grid xs={9.5}>
                                 <Grid container sx={{ ml: "15px" }} xs={9}>
-                                    {filterTCGCharacterCards(CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards), cardCharFilters, "").map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
+                                    {filterTCGCharacterCards(CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards), cardCharFilters, charSearchValue).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
                                 </Grid>
                             </Grid>
                             <Grid xs>
+                                <Paper sx={SearchBar}>
+                                    <InputBase
+                                        sx={SearchBarInput}
+                                        placeholder="Search"
+                                        onChange={handleCharInputChange}
+                                        value={charSearchValue}
+                                    />
+                                </Paper>
                                 <TCGCharacterCardFilter />
                             </Grid>
                         </Grid>
@@ -117,25 +149,12 @@ const TCGBrowser = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid xs>
-                                <Paper sx={{
-                                    border: `2px solid ${theme.border.color}`,
-                                    borderRadius: "5px",
-                                    backgroundColor: "rgb(0, 30, 60)",
-                                    display: "flex",
-                                    height: "40px",
-                                    width: "89%",
-                                    margin: "auto",
-                                    mb: "10px"
-                                }}>
+                                <Paper sx={SearchBar}>
                                     <InputBase
-                                        sx={{
-                                            marginLeft: "10px",
-                                            flex: 1,
-                                            color: `${theme.text.color}`,
-                                            fontFamily: "Genshin, sans-serif",
-                                        }}
+                                        sx={SearchBarInput}
                                         placeholder="Search"
                                         onChange={handleActionInputChange}
+                                        value={actionSearchValue}
                                     />
                                 </Paper>
                                 <TCGActionCardFilter />
