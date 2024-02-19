@@ -8,6 +8,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import TCGCharacterCard from "./TCGCharacterCard";
 import TCGActionCard from "./TCGActionCard";
 import TCGDeck from "./TCGDeck";
+import TCGCharacterCardFilter from "./TCGCharacterCardFilter";
 
 const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
     "&.MuiToggleButton-root": {
@@ -151,9 +152,14 @@ const TCGBrowser = (props) => {
                 cards.cards.length > 0 &&
                 (
                     view === "char" ?
-                        <Grid xs={9}>
-                            <Grid container sx={{ ml: "15px" }}>
-                                {CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
+                        <Grid container >
+                            <Grid item xs={9.5}>
+                                <Grid container sx={{ ml: "15px" }} xs={9}>
+                                    {CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
+                                </Grid>
+                            </Grid>
+                            <Grid item xs>
+                                <TCGCharacterCardFilter />
                             </Grid>
                         </Grid>
                         :
