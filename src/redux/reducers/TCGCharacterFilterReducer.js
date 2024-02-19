@@ -38,6 +38,12 @@ const TCGCharacterFilterReducer = (state = initialState, action) => {
                 ...state,
                 faction: tempFaction
             }
+        case "TCGCHAR_CLEAR_FILTERS":
+            return {
+                element: [],
+                weapon: [],
+                faction: []
+            }
         default:
             return state;
     }

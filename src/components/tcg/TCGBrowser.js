@@ -56,6 +56,10 @@ const TCGBrowser = (props) => {
     const handleView = (event, newView) => {
         if (newView !== null) {
             setView(newView);
+            
+            // Clear filter and search values when switching between Character and Action Card view
+            props.clearCharFilters();
+            props.clearActionFilters();
             setCharSearchValue("");
             setActionSearchValue("");
         }
@@ -171,8 +175,15 @@ const mapStateToProps = (state) => {
         cards: state.cards,
         deck: state.deck,
         cardCharFilters: state.cardCharFilters,
-        cardActionFilters: state.cardActionFilters,
+        cardActionFilters: state.cardActionFilters
     }
 }
 
-export default connect(mapStateToProps)(TCGBrowser);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        clearCharFilters: () => dispatch({ type: "TCGCHAR_CLEAR_FILTERS" }),
+        clearActionFilters: () => dispatch({ type: "TCGACTION_CLEAR_FILTERS" })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TCGBrowser);

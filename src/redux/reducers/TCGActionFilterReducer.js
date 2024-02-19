@@ -33,6 +33,11 @@ const TCGActionFilterReducer = (state = initialState, action) => {
                 ...state,
                 subType: tempSubType
             }
+        case "TCGACTION_CLEAR_FILTERS":
+            return {
+                type: [],
+                subType: []
+            }
         default:
             return state;
     }
