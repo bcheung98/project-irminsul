@@ -9,6 +9,7 @@ import WeaponFilterReducer from "./reducers/WeaponFilterReducer";
 import BannerReducer from "./reducers/BannerReducer";
 import AscensionPlannerReducer from "./reducers/AscensionPlannerReducer";
 import TCGReducer from "./reducers/TCGReducer";
+import TCGCharacterFilterReducer from "./reducers/TCGCharacterFilterReducer";
 import DeckReducer from "./reducers/DeckReducer";
 
 const rootReducer = combineReducers({
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
     banners: BannerReducer,
     ascensionPlanner: AscensionPlannerReducer,
     cards: TCGReducer,
+    cardCharFilters: TCGCharacterFilterReducer,
     deck: DeckReducer
 })
 
