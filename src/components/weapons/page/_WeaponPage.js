@@ -3,11 +3,12 @@ import { useTheme } from "@mui/material/styles";
 import parse from "html-react-parser";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Typography, Tabs, Box, AppBar } from "@mui/material";
+import { Typography, Tabs, Box, AppBar, Avatar } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { TabPanel, StyledTab } from "../../../helpers/CustomTabs";
 import WeaponStatsTable from "./WeaponStatsTable";
 import WeaponAscension from "./WeaponAscension";
+import { CustomTooltip } from "../../../helpers/CustomTooltip";
 import { CustomSlider } from "../../../helpers/CustomSlider";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
@@ -74,36 +75,39 @@ const WeaponPage = (props) => {
                                 backgroundColor: `${theme.paper.backgroundColor}`,
                             }}
                         >
-                            <Typography
-                                variant="h4"
-                                noWrap
-                                sx={{
-                                    display: { xs: "none", md: "flex" },
-                                    fontFamily: "Genshin, sans-serif",
-                                    color: `${theme.text.color}`,
-                                    textDecoration: "none",
-                                    textAlign: "center",
-                                }}
-                            >
-                                {weapon.displayName ? weapon.displayName : name}
-                            </Typography>
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    color: `${theme.text.color}`
-                                }}>
-                                <Box sx={{ ml: "-5px", mt: "5px" }}>
-                                    <img style={{ height: "30px" }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
-                                </Box>
-                                <Box sx={{ ml: "5px", mt: "3px" }}>
-                                    <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif" }}>
-                                        • {type}
+                            <Box sx={{ display: "flex" }}>
+                                <CustomTooltip title={`${type}`} arrow placement="bottom">
+                                    <Avatar variant="square" src={`${process.env.REACT_APP_URL}/weapons/icons/Icon_${type}.png`} alt={type} onError={ErrorLoadingImage} sx={{ marginRight: "-20px", height: "100px", width: "100px", backgroundColor: `${theme.paper.backgroundColor}` }} />
+                                </CustomTooltip>
+                                <Box sx={{ ml: "30px" }}>
+                                    <Typography
+                                        variant="h4"
+                                        noWrap
+                                        sx={{
+                                            mt: "10px",
+                                            display: { xs: "none", md: "flex" },
+                                            fontFamily: "Genshin, sans-serif",
+                                            color: `${theme.text.color}`,
+                                            textDecoration: "none",
+                                            textAlign: "center",
+                                        }}
+                                    >
+                                        {weapon.displayName ? weapon.displayName : name}
                                     </Typography>
+                                    <Box sx={{ ml: "-5px", mt: "5px" }}>
+                                        <img style={{ height: "30px" }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
+                                    </Box>
                                 </Box>
                             </Box>
                             <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
-                            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", fontSize: "10pt", color: `${theme.text.color}` }}>
+                            <Typography
+                                variant="body2"
+                                sx={{
+                                    mx: "15px",
+                                    fontFamily: "Genshin, sans-serif",
+                                    color: `${theme.text.color}`,
+                                }}
+                            >
                                 <i>{description}</i>
                             </Typography>
                         </Box>
@@ -120,16 +124,16 @@ const WeaponPage = (props) => {
                                     color: `${theme.text.color}`,
                                 }}
                             >
-                                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", mx: "15px", }}>
                                     {weapon.stats.passive.name}
                                 </Typography>
                                 <br />
-                                <Typography variant="body1" sx={{ fontSize: "11pt" }}>
+                                <Typography variant="body1" sx={{ fontSize: "11pt", mx: "15px", }}>
                                     {parse(weapon.stats.passive.description)}
                                 </Typography>
                                 {
                                     weapon.stats.passive.scaling &&
-                                    <Box sx={{ display: "flex", alignItems: "center", width: "20%", mt: "15px" }}>
+                                    <Box sx={{ display: "flex", alignItems: "center", width: "20%", mt: "15px", mx: "15px", }}>
                                         <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, width: "75px" }}>
                                             R{sliderValue}
                                         </Typography>
@@ -169,7 +173,7 @@ const WeaponPage = (props) => {
                         </Box>
                     </Grid>
                 </Grid>
-            </React.Fragment>
+            </React.Fragment >
         )
     }
 }
