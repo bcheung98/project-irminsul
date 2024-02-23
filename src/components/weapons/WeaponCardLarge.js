@@ -32,7 +32,7 @@ const WeaponCardLarge = (props) => {
         <Card
             sx={{
                 width: width,
-                mx: "auto",
+                mr: "20px",
                 mb: "20px",
                 backgroundColor: `${theme.card.backgroundColor}`,
                 border: `1px solid ${theme.border.color}`,

@@ -36,7 +36,7 @@ const CharacterCard = (props) => {
             sx={{
                 width: 320,
                 height: 195,
-                mx: "auto",
+                mr: "15px",
                 mb: "15px",
                 backgroundColor: `${theme.card.backgroundColor}`,
                 border: `1px solid ${theme.border.color}`,
