@@ -1,7 +1,8 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
-import { Typography, Grid, Paper, InputBase, Stack, ToggleButtonGroup } from "@mui/material";
+import { Typography, Paper, InputBase, Stack, ToggleButtonGroup } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import { Box } from "@mui/system";
 import WeaponList from "./WeaponList";
 import WeaponFilters from "./filters/_WeaponFilters";
@@ -69,7 +70,7 @@ const WeaponBrowser = (props) => {
                 </Stack>
             </Box>
             <Grid container sx={{ margin: "auto", width: "98%" }}>
-                <Grid item xs={9}>
+                <Grid xs={9}>
                     <Grid container>
                         {weapons.weapons.length > 0 &&
                             <React.Fragment>
@@ -83,7 +84,7 @@ const WeaponBrowser = (props) => {
                         }
                     </Grid>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid xs={3}>
                     <Paper sx={{
                         border: `2px solid ${theme.border.color}`,
                         borderRadius: "5px",

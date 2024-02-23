@@ -67,7 +67,7 @@ const CharacterBrowser = (props) => {
                 </Stack>
             </Box>
             <Grid container sx={{ margin: "auto", width: "98%" }}>
-                <Grid item xs={9}>
+                <Grid xs={9}>
                     <Grid container>
                         {characters.characters.length > 0 &&
                             <React.Fragment>
@@ -81,7 +81,7 @@ const CharacterBrowser = (props) => {
                         }
                     </Grid>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid xs={3}>
                     <Paper
                         sx={{
                             border: `2px solid ${theme.border.color}`,
