@@ -28,17 +28,31 @@ const WeaponCardLarge = (props) => {
         backgroundSize: "100%",
     }
 
-    return (
-        <Card
-            sx={{
+    const CardStyle = (viewSource = "grid") => {
+        if (viewSource === "version-highlights") {
+            return {
+                width: width,
+                mx: "auto",
+                mb: "20px",
+                backgroundColor: `${theme.card.backgroundColor}`,
+                border: `1px solid ${theme.border.color}`,
+                borderRadius: "5px",
+            }
+        }
+        else {
+            return {
                 width: width,
                 mr: "20px",
                 mb: "20px",
                 backgroundColor: `${theme.card.backgroundColor}`,
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
-            }}
-        >
+            }
+        }
+    }
+
+    return (
+        <Card sx={CardStyle(props.viewSource)}>
             <ButtonBase disableRipple href={`/project-irminsul/weapon/${name.split(" ").join("_").toLowerCase()}`} target="_blank">
                 <Box>
                     <Box

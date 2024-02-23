@@ -133,7 +133,7 @@ const VersionHighlights = (props) => {
                     <Box>
                         <Grid container spacing={2}>
                             {
-                                weapons.sort((a, b) => a.rarity < b.rarity ? 1 : -1).sort((a, b) => a.rarity < b.rarity ? 1 : -1).map((wep, index) => <WeaponCardLarge key={index} weapon={wep} />)
+                                weapons.sort((a, b) => a.rarity < b.rarity ? 1 : -1).sort((a, b) => a.rarity < b.rarity ? 1 : -1).map((wep, index) => <WeaponCardLarge key={index} weapon={wep} viewSource="version-highlights" />)
                             }
                         </Grid>
                     </Box>
