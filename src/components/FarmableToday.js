@@ -10,10 +10,7 @@ import { MaterialDates } from "../helpers/MaterialDates";
 import { CustomTooltip } from "../helpers/CustomTooltip";
 import ErrorLoadingImage from "../helpers/ErrorLoadingImage";
 
-const IconBackground = (rarity) => {
-
-    const theme = useTheme();
-
+const IconBackground = (rarity, theme) => {
     return {
         margin: "auto",
         ml: "2px",
@@ -116,7 +113,7 @@ const FarmableToday = (props) => {
                                         characters.filter(char => farmableMats["talents"][index].includes(char.materials.talentBook)).map((char, index) => (
                                             <ButtonBase disableRipple href={`/project-irminsul/character/${char.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
                                                 <CustomTooltip title={char.name} arrow placement="top">
-                                                    <img src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${char.name.split(" ").join("_")}_Thumb.png`)} alt={char.name} style={IconBackground(char.rarity)} onError={ErrorLoadingImage} />
+                                                    <img src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${char.name.split(" ").join("_")}_Thumb.png`)} alt={char.name} style={IconBackground(char.rarity, theme)} onError={ErrorLoadingImage} />
                                                 </CustomTooltip>
                                             </ButtonBase>
                                         ))
@@ -150,7 +147,7 @@ const FarmableToday = (props) => {
                                         weapons.filter(wep => farmableMats["weapons"][index].includes(wep.materials.ascensionMat)).sort((a, b) => b.rarity - a.rarity).map((wep, index) => (
                                             <ButtonBase disableRipple href={`/project-irminsul/weapon/${wep.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
                                                 <CustomTooltip title={wep.name} arrow placement="top">
-                                                    <img variant="square" src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${wep.name.split(" ").join("_")}.png`)} alt={wep.name} style={IconBackground(wep.rarity)} onError={ErrorLoadingImage} />
+                                                    <img variant="square" src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${wep.name.split(" ").join("_")}.png`)} alt={wep.name} style={IconBackground(wep.rarity, theme)} onError={ErrorLoadingImage} />
                                                 </CustomTooltip>
                                             </ButtonBase>
                                         ))
