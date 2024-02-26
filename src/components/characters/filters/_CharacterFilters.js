@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
+import { Box } from "@mui/system";
 import { Typography, Paper } from "@mui/material";
 import { Accordion, AccordionDetails, AccordionSummary } from "../../../helpers/CustomAccordion";
 import ElementFilter from "./ElementFilter";
@@ -19,11 +20,13 @@ const CharacterFilters = () => {
     const theme = useTheme();
 
     return (
-        <div style={{
-            margin: "auto",
-            width: "85%",
-            marginLeft: "35px",
-        }}>
+        <Box
+            sx={{
+                margin: "auto",
+                width: "85%",
+                marginLeft: "35px",
+            }}
+        >
             <Paper variant="outlined" square
                 sx={{
                     color: `${theme.text.color}`,
@@ -32,11 +35,14 @@ const CharacterFilters = () => {
                     borderRadius: "5px",
                 }}
             >
-                <Typography variant="h6" sx={{
-                    ml: "15px",
-                    my: "10px",
-                    fontFamily: "Genshin, sans-serif",
-                }}>Filters
+                <Typography variant="h6"
+                    sx={{
+                        ml: "15px",
+                        my: "10px",
+                        fontFamily: "Genshin, sans-serif",
+                    }}
+                >
+                    Filters
                 </Typography>
 
                 {/* ELEMENT */}
@@ -150,7 +156,7 @@ const CharacterFilters = () => {
                 </Accordion>
 
             </Paper>
-        </div>
+        </Box>
     )
 }
 

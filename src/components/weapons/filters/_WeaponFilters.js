@@ -30,11 +30,14 @@ const WeaponFilters = () => {
                     borderRadius: "5px",
                 }}
             >
-                <Typography variant="h6" sx={{
-                    ml: "15px",
-                    my: "10px",
-                    fontFamily: "Genshin, sans-serif",
-                }}>Filters
+                <Typography variant="h6"
+                    sx={{
+                        ml: "15px",
+                        my: "10px",
+                        fontFamily: "Genshin, sans-serif",
+                    }}
+                >
+                    Filters
                 </Typography>
 
                 {/* WEAPON */}
