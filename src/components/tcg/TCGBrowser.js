@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
 import { Box } from "@mui/system";
-import { Typography, ToggleButton, ToggleButtonGroup, Paper, InputBase } from "@mui/material";
+import { Typography, ToggleButton, ToggleButtonGroup, Paper, InputBase, Radio, RadioGroup, FormControlLabel } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import TCGCharacterCard from "./TCGCharacterCard";
 import TCGActionCard from "./TCGActionCard";
@@ -22,18 +22,24 @@ const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
     }
 }));
 
-// Filters out Character Cards that are already in the deck
-const CurrentCharacterCards = (cards, deck) => {
+// Filters out Character Cards that are already in the deck, then sorts them based on the selected option
+const CurrentCharacterCards = (cards, deck, sortBy) => {
     let deckNames = deck.map(card => card.name);
-    return cards.filter(card => !deckNames.includes(card.name)).sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1);
+    let charCardResult = cards.filter(card => !deckNames.includes(card.name));
+    if (sortBy === "name") return charCardResult.sort((a, b) => a.name.localeCompare(b.name));
+    if (sortBy === "element") return charCardResult.sort((a, b) => a.element.localeCompare(b.element) || a.name.localeCompare(b.name));
+    if (sortBy === "weapon") return charCardResult.sort((a, b) => a.weapon.localeCompare(b.weapon) || a.name.localeCompare(b.name));
+    if (sortBy === "energy") return charCardResult.sort((a, b) => b.talents.burst.energy - a.talents.burst.energy || a.name.localeCompare(b.name));
 }
 
-// Filters out Action Cards that have been added twice to the deck
-const CurrentActionCards = (cards, deck) => {
+// Filters out Action Cards that have been added twice to the deck, then sorts them based on the selected option
+const CurrentActionCards = (cards, deck, sortBy) => {
     let deckNames = deck.map(card => card.name);
     let counts = {};
     deckNames.forEach(card => counts[card] === undefined ? counts[card] = 1 : counts[card] += 1);
-    return cards.filter(card => counts[card.name] !== 2).sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1);
+    let actionCardResult = cards.filter(card => counts[card.name] !== 2);
+    if (sortBy === "name") return actionCardResult.sort((a, b) => a.name.localeCompare(b.name));
+    if (sortBy === "cardGroup") return actionCardResult.sort((a, b) => a.subType.localeCompare(b.subType) || a.name.localeCompare(b.name));
 }
 
 const TCGBrowser = (props) => {
@@ -52,11 +58,21 @@ const TCGBrowser = (props) => {
         setActionSearchValue(e.target.value);
     }
 
+    const [charRadioValue, setCharRadioValue] = React.useState("name");
+    const handleCharRadioChange = (e) => {
+        setCharRadioValue(e.target.value);
+    }
+
+    const [actionRadioValue, setActionRadioValue] = React.useState("name");
+    const handleActionRadioChange = (e) => {
+        setActionRadioValue(e.target.value);
+    }
+
     const [view, setView] = React.useState("char");
     const handleView = (event, newView) => {
         if (newView !== null) {
             setView(newView);
-            
+
             // Clear filter and search values when switching between Character and Action Card view
             props.clearCharFilters();
             props.clearActionFilters();
@@ -130,7 +146,7 @@ const TCGBrowser = (props) => {
                         <Grid container >
                             <Grid xs={9.5}>
                                 <Grid container sx={{ ml: "15px" }} xs={9}>
-                                    {filterTCGCharacterCards(CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards), cardCharFilters, charSearchValue).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
+                                    {filterTCGCharacterCards(CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards, charRadioValue), cardCharFilters, charSearchValue).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
                                 </Grid>
                             </Grid>
                             <Grid xs>
@@ -143,13 +159,45 @@ const TCGBrowser = (props) => {
                                     />
                                 </Paper>
                                 <TCGCharacterCardFilter />
+                                <Box
+                                    sx={{
+                                        margin: "auto",
+                                        mt: "15px",
+                                        width: "90%",
+                                    }}
+                                >
+                                    <Paper variant="outlined" square
+                                        sx={{
+                                            color: `${theme.text.color}`,
+                                            backgroundColor: `${theme.appbar.backgroundColor}`,
+                                            border: `2px solid ${theme.border.color}`,
+                                            borderRadius: "5px",
+                                        }}
+                                    >
+                                        <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, ml: "5px", p: "10px" }}>
+                                            Sort by
+                                        </Typography>
+                                        <Box sx={{ p: "10px", backgroundColor: `${theme.paper.backgroundColor}` }}>
+                                            <RadioGroup
+                                                value={charRadioValue}
+                                                onChange={handleCharRadioChange}
+                                                sx={{ ml: "5px" }}
+                                            >
+                                                <FormControlLabel value="name" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Name</Typography>} />
+                                                <FormControlLabel value="element" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Element</Typography>} />
+                                                <FormControlLabel value="weapon" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Weapon</Typography>} />
+                                                <FormControlLabel value="energy" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Burst Cost</Typography>} />
+                                            </RadioGroup>
+                                        </Box>
+                                    </Paper>
+                                </Box>
                             </Grid>
                         </Grid>
                         :
                         <Grid container>
                             <Grid xs={9.5}>
                                 <Grid container sx={{ ml: "15px" }} xs={9}>
-                                    {filterTCGActionCards(CurrentActionCards(cards.cards[1].cards, deck.deck.actionCards), cardActionFilters, actionSearchValue).map(card => <TCGActionCard key={card.name} card={card} preview={false} />)}
+                                    {filterTCGActionCards(CurrentActionCards(cards.cards[1].cards, deck.deck.actionCards, actionRadioValue), cardActionFilters, actionSearchValue).map(card => <TCGActionCard key={card.name} card={card} preview={false} />)}
                                 </Grid>
                             </Grid>
                             <Grid xs>
@@ -162,6 +210,36 @@ const TCGBrowser = (props) => {
                                     />
                                 </Paper>
                                 <TCGActionCardFilter />
+                                <Box
+                                    sx={{
+                                        margin: "auto",
+                                        mt: "15px",
+                                        width: "90%",
+                                    }}
+                                >
+                                    <Paper variant="outlined" square
+                                        sx={{
+                                            color: `${theme.text.color}`,
+                                            backgroundColor: `${theme.appbar.backgroundColor}`,
+                                            border: `2px solid ${theme.border.color}`,
+                                            borderRadius: "5px",
+                                        }}
+                                    >
+                                        <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, ml: "5px", p: "10px" }}>
+                                            Sort by
+                                        </Typography>
+                                        <Box sx={{ p: "10px", backgroundColor: `${theme.paper.backgroundColor}` }}>
+                                            <RadioGroup
+                                                value={actionRadioValue}
+                                                onChange={handleActionRadioChange}
+                                                sx={{ ml: "5px" }}
+                                            >
+                                                <FormControlLabel value="name" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Name</Typography>} />
+                                                <FormControlLabel value="cardGroup" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Card Group</Typography>} />
+                                            </RadioGroup>
+                                        </Box>
+                                    </Paper>
+                                </Box>
                             </Grid>
                         </Grid>
                 )
