@@ -26,6 +26,13 @@ const TCGActionCardPopup = (props) => {
         setOpen(false);
     };
 
+    const ChipStyle = {
+        px: "5px",
+        mr: "10px",
+        mb: "10px",
+        backgroundColor: "rgb(69, 84, 103)"
+    }
+
     // The following code block transforms certain keywords into underlined elements
     // When clicked on, these elements will open up a dialog box showing info about the corresponding keyword
     const { domToReact } = parse;
@@ -67,7 +74,7 @@ const TCGActionCardPopup = (props) => {
     return (
         <Box
             sx={{
-                width: "80vw",
+                width: "70vw",
                 p: "15px",
                 backgroundColor: "rgb(0, 30, 60)",
                 border: `2px solid ${theme.border.color}`,
@@ -119,7 +126,7 @@ const TCGActionCardPopup = (props) => {
                         }
                     </Box>
                 </Box>
-                <Grid xs={9}>
+                <Grid xs>
                     <Box
                         sx={{
                             display: "flex",
@@ -131,14 +138,14 @@ const TCGActionCardPopup = (props) => {
                             {props.card.displayName ? props.card.displayName : name}
                         </Typography>
                     </Box>
-                    <Box sx={{ mb: "10px" }}>
+                    <Box>
                         <Chip
                             label={
                                 <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
                                     {type} Card
                                 </Typography>
                             }
-                            sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
+                            sx={ChipStyle}
                         />
                         {
                             subType &&
@@ -153,7 +160,7 @@ const TCGActionCardPopup = (props) => {
                                         {subType}
                                     </Typography>
                                 }
-                                sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
+                                sx={ChipStyle}
                             />
                         }
                         {
@@ -169,7 +176,7 @@ const TCGActionCardPopup = (props) => {
                                         Combat Action
                                     </Typography>
                                 }
-                                sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
+                                sx={ChipStyle}
                             />
                         }
                         {
@@ -185,7 +192,7 @@ const TCGActionCardPopup = (props) => {
                                         {weaponType}
                                     </Typography>
                                 }
-                                sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
+                                sx={ChipStyle}
                             />
                         }
                     </Box>
@@ -200,7 +207,7 @@ const TCGActionCardPopup = (props) => {
                             p: "15px",
                         }}
                     >
-                        <Typography variant="body1" sx={{ ml: "20px", color: `${theme.text.colorAlt}` }}>
+                        <Typography variant="body1" sx={{ ml: "20px", mr: "15px", color: `${theme.text.colorAlt}` }}>
                             {parse(description, options)}
                         </Typography>
                     </Box>

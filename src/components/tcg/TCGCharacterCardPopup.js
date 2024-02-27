@@ -29,6 +29,13 @@ const TCGCharacterCardPopup = (props) => {
         setOpen(false);
     };
 
+    const ChipStyle = {
+        px: "5px",
+        mr: "10px",
+        mb: "10px",
+        backgroundColor: "rgb(69, 84, 103)"
+    }
+
     // The following code block transforms certain keywords into underlined elements
     // When clicked on, these elements will open up a dialog box showing info about the corresponding keyword
     const { domToReact } = parse;
@@ -97,7 +104,7 @@ const TCGCharacterCardPopup = (props) => {
     return (
         <Box
             sx={{
-                width: "80vw",
+                width: "70vw",
                 p: "15px",
                 backgroundColor: "rgb(0, 30, 60)",
                 border: `2px solid ${theme.border.color}`,
@@ -179,7 +186,7 @@ const TCGCharacterCardPopup = (props) => {
                         </React.Fragment>
                     </Box>
                 </Box>
-                <Grid xs={9}>
+                <Grid xs>
                     <Box
                         sx={{
                             display: "flex",
@@ -194,7 +201,7 @@ const TCGCharacterCardPopup = (props) => {
                             {props.char.fullname ? props.char.fullname : name}
                         </Typography>
                     </Box>
-                    <Box sx={{ mb: "10px" }}>
+                    <Box>
                         <Chip
                             avatar={<Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/weapons/${weapon}.png`} alt={weapon} />}
                             label={
@@ -202,7 +209,7 @@ const TCGCharacterCardPopup = (props) => {
                                     {weapon}
                                 </Typography>
                             }
-                            sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
+                            sx={ChipStyle}
                         />
                         {
                             factions.map((faction, index) => {
@@ -219,7 +226,7 @@ const TCGCharacterCardPopup = (props) => {
                                                 {faction}
                                             </Typography>
                                         }
-                                        sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
+                                        sx={ChipStyle}
                                     />
                                 )
                             })
@@ -237,7 +244,7 @@ const TCGCharacterCardPopup = (props) => {
                                         Arkhe: {arkhe}
                                     </Typography>
                                 }
-                                sx={{ px: "5px", mr: "10px", backgroundColor: "rgb(69, 84, 103)" }}
+                                sx={ChipStyle}
                             />
                         }
                     </Box>
@@ -287,7 +294,7 @@ const TCGCharacterCardPopup = (props) => {
                                             }
                                         />
                                         <TCGDiceCost cost={talents[key].cost} type={"popup"} />
-                                        <Typography variant="body1" sx={{ ml: "20px", mb: "10px", color: `${theme.text.colorAlt}`, }}>
+                                        <Typography variant="body1" sx={{ ml: "20px", mr: "15px", mb: "10px", color: `${theme.text.colorAlt}`, }}>
                                             {parse(talents[key].description, options)}
                                         </Typography>
                                         {index !== Object.keys(talents).length - 1 && <hr style={{ border: `0.5px solid ${theme.border.color}`, marginBottom: "0px" }} />}
