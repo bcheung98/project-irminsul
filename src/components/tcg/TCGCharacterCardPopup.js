@@ -151,6 +151,7 @@ const TCGCharacterCardPopup = (props) => {
                                             transform: "translate(-50%, -50%)",
                                             color: `${theme.text.color}`,
                                             textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+                                            userSelect: "none"
                                         }}>
                                         {hp}
                                     </Typography>

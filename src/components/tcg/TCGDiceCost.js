@@ -73,9 +73,7 @@ const TCGDiceCost = (props) => {
                 position: "relative"
             }}
         >
-            <Box
-                sx={position(props.type)}
-            >
+            <Box sx={position(props.type)}>
                 {
                     cost.map((dice, index) => {
                         return (
@@ -86,8 +84,7 @@ const TCGDiceCost = (props) => {
                                 }}
                                 key={index}
                             >
-                                <img src={`${process.env.REACT_APP_URL}/tcg/icons/dice/${dice.slice(-1)}.png`} alt={dice.slice(-1)} style={size(props.type)}
-                                />
+                                <img src={`${process.env.REACT_APP_URL}/tcg/icons/dice/${dice.slice(-1)}.png`} alt={dice.slice(-1)} style={size(props.type)} />
                                 <Typography
                                     variant={fontSize(props.type)}
                                     sx={{
@@ -97,7 +94,8 @@ const TCGDiceCost = (props) => {
                                         left: "50%",
                                         transform: "translate(-50%, -50%)",
                                         color: `${theme.text.color}`,
-                                        textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                                        textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+                                        userSelect: "none"
                                     }}>
                                     {dice.slice(0, -1)}
                                 </Typography>

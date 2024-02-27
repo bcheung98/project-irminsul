@@ -59,7 +59,8 @@ const TCGCharacterCard = (props) => {
                                 left: "50%",
                                 transform: "translate(-50%, -50%)",
                                 color: `${theme.text.color}`,
-                                textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                                textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+                                userSelect: "none"
                             }}>
                             {hp}
                         </Typography>
