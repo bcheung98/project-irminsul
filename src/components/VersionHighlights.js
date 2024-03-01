@@ -2,7 +2,7 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { Box } from "@mui/system";
-import { Typography, Select, MenuItem, AppBar } from "@mui/material";
+import { Typography, Select, MenuItem, AppBar, IconButton } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomSelect } from "../helpers/CustomSelect";
 import TCGCharacterCard from "./tcg/TCGCharacterCard";
@@ -47,17 +47,26 @@ const VersionHighlights = (props) => {
         { version: "1.1", name: "A New Star Approaches" },
         { version: "1.0", name: "Welcome to Teyvat" }
     ]
-    const [version, setVersion] = React.useState(updates[0].version);
-    const handleVersionChange = (event) => {
-        setVersion(event.target.value);
+    const [index, setIndex] = React.useState(0);
+    const handleIndexChange = (event) => {
+        setIndex(event.target.value);
+    }
+    const handleIndexChangeLeft = () => {
+        if (index + 1 < updates.length) setIndex(index + 1);
+    }
+    const handleIndexChangeRight = () => {
+        if (index - 1 >= 0) setIndex(index - 1);
     }
 
-    let characters = props.characters.characters.filter(char => char.release.version === version);
-    let weapons = props.weapons.weapons.filter(wep => wep.release.version === version);
+    let version = updates[index].version;
+
+    let characters = props.characters.characters.filter(char => char.release.version === version).sort((a, b) => a.id - b.id);
+    let weapons = props.weapons.weapons.filter(wep => wep.release.version === version).sort((a, b) => b.rarity - a.rarity || a.name.localeCompare(b.name));
     let characterCards = [];
     let actionCards = [];
-    if (props.cards.cards[0] !== undefined) { characterCards = props.cards.cards[0].cards.filter(card => card.release.version === version).sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1) };
-    if (props.cards.cards[1] !== undefined) { actionCards = props.cards.cards[1].cards.filter(card => card.release.version === version).sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1).sort((a, b) => a.subType.toLowerCase() > b.subType.toLowerCase() ? 1 : -1).sort((a, b) => a.subType.toLowerCase() > b.subType.toLowerCase() ? 1 : -1) };
+    if (props.cards.cards[0] !== undefined) { characterCards = props.cards.cards[0].cards.filter(card => card.release.version === version).sort((a, b) => a.name.localeCompare(b.name)) };
+    if (props.cards.cards[1] !== undefined) { actionCards = props.cards.cards[1].cards.filter(card => card.release.version === version).sort((a, b) => a.subType.localeCompare(b.subType) || a.name.localeCompare(b.name)) };
+    let newCards = characterCards.length > 0 || actionCards.length > 0;
 
     return (
         <Box
@@ -80,28 +89,46 @@ const VersionHighlights = (props) => {
                     p: "10px",
                 }}
             >
-                <Box
-                    sx={{
-                        display: "flex",
-                        justifyContent: "space-between"
-                    }}
-                >
-                    <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", mt: "5px" }}>
-                        {`Version Highlights`}
-                    </Typography>
-                    <Select value={version} label="Version" onChange={handleVersionChange} input={<CustomSelect />}>
-                        {
-                            updates.map((version, index) => {
-                                return (
-                                    <MenuItem key={index} value={version.version}>
-                                        <Typography sx={{ fontFamily: "Genshin, sans-serif", fontSize: "11pt" }}>{version.version} - {version.name}</Typography>
-                                    </MenuItem>
-                                )
-                            })
-                        }
-                    </Select>
-                </Box>
+                <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", mt: "5px" }}>
+                    {`Version Highlights`}
+                </Typography>
             </AppBar>
+            <Box
+                sx={{
+                    display: "flex",
+                    margin: "auto",
+                    mt: "20px",
+                    width: "500px"
+                }}
+            >
+                {
+                    index < updates.length - 1 &&
+                    <IconButton variant="contained" onClick={handleIndexChangeLeft}>
+                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                            {`<`}
+                        </Typography>
+                    </IconButton>
+                }
+                <Select value={index} label="Version" onChange={handleIndexChange} input={<CustomSelect />} sx={{ mx: "5px", width: "500px" }}>
+                    {
+                        updates.map((version, index) => {
+                            return (
+                                <MenuItem key={index} value={index}>
+                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center" }}>{version.version} - {version.name}</Typography>
+                                </MenuItem>
+                            )
+                        })
+                    }
+                </Select>
+                {
+                    index > 0 &&
+                    <IconButton variant="contained" onClick={handleIndexChangeRight}>
+                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                            {`>`}
+                        </Typography>
+                    </IconButton>
+                }
+            </Box>
 
             {/* NEW CHARACTERS */}
             {
@@ -113,12 +140,12 @@ const VersionHighlights = (props) => {
                     <Box>
                         <Grid container spacing={2}>
                             {
-                                characters.sort((a, b) => a.id > b.id ? 1 : -1).map((char, index) => <CharacterCardLarge key={index} character={char} />)
+                                characters.map((char, index) => <CharacterCardLarge key={index} character={char} />)
                             }
                         </Grid>
                     </Box>
                     {
-                        weapons.length > 0 && <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "15px" }} />
+                        weapons.length > 0 || newCards ? <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "15px" }} /> : null
                     }
                 </Box>
             }
@@ -133,19 +160,19 @@ const VersionHighlights = (props) => {
                     <Box>
                         <Grid container spacing={2}>
                             {
-                                weapons.sort((a, b) => a.rarity < b.rarity ? 1 : -1).sort((a, b) => a.rarity < b.rarity ? 1 : -1).map((wep, index) => <WeaponCardLarge key={index} weapon={wep} viewSource="version-highlights" />)
+                                weapons.map((wep, index) => <WeaponCardLarge key={index} weapon={wep} viewSource="version-highlights" />)
                             }
                         </Grid>
                     </Box>
                     {
-                        characterCards.length > 0 || actionCards.length > 0 ? <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "15px" }} /> : null
+                        newCards ? <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "15px" }} /> : null
                     }
                 </Box>
             }
 
             {/* NEW TCG CARDS */}
             {
-                characterCards.length > 0 || actionCards.length > 0 ?
+                newCards ?
                     <Box sx={{ mx: "10px", my: "20px" }}>
                         <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "30px" }}>
                             New TCG Cards
