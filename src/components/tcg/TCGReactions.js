@@ -168,9 +168,16 @@ export const Overloaded = (props) => {
                     Overloaded
                 </Typography>
             </Box>
-            <Typography sx={DescriptionText}>
-                DMG +2 for this instance, the target is forcibly switched to the next character
-            </Typography>
+            {
+                !props.application ?
+                    <Typography sx={DescriptionText}>
+                        DMG +2 for this instance, the target is forcibly switched to the next character
+                    </Typography>
+                    :
+                    <Typography sx={DescriptionText}>
+                        The target is forcibly switched to the next character
+                    </Typography>
+            }
         </Box>
     )
 }
@@ -186,9 +193,16 @@ export const Quicken = (props) => {
                     Quicken
                 </Typography>
             </Box>
-            <Typography sx={DescriptionText}>
-                DMG +1 for this instance, creates a [<b style={{ color: "white" }}>Catalyzing Field</b>] that grants +1 DMG to the next 2 instances of Dendro/Electro DMG
-            </Typography>
+            {
+                !props.application ?
+                    <Typography sx={DescriptionText}>
+                        DMG +1 for this instance, creates a [<b style={{ color: "white" }}>Catalyzing Field</b>] that grants +1 DMG to the next 2 instances of Dendro or Electro DMG
+                    </Typography>
+                    :
+                    <Typography sx={DescriptionText}>
+                        Creates a [<b style={{ color: "white" }}>Catalyzing Field</b>] that grants +1 DMG to the next 2 instances of Dendro or Electro DMG
+                    </Typography>
+            }
         </Box>
     )
 }

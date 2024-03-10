@@ -110,6 +110,23 @@ export const Keywords = {
                 <Reactions.Quicken element="Electro" />
             </React.Fragment>
     },
+    "electro application": {
+        "name":
+            <CustomBox sx={{ display: "inline-flex" }}>
+                <TCGElectro />
+                <Typography className="text-electro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Electro Application</Typography>
+            </CustomBox>,
+        "description":
+            <React.Fragment>
+                <CustomTypography>
+                    When <b className="text-electro">Electro</b> is applied without dealing any DMG, the Elemental Reaction triggered will ignore DMG-dealing effects:
+                </CustomTypography>
+                <Reactions.Overloaded element="Electro" application />
+                <Reactions.Superconduct element="Electro" application />
+                <Reactions.Electrocharged element="Electro" application />
+                <Reactions.Quicken element="Electro" />
+            </React.Fragment>
+    },
     "cryo": {
         "name":
             <CustomBox sx={{ display: "inline-flex" }}>
