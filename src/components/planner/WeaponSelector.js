@@ -83,7 +83,7 @@ const WeaponSelector = (props) => {
                                 renderTags={() => null}
                                 noOptionsText="No weapons"
                                 renderOption={(props, option, { selected }) => (
-                                    <li {...props} style={{ backgroundColor: selected ? `${theme.table.body.hover}` : `${theme.paper.backgroundColor}` }}>
+                                    <li {...props} style={{ backgroundColor: selected ? `${theme.table.body.hover}` : `${theme.paper.backgroundColor}`, borderLeft: `10px solid ${GetRarityColor(option.rarity)}` }}>
                                         <Box
                                             component={DoneIcon}
                                             sx={{ width: 17, height: 17, mr: "5px", ml: "-2px" }}
@@ -153,3 +153,20 @@ const mapDispatchToProps = (dispatch) => {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(WeaponSelector);
+
+const GetRarityColor = (rarity) => {
+    switch (rarity) {
+        case 5:
+            return "rgb(255, 208, 112)";
+        case 4:
+            return "rgb(175, 134, 255)";
+        case 3:
+            return "rgb(105, 157, 237)";
+        case 2:
+            return "rgb(104, 211, 145)";
+        case 1:
+            return "gray";
+        default:
+            return "gray";
+    }
+}
