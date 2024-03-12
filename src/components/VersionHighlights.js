@@ -105,12 +105,12 @@ const VersionHighlights = (props) => {
                 {
                     index < updates.length - 1 &&
                     <IconButton variant="contained" onClick={handleIndexChangeLeft}>
-                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, mb: "20px" }}>
                             {`<`}
                         </Typography>
                     </IconButton>
                 }
-                <Select value={index} label="Version" onChange={handleIndexChange} input={<CustomSelect />} sx={{ mx: "5px", width: "500px" }}>
+                <Select value={index} label="Version" onChange={handleIndexChange} input={<CustomSelect />} sx={{ mx: "5px", mb: "20px", width: "500px" }}>
                     {
                         updates.map((version, index) => {
                             return (
@@ -124,7 +124,7 @@ const VersionHighlights = (props) => {
                 {
                     index > 0 &&
                     <IconButton variant="contained" onClick={handleIndexChangeRight}>
-                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, mb: "20px" }}>
                             {`>`}
                         </Typography>
                     </IconButton>
@@ -134,7 +134,7 @@ const VersionHighlights = (props) => {
             {/* NEW CHARACTERS */}
             {
                 characters.length > 0 &&
-                <Box sx={{ mx: "30px", my: "20px" }}>
+                <Box sx={{ mx: "30px", mb: "20px" }}>
                     <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "20px" }}>
                         New Characters
                     </Typography>
