@@ -1,6 +1,7 @@
 export const fetchBanners = () => {
     const charUrl = "https://bcheung98.github.io/project-irminsul-db/characterBanners.json";
     const wepUrl = "https://bcheung98.github.io/project-irminsul-db/weaponBanners.json";
+    const chronicledWishUrl = "https://bcheung98.github.io/project-irminsul-db/chronicledWish.json";
     return (dispatch) => {
         dispatch({ type: "START_GETTING_CHAR_BANNERS_REQUEST" });
         fetch(charUrl)
