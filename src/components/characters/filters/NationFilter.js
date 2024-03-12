@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
-const Nations = ["Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine"];
+const Nations = ["Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine", "Snezhnaya"];
 
 const NationFilter = (props) => {
     return (
