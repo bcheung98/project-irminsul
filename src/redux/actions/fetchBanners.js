@@ -17,5 +17,12 @@ export const fetchBanners = () => {
             .catch((error) => {
                 console.error(error);
             });
+        dispatch({ type: "START_GETTING_CHRONICLED_WISH_REQUEST" });
+        fetch(charUrl)
+            .then(res => res.json())
+            .then(chronicledWish => dispatch({ type: "GET_CHRONICLED_WISH", chronicledWish }))
+            .catch((error) => {
+                console.error(error);
+            });
     }
 }

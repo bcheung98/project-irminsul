@@ -1,6 +1,7 @@
 const initialState = {
     characterBanners: [],
     weaponBanners: [],
+    chronicledWish: [],
     requesting: false
 }
 
@@ -28,6 +29,18 @@ const BannerReducer = (state = initialState, action) => {
             return {
                 ...state,
                 weaponBanners: action.weaponBanners,
+                requesting: false
+            }
+        case "START_GETTING_CHRONICLED_WISH_REQUEST":
+            return {
+                ...state,
+                chronicledWish: [...state.chronicledWish],
+                requesting: true
+            }
+        case "GET_CHRONICLED_WISH":
+            return {
+                ...state,
+                chronicledWish: action.chronicledWish,
                 requesting: false
             }
         default:
