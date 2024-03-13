@@ -74,13 +74,7 @@ const BannerList = (props) => {
                             headCells={headCells}
                         />
                         <TableBody>
-                            {stableSort(rows, getComparator(order, orderBy))
-                                .map((row, index) => {
-                                    return (
-                                        props.type === "character" ? <CharacterBannerRow key={index} row={row} /> : <WeaponBannerRow key={index} row={row} />
-
-                                    )
-                                })}
+                            {stableSort(rows, getComparator(order, orderBy)).map((row, index) => (props.type === "character" ? <CharacterBannerRow key={index} row={row} /> : <WeaponBannerRow key={index} row={row} />))}
                         </TableBody>
                     </Table>
                 </TableContainer>

@@ -59,30 +59,32 @@ const CharacterBannerRow = (props) => {
                 <StyledTableCell>
                     {
                         <Box sx={{ display: "flex" }}>
-                            {row.banner.map((char, index) => (
-                                <ButtonBase disableRipple href={`/project-irminsul/character/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={char} sx={{ m: "2px" }}>
-                                    <CustomTooltip title={char} arrow placement="top">
-                                        <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${char.split(" ").join("_")}_Thumb.png`)} alt={char}
-                                            sx={{
-                                                margin: "auto",
-                                                ml: "2px",
-                                                border: `1px solid ${theme.border.color}`,
-                                                borderRadius: "5px",
-                                                width: "64px",
-                                                height: "64px",
-                                                backgroundColor: `${theme.materialImage.backgroundColor}`,
-                                            }}
-                                            style={CharIconBackground(index, row.banner.length)}
-                                        />
-                                    </CustomTooltip>
-                                </ButtonBase>
-                            ))}
+                            {
+                                row.banner.map((char, index) => (
+                                    <ButtonBase disableRipple href={`/project-irminsul/character/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={char} sx={{ m: "2px" }}>
+                                        <CustomTooltip title={char} arrow placement="top">
+                                            <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${char.split(" ").join("_")}_Thumb.png`)} alt={char}
+                                                sx={{
+                                                    margin: "auto",
+                                                    ml: "2px",
+                                                    border: `1px solid ${theme.border.color}`,
+                                                    borderRadius: "5px",
+                                                    width: "64px",
+                                                    height: "64px",
+                                                    backgroundColor: `${theme.materialImage.backgroundColor}`,
+                                                }}
+                                                style={CharIconBackground(index, row.banner.length)}
+                                            />
+                                        </CustomTooltip>
+                                    </ButtonBase>
+                                ))
+                            }
                         </Box>
                     }
                 </StyledTableCell>
 
             </TableRow>
-        </React.Fragment >
+        </React.Fragment>
     )
 }
 
