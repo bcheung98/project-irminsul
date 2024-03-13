@@ -84,6 +84,8 @@ const ChronicledWishRow = (props) => {
                         }
                     </Box>
 
+                    <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "15px 0px 15px 0px" }} />
+
                     { /* 5-Star Weapons */}
                     <Box sx={{ display: "flex" }}>
                         {
@@ -138,7 +140,7 @@ const ChronicledWishRow = (props) => {
                 </StyledTableCell>
 
             </TableRow>
-        </React.Fragment >
+        </React.Fragment>
     )
 
 }
