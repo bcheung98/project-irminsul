@@ -19,7 +19,7 @@ const CharacterOutfitDisplay = (props) => {
 
     const OutfitIcon = (rarity) => {
         return {
-            width: "96px",
+            width: "85px",
             border: `2px solid ${theme.border.color}`,
             borderRadius: "64px",
             backgroundColor: `${theme.materialImage.backgroundColor}`,
