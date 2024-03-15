@@ -19,7 +19,7 @@ const CharacterOutfitDisplay = (props) => {
 
     const OutfitIcon = (rarity) => {
         return {
-            width: "85px",
+            width: "90px",
             border: `2px solid ${theme.border.color}`,
             borderRadius: "64px",
             backgroundColor: `${theme.materialImage.backgroundColor}`,
@@ -29,7 +29,7 @@ const CharacterOutfitDisplay = (props) => {
     }
 
     const OutfitSplash = {
-        width: "80%",
+        width: "100%",
         border: `1px solid ${theme.border.color}`,
         borderRadius: "5px",
         backgroundColor: `${theme.materialImage.backgroundColor}`
