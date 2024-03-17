@@ -48,6 +48,8 @@ const WeaponPage = (props) => {
 
         let { name, rarity, type, description } = weapon;
 
+        document.title = `${name} | Project Irminsul`;
+
         const weaponIcon = {
             marginLeft: "15px",
             marginTop: "5px",

@@ -29,6 +29,8 @@ const BannerArchive = (props) => {
         }
     }
 
+    document.title = "Banner Archive | Project Irminsul";
+
     return (
         <React.Fragment>
             <Box

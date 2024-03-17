@@ -32,6 +32,8 @@ const CharacterBrowser = (props) => {
 
     let { characters, characterFilters } = props;
 
+    document.title = "Characters | Project Irminsul";
+
     return (
         <React.Fragment>
             <Box

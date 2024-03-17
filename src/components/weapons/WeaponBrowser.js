@@ -32,6 +32,8 @@ const WeaponBrowser = (props) => {
 
     let { weapons, weaponFilters } = props;
 
+    document.title = "Weapons | Project Irminsul";
+
     return (
         <React.Fragment>
             <Box

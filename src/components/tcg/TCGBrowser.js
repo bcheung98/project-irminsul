@@ -99,6 +99,8 @@ const TCGBrowser = (props) => {
         fontFamily: "Genshin, sans-serif",
     }
 
+    document.title = "TCG | Project Irminsul";
+
     return (
         <React.Fragment>
             <Box

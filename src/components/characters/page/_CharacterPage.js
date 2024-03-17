@@ -40,6 +40,8 @@ const CharacterPage = (props) => {
 
         let visionIcon = nation === "Fontaine" ? `${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}_${character.arkhe}.png` : `${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}.png`
 
+        document.title = `${name} | Project Irminsul`;
+
         return (
             <React.Fragment>
                 <Grid container sx={{ mb: "20px" }}>
