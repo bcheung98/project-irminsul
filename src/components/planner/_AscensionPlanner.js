@@ -15,7 +15,7 @@ const AscensionPlanner = (props) => {
 
     let { characters, weapons } = props;
 
-    document.title = "Ascension Planner | Project Irminsul";
+    document.title = "Ascension Planner - Project Irminsul";
 
     return (
         <Box>

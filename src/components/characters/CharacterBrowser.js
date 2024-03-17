@@ -32,7 +32,7 @@ const CharacterBrowser = (props) => {
 
     let { characters, characterFilters } = props;
 
-    document.title = "Characters | Project Irminsul";
+    document.title = "Characters - Project Irminsul";
 
     return (
         <React.Fragment>
