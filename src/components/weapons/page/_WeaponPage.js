@@ -50,6 +50,9 @@ const WeaponPage = (props) => {
 
         document.title = `${name} - Project Irminsul`;
 
+        if (weapon.displayName) document.title = `${weapon.displayName} - Project Irminsul`;
+        else document.title = `${name} - Project Irminsul`;
+
         const weaponIcon = {
             marginLeft: "15px",
             marginTop: "5px",
