@@ -59,6 +59,23 @@ export const Keywords = {
                 <Reactions.Burning element="Pyro" />
             </React.Fragment>
     },
+    "pyro application": {
+        "name":
+            <CustomBox sx={{ display: "inline-flex" }}>
+                <TCGPyro />
+                <Typography className="text-pyro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Pyro Application</Typography>
+            </CustomBox>,
+        "description":
+            <React.Fragment>
+                <CustomTypography>
+                    When <b className="text-pyro">Pyro</b> is applied without dealing any DMG, the Elemental Reaction triggered will ignore DMG-dealing effects:
+                </CustomTypography>
+                <Reactions.Melt element="Pyro" application />
+                <Reactions.Vaporize element="Pyro" application />
+                <Reactions.Overloaded element="Pyro" application />
+                <Reactions.Burning element="Pyro" application />
+            </React.Fragment>
+    },
     "hydro": {
         "name":
             <CustomBox sx={{ display: "inline-flex" }}>

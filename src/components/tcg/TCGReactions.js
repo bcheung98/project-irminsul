@@ -59,9 +59,16 @@ export const Burning = (props) => {
                     Burning
                 </Typography>
             </Box>
-            <Typography sx={DescriptionText}>
-                DMG +1 for this instance, creates a [<b style={{ color: "white" }}>Burning Flame</b>] that will deal 1 Pyro DMG at the end of the Round (Takes effect once, max 2 stacks)
-            </Typography>
+            {
+                !props.application ?
+                    <Typography sx={DescriptionText}>
+                        DMG +1 for this instance, creates a [<b style={{ color: "white" }}>Burning Flame</b>] that will deal 1 Pyro DMG at the end of the Round (Takes effect once, max 2 stacks)
+                    </Typography>
+                    :
+                    <Typography sx={DescriptionText}>
+                        Creates a [<b style={{ color: "white" }}>Burning Flame</b>] that will deal 1 Pyro DMG at the end of the Round (Takes effect once, max 2 stacks)
+                    </Typography>
+            }
         </Box>
     )
 }
