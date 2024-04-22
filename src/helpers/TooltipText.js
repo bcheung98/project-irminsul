@@ -85,6 +85,11 @@ export const formatWeeklyBossMats = (material) => {
         case "Lightless Silk String":
             material += " (All-Devouring Narwhal)";
             break;
+        case "Fading Candle":
+        case "Silken Feather":
+        case "Denial and Judgment":
+            material += " (The Knave)";
+            break;
         default:
             material += "";
     }
@@ -462,6 +467,18 @@ export const formatEliteMats = (material) => {
         case "Fin":
             material = "Xuanwen Beast Fin";
             break;
+        case "Hilt1":
+            material = "Ruined Hilt";
+            break;
+        case "Hilt2":
+            material = "Splintered Hilt";
+            break;
+        case "Hilt3":
+            material = "Still-Smoldering Hilt";
+            break;
+        case "Hilt":
+            material = "Praetorian Golem Hilt";
+            break;
         default:
             material += "";
     }
@@ -549,7 +566,7 @@ export const formatBossMats = (material) => {
             material += " (Emperor of Fire and Iron)";
             break;
         case "Tubion Device":
-            material = "\"Tourbillon Device\" (Experimental Field Generator)";
+            material = "\"Tourbillon Device\" (Prototype Cal. Breguet)";
             break;
         case "Fontemer Horn":
             material = "Fontemer Unihorn (Millennial Pearl Seahorse)";
@@ -559,6 +576,9 @@ export const formatBossMats = (material) => {
             break;
         case "Cloudseam Scale":
             material += " (Solitary Suanni)";
+            break;
+        case "Fragment of a Golden Melody":
+            material += " (Legatus Golems)";
             break;
         default:
             material += "";

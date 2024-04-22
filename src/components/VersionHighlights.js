@@ -16,6 +16,7 @@ const VersionHighlights = (props) => {
 
     // MAKE SURE TO CHANGE THIS EVERY UPDATE!
     let updates = [
+        { version: "4.6", name: "Two Worlds Aflame, the Crimson Night Fades" },
         { version: "4.5", name: "Blades Weaving Betwixt Brocade" },
         { version: "4.4", name: "Vibrant Harriers Aloft in Spring Breeze" },
         { version: "4.3", name: "Roses and Muskets" },
