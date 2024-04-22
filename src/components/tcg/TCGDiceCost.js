@@ -26,6 +26,11 @@ const TCGDiceCost = (props) => {
                 left: "-16px"
             }
         }
+        else if (type === "keyword-popup") {
+            return {
+
+            }
+        }
         else {
             return {
                 display: "flex",
@@ -47,6 +52,11 @@ const TCGDiceCost = (props) => {
                 width: "96px"
             }
         }
+        else if (type === "keyword-popup") {
+            return {
+                width: "32px"
+            }
+        }
         else {
             return {
                 width: "48px"
@@ -60,6 +70,9 @@ const TCGDiceCost = (props) => {
         }
         else if (type === "card-large") {
             return "h3"
+        }
+        else if (type === "keyword-popup") {
+            return "h6"
         }
         else {
             return "h5"

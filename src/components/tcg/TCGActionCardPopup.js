@@ -58,16 +58,19 @@ const TCGActionCardPopup = (props) => {
 
     let keywordName;
     let keywordType;
+    let keywordCost;
     let keywordDescription;
     if (Keywords[tag]) {
         keywordName = Keywords[tag].name;
         keywordType = Keywords[tag].type;
+        keywordCost = Keywords[tag].cost;
         keywordDescription = Keywords[tag].description;
     }
     else if (props.card.keywords && tag !== "") {
         let currentKeyword = props.card.keywords.find(kw => kw.tag === tag);
         keywordName = currentKeyword.name;
         keywordType = currentKeyword.type;
+        keywordCost = currentKeyword.cost;
         keywordDescription = currentKeyword.description;
     }
 
@@ -235,7 +238,7 @@ const TCGActionCardPopup = (props) => {
                             onClose={handleClose}
                             maxWidth={false}
                         >
-                            <TCGKeywordPopup keywords={props.card.keywords} name={keywordName} type={keywordType} description={keywordDescription} />
+                            <TCGKeywordPopup keywords={props.card.keywords} name={keywordName} type={keywordType} cost={keywordCost} description={keywordDescription} />
                         </Dialog>
                     }
                 </Grid>

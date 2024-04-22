@@ -4,12 +4,14 @@ import parse from "html-react-parser";
 import { Box } from "@mui/system";
 import { Typography, Dialog } from "@mui/material";
 import { Keywords } from "./TCGKeywords";
+import TCGDiceCost from "./TCGDiceCost";
 
 const TCGKeywordPopup = (props) => {
 
     const theme = useTheme();
 
-    let { name, type, description } = props;
+    let { name, type, cost, description } = props;
+    console.log(cost)
 
     const [open, setOpen] = React.useState(false);
     const [tag, setTag] = React.useState("");
@@ -66,9 +68,14 @@ const TCGKeywordPopup = (props) => {
                 borderRadius: "5px",
             }}
         >
-            <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>
-                {name}
-            </Typography>
+            <Box sx={{ display: "flex" }}>
+                <Box sx={{ mr: "5px" }}>
+                    {cost && <TCGDiceCost cost={cost} type={"keyword-popup"} />}
+                </Box>
+                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>
+                    {name}
+                </Typography>
+            </Box>
             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "5px", marginBottom: "10px" }} />
             {
                 type &&
