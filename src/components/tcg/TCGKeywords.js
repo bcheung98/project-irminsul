@@ -367,6 +367,26 @@ export const Keywords = {
             <CustomTypography>
                 The opposing "character closest to your current active character" is the opposing character whose position is closest to that of your active character.<br />If multiple such characters exist, the one with the foremost position will be viewd as being "closest".
             </CustomTypography>
+    },
+    "discard": {
+        "name":
+            <CustomBox sx={{ display: "inline-flex" }}>
+                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Discard</Typography>
+            </CustomBox>,
+        "description":
+            <CustomTypography>
+                Use Action Cards or Character Skill effects to Discard Action Cards from Hand or Deck.
+            </CustomTypography>
+    },
+    "tune": {
+        "name":
+            <CustomBox sx={{ display: "inline-flex" }}>
+                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Tune</Typography>
+            </CustomBox>,
+        "description":
+            <CustomTypography>
+                Discard Action Cards from Hand to initiate Elemental Tuning.
+            </CustomTypography>
     }
 
 }
