@@ -41,6 +41,23 @@ export const StyledTabs = styled((props) => (
     },
 });
 
+export const StyledTabsWithIndicator = styled((props) => (
+    <Tabs
+        {...props}
+        TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+    />
+))({
+    "& .MuiTabs-indicator": {
+        display: "flex",
+        justifyContent: "center",
+        backgroundColor: "transparent",
+    },
+    "& .MuiTabs-indicatorSpan": {
+        width: "100%",
+        backgroundColor: "rgb(30, 73, 118)",
+    },
+});
+
 export const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
     ({ theme }) => ({
         color: `${theme.text.color}`,
