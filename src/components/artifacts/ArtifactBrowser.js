@@ -38,12 +38,7 @@ const ArtifactBrowser = (props) => {
                 </Typography>
             </Box>
             <Grid container sx={{ margin: "auto", width: "98%" }}>
-                {
-                    artifacts.artifacts.length > 0 &&
-                    <React.Fragment>
-                        {artifacts.artifacts.map((artifact, index) => <ArtifactCard key={index} artifact={artifact} />)}
-                    </React.Fragment>
-                }
+                {artifacts.artifacts.length > 0 && artifacts.artifacts.map((artifact, index) => <ArtifactCard key={index} artifact={artifact} />)}
             </Grid>
         </React.Fragment>
     )
