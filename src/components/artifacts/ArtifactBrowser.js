@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
+import ArtifactCard from "./ArtifactCard";
 
 const ArtifactBrowser = (props) => {
 
@@ -40,6 +41,7 @@ const ArtifactBrowser = (props) => {
                 {
                     artifacts.artifacts.length > 0 &&
                     <React.Fragment>
+                        {artifacts.artifacts.map((artifact, index) => <ArtifactCard key={index} artifact={artifact} />)}
                     </React.Fragment>
                 }
             </Grid>
