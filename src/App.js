@@ -19,6 +19,7 @@ import CharacterBrowser from "./components/characters/CharacterBrowser";
 import CharacterPage from "./components/characters/page/_CharacterPage";
 import WeaponBrowser from "./components/weapons/WeaponBrowser";
 import WeaponPage from "./components/weapons/page/_WeaponPage";
+import ArtifactBrowser from "./components/artifacts/ArtifactBrowser";
 import AscensionPlanner from "./components/planner/_AscensionPlanner";
 import BannerArchive from "./components/banners/BannerArchive";
 import TCGBrowser from "./components/tcg/TCGBrowser";
@@ -79,6 +80,7 @@ const App = (props) => {
 					<Route path="/character/:char_name" children={<CharacterPage />} />
 					<Route path="/weapons" component={WeaponBrowser} />
 					<Route path="/weapon/:weapon_name" children={<WeaponPage />} />
+					<Route path="/artifacts" component={ArtifactBrowser} />
 					<Route path="/planner" component={AscensionPlanner} />
 					<Route path="/banners/" component={BannerArchive} />
 					<Route path="/tcg/" component={TCGBrowser} />

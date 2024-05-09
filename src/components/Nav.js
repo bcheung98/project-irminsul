@@ -84,11 +84,32 @@ const Nav = () => {
                         </ButtonBase>
                         <ButtonBase
                             disableRipple
+                            href={`/project-irminsul/artifacts`}
+                        >
+                            <CardHeader
+                                avatar={
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Artifact.png`)} alt="ARTIFACTS" sx={{ height: "48px", width: "48px" }} />
+                                }
+                                title={
+                                    <Typography variant="body2" noWrap
+                                        sx={{
+                                            fontFamily: "Genshin, monospace",
+                                            color: "white",
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        ARTIFACTS
+                                    </Typography>
+                                }
+                            />
+                        </ButtonBase>
+                        <ButtonBase
+                            disableRipple
                             href={`/project-irminsul/planner`}
                         >
                             <CardHeader
                                 avatar={
-                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Ascension.png`)} alt="Ascension" sx={{ height: "36px", width: "36px", mt: "5px" }} />
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Ascension.png`)} alt="ASCENSION" sx={{ height: "36px", width: "36px", mt: "5px" }} />
                                 }
                                 title={
                                     <Typography variant="body2" noWrap
