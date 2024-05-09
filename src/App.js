@@ -10,6 +10,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { defaultTheme as theme } from "./Theme";
 import { fetchCharacters } from "./redux/actions/fetchCharacters";
 import { fetchWeapons } from "./redux/actions/fetchWeapons";
+import { fetchArtifacts } from "./redux/actions/fetchArtifacts";
 import { fetchBanners } from "./redux/actions/fetchBanners";
 import { fetchCards } from "./redux/actions/fetchCards";
 import Home from "./components/Home";
@@ -60,11 +61,12 @@ const App = (props) => {
 		if (props.weapons.weapons.length === 0) {
 			fetchWeapons();
 		}
+		fetchArtifacts();
 		fetchBanners();
 		fetchCards();
 	}, [])
 
-	let { fetchCharacters, fetchWeapons, fetchBanners, fetchCards } = props;
+	let { fetchCharacters, fetchWeapons, fetchArtifacts, fetchBanners, fetchCards } = props;
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -111,6 +113,7 @@ const mapStateToProps = (state) => {
 	return {
 		characters: state.characters,
 		weapons: state.weapons,
+		artifacts: state.artifacts,
 		characterBanners: state.characterBanners,
 		weaponBanners: state.weaponBanners,
 		cards: state.cards,
@@ -122,6 +125,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchCharacters: () => dispatch(fetchCharacters()),
 		fetchWeapons: () => dispatch(fetchWeapons()),
+		fetchArtifacts: () => dispatch(fetchArtifacts()),
 		fetchBanners: () => dispatch(fetchBanners()),
 		fetchCards: () => dispatch(fetchCards())
 	}
