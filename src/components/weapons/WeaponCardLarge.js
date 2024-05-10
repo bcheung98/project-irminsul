@@ -68,7 +68,7 @@ const WeaponCardLarge = (props) => {
             <CardContent
                 sx={{
                     textAlign: "center",
-                    backgroundColor: `${theme.materialImage.backgroundColor}`,
+                    backgroundColor: `${theme.table.header.backgroundColor}`,
                     height: "100%"
                 }}
             >

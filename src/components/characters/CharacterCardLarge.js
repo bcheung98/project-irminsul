@@ -66,7 +66,7 @@ const CharacterCardLarge = (props) => {
             <CardContent
                 sx={{
                     textAlign: "center",
-                    backgroundColor: `${theme.materialImage.backgroundColor}`
+                    backgroundColor: `${theme.table.header.backgroundColor}`
                 }}
             >
                 <img src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity}
