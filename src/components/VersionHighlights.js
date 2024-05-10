@@ -5,10 +5,11 @@ import { Box } from "@mui/system";
 import { Typography, Select, MenuItem, AppBar, IconButton } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomSelect } from "../helpers/CustomSelect";
-import TCGCharacterCard from "./tcg/TCGCharacterCard";
-import TCGActionCard from "./tcg/TCGActionCard";
 import CharacterCardLarge from "./characters/CharacterCardLarge";
 import WeaponCardLarge from "./weapons/WeaponCardLarge";
+import ArtifactCard from "./artifacts/ArtifactCard";
+import TCGCharacterCard from "./tcg/TCGCharacterCard";
+import TCGActionCard from "./tcg/TCGActionCard";
 
 const VersionHighlights = (props) => {
 
@@ -64,6 +65,7 @@ const VersionHighlights = (props) => {
 
     let characters = props.characters.characters.filter(char => char.release.version === version).sort((a, b) => a.id - b.id);
     let weapons = props.weapons.weapons.filter(wep => wep.release.version === version).sort((a, b) => b.rarity - a.rarity || a.name.localeCompare(b.name));
+    let artifacts = props.artifacts.artifacts.filter(artifact => artifact.release.version === version);
     let characterCards = [];
     let actionCards = [];
     if (props.cards.cards[0] !== undefined) { characterCards = props.cards.cards[0].cards.filter(card => card.release.version === version).sort((a, b) => a.name.localeCompare(b.name)) };
@@ -167,6 +169,30 @@ const VersionHighlights = (props) => {
                         </Grid>
                     </Box>
                     {
+                        artifacts.length > 0 || newCards ? <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "15px" }} /> : null
+                    }
+                </Box>
+            }
+
+            {/* NEW ARTIFACTS */}
+            {
+                artifacts.length > 0 &&
+                <Box sx={{ mx: "30px", mb: "20px" }}>
+                    <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "20px" }}>
+                        New Artifacts
+                    </Typography>
+                    <Box>
+                        <Grid container spacing={2}>
+                            {
+                                artifacts.map((artifact, index) => (
+                                    <Box sx={{ mx: "auto", my: "10px" }} key={index}>
+                                        <ArtifactCard artifact={artifact} />
+                                    </Box>
+                                ))
+                            }
+                        </Grid>
+                    </Box>
+                    {
                         newCards ? <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "15px" }} /> : null
                     }
                 </Box>
@@ -174,32 +200,30 @@ const VersionHighlights = (props) => {
 
             {/* NEW TCG CARDS */}
             {
-                newCards ?
-                    <Box sx={{ mx: "10px", my: "20px" }}>
-                        <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "30px" }}>
-                            New TCG Cards
-                        </Typography>
-                        <Grid container>
-                            {
-                                characterCards.map((card, index) => (
-                                    <Box sx={{ mx: "auto", my: "10px" }} key={index}>
-                                        <TCGCharacterCard key={card.name} char={card} preview />
-                                    </Box>
-                                ))
-                            }
-                        </Grid>
-                        <Grid container>
-                            {
-                                actionCards.map((card, index) => (
-                                    <Box sx={{ mx: "auto", my: "10px" }} key={index}>
-                                        <TCGActionCard key={card.name} card={card} preview />
-                                    </Box>
-                                ))
-                            }
-                        </Grid>
-                    </Box>
-                    :
-                    null
+                newCards &&
+                <Box sx={{ mx: "10px", my: "20px" }}>
+                    <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "30px" }}>
+                        New TCG Cards
+                    </Typography>
+                    <Grid container>
+                        {
+                            characterCards.map((card, index) => (
+                                <Box sx={{ mx: "auto", my: "10px" }} key={index}>
+                                    <TCGCharacterCard key={card.name} char={card} preview />
+                                </Box>
+                            ))
+                        }
+                    </Grid>
+                    <Grid container>
+                        {
+                            actionCards.map((card, index) => (
+                                <Box sx={{ mx: "auto", my: "10px" }} key={index}>
+                                    <TCGActionCard key={card.name} card={card} preview />
+                                </Box>
+                            ))
+                        }
+                    </Grid>
+                </Box>
             }
         </Box>
     )
@@ -209,6 +233,7 @@ const mapStateToProps = (state) => {
     return {
         characters: state.characters,
         weapons: state.weapons,
+        artifacts: state.artifacts,
         cards: state.cards
     }
 }
