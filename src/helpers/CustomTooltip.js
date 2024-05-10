@@ -14,3 +14,17 @@ export const CustomTooltip = styled(({ className, ...props }) => (
         maxWidth: "none",
     },
 }));
+
+export const CustomTooltipLarge = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow disableInteractive classes={{ popper: className }} />
+))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+        color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+        backgroundColor: theme.palette.common.black,
+        fontSize: theme.typography.pxToRem(18),
+        fontFamily: "Genshin, sans-serif",
+        maxWidth: "none",
+    },
+}));
