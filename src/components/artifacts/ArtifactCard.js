@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Typography, Card, CardContent, Box, Avatar, Dialog } from "@mui/material";
+import ArtifactPopup from "./ArtifactPopup";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const ArtifactCard = (props) => {
@@ -61,10 +62,17 @@ const ArtifactCard = (props) => {
                     }}
                     onError={ErrorLoadingImage}
                 />
-                <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: "white", cursor: "pointer" }} onClick={() => handleClickOpen()}>
+                <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, cursor: "pointer" }} onClick={() => handleClickOpen()}>
                     {props.artifact.displayName ? props.artifact.displayName : name}
                 </Typography>
             </CardContent>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                maxWidth={false}
+            >
+                <ArtifactPopup artifact={props.artifact} />
+            </Dialog>
         </Card>
     )
 
