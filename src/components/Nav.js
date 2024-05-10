@@ -1,10 +1,13 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { AppBar, Box, Toolbar, Typography, Container, ButtonBase, Avatar, CardHeader } from "@mui/material";
+import { CustomTooltipLarge } from "../helpers/CustomTooltip";
 
 const Nav = () => {
 
     const theme = useTheme();
+
+    const iconMarginRight = 25;
 
     return (
         <AppBar position="static"
@@ -26,7 +29,6 @@ const Nav = () => {
                             title={
                                 <Typography variant="h6" noWrap
                                     sx={{
-                                        mr: 2,
                                         display: { xs: "none", md: "flex" },
                                         fontFamily: "Genshin, monospace",
                                         letterSpacing: ".3rem",
@@ -37,135 +39,52 @@ const Nav = () => {
                                     PROJECT IRMINSUL
                                 </Typography>
                             }
+                            sx={{ px: 0 }}
                         />
                     </ButtonBase>
-                    <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                        <ButtonBase
-                            disableRipple
-                            href={`/project-irminsul/characters`}
-                        >
-                            <CardHeader
-                                avatar={
-                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Aether.png`)} alt="CHARACTERS" sx={{ height: "32px", width: "32px" }} />
-                                }
-                                title={
-                                    <Typography variant="body2"
-                                        sx={{
-                                            fontFamily: "Genshin, monospace",
-                                            color: "white",
-                                            textDecoration: "none",
-                                        }}
-                                    >
-                                        CHARACTERS
-                                    </Typography>
-                                }
-                            />
-                        </ButtonBase>
-                        <ButtonBase
-                            disableRipple
-                            href={`/project-irminsul/weapons`}
-                        >
-                            <CardHeader
-                                avatar={
+                    <Box sx={{ ml: "50px", display: "flex" }}>
+                        <Box sx={{ mr: `${iconMarginRight}px` }}>
+                            <ButtonBase disableRipple href={`/project-irminsul/characters`}>
+                                <CustomTooltipLarge title="Characters" arrow placement="top">
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Aether.png`)} alt="CHARACTERS" sx={{ height: "40px", width: "40px", mt: "2.5px" }} />
+                                </CustomTooltipLarge>
+                            </ButtonBase>
+                        </Box>
+                        <Box sx={{ mr: `${iconMarginRight - 7}px` }}>
+                            <ButtonBase disableRipple href={`/project-irminsul/weapons`}>
+                                <CustomTooltipLarge title="Weapons" arrow placement="top">
                                     <Avatar src={(`${process.env.REACT_APP_URL}/icons/Weapons.png`)} alt="WEAPONS" sx={{ height: "48px", width: "48px" }} />
-                                }
-                                title={
-                                    <Typography variant="body2" noWrap
-                                        sx={{
-                                            fontFamily: "Genshin, monospace",
-                                            color: "white",
-                                            textDecoration: "none",
-                                        }}
-                                    >
-                                        WEAPONS
-                                    </Typography>
-                                }
-                            />
-                        </ButtonBase>
-                        <ButtonBase
-                            disableRipple
-                            href={`/project-irminsul/artifacts`}
-                        >
-                            <CardHeader
-                                avatar={
+                                </CustomTooltipLarge>
+                            </ButtonBase>
+                        </Box>
+                        <Box sx={{ mr: `${iconMarginRight}px` }}>
+                            <ButtonBase disableRipple href={`/project-irminsul/artifacts`}>
+                                <CustomTooltipLarge title="Artifacts" arrow placement="top">
                                     <Avatar src={(`${process.env.REACT_APP_URL}/icons/Artifact.png`)} alt="ARTIFACTS" sx={{ height: "48px", width: "48px" }} />
-                                }
-                                title={
-                                    <Typography variant="body2" noWrap
-                                        sx={{
-                                            fontFamily: "Genshin, monospace",
-                                            color: "white",
-                                            textDecoration: "none",
-                                        }}
-                                    >
-                                        ARTIFACTS
-                                    </Typography>
-                                }
-                            />
-                        </ButtonBase>
-                        <ButtonBase
-                            disableRipple
-                            href={`/project-irminsul/planner`}
-                        >
-                            <CardHeader
-                                avatar={
-                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Ascension.png`)} alt="ASCENSION" sx={{ height: "36px", width: "36px", mt: "5px" }} />
-                                }
-                                title={
-                                    <Typography variant="body2" noWrap
-                                        sx={{
-                                            fontFamily: "Genshin, monospace",
-                                            color: "white",
-                                            textDecoration: "none",
-                                        }}
-                                    >
-                                        ASCENSION PLANNER
-                                    </Typography>
-                                }
-                            />
-                        </ButtonBase>
-                        <ButtonBase
-                            disableRipple
-                            href={`/project-irminsul/banners`}
-                        >
-                            <CardHeader
-                                avatar={
-                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Wish.png`)} alt="BANNERS" sx={{ height: "40px", width: "40px" }} />
-                                }
-                                title={
-                                    <Typography variant="body2" noWrap
-                                        sx={{
-                                            fontFamily: "Genshin, monospace",
-                                            color: "white",
-                                            textDecoration: "none",
-                                        }}
-                                    >
-                                        BANNERS
-                                    </Typography>
-                                }
-                            />
-                        </ButtonBase>
-                        <ButtonBase
-                            disableRipple
-                            href={`/project-irminsul/tcg`}
-                        >
-                            <CardHeader
-                                avatar={
-                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/tcg.png`)} alt="TCG" sx={{ height: "40px", width: "40px" }} />
-                                }
-                                title={
-                                    <Typography variant="body2" noWrap
-                                        sx={{
-                                            fontFamily: "Genshin, monospace",
-                                            color: "white",
-                                            textDecoration: "none",
-                                        }}
-                                    >
-                                        TCG
-                                    </Typography>
-                                }
-                            />
-                        </ButtonBase>
+                                </CustomTooltipLarge>
+                            </ButtonBase>
+                        </Box>
+                        <Box sx={{ mr: `${iconMarginRight + 5}px` }}>
+                            <ButtonBase disableRipple href={`/project-irminsul/planner`}>
+                                <CustomTooltipLarge title="Ascension Planner" arrow placement="top">
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Ascension.png`)} alt="ASCENSION" sx={{ height: "40px", width: "40px", mt: "5px" }} />
+                                </CustomTooltipLarge>
+                            </ButtonBase>
+                        </Box>
+                        <Box sx={{ mr: `${iconMarginRight}px` }}>
+                            <ButtonBase disableRipple href={`/project-irminsul/banners`}>
+                                <CustomTooltipLarge title="Banners" arrow placement="top">
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Wish.png`)} alt="BANNERS" sx={{ height: "40px", width: "40px", mt: "2.5px" }} />
+                                </CustomTooltipLarge>
+                            </ButtonBase>
+                        </Box>
+                        <Box sx={{ mr: `${iconMarginRight}px` }}>
+                            <ButtonBase disableRipple href={`/project-irminsul/tcg`}>
+                                <CustomTooltipLarge title="TCG" arrow placement="top">
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/tcg.png`)} alt="TCG" sx={{ height: "40px", width: "40px", mt: "2.5px" }} />
+                                </CustomTooltipLarge>
+                            </ButtonBase>
+                        </Box>
                     </Box>
                 </Toolbar>
             </Container>
