@@ -59,6 +59,20 @@ export const Keywords = {
                 <Reactions.Burning element="Pyro" />
             </React.Fragment>
     },
+    "pyro reaction": {
+        "name":
+            <CustomBox sx={{ display: "inline-flex" }}>
+                <TCGPyro />
+                <Typography className="text-pyro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Pyro-Related Reactions</Typography>
+            </CustomBox>,
+        "description":
+            <React.Fragment>
+                <Reactions.Melt element="Pyro" />
+                <Reactions.Vaporize element="Pyro" />
+                <Reactions.Overloaded element="Pyro" />
+                <Reactions.Burning element="Pyro" />
+            </React.Fragment>
+    },
     "pyro application": {
         "name":
             <CustomBox sx={{ display: "inline-flex" }}>
@@ -87,6 +101,20 @@ export const Keywords = {
                 <CustomTypography>
                     Applies <b className="text-hydro">Hydro</b> and can trigger the following Elemental Reactions:
                 </CustomTypography>
+                <Reactions.Vaporize element="Hydro" />
+                <Reactions.Electrocharged element="Hydro" />
+                <Reactions.Frozen element="Hydro" />
+                <Reactions.Bloom element="Hydro" />
+            </React.Fragment>
+    },
+    "hydro reaction": {
+        "name":
+            <CustomBox sx={{ display: "inline-flex" }}>
+                <TCGHydro />
+                <Typography className="text-hydro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Hydro-Related Reactions</Typography>
+            </CustomBox>,
+        "description":
+            <React.Fragment>
                 <Reactions.Vaporize element="Hydro" />
                 <Reactions.Electrocharged element="Hydro" />
                 <Reactions.Frozen element="Hydro" />
@@ -127,6 +155,20 @@ export const Keywords = {
                 <Reactions.Quicken element="Electro" />
             </React.Fragment>
     },
+    "electro reaction": {
+        "name":
+            <CustomBox sx={{ display: "inline-flex" }}>
+                <TCGElectro />
+                <Typography className="text-electro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Electro-Related Reactions</Typography>
+            </CustomBox>,
+        "description":
+            <React.Fragment>
+                <Reactions.Overloaded element="Electro" />
+                <Reactions.Superconduct element="Electro" />
+                <Reactions.Electrocharged element="Electro" />
+                <Reactions.Quicken element="Electro" />
+            </React.Fragment>
+    },
     "electro application": {
         "name":
             <CustomBox sx={{ display: "inline-flex" }}>
@@ -155,6 +197,19 @@ export const Keywords = {
                 <CustomTypography>
                     Applies <b className="text-cryo">Cryo</b> and can trigger the following Elemental Reactions:
                 </CustomTypography>
+                <Reactions.Melt element="Cryo" />
+                <Reactions.Superconduct element="Cryo" />
+                <Reactions.Frozen element="Cryo" />
+            </React.Fragment>
+    },
+    "cryo reaction": {
+        "name":
+            <CustomBox sx={{ display: "inline-flex" }}>
+                <TCGCryo />
+                <Typography className="text-cryo" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Cryo-Related Reactions</Typography>
+            </CustomBox>,
+        "description":
+            <React.Fragment>
                 <Reactions.Melt element="Cryo" />
                 <Reactions.Superconduct element="Cryo" />
                 <Reactions.Frozen element="Cryo" />
@@ -221,6 +276,19 @@ export const Keywords = {
                 <CustomTypography>
                     Applies <b className="text-dendro">Dendro</b> and can trigger the following Elemental Reactions:
                 </CustomTypography>
+                <Reactions.Bloom element="Dendro" />
+                <Reactions.Burning element="Dendro" />
+                <Reactions.Quicken element="Dendro" />
+            </React.Fragment>
+    },
+    "dendro reaction": {
+        "name":
+            <CustomBox sx={{ display: "inline-flex" }}>
+                <TCGDendro />
+                <Typography className="text-dendro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Dendro-Related Reactions</Typography>
+            </CustomBox>,
+        "description":
+            <React.Fragment>
                 <Reactions.Bloom element="Dendro" />
                 <Reactions.Burning element="Dendro" />
                 <Reactions.Quicken element="Dendro" />
