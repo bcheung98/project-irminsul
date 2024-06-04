@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { CustomTooltip } from "../../../../helpers/CustomTooltip";
 import ErrorLoadingImage from "../../../../helpers/ErrorLoadingImage";
 
-const Factions = ["Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine", "Eremite", "Fatui", "Hilichurl", "Monster"];
+const Factions = ["Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine", "Eremite", "Fatui", "Hilichurl", "Monster", "Consecrated Beast"];
 
 const TCGCharacterFactionFilter = (props) => {
     return (
