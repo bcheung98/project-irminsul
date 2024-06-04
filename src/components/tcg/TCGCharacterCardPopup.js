@@ -176,6 +176,9 @@ const TCGCharacterCardPopup = (props) => {
                                 <Box
                                     sx={{
                                         maxWidth: "250px",
+                                        maxHeight: "250px",
+                                        overflowY: "auto",
+                                        pr: "10px",
                                         my: "20px"
                                     }}
                                 >
