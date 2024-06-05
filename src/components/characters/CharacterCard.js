@@ -15,21 +15,25 @@ const CharacterCard = (props) => {
     const characterIconBackground = {
         margin: "auto",
         marginLeft: "2px",
+        backgroundColor: `${theme.materialImage.backgroundColor}`,
+        backgroundSize: "100%",
         border: `1px solid ${theme.border.color}`,
-        borderBottom: `5px solid ${GetRarityColor(rarity)}`,
         borderRadius: "5px",
         width: "100px",
         height: "100px",
 
-        // Comment out following 3 lines for new icon
-        // backgroundColor: "rgb(32, 32, 32)",
+        // Comment out following line if using new icon
         // backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
-        // backgroundSize: "100%",
 
-        // Comment out following 2 lines for old icon
-        objectFit: "cover",
-        objectPosition: "50% 20%",
+        // Comment out following line if using old icon
+        borderBottom: `5px solid ${GetRarityColor(rarity)}`,
     }
+
+    // Old Icon: 
+    // const characterIcon = `${process.env.REACT_APP_URL}/characters/thumbs/Character_${name.split(" ").join("_")}_Thumb.png`;
+
+    // New Icon
+    const characterIcon = `${process.env.REACT_APP_URL}/characters/avatars/Avatar_${name.split(" ").join("_")}.png`;
 
     return (
         <Card variant="outlined"
@@ -75,10 +79,7 @@ const CharacterCard = (props) => {
                     <Grid xs>
                         <Box sx={{ width: "105px" }}>
                             <ButtonBase disableRipple href={`/project-irminsul/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                                {/* Old Icon */}
-                                {/* <img src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${name.split(" ").join("_")}_Thumb.png`)} alt={name} style={characterIconBackground} onError={ErrorLoadingImage} /> */}
-                                {/* New Icon */}
-                                <img src={`${process.env.REACT_APP_URL}/characters/wish_multi/${name.split(" ").join("_")}_Multi_Wish.png`} alt={name} style={characterIconBackground} onError={ErrorLoadingImage} />
+                                <img src={characterIcon} alt={name} style={characterIconBackground} onError={ErrorLoadingImage} />
                             </ButtonBase>
                             <img src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity}
                                 style={{
