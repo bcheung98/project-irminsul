@@ -11,7 +11,6 @@ const TCGKeywordPopup = (props) => {
     const theme = useTheme();
 
     let { name, type, cost, description } = props;
-    console.log(cost)
 
     const [open, setOpen] = React.useState(false);
     const [tag, setTag] = React.useState("");
