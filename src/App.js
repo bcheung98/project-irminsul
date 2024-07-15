@@ -6,13 +6,9 @@ import {
 } from "react-router-dom";
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from "@mui/material/styles";
 import { defaultTheme as theme } from "./Theme";
-import { fetchCharacters } from "./redux/actions/fetchCharacters";
-import { fetchWeapons } from "./redux/actions/fetchWeapons";
-import { fetchArtifacts } from "./redux/actions/fetchArtifacts";
-import { fetchBanners } from "./redux/actions/fetchBanners";
-import { fetchCards } from "./redux/actions/fetchCards";
+import { fetchCharacters, fetchWeapons, fetchArtifacts, fetchBanners, fetchCards } from "./redux/actions/fetch";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
 import CharacterBrowser from "./components/characters/CharacterBrowser";
@@ -25,7 +21,7 @@ import BannerArchive from "./components/banners/BannerArchive";
 import TCGBrowser from "./components/tcg/TCGBrowser";
 import { AppBar, Typography, Box, Fade, useScrollTrigger, Fab, IconButton } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import GitHubIcon from '@mui/icons-material/GitHub';
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 function ScrollTop(props) {
 	const { children } = props;
