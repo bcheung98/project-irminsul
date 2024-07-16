@@ -41,11 +41,6 @@ export const fetchArtifacts = createAsyncThunk("GET/artifacts", async (): Promis
     return await response.json()
 })
 
-export const fetchBanners = createAsyncThunk("GET/characterBanners", async (): Promise<[BannerData]> => {
-    const response = await fetch(CharacterBannerURL)
-    return await response.json()
-})
-
 export const fetchCharacterBanners = createAsyncThunk("GET/characterBanners", async (): Promise<[BannerData]> => {
     const response = await fetch(CharacterBannerURL)
     return await response.json()
