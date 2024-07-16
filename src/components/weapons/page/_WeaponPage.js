@@ -181,6 +181,11 @@ const WeaponPage = (props) => {
             </React.Fragment >
         )
     }
+    else {
+        return (
+            <></>
+        )
+    }
 }
 
 const mapStateToProps = (state) => {

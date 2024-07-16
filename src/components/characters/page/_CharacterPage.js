@@ -218,6 +218,11 @@ const CharacterPage = (props) => {
             </React.Fragment>
         )
     }
+    else {
+        return (
+            <></>
+        )
+    }
 }
 
 const mapStateToProps = (state) => {
