@@ -202,19 +202,20 @@ export const SetWeaponCostsLevel = (start: number, stop: number, rarity: number)
     let costArray = materialArray.map((material, index) => (materialArray[index].slice(start, stop).reduce((a, c) => a + c)))
 
     return {
-        credits: costArray[0],
+        mora: costArray[0],
         wep_xp1: costArray[1],
         wep_xp2: costArray[2],
         wep_xp3: costArray[3],
-        wep_xp4: costArray[4],
-        forgery1: costArray[5],
-        forgery2: costArray[6],
-        forgery3: costArray[7],
-        forgery4: costArray[8],
-        common1: costArray[9],
-        common2: costArray[10],
-        common3: costArray[11],
-        common4: costArray[12]
+        ascension1: costArray[4],
+        ascension2: costArray[5],
+        ascension3: costArray[6],
+        ascension4: costArray[7],
+        elite1: costArray[8],
+        elite2: costArray[9],
+        elite3: costArray[10],
+        common1: costArray[11],
+        common2: costArray[12],
+        common3: costArray[13],
     }
 
 
