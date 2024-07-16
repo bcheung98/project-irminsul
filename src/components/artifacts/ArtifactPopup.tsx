@@ -1,14 +1,18 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Box, AppBar, Typography, Avatar } from "@mui/material";
-import { TabPanel, StyledTabsWithIndicator, StyledTab } from "../../helpers/CustomTabs";
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
+import * as React from "react"
 
-const ArtifactPopup = (props) => {
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, AppBar, Typography, Avatar } from "@mui/material"
 
-    const theme = useTheme();
+// Helper imports
+import { TabPanel, StyledTabsWithIndicator, StyledTab } from "../../helpers/CustomTabs"
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-    let { name, rarity, setEffect, pieces } = props.artifact;
+const ArtifactPopup = (props: any) => {
+
+    const theme = useTheme()
+
+    let { name, rarity, setEffect, pieces } = props.artifact
 
     const pieceIcon = {
         width: "32px",
@@ -30,10 +34,10 @@ const ArtifactPopup = (props) => {
         backgroundSize: "100%",
     }
 
-    const [tabValue, setTabValue] = React.useState(0);
-    const handleTabChange = (event, newValue) => {
-        setTabValue(newValue);
-    };
+    const [tabValue, setTabValue] = React.useState(0)
+    const handleTabChange = (event: React.BaseSyntheticEvent, newValue: number) => {
+        setTabValue(newValue)
+    }
 
     return (
         <Box
@@ -47,7 +51,6 @@ const ArtifactPopup = (props) => {
             <AppBar position="static"
                 sx={{
                     backgroundColor: `${theme.appbar.backgroundColor}`,
-                    // backgroundImage: `linear-gradient(to right, ${theme.appbar.backgroundColor}, 80%, ${GetRarityColor(rarity)})`,
                     borderBottom: `1px solid ${theme.border.color}`,
                     borderRadius: "5px 5px 0px 0px",
                 }}
@@ -58,10 +61,10 @@ const ArtifactPopup = (props) => {
             </AppBar>
             <Box sx={{ mt: "10px" }}>
                 <StyledTabsWithIndicator value={tabValue} onChange={handleTabChange}>
-                    {pieces.map((piece, index) => <StyledTab key={index} label={<img src={`${process.env.REACT_APP_URL}/artifacts/icons/${piece.type}.png`} style={pieceIcon} alt={piece.name} onError={ErrorLoadingImage} />} />)}
+                    {pieces.map((piece: { name: string, type: string }, index: number) => <StyledTab key={index} label={<img src={`${process.env.REACT_APP_URL}/artifacts/icons/${piece.type}.png`} style={pieceIcon} alt={piece.name} onError={ErrorLoadingImage} />} />)}
                 </StyledTabsWithIndicator>
                 {
-                    pieces.map((piece, index) => (
+                    pieces.map((piece: { name: string, type: string, description: string }, index: number) => (
                         <TabPanel key={index} index={index} value={tabValue}>
                             <Typography variant="h5" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
                                 {piece.name}
@@ -103,39 +106,27 @@ const ArtifactPopup = (props) => {
 
 }
 
-export default ArtifactPopup;
+export default ArtifactPopup
 
-export const GetRarityColor = (rarity) => {
-    if (rarity === 5) {
-        return "rgb(255, 208, 112)";
-    }
-    if (rarity === 4) {
-        return "rgb(175, 134, 255)";
-    }
-    if (rarity === 3) {
-        return "rgb(105, 157, 237)";
-    }
-}
-
-const formatPieceType = (type) => {
+const formatPieceType = (type: string) => {
     switch (type) {
         case "flower":
-            type = "Flower of Life";
-            break;
+            type = "Flower of Life"
+            break
         case "feather":
-            type = "Plume of Death";
-            break;
+            type = "Plume of Death"
+            break
         case "sands":
-            type = "Sands of Eon";
-            break;
+            type = "Sands of Eon"
+            break
         case "goblet":
-            type = "Goblet of Eonothem";
-            break;
+            type = "Goblet of Eonothem"
+            break
         case "circlet":
-            type = "Circlet of Logos";
-            break;
+            type = "Circlet of Logos"
+            break
         default:
-            break;
+            break
     }
-    return type;
+    return type
 }

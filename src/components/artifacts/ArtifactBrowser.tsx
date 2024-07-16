@@ -1,17 +1,25 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import { Box, Typography } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import ArtifactCard from "./ArtifactCard";
+import * as React from "react"
+import { useTheme } from "@mui/material/styles"
+import { connect } from "react-redux"
 
-const ArtifactBrowser = (props) => {
+// Component imports
+import ArtifactCard from "./ArtifactCard"
 
-    const theme = useTheme();
+// MUI imports
+import { Box, Typography } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2"
 
-    let { artifacts } = props;
+// Type imports
+import { RootState } from "../../redux/store"
+import { ArtifactData } from "../../types/ArtifactData"
 
-    document.title = "Artifacts - Project Irminsul";
+const ArtifactBrowser = (props: any) => {
+
+    const theme = useTheme()
+
+    let { artifacts } = props
+
+    document.title = "Artifacts - Project Irminsul"
 
     return (
         <React.Fragment>
@@ -38,17 +46,15 @@ const ArtifactBrowser = (props) => {
                 </Typography>
             </Box>
             <Grid container sx={{ margin: "auto", width: "98%" }}>
-                {artifacts.artifacts.length > 0 && artifacts.artifacts.map((artifact, index) => <ArtifactCard key={index} artifact={artifact} />)}
+                {artifacts.artifacts.length > 0 && artifacts.artifacts.map((artifact: ArtifactData, index: number) => <ArtifactCard key={index} artifact={artifact} />)}
             </Grid>
         </React.Fragment>
     )
 
 }
 
-const mapStateToProps = (state) => {
-    return {
-        artifacts: state.artifacts
-    }
-}
+const mapStateToProps = (state: RootState) => ({
+    artifacts: state.artifacts
+})
 
-export default connect(mapStateToProps)(ArtifactBrowser);
+export default connect(mapStateToProps)(ArtifactBrowser)

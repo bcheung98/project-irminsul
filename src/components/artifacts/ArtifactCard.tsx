@@ -1,14 +1,20 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Typography, Card, CardContent, Box, Avatar, Dialog } from "@mui/material";
-import ArtifactPopup from "./ArtifactPopup";
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
+import * as React from "react"
 
-const ArtifactCard = (props) => {
+// Component imports
+import ArtifactPopup from "./ArtifactPopup"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Typography, Card, CardContent, Box, Avatar, Dialog } from "@mui/material"
 
-    let { name, rarity } = props.artifact;
+// Helper imports
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
+
+const ArtifactCard = (props: any) => {
+
+    const theme = useTheme()
+
+    let { name, rarity } = props.artifact
 
     let artifactIconBackground = {
         width: "150px",
@@ -19,13 +25,13 @@ const ArtifactCard = (props) => {
         cursor: "pointer",
     }
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false)
     const handleClickOpen = () => {
-        setOpen(true);
-    };
+        setOpen(true)
+    }
     const handleClose = () => {
-        setOpen(false);
-    };
+        setOpen(false)
+    }
 
     return (
         <Card
@@ -78,4 +84,4 @@ const ArtifactCard = (props) => {
 
 }
 
-export default ArtifactCard;
+export default ArtifactCard
