@@ -129,7 +129,7 @@ export const PlannerSlice = createSlice({
                 }
             })
         },
-        setPlannerWeapons: (state, action: PayloadAction<any>) => {
+        setPlannerWeapons: (state, action: PayloadAction<WeaponData[]>) => {
             let tempWeaponCosts = action.payload.map((wep: WeaponData) => {
                 let costs
                 let currentWeapon = state.weaponCosts.find((w: WeaponCosts) => wep.name === w.name)
