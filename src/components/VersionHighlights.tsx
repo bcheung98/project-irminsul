@@ -67,7 +67,6 @@ const VersionHighlights = (props: any) => {
     ]
     const [index, setIndex] = React.useState(0)
     const handleIndexChange = (event: SelectChangeEvent) => {
-        console.log(event)
         setIndex(Number(event.target.value))
     }
     const handleIndexChangeLeft = () => {
