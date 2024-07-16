@@ -1,19 +1,32 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import { Box } from "@mui/system";
-import { Typography, Select, MenuItem, AppBar, IconButton } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import { CustomSelect } from "../helpers/CustomSelect";
-import CharacterCardLarge from "./characters/CharacterCardLarge";
-import WeaponCardLarge from "./weapons/WeaponCardLarge";
-import ArtifactCard from "./artifacts/ArtifactCard";
-import TCGCharacterCard from "./tcg/TCGCharacterCard";
-import TCGActionCard from "./tcg/TCGActionCard";
+import * as React from "react"
+import { connect } from "react-redux"
 
-const VersionHighlights = (props) => {
+// Component imports
+import CharacterCardLarge from "./characters/CharacterCardLarge"
+import WeaponCardLarge from "./weapons/WeaponCardLarge"
+import ArtifactCard from "./artifacts/ArtifactCard"
+import TCGCharacterCard from "./tcg/TCGCharacterCard"
+import TCGActionCard from "./tcg/TCGActionCard"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box } from "@mui/system"
+import { Typography, Select, MenuItem, AppBar, IconButton, SelectChangeEvent } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2"
+
+// Helper imports
+import { CustomSelect } from "../helpers/CustomSelect"
+
+// Type imports
+import { RootState } from "../redux/store"
+import { CharacterData } from "../types/CharacterData"
+import { WeaponData } from "../types/WeaponData"
+import { ArtifactData } from "../types/ArtifactData"
+import { TCGCharacterCardData, TCGActionCardData } from "../types/TCGData"
+
+const VersionHighlights = (props: any) => {
+
+    const theme = useTheme()
 
     // MAKE SURE TO CHANGE THIS EVERY UPDATE!
     let updates = [
@@ -52,27 +65,28 @@ const VersionHighlights = (props) => {
         { version: "1.1", name: "A New Star Approaches" },
         { version: "1.0", name: "Welcome to Teyvat" }
     ]
-    const [index, setIndex] = React.useState(0);
-    const handleIndexChange = (event) => {
-        setIndex(event.target.value);
+    const [index, setIndex] = React.useState(0)
+    const handleIndexChange = (event: SelectChangeEvent) => {
+        console.log(event)
+        setIndex(Number(event.target.value))
     }
     const handleIndexChangeLeft = () => {
-        if (index + 1 < updates.length) setIndex(index + 1);
+        if (index + 1 < updates.length) setIndex(index + 1)
     }
     const handleIndexChangeRight = () => {
-        if (index - 1 >= 0) setIndex(index - 1);
+        if (index - 1 >= 0) setIndex(index - 1)
     }
 
-    let version = updates[index].version;
+    let version = updates[index].version
 
-    let characters = props.characters.characters.filter(char => char.release.version === version).sort((a, b) => a.id - b.id);
-    let weapons = props.weapons.weapons.filter(wep => wep.release.version === version).sort((a, b) => b.rarity - a.rarity || a.name.localeCompare(b.name));
-    let artifacts = props.artifacts.artifacts.filter(artifact => artifact.release.version === version);
-    let characterCards = [];
-    let actionCards = [];
-    if (props.cards.cards[0] !== undefined) { characterCards = props.cards.cards[0].cards.filter(card => card.release.version === version).sort((a, b) => a.name.localeCompare(b.name)) };
-    if (props.cards.cards[1] !== undefined) { actionCards = props.cards.cards[1].cards.filter(card => card.release.version === version).sort((a, b) => a.subType.localeCompare(b.subType) || a.name.localeCompare(b.name)) };
-    let newCards = characterCards.length > 0 || actionCards.length > 0;
+    let characters = props.characters.characters.filter((char: CharacterData) => char.release.version === version).sort((a: CharacterData, b: CharacterData) => a.id - b.id)
+    let weapons = props.weapons.weapons.filter((wep: WeaponData) => wep.release.version === version).sort((a: WeaponData, b: WeaponData) => b.rarity - a.rarity || a.name.localeCompare(b.name))
+    let artifacts = props.artifacts.artifacts.filter((artifact: ArtifactData) => artifact.release.version === version)
+    let characterCards = []
+    let actionCards = []
+    if (props.cards.cards[0] !== undefined) { characterCards = props.cards.cards[0].cards.filter((card: TCGCharacterCardData) => card.release.version === version).sort((a: TCGCharacterCardData, b: TCGCharacterCardData) => a.name.localeCompare(b.name)) }
+    if (props.cards.cards[1] !== undefined) { actionCards = props.cards.cards[1].cards.filter((card: TCGActionCardData) => card.release.version === version).sort((a: TCGActionCardData, b: TCGActionCardData) => a.subType.localeCompare(b.subType) || a.name.localeCompare(b.name)) }
+    let newCards = characterCards.length > 0 || actionCards.length > 0
 
     return (
         <Box
@@ -109,13 +123,13 @@ const VersionHighlights = (props) => {
             >
                 {
                     index < updates.length - 1 &&
-                    <IconButton variant="contained" onClick={handleIndexChangeLeft}>
+                    <IconButton onClick={handleIndexChangeLeft}>
                         <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, mb: "20px" }}>
                             {`<`}
                         </Typography>
                     </IconButton>
                 }
-                <Select value={index} label="Version" onChange={handleIndexChange} input={<CustomSelect />} sx={{ mx: "5px", mb: "20px", width: "500px" }}>
+                <Select value={index.toString()} label="Version" onChange={handleIndexChange} input={<CustomSelect />} sx={{ mx: "5px", mb: "20px", width: "500px" }}>
                     {
                         updates.map((version, index) => {
                             return (
@@ -128,7 +142,7 @@ const VersionHighlights = (props) => {
                 </Select>
                 {
                     index > 0 &&
-                    <IconButton variant="contained" onClick={handleIndexChangeRight}>
+                    <IconButton onClick={handleIndexChangeRight}>
                         <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, mb: "20px" }}>
                             {`>`}
                         </Typography>
@@ -146,7 +160,7 @@ const VersionHighlights = (props) => {
                     <Box>
                         <Grid container spacing={2}>
                             {
-                                characters.map((char, index) => <CharacterCardLarge key={index} character={char} />)
+                                characters.map((char: CharacterData, index: number) => <CharacterCardLarge key={index} character={char} />)
                             }
                         </Grid>
                     </Box>
@@ -166,7 +180,7 @@ const VersionHighlights = (props) => {
                     <Box>
                         <Grid container spacing={2}>
                             {
-                                weapons.map((wep, index) => <WeaponCardLarge key={index} weapon={wep} viewSource="version-highlights" />)
+                                weapons.map((wep: WeaponData, index: number) => <WeaponCardLarge key={index} weapon={wep} viewSource="version-highlights" />)
                             }
                         </Grid>
                     </Box>
@@ -186,7 +200,7 @@ const VersionHighlights = (props) => {
                     <Box>
                         <Grid container spacing={2}>
                             {
-                                artifacts.map((artifact, index) => (
+                                artifacts.map((artifact: ArtifactData, index: number) => (
                                     <Box sx={{ mx: "auto", my: "10px" }} key={index}>
                                         <ArtifactCard artifact={artifact} />
                                     </Box>
@@ -209,7 +223,7 @@ const VersionHighlights = (props) => {
                     </Typography>
                     <Grid container>
                         {
-                            characterCards.map((card, index) => (
+                            characterCards.map((card: TCGCharacterCardData, index: number) => (
                                 <Box sx={{ mx: "auto", my: "10px" }} key={index}>
                                     <TCGCharacterCard key={card.name} char={card} preview />
                                 </Box>
@@ -218,7 +232,7 @@ const VersionHighlights = (props) => {
                     </Grid>
                     <Grid container>
                         {
-                            actionCards.map((card, index) => (
+                            actionCards.map((card: TCGActionCardData, index: number) => (
                                 <Box sx={{ mx: "auto", my: "10px" }} key={index}>
                                     <TCGActionCard key={card.name} card={card} preview />
                                 </Box>
@@ -231,7 +245,7 @@ const VersionHighlights = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
     return {
         characters: state.characters,
         weapons: state.weapons,
@@ -240,4 +254,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(VersionHighlights);
+export default connect(mapStateToProps)(VersionHighlights)
