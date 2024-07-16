@@ -178,11 +178,9 @@ const FarmableToday = (props: any) => {
 
 }
 
-const mapStateToProps = (state: RootState) => {
-    return {
-        characters: state.characters,
-        weapons: state.weapons
-    }
-}
+const mapStateToProps = (state: RootState) => ({
+    characters: state.characters,
+    weapons: state.weapons
+})
 
 export default connect(mapStateToProps)(FarmableToday)

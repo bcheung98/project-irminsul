@@ -244,13 +244,11 @@ const VersionHighlights = (props: any) => {
     )
 }
 
-const mapStateToProps = (state: RootState) => {
-    return {
-        characters: state.characters,
-        weapons: state.weapons,
-        artifacts: state.artifacts,
-        cards: state.cards
-    }
-}
+const mapStateToProps = (state: RootState) => ({
+    characters: state.characters,
+    weapons: state.weapons,
+    artifacts: state.artifacts,
+    cards: state.cards
+})
 
 export default connect(mapStateToProps)(VersionHighlights)
