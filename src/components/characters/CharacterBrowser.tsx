@@ -1,38 +1,46 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import { Box } from "@mui/system";
-import { Typography, Paper, InputBase, Stack, ToggleButtonGroup } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import CharacterCard from "./CharacterCard";
-import CharacterList from "./CharacterList";
-import CharacterFilters from "./filters/_CharacterFilters";
-import { filterCharacters } from "../../helpers/FilterCharacters";
-import AppsSharpIcon from '@mui/icons-material/AppsSharp';
-import ListSharpIcon from '@mui/icons-material/ListSharp';
-import { CustomToggleButton } from "../../helpers/CustomToggleButton";
-import { blue } from '@mui/material/colors';
+import * as React from "react"
+import { connect } from "react-redux"
 
-const CharacterBrowser = (props) => {
+// Component imports
+import CharacterCard from "./CharacterCard"
+import CharacterList from "./CharacterList"
+import CharacterFilters from "./filters/_CharacterFilters"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box } from "@mui/system"
+import { Typography, Paper, InputBase, Stack, ToggleButtonGroup } from "@mui/material"
+import AppsSharpIcon from "@mui/icons-material/AppsSharp"
+import ListSharpIcon from "@mui/icons-material/ListSharp"
+import { blue } from "@mui/material/colors"
+import Grid from "@mui/material/Unstable_Grid2"
 
-    const [searchValue, setSearchValue] = React.useState("");
-    const [view, setView] = React.useState("grid");
+// Helper imports
+import { filterCharacters } from "../../helpers/FilterCharacters"
+import { CustomToggleButton } from "../../helpers/CustomToggleButton"
 
-    const handleInputChange = (e) => {
-        setSearchValue(e.target.value);
+// Type imports
+import { RootState } from "../../redux/store"
+
+const CharacterBrowser = (props: any) => {
+
+    const theme = useTheme()
+
+    const [searchValue, setSearchValue] = React.useState("")
+    const handleInputChange = (event: React.BaseSyntheticEvent) => {
+        setSearchValue(event.target.value)
     }
 
-    const handleView = (event, newView) => {
+    const [view, setView] = React.useState("grid")
+    const handleView = (event: React.BaseSyntheticEvent, newView: string) => {
         if (newView !== null) {
-            setView(newView);
+            setView(newView)
         }
     }
 
-    let { characters, characterFilters } = props;
+    let { characters, characterFilters } = props
 
-    document.title = "Characters - Project Irminsul";
+    document.title = "Characters - Project Irminsul"
 
     return (
         <React.Fragment>
@@ -115,11 +123,9 @@ const CharacterBrowser = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        characters: state.characters,
-        characterFilters: state.characterFilters
-    }
-}
+const mapStateToProps = (state: RootState) => ({
+    characters: state.characters,
+    characterFilters: state.characterFilters
+})
 
-export default connect(mapStateToProps)(CharacterBrowser);
+export default connect(mapStateToProps)(CharacterBrowser)
