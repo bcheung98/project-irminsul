@@ -1,16 +1,25 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import { Box } from "@mui/system";
-import { Button, ButtonBase, Typography, CardHeader, Tabs, Select, MenuItem, AppBar } from "@mui/material";
-import { TabPanel, StyledTab } from "../helpers/CustomTabs";
-import { CustomSelect } from "../helpers/CustomSelect";
-import Grid from "@mui/material/Unstable_Grid2";
-import { MaterialDates } from "../helpers/MaterialDates";
-import { CustomTooltip } from "../helpers/CustomTooltip";
-import ErrorLoadingImage from "../helpers/ErrorLoadingImage";
+import * as React from "react"
+import { useTheme } from "@mui/material/styles"
+import { connect } from "react-redux"
 
-const IconBackground = (rarity, theme) => {
+// MUI imports
+import { Box } from "@mui/system"
+import { Button, ButtonBase, Typography, CardHeader, Tabs, Select, MenuItem, AppBar, SelectChangeEvent, Theme } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2"
+
+// Helper imports
+import { MaterialDates } from "../helpers/MaterialDates"
+import { CustomTooltip } from "../helpers/CustomTooltip"
+import { CustomSelect } from "../helpers/CustomSelect"
+import { TabPanel, StyledTab } from "../helpers/CustomTabs"
+import ErrorLoadingImage from "../helpers/ErrorLoadingImage"
+
+// Type imports
+import { RootState } from "../redux/store"
+import { CharacterData } from "../types/CharacterData"
+import { WeaponData } from "../types/WeaponData"
+
+const IconBackground = (rarity: number, theme: Theme) => {
     return {
         margin: "auto",
         ml: "2px",
@@ -24,28 +33,27 @@ const IconBackground = (rarity, theme) => {
     }
 }
 
-const FarmableToday = (props) => {
+const FarmableToday = (props: any) => {
 
-    const theme = useTheme();
+    const theme = useTheme()
 
-    const [tabValue, setTabValue] = React.useState(0);
-
-    const handleTabChange = (event, newValue) => {
-        setTabValue(newValue);
-    };
-
-    const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const d = new Date();
-    let today = weekday[d.getDay()];
-
-    const [day, setDay] = React.useState(today);
-    const handleDayChange = (event) => {
-        setDay(event.target.value);
+    const [tabValue, setTabValue] = React.useState(0)
+    const handleTabChange = (event: React.BaseSyntheticEvent, newValue: number) => {
+        setTabValue(newValue)
     }
 
-    let farmableMats = MaterialDates(day);
-    let characters = props.characters.characters.filter(char => farmableMats["talents"].includes(char.materials.talentBook));
-    let weapons = props.weapons.weapons.filter(wep => farmableMats["weapons"].includes(wep.materials.ascensionMat));
+    const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    const d = new Date()
+    let today = weekday[d.getDay()]
+
+    const [day, setDay] = React.useState(today)
+    const handleDayChange = (event: SelectChangeEvent) => {
+        setDay(event.target.value)
+    }
+
+    let farmableMats = MaterialDates(day)
+    let characters = props.characters.characters.filter((char: CharacterData) => farmableMats["talents"].includes(char.materials.talentBook))
+    let weapons = props.weapons.weapons.filter((wep: WeaponData) => farmableMats["weapons"].includes(wep.materials.ascensionMat))
 
     return (
         <Box
@@ -79,7 +87,7 @@ const FarmableToday = (props) => {
                     </Typography>
                     <Select value={day} label="Day" onChange={handleDayChange} input={<CustomSelect />}>
                         {
-                            weekday.map((day, index) => (
+                            weekday.map((day: string, index: number) => (
                                 <MenuItem key={index} value={day}>
                                     {
                                         day === today ? <Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{day} {"(Today)"}</Typography> : <Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{day}</Typography>
@@ -97,7 +105,7 @@ const FarmableToday = (props) => {
                 </Tabs>
                 <TabPanel value={tabValue} index={0}>
                     {
-                        farmableMats["talents"].map((mat, index) => (
+                        farmableMats["talents"].map((mat: string, index: number) => (
                             <Box key={index}>
                                 <CardHeader
                                     avatar={<img src={`${process.env.REACT_APP_URL}/materials/talent_mats/${mat}3.png`} alt={mat} style={{ width: "48px", marginRight: "-10px" }} />}
@@ -110,7 +118,7 @@ const FarmableToday = (props) => {
                                 />
                                 <Grid>
                                     {
-                                        characters.filter(char => farmableMats["talents"][index].includes(char.materials.talentBook)).map((char, index) => (
+                                        characters.filter((char: CharacterData) => farmableMats["talents"][index].includes(char.materials.talentBook)).map((char: CharacterData, index: number) => (
                                             <ButtonBase disableRipple href={`/project-irminsul/character/${char.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
                                                 <CustomTooltip title={char.name} arrow placement="top">
                                                     <img src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${char.name.split(" ").join("_")}_Thumb.png`)} alt={char.name} style={IconBackground(char.rarity, theme)} onError={ErrorLoadingImage} />
@@ -131,7 +139,7 @@ const FarmableToday = (props) => {
                 </TabPanel>
                 <TabPanel value={tabValue} index={1}>
                     {
-                        farmableMats["weapons"].map((mat, index) => (
+                        farmableMats["weapons"].map((mat: string, index: number) => (
                             <Box key={index}>
                                 <CardHeader
                                     avatar={<img src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${mat.split(" ").join("_")}4.png`} alt={mat} style={{ width: "48px", marginRight: "-10px" }} />}
@@ -144,10 +152,10 @@ const FarmableToday = (props) => {
                                 />
                                 <Grid>
                                     {
-                                        weapons.filter(wep => farmableMats["weapons"][index].includes(wep.materials.ascensionMat)).sort((a, b) => b.rarity - a.rarity).map((wep, index) => (
+                                        weapons.filter((wep: WeaponData) => farmableMats["weapons"][index].includes(wep.materials.ascensionMat)).sort((a: WeaponData, b: WeaponData) => b.rarity - a.rarity).map((wep: WeaponData, index: number) => (
                                             <ButtonBase disableRipple href={`/project-irminsul/weapon/${wep.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
                                                 <CustomTooltip title={wep.name} arrow placement="top">
-                                                    <img variant="square" src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${wep.name.split(" ").join("_")}.png`)} alt={wep.name} style={IconBackground(wep.rarity, theme)} onError={ErrorLoadingImage} />
+                                                    <img src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${wep.name.split(" ").join("_")}.png`)} alt={wep.name} style={IconBackground(wep.rarity, theme)} onError={ErrorLoadingImage} />
                                                 </CustomTooltip>
                                             </ButtonBase>
                                         ))
@@ -170,11 +178,11 @@ const FarmableToday = (props) => {
 
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
     return {
         characters: state.characters,
         weapons: state.weapons
     }
 }
 
-export default connect(mapStateToProps)(FarmableToday);
+export default connect(mapStateToProps)(FarmableToday)
