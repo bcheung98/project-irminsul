@@ -1,13 +1,15 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { AppBar, Box, Toolbar, Typography, Container, ButtonBase, Avatar, CardHeader } from "@mui/material";
-import { CustomTooltipLarge } from "../helpers/CustomTooltip";
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { AppBar, Box, Toolbar, Typography, Container, ButtonBase, Avatar, CardHeader } from "@mui/material"
+
+// Helper imports
+import { CustomTooltipLarge } from "../helpers/CustomTooltip"
 
 const Nav = () => {
 
-    const theme = useTheme();
+    const theme = useTheme()
 
-    const iconMarginRight = 25;
+    const iconMarginRight = 25
 
     return (
         <AppBar position="static"
@@ -89,8 +91,8 @@ const Nav = () => {
                 </Toolbar>
             </Container>
         </AppBar>
-    );
+    )
 
 }
 
-export default Nav;
+export default Nav

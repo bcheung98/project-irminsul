@@ -1,14 +1,18 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import FarmableToday from "./FarmableToday";
-import VersionHighlights from "./VersionHighlights";
+import * as React from "react"
+
+// Component imports
+import FarmableToday from "./FarmableToday"
+import VersionHighlights from "./VersionHighlights"
+
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box } from "@mui/system"
+import { Typography } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2"
 
 const Home = () => {
 
-    const theme = useTheme();
+    const theme = useTheme()
 
     return (
         <React.Fragment>
@@ -38,4 +42,4 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default Home
