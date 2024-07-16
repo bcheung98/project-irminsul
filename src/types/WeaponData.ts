@@ -1,4 +1,5 @@
 export interface WeaponData {
+    id: number,
     name: string,
     displayName?: string,
     rarity: number,
