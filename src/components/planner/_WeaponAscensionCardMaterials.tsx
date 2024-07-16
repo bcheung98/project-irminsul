@@ -1,20 +1,27 @@
-import * as React from "react";
-import { connect } from "react-redux";
-import { useTheme } from "@mui/material/styles";
-import { Box, Typography } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import { CustomTooltip } from "../../helpers/CustomTooltip";
-import { formatWeaponAscMats, formatEliteMats, formatCommonMats } from "../../helpers/TooltipText";
-import { Backgrounds } from "../../helpers/Backgrounds";
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
+import { connect } from "react-redux"
 
-const WeaponAscensionCardMaterials = (props) => {
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, Typography } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2"
 
-    const theme = useTheme();
+// Helper imports
+import { CustomTooltip } from "../../helpers/CustomTooltip"
+import { formatWeaponAscMats, formatEliteMats, formatCommonMats } from "../../helpers/TooltipText"
+import { Backgrounds } from "../../helpers/Backgrounds"
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-    let { name } = props.weapon;
-    let { ascensionMat, eliteMat, commonMat } = props.weapon.materials;
-    let costs = props.costs.find(wep => wep.name === name).costs;
+// Type imports
+import { RootState } from "../../redux/store"
+import { WeaponCosts } from "../../redux/reducers/AscensionPlannerReducer"
+
+const WeaponAscensionCardMaterials = (props: any) => {
+
+    const theme = useTheme()
+
+    let { name } = props.weapon
+    let { ascensionMat, eliteMat, commonMat } = props.weapon.materials
+    let costs = props.costs.find((wep: WeaponCosts) => wep.name === name).costs
 
     const MaterialStyle = {
         mx: "15px",
@@ -44,7 +51,9 @@ const WeaponAscensionCardMaterials = (props) => {
 
     return (
         <Grid container sx={MaterialStyle}>
-            {/* Mora */
+            {
+                /* Mora */
+                costs["mora"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title="Mora" arrow placement="top">
                         <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/Item_Mora.png`} alt="Mora" onError={ErrorLoadingImage} />
@@ -243,10 +252,8 @@ const WeaponAscensionCardMaterials = (props) => {
 
 }
 
-const mapStateToProps = (state) => {
-    return {
-        costs: state.ascensionPlanner.weaponCosts
-    }
-}
+const mapStateToProps = (state: RootState) => ({
+    costs: state.ascensionPlanner.weaponCosts
+})
 
-export default connect(mapStateToProps)(WeaponAscensionCardMaterials);
+export default connect(mapStateToProps)(WeaponAscensionCardMaterials)

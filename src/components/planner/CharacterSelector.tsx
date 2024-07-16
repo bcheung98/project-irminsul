@@ -1,45 +1,59 @@
-import * as React from "react";
-import { connect } from "react-redux";
-import { useTheme } from "@mui/material/styles";
-import { Box, Typography, Autocomplete, ClickAwayListener, CardHeader } from "@mui/material";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
-import CloseIcon from "@mui/icons-material/Close";
-import DoneIcon from "@mui/icons-material/Done";
-import { Button, PopperComponent, StyledPopper, StyledInput } from "../../helpers/CustomAutocomplete";
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
+import * as React from "react"
+import { connect } from "react-redux"
+import { useDispatch } from "react-redux"
 
-const WeaponSelector = (props) => {
+// MUI Imports
+import { useTheme } from "@mui/material/styles"
+import { Box, Typography, Autocomplete, ClickAwayListener, CardHeader, AutocompleteCloseReason } from "@mui/material"
+import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp"
+import CloseIcon from "@mui/icons-material/Close"
+import DoneIcon from "@mui/icons-material/Done"
 
-    const theme = useTheme();
+// Helper imports
+import { Button, PopperComponent, StyledPopper, StyledInput } from "../../helpers/CustomAutocomplete"
+import { GetRarityColor } from "../../helpers/RarityColors"
+import { setPlannerCharacters, updateCharacterCosts, updateTotalCosts } from "../../redux/reducers/AscensionPlannerReducer"
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-    let { weapons, setPlannerWeapons, updateTotalCosts } = props;
+// Type imports
+import { RootState } from "../../redux/store"
+import { CharacterData } from "../../types/CharacterData"
+
+const CharacterSelector = (props: any) => {
+
+    const theme = useTheme()
+
+    const dispatch = useDispatch()
+
+    let { characters } = props.characters
 
     React.useEffect(() => {
-        setPlannerWeapons(value)
-        updateTotalCosts()
+        dispatch(setPlannerCharacters(value))
+        dispatch(updateCharacterCosts(["", "", {}]))
+        dispatch(updateTotalCosts())
     })
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [value, setValue] = React.useState([]);
-    const [pendingValue, setPendingValue] = React.useState([]);
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+    const [value, setValue] = React.useState<CharacterData[]>([])
+    const [pendingValue, setPendingValue] = React.useState<CharacterData[]>([])
 
-    const handleClick = (event) => {
-        setPendingValue(value);
-        setAnchorEl(event.currentTarget);
-    };
+    const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+        setPendingValue(value)
+        setAnchorEl(e.currentTarget)
+    }
 
     const handleClose = () => {
-        setValue(pendingValue);
+        setValue(pendingValue)
         if (anchorEl) {
-            anchorEl.focus();
+            anchorEl.focus()
         }
-        setAnchorEl(null);
-    };
+        setAnchorEl(null)
+    }
 
-    const open = Boolean(anchorEl);
-    const id = open ? "lc-label" : undefined;
+    const open = Boolean(anchorEl)
+    const id = open ? "char-label" : undefined
 
-    if (weapons.length > 0) {
+    if (characters.length > 0) {
         return (
             <React.Fragment>
                 <Box
@@ -52,7 +66,7 @@ const WeaponSelector = (props) => {
                     }}
                 >
                     <Button disableRipple onClick={handleClick}>
-                        <span style={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Weapons</span>
+                        <span style={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Characters</span>
                         <ArrowForwardIosSharpIcon sx={{ transform: "rotate(90deg)", color: "white" }} />
                     </Button>
                 </Box>
@@ -62,28 +76,32 @@ const WeaponSelector = (props) => {
                             <Autocomplete
                                 open
                                 multiple
-                                onClose={(event, reason) => {
+                                onClose={(event: React.ChangeEvent<{}>, reason: AutocompleteCloseReason) => {
                                     if (reason === "escape") {
-                                        handleClose();
+                                        handleClose()
                                     }
                                 }}
                                 value={pendingValue}
                                 onChange={(event, newValue, reason) => {
                                     if (
                                         event.type === "keydown" &&
-                                        event.key === "Backspace" &&
+                                        (event as React.KeyboardEvent).key === "Backspace" &&
                                         reason === "removeOption"
                                     ) {
-                                        return;
+                                        return
                                     }
-                                    setPendingValue(newValue);
+                                    setPendingValue(newValue)
                                 }}
                                 disableCloseOnSelect
                                 PopperComponent={PopperComponent}
                                 renderTags={() => null}
-                                noOptionsText="No weapons"
+                                noOptionsText="No characters"
                                 renderOption={(props, option, { selected }) => (
-                                    <li {...props} style={{ backgroundColor: selected ? `${theme.table.body.hover}` : `${theme.paper.backgroundColor}`, borderLeft: `10px solid ${GetRarityColor(option.rarity)}` }}>
+                                    <li
+                                        {...props}
+                                        key={option.name}
+                                        style={{ backgroundColor: selected ? `${theme.table.body.hover}` : `${theme.paper.backgroundColor}`, borderLeft: `10px solid ${GetRarityColor(option.rarity)}` }}
+                                    >
                                         <Box
                                             component={DoneIcon}
                                             sx={{ width: 17, height: 17, mr: "5px", ml: "-2px" }}
@@ -93,10 +111,10 @@ const WeaponSelector = (props) => {
                                         />
                                         <CardHeader
                                             avatar={
-                                                <img alt={option.name} src={`${process.env.REACT_APP_URL}/weapons/Weapon_${option.name.split(" ").join("_")}.png`} style={{ width: "48px" }} onError={ErrorLoadingImage} />
+                                                <img alt={option.name} src={`${process.env.REACT_APP_URL}/characters/thumbs/Character_${option.name.split(" ").join("_")}_Thumb.png`} style={{ width: "48px" }} onError={ErrorLoadingImage} />
                                             }
                                             title={
-                                                <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", }}>
+                                                <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif" }}>
                                                     {option.name}
                                                 </Typography>
                                             }
@@ -111,13 +129,13 @@ const WeaponSelector = (props) => {
                                         />
                                     </li>
                                 )}
-                                options={[...weapons].sort((a, b) => {
+                                options={[...characters].sort((a, b) => {
                                     // Display the selected labels first.
-                                    let ai = value.indexOf(a);
-                                    ai = ai === -1 ? value.length + weapons.indexOf(a) : ai;
-                                    let bi = value.indexOf(b);
-                                    bi = bi === -1 ? value.length + weapons.indexOf(b) : bi;
-                                    return ai - bi;
+                                    let ai = value.indexOf(a)
+                                    ai = ai === -1 ? value.length + characters.indexOf(a) : ai
+                                    let bi = value.indexOf(b)
+                                    bi = bi === -1 ? value.length + characters.indexOf(b) : bi
+                                    return ai - bi
                                 })}
                                 getOptionLabel={(option) => option.name}
                                 renderInput={(params) => (
@@ -135,38 +153,16 @@ const WeaponSelector = (props) => {
             </React.Fragment>
         )
     }
-
-}
-
-const mapStateToProps = (state) => {
-    return {
-        weapons: state.weapons.weapons,
+    else {
+        return (
+            <></>
+        )
     }
+
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setPlannerWeapons: (payload) => dispatch({ type: "SET_PLANNER_WEAPONS", payload }),
-        updateTotalCosts: (payload) => dispatch({ type: "UPDATE_TOTAL_COSTS", payload })
-    }
-}
+const mapStateToProps = (state: RootState) => ({
+    characters: state.characters
+})
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(WeaponSelector);
-
-const GetRarityColor = (rarity) => {
-    switch (rarity) {
-        case 5:
-            return "rgb(255, 208, 112)";
-        case 4:
-            return "rgb(175, 134, 255)";
-        case 3:
-            return "rgb(105, 157, 237)";
-        case 2:
-            return "rgb(104, 211, 145)";
-        case 1:
-            return "gray";
-        default:
-            return "gray";
-    }
-}
+export default connect(mapStateToProps)(CharacterSelector)
