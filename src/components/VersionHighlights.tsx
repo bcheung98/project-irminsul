@@ -22,7 +22,7 @@ import { RootState } from "../redux/store"
 import { CharacterData } from "../types/CharacterData"
 import { WeaponData } from "../types/WeaponData"
 import { ArtifactData } from "../types/ArtifactData"
-import { TCGCharacterCardData, TCGActionCardData } from "../types/TCGData"
+import { TCGCardData } from "../types/TCGData"
 
 const VersionHighlights = (props: any) => {
 
@@ -83,8 +83,8 @@ const VersionHighlights = (props: any) => {
     let artifacts = props.artifacts.artifacts.filter((artifact: ArtifactData) => artifact.release.version === version)
     let characterCards = []
     let actionCards = []
-    if (props.cards.cards[0] !== undefined) { characterCards = props.cards.cards[0].cards.filter((card: TCGCharacterCardData) => card.release.version === version).sort((a: TCGCharacterCardData, b: TCGCharacterCardData) => a.name.localeCompare(b.name)) }
-    if (props.cards.cards[1] !== undefined) { actionCards = props.cards.cards[1].cards.filter((card: TCGActionCardData) => card.release.version === version).sort((a: TCGActionCardData, b: TCGActionCardData) => a.subType.localeCompare(b.subType) || a.name.localeCompare(b.name)) }
+    if (props.cards.cards[0] !== undefined) { characterCards = props.cards.cards[0].cards.filter((card: TCGCardData) => card.release.version === version).sort((a: TCGCardData, b: TCGCardData) => a.name.localeCompare(b.name)) }
+    if (props.cards.cards[1] !== undefined) { actionCards = props.cards.cards[1].cards.filter((card: TCGCardData) => card.release.version === version).sort((a: TCGCardData, b: TCGCardData) => a.subType.localeCompare(b.subType) || a.name.localeCompare(b.name)) }
     let newCards = characterCards.length > 0 || actionCards.length > 0
 
     return (
@@ -222,7 +222,7 @@ const VersionHighlights = (props: any) => {
                     </Typography>
                     <Grid container>
                         {
-                            characterCards.map((card: TCGCharacterCardData, index: number) => (
+                            characterCards.map((card: TCGCardData, index: number) => (
                                 <Box sx={{ mx: "auto", my: "10px" }} key={index}>
                                     <TCGCharacterCard key={card.name} char={card} preview />
                                 </Box>
@@ -231,7 +231,7 @@ const VersionHighlights = (props: any) => {
                     </Grid>
                     <Grid container>
                         {
-                            actionCards.map((card: TCGActionCardData, index: number) => (
+                            actionCards.map((card: TCGCardData, index: number) => (
                                 <Box sx={{ mx: "auto", my: "10px" }} key={index}>
                                     <TCGActionCard key={card.name} card={card} preview />
                                 </Box>

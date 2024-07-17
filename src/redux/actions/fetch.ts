@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { CharacterData } from "../../types/CharacterData"
 import { WeaponData } from "../../types/WeaponData"
-import { TCGCharacterCardData, TCGActionCardData } from "../../types/TCGData"
+import { TCGCardData } from "../../types/TCGData"
 import { ArtifactData } from "../../types/ArtifactData"
 import { BannerData, ChronicledWishBannerData } from "../../types/BannerData"
 
@@ -31,7 +31,7 @@ export const fetchWeapons = createAsyncThunk("GET/weapons", async (): Promise<[W
     return await response.json()
 })
 
-export const fetchCards = createAsyncThunk("GET/cards", async (): Promise<[TCGCharacterCardData] | [TCGActionCardData]> => {
+export const fetchCards = createAsyncThunk("GET/cards", async (): Promise<[TCGCardData]> => {
     const response = await fetch(CardsURL)
     return await response.json()
 })
