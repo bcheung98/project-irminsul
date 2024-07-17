@@ -1,3 +1,8 @@
+import { TCGTalentsData } from "./TCGTalentsData"
+import { TCGKeywordsData } from "./TCGKeywordsData"
+import { TCGSplashData } from "./TCGSplashData"
+import { VersionData } from "./VersionData"
+
 export type TCGCharacterCardData = {
     name: string,
     displayName?: string,
@@ -7,40 +12,10 @@ export type TCGCharacterCardData = {
     factions: string[],
     arkhe?: string,
     hp: number,
-    talents: {
-        attack: {
-            name: string,
-            cost: string,
-            description: string
-        },
-        skill: {
-            name: string,
-            cost: string,
-            description: string
-        },
-        burst: {
-            name: string,
-            cost: string,
-            energy: number,
-            description: string
-        },
-        passive?: {
-            name: string,
-            description: string
-        }
-    },
-    keywords: {
-        tag: string,
-        name: string,
-        description: string
-    }[],
-    splash: {
-        title: string,
-        description: string
-    },
-    release: {
-        version: string
-    }
+    talents: TCGTalentsData,
+    keywords: TCGKeywordsData[],
+    splash: TCGSplashData,
+    release: VersionData
 }
 
 export type TCGActionCardData = {
@@ -52,17 +27,28 @@ export type TCGActionCardData = {
     character?: string,
     cost: string,
     description: string,
-    keywords: {
-        tag: string,
-        type?: string,
-        name: string,
-        description: string
-    }[],
-    splash: {
-        title: string,
-        description: string
-    },
-    release: {
-        version: string
-    }
+    keywords: TCGKeywordsData[],
+    splash: TCGSplashData,
+    release: VersionData
+}
+
+export type TCGCardData = {
+    name: string,
+    displayName?: string,
+    fullName?: string,
+    element: string,
+    weapon: string,
+    factions: string[],
+    arkhe?: string,
+    hp: number,
+    talents: TCGTalentsData,
+    keywords: TCGKeywordsData[],
+    splash: TCGSplashData,
+    release: VersionData
+    type: string,
+    subType: string,
+    combatAction?: boolean,
+    character?: string,
+    cost: string,
+    description: string,
 }

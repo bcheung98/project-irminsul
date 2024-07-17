@@ -1,3 +1,11 @@
+import { CharacterTalentsData } from "./CharacterTalentsData"
+import { CharacterConstellationData } from "./CharacterConstellationData"
+import { CharacterStatsData } from "./CharacterStatsData"
+import { MaterialsData } from "./MaterialsData"
+import { CharacterOutfitData } from "./CharacterOutfitData"
+import { CharacterVAData } from "./CharacterVAData"
+import { VersionData } from "./VersionData"
+
 export type CharacterData = {
     id: number,
     name: string,
@@ -6,95 +14,15 @@ export type CharacterData = {
     rarity: number,
     element: string,
     weapon: string,
-    talents: {
-        attack: {
-            name: string,
-            description: string,
-            scaling: string[][],
-        },
-        skill: {
-            name: string,
-            description: string,
-            scaling: string[][],
-            splash: string
-        },
-        burst: {
-            name: string,
-            description: string,
-            scaling: string[][],
-            splash: string
-        },
-        a1passive: {
-            name: string,
-            description: string
-        },
-        a4passive: {
-            name: string,
-            description: string
-        },
-        utilpassive: {
-            name: string,
-            description: string
-        }
-    },
-    constellation: {
-        name: string,
-        c1: {
-            name: string,
-            description: string
-        },
-        c2: {
-            name: string,
-            description: string
-        },
-        c3: {
-            name: string,
-            description: string
-        },
-        c4: {
-            name: string,
-            description: string
-        },
-        c5: {
-            name: string,
-            description: string
-        },
-        c6: {
-            name: string,
-            description: string
-        }
-    },
-    stats: {
-        ascensionStat: string,
-        hp: number[],
-        atk: number[],
-        def: number[]
-    },
-    materials: {
-        talentBook: string,
-        bossMat: string,
-        localMat: string,
-        commonMat: string,
-        weeklyBossMat: string
-    },
+    talents: CharacterTalentsData,
+    constellation: CharacterConstellationData,
+    stats: CharacterStatsData,
+    materials: MaterialsData,
     description: string,
     birthday: string,
     gender: string,
     nation: string,
-    outfits: [
-        {
-            name: string,
-            displayName?: string,
-            rarity: number,
-            description: string
-        }
-    ],
-    voiceActors: {
-        en: string,
-        jp: string
-    },
-    release: {
-        date: string,
-        version: string
-    }
+    outfits: CharacterOutfitData[],
+    voiceActors: CharacterVAData,
+    release: VersionData
 }

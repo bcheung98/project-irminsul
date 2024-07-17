@@ -1,25 +1,15 @@
+import { MaterialsData } from "./MaterialsData"
+import { WeaponStatsData } from "./WeaponStatsData"
+import { VersionData } from "./VersionData"
+
 export type WeaponData = {
     id: number,
     name: string,
     displayName?: string,
     rarity: number,
     type: string,
-    stats: {
-        atk: string,
-        subStat: string,
-        passive: {
-            name: string,
-            description: string,
-            scaling: string[][]
-        }
-    },
-    materials: {
-        ascensionMat: string,
-        eliteMat: string,
-        commonMat: string
-    },
+    stats: WeaponStatsData,
+    materials: MaterialsData,
     description: string,
-    release: {
-        version: string
-    }
+    release: VersionData
 }
