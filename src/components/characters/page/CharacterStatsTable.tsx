@@ -8,7 +8,7 @@ import { CharacterAscensionStatScalings } from "../../../helpers/CharacterAscens
 
 // Type imports
 import { CharacterData } from "../../../types/CharacterData"
-import { CharacterStatsData } from "../../../types/CharacterStatsData"
+import { CharacterStatsDataRow } from "../../../types/CharacterStatsDataRow"
 
 const CharacterStatsTable = (props: any) => {
 
@@ -21,10 +21,10 @@ const CharacterStatsTable = (props: any) => {
     const characterStatRows = levels.map((level: string, index: number) => {
         let data
         if (!["CRIT Rate", "CRIT DMG"].includes(stats.ascensionStat)) {
-            data = { level: level, hp: stats.hp[index], atk: stats.atk[index], def: stats.def[index], critRate: specialStats.critRate[index], critDMG: specialStats.critDMG[index], special: specialStats[stats.ascensionStat as keyof {}][index] } as CharacterStatsData
+            data = { level: level, hp: stats.hp[index], atk: stats.atk[index], def: stats.def[index], critRate: specialStats.critRate[index], critDMG: specialStats.critDMG[index], special: specialStats[stats.ascensionStat as keyof {}][index] } as CharacterStatsDataRow
         }
         else {
-            data = { level: level, hp: stats.hp[index], atk: stats.atk[index], def: stats.def[index], critRate: specialStats.critRate[index], critDMG: specialStats.critDMG[index] } as CharacterStatsData
+            data = { level: level, hp: stats.hp[index], atk: stats.atk[index], def: stats.def[index], critRate: specialStats.critRate[index], critDMG: specialStats.critDMG[index] } as CharacterStatsDataRow
         }
         return data
     })
@@ -51,7 +51,7 @@ const CharacterStatsTable = (props: any) => {
                 </TableHead>
                 <TableBody>
                     {
-                        characterStatRows.map((row: CharacterStatsData) => (
+                        characterStatRows.map((row: CharacterStatsDataRow) => (
                             <StyledTableRows key={row.level}>
                                 <StyledTableCell>{row.level}</StyledTableCell>
                                 <StyledTableCell>{Number(row.hp).toLocaleString()}</StyledTableCell>
