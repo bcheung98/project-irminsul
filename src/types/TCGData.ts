@@ -1,4 +1,4 @@
-export interface TCGCharacterCardData {
+export type TCGCharacterCardData = {
     name: string,
     displayName?: string,
     fullName?: string,
@@ -43,7 +43,7 @@ export interface TCGCharacterCardData {
     }
 }
 
-export interface TCGActionCardData {
+export type TCGActionCardData = {
     name: string,
     displayName?: string,
     type: string,

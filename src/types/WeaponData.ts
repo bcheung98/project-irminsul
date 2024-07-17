@@ -1,4 +1,4 @@
-export interface WeaponData {
+export type WeaponData = {
     id: number,
     name: string,
     displayName?: string,

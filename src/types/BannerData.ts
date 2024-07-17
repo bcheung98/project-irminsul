@@ -1,4 +1,4 @@
-export interface BannerData {
+export type BannerData = {
     version: string,
     phase1: {
         startDate: string,
@@ -17,7 +17,7 @@ export interface BannerData {
     }
 }
 
-export interface ChronicledWishBannerData {
+export type ChronicledWishBannerData = {
     version: string,
     phase1: {
         startDate: string,

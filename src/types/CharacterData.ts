@@ -1,4 +1,4 @@
-export interface CharacterData {
+export type CharacterData = {
     id: number,
     name: string,
     fullName?: string,
