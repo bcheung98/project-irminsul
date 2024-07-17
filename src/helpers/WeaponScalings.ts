@@ -1,3 +1,5 @@
+import { WeaponData } from "../types/WeaponData"
+
 export const baseATKScaling = {
     "t-49": [49, 145, 176, 286, 317, 374, 406, 464, 495, 555, 586, 648, 679, 741],
     "t-48": [48, 133, 164, 261, 292, 341, 373, 423, 455, 506, 537, 590, 621, 674],
@@ -15,7 +17,13 @@ export const baseATKScaling = {
     "t-23": [23, 56, 68, 102, 113, 130, 141, 158, 169, 185]
 }
 
-export const subStatScaling = {
+type SubStatScaling = {
+    [level: string]: {
+        [key in WeaponData["stats"]["subStat"]]?: string[] // Make the keys optional
+    }
+}
+
+export const subStatScaling: SubStatScaling = {
     "t-49": {
         "HP": [],
         "ATK": ["3.6%", "6.4%", "6.4%", "9.3%", "9.3%", "10.7%", "10.7%", "12.2%", "12.2%", "13.6%", "13.6%", "15.1%", "15.1%", "16.5%"],

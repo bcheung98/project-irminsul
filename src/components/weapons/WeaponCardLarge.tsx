@@ -1,16 +1,18 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Typography, ButtonBase, Box, Card, CardContent } from "@mui/material";
-import { CustomTooltip } from "../../helpers/CustomTooltip";
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Typography, ButtonBase, Box, Card, CardContent } from "@mui/material"
 
-const WeaponCardLarge = (props) => {
+// Helper imports
+import { CustomTooltip } from "../../helpers/CustomTooltip"
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-    const theme = useTheme();
+function WeaponCardLarge(props: any) {
 
-    let { name, type, rarity } = props.weapon;
+    const theme = useTheme()
 
-    const width = "200px";
+    let { name, type, rarity } = props.weapon
+
+    const width = "200px"
 
     const smallIcon = {
         width: "30px",
@@ -98,4 +100,4 @@ const WeaponCardLarge = (props) => {
 
 }
 
-export default WeaponCardLarge;
+export default WeaponCardLarge

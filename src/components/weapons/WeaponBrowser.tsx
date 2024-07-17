@@ -1,38 +1,45 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import { Typography, Paper, InputBase, Stack, ToggleButtonGroup } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import { Box } from "@mui/system";
-import WeaponList from "./WeaponList";
-import WeaponFilters from "./filters/_WeaponFilters";
-import WeaponCardLarge from "./WeaponCardLarge";
-import { filterWeapons } from "../../helpers/FilterWeapons";
-import AppsSharpIcon from '@mui/icons-material/AppsSharp';
-import ListSharpIcon from '@mui/icons-material/ListSharp';
-import { CustomToggleButton } from "../../helpers/CustomToggleButton";
-import { blue } from '@mui/material/colors';
+import * as React from "react"
+import { connect } from "react-redux"
 
-const WeaponBrowser = (props) => {
+// Component imports
+import WeaponList from "./WeaponList"
+import WeaponFilters from "./filters/_WeaponFilters"
+import WeaponCardLarge from "./WeaponCardLarge"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, Typography, Paper, InputBase, Stack, ToggleButtonGroup } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2"
+import AppsSharpIcon from "@mui/icons-material/AppsSharp"
+import ListSharpIcon from "@mui/icons-material/ListSharp"
+import { blue } from "@mui/material/colors"
 
-    const [searchValue, setSearchValue] = React.useState("");
-    const [view, setView] = React.useState("grid");
+// Helper imports
+import { filterWeapons } from "../../helpers/FilterWeapons"
+import { CustomToggleButton } from "../../helpers/CustomToggleButton"
 
-    const handleInputChange = (e) => {
-        setSearchValue(e.target.value);
+// Type imports
+import { RootState } from "../../redux/store"
+
+function WeaponBrowser(props: any) {
+
+    const theme = useTheme()
+
+    const [searchValue, setSearchValue] = React.useState("")
+    const handleInputChange = (event: React.BaseSyntheticEvent) => {
+        setSearchValue(event.target.value)
     }
 
-    const handleView = (event, newView) => {
+    const [view, setView] = React.useState("grid")
+    const handleView = (event: React.BaseSyntheticEvent, newView: string) => {
         if (newView !== null) {
-            setView(newView);
+            setView(newView)
         }
     }
 
-    let { weapons, weaponFilters } = props;
+    let { weapons, weaponFilters } = props
 
-    document.title = "Weapons - Project Irminsul";
+    document.title = "Weapons - Project Irminsul"
 
     return (
         <React.Fragment>
@@ -116,11 +123,9 @@ const WeaponBrowser = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        weapons: state.weapons,
-        weaponFilters: state.weaponFilters
-    }
-}
+const mapStateToProps = (state: RootState) => ({
+    weapons: state.weapons,
+    weaponFilters: state.weaponFilters
+})
 
-export default connect(mapStateToProps)(WeaponBrowser);
+export default connect(mapStateToProps)(WeaponBrowser)
