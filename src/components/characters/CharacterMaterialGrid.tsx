@@ -1,20 +1,22 @@
-import React from "react";
-import { useTheme } from "@mui/material/styles";
-import { formatTalents, formatCommonMats, formatBossMats, formatWeeklyBossMats, formatGemstone } from "../../helpers/TooltipText";
-import Grid from "@mui/material/Unstable_Grid2";
-import { CustomTooltip } from "../../helpers/CustomTooltip";
-import { Box } from "@mui/material";
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2"
 
-const CharacterMaterialGrid = (props) => {
+// Helper imports
+import { CustomTooltip } from "../../helpers/CustomTooltip"
+import { formatTalents, formatCommonMats, formatBossMats, formatWeeklyBossMats, formatGemstone } from "../../helpers/TooltipText"
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-    const theme = useTheme();
+const CharacterMaterialGrid = (props: any) => {
 
-    let { element } = props.character;
-    let { talentBook, bossMat, localMat, commonMat, weeklyBossMat } = props.character.materials;
+    const theme = useTheme()
+
+    let { element } = props.character
+    let { talentBook, bossMat, localMat, commonMat, weeklyBossMat } = props.character.materials
 
     const materialImage = {
-        height: props.size,
+        height: "48px",
         border: `1px solid ${theme.border.color}`,
         borderRadius: "5px",
         backgroundColor: `${theme.materialImage.backgroundColor}`,
@@ -58,8 +60,4 @@ const CharacterMaterialGrid = (props) => {
     )
 }
 
-CharacterMaterialGrid.defaultProps = {
-    size: "48px",
-}
-
-export default CharacterMaterialGrid;
+export default CharacterMaterialGrid

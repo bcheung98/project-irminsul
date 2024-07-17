@@ -1,23 +1,27 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Box, Table, TableBody, TableContainer, Toolbar, Typography, Paper } from "@mui/material";
-import { EnhancedTableHead, getComparator, stableSort } from "../../helpers/CustomSortTable";
-import CharacterRow from "./CharacterRow";
+import * as React from "react"
+import { useTheme } from "@mui/material/styles"
+import { Box, Table, TableBody, TableContainer, Toolbar, Typography, Paper } from "@mui/material"
+import { EnhancedTableHead, getComparator, stableSort } from "../../helpers/CustomSortTable"
+import CharacterRow from "./CharacterRow"
 
-const CharacterList = (props) => {
+// Type imports
+import { CharacterData } from "../../types/CharacterData"
+import { CharacterRowData } from "../../types/CharacterRowData"
 
-    const theme = useTheme();
+const CharacterList = (props: any) => {
 
-    const [order, setOrder] = React.useState("asc");
-    const [orderBy, setOrderBy] = React.useState("name");
+    const theme = useTheme()
 
-    const handleRequestSort = (event, property) => {
-        const isAsc = orderBy === property && order === "asc";
-        setOrder(isAsc ? "desc" : "asc");
-        setOrderBy(property);
-    };
+    const [order, setOrder] = React.useState("asc")
+    const [orderBy, setOrderBy] = React.useState("name")
 
-    const rows = props.characters.map(char => createData(char.name, char.rarity, char.element, char.weapon, char.nation, char.gender, char.release.date, char.release.version, char.id));
+    const handleRequestSort = (event: React.BaseSyntheticEvent, property: "asc" | "desc") => {
+        const isAsc = orderBy === property && order === "asc"
+        setOrder(isAsc ? "desc" : "asc")
+        setOrderBy(property)
+    }
+
+    const rows = props.characters.map((char: CharacterData) => char as CharacterRowData)
 
     return (
         <Box sx={{ width: "100%" }}>
@@ -51,12 +55,14 @@ const CharacterList = (props) => {
                             headCells={headCells}
                         />
                         <TableBody>
-                            {stableSort(rows, getComparator(order, orderBy))
-                                .map((row, index) => {
-                                    return (
-                                        <CharacterRow key={index} row={row} characters={props.characters} />
-                                    )
-                                })}
+                            {
+                                stableSort(rows, getComparator(order, orderBy))
+                                    .map((row: CharacterRowData, index: number) => {
+                                        return (
+                                            <CharacterRow key={index} row={row} characters={props.characters} />
+                                        )
+                                    })
+                            }
                         </TableBody>
                     </Table>
                 </TableContainer>
@@ -66,11 +72,7 @@ const CharacterList = (props) => {
 
 }
 
-export default CharacterList;
-
-const createData = (name, rarity, element, weapon, nation, gender, releaseDate, version, id) => {
-    return { name, rarity, element, weapon, nation, gender, releaseDate, version, id };
-}
+export default CharacterList
 
 const headCells = [
     { id: "name", label: "Name" },
@@ -80,4 +82,4 @@ const headCells = [
     { id: "nation", label: "Nation" },
     { id: "gender", label: "Gender" },
     { id: "id", label: "Release Date" }
-];
+]

@@ -1,16 +1,21 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Typography, Card, CardContent, ButtonBase, Box } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import CharacterMaterialGrid from "./CharacterMaterialGrid";
-import { CustomTooltip } from "../../helpers/CustomTooltip";
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
+// Component imports
+import CharacterMaterialGrid from "./CharacterMaterialGrid"
 
-const CharacterCard = (props) => {
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Typography, Card, CardContent, ButtonBase, Box } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2"
 
-    const theme = useTheme();
+// Helper imports
+import { CustomTooltip } from "../../helpers/CustomTooltip"
+import { GetRarityColor } from "../../helpers/RarityColors"
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-    let { name, rarity, element, weapon } = props.character;
+const CharacterCard = (props: any) => {
+
+    const theme = useTheme()
+
+    let { name, rarity, element, weapon } = props.character
 
     const characterIconBackground = {
         margin: "auto",
@@ -30,10 +35,10 @@ const CharacterCard = (props) => {
     }
 
     // Old Icon: 
-    // const characterIcon = `${process.env.REACT_APP_URL}/characters/thumbs/Character_${name.split(" ").join("_")}_Thumb.png`;
+    // const characterIcon = `${process.env.REACT_APP_URL}/characters/thumbs/Character_${name.split(" ").join("_")}_Thumb.png`
 
     // New Icon
-    const characterIcon = `${process.env.REACT_APP_URL}/characters/avatars/Avatar_${name.split(" ").join("_")}.png`;
+    const characterIcon = `${process.env.REACT_APP_URL}/characters/avatars/Avatar_${name.split(" ").join("_")}.png`
 
     return (
         <Card variant="outlined"
@@ -102,16 +107,4 @@ const CharacterCard = (props) => {
 
 }
 
-export default CharacterCard;
-
-const GetRarityColor = (rarity) => {
-    if (rarity === 5) {
-        return "rgb(255, 208, 112)";
-    }
-    if (rarity === 4) {
-        return "rgb(175, 134, 255)";
-    }
-    if (rarity === 3) {
-        return "rgb(105, 157, 237)";
-    }
-}
+export default CharacterCard

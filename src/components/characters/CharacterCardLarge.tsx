@@ -1,16 +1,17 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Typography, Card, CardContent, ButtonBase, Box, Avatar } from "@mui/material";
-import { CustomTooltip } from "../../helpers/CustomTooltip";
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
+import * as React from "react"
+import { useTheme } from "@mui/material/styles"
+import { Typography, Card, CardContent, ButtonBase, Box, Avatar } from "@mui/material"
+import { CustomTooltip } from "../../helpers/CustomTooltip"
+import { GetRarityColor, GetBackgroundColor } from "../../helpers/RarityColors"
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-const CharacterCardLarge = (props) => {
+const CharacterCardLarge = (props: any) => {
 
-    const theme = useTheme();
+    const theme = useTheme()
 
-    let { name, rarity, element, weapon } = props.character;
+    let { name, rarity, element, weapon } = props.character
 
-    const width = "200px";
+    const width = "200px"
 
     return (
         <Card
@@ -98,28 +99,4 @@ const CharacterCardLarge = (props) => {
 
 }
 
-export default CharacterCardLarge;
-
-const GetRarityColor = (rarity) => {
-    if (rarity === 5) {
-        return "rgb(255, 208, 112)";
-    }
-    if (rarity === 4) {
-        return "rgb(175, 134, 255)";
-    }
-    if (rarity === 3) {
-        return "rgb(105, 157, 237)";
-    }
-}
-
-const GetBackgroundColor = (rarity, opacity = 0.45) => {
-    if (rarity === 5) {
-        return `rgba(255, 199, 129, ${opacity})`;
-    }
-    if (rarity === 4) {
-        return `rgba(193, 153, 253, ${opacity})`;
-    }
-    if (rarity === 3) {
-        return `rgba(115, 176, 244, ${opacity})`;
-    }
-}
+export default CharacterCardLarge
