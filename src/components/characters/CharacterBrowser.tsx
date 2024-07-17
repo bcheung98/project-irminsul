@@ -8,12 +8,11 @@ import CharacterFilters from "./filters/_CharacterFilters"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { Box } from "@mui/system"
-import { Typography, Paper, InputBase, Stack, ToggleButtonGroup } from "@mui/material"
+import { Box, Typography, Paper, InputBase, Stack, ToggleButtonGroup } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2"
 import AppsSharpIcon from "@mui/icons-material/AppsSharp"
 import ListSharpIcon from "@mui/icons-material/ListSharp"
 import { blue } from "@mui/material/colors"
-import Grid from "@mui/material/Unstable_Grid2"
 
 // Helper imports
 import { filterCharacters } from "../../helpers/FilterCharacters"
