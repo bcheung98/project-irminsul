@@ -1,18 +1,22 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import parse from "html-react-parser";
-import { Typography, Box, Avatar, CardHeader, Paper, AppBar } from "@mui/material";
-import { Accordion, AccordionDetails, AccordionSummary } from "../../../helpers/CustomAccordion";
-import { FormatTalentKey } from "../../../helpers/FormatTalentKey";
-import { ElementalBorderColor } from "../../../helpers/ElementalColors";
-import CharacterTalentScalingTable from "./CharacterTalentScalingTable";
-import CharacterTalentLevelling from "./CharacterTalentLevelling";
+import * as React from "react"
+import parse from "html-react-parser"
 
-const CharacterTalentDisplay = (props) => {
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Typography, Box, Avatar, CardHeader, Paper, AppBar } from "@mui/material"
+import { Accordion, AccordionDetails, AccordionSummary } from "../../../helpers/CustomAccordion"
 
-    const theme = useTheme();
+// Helper imports
+import { FormatTalentKey } from "../../../helpers/FormatTalentKey"
+import { ElementalBorderColor } from "../../../helpers/ElementalColors"
+import CharacterTalentScalingTable from "./CharacterTalentScalingTable"
+import CharacterTalentLevelling from "./CharacterTalentLevelling"
 
-    let { name, element, weapon, talents } = props.character;
+const CharacterTalentDisplay = (props: any) => {
+
+    const theme = useTheme()
+
+    let { name, element, weapon, talents } = props.character
 
     return (
         <Box
@@ -135,4 +139,4 @@ const CharacterTalentDisplay = (props) => {
     )
 }
 
-export default CharacterTalentDisplay;
+export default CharacterTalentDisplay

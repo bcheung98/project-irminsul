@@ -1,47 +1,57 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import { Typography, Tabs, Box, Dialog, Avatar, AppBar } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import { useParams } from "react-router-dom";
-import { CustomTooltip } from "../../../helpers/CustomTooltip";
-import { TabPanel, StyledTab } from "../../../helpers/CustomTabs";
-import CharacterStatsTable from "./CharacterStatsTable";
-import CharacterAscension from "./CharacterAscension";
-import CharacterTalentDisplay from "./CharacterTalentDisplay";
-import CharacterConstellationDisplay from "./CharacterConstellationDisplay";
-import CharacterOutfitDisplay from "./CharacterOutfitDisplay";
-import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+import * as React from "react"
+import { connect } from "react-redux"
+import { useParams } from "react-router-dom"
 
-const CharacterPage = (props) => {
+// Component imports
+import CharacterStatsTable from "./CharacterStatsTable"
+import CharacterAscension from "./CharacterAscension"
+import CharacterTalentDisplay from "./CharacterTalentDisplay"
+import CharacterConstellationDisplay from "./CharacterConstellationDisplay"
+import CharacterOutfitDisplay from "./CharacterOutfitDisplay"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Typography, Tabs, Box, Dialog, Avatar, AppBar } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2"
 
-    let { char_name } = useParams();
-    let { characters } = props;
-    let character = characters.characters.find(char => char.name.split(" ").join("_").toLowerCase() === char_name);
+// Helper imports
+import { CustomTooltip } from "../../../helpers/CustomTooltip"
+import { TabPanel, StyledTab } from "../../../helpers/CustomTabs"
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
-    const [tabValue, setTabValue] = React.useState(0);
-    const handleTabChange = (event, newValue) => {
-        setTabValue(newValue);
-    };
+// Type imports
+import { RootState } from "../../../redux/store"
+import { CharacterData } from "../../../types/CharacterData"
 
-    const [open, setOpen] = React.useState(false);
+const CharacterPage = (props: any) => {
+
+    const theme = useTheme()
+
+    let { char_name } = useParams<{ char_name: string }>()
+    let { characters } = props
+    let character = characters.characters.find((char: CharacterData) => char.name.split(" ").join("_").toLowerCase() === char_name)
+
+    const [tabValue, setTabValue] = React.useState(0)
+    const handleTabChange = (event: React.BaseSyntheticEvent, newValue: number) => {
+        setTabValue(newValue)
+    }
+
+    const [open, setOpen] = React.useState(false)
     const handleClickOpen = () => {
-        setOpen(true);
-    };
+        setOpen(true)
+    }
     const handleClose = () => {
-        setOpen(false);
-    };
+        setOpen(false)
+    }
 
     if (character !== undefined) {
 
-        let { name, title, rarity, element, weapon, constellation, description, birthday, nation, voiceActors, release } = character;
+        let { name, title, rarity, element, weapon, constellation, description, birthday, nation, voiceActors, release } = character
 
         let visionIcon = nation === "Fontaine" ? `${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}_${character.arkhe}.png` : `${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}.png`
 
-        if (character.fullname) document.title = `${character.fullname} - Project Irminsul`;
-        else document.title = `${name} - Project Irminsul`;
+        if (character.fullname) document.title = `${character.fullname} - Project Irminsul`
+        else document.title = `${name} - Project Irminsul`
 
         return (
             <React.Fragment>
@@ -225,10 +235,8 @@ const CharacterPage = (props) => {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        characters: state.characters
-    }
-}
+const mapStateToProps = (state: RootState) => ({
+    characters: state.characters
+})
 
-export default connect(mapStateToProps)(CharacterPage);
+export default connect(mapStateToProps)(CharacterPage)

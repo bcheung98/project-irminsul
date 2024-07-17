@@ -1,23 +1,30 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import parse from "html-react-parser";
-import { Typography, Box, Tabs } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import { StyledTab, TabPanel } from "../../../helpers/CustomTabs";
-import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+import * as React from "react"
+import parse from "html-react-parser"
 
-const CharacterOutfitDisplay = (props) => {
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Typography, Box, Tabs } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2"
 
-    const theme = useTheme();
+// Helper imports
+import { StyledTab, TabPanel } from "../../../helpers/CustomTabs"
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
-    let { name, outfits } = props.character;
+// Type imports
+import { CharacterData } from "../../../types/CharacterData"
 
-    const [tabValue, setTabValue] = React.useState(0);
-    const handleChangeTab = (event, newValue) => {
-        setTabValue(newValue);
+const CharacterOutfitDisplay = (props: any) => {
+
+    const theme = useTheme()
+
+    let { name, outfits } = props.character as CharacterData
+
+    const [tabValue, setTabValue] = React.useState(0)
+    const handleChangeTab = (event: React.BaseSyntheticEvent, newValue: number) => {
+        setTabValue(newValue)
     }
 
-    const OutfitIcon = (rarity) => {
+    const OutfitIcon = (rarity: number) => {
         return {
             width: "90px",
             border: `2px solid ${theme.border.color}`,
@@ -113,4 +120,4 @@ const CharacterOutfitDisplay = (props) => {
     )
 }
 
-export default CharacterOutfitDisplay;
+export default CharacterOutfitDisplay

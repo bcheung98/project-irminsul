@@ -1,19 +1,21 @@
-import React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Box, Typography } from "@mui/material";
-import { CustomTooltip } from "../../../helpers/CustomTooltip";
-import { formatCommonMats, formatTalents, formatWeeklyBossMats } from "../../../helpers/TooltipText";
-import { Backgrounds } from "../../../helpers/Backgrounds";
-import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, Typography } from "@mui/material"
 
-const CharacterTalentLevellingMaterials = (props) => {
+// Helper imports
+import { CustomTooltip } from "../../../helpers/CustomTooltip"
+import { formatCommonMats, formatTalents, formatWeeklyBossMats } from "../../../helpers/TooltipText"
+import { Backgrounds } from "../../../helpers/Backgrounds"
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
-    const theme = useTheme();
+const CharacterTalentLevellingMaterials = (props: any) => {
 
-    let { values } = props;
-    let { commonMat, talentBook, weeklyBossMat } = props.materials;
-    let start = values[0];
-    let stop = values[1];
+    const theme = useTheme()
+
+    let { values } = props
+    let { commonMat, talentBook, weeklyBossMat } = props.materials
+    let start = values[0]
+    let stop = values[1]
 
     const MaterialStyle = {
         mx: "15px",
@@ -40,21 +42,23 @@ const CharacterTalentLevellingMaterials = (props) => {
         fontSize: "12px"
     }
 
-    let costs = Materials.map((material, index) => (Materials[index].slice(start, stop).reduce((a, c) => a + c).toLocaleString()));
+    let costs = Materials.map((material, index) => (Materials[index].slice(start, stop).reduce((a, c) => a + c).toLocaleString()))
 
     return (
         <Box sx={MaterialStyle}>
-            {/* Mora */}
-            <Box sx={MaterialImageRootBig}>
-                <CustomTooltip title="Mora" arrow placement="top">
-                    <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/Item_Mora.png`} alt="Mora" onError={ErrorLoadingImage} />
-                </CustomTooltip>
-                <Box sx={MaterialTextContainer}>
-                    <Typography variant="subtitle2" sx={MaterialText}>
-                        {costs[0]}
-                    </Typography>
+            {
+                /* Mora */
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title="Mora" arrow placement="top">
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/Item_Mora.png`} alt="Mora" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costs[0]}
+                        </Typography>
+                    </Box>
                 </Box>
-            </Box>
+            }
             {
                 /* T1 Talent Book */
                 costs[1] !== "0" &&
@@ -172,27 +176,17 @@ const CharacterTalentLevellingMaterials = (props) => {
 
 }
 
-export default CharacterTalentLevellingMaterials;
+export default CharacterTalentLevellingMaterials
 
 const Materials = [
-    /*
-    Mora  
-    T1 Talent Book
-    T2 Talent Book
-    T3 Talent Book
-    T1 Common Material
-    T2 Common Material
-    T3 Common Material
-    Weekly Boss Material
-    Crown
-    */
-    [0, 12500, 17500, 25000, 30000, 37500, 120000, 260000, 450000, 700000],
-    [0, 3, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 2, 4, 6, 9, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 4, 6, 12, 16],
-    [0, 6, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 3, 4, 6, 9, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 4, 6, 9, 12],
-    [0, 0, 0, 0, 0, 0, 1, 1, 2, 2],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    // Level [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    [0, 12500, 17500, 25000, 30000, 37500, 120000, 260000, 450000, 700000], // Mora
+    [0, 3, 0, 0, 0, 0, 0, 0, 0, 0], // T1 Talent Book
+    [0, 0, 2, 4, 6, 9, 0, 0, 0, 0], // T2 Talent Book
+    [0, 0, 0, 0, 0, 0, 4, 6, 12, 16], // T3 Talent Book
+    [0, 6, 0, 0, 0, 0, 0, 0, 0, 0], // T1 Common Material
+    [0, 0, 3, 4, 6, 9, 0, 0, 0, 0], // T2 Common Material
+    [0, 0, 0, 0, 0, 0, 4, 6, 9, 12], // T3 Common Material
+    [0, 0, 0, 0, 0, 0, 1, 1, 2, 2], // Weekly Boss Material
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1], // Crown
 ]

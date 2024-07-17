@@ -1,19 +1,21 @@
-import React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Box, Typography } from "@mui/material";
-import { CustomTooltip } from "../../../helpers/CustomTooltip";
-import { formatCommonMats, formatBossMats, formatGemstone } from "../../../helpers/TooltipText";
-import { Backgrounds } from "../../../helpers/Backgrounds";
-import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, Typography } from "@mui/material"
 
-const CharacterAscensionMaterials = (props) => {
+// Helper imports
+import { CustomTooltip } from "../../../helpers/CustomTooltip"
+import { formatCommonMats, formatBossMats, formatGemstone } from "../../../helpers/TooltipText"
+import { Backgrounds } from "../../../helpers/Backgrounds"
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
-    const theme = useTheme();
+const CharacterAscensionMaterials = (props: any) => {
 
-    let { element, values } = props;
-    let { bossMat, localMat, commonMat } = props.materials;
-    let start = values[0];
-    let stop = values[1];
+    const theme = useTheme()
+
+    let { element, values } = props
+    let { bossMat, localMat, commonMat } = props.materials
+    let start = values[0]
+    let stop = values[1]
 
     const MaterialStyle = {
         mx: "15px",
@@ -40,21 +42,23 @@ const CharacterAscensionMaterials = (props) => {
         fontSize: "12px"
     }
 
-    let costs = Materials.map((material, index) => (Materials[index].slice(start, stop).reduce((a, c) => a + c).toLocaleString()));
+    let costs = Materials.map((material, index) => (Materials[index].slice(start, stop).reduce((a, c) => a + c).toLocaleString()))
 
     return (
         <Box sx={MaterialStyle}>
-            {/* Mora */}
-            <Box sx={MaterialImageRootBig}>
-                <CustomTooltip title="Mora" arrow placement="top">
-                    <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/Item_Mora.png`} alt="Mora" onError={ErrorLoadingImage} />
-                </CustomTooltip>
-                <Box sx={MaterialTextContainer}>
-                    <Typography variant="subtitle2" sx={MaterialText}>
-                        {costs[0]}
-                    </Typography>
+            {
+                /* Mora */
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title="Mora" arrow placement="top">
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/Item_Mora.png`} alt="Mora" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costs[0]}
+                        </Typography>
+                    </Box>
                 </Box>
-            </Box>
+            }
             {
                 /* Boss Material */
                 costs[1] !== "0" &&
@@ -186,29 +190,18 @@ const CharacterAscensionMaterials = (props) => {
 
 }
 
-export default CharacterAscensionMaterials;
+export default CharacterAscensionMaterials
 
 const Materials = [
-    /*
-    Mora
-    Boss Material
-    Local Specialty
-    T1 Gem
-    T2 Gem
-    T3 Gem
-    T4 Gem
-    T1 Common Material
-    T2 Common Material
-    T3 Common Material
-    */
-    [0, 20000, 40000, 60000, 80000, 100000, 120000],
-    [0, 0, 2, 4, 8, 12, 20],
-    [0, 3, 10, 20, 30, 45, 60],
-    [0, 1, 0, 0, 0, 0, 0],
-    [0, 0, 3, 6, 0, 0, 0],
-    [0, 0, 0, 0, 3, 6, 0],
-    [0, 0, 0, 0, 0, 0, 6],
-    [0, 3, 15, 0, 0, 0, 0],
-    [0, 0, 0, 12, 18, 0, 0],
-    [0, 0, 0, 0, 0, 12, 24]
+    // Level ["1", "20", "40", "50", "60", "70", "80", "90"]
+    [0, 20000, 40000, 60000, 80000, 100000, 120000], // Mora
+    [0, 0, 2, 4, 8, 12, 20], // Boss Material
+    [0, 3, 10, 20, 30, 45, 60], // Local Specialty
+    [0, 1, 0, 0, 0, 0, 0], // T1 Gemstone
+    [0, 0, 3, 6, 0, 0, 0], // T2 Gemstone
+    [0, 0, 0, 0, 3, 6, 0], // T3 Gemstone
+    [0, 0, 0, 0, 0, 0, 6], // T4 Gemstone
+    [0, 3, 15, 0, 0, 0, 0], // T1 Common Material
+    [0, 0, 0, 12, 18, 0, 0], // T2 Common Material
+    [0, 0, 0, 0, 0, 12, 24] // T3 Common Material
 ]
