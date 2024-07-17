@@ -1,19 +1,21 @@
-import React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Box, Typography } from "@mui/material";
-import { CustomTooltip } from "../../../helpers/CustomTooltip";
-import { formatWeaponAscMats, formatEliteMats, formatCommonMats } from "../../../helpers/TooltipText";
-import { Backgrounds } from "../../../helpers/Backgrounds";
-import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, Typography } from "@mui/material"
 
-const WeaponAscensionMaterials = (props) => {
+// Helper imports
+import { CustomTooltip } from "../../../helpers/CustomTooltip"
+import { formatWeaponAscMats, formatEliteMats, formatCommonMats } from "../../../helpers/TooltipText"
+import { Backgrounds } from "../../../helpers/Backgrounds"
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
-    const theme = useTheme();
+const WeaponAscensionMaterials = (props: any) => {
 
-    let { rarity, values } = props;
-    let { ascensionMat, eliteMat, commonMat } = props.materials;
-    let start = values[0];
-    let stop = values[1];
+    const theme = useTheme()
+
+    let { rarity, values } = props
+    let { ascensionMat, eliteMat, commonMat } = props.materials
+    let start = values[0]
+    let stop = values[1]
 
     const MaterialStyle = {
         mx: "15px",
@@ -40,21 +42,23 @@ const WeaponAscensionMaterials = (props) => {
         fontSize: "12px"
     }
 
-    let costs = Materials[rarity.toString()].map((material, index) => (Materials[rarity.toString()][index].slice(start, stop).reduce((a, c) => a + c).toLocaleString()));
+    let costs = Materials[rarity as keyof typeof Materials].map((material, index) => (Materials[rarity as keyof typeof Materials][index].slice(start, stop).reduce((a, c) => a + c).toLocaleString()))
 
     return (
         <Box sx={MaterialStyle}>
-            {/* Mora */}
-            <Box sx={MaterialImageRootBig}>
-                <CustomTooltip title="Mora" arrow placement="top">
-                    <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/Item_Mora.png`} alt="Mora" onError={ErrorLoadingImage} />
-                </CustomTooltip>
-                <Box sx={MaterialTextContainer}>
-                    <Typography variant="subtitle2" sx={MaterialText}>
-                        {costs[0]}
-                    </Typography>
+            {
+                /* Mora */
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title="Mora" arrow placement="top">
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/Item_Mora.png`} alt="Mora" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costs[0]}
+                        </Typography>
+                    </Box>
                 </Box>
-            </Box>
+            }
             {
                 /* T1 Ascension Material */
                 costs[1] !== "0" &&
@@ -200,85 +204,77 @@ const WeaponAscensionMaterials = (props) => {
 
 }
 
-export default WeaponAscensionMaterials;
+export default WeaponAscensionMaterials
 
 const Materials = {
-    /*
-    Mora
-    T1 Ascension Material
-    T2 Ascension Material
-    T3 Ascension Material
-    T4 Ascension Material
-    T1 Elite Material
-    T2 Elite Material
-    T3 Elite Material
-    T1 Common Material
-    T2 Common Material
-    T3 Common Material
-    */
     "5": [
-        [0, 10000, 20000, 30000, 45000, 55000, 65000],
-        [0, 5, 0, 0, 0, 0, 0],
-        [0, 0, 5, 9, 0, 0, 0],
-        [0, 0, 0, 0, 5, 9, 0],
-        [0, 0, 0, 0, 0, 0, 6],
-        [0, 5, 18, 0, 0, 0, 0],
-        [0, 0, 0, 9, 18, 0, 0],
-        [0, 0, 0, 0, 0, 14, 27],
-        [0, 3, 12, 0, 0, 0, 0],
-        [0, 0, 0, 9, 14, 0, 0],
-        [0, 0, 0, 0, 0, 9, 18]
+        // Level [1, 20, 40, 50, 60, 70, 80, 90] 
+        [0, 10000, 20000, 30000, 45000, 55000, 65000], // Mora
+        [0, 5, 0, 0, 0, 0, 0], // T1 Ascension Material
+        [0, 0, 5, 9, 0, 0, 0], // T2 Ascension Material
+        [0, 0, 0, 0, 5, 9, 0], // T3 Ascension Material
+        [0, 0, 0, 0, 0, 0, 6], // T4 Ascension Material
+        [0, 5, 18, 0, 0, 0, 0], // T1 Elite Material
+        [0, 0, 0, 9, 18, 0, 0], // T2 Elite Material
+        [0, 0, 0, 0, 0, 14, 27], // T3 Elite Material
+        [0, 3, 12, 0, 0, 0, 0], // T1 Common Material
+        [0, 0, 0, 9, 14, 0, 0], // T2 Common Material
+        [0, 0, 0, 0, 0, 9, 18] // T3 Common Material
     ],
     "4": [
-        [0, 5000, 15000, 20000, 30000, 35000, 45000],
-        [0, 3, 0, 0, 0, 0, 0],
-        [0, 0, 3, 6, 0, 0, 0],
-        [0, 0, 0, 0, 3, 6, 0],
-        [0, 0, 0, 0, 0, 0, 4],
-        [0, 3, 12, 0, 0, 0, 0],
-        [0, 0, 0, 6, 12, 0, 0],
-        [0, 0, 0, 0, 0, 9, 18],
-        [0, 2, 8, 0, 0, 0, 0],
-        [0, 0, 0, 6, 9, 0, 0],
-        [0, 0, 0, 0, 0, 6, 12]
+        // Level [1, 20, 40, 50, 60, 70, 80, 90] 
+        [0, 5000, 15000, 20000, 30000, 35000, 45000], // Mora
+        [0, 3, 0, 0, 0, 0, 0], // T1 Ascension Material
+        [0, 0, 3, 6, 0, 0, 0], // T2 Ascension Material
+        [0, 0, 0, 0, 3, 6, 0], // T3 Ascension Material
+        [0, 0, 0, 0, 0, 0, 4], // T4 Ascension Material
+        [0, 3, 12, 0, 0, 0, 0], // T1 Elite Material
+        [0, 0, 0, 6, 12, 0, 0], // T2 Elite Material
+        [0, 0, 0, 0, 0, 9, 18], // T3 Elite Material
+        [0, 2, 8, 0, 0, 0, 0], // T1 Common Material
+        [0, 0, 0, 6, 9, 0, 0], // T2 Common Material
+        [0, 0, 0, 0, 0, 6, 12] // T13 Common Material
     ],
     "3": [
-        [0, 5000, 10000, 15000, 20000, 25000, 30000],
-        [0, 2, 0, 0, 0, 0, 0],
-        [0, 0, 2, 4, 0, 0, 0],
-        [0, 0, 0, 0, 2, 4, 0],
-        [0, 0, 0, 0, 0, 0, 3],
-        [0, 2, 8, 0, 0, 0, 0],
-        [0, 0, 0, 4, 8, 0, 0],
-        [0, 0, 0, 0, 0, 6, 12],
-        [0, 1, 5, 0, 0, 0, 0],
-        [0, 0, 0, 4, 6, 0, 0],
-        [0, 0, 0, 0, 0, 4, 8]
+        // Level [1, 20, 40, 50, 60, 70, 80, 90] 
+        [0, 5000, 10000, 15000, 20000, 25000, 30000], // Mora
+        [0, 2, 0, 0, 0, 0, 0], // T1 Ascension Material
+        [0, 0, 2, 4, 0, 0, 0], // T2 Ascension Material
+        [0, 0, 0, 0, 2, 4, 0], // T3 Ascension Material
+        [0, 0, 0, 0, 0, 0, 3], // T4 Ascension Material
+        [0, 2, 8, 0, 0, 0, 0], // T1 Elite Material
+        [0, 0, 0, 4, 8, 0, 0], // T2 Elite Material
+        [0, 0, 0, 0, 0, 6, 12], // T3 Elite Material
+        [0, 1, 5, 0, 0, 0, 0], // T1 Common Material
+        [0, 0, 0, 4, 6, 0, 0], // T2 Common Material
+        [0, 0, 0, 0, 0, 4, 8] // T3 Common Material
     ],
     "2": [
-        [0, 5000, 10000, 10000, 15000],
-        [0, 1, 0, 0, 0],
-        [0, 0, 1, 3, 0],
-        [0, 0, 0, 0, 1],
-        [0, 0, 0, 0, 0],
-        [0, 1, 5, 0, 0],
-        [0, 0, 0, 3, 5],
-        [0, 0, 0, 0, 0],
-        [0, 1, 4, 0, 0],
-        [0, 0, 0, 3, 4],
-        [0, 0, 0, 0, 0]
+        // Level [1, 20, 40, 50, 60, 70] 
+        [0, 5000, 10000, 10000, 15000], // Mora
+        [0, 1, 0, 0, 0], // T1 Ascension Material
+        [0, 0, 1, 3, 0], // T2 Ascension Material
+        [0, 0, 0, 0, 1], // T3 Ascension Material
+        [0, 0, 0, 0, 0], // T4 Ascension Material
+        [0, 1, 5, 0, 0], // T1 Elite Material
+        [0, 0, 0, 3, 5], // T2 Elite Material
+        [0, 0, 0, 0, 0], // T3 Elite Material
+        [0, 1, 4, 0, 0], // T1 Common Material
+        [0, 0, 0, 3, 4], // T2 Common Material
+        [0, 0, 0, 0, 0] // T3 Common Material
     ],
     "1": [
-        [0, 0, 5000, 5000, 10000],
-        [0, 1, 0, 0, 0],
-        [0, 0, 1, 2, 0],
-        [0, 0, 0, 0, 1],
-        [0, 0, 0, 0, 0],
-        [0, 1, 4, 0, 0],
-        [0, 0, 0, 2, 4],
-        [0, 0, 0, 0, 0],
-        [0, 1, 2, 0, 0],
-        [0, 0, 0, 2, 3],
-        [0, 0, 0, 0, 0]
+        // Level [1, 20, 40, 50, 60, 70] 
+        [0, 0, 5000, 5000, 10000], // Mora
+        [0, 1, 0, 0, 0], // T1 Ascension Material
+        [0, 0, 1, 2, 0], // T2 Ascension Material
+        [0, 0, 0, 0, 1], // T3 Ascension Material
+        [0, 0, 0, 0, 0], // T4 Ascension Material
+        [0, 1, 4, 0, 0], // T1 Elite Material
+        [0, 0, 0, 2, 4], // T2 Elite Material
+        [0, 0, 0, 0, 0], // T3 Elite Material
+        [0, 1, 2, 0, 0], // T1 Common Material
+        [0, 0, 0, 2, 3], // T2 Common Material
+        [0, 0, 0, 0, 0] // T3 Common Material
     ]
 }

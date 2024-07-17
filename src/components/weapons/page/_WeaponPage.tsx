@@ -1,57 +1,57 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import parse from "html-react-parser";
-import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
-import { Typography, Tabs, Box, AppBar, Avatar } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import { TabPanel, StyledTab } from "../../../helpers/CustomTabs";
-import WeaponStatsTable from "./WeaponStatsTable";
-import WeaponAscension from "./WeaponAscension";
-import { CustomTooltip } from "../../../helpers/CustomTooltip";
-import { CustomSlider } from "../../../helpers/CustomSlider";
-import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+import * as React from "react"
+import { useTheme } from "@mui/material/styles"
+import parse from "html-react-parser"
+import { connect } from "react-redux"
+import { useParams } from "react-router-dom"
+import { Typography, Tabs, Box, AppBar, Avatar } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2"
+import { TabPanel, StyledTab } from "../../../helpers/CustomTabs"
+import WeaponStatsTable from "./WeaponStatsTable"
+import WeaponAscension from "./WeaponAscension"
+import { CustomTooltip } from "../../../helpers/CustomTooltip"
+import { CustomSlider } from "../../../helpers/CustomSlider"
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
+import { RootState } from "../../../redux/store"
+import { WeaponData } from "../../../types/WeaponData"
 
-const WeaponPage = (props) => {
+function WeaponPage(props: any) {
 
-    const theme = useTheme();
+    const theme = useTheme()
 
-    let { weapon_name } = useParams();
-    let { weapons } = props;
-    let weapon = weapons.weapons.find(weapon => weapon.name.split(" ").join("_").toLowerCase() === weapon_name)
+    let { weapon_name } = useParams<{ weapon_name: string }>()
+    let { weapons } = props
+    let weapon = weapons.weapons.find((weapon: WeaponData) => weapon.name.split(" ").join("_").toLowerCase() === weapon_name)
 
-    const [tabValue, setTabValue] = React.useState(0);
-
-    const handleTabChange = (event, newValue) => {
-        setTabValue(newValue);
-    };
-
-    let maxValue = 5;
-    const [sliderValue, setSliderValue] = React.useState(1);
-    const handleSliderChange = (event, newValue) => {
-        setSliderValue(newValue);
-    };
-    let scaling;
-    if (weapon !== undefined) {
-        scaling = weapon.stats.passive.scaling;
+    const [tabValue, setTabValue] = React.useState(0)
+    const handleTabChange = (e: React.SyntheticEvent, newValue: number) => {
+        setTabValue(newValue)
     }
-    let targets = document.getElementsByClassName("text-refinement");
+
+    let maxValue = 5
+    const [sliderValue, setSliderValue] = React.useState(1)
+    const handleSliderChange = (event: Event, newValue: number | number[]) => {
+        setSliderValue(newValue as number)
+    }
+    let scaling
+    if (weapon !== undefined) {
+        scaling = weapon.stats.passive.scaling
+    }
+    let targets = document.getElementsByClassName("text-refinement")
     if (scaling !== undefined) {
-        scaling.forEach((subScaling, index) => {
-            let target = targets[index];
-            if (target !== undefined) { target.innerHTML = subScaling[sliderValue - 1]; }
+        scaling.forEach((subScaling: string[], index: number) => {
+            let target = targets[index]
+            if (target !== undefined) { target.innerHTML = subScaling[sliderValue - 1] }
         })
     }
 
-
     if (weapon !== undefined) {
 
-        let { name, rarity, type, description } = weapon;
+        let { name, rarity, type, description } = weapon
 
-        document.title = `${name} - Project Irminsul`;
+        document.title = `${name} - Project Irminsul`
 
-        if (weapon.displayName) document.title = `${weapon.displayName} - Project Irminsul`;
-        else document.title = `${name} - Project Irminsul`;
+        if (weapon.displayName) document.title = `${weapon.displayName} - Project Irminsul`
+        else document.title = `${name} - Project Irminsul`
 
         const weaponIcon = {
             marginLeft: "15px",
@@ -188,11 +188,9 @@ const WeaponPage = (props) => {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        weapons: state.weapons,
-        weaponFilters: state.weaponFilters
-    }
-}
+const mapStateToProps = (state: RootState) => ({
+    weapons: state.weapons,
+    weaponFilters: state.weaponFilters
+})
 
-export default connect(mapStateToProps)(WeaponPage);
+export default connect(mapStateToProps)(WeaponPage)
