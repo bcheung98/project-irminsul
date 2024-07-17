@@ -12,7 +12,7 @@ export const CharacterAscensionStats = {
         title: "CRIT Rate"
     },
     "CRIT DMG": {
-        title: ""
+        title: "CRIT DMG"
     },
     "Elemental Mastery": {
         title: "Elemental Mastery"
