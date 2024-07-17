@@ -13,7 +13,7 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 // Type imports
 import { RootState } from "../../redux/store"
-import { WeaponCosts } from "../../redux/reducers/AscensionPlannerReducer"
+import { WeaponCosts } from "../../types/WeaponCosts"
 
 const WeaponAscensionCardMaterials = (props: any) => {
 

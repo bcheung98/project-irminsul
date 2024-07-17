@@ -1,50 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { CharacterData } from "../../types/CharacterData"
 import { WeaponData } from "../../types/WeaponData"
-
-export interface CharacterCosts {
-    name: string,
-    costs: {
-        mora: number[],
-        char_xp1: number[],
-        char_xp2: number[],
-        char_xp3: number[],
-        bossMat: number[],
-        localMat: number[],
-        gemstone1: number[],
-        gemstone2: number[],
-        gemstone3: number[],
-        gemstone4: number[],
-        talent1: number[],
-        talent2: number[],
-        talent3: number[],
-        common1: number[],
-        common2: number[],
-        common3: number[],
-        weeklyBossMat: number[],
-        crown: number[]
-    }
-}
-
-export interface WeaponCosts {
-    name: string,
-    costs: {
-        mora: number,
-        wep_xp1: number,
-        wep_xp2: number,
-        wep_xp3: number,
-        ascension1: number,
-        ascension2: number,
-        ascension3: number,
-        ascension4: number,
-        elite1: number,
-        elite2: number,
-        elite3: number,
-        common1: number,
-        common2: number,
-        common3: number
-    }
-}
+import { CharacterCosts } from "../../types/CharacterCosts"
+import { WeaponCosts } from "../../types/WeaponCosts"
 
 interface PlannerState {
     totalCost: { [propName: string]: number },
