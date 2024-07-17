@@ -1,15 +1,25 @@
-import React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import { Box, CardHeader, Typography } from "@mui/material";
-import { SmallAccordion, SmallAccordionDetails, SmallAccordionSummary } from "../../../helpers/CustomAccordion";
-import { LocalMats } from "../../../helpers/MaterialList";
-import { CustomTooltip } from "../../../helpers/CustomTooltip";
-import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+import { useDispatch } from "react-redux"
 
-const LocalMatFilter = (props) => {
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, CardHeader, Typography } from "@mui/material"
 
-    const theme = useTheme();
+// Helper imports
+import { LocalMats } from "../../../helpers/MaterialList"
+import { setLocalMats } from "../../../redux/reducers/CharacterFilterReducer"
+import { SmallAccordion, SmallAccordionDetails, SmallAccordionSummary } from "../../../helpers/CustomAccordion"
+import { CustomTooltip } from "../../../helpers/CustomTooltip"
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
+
+function CharacterLocalMatFilter() {
+
+    const theme = useTheme()
+
+    const dispatch = useDispatch()
+
+    const handleClick = (material: string) => {
+        dispatch(setLocalMats(material))
+    }
 
     return (
         <Box sx={{ margin: "auto", width: "99%" }}>
@@ -36,9 +46,9 @@ const LocalMatFilter = (props) => {
                         </SmallAccordionSummary>
                         <SmallAccordionDetails>
                             {
-                                LocalMats[nation].sort().map((material, index) => (
+                                (LocalMats[nation as keyof {}] as []).sort().map((material: string, index) => (
                                     <CustomTooltip key={index} title={material} arrow placement="top">
-                                        <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/local_specialties/${material.split(" ").join("_")}.png`} alt={material} onClick={(e) => props.setFilter(e.target.alt)} onError={ErrorLoadingImage} />
+                                        <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/local_specialties/${material.split(" ").join("_")}.png`} alt={material} onClick={() => handleClick(material)} onError={ErrorLoadingImage} />
                                     </CustomTooltip>
                                 ))
                             }
@@ -50,10 +60,4 @@ const LocalMatFilter = (props) => {
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setFilter: (target) => dispatch({ type: "SET_CHAR_LOCAL_MAT_FILTERS", target })
-    }
-}
-
-export default connect(null, mapDispatchToProps)(LocalMatFilter);
+export default CharacterLocalMatFilter

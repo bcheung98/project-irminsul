@@ -1,15 +1,25 @@
-import React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import { Box, CardHeader, Typography } from "@mui/material";
-import { SmallAccordion, SmallAccordionDetails, SmallAccordionSummary } from "../../../helpers/CustomAccordion";
-import { WeeklyBossMats } from "../../../helpers/MaterialList";
-import { CustomTooltip } from "../../../helpers/CustomTooltip";
-import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+import { useDispatch } from "react-redux"
 
-const BossMatFilter = (props) => {
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, CardHeader, Typography } from "@mui/material"
 
-    const theme = useTheme();
+// Helper imports
+import { WeeklyBossMats } from "../../../helpers/MaterialList"
+import { setWeeklyBossMats } from "../../../redux/reducers/CharacterFilterReducer"
+import { SmallAccordion, SmallAccordionDetails, SmallAccordionSummary } from "../../../helpers/CustomAccordion"
+import { CustomTooltip } from "../../../helpers/CustomTooltip"
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
+
+function CharacterWeeklyBossMatFilter() {
+
+    const theme = useTheme()
+
+    const dispatch = useDispatch()
+
+    const handleClick = (material: string) => {
+        dispatch(setWeeklyBossMats(material))
+    }
 
     return (
         <Box style={{ margin: "auto", width: "99%" }}>
@@ -36,9 +46,9 @@ const BossMatFilter = (props) => {
                         </SmallAccordionSummary>
                         <SmallAccordionDetails>
                             {
-                                WeeklyBossMats[boss].sort().map((material, index) => (
+                                (WeeklyBossMats[boss as keyof {}] as []).sort().map((material: string, index) => (
                                     <CustomTooltip key={index} title={material} arrow placement="top">
-                                        <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${material.split(" ").join("_")}.png`} alt={material} onClick={(e) => props.setFilter(e.target.alt)} onError={ErrorLoadingImage} />
+                                        <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${material.split(" ").join("_")}.png`} alt={material} onClick={() => handleClick(material)} onError={ErrorLoadingImage} />
                                     </CustomTooltip>
                                 ))
                             }
@@ -50,10 +60,4 @@ const BossMatFilter = (props) => {
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setFilter: (target) => dispatch({ type: "SET_CHAR_WEEKLYBOSS_MAT_FILTERS", target })
-    }
-}
-
-export default connect(null, mapDispatchToProps)(BossMatFilter);
+export default CharacterWeeklyBossMatFilter
