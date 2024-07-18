@@ -11,8 +11,8 @@ function AscensionStatFilters() {
 
     const dispatch = useDispatch()
 
-    const handleClick = (tag: string) => {
-        dispatch(setAscensionStat(tag))
+    const handleClick = (stat: string) => {
+        dispatch(setAscensionStat(stat))
     }
 
     return (
