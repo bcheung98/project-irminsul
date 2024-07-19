@@ -1,32 +1,38 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Box, Table, TableBody, TableContainer, Paper, InputBase } from "@mui/material";
-import { EnhancedTableHead, getComparator, stableSort } from "../../helpers/CustomSortTable";
-import CharacterBannerRow from "./CharacterBannerRow";
-import WeaponBannerRow from "./WeaponBannerRow";
+import * as React from "react"
 
-const BannerList = (props) => {
+// Component imports
+import CharacterBannerRow from "./CharacterBannerRow"
+import WeaponBannerRow from "./WeaponBannerRow"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, Table, TableBody, TableContainer, Paper, InputBase } from "@mui/material"
 
-    const [order, setOrder] = React.useState("desc");
-    const [orderBy, setOrderBy] = React.useState("subVersion");
+// Helper imports
+import { EnhancedTableHead, getComparator, stableSort } from "../../helpers/CustomSortTable"
 
-    const handleRequestSort = (event, property) => {
-        const isAsc = orderBy === property && order === "asc";
-        setOrder(isAsc ? "desc" : "asc");
-        setOrderBy(property);
-    };
+// Type imports
+import { BannerRowData } from "../../types/BannerRowData"
 
-    const [searchValue, setSearchValue] = React.useState("");
+function BannerList(props: any) {
 
-    const handleInputChange = (e) => {
-        setSearchValue(e.target.value);
+    const theme = useTheme()
+
+    const [order, setOrder] = React.useState("desc")
+    const [orderBy, setOrderBy] = React.useState("subVersion")
+
+    const handleRequestSort = (event: React.BaseSyntheticEvent, property: "asc" | "desc") => {
+        const isAsc = orderBy === property && order === "asc"
+        setOrder(isAsc ? "desc" : "asc")
+        setOrderBy(property)
     }
 
-    let banners = [];
-    props.banners.forEach(version => Object.keys(version).slice(1).forEach(phase => banners.push([version.version, `${version.version}.${phase.slice(-1)}`, version[phase].startDate, version[phase].endDate, version[phase].banner])));
-    const rows = filterBanners(banners, searchValue).map(banner => createData(banner[0], banner[1], banner[2], banner[3], banner[4]));
+    const [searchValue, setSearchValue] = React.useState("")
+    const handleInputChange = (event: React.BaseSyntheticEvent) => {
+        setSearchValue(event.target.value)
+    }
+
+    const rows = filterBanners(props.banners, searchValue)
 
     return (
         <Box sx={{ width: "100%" }}>
@@ -74,28 +80,24 @@ const BannerList = (props) => {
                             headCells={headCells}
                         />
                         <TableBody>
-                            {stableSort(rows, getComparator(order, orderBy)).map((row, index) => (props.type === "character" ? <CharacterBannerRow key={index} row={row} /> : <WeaponBannerRow key={index} row={row} />))}
+                            {stableSort(rows, getComparator(order, orderBy)).map((row: BannerRowData, index: number) => (props.type === "character" ? <CharacterBannerRow key={index} row={row} /> : <WeaponBannerRow key={index} row={row} />))}
                         </TableBody>
                     </Table>
                 </TableContainer>
             </Paper>
         </Box>
-    );
+    )
 }
 
-export default BannerList;
+export default BannerList
 
 const headCells = [
     { id: "subVersion", label: "Version" },
-];
+]
 
-const createData = (version, subVersion, startDate, endDate, banner) => {
-    return { version, subVersion, startDate, endDate, banner };
-}
-
-const filterBanners = (banners, searchValue) => {
+const filterBanners = (banners: BannerRowData[], searchValue: string) => {
     if (searchValue !== "") {
-        banners = banners.filter(banner => banner[4].map(char => char.toLowerCase()).join("|").includes(searchValue.toLowerCase()))
+        banners = banners.filter((banner: BannerRowData) => banner.banner.map((char: any) => char.toLowerCase()).join("|").includes(searchValue.toLowerCase()))
     }
-    return banners;
+    return banners
 }
