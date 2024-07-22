@@ -1,21 +1,26 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Box } from "@mui/system";
-import { Typography, Paper } from "@mui/material";
-import { Accordion, AccordionDetails, AccordionSummary } from "../../../../helpers/CustomAccordion";
-import TCGCharacterElementFilter from "./TCGCharacterElementFilter";
-import TCGCharacterWeaponFilter from "./TCGCharacterWeaponFilter";
-import TCGCharacterFactionFilter from "./TCGCharacterFactionFilter";
+// Component imports
+import TCGCharacterElementFilter from "./TCGCharacterElementFilter"
+import TCGCharacterWeaponFilter from "./TCGCharacterWeaponFilter"
+import TCGCharacterFactionFilter from "./TCGCharacterFactionFilter"
 
-const TCGCharacterCardFilter = (props) => {
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, Typography, Paper } from "@mui/material"
 
-    const theme = useTheme();
+// Helper imports
+import { Accordion, AccordionDetails, AccordionSummary } from "../../../../helpers/CustomAccordion"
+
+function TCGCharacterCardFilter() {
+
+    const theme = useTheme()
 
     return (
-        <Box style={{
-            margin: "auto",
-            width: "90%",
-        }}>
+        <Box
+            sx={{
+                margin: "auto",
+                width: "90%",
+            }}
+        >
             <Paper variant="outlined" square
                 sx={{
                     color: `${theme.text.color}`,
@@ -24,11 +29,14 @@ const TCGCharacterCardFilter = (props) => {
                     borderRadius: "5px",
                 }}
             >
-                <Typography variant="h6" sx={{
-                    ml: "15px",
-                    my: "10px",
-                    fontFamily: "Genshin, sans-serif",
-                }}>Filters
+                <Typography
+                    variant="h6"
+                    sx={{
+                        ml: "15px",
+                        my: "10px",
+                        fontFamily: "Genshin, sans-serif",
+                    }}>
+                    Filters
                 </Typography>
 
                 {/* ELEMENT */}
@@ -44,7 +52,7 @@ const TCGCharacterCardFilter = (props) => {
                 {/* WEAPON */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="characterweapon-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Weapon</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="weapon-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Weapon</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <TCGCharacterWeaponFilter />
@@ -54,7 +62,7 @@ const TCGCharacterCardFilter = (props) => {
                 {/* FACTION */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="faction-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Faction</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="nation-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Faction</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <TCGCharacterFactionFilter />
@@ -67,4 +75,4 @@ const TCGCharacterCardFilter = (props) => {
 
 }
 
-export default TCGCharacterCardFilter;
+export default TCGCharacterCardFilter
