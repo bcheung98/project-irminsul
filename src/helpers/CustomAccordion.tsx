@@ -1,43 +1,43 @@
-import { styled } from "@mui/material/styles";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
-import MuiAccordion from "@mui/material/Accordion";
-import MuiAccordionSummary from "@mui/material/AccordionSummary";
-import MuiAccordionDetails from "@mui/material/AccordionDetails";
+import { useTheme, styled } from "@mui/material/styles"
+import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp"
+import MuiAccordion, { AccordionProps } from "@mui/material/Accordion"
+import MuiAccordionSummary, { AccordionSummaryProps } from "@mui/material/AccordionSummary"
+import MuiAccordionDetails from "@mui/material/AccordionDetails"
 
-export const Accordion = styled((props) => (
+export const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} {...props} />
 ))(({ theme }) => ({
     backgroundColor: `${theme.paper.backgroundColor}`,
-    '&:not(:last-child)': {
+    "&:not(:last-child)": {
         borderBottom: 0,
     },
-    '&:before': {
-        display: 'none',
+    "&:before": {
+        display: "none",
     },
-}));
+}))
 
-export const AccordionSummary = styled((props) => (
+export const AccordionSummary = styled((props: AccordionSummaryProps) => (
     <MuiAccordionSummary
-        expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem', color: "dodgerblue" }} />}
+        expandIcon={<ArrowForwardIosSharpIcon sx={ArrowStyle} />}
         {...props}
     />
 ))(({ theme }) => ({
     backgroundColor: `${theme.paper.backgroundColor}`,
-    flexDirection: 'row-reverse',
-    '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-        transform: 'rotate(90deg)',
+    flexDirection: "row-reverse",
+    "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+        transform: "rotate(90deg)",
     },
-    '& .MuiAccordionSummary-content': {
+    "& .MuiAccordionSummary-content": {
         marginLeft: "10px",
     },
-}));
+}))
 
 export const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     backgroundColor: `${theme.paper.backgroundColor}`,
     padding: "10px",
-}));
+}))
 
-export const SmallAccordion = styled((props) => (
+export const SmallAccordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
     backgroundColor: `${theme.paper.backgroundColor}`,
@@ -47,11 +47,11 @@ export const SmallAccordion = styled((props) => (
     "&:before": {
         display: "none",
     },
-}));
+}))
 
-export const SmallAccordionSummary = styled((props) => (
+export const SmallAccordionSummary = styled((props: AccordionSummaryProps) => (
     <MuiAccordionSummary
-        expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem", color: "dodgerblue" }} />}
+        expandIcon={<ArrowForwardIosSharpIcon sx={ArrowStyle} />}
         {...props}
     />
 ))(({ theme }) => ({
@@ -64,10 +64,15 @@ export const SmallAccordionSummary = styled((props) => (
     "& .MuiAccordionSummary-content": {
         marginLeft: "-5px",
     },
-}));
+}))
 
 export const SmallAccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     backgroundColor: `${theme.paper.backgroundColor}`,
     padding: "10px",
     marginTop: "-5px",
-}));
+}))
+
+const ArrowStyle = () => {
+    const theme = useTheme()
+    return { fontSize: "0.9rem", color: "dodgerblue" }
+}
