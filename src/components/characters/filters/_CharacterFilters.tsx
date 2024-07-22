@@ -2,7 +2,7 @@
 import CharacterElementFilter from "./CharacterElementFilter"
 import CharacterWeaponFilter from "./CharacterWeaponFilter"
 import CharacterRarityFilter from "./CharacterRarityFilter"
-import CharacterAscensionStatFilters from "./CharacterAscensionStatFilters"
+import CharacterAscensionStatFilter from "./CharacterAscensionStatFilter"
 import CharacterTalentFilter from "./CharacterTalentFilter"
 import CharacterCommonMatFilter from "./CharacterCommonMatFilter"
 import CharacterBossMatFilter from "./CharacterBossMatFilter"
@@ -85,7 +85,7 @@ function CharacterFilters() {
                         <Typography variant="body1" className="filter-text-off" id="ascensionstat-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Ascension Stat</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <CharacterAscensionStatFilters />
+                        <CharacterAscensionStatFilter />
                     </AccordionDetails>
                 </Accordion>
 

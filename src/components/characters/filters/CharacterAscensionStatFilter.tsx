@@ -7,7 +7,7 @@ import { CharacterAscensionStats } from "../../../helpers/CharacterAscensionStat
 import { CustomTooltip } from "../../../helpers/CustomTooltip"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
-function AscensionStatFilters() {
+function AscensionStatFilter() {
 
     const dispatch = useDispatch()
 
@@ -28,4 +28,4 @@ function AscensionStatFilters() {
     )
 }
 
-export default AscensionStatFilters
+export default AscensionStatFilter
