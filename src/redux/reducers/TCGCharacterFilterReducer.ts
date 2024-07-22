@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
-interface TCGCharacterFilterState {
+export interface TCGCharacterFilterState {
     element: string[],
     weapon: string[],
     faction: string[]

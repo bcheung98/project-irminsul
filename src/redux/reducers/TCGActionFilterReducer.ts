@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
-interface TCGActionFilterState {
+export interface TCGActionFilterState {
     type: string[],
     subType: string[]
 }
