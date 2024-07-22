@@ -31,7 +31,7 @@ export const TCGActionFilterSlice = createSlice({
     }
 })
 
-export const { clearActionFilters } = TCGActionFilterSlice.actions
+export const { setType, setSubType, clearActionFilters } = TCGActionFilterSlice.actions
 export default TCGActionFilterSlice.reducer
 
 function changeButton(target: string) {
