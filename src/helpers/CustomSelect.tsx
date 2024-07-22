@@ -1,5 +1,5 @@
-import { InputBase } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { InputBase } from "@mui/material"
+import { styled } from "@mui/material/styles"
 
 export const CustomSelect = styled(InputBase)(({ theme }) => ({
     "label + &": {
@@ -19,4 +19,4 @@ export const CustomSelect = styled(InputBase)(({ theme }) => ({
             backgroundColor: "white",
         },
     },
-}));
+}))

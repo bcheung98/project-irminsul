@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
-import { styled } from "@mui/material/styles";
-import { Popper, ButtonBase, InputBase } from "@mui/material";
-import { autocompleteClasses } from "@mui/material/Autocomplete";
+import PropTypes from "prop-types"
+import { styled } from "@mui/material/styles"
+import { Popper, ButtonBase, InputBase } from "@mui/material"
+import { autocompleteClasses } from "@mui/material/Autocomplete"
 
 interface PopperComponentProps {
     anchorEl?: any,
@@ -31,7 +31,7 @@ const StyledAutocompletePopper = styled("div")(({ theme }) => ({
     [`&.${autocompleteClasses.popperDisablePortal}`]: {
         position: "relative",
     },
-}));
+}))
 
 export function PopperComponent(props: PopperComponentProps) {
     const { disablePortal, anchorEl, open, ...other } = props
@@ -42,7 +42,7 @@ PopperComponent.propTypes = {
     anchorEl: PropTypes.any,
     disablePortal: PropTypes.bool,
     open: PropTypes.bool.isRequired,
-};
+}
 
 export const StyledPopper = styled(Popper)(({ theme }) => ({
     border: `1px solid ${theme.border.color}`,
@@ -53,7 +53,7 @@ export const StyledPopper = styled(Popper)(({ theme }) => ({
     fontFamily: "Genshin, sans-serif",
     color: `${theme.text.color}`,
     backgroundColor: `${theme.appbar.backgroundColor}`
-}));
+}))
 
 export const StyledInput = styled(InputBase)(({ theme }) => ({
     padding: 10,
@@ -72,7 +72,7 @@ export const StyledInput = styled(InputBase)(({ theme }) => ({
             borderColor: `${theme.border.color}`,
         },
     },
-}));
+}))
 
 export const Button = styled(ButtonBase)(({ theme }) => ({
     fontSize: "13pt",
@@ -88,4 +88,4 @@ export const Button = styled(ButtonBase)(({ theme }) => ({
     "& span": {
         width: "100%",
     },
-}));
+}))
