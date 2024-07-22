@@ -57,7 +57,7 @@ const CharacterList = (props: any) => {
                         <TableBody>
                             {
                                 stableSort(rows, getComparator(order, orderBy))
-                                    .map((row: CharacterRowData, index: number) => {
+                                    .map((row, index) => {
                                         return (
                                             <CharacterRow key={index} row={row} characters={props.characters} />
                                         )

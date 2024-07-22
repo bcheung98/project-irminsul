@@ -79,7 +79,7 @@ function WeaponList(props: any) {
                         <TableBody>
                             {
                                 stableSort(rows, getComparator(order, orderBy))
-                                    .map((row: WeaponRowData, index: number) => {
+                                    .map((row, index) => {
                                         return (
                                             <WeaponRow key={index} row={row} weapons={props.weapons} />
                                         )

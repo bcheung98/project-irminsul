@@ -10,9 +10,6 @@ import { Box, Table, TableBody, TableContainer, Paper } from "@mui/material"
 // Helper imports
 import { EnhancedTableHead, getComparator, stableSort } from "../../helpers/CustomSortTable"
 
-// Type imports
-import { BannerRowData } from "../../types/BannerRowData"
-
 function ChronicledWishList(props: any) {
 
     const theme = useTheme()
@@ -51,7 +48,14 @@ function ChronicledWishList(props: any) {
                             headCells={headCells}
                         />
                         <TableBody>
-                            {stableSort(rows, getComparator(order, orderBy)).map((row: BannerRowData, index: number) => <ChronicledWishRow key={index} row={row} />)}
+                            {
+                                stableSort(rows, getComparator(order, orderBy))
+                                    .map((row, index) => {
+                                        return (
+                                            <ChronicledWishRow key={index} row={row} />
+                                        )
+                                    })
+                            }
                         </TableBody>
                     </Table>
                 </TableContainer>

@@ -80,7 +80,14 @@ function BannerList(props: any) {
                             headCells={headCells}
                         />
                         <TableBody>
-                            {stableSort(rows, getComparator(order, orderBy)).map((row: BannerRowData, index: number) => (props.type === "character" ? <CharacterBannerRow key={index} row={row} /> : <WeaponBannerRow key={index} row={row} />))}
+                            {
+                                stableSort(rows, getComparator(order, orderBy))
+                                    .map((row, index) => {
+                                        return (
+                                            props.type === "character" ? <CharacterBannerRow key={index} row={row} /> : <WeaponBannerRow key={index} row={row} />
+                                        )
+                                    })
+                            }
                         </TableBody>
                     </Table>
                 </TableContainer>
@@ -96,8 +103,12 @@ const headCells = [
 ]
 
 const filterBanners = (banners: BannerRowData[], searchValue: string) => {
+    let filteredBanners = [] as any
     if (searchValue !== "") {
-        banners = banners.filter((banner: BannerRowData) => banner.banner.map((char: any) => char.toLowerCase()).join("|").includes(searchValue.toLowerCase()))
+        filteredBanners = banners.filter((banner: BannerRowData) => banner.banner.map((char: string) => char.toLowerCase()).join("|").includes(searchValue.toLowerCase()))
     }
-    return banners
+    else {
+        filteredBanners = []
+    }
+    return filteredBanners
 }
