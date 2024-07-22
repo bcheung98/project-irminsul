@@ -29,10 +29,23 @@ import { TCGDeckData } from "../../types/TCGDeckData"
 function CurrentCharacterCards(cards: TCGCardData[], deck: TCGDeckData[], sortBy: string) {
     let deckNames = deck.map(card => card.name)
     let charCardResult = cards.filter(card => !deckNames.includes(card.name))
-    if (sortBy === "name") return charCardResult.sort((a, b) => a.name.localeCompare(b.name))
-    if (sortBy === "element") return charCardResult.sort((a, b) => a.element.localeCompare(b.element) || a.name.localeCompare(b.name))
-    if (sortBy === "weapon") return charCardResult.sort((a, b) => a.weapon.localeCompare(b.weapon) || a.name.localeCompare(b.name))
-    if (sortBy === "energy") return charCardResult.sort((a: any, b: any) => b.talents.burst.energy - a.talents.burst.energy || a.name.localeCompare(b.name))
+    switch (sortBy) {
+        case "name":
+            charCardResult = charCardResult.sort((a, b) => a.name.localeCompare(b.name))
+            break
+        case "element":
+            charCardResult = charCardResult.sort((a, b) => a.element.localeCompare(b.element) || a.name.localeCompare(b.name))
+            break
+        case "weapon":
+            charCardResult = charCardResult.sort((a, b) => a.weapon.localeCompare(b.weapon) || a.name.localeCompare(b.name))
+            break
+        case "energy":
+            charCardResult = charCardResult.sort((a: any, b: any) => b.talents.burst.energy - a.talents.burst.energy || a.name.localeCompare(b.name))
+            break
+        default:
+            break
+    }
+    return charCardResult
 }
 
 // Filters out Action Cards that have been added twice to the deck, then sorts them based on the selected option
@@ -41,8 +54,17 @@ function CurrentActionCards(cards: TCGCardData[], deck: TCGDeckData[], sortBy: s
     let counts: { [propName: string]: number } = {}
     deckNames.forEach((card: string) => counts[card as keyof {}] === undefined ? counts[card] = 1 : counts[card] += 1)
     let actionCardResult = cards.filter(card => counts[card.name as keyof {}] !== 2)
-    if (sortBy === "name") return actionCardResult.sort((a, b) => a.name.localeCompare(b.name))
-    if (sortBy === "cardGroup") return actionCardResult.sort((a, b) => a.subType.localeCompare(b.subType) || a.name.localeCompare(b.name))
+    switch (sortBy) {
+        case "name":
+            actionCardResult = actionCardResult.sort((a, b) => a.name.localeCompare(b.name))
+            break
+        case "cardGroup":
+            actionCardResult = actionCardResult.sort((a, b) => a.subType.localeCompare(b.subType) || a.name.localeCompare(b.name))
+            break
+        default:
+            break
+    }
+    return actionCardResult
 }
 
 function TCGBrowser(props: any) {
