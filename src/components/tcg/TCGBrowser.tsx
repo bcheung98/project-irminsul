@@ -5,8 +5,8 @@ import { connect, useDispatch } from "react-redux"
 import TCGCharacterCard from "./TCGCharacterCard"
 import TCGActionCard from "./TCGActionCard"
 import TCGDeck from "./TCGDeck"
-import TCGCharacterCardFilter from "./filters/character/_TCGCharacterCardFilter"
-import TCGActionCardFilter from "./filters/action/_TCGActionCardFilter"
+import TCGCharacterCardFilters from "./filters/character/_TCGCharacterCardFilters"
+import TCGActionCardFilters from "./filters/action/_TCGActionCardFilters"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
@@ -165,7 +165,7 @@ function TCGBrowser(props: any) {
                                         value={charSearchValue}
                                     />
                                 </Paper>
-                                <TCGCharacterCardFilter />
+                                <TCGCharacterCardFilters />
                                 <Box
                                     sx={{
                                         margin: "auto",
@@ -216,7 +216,7 @@ function TCGBrowser(props: any) {
                                         value={actionSearchValue}
                                     />
                                 </Paper>
-                                <TCGActionCardFilter />
+                                <TCGActionCardFilters />
                                 <Box
                                     sx={{
                                         margin: "auto",
