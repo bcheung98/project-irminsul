@@ -10,13 +10,17 @@ import TCGActionCardFilters from "./filters/action/_TCGActionCardFilters"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { Box, Typography, ToggleButtonGroup, Paper, InputBase, Radio, RadioGroup, FormControlLabel } from "@mui/material"
+import { Box, Typography, ToggleButtonGroup, Paper, InputBase, Radio, RadioGroup, FormControlLabel, Stack } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward"
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward"
+import { blue } from "@mui/material/colors"
 
 // Helper imports
 import { filterTCGCharacterCards } from "../../helpers/FilterTCGCharacterCards"
 import { filterTCGActionCards } from "../../helpers/FilterTCGActionCards"
-import { CustomToggleButtonText } from "../../helpers/CustomToggleButton"
+import { CustomTooltip } from "../../helpers/CustomTooltip"
+import { CustomToggleButton, CustomToggleButtonText } from "../../helpers/CustomToggleButton"
 import { clearCharacterFilters } from "../../redux/reducers/TCGCharacterFilterReducer"
 import { clearActionFilters } from "../../redux/reducers/TCGActionFilterReducer"
 
@@ -24,48 +28,6 @@ import { clearActionFilters } from "../../redux/reducers/TCGActionFilterReducer"
 import { RootState } from "../../redux/store"
 import { TCGCardData } from "../../types/TCGData"
 import { TCGDeckData } from "../../types/TCGDeckData"
-
-// Filters out Character Cards that are already in the deck, then sorts them based on the selected option
-function CurrentCharacterCards(cards: TCGCardData[], deck: TCGDeckData[], sortBy: string) {
-    let deckNames = deck.map(card => card.name)
-    let charCardResult = cards.filter(card => !deckNames.includes(card.name))
-    switch (sortBy) {
-        case "name":
-            charCardResult = charCardResult.sort((a, b) => a.name.localeCompare(b.name))
-            break
-        case "element":
-            charCardResult = charCardResult.sort((a, b) => a.element.localeCompare(b.element) || a.name.localeCompare(b.name))
-            break
-        case "weapon":
-            charCardResult = charCardResult.sort((a, b) => a.weapon.localeCompare(b.weapon) || a.name.localeCompare(b.name))
-            break
-        case "energy":
-            charCardResult = charCardResult.sort((a: any, b: any) => b.talents.burst.energy - a.talents.burst.energy || a.name.localeCompare(b.name))
-            break
-        default:
-            break
-    }
-    return charCardResult
-}
-
-// Filters out Action Cards that have been added twice to the deck, then sorts them based on the selected option
-function CurrentActionCards(cards: TCGCardData[], deck: TCGDeckData[], sortBy: string) {
-    let deckNames = deck.map(card => card.name)
-    let counts: { [propName: string]: number } = {}
-    deckNames.forEach((card: string) => counts[card as keyof {}] === undefined ? counts[card] = 1 : counts[card] += 1)
-    let actionCardResult = cards.filter(card => counts[card.name as keyof {}] !== 2)
-    switch (sortBy) {
-        case "name":
-            actionCardResult = actionCardResult.sort((a, b) => a.name.localeCompare(b.name))
-            break
-        case "cardGroup":
-            actionCardResult = actionCardResult.sort((a, b) => a.subType.localeCompare(b.subType) || a.name.localeCompare(b.name))
-            break
-        default:
-            break
-    }
-    return actionCardResult
-}
 
 function TCGBrowser(props: any) {
 
@@ -90,9 +52,23 @@ function TCGBrowser(props: any) {
         setCharRadioValue(event.target.value)
     }
 
+    const [charSortDirection, setCharSortDirection] = React.useState("asc")
+    const handleCharacterSortDirectionChange = (event: React.BaseSyntheticEvent, newSort: "asc" | "desc") => {
+        if (newSort !== null) {
+            setCharSortDirection(newSort)
+        }
+    }
+
     const [actionRadioValue, setActionRadioValue] = React.useState("name")
     const handleActionRadioChange = (event: React.BaseSyntheticEvent) => {
         setActionRadioValue(event.target.value)
+    }
+
+    const [actionSortDirection, setActionSortDirection] = React.useState("asc")
+    const handleActionSortDirectionChange = (event: React.BaseSyntheticEvent, newSort: "asc" | "desc") => {
+        if (newSort !== null) {
+            setActionSortDirection(newSort)
+        }
     }
 
     const [view, setView] = React.useState("char")
@@ -175,7 +151,7 @@ function TCGBrowser(props: any) {
                         <Grid container >
                             <Grid xs={9.5}>
                                 <Grid container sx={{ ml: "15px" }} xs={9}>
-                                    {filterTCGCharacterCards(CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards, charRadioValue), cardCharFilters, charSearchValue).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
+                                    {filterTCGCharacterCards(CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards, charRadioValue, charSortDirection), cardCharFilters, charSearchValue).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
                                 </Grid>
                             </Grid>
                             <Grid xs>
@@ -207,6 +183,20 @@ function TCGBrowser(props: any) {
                                             Sort by
                                         </Typography>
                                         <Box sx={{ p: "10px", backgroundColor: `${theme.paper.backgroundColor}` }}>
+                                            <Stack direction="row" spacing={4} sx={{ my: "10px" }}>
+                                                <ToggleButtonGroup value={charSortDirection} size="small" exclusive onChange={handleCharacterSortDirectionChange} sx={{ border: `1px solid ${theme.border.color}` }}>
+                                                    <CustomTooltip title="Ascending" arrow placement="top">
+                                                        <CustomToggleButton value="asc">
+                                                            <ArrowUpwardIcon sx={{ color: blue[50] }} />
+                                                        </CustomToggleButton>
+                                                    </CustomTooltip>
+                                                    <CustomTooltip title="Descending" arrow placement="top">
+                                                        <CustomToggleButton value="desc">
+                                                            <ArrowDownwardIcon sx={{ color: blue[50] }} />
+                                                        </CustomToggleButton>
+                                                    </CustomTooltip>
+                                                </ToggleButtonGroup>
+                                            </Stack>
                                             <RadioGroup
                                                 value={charRadioValue}
                                                 onChange={handleCharRadioChange}
@@ -226,7 +216,7 @@ function TCGBrowser(props: any) {
                         <Grid container>
                             <Grid xs={9.5}>
                                 <Grid container sx={{ ml: "15px" }} xs={9}>
-                                    {filterTCGActionCards(CurrentActionCards(cards.cards[1].cards, deck.deck.actionCards, actionRadioValue), cardActionFilters, actionSearchValue).map(card => <TCGActionCard key={card.name} card={card} preview={false} />)}
+                                    {filterTCGActionCards(CurrentActionCards(cards.cards[1].cards, deck.deck.actionCards, actionRadioValue, actionSortDirection), cardActionFilters, actionSearchValue).map(card => <TCGActionCard key={card.name} card={card} preview={false} />)}
                                 </Grid>
                             </Grid>
                             <Grid xs>
@@ -258,6 +248,20 @@ function TCGBrowser(props: any) {
                                             Sort by
                                         </Typography>
                                         <Box sx={{ p: "10px", backgroundColor: `${theme.paper.backgroundColor}` }}>
+                                            <Stack direction="row" spacing={4} sx={{ my: "10px" }}>
+                                                <ToggleButtonGroup value={actionSortDirection} size="small" exclusive onChange={handleActionSortDirectionChange} sx={{ border: `1px solid ${theme.border.color}` }}>
+                                                    <CustomTooltip title="Ascending" arrow placement="top">
+                                                        <CustomToggleButton value="asc">
+                                                            <ArrowUpwardIcon sx={{ color: blue[50] }} />
+                                                        </CustomToggleButton>
+                                                    </CustomTooltip>
+                                                    <CustomTooltip title="Descending" arrow placement="top">
+                                                        <CustomToggleButton value="desc">
+                                                            <ArrowDownwardIcon sx={{ color: blue[50] }} />
+                                                        </CustomToggleButton>
+                                                    </CustomTooltip>
+                                                </ToggleButtonGroup>
+                                            </Stack>
                                             <RadioGroup
                                                 value={actionRadioValue}
                                                 onChange={handleActionRadioChange}
@@ -285,3 +289,55 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 export default connect(mapStateToProps)(TCGBrowser)
+
+// Filters out Character Cards that are already in the deck, then sorts them based on the selected option
+function CurrentCharacterCards(cards: TCGCardData[], deck: TCGDeckData[], sortBy: string, sortDirection: string) {
+    let deckNames = deck.map(card => card.name)
+    let charCardResult = cards.filter(card => !deckNames.includes(card.name))
+    switch (sortBy) {
+        case "name":
+            charCardResult = charCardResult.sort((a, b) => a.name.localeCompare(b.name))
+            break
+        case "element":
+            charCardResult = charCardResult.sort((a, b) => a.element.localeCompare(b.element) || a.name.localeCompare(b.name))
+            break
+        case "weapon":
+            charCardResult = charCardResult.sort((a, b) => a.weapon.localeCompare(b.weapon) || a.name.localeCompare(b.name))
+            break
+        case "energy":
+            charCardResult = charCardResult.sort((a: any, b: any) => b.talents.burst.energy - a.talents.burst.energy || a.name.localeCompare(b.name))
+            break
+        default:
+            break
+    }
+    if (sortDirection === "asc") {
+        return charCardResult
+    }
+    else {
+        return charCardResult.reverse()
+    }
+}
+
+// Filters out Action Cards that have been added twice to the deck, then sorts them based on the selected option
+function CurrentActionCards(cards: TCGCardData[], deck: TCGDeckData[], sortBy: string, sortDirection: string) {
+    let deckNames = deck.map(card => card.name)
+    let counts: { [propName: string]: number } = {}
+    deckNames.forEach((card: string) => counts[card as keyof {}] === undefined ? counts[card] = 1 : counts[card] += 1)
+    let actionCardResult = cards.filter(card => counts[card.name as keyof {}] !== 2)
+    switch (sortBy) {
+        case "name":
+            actionCardResult = actionCardResult.sort((a, b) => a.name.localeCompare(b.name))
+            break
+        case "cardGroup":
+            actionCardResult = actionCardResult.sort((a, b) => a.subType.localeCompare(b.subType) || a.name.localeCompare(b.name))
+            break
+        default:
+            break
+    }
+    if (sortDirection === "asc") {
+        return actionCardResult
+    }
+    else {
+        return actionCardResult.reverse()
+    }
+}
