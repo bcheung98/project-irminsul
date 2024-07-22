@@ -1,33 +1,46 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import parse from "html-react-parser";
-import { Box } from "@mui/system";
-import { Typography, CardHeader, Avatar, Button, Dialog, Chip } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import { CustomTooltip } from "../../helpers/CustomTooltip";
-import { ElementalBorderColor } from "../../helpers/ElementalColors";
-import TCGDiceCost from "./TCGDiceCost";
-import { FormatTCGTalentKey } from "../../helpers/FormatTCGTalentKey";
-import { Keywords } from "./TCGKeywords";
-import TCGKeywordPopup from "./TCGKeywordPopup";
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
+import * as React from "react"
+import { connect, useDispatch } from "react-redux"
+import parse, { Element, domToReact, HTMLReactParserOptions } from "html-react-parser"
 
-const TCGCharacterCardPopup = (props) => {
+// Component imports
+import TCGDiceCost from "./TCGDiceCost"
+import TCGKeywordPopup from "./TCGKeywordPopup"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, Typography, CardHeader, Avatar, Button, Dialog, Chip } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2"
 
-    let { name, element, arkhe, weapon, factions, hp, talents, splash } = props.char;
+// Helper imports
+import { addCharacterCard, removeCharacterCard } from "../../redux/reducers/DeckReducer"
+import { CustomTooltip } from "../../helpers/CustomTooltip"
+import { ElementalBorderColor } from "../../helpers/ElementalColors"
+import { FormatTCGTalentKey } from "../../helpers/FormatTCGTalentKey"
+import { Keywords } from "./TCGKeywords"
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-    const [open, setOpen] = React.useState(false);
-    const [tag, setTag] = React.useState("");
-    const handleClickOpen = (e) => {
-        setTag(e.target.className.split("-")[1]);
-        setOpen(true);
-    };
+// Type imports
+import { RootState } from "../../redux/store"
+import { TCGCardData } from "../../types/TCGData"
+import { TCGKeywordsData } from "../../types/TCGKeywordsData"
+
+function TCGCharacterCardPopup(props: any) {
+
+    const theme = useTheme()
+
+    const dispatch = useDispatch()
+
+    let { name, element, arkhe, weapon, factions, hp, talents, splash } = props.char
+
+    const [open, setOpen] = React.useState(false)
+    const [tag, setTag] = React.useState("")
+    const handleClickOpen = (event: React.BaseSyntheticEvent) => {
+        setTag(event.target.className.split("-")[1])
+        setOpen(true)
+    }
     const handleClose = () => {
-        setOpen(false);
-    };
+        setOpen(false)
+    }
 
     const ChipStyle = {
         px: "5px",
@@ -38,51 +51,51 @@ const TCGCharacterCardPopup = (props) => {
 
     // The following code block transforms certain keywords into underlined elements
     // When clicked on, these elements will open up a dialog box showing info about the corresponding keyword
-    const { domToReact } = parse;
-    const options = {
-        replace: ({ attribs, children }) => {
-            if (!attribs) {
-                return;
+    const options: HTMLReactParserOptions = {
+        replace: domNode => {
+            const typedDomNode = domNode as Element
+            if (!typedDomNode.attribs) {
+                return
             }
-            if (attribs.class !== undefined && attribs.class.split("-")[0].startsWith("tooltip")) {
-                let dataTag = attribs.class.split("-")[1]
+            if (typedDomNode.attribs.class !== undefined && typedDomNode.attribs.class.split("-")[0].startsWith("tooltip")) {
+                let dataTag = typedDomNode.attribs.class.split("-")[1]
                 return React.createElement(
                     "u",
                     {
-                        className: `${attribs.class.split("-")[0]}-${dataTag}`,
+                        className: `${typedDomNode.attribs.class.split("-")[0]}-${dataTag}`,
                         style: { cursor: "pointer" },
-                        onClick: (e) => { handleClickOpen(e) }
+                        onClick: (event: React.BaseSyntheticEvent) => { handleClickOpen(event) }
                     },
-                    domToReact(children, options)
+                    domToReact(typedDomNode.children, options)
                 )
             }
         }
     }
 
-    let keywordName;
-    let keywordType;
-    let keywordDescription;
+    let keywordName
+    let keywordType
+    let keywordDescription
     if (Keywords[tag]) {
-        keywordName = Keywords[tag].name;
-        keywordType = Keywords[tag].type;
-        keywordDescription = Keywords[tag].description;
+        keywordName = Keywords[tag].name
+        keywordType = Keywords[tag].type
+        keywordDescription = Keywords[tag].description
     }
     else if (props.char.keywords && tag !== "") {
-        let currentKeyword = props.char.keywords.find(kw => kw.tag === tag);
-        keywordName = currentKeyword.name;
-        keywordType = currentKeyword.type;
-        keywordDescription = currentKeyword.description;
+        let currentKeyword = props.char.keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
+        keywordName = currentKeyword.name
+        keywordType = currentKeyword.type
+        keywordDescription = currentKeyword.description
     }
 
-    const GetAttackIcon = (key, weapon, element, talents) => {
+    function GetAttackIcon(key: string, weapon: string, element: string, talents: TCGCardData["talents"]) {
 
-        let src = `${process.env.REACT_APP_URL}/tcg/character_talent_icons/attack_${weapon.split(" ").join("_").toLowerCase()}.png`;
+        let src = `${process.env.REACT_APP_URL}/tcg/character_talent_icons/attack_${weapon.split(" ").join("_").toLowerCase()}.png`
         if (weapon === "Other Weapons") {
             if (talents.attack.description.includes("Physical DMG")) {
-                src = `${process.env.REACT_APP_URL}/tcg/character_talent_icons/attack_other_weapons.png`;
+                src = `${process.env.REACT_APP_URL}/tcg/character_talent_icons/attack_other_weapons.png`
             }
             else {
-                src = `${process.env.REACT_APP_URL}/tcg/character_talent_icons/attack_catalyst.png`;
+                src = `${process.env.REACT_APP_URL}/tcg/character_talent_icons/attack_catalyst.png`
             }
         }
         return (
@@ -216,7 +229,7 @@ const TCGCharacterCardPopup = (props) => {
                             sx={ChipStyle}
                         />
                         {
-                            factions.map((faction, index) => {
+                            factions.map((faction: string, index: number) => {
                                 return (
                                     <Chip
                                         key={index}
@@ -312,11 +325,11 @@ const TCGCharacterCardPopup = (props) => {
                         <React.Fragment>
                             {
                                 props.inDeck === false ?
-                                    <Button variant="contained" sx={{ my: "20px" }} onClick={() => props.addCharCardToDeck(props.char)}>
+                                    <Button variant="contained" sx={{ my: "20px" }} onClick={() => dispatch(addCharacterCard(props.char))}>
                                         <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>Add to Deck</Typography>
                                     </Button>
                                     :
-                                    <Button variant="contained" color="error" sx={{ my: "20px" }} onClick={() => props.removeCharCardToDeck(props.char)}>
+                                    <Button variant="contained" color="error" sx={{ my: "20px" }} onClick={() => dispatch(removeCharacterCard(props.char))}>
                                         <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>Remove from Deck</Typography>
                                     </Button>
                             }
@@ -338,17 +351,8 @@ const TCGCharacterCardPopup = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        deck: state.deck
-    }
-}
+const mapStateToProps = (state: RootState) => ({
+    deck: state.deck
+})
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addCharCardToDeck: (card) => dispatch({ type: "ADD_CHAR_CARD", card }),
-        removeCharCardToDeck: (card) => dispatch({ type: "REMOVE_CHAR_CARD", card })
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TCGCharacterCardPopup);
+export default connect(mapStateToProps)(TCGCharacterCardPopup)

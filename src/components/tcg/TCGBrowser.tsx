@@ -1,90 +1,95 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { styled } from '@mui/material/styles';
-import { connect } from "react-redux";
-import { Box } from "@mui/system";
-import { Typography, ToggleButton, ToggleButtonGroup, Paper, InputBase, Radio, RadioGroup, FormControlLabel } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import TCGCharacterCard from "./TCGCharacterCard";
-import TCGActionCard from "./TCGActionCard";
-import TCGDeck from "./TCGDeck";
-import { filterTCGCharacterCards } from "../../helpers/FilterTCGCharacterCards";
-import { filterTCGActionCards } from "../../helpers/FilterTCGActionCards";
-import TCGCharacterCardFilter from "./filters/character/_TCGCharacterCardFilter";
-import TCGActionCardFilter from "./filters/action/_TCGActionCardFilter";
+import * as React from "react"
+import { connect, useDispatch } from "react-redux"
 
-const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
-    "&.MuiToggleButton-root": {
-        border: `2px solid ${theme.border.color}`,
-        "&.Mui-selected": {
-            backgroundColor: "rgb(0, 127, 255)"
-        }
-    }
-}));
+// Component imports
+import TCGCharacterCard from "./TCGCharacterCard"
+import TCGActionCard from "./TCGActionCard"
+import TCGDeck from "./TCGDeck"
+import TCGCharacterCardFilter from "./filters/character/_TCGCharacterCardFilter"
+import TCGActionCardFilter from "./filters/action/_TCGActionCardFilter"
+
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, Typography, ToggleButtonGroup, Paper, InputBase, Radio, RadioGroup, FormControlLabel } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2"
+
+// Helper imports
+import { filterTCGCharacterCards } from "../../helpers/FilterTCGCharacterCards"
+import { filterTCGActionCards } from "../../helpers/FilterTCGActionCards"
+import { CustomToggleButtonText } from "../../helpers/CustomToggleButton"
+import { clearCharacterFilters } from "../../redux/reducers/TCGCharacterFilterReducer"
+import { clearActionFilters } from "../../redux/reducers/TCGActionFilterReducer"
+
+// Type imports
+import { RootState } from "../../redux/store"
+import { TCGCardData } from "../../types/TCGData"
+import { TCGDeckData } from "../../types/TCGDeckData"
 
 // Filters out Character Cards that are already in the deck, then sorts them based on the selected option
-const CurrentCharacterCards = (cards, deck, sortBy) => {
-    let deckNames = deck.map(card => card.name);
-    let charCardResult = cards.filter(card => !deckNames.includes(card.name));
-    if (sortBy === "name") return charCardResult.sort((a, b) => a.name.localeCompare(b.name));
-    if (sortBy === "element") return charCardResult.sort((a, b) => a.element.localeCompare(b.element) || a.name.localeCompare(b.name));
-    if (sortBy === "weapon") return charCardResult.sort((a, b) => a.weapon.localeCompare(b.weapon) || a.name.localeCompare(b.name));
-    if (sortBy === "energy") return charCardResult.sort((a, b) => b.talents.burst.energy - a.talents.burst.energy || a.name.localeCompare(b.name));
+function CurrentCharacterCards(cards: TCGCardData[], deck: TCGDeckData[], sortBy: string) {
+    let deckNames = deck.map(card => card.name)
+    let charCardResult = cards.filter(card => !deckNames.includes(card.name))
+    if (sortBy === "name") return charCardResult.sort((a, b) => a.name.localeCompare(b.name))
+    if (sortBy === "element") return charCardResult.sort((a, b) => a.element.localeCompare(b.element) || a.name.localeCompare(b.name))
+    if (sortBy === "weapon") return charCardResult.sort((a, b) => a.weapon.localeCompare(b.weapon) || a.name.localeCompare(b.name))
+    if (sortBy === "energy") return charCardResult.sort((a: any, b: any) => b.talents.burst.energy - a.talents.burst.energy || a.name.localeCompare(b.name))
 }
 
 // Filters out Action Cards that have been added twice to the deck, then sorts them based on the selected option
-const CurrentActionCards = (cards, deck, sortBy) => {
-    let deckNames = deck.map(card => card.name);
-    let counts = {};
-    deckNames.forEach(card => counts[card] === undefined ? counts[card] = 1 : counts[card] += 1);
-    let actionCardResult = cards.filter(card => counts[card.name] !== 2);
-    if (sortBy === "name") return actionCardResult.sort((a, b) => a.name.localeCompare(b.name));
-    if (sortBy === "cardGroup") return actionCardResult.sort((a, b) => a.subType.localeCompare(b.subType) || a.name.localeCompare(b.name));
+function CurrentActionCards(cards: TCGCardData[], deck: TCGDeckData[], sortBy: string) {
+    let deckNames = deck.map(card => card.name)
+    let counts: { [propName: string]: number } = {}
+    deckNames.forEach((card: string) => counts[card as keyof {}] === undefined ? counts[card] = 1 : counts[card] += 1)
+    let actionCardResult = cards.filter(card => counts[card.name as keyof {}] !== 2)
+    if (sortBy === "name") return actionCardResult.sort((a, b) => a.name.localeCompare(b.name))
+    if (sortBy === "cardGroup") return actionCardResult.sort((a, b) => a.subType.localeCompare(b.subType) || a.name.localeCompare(b.name))
 }
 
-const TCGBrowser = (props) => {
+function TCGBrowser(props: any) {
 
-    const theme = useTheme();
+    const theme = useTheme()
 
-    let { cards, deck, cardCharFilters, cardActionFilters } = props;
+    const dispatch = useDispatch()
 
-    const [charSearchValue, setCharSearchValue] = React.useState("");
-    const handleCharInputChange = (e) => {
-        setCharSearchValue(e.target.value);
+    let { cards, deck, cardCharFilters, cardActionFilters } = props
+
+    const [charSearchValue, setCharSearchValue] = React.useState("")
+    const handleCharInputChange = (event: React.BaseSyntheticEvent) => {
+        setCharSearchValue(event.target.value)
     }
 
-    const [actionSearchValue, setActionSearchValue] = React.useState("");
-    const handleActionInputChange = (e) => {
-        setActionSearchValue(e.target.value);
+    const [actionSearchValue, setActionSearchValue] = React.useState("")
+    const handleActionInputChange = (event: React.BaseSyntheticEvent) => {
+        setActionSearchValue(event.target.value)
     }
 
-    const [charRadioValue, setCharRadioValue] = React.useState("name");
-    const handleCharRadioChange = (e) => {
-        setCharRadioValue(e.target.value);
+    const [charRadioValue, setCharRadioValue] = React.useState("name")
+    const handleCharRadioChange = (event: React.BaseSyntheticEvent) => {
+        setCharRadioValue(event.target.value)
     }
 
-    const [actionRadioValue, setActionRadioValue] = React.useState("name");
-    const handleActionRadioChange = (e) => {
-        setActionRadioValue(e.target.value);
+    const [actionRadioValue, setActionRadioValue] = React.useState("name")
+    const handleActionRadioChange = (event: React.BaseSyntheticEvent) => {
+        setActionRadioValue(event.target.value)
     }
 
-    const [view, setView] = React.useState("char");
-    const handleView = (event, newView) => {
+    const [view, setView] = React.useState("char")
+    const handleView = (event: React.BaseSyntheticEvent, newView: string) => {
         if (newView !== null) {
-            setView(newView);
+            setView(newView)
 
             // Clear filter and search values when switching between Character and Action Card view
-            props.clearCharFilters();
-            props.clearActionFilters();
-            setCharSearchValue("");
-            setActionSearchValue("");
+            dispatch(clearCharacterFilters())
+            dispatch(clearActionFilters())
+            setCharSearchValue("")
+            setActionSearchValue("")
         }
     }
 
     const SearchBar = {
         border: `2px solid ${theme.border.color}`,
         borderRadius: "5px",
-        backgroundColor: "rgb(0, 30, 60)",
+        backgroundColor: `${theme.table.body.backgroundColor}`,
         display: "flex",
         height: "40px",
         width: "89%",
@@ -99,7 +104,7 @@ const TCGBrowser = (props) => {
         fontFamily: "Genshin, sans-serif",
     }
 
-    document.title = "TCG - Project Irminsul";
+    document.title = "TCG - Project Irminsul"
 
     return (
         <React.Fragment>
@@ -132,12 +137,12 @@ const TCGBrowser = (props) => {
             <TCGDeck cards={deck.deck} />
 
             <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ mx: "30px", mb: "30px" }}>
-                <StyledToggleButton value="char">
+                <CustomToggleButtonText value="char">
                     <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Character Cards</Typography>
-                </StyledToggleButton>
-                <StyledToggleButton value="action">
+                </CustomToggleButtonText>
+                <CustomToggleButtonText value="action">
                     <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Action Cards</Typography>
-                </StyledToggleButton>
+                </CustomToggleButtonText>
             </ToggleButtonGroup>
 
             {/* Cards */}
@@ -250,20 +255,11 @@ const TCGBrowser = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        cards: state.cards,
-        deck: state.deck,
-        cardCharFilters: state.cardCharFilters,
-        cardActionFilters: state.cardActionFilters
-    }
-}
+const mapStateToProps = (state: RootState) => ({
+    cards: state.cards,
+    deck: state.deck,
+    cardCharFilters: state.cardCharFilters,
+    cardActionFilters: state.cardActionFilters
+})
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        clearCharFilters: () => dispatch({ type: "TCGCHAR_CLEAR_FILTERS" }),
-        clearActionFilters: () => dispatch({ type: "TCGACTION_CLEAR_FILTERS" })
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TCGBrowser);
+export default connect(mapStateToProps)(TCGBrowser)

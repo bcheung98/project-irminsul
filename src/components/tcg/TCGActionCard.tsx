@@ -1,26 +1,35 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import { Box } from "@mui/system";
-import { Typography, Dialog } from "@mui/material";
-import TCGDiceCost from "./TCGDiceCost";
-import TCGActionCardPopup from "./TCGActionCardPopup";
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
+import * as React from "react"
+import { connect } from "react-redux"
 
-const TCGActionCard = (props) => {
+// Component imports
+import TCGDiceCost from "./TCGDiceCost"
+import TCGActionCardPopup from "./TCGActionCardPopup"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, Typography, Dialog } from "@mui/material"
 
-    let { name, cost } = props.card;
-    let { deck } = props.deck;
+// Helper imports
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-    const [open, setOpen] = React.useState(false);
+// Type imports
+import { RootState } from "../../redux/store"
+import { TCGDeckData } from "../../types/TCGDeckData"
+
+function TCGActionCard(props: any) {
+
+    const theme = useTheme()
+
+    let { name, cost } = props.card
+    let { deck } = props.deck
+
+    const [open, setOpen] = React.useState(false)
     const handleClickOpen = () => {
-        setOpen(true);
-    };
+        setOpen(true)
+    }
     const handleClose = () => {
-        setOpen(false);
-    };
+        setOpen(false)
+    }
 
     return (
         <Box sx={{ mb: "20px" }}>
@@ -69,16 +78,14 @@ const TCGActionCard = (props) => {
                 onClose={handleClose}
                 maxWidth={false}
             >
-                <TCGActionCardPopup key={name} card={props.card} inDeck={deck.actionCards.includes(props.card)} count={deck.actionCards.filter(card => card === props.card).length} preview={props.preview} />
+                <TCGActionCardPopup key={name} card={props.card} inDeck={deck.actionCards.includes(props.card)} count={deck.actionCards.filter((card: TCGDeckData) => card === props.card).length} preview={props.preview} />
             </Dialog>
         </Box>
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        deck: state.deck
-    }
-}
+const mapStateToProps = (state: RootState) => ({
+    deck: state.deck
+})
 
-export default connect(mapStateToProps)(TCGActionCard);
+export default connect(mapStateToProps)(TCGActionCard)

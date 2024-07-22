@@ -1,28 +1,36 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import { Box } from "@mui/system";
-import { Typography, Dialog } from "@mui/material";
-import TCGCharacterCardPopup from "./TCGCharacterCardPopup";
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
+import * as React from "react"
+import { connect } from "react-redux"
 
-const TCGCharacterCard = (props) => {
+// Component imports
+import TCGCharacterCardPopup from "./TCGCharacterCardPopup"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, Typography, Dialog } from "@mui/material"
 
-    let { name, hp, talents } = props.char;
-    let { deck } = props.deck;
+// Helper imports
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
+
+// Type imports
+import { RootState } from "../../redux/store"
+
+function TCGCharacterCard(props: any) {
+
+    const theme = useTheme()
+
+    let { name, hp, talents } = props.char
+    let { deck } = props.deck
 
     // Generates an array of numbers
-    const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + (i * step));
+    const range = (start: number, stop: number, step: number) => Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + (i * step))
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false)
     const handleClickOpen = () => {
-        setOpen(true);
-    };
+        setOpen(true)
+    }
     const handleClose = () => {
-        setOpen(false);
-    };
+        setOpen(false)
+    }
 
     return (
         <Box sx={{ mb: "20px" }}>
@@ -115,10 +123,8 @@ const TCGCharacterCard = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        deck: state.deck
-    }
-}
+const mapStateToProps = (state: RootState) => ({
+    deck: state.deck
+})
 
-export default connect(mapStateToProps)(TCGCharacterCard);
+export default connect(mapStateToProps)(TCGCharacterCard)

@@ -1,60 +1,68 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import parse from "html-react-parser";
-import { Box } from "@mui/system";
-import { Typography, Dialog } from "@mui/material";
-import { Keywords } from "./TCGKeywords";
-import TCGDiceCost from "./TCGDiceCost";
+import * as React from "react"
+import parse, { Element, domToReact, HTMLReactParserOptions } from "html-react-parser"
 
-const TCGKeywordPopup = (props) => {
+// Component imports
+import TCGDiceCost from "./TCGDiceCost"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, Typography, Dialog } from "@mui/material"
 
-    let { name, type, cost, description } = props;
+// Helper imports
+import { Keywords } from "./TCGKeywords"
 
-    const [open, setOpen] = React.useState(false);
-    const [tag, setTag] = React.useState("");
-    const handleClickOpen = (e) => {
-        setTag(e.target.className.split("-")[1]);
-        setOpen(true);
-    };
+// Type imports
+import { TCGKeywordsData } from "../../types/TCGKeywordsData"
+
+function TCGKeywordPopup(props: any) {
+
+    const theme = useTheme()
+
+    let { name, type, cost, description } = props
+
+    const [open, setOpen] = React.useState(false)
+    const [tag, setTag] = React.useState("")
+    const handleClickOpen = (event: React.BaseSyntheticEvent) => {
+        setTag(event.target.className.split("-")[1])
+        setOpen(true)
+    }
     const handleClose = () => {
-        setOpen(false);
-    };
+        setOpen(false)
+    }
 
     // The following code block transforms certain keywords into underlined elements
     // When clicked on, these elements will open up a dialog box showing info about the corresponding keyword
-    const { domToReact } = parse;
-    const options = {
-        replace: ({ attribs, children }) => {
-            if (!attribs) {
-                return;
+    const options: HTMLReactParserOptions = {
+        replace: domNode => {
+            const typedDomNode = domNode as Element
+            if (!typedDomNode.attribs) {
+                return
             }
-            if (attribs.class !== undefined && attribs.class.split("-")[0].startsWith("tooltip")) {
-                let dataTag = attribs.class.split("-")[1]
+            if (typedDomNode.attribs.class !== undefined && typedDomNode.attribs.class.split("-")[0].startsWith("tooltip")) {
+                let dataTag = typedDomNode.attribs.class.split("-")[1]
                 return React.createElement(
                     "u",
                     {
-                        className: `${attribs.class.split("-")[0]}-${dataTag}`,
+                        className: `${typedDomNode.attribs.class.split("-")[0]}-${dataTag}`,
                         style: { cursor: "pointer" },
-                        onClick: (e) => { handleClickOpen(e) }
+                        onClick: (event: React.BaseSyntheticEvent) => { handleClickOpen(event) }
                     },
-                    domToReact(children, options)
+                    domToReact(typedDomNode.children, options)
                 )
             }
         }
     }
 
-    let keywordName;
-    let keywordDescription;
+    let keywordName
+    let keywordDescription
     if (Keywords[tag]) {
-        keywordName = Keywords[tag].name;
-        keywordDescription = Keywords[tag].description;
+        keywordName = Keywords[tag].name
+        keywordDescription = Keywords[tag].description
     }
     else if (tag !== "") {
-        let currentKeyword = props.keywords.find(kw => kw.tag === tag);
-        keywordName = currentKeyword.name;
-        keywordDescription = currentKeyword.description;
+        let currentKeyword = props.keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
+        keywordName = currentKeyword.name
+        keywordDescription = currentKeyword.description
     }
 
     return (
@@ -105,4 +113,4 @@ const TCGKeywordPopup = (props) => {
 
 }
 
-export default TCGKeywordPopup;
+export default TCGKeywordPopup

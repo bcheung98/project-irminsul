@@ -1,29 +1,15 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Box } from "@mui/system";
-import { Avatar, Typography } from "@mui/material";
-import { TCGPyro, TCGHydro, TCGElectro, TCGCryo, TCGAnemo, TCGGeo, TCGDendro } from "../../helpers/ElementIcons";
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, Avatar, Typography } from "@mui/material"
+
+// Helper imports
+import { TCGPyro, TCGHydro, TCGElectro, TCGCryo, TCGAnemo, TCGGeo, TCGDendro } from "../../helpers/ElementIcons"
 
 const MainBoxStyle = {
     mb: "10px",
 }
 
-const TitleText = () => {
-    const theme = useTheme();
-    return { fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, ml: "5px" }
-}
-
-const DescriptionText = () => {
-    const theme = useTheme();
-    return { color: `${theme.text.colorAlt}`, }
-}
-
-const Plus = () => {
-    const theme = useTheme();
-    return <Typography sx={{ mx: "5px", mt: "5px", color: `${theme.text.color}` }}>+</Typography>
-}
-
-export const Bloom = (props) => {
+export function Bloom(props: any) {
     return (
         <Box sx={MainBoxStyle} >
             <Box sx={{ display: "inline-flex" }}>
@@ -48,7 +34,7 @@ export const Bloom = (props) => {
     )
 }
 
-export const Burning = (props) => {
+export function Burning(props: any) {
     return (
         <Box sx={MainBoxStyle}>
             <Box sx={{ display: "inline-flex" }}>
@@ -73,7 +59,7 @@ export const Burning = (props) => {
     )
 }
 
-export const Crystallize = (props) => {
+export function Crystallize(props: any) {
     return (
         <Box sx={MainBoxStyle}>
             <Box sx={{ display: "inline-flex" }}>
@@ -89,7 +75,7 @@ export const Crystallize = (props) => {
     )
 }
 
-export const Electrocharged = (props) => {
+export function Electrocharged(props: any) {
     return (
         <Box sx={{ mb: "5px" }}>
             <Box sx={{ display: "inline-flex" }}>
@@ -114,7 +100,7 @@ export const Electrocharged = (props) => {
     )
 }
 
-export const Frozen = (props) => {
+export function Frozen(props: any) {
     return (
         <Box sx={MainBoxStyle}>
             <Box sx={{ display: "inline-flex" }}>
@@ -139,7 +125,7 @@ export const Frozen = (props) => {
     )
 }
 
-export const Melt = (props) => {
+export function Melt(props: any) {
     return (
         <Box sx={MainBoxStyle}>
             <Box sx={{ display: "inline-flex" }}>
@@ -164,7 +150,7 @@ export const Melt = (props) => {
     )
 }
 
-export const Overloaded = (props) => {
+export function Overloaded(props: any) {
     return (
         <Box sx={MainBoxStyle}>
             <Box sx={{ display: "inline-flex" }}>
@@ -189,7 +175,7 @@ export const Overloaded = (props) => {
     )
 }
 
-export const Quicken = (props) => {
+export function Quicken(props: any) {
     return (
         <Box sx={MainBoxStyle}>
             <Box sx={{ display: "inline-flex" }}>
@@ -214,7 +200,7 @@ export const Quicken = (props) => {
     )
 }
 
-export const Superconduct = (props) => {
+export function Superconduct(props: any) {
     return (
         <Box sx={MainBoxStyle}>
             <Box sx={{ display: "inline-flex" }}>
@@ -239,7 +225,7 @@ export const Superconduct = (props) => {
     )
 }
 
-export const Swirl = (props) => {
+export function Swirl(props: any) {
     return (
         <Box sx={MainBoxStyle}>
             <Box sx={{ display: "inline-flex" }}>
@@ -255,7 +241,7 @@ export const Swirl = (props) => {
     )
 }
 
-export const Vaporize = (props) => {
+export function Vaporize(props: any) {
     return (
         <Box sx={MainBoxStyle}>
             <Box sx={{ display: "inline-flex" }}>
@@ -278,4 +264,19 @@ export const Vaporize = (props) => {
             }
         </Box>
     )
+}
+
+const TitleText = () => {
+    const theme = useTheme()
+    return { fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, ml: "5px" }
+}
+
+const DescriptionText = () => {
+    const theme = useTheme()
+    return { color: `${theme.text.colorAlt}` }
+}
+
+const Plus = () => {
+    const theme = useTheme()
+    return <Typography sx={{ mx: "5px", mt: "5px", color: `${theme.text.color}` }}>+</Typography>
 }

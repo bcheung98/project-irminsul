@@ -1,66 +1,79 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import { Box } from "@mui/system";
-import { Typography, Paper, Button, Dialog, InputBase } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/CustomAccordion";
-import TCGCharacterCard from "./TCGCharacterCard";
-import TCGActionCard from "./TCGActionCard";
+import * as React from "react"
+import { connect, useDispatch } from "react-redux"
 
-const TCGDeck = (props) => {
+// Component imports
+import TCGCharacterCard from "./TCGCharacterCard"
+import TCGActionCard from "./TCGActionCard"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, Typography, Paper, Button, Dialog, InputBase } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2"
 
-    const [open, setOpen] = React.useState(false);
+// Helper imports
+import { loadDeck, renameDeck } from "../../redux/reducers/DeckReducer"
+import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/CustomAccordion"
+
+// Type imports
+import { RootState } from "../../redux/store"
+import { TCGCardData } from "../../types/TCGData"
+import { TCGDeckData } from "../../types/TCGDeckData"
+
+function TCGDeck(props: any) {
+
+    const theme = useTheme()
+
+    const dispatch = useDispatch()
+
+    const [open, setOpen] = React.useState(false)
     const handleClickOpen = () => {
-        setOpen(true);
-    };
+        setOpen(true)
+    }
     const handleClose = () => {
-        setOpen(false);
-    };
-
-    const [inputValue, setInputValue] = React.useState("");
-    const handleInputChange = (e) => {
-        setInputValue(e.target.value);
+        setOpen(false)
     }
 
-    const saveDeck = (deck) => {
+    const [inputValue, setInputValue] = React.useState("")
+    const handleInputChange = (event: React.BaseSyntheticEvent) => {
+        setInputValue(event.target.value)
+    }
+
+    const saveDeck = (deck: TCGDeckData) => {
         if (deck.characterCards.length > 0 || deck.actionCards.length > 0) {
-            let deckData = JSON.stringify(deck);
-            let blob = new Blob([deckData], { type: "text/plain" });
-            let URL = window.URL.createObjectURL(blob);
-            let link = document.createElement("a");
-            link.download = `${deck.name}.deck`;
-            link.href = URL;
-            link.click();
-            window.URL.revokeObjectURL(URL);
+            let deckData = JSON.stringify(deck)
+            let file = new Blob([deckData], { type: "text/plain" })
+            let URL = window.URL.createObjectURL(file)
+            let link = document.createElement("a")
+            link.download = `${deck.name}.deck`
+            link.href = URL
+            link.click()
+            window.URL.revokeObjectURL(URL)
         }
         else {
-            alert("Cannot save an empty deck!");
+            alert("Cannot save an empty deck!")
         }
     }
 
-    const getDeckFromFile = (file) => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            let deckData = JSON.parse(e.target.result);
-            props.loadDeck(deckData);
+    const getDeckFromFile = (file: Blob) => {
+        const reader = new FileReader()
+        reader.onload = (event) => {
+            let deckData = JSON.parse(event.target!.result as string)
+            dispatch(loadDeck(deckData))
         }
-        reader.readAsText(file, "UTF-8");
+        reader.readAsText(file, "UTF-8")
     }
 
-    const renameDeck = (e) => {
-        e.preventDefault();
+    const renameTCGDeck = (event: React.BaseSyntheticEvent) => {
+        event.preventDefault()
         if (inputValue !== "") {
-            props.renameDeck(inputValue);
-            handleClose();
+            dispatch(renameDeck(inputValue))
+            handleClose()
         }
     }
 
-    let { deck } = props;
-    let characterCards = deck.deck.characterCards;
-    let actionCards = deck.deck.actionCards;
+    let { deck } = props
+    let characterCards = deck.deck.characterCards
+    let actionCards = deck.deck.actionCards
 
     return (
         <Box sx={{ mx: "30px", mb: "20px" }}>
@@ -104,7 +117,7 @@ const TCGDeck = (props) => {
                             <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>
                                 Load Deck
                             </Typography>
-                            <input id="deck-input" hidden accept=".deck" type="file" onChange={(e) => getDeckFromFile(e.target.files[0])} />
+                            <input id="deck-input" hidden accept=".deck" type="file" onChange={(event: React.BaseSyntheticEvent) => getDeckFromFile(event.target.files[0])} />
                         </Button>
                         <Button onClick={() => handleClickOpen()}
                             variant="contained"
@@ -119,10 +132,10 @@ const TCGDeck = (props) => {
                             </Typography>
                         </Button>
                         <Grid container>
-                            {characterCards.map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
+                            {(characterCards as TCGCardData[]).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
                         </Grid>
                         <Grid container>
-                            {actionCards.map((card, index) => <TCGActionCard key={index} card={card} preview={false} />)}
+                            {(actionCards as TCGCardData[]).map((card, index) => <TCGActionCard key={index} card={card} preview={false} />)}
                         </Grid>
                     </AccordionDetails>
                 </Accordion>
@@ -141,7 +154,7 @@ const TCGDeck = (props) => {
                         backgroundColor: "rgb(0, 30, 60)",
                         p: "10px",
                     }}
-                    onSubmit={renameDeck}
+                    onSubmit={renameTCGDeck}
                 >
                     <InputBase
                         sx={{
@@ -158,7 +171,7 @@ const TCGDeck = (props) => {
                         onChange={handleInputChange}
                     />
                     <Button
-                        onClick={renameDeck}
+                        onClick={renameTCGDeck}
                         variant="contained"
                         sx={{
                             ml: "10px",
@@ -189,17 +202,8 @@ const TCGDeck = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        deck: state.deck
-    }
-}
+const mapStateToProps = (state: RootState) => ({
+    deck: state.deck
+})
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        loadDeck: (deck) => dispatch({ type: "LOAD_DECK", deck }),
-        renameDeck: (name) => dispatch({ type: "RENAME_DECK", name })
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TCGDeck);
+export default connect(mapStateToProps)(TCGDeck)

@@ -1,17 +1,17 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Typography, Box } from "@mui/material";
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { Box, SxProps, Typography } from "@mui/material"
 
-const TCGDiceCost = (props) => {
+function TCGDiceCost(props: any) {
 
-    const theme = useTheme();
+    const theme = useTheme()
 
     let cost = []
     if (props.cost !== undefined) {
-        cost = props.cost.split(" ");
+        cost = props.cost.split(" ")
     }
 
-    const position = (type) => {
+    const position = (type: string) => {
         if (type === "card") {
             return {
                 position: "absolute",
@@ -41,7 +41,7 @@ const TCGDiceCost = (props) => {
         }
     }
 
-    const size = (type) => {
+    const size = (type: string) => {
         if (type === "card") {
             return {
                 width: "56px"
@@ -64,7 +64,7 @@ const TCGDiceCost = (props) => {
         }
     }
 
-    const fontSize = (type) => {
+    const fontSize = (type: string) => {
         if (type === "card") {
             return "h5"
         }
@@ -86,9 +86,9 @@ const TCGDiceCost = (props) => {
                 position: "relative"
             }}
         >
-            <Box sx={position(props.type)}>
+            <Box sx={position(props.type) as SxProps}>
                 {
-                    cost.map((dice, index) => {
+                    cost.map((dice: string, index: number) => {
                         return (
                             <Box
                                 sx={{
@@ -121,4 +121,4 @@ const TCGDiceCost = (props) => {
     )
 }
 
-export default TCGDiceCost;
+export default TCGDiceCost
