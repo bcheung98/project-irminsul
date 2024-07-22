@@ -3,6 +3,12 @@ import { styled } from "@mui/material/styles";
 import { Popper, ButtonBase, InputBase } from "@mui/material";
 import { autocompleteClasses } from "@mui/material/Autocomplete";
 
+interface PopperComponentProps {
+    anchorEl?: any,
+    disablePortal?: boolean,
+    open: boolean,
+}
+
 const StyledAutocompletePopper = styled("div")(({ theme }) => ({
     [`& .${autocompleteClasses.paper}`]: {
         boxShadow: "none",
@@ -27,9 +33,9 @@ const StyledAutocompletePopper = styled("div")(({ theme }) => ({
     },
 }));
 
-export function PopperComponent(props) {
-    const { disablePortal, anchorEl, open, ...other } = props;
-    return <StyledAutocompletePopper {...other} />;
+export function PopperComponent(props: PopperComponentProps) {
+    const { disablePortal, anchorEl, open, ...other } = props
+    return <StyledAutocompletePopper {...other} />
 }
 
 PopperComponent.propTypes = {
