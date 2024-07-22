@@ -1,4 +1,4 @@
-export const ElementalBorderColor = (element?: string | undefined) => {
+export function ElementalBorderColor(element?: string | undefined) {
     switch (element) {
         case "Pyro":
             return { borderColor: "#ad0000" }
@@ -19,7 +19,7 @@ export const ElementalBorderColor = (element?: string | undefined) => {
     }
 }
 
-export const SwitchColor = (element?: string | undefined) => {
+export function SwitchColor(element?: string | undefined) {
     switch (element) {
         case "Pyro":
             return "#ad0000"
@@ -40,7 +40,7 @@ export const SwitchColor = (element?: string | undefined) => {
     }
 }
 
-export const SliderColor = (element?: string | undefined) => {
+export function SliderColor(element?: string | undefined) {
     switch (element) {
         case "Pyro":
             return "#ad0000"

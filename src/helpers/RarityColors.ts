@@ -1,4 +1,4 @@
-export const GetRarityColor = (rarity: number) => {
+export function GetRarityColor(rarity: number) {
     if (rarity === 5) {
         return "rgb(255, 208, 112)"
     }
@@ -16,7 +16,7 @@ export const GetRarityColor = (rarity: number) => {
     }
 }
 
-export const GetBackgroundColor = (rarity: number, opacity = 0.45) => {
+export function GetBackgroundColor(rarity: number, opacity = 0.45) {
     if (rarity === 5) {
         return `rgba(255, 199, 129, ${opacity})`
     }

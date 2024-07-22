@@ -1,4 +1,4 @@
-export const SetCharacterCostsLevel = (start: number, stop: number, selected: boolean) => {
+export function SetCharacterCostsLevel(start: number, stop: number, selected: boolean) {
 
     let materialArray = [
         // Level ["1", "20", "20+", "40", "40+", "50", "50+", "60", "60+", "70", "70+", "80", "80+", "90"]
@@ -55,7 +55,7 @@ export const SetCharacterCostsLevel = (start: number, stop: number, selected: bo
 
 }
 
-export const SetCharacterCostsSkill = (start: number, stop: number, selected: boolean) => {
+export function SetCharacterCostsSkill(start: number, stop: number, selected: boolean) {
 
     let materialArray = [
         // Level [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -100,7 +100,7 @@ export const SetCharacterCostsSkill = (start: number, stop: number, selected: bo
 
 }
 
-export const SetWeaponCostsLevel = (start: number, stop: number, rarity: number) => {
+export function SetWeaponCostsLevel(start: number, stop: number, rarity: number) {
     let materialArray: [number[], number[], number[], number[], number[], number[], number[], number[], number[], number[], number[], number[], number[], number[]] | [number[], number[], number[], number[], number[], number[], number[], number[], number[]]
 
     if (rarity === 5) {
