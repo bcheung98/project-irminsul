@@ -8,7 +8,7 @@ import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 const Elements = ["Pyro", "Hydro", "Electro", "Cryo", "Anemo", "Geo", "Dendro"]
 
-const CharacterElementFilter = () => {
+function CharacterElementFilter() {
 
     const dispatch = useDispatch()
 

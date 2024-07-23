@@ -5,7 +5,7 @@ import { AppBar, Box, Toolbar, Typography, Container, ButtonBase, Avatar, CardHe
 // Helper imports
 import { CustomTooltipLarge } from "../helpers/CustomTooltip"
 
-const Nav = () => {
+function Nav() {
 
     const theme = useTheme()
 

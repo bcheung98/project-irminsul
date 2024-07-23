@@ -10,7 +10,7 @@ import { Box } from "@mui/system"
 import { Typography } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 
-const Home = () => {
+function Home() {
 
     const theme = useTheme()
 

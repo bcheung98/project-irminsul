@@ -7,7 +7,7 @@ import { Box } from "@mui/material"
 // Helper imports
 import { setRarity } from "../../../redux/reducers/WeaponFilterReducer"
 
-const WeaponRarityFilter = () => {
+function WeaponRarityFilter() {
 
     const dispatch = useDispatch()
 
