@@ -102,13 +102,9 @@ const headCells = [
     { id: "subVersion", label: "Version" },
 ]
 
-const filterBanners = (banners: BannerRowData[], searchValue: string) => {
-    let filteredBanners = [] as any
+const filterBanners = (banners: any[], searchValue: string) => {
     if (searchValue !== "") {
-        filteredBanners = banners.filter((banner: BannerRowData) => banner.banner.map((char: string) => char.toLowerCase()).join("|").includes(searchValue.toLowerCase()))
+        banners = banners.filter((banner: BannerRowData) => banner.banner.map((char: string) => char.toLowerCase()).join("|").includes(searchValue.toLowerCase()))
     }
-    else {
-        filteredBanners = []
-    }
-    return filteredBanners
+    return banners
 }
