@@ -52,8 +52,8 @@ const FarmableToday = (props: any) => {
     }
 
     let farmableMats = MaterialDates(day)
-    let characters = props.characters.characters.filter((char: CharacterData) => farmableMats["talents"].includes(char.materials.talentBook))
-    let weapons = props.weapons.weapons.filter((wep: WeaponData) => farmableMats["weapons"].includes(wep.materials.ascensionMat))
+    let characters = props.characters.characters.filter((char: CharacterData) => farmableMats["talents"].includes(char.materials.talentBook as string))
+    let weapons = props.weapons.weapons.filter((wep: WeaponData) => farmableMats["weapons"].includes(wep.materials.ascensionMat as string))
 
     return (
         <Box
@@ -118,7 +118,7 @@ const FarmableToday = (props: any) => {
                                 />
                                 <Grid>
                                     {
-                                        characters.filter((char: CharacterData) => farmableMats["talents"][index].includes(char.materials.talentBook)).map((char: CharacterData, index: number) => (
+                                        characters.filter((char: CharacterData) => farmableMats["talents"][index].includes(char.materials.talentBook as string)).map((char: CharacterData, index: number) => (
                                             <ButtonBase disableRipple href={`/project-irminsul/character/${char.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
                                                 <CustomTooltip title={char.name} arrow placement="top">
                                                     <img src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${char.name.split(" ").join("_")}_Thumb.png`)} alt={char.name} style={IconBackground(char.rarity, theme)} onError={ErrorLoadingImage} />
@@ -152,7 +152,7 @@ const FarmableToday = (props: any) => {
                                 />
                                 <Grid>
                                     {
-                                        weapons.filter((wep: WeaponData) => farmableMats["weapons"][index].includes(wep.materials.ascensionMat)).sort((a: WeaponData, b: WeaponData) => b.rarity - a.rarity).map((wep: WeaponData, index: number) => (
+                                        weapons.filter((wep: WeaponData) => farmableMats["weapons"][index].includes(wep.materials.ascensionMat as string)).sort((a: WeaponData, b: WeaponData) => b.rarity - a.rarity).map((wep: WeaponData, index: number) => (
                                             <ButtonBase disableRipple href={`/project-irminsul/weapon/${wep.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
                                                 <CustomTooltip title={wep.name} arrow placement="top">
                                                     <img src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${wep.name.split(" ").join("_")}.png`)} alt={wep.name} style={IconBackground(wep.rarity, theme)} onError={ErrorLoadingImage} />
