@@ -1,4 +1,4 @@
-import { SkillData } from "./SkillData"
+import { SkillData } from "../SkillData"
 
 export type CharacterConstellationData = {
     name: string,

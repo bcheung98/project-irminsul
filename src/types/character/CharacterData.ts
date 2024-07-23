@@ -1,10 +1,10 @@
 import { CharacterTalentsData } from "./CharacterTalentsData"
 import { CharacterConstellationData } from "./CharacterConstellationData"
 import { CharacterStatsData } from "./CharacterStatsData"
-import { MaterialsData } from "./MaterialsData"
+import { MaterialsData } from "../MaterialsData"
 import { CharacterOutfitData } from "./CharacterOutfitData"
 import { CharacterVAData } from "./CharacterVAData"
-import { VersionData } from "./VersionData"
+import { VersionData } from "../VersionData"
 
 export type CharacterData = {
     id: number,

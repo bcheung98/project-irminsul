@@ -1,7 +1,7 @@
 import { TCGTalentsData } from "./TCGTalentsData"
 import { TCGKeywordsData } from "./TCGKeywordsData"
 import { TCGSplashData } from "./TCGSplashData"
-import { VersionData } from "./VersionData"
+import { VersionData } from "../VersionData"
 
 export type TCGCardData = {
     name: string,

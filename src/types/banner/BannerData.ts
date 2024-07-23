@@ -1,5 +1,5 @@
 import { BannerPhaseData } from "./BannerPhaseData"
-import { ChronicledWishPhaseData } from "./ChronicledWishPhaseData"
+import { ChronicledWishPhaseData } from "../banner/ChronicledWishPhaseData"
 
 export type BannerData = {
     version: string,

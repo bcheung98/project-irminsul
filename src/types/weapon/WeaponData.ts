@@ -1,6 +1,6 @@
-import { MaterialsData } from "./MaterialsData"
+import { MaterialsData } from "../MaterialsData"
 import { WeaponStatsData } from "./WeaponStatsData"
-import { VersionData } from "./VersionData"
+import { VersionData } from "../VersionData"
 
 export type WeaponData = {
     id: number,
