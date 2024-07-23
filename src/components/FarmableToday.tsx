@@ -3,8 +3,7 @@ import { useTheme } from "@mui/material/styles"
 import { connect } from "react-redux"
 
 // MUI imports
-import { Box } from "@mui/system"
-import { Button, ButtonBase, Typography, CardHeader, Tabs, Select, MenuItem, AppBar, SelectChangeEvent, Theme } from "@mui/material"
+import { Box, Button, ButtonBase, Typography, CardHeader, Tabs, Select, MenuItem, AppBar, SelectChangeEvent, Theme } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 
 // Helper imports

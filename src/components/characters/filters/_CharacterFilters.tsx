@@ -13,8 +13,7 @@ import CharacterGenderFilter from "./CharacterGenderFilter"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { Box } from "@mui/system"
-import { Typography, Paper } from "@mui/material"
+import { Box, Typography, Paper } from "@mui/material"
 
 // Helper imports
 import { Accordion, AccordionDetails, AccordionSummary } from "../../../helpers/CustomAccordion"

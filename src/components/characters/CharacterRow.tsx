@@ -1,8 +1,7 @@
 import * as React from "react"
 
 // MUI imports
-import { Box } from "@mui/system"
-import { ButtonBase, CardHeader, Typography } from "@mui/material"
+import { Box, ButtonBase, CardHeader, Typography } from "@mui/material"
 
 // Helper imports
 import { StyledTableCellNoVert, StyledTableRows } from "../../helpers/CustomTable"

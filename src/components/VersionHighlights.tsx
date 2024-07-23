@@ -10,8 +10,7 @@ import TCGActionCard from "./tcg/TCGActionCard"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { Box } from "@mui/system"
-import { Typography, Select, MenuItem, AppBar, IconButton, SelectChangeEvent } from "@mui/material"
+import { Box, Typography, Select, MenuItem, AppBar, IconButton, SelectChangeEvent } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 
 // Helper imports

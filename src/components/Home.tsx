@@ -6,8 +6,7 @@ import VersionHighlights from "./VersionHighlights"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { Box } from "@mui/system"
-import { Typography } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 
 function Home() {
