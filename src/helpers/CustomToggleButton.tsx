@@ -1,5 +1,5 @@
-import { styled } from '@mui/material/styles';
-import { ToggleButton } from "@mui/material";
+import { styled } from "@mui/material/styles"
+import { ToggleButton } from "@mui/material"
 
 export const CustomToggleButton = styled(ToggleButton)(({ theme }) => ({
     "&.MuiToggleButton-root": {
@@ -7,7 +7,7 @@ export const CustomToggleButton = styled(ToggleButton)(({ theme }) => ({
             backgroundColor: `${theme.button.selected}`,
         }
     }
-}));
+}))
 
 export const CustomToggleButtonText = styled(ToggleButton)(({ theme }) => ({
     "&.MuiToggleButton-root": {
@@ -16,4 +16,4 @@ export const CustomToggleButtonText = styled(ToggleButton)(({ theme }) => ({
             backgroundColor: "rgb(0, 127, 255)"
         }
     }
-}));
+}))
