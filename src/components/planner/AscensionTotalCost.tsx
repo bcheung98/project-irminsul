@@ -1,6 +1,6 @@
 import * as React from "react"
 import { connect } from "react-redux"
-import { exportComponentAsJPEG } from 'react-component-export-image'
+import { exportComponentAsJPEG } from "react-component-export-image"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
