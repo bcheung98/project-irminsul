@@ -3,7 +3,7 @@ import { fetchCharacterBanners, fetchWeaponBanners, fetchChronicledWish } from "
 import { BannerData, ChronicledWishBannerData } from "../../types/banner/BannerData"
 import { BannerRowData } from "../../types/banner/BannerRowData"
 
-interface BannerState {
+export interface BannerState {
     loading: boolean,
     characterBanners: BannerRowData[],
     weaponBanners: BannerRowData[],

@@ -2,12 +2,12 @@ import { createSlice } from "@reduxjs/toolkit"
 import { fetchWeapons } from "../actions/fetch"
 import { WeaponData } from "../../types/weapon/WeaponData"
 
-interface State {
+export interface WeaponState {
     loading: boolean,
     weapons: WeaponData[]
 }
 
-const initialState: State = {
+const initialState: WeaponState = {
     loading: false,
     weapons: []
 }

@@ -2,12 +2,12 @@ import { createSlice } from "@reduxjs/toolkit"
 import { fetchArtifacts } from "../actions/fetch"
 import { ArtifactData } from "../../types/artifact/ArtifactData"
 
-interface State {
+export interface ArtifactState {
     loading: boolean,
     artifacts: ArtifactData[]
 }
 
-const initialState: State = {
+const initialState: ArtifactState = {
     loading: false,
     artifacts: []
 }

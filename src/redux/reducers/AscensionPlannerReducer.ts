@@ -4,7 +4,7 @@ import { WeaponData } from "../../types/weapon/WeaponData"
 import { CharacterCosts } from "../../types/character/CharacterCosts"
 import { WeaponCosts } from "../../types/weapon/WeaponCosts"
 
-interface PlannerState {
+export interface PlannerState {
     totalCost: { [propName: string]: number },
     characters: CharacterData[],
     characterCosts: CharacterCosts[] | [],

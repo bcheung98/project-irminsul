@@ -2,12 +2,12 @@ import { createSlice } from "@reduxjs/toolkit"
 import { fetchCharacters } from "../actions/fetch"
 import { CharacterData } from "../../types/character/CharacterData"
 
-interface State {
+export interface CharacterState {
     loading: boolean,
     characters: CharacterData[]
 }
 
-const initialState: State = {
+const initialState: CharacterState = {
     loading: false,
     characters: []
 }

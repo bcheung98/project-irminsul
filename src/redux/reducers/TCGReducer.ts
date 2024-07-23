@@ -2,12 +2,12 @@ import { createSlice } from "@reduxjs/toolkit"
 import { fetchCards } from "../actions/fetch"
 import { TCGCardData } from "../../types/tcg/TCGData"
 
-interface State {
+export interface TCGState {
     loading: boolean,
     cards: TCGCardData[]
 }
 
-const initialState: State = {
+const initialState: TCGState = {
     loading: false,
     cards: []
 }
