@@ -1,6 +1,6 @@
 import { SkillData } from "../SkillData"
 
-export type CharacterConstellationData = {
+export interface CharacterConstellationData {
     name: string,
     c1: SkillData,
     c2: SkillData,

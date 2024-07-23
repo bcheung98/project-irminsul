@@ -1,6 +1,6 @@
 import { SkillData } from "../SkillData"
 
-export type WeaponStatsData = {
+export interface WeaponStatsData {
     atk: string,
     subStat: string,
     passive: SkillData

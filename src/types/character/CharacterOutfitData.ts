@@ -1,4 +1,4 @@
-export type CharacterOutfitData = {
+export interface CharacterOutfitData {
     name: string,
     displayName?: string,
     rarity: number,

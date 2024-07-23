@@ -1,4 +1,4 @@
-export type ChronicledWishBannerPhaseData = {
+export interface ChronicledWishBannerPhaseData {
     characters: {
         fiveStars: string[],
         fourStars: string[]

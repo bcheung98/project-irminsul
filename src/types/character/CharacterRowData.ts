@@ -1,4 +1,4 @@
-export type CharacterRowData = {
+export interface CharacterRowData {
     name: string,
     rarity: number,
     element: string,

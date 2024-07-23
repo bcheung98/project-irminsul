@@ -1,4 +1,4 @@
-export type TCGSplashData = {
+export interface TCGSplashData {
     title: string,
     description: string
 }

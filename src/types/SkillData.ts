@@ -1,4 +1,4 @@
-export type SkillData = {
+export interface SkillData {
     name: string,
     description: string,
     scaling?: string[][],

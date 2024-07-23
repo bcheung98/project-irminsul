@@ -1,4 +1,4 @@
-export type CharacterStatsData = {
+export interface CharacterStatsData {
     ascensionStat: string,
     hp: number[],
     atk: number[],

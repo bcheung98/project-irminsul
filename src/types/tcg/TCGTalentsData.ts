@@ -1,6 +1,6 @@
 import { TCGSkillData } from "./TCGSkillData"
 
-export type TCGTalentsData = {
+export interface TCGTalentsData {
     attack: TCGSkillData,
     skill: TCGSkillData,
     burst: TCGSkillData,

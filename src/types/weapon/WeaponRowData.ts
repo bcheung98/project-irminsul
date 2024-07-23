@@ -1,4 +1,4 @@
-export type WeaponRowData = {
+export interface WeaponRowData {
     name: string,
     rarity: number,
     type: string,

@@ -1,4 +1,4 @@
-export type ArtifactData = {
+export interface ArtifactData {
     name: string,
     rarity: number,
     setEffect: {

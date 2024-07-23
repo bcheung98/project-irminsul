@@ -6,7 +6,7 @@ import { CharacterOutfitData } from "./CharacterOutfitData"
 import { CharacterVAData } from "./CharacterVAData"
 import { VersionData } from "../VersionData"
 
-export type CharacterData = {
+export interface CharacterData {
     id: number,
     name: string,
     fullName?: string,

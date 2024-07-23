@@ -1,6 +1,6 @@
 import { SkillData } from "../SkillData"
 
-export type CharacterTalentsData = {
+export interface CharacterTalentsData {
     attack: SkillData,
     skill: SkillData,
     burst: SkillData,

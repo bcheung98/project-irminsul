@@ -1,4 +1,4 @@
-export type BannerPhaseData = {
+export interface BannerPhaseData {
     startDate: string,
     endDate: string,
     banner: string[]

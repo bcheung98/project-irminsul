@@ -2,7 +2,7 @@ import { MaterialsData } from "../MaterialsData"
 import { WeaponStatsData } from "./WeaponStatsData"
 import { VersionData } from "../VersionData"
 
-export type WeaponData = {
+export interface WeaponData {
     id: number,
     name: string,
     displayName?: string,

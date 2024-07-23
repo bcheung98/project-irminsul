@@ -3,7 +3,7 @@ import { TCGKeywordsData } from "./TCGKeywordsData"
 import { TCGSplashData } from "./TCGSplashData"
 import { VersionData } from "../VersionData"
 
-export type TCGCardData = {
+export interface TCGCardData {
     name: string,
     displayName?: string,
     fullName?: string,

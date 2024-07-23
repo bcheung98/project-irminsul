@@ -1,4 +1,4 @@
-export type CharacterCosts = {
+export interface CharacterCosts {
     name: string,
     costs: {
         mora: number[],

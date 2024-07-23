@@ -1,6 +1,6 @@
 import { ChronicledWishBannerPhaseData } from "./ChronicledWishBannerPhaseData"
 
-export type ChronicledWishPhaseData = {
+export interface ChronicledWishPhaseData {
     startDate: string,
     endDate: string,
     banner: ChronicledWishBannerPhaseData

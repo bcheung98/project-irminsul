@@ -1,4 +1,4 @@
-export type MaterialsData = {
+export interface MaterialsData {
     talentBook?: string,
     bossMat?: string,
     localMat?: string,

@@ -1,4 +1,4 @@
-export type CharacterVAData = {
+export interface CharacterVAData {
     en: string,
     jp: string
 }

@@ -1,4 +1,4 @@
-export type TCGKeywordsData = {
+export interface TCGKeywordsData {
     tag: string,
     type?: string,
     name: string,

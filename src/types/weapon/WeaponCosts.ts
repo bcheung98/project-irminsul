@@ -1,4 +1,4 @@
-export type WeaponCosts = {
+export interface WeaponCosts {
     name: string,
     costs: {
         mora: number,

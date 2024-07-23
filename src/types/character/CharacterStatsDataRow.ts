@@ -1,4 +1,4 @@
-export type CharacterStatsDataRow = {
+export interface CharacterStatsDataRow {
     level: string,
     hp: number,
     atk: number,
