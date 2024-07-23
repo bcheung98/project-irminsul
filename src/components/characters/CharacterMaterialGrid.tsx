@@ -32,22 +32,22 @@ function CharacterMaterialGrid(props: any) {
                 </Grid>
                 <Grid >
                     <CustomTooltip title={formatWeeklyBossMats(weeklyBossMat)} arrow placement="top">
-                        <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${weeklyBossMat.split(" ").join("_")}.png`)} alt={weeklyBossMat} onError={ErrorLoadingImage} />
+                        <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${weeklyBossMat}.png`)} alt={weeklyBossMat} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 </Grid>
                 <Grid>
                     <CustomTooltip title={formatCommonMats(commonMat)} arrow placement="top">
-                        <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}3.png`)} alt={commonMat} onError={ErrorLoadingImage} />
+                        <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat}3.png`)} alt={commonMat} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 </Grid>
                 <Grid >
                     <CustomTooltip title={formatBossMats(bossMat)} arrow placement="top">
-                        <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/boss_mats/${bossMat.split(" ").join("_")}.png`)} alt={bossMat} onError={ErrorLoadingImage} />
+                        <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/boss_mats/${bossMat}.png`)} alt={bossMat} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 </Grid>
                 <Grid >
                     <CustomTooltip title={localMat} arrow placement="top">
-                        <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/local_specialties/${localMat.split(" ").join("_")}.png`)} alt={localMat} onError={ErrorLoadingImage} />
+                        <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/local_specialties/${localMat}.png`)} alt={localMat} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 </Grid>
                 <Grid>

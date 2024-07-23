@@ -66,9 +66,9 @@ function CharacterOutfitDisplay(props: any) {
                                     key={index}
                                     label={
                                         index === 0 ?
-                                            <img src={`${process.env.REACT_APP_URL}/characters/thumbs/Character_${name.split(" ").join("_")}_Thumb.png`} alt={outfit.name} style={OutfitIcon(outfit.rarity)} onError={ErrorLoadingImage} />
+                                            <img src={`${process.env.REACT_APP_URL}/characters/icons/${name}.png`} alt={outfit.name} style={OutfitIcon(outfit.rarity)} onError={ErrorLoadingImage} />
                                             :
-                                            <img src={`${process.env.REACT_APP_URL}/characters/outfits/icon/${outfit.name.split(" ").join("_")}_Icon.png`} alt={outfit.name} style={OutfitIcon(outfit.rarity)} onError={ErrorLoadingImage} />
+                                            <img src={`${process.env.REACT_APP_URL}/characters/outfits/icon/${outfit.name}.png`} alt={outfit.name} style={OutfitIcon(outfit.rarity)} onError={ErrorLoadingImage} />
                                     }
                                 />
                             ))
@@ -106,9 +106,9 @@ function CharacterOutfitDisplay(props: any) {
                                     </Typography>
                                     {
                                         index === 0 ?
-                                            <img src={`${process.env.REACT_APP_URL}/characters/wish/Character_${name.split(" ").join("_")}_Wish.png`} alt={outfit.name} style={OutfitSplash} onError={ErrorLoadingImage} />
+                                            <img src={`${process.env.REACT_APP_URL}/characters/wish/${name}.png`} alt={outfit.name} style={OutfitSplash} onError={ErrorLoadingImage} />
                                             :
-                                            <img src={`${process.env.REACT_APP_URL}/characters/outfits/splash/${outfit.name.split(" ").join("_")}_Splash.png`} alt={outfit.name} style={OutfitSplash} onError={ErrorLoadingImage} />
+                                            <img src={`${process.env.REACT_APP_URL}/characters/outfits/splash/${outfit.name}.png`} alt={outfit.name} style={OutfitSplash} onError={ErrorLoadingImage} />
                                     }
                                 </TabPanel>
                             )

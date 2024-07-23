@@ -2,13 +2,13 @@ import { Avatar } from "@mui/material"
 
 const ElementalIcon = { width: "32px", height: "32px" }
 
-export const Pyro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Pyro.png`} alt="Pyro" sx={ElementalIcon} />
-export const Hydro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Hydro.png`} alt="Hydro" sx={ElementalIcon} />
-export const Electro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Electro.png`} alt="Electro" sx={ElementalIcon} />
-export const Cryo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Cryo.png`} alt="Cryo" sx={ElementalIcon} />
-export const Anemo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Anemo.png`} alt="Anemo" sx={ElementalIcon} />
-export const Geo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Geo.png`} alt="Geo" sx={ElementalIcon} />
-export const Dendro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Dendro.png`} alt="Dendro" sx={ElementalIcon} />
+export const Pyro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Pyro.png`} alt="Pyro" sx={ElementalIcon} />
+export const Hydro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Hydro.png`} alt="Hydro" sx={ElementalIcon} />
+export const Electro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Electro.png`} alt="Electro" sx={ElementalIcon} />
+export const Cryo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Cryo.png`} alt="Cryo" sx={ElementalIcon} />
+export const Anemo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Anemo.png`} alt="Anemo" sx={ElementalIcon} />
+export const Geo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Geo.png`} alt="Geo" sx={ElementalIcon} />
+export const Dendro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Dendro.png`} alt="Dendro" sx={ElementalIcon} />
 
 export const TCGPhysical = () => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Physical.png`} alt="Physical" sx={ElementalIcon} />
 export const TCGPyro = () => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Pyro.png`} alt="Pyro" sx={ElementalIcon} />

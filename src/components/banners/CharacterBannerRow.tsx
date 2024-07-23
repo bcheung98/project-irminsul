@@ -34,7 +34,7 @@ function CharacterBannerRow(props: any) {
                             (row as BannerRowData).banner.map((char, index) => (
                                 <ButtonBase disableRipple href={`/project-irminsul/character/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={char} sx={{ m: "2px" }}>
                                     <CustomTooltip title={char} arrow placement="top">
-                                        <img src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${char.split(" ").join("_")}_Thumb.png`)} alt={char}
+                                        <img src={(`${process.env.REACT_APP_URL}/characters/icons/${char}.png`)} alt={char}
                                             style={{
                                                 margin: "auto",
                                                 marginLeft: "2px",

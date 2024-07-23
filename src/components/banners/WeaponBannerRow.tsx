@@ -34,7 +34,7 @@ function WeaponBannerRow(props: any) {
                             (row as BannerRowData).banner.map((wep, index) => (
                                 <ButtonBase disableRipple href={`/project-irminsul/weapon/${wep.split(" ").join("_").toLowerCase()}`} target="_blank" key={wep} sx={{ m: "2px" }}>
                                     <CustomTooltip title={wep} arrow placement="top">
-                                        <img src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${wep.split(" ").join("_")}.png`)} alt={wep}
+                                        <img src={(`${process.env.REACT_APP_URL}/weapons/${wep}.png`)} alt={wep}
                                             style={{
                                                 margin: "auto",
                                                 marginLeft: "2px",

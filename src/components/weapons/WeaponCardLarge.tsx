@@ -63,7 +63,7 @@ function WeaponCardLarge(props: any) {
                             height: "200px",
                         }}
                     >
-                        <img src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${name.split(" ").join("_")}.png`)} alt={name} style={weaponIcon} onError={ErrorLoadingImage} />
+                        <img src={(`${process.env.REACT_APP_URL}/weapons/${name}.png`)} alt={name} style={weaponIcon} onError={ErrorLoadingImage} />
                     </Box>
                 </Box>
             </ButtonBase>
@@ -85,7 +85,7 @@ function WeaponCardLarge(props: any) {
                     onError={ErrorLoadingImage}
                 />
                 <CustomTooltip title={type} arrow placement="top">
-                    <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/weapons/icons/Icon_${type}.png`)} alt={type} onError={ErrorLoadingImage} />
+                    <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/weapons/icons/${type}.png`)} alt={type} onError={ErrorLoadingImage} />
                 </CustomTooltip>
                 <Box>
                     <ButtonBase disableRipple href={`/project-irminsul/weapon/${name.split(" ").join("_").toLowerCase()}`} target="_blank">

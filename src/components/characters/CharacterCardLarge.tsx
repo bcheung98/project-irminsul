@@ -33,7 +33,7 @@ function CharacterCardLarge(props: any) {
                             height: "225px",
                         }}
                     >
-                        <Avatar variant="square" src={`${process.env.REACT_APP_URL}/characters/wish_multi/${name.split(" ").join("_")}_Multi_Wish.png`} alt={name}
+                        <Avatar variant="square" src={`${process.env.REACT_APP_URL}/characters/wish_multi/${name}.png`} alt={name}
                             style={{
                                 width: width,
                                 height: "475px",
@@ -41,7 +41,7 @@ function CharacterCardLarge(props: any) {
                                 backgroundColor: `${theme.card.backgroundColor}`,
                             }}
                         >
-                            <img src={`${process.env.REACT_APP_URL}/characters/wish/Character_${name.split(" ").join("_")}_Wish.png`} alt={name}
+                            <img src={`${process.env.REACT_APP_URL}/characters/wish/${name}.png`} alt={name}
                                 style={{
                                     width: width,
                                     height: "500px",
@@ -81,10 +81,10 @@ function CharacterCardLarge(props: any) {
                     onError={ErrorLoadingImage}
                 />
                 <CustomTooltip title={element} arrow placement="top">
-                    <img style={{ width: "30px", marginTop: "5px", marginLeft: "1.5px", marginRight: "1.5px" }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
+                    <img style={{ width: "30px", marginTop: "5px", marginLeft: "1.5px", marginRight: "1.5px" }} src={(`${process.env.REACT_APP_URL}/elements/${element}.png`)} alt={element} onError={ErrorLoadingImage} />
                 </CustomTooltip>
                 <CustomTooltip title={weapon} arrow placement="top">
-                    <img style={{ width: "33px", marginTop: "5px", marginLeft: "1.5px", marginRight: "1.5px" }} src={(`${process.env.REACT_APP_URL}/weapons/icons/Icon_${weapon}.png`)} alt={weapon} onError={ErrorLoadingImage} />
+                    <img style={{ width: "33px", marginTop: "5px", marginLeft: "1.5px", marginRight: "1.5px" }} src={(`${process.env.REACT_APP_URL}/weapons/icons/${weapon}.png`)} alt={weapon} onError={ErrorLoadingImage} />
                 </CustomTooltip>
                 <Box>
                     <ButtonBase disableRipple href={`/project-irminsul/character/${name.split(" ").join("_").toLowerCase()}`} target="_blank">

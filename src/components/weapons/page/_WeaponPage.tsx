@@ -67,7 +67,7 @@ function WeaponPage(props: any) {
             <React.Fragment>
                 <Grid container sx={{ mb: "20px", mt: "10px" }}>
                     <Grid xs="auto">
-                        <img src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${name.split(" ").join("_")}.png`)} alt={name} style={weaponIcon} onError={ErrorLoadingImage} />
+                        <img src={(`${process.env.REACT_APP_URL}/weapons/${name}.png`)} alt={name} style={weaponIcon} onError={ErrorLoadingImage} />
                     </Grid>
                     <Grid xs>
                         <Box
@@ -82,7 +82,7 @@ function WeaponPage(props: any) {
                         >
                             <Box sx={{ display: "flex" }}>
                                 <CustomTooltip title={`${type}`} arrow placement="bottom">
-                                    <Avatar variant="square" src={`${process.env.REACT_APP_URL}/weapons/icons/Icon_${type}.png`} alt={type} onError={ErrorLoadingImage} sx={{ marginRight: "-20px", height: "100px", width: "100px", backgroundColor: `${theme.paper.backgroundColor}` }} />
+                                    <Avatar variant="square" src={`${process.env.REACT_APP_URL}/weapons/icons/${type}.png`} alt={type} onError={ErrorLoadingImage} sx={{ marginRight: "-20px", height: "100px", width: "100px", backgroundColor: `${theme.paper.backgroundColor}` }} />
                                 </CustomTooltip>
                                 <Box sx={{ ml: "30px" }}>
                                     <Typography

@@ -53,11 +53,11 @@ function WeaponAscensionCard(props: any) {
                 avatar={
                     <Box sx={{ position: "relative" }}>
                         <ButtonBase disableRipple href={`/project-irminsul/weapon/${props.weapon.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                            <img alt={name} src={`${process.env.REACT_APP_URL}/weapons/Weapon_${name.split(" ").join("_")}.png`} style={mainIcon} onError={ErrorLoadingImage} />
+                            <img alt={name} src={`${process.env.REACT_APP_URL}/weapons/${name}.png`} style={mainIcon} onError={ErrorLoadingImage} />
                         </ButtonBase>
                         <Box sx={{ position: "absolute", top: "50px", left: "45px" }}>
                             <CustomTooltip title={type} arrow placement="top">
-                                <img style={smallIcon} src={`${process.env.REACT_APP_URL}/weapons/icons/Icon_${type}.png`} alt={type} onError={ErrorLoadingImage} />
+                                <img style={smallIcon} src={`${process.env.REACT_APP_URL}/weapons/icons/${type}.png`} alt={type} onError={ErrorLoadingImage} />
                             </CustomTooltip>
                         </Box>
                     </Box>

@@ -48,7 +48,7 @@ function CharacterPage(props: any) {
 
         let { name, title, rarity, element, weapon, constellation, description, birthday, nation, voiceActors, release } = character
 
-        let visionIcon = nation === "Fontaine" ? `${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}_${character.arkhe}.png` : `${process.env.REACT_APP_URL}/visions/Vision_${nation}_${element}.png`
+        let visionIcon = nation === "Fontaine" ? `${process.env.REACT_APP_URL}/visions/${nation}_${element}_${character.arkhe}.png` : `${process.env.REACT_APP_URL}/visions/${nation}_${element}.png`
 
         if (character.fullname) document.title = `${character.fullname} - Project Irminsul`
         else document.title = `${name} - Project Irminsul`
@@ -57,7 +57,7 @@ function CharacterPage(props: any) {
             <React.Fragment>
                 <Grid container sx={{ mb: "20px" }}>
                     <Grid xs="auto">
-                        <img src={`${process.env.REACT_APP_URL}/characters/wish/Character_${name.split(" ").join("_")}_Wish.png`} alt={name}
+                        <img src={`${process.env.REACT_APP_URL}/characters/wish/${name}.png`} alt={name}
                             onClick={() => handleClickOpen()}
                             style={{
                                 width: "35vw",
@@ -121,7 +121,7 @@ function CharacterPage(props: any) {
                             <Box sx={{ display: "flex" }}>
                                 <CustomTooltip title={`${nation} / ${element}`} arrow placement="bottom">
                                     <Avatar sx={{ marginRight: "-20px", height: "128px", width: "128px", backgroundColor: `${theme.paper.backgroundColor}` }} src={visionIcon} alt={`${nation} / ${element}`}>
-                                        <img style={{ height: "72px", width: "72px" }} src={`${process.env.REACT_APP_URL}/elements/Element_${element}.png`} alt={`${element}`} onError={ErrorLoadingImage} />
+                                        <img style={{ height: "72px", width: "72px" }} src={`${process.env.REACT_APP_URL}/elements/${element}.png`} alt={`${element}`} onError={ErrorLoadingImage} />
                                     </Avatar>
                                 </CustomTooltip>
                                 <Box sx={{ ml: "20px" }}>

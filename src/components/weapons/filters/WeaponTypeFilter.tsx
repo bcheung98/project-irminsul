@@ -17,7 +17,7 @@ function WeaponTypeFilter() {
             {
                 Weapons.map((weapon, index) => (
                     <CustomTooltip key={index} title={weapon} arrow placement="top">
-                        <img className="filter-off" id={`weapon-${weapon.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/weapons/icons/Icon_${weapon}.png`} alt={weapon} onClick={() => dispatch(setWeaponType(weapon))} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`weapon-${weapon.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/weapons/icons/${weapon}.png`} alt={weapon} onClick={() => dispatch(setWeaponType(weapon))} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }

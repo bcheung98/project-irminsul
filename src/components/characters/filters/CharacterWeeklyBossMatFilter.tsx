@@ -25,7 +25,7 @@ function CharacterWeeklyBossMatFilter() {
                         <SmallAccordionSummary>
                             <CardHeader
                                 avatar={
-                                    <img src={`${process.env.REACT_APP_URL}/bosses/${boss.split(" ").join("_")}_Icon.png`} alt={boss} style={{ height: "32px", width: "32px", border: `1px solid ${theme.border.color}`, borderRadius: "5px" }} onError={ErrorLoadingImage} />
+                                    <img src={`${process.env.REACT_APP_URL}/bosses/${boss}.png`} alt={boss} style={{ height: "32px", width: "32px", border: `1px solid ${theme.border.color}`, borderRadius: "5px" }} onError={ErrorLoadingImage} />
                                 }
                                 title={
                                     <Typography
@@ -44,7 +44,7 @@ function CharacterWeeklyBossMatFilter() {
                             {
                                 (WeeklyBossMats[boss as keyof {}] as []).sort().map((material: string, index) => (
                                     <CustomTooltip key={index} title={material} arrow placement="top">
-                                        <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${material.split(" ").join("_")}.png`} alt={material} onClick={() => dispatch(setWeeklyBossMats(material))} onError={ErrorLoadingImage} />
+                                        <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${material}.png`} alt={material} onClick={() => dispatch(setWeeklyBossMats(material))} onError={ErrorLoadingImage} />
                                     </CustomTooltip>
                                 ))
                             }

@@ -56,7 +56,7 @@ function WeaponAscensionCardMaterials(props: any) {
                 costs["mora"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title="Mora" arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/Item_Mora.png`} alt="Mora" onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}//materials/Mora.png`} alt="Mora" onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -112,7 +112,7 @@ function WeaponAscensionCardMaterials(props: any) {
                 costs["ascension1"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatWeaponAscMats(`${ascensionMat}1`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat.split(" ").join("_")}1.png`} alt={formatWeaponAscMats(`${ascensionMat}1`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat}1.png`} alt={formatWeaponAscMats(`${ascensionMat}1`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -126,7 +126,7 @@ function WeaponAscensionCardMaterials(props: any) {
                 costs["ascension2"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatWeaponAscMats(`${ascensionMat}2`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat.split(" ").join("_")}2.png`} alt={formatWeaponAscMats(`${ascensionMat}2`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat}2.png`} alt={formatWeaponAscMats(`${ascensionMat}2`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -140,7 +140,7 @@ function WeaponAscensionCardMaterials(props: any) {
                 costs["ascension3"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatWeaponAscMats(`${ascensionMat}3`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat.split(" ").join("_")}3.png`} alt={formatWeaponAscMats(`${ascensionMat}3`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat}3.png`} alt={formatWeaponAscMats(`${ascensionMat}3`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -154,7 +154,7 @@ function WeaponAscensionCardMaterials(props: any) {
                 costs["ascension4"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatWeaponAscMats(`${ascensionMat}4`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["5"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat.split(" ").join("_")}4.png`} alt={formatWeaponAscMats(`${ascensionMat}4`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["5"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${ascensionMat}4.png`} alt={formatWeaponAscMats(`${ascensionMat}4`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -168,7 +168,7 @@ function WeaponAscensionCardMaterials(props: any) {
                 costs["elite1"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatEliteMats(`${eliteMat}1`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/elite_mats/${eliteMat.split(" ").join("_")}1.png`} alt={formatEliteMats(`${eliteMat}1`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/elite_mats/${eliteMat}1.png`} alt={formatEliteMats(`${eliteMat}1`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -182,7 +182,7 @@ function WeaponAscensionCardMaterials(props: any) {
                 costs["elite2"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatEliteMats(`${eliteMat}2`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/elite_mats/${eliteMat.split(" ").join("_")}2.png`} alt={formatEliteMats(`${eliteMat}2`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/elite_mats/${eliteMat}2.png`} alt={formatEliteMats(`${eliteMat}2`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -196,7 +196,7 @@ function WeaponAscensionCardMaterials(props: any) {
                 costs["elite3"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatEliteMats(`${eliteMat}3`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/elite_mats/${eliteMat.split(" ").join("_")}3.png`} alt={formatEliteMats(`${eliteMat}3`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/elite_mats/${eliteMat}3.png`} alt={formatEliteMats(`${eliteMat}3`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -210,7 +210,7 @@ function WeaponAscensionCardMaterials(props: any) {
                 costs["common1"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatCommonMats(`${commonMat}1`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["1"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}1.png`} alt={formatCommonMats(`${commonMat}1`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["1"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat}1.png`} alt={formatCommonMats(`${commonMat}1`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -224,7 +224,7 @@ function WeaponAscensionCardMaterials(props: any) {
                 costs["common2"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatCommonMats(`${commonMat}2`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}2.png`} alt={formatCommonMats(`${commonMat}2`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat}2.png`} alt={formatCommonMats(`${commonMat}2`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -238,7 +238,7 @@ function WeaponAscensionCardMaterials(props: any) {
                 costs["common3"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatCommonMats(`${commonMat}3`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}3.png`} alt={formatCommonMats(`${commonMat}3`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat}3.png`} alt={formatCommonMats(`${commonMat}3`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>

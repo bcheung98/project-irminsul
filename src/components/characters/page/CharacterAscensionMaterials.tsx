@@ -50,7 +50,7 @@ function CharacterAscensionMaterials(props: any) {
                 /* Mora */
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title="Mora" arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/Item_Mora.png`} alt="Mora" onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}//materials/Mora.png`} alt="Mora" onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -64,7 +64,7 @@ function CharacterAscensionMaterials(props: any) {
                 costs[1] !== "0" &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatBossMats(bossMat)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/boss_mats/${bossMat.split(" ").join("_")}.png`} alt={formatBossMats(bossMat)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/boss_mats/${bossMat}.png`} alt={formatBossMats(bossMat)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -78,7 +78,7 @@ function CharacterAscensionMaterials(props: any) {
                 costs[2] !== "0" &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={localMat} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["1"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/local_specialties/${localMat.split(" ").join("_")}.png`} alt={localMat} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["1"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/local_specialties/${localMat}.png`} alt={localMat} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -148,7 +148,7 @@ function CharacterAscensionMaterials(props: any) {
                 costs[7] !== "0" &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatCommonMats(`${commonMat}1`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["1"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}1.png`} alt={formatCommonMats(`${commonMat}1`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["1"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat}1.png`} alt={formatCommonMats(`${commonMat}1`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -162,7 +162,7 @@ function CharacterAscensionMaterials(props: any) {
                 costs[8] !== "0" &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatCommonMats(`${commonMat}2`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}2.png`} alt={formatCommonMats(`${commonMat}2`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat}2.png`} alt={formatCommonMats(`${commonMat}2`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -176,7 +176,7 @@ function CharacterAscensionMaterials(props: any) {
                 costs[9] !== "0" &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatCommonMats(`${commonMat}3`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}3.png`} alt={formatCommonMats(`${commonMat}3`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat}3.png`} alt={formatCommonMats(`${commonMat}3`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>

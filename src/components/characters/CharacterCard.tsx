@@ -35,10 +35,10 @@ function CharacterCard(props: any) {
     }
 
     // Old Icon: 
-    // const characterIcon = `${process.env.REACT_APP_URL}/characters/thumbs/Character_${name.split(" ").join("_")}_Thumb.png`
+    // const characterIcon = `${process.env.REACT_APP_URL}/characters/icons/${name}.png`
 
     // New Icon
-    const characterIcon = `${process.env.REACT_APP_URL}/characters/avatars/Avatar_${name.split(" ").join("_")}.png`
+    const characterIcon = `${process.env.REACT_APP_URL}/characters/avatars/${name.split(" ").join("_")}.png`
 
     return (
         <Card variant="outlined"
@@ -73,10 +73,10 @@ function CharacterCard(props: any) {
                         }}
                     >
                         <CustomTooltip title={element} arrow placement="top">
-                            <img style={{ height: "32px", width: "32px", marginRight: "1px" }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
+                            <img style={{ height: "32px", width: "32px", marginRight: "1px" }} src={(`${process.env.REACT_APP_URL}/elements/${element}.png`)} alt={element} onError={ErrorLoadingImage} />
                         </CustomTooltip>
                         <CustomTooltip title={weapon} arrow placement="top">
-                            <img style={{ height: "36px", width: "36px", marginTop: "-2px" }} src={(`${process.env.REACT_APP_URL}/weapons/icons/Icon_${weapon}.png`)} alt={weapon} onError={ErrorLoadingImage} />
+                            <img style={{ height: "36px", width: "36px", marginTop: "-2px" }} src={(`${process.env.REACT_APP_URL}/weapons/icons/${weapon}.png`)} alt={weapon} onError={ErrorLoadingImage} />
                         </CustomTooltip>
                     </Box>
                 </Box>

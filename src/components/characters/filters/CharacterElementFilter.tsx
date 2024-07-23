@@ -17,7 +17,7 @@ function CharacterElementFilter() {
             {
                 Elements.map((element, index) => (
                     <CustomTooltip key={index} title={element} arrow placement="top">
-                        <img className="filter-off" id={`${element.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/elements/Element_${element}.png`} alt={element} onClick={() => dispatch(setElement(element))} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`${element.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/elements/${element}.png`} alt={element} onClick={() => dispatch(setElement(element))} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }

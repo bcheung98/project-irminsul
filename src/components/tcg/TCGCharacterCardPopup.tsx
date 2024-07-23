@@ -173,7 +173,7 @@ function TCGCharacterCardPopup(props: any) {
                         </React.Fragment>
                         {/* Card Image */}
                         <React.Fragment>
-                            <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/Card_${name.split(" ").join("_")}.png`} alt={name}
+                            <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name}.png`} alt={name}
                                 style={{
                                     width: "250px",
                                     border: `2px solid ${theme.border.color}`,
@@ -212,7 +212,7 @@ function TCGCharacterCardPopup(props: any) {
                         }}
                     >
                         <CustomTooltip title={element} arrow placement="top">
-                            <img src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} style={{ marginRight: "10px", width: "64px", height: "64px" }} />
+                            <img src={(`${process.env.REACT_APP_URL}/elements/${element}.png`)} alt={element} onError={ErrorLoadingImage} style={{ marginRight: "10px", width: "64px", height: "64px" }} />
                         </CustomTooltip>
                         <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="h4">
                             {props.char.fullname ? props.char.fullname : name}

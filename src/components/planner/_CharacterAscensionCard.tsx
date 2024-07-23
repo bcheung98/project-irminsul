@@ -56,16 +56,16 @@ function CharacterAscensionCard(props: any) {
                 avatar={
                     <Box sx={{ position: "relative" }}>
                         <ButtonBase disableRipple href={`/project-irminsul/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                            <img alt={name} src={`${process.env.REACT_APP_URL}/characters/thumbs/Character_${name.split(" ").join("_")}_Thumb.png`} style={mainIcon} onError={ErrorLoadingImage} />
+                            <img alt={name} src={`${process.env.REACT_APP_URL}/characters/icons/${name}.png`} style={mainIcon} onError={ErrorLoadingImage} />
                         </ButtonBase>
                         <Box sx={{ position: "absolute", top: "50px", left: "-5px" }}>
                             <CustomTooltip title={element} arrow placement="top">
-                                <img style={smallIcon} src={`${process.env.REACT_APP_URL}/elements/Element_${element}.png`} alt={element} onError={ErrorLoadingImage} />
+                                <img style={smallIcon} src={`${process.env.REACT_APP_URL}/elements/${element}.png`} alt={element} onError={ErrorLoadingImage} />
                             </CustomTooltip>
                         </Box>
                         <Box sx={{ position: "absolute", top: "50px", left: "45px" }}>
                             <CustomTooltip title={weapon} arrow placement="top">
-                                <img style={smallIcon} src={`${process.env.REACT_APP_URL}/weapons/icons/Icon_${weapon}.png`} alt={weapon} onError={ErrorLoadingImage} />
+                                <img style={smallIcon} src={`${process.env.REACT_APP_URL}/weapons/icons/${weapon}.png`} alt={weapon} onError={ErrorLoadingImage} />
                             </CustomTooltip>
                         </Box>
                     </Box>

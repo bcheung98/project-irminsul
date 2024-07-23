@@ -21,7 +21,7 @@ function CharacterRow(props: any) {
                         <CardHeader sx={{ p: 0 }}
                             avatar={
                                 <ButtonBase disableRipple href={`/project-irminsul/character/${row.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                                    <img alt={row.name} src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${row.name.split(" ").join("_")}_Thumb.png`)} style={{ width: "48px", cursor: "pointer" }} onError={ErrorLoadingImage} />
+                                    <img alt={row.name} src={(`${process.env.REACT_APP_URL}/characters/icons/${row.name}.png`)} style={{ width: "48px", cursor: "pointer" }} onError={ErrorLoadingImage} />
                                 </ButtonBase>
                             }
                             title={
@@ -56,7 +56,7 @@ function CharacterRow(props: any) {
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <CardHeader sx={{ p: 0 }}
                             avatar={
-                                <img alt={row.element} src={(`${process.env.REACT_APP_URL}/elements/Element_${row.element}.png`)} style={{ width: "32px" }} onError={ErrorLoadingImage} />
+                                <img alt={row.element} src={(`${process.env.REACT_APP_URL}/elements/${row.element}.png`)} style={{ width: "32px" }} onError={ErrorLoadingImage} />
                             }
                             title={
                                 <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif" }}>
@@ -72,7 +72,7 @@ function CharacterRow(props: any) {
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <CardHeader sx={{ p: 0 }}
                             avatar={
-                                <img alt={row.weapon} src={(`${process.env.REACT_APP_URL}/weapons/icons/Icon_${row.weapon}.png`)}
+                                <img alt={row.weapon} src={(`${process.env.REACT_APP_URL}/weapons/icons/${row.weapon}.png`)}
                                     style={{
                                         width: "36px",
                                         border: "1px solid rgba(0, 30, 60, 0)",

@@ -35,7 +35,7 @@ function ChronicledWishRow(props: any) {
                         (row.banner as ChronicledWishBannerPhaseData).characters.fiveStars.map((char) => (
                             <ButtonBase disableRipple href={`/project-irminsul/character/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={char} sx={{ m: "2px" }}>
                                 <CustomTooltip title={char} arrow placement="top">
-                                    <img src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${char.split(" ").join("_")}_Thumb.png`)} alt={char}
+                                    <img src={(`${process.env.REACT_APP_URL}/characters/icons/${char}.png`)} alt={char}
                                         style={{
                                             margin: "auto",
                                             marginLeft: "2px",
@@ -61,7 +61,7 @@ function ChronicledWishRow(props: any) {
                         (row.banner as ChronicledWishBannerPhaseData).characters.fourStars.map((char) => (
                             <ButtonBase disableRipple href={`/project-irminsul/character/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={char} sx={{ m: "2px" }}>
                                 <CustomTooltip title={char} arrow placement="top">
-                                    <img src={(`${process.env.REACT_APP_URL}/characters/thumbs/Character_${char.split(" ").join("_")}_Thumb.png`)} alt={char}
+                                    <img src={(`${process.env.REACT_APP_URL}/characters/icons/${char}.png`)} alt={char}
                                         style={{
                                             margin: "auto",
                                             marginLeft: "2px",
@@ -89,7 +89,7 @@ function ChronicledWishRow(props: any) {
                         (row.banner as ChronicledWishBannerPhaseData).weapons.fiveStars.map((wep) => (
                             <ButtonBase disableRipple href={`/project-irminsul/weapon/${wep.split(" ").join("_").toLowerCase()}`} target="_blank" key={wep} sx={{ m: "2px" }}>
                                 <CustomTooltip title={wep} arrow placement="top">
-                                    <img src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${wep.split(" ").join("_")}.png`)} alt={wep}
+                                    <img src={(`${process.env.REACT_APP_URL}/weapons/${wep}.png`)} alt={wep}
                                         style={{
                                             margin: "auto",
                                             marginLeft: "2px",
@@ -115,7 +115,7 @@ function ChronicledWishRow(props: any) {
                         (row.banner as ChronicledWishBannerPhaseData).weapons.fourStars.map((wep) => (
                             <ButtonBase disableRipple href={`/project-irminsul/weapon/${wep.split(" ").join("_").toLowerCase()}`} target="_blank" key={wep} sx={{ m: "2px" }}>
                                 <CustomTooltip title={wep} arrow placement="top">
-                                    <img src={(`${process.env.REACT_APP_URL}/weapons/Weapon_${wep.split(" ").join("_")}.png`)} alt={wep}
+                                    <img src={(`${process.env.REACT_APP_URL}/weapons/${wep}.png`)} alt={wep}
                                         style={{
                                             margin: "auto",
                                             marginLeft: "2px",
