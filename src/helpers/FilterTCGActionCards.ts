@@ -1,5 +1,5 @@
 import { TCGActionFilterState } from "../redux/reducers/TCGActionFilterReducer"
-import { TCGCardData } from "../types/TCGData"
+import { TCGCardData } from "../types/tcg/TCGData"
 
 export function filterTCGActionCards(actionCards: TCGCardData[], filters: TCGActionFilterState, searchValue: string) {
     let cards = [...actionCards]

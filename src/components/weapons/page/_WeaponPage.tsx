@@ -12,7 +12,7 @@ import { CustomTooltip } from "../../../helpers/CustomTooltip"
 import { CustomSlider } from "../../../helpers/CustomSlider"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 import { RootState } from "../../../redux/store"
-import { WeaponData } from "../../../types/WeaponData"
+import { WeaponData } from "../../../types/weapon/WeaponData"
 
 function WeaponPage(props: any) {
 

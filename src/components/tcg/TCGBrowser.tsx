@@ -26,8 +26,8 @@ import { clearActionFilters } from "../../redux/reducers/TCGActionFilterReducer"
 
 // Type imports
 import { RootState } from "../../redux/store"
-import { TCGCardData } from "../../types/TCGData"
-import { TCGDeckData } from "../../types/TCGDeckData"
+import { TCGCardData } from "../../types/tcg/TCGData"
+import { TCGDeckData } from "../../types/tcg/TCGDeckData"
 
 function TCGBrowser(props: any) {
 

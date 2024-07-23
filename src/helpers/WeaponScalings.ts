@@ -1,4 +1,4 @@
-import { WeaponData } from "../types/WeaponData"
+import { WeaponData } from "../types/weapon/WeaponData"
 
 export const baseATKScaling = {
     "t-49": [49, 145, 176, 286, 317, 374, 406, 464, 495, 555, 586, 648, 679, 741],

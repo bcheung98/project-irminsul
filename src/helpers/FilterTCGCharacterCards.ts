@@ -1,5 +1,5 @@
 import { TCGCharacterFilterState } from "../redux/reducers/TCGCharacterFilterReducer"
-import { TCGCardData } from "../types/TCGData"
+import { TCGCardData } from "../types/tcg/TCGData"
 
 export const filterTCGCharacterCards = (characterCards: TCGCardData[], filters: TCGCharacterFilterState, searchValue: string) => {
     let cards = [...characterCards]

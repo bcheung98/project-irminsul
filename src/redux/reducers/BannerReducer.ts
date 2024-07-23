@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { fetchCharacterBanners, fetchWeaponBanners, fetchChronicledWish } from "../actions/fetch"
-import { BannerData, ChronicledWishBannerData } from "../../types/BannerData"
-import { BannerRowData } from "../../types/BannerRowData"
+import { BannerData, ChronicledWishBannerData } from "../../types/banner/BannerData"
+import { BannerRowData } from "../../types/banner/BannerRowData"
 
 interface BannerState {
     loading: boolean,

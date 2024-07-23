@@ -16,8 +16,8 @@ import ErrorLoadingImage from "../helpers/ErrorLoadingImage"
 
 // Type imports
 import { RootState } from "../redux/store"
-import { CharacterData } from "../types/CharacterData"
-import { WeaponData } from "../types/WeaponData"
+import { CharacterData } from "../types/character/CharacterData"
+import { WeaponData } from "../types/weapon/WeaponData"
 
 const IconBackground = (rarity: number, theme: Theme) => {
     return {

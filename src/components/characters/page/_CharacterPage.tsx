@@ -21,7 +21,7 @@ import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 // Type imports
 import { RootState } from "../../../redux/store"
-import { CharacterData } from "../../../types/CharacterData"
+import { CharacterData } from "../../../types/character/CharacterData"
 
 const CharacterPage = (props: any) => {
 

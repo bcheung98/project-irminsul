@@ -12,7 +12,7 @@ import { Box, Typography, Dialog } from "@mui/material"
 import { Keywords } from "./TCGKeywords"
 
 // Type imports
-import { TCGKeywordsData } from "../../types/TCGKeywordsData"
+import { TCGKeywordsData } from "../../types/tcg/TCGKeywordsData"
 
 function TCGKeywordPopup(props: any) {
 

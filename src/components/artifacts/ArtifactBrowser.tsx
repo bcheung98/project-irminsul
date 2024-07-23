@@ -11,7 +11,7 @@ import Grid from "@mui/material/Unstable_Grid2"
 
 // Type imports
 import { RootState } from "../../redux/store"
-import { ArtifactData } from "../../types/ArtifactData"
+import { ArtifactData } from "../../types/artifact/ArtifactData"
 
 const ArtifactBrowser = (props: any) => {
 

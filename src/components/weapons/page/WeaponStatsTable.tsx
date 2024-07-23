@@ -7,7 +7,7 @@ import { StyledTableCell, StyledTableRows } from "../../../helpers/CustomTable"
 import { baseATKScaling, subStatScaling } from "../../../helpers/WeaponScalings"
 
 // Type imports
-import { WeaponStatsDataRow } from "../../../types/WeaponStatsDataRow"
+import { WeaponStatsDataRow } from "../../../types/weapon/WeaponStatsDataRow"
 
 function WeaponStatsTable(props: any) {
 

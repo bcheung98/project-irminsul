@@ -13,7 +13,7 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 // Type imports
 import { RootState } from "../../redux/store"
-import { CharacterCosts } from "../../types/CharacterCosts"
+import { CharacterCosts } from "../../types/character/CharacterCosts"
 
 const CharacterAscensionCardMaterials = (props: any) => {
 

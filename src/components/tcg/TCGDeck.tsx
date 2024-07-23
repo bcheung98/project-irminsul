@@ -16,8 +16,8 @@ import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/Cus
 
 // Type imports
 import { RootState } from "../../redux/store"
-import { TCGCardData } from "../../types/TCGData"
-import { TCGDeckData } from "../../types/TCGDeckData"
+import { TCGCardData } from "../../types/tcg/TCGData"
+import { TCGDeckData } from "../../types/tcg/TCGDeckData"
 
 function TCGDeck(props: any) {
 

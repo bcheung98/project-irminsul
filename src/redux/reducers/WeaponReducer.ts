@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { fetchWeapons } from "../actions/fetch"
-import { WeaponData } from "../../types/WeaponData"
+import { WeaponData } from "../../types/weapon/WeaponData"
 
 interface State {
     loading: boolean,

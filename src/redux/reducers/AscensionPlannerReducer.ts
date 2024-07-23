@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import { CharacterData } from "../../types/CharacterData"
-import { WeaponData } from "../../types/WeaponData"
-import { CharacterCosts } from "../../types/CharacterCosts"
-import { WeaponCosts } from "../../types/WeaponCosts"
+import { CharacterData } from "../../types/character/CharacterData"
+import { WeaponData } from "../../types/weapon/WeaponData"
+import { CharacterCosts } from "../../types/character/CharacterCosts"
+import { WeaponCosts } from "../../types/weapon/WeaponCosts"
 
 interface PlannerState {
     totalCost: { [propName: string]: number },

@@ -7,8 +7,8 @@ import { StyledTableCell, StyledTableRows } from "../../../helpers/CustomTable"
 import { CharacterAscensionStatScalings } from "../../../helpers/CharacterAscensionStatScalings"
 
 // Type imports
-import { CharacterData } from "../../../types/CharacterData"
-import { CharacterStatsDataRow } from "../../../types/CharacterStatsDataRow"
+import { CharacterData } from "../../../types/character/CharacterData"
+import { CharacterStatsDataRow } from "../../../types/character/CharacterStatsDataRow"
 
 const CharacterStatsTable = (props: any) => {
 

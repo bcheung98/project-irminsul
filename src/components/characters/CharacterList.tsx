@@ -5,8 +5,8 @@ import { EnhancedTableHead, getComparator, stableSort } from "../../helpers/Cust
 import CharacterRow from "./CharacterRow"
 
 // Type imports
-import { CharacterData } from "../../types/CharacterData"
-import { CharacterRowData } from "../../types/CharacterRowData"
+import { CharacterData } from "../../types/character/CharacterData"
+import { CharacterRowData } from "../../types/character/CharacterRowData"
 
 const CharacterList = (props: any) => {
 

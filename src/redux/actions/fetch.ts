@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { CharacterData } from "../../types/CharacterData"
-import { WeaponData } from "../../types/WeaponData"
-import { TCGCardData } from "../../types/TCGData"
-import { ArtifactData } from "../../types/ArtifactData"
-import { BannerData, ChronicledWishBannerData } from "../../types/BannerData"
+import { CharacterData } from "../../types/character/CharacterData"
+import { WeaponData } from "../../types/weapon/WeaponData"
+import { TCGCardData } from "../../types/tcg/TCGData"
+import { ArtifactData } from "../../types/artifact/ArtifactData"
+import { BannerData, ChronicledWishBannerData } from "../../types/banner/BannerData"
 
 // https://bcheung98.github.io/project-irminsul-db/characters.json
 const CharactersURL = "https://bcheung98.github.io/project-irminsul-db/characters.json"

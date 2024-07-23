@@ -12,7 +12,7 @@ import { Box, Table, TableBody, TableContainer, Paper, InputBase } from "@mui/ma
 import { EnhancedTableHead, getComparator, stableSort } from "../../helpers/CustomSortTable"
 
 // Type imports
-import { BannerRowData } from "../../types/BannerRowData"
+import { BannerRowData } from "../../types/banner/BannerRowData"
 
 function BannerList(props: any) {
 

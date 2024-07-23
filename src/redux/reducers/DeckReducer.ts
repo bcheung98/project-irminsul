@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import { TCGDeckData } from "../../types/TCGDeckData"
-import { TCGCardData } from "../../types/TCGData"
+import { TCGDeckData } from "../../types/tcg/TCGDeckData"
+import { TCGCardData } from "../../types/tcg/TCGData"
 
 interface DeckState {
     deck: TCGDeckData

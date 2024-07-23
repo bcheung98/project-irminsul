@@ -14,7 +14,7 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 // Type imports
 import { RootState } from "../../redux/store"
-import { TCGDeckData } from "../../types/TCGDeckData"
+import { TCGDeckData } from "../../types/tcg/TCGDeckData"
 
 function TCGActionCard(props: any) {
 

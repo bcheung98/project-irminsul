@@ -9,7 +9,7 @@ import * as Reactions from "./TCGReactions"
 import { TCGPhysical, TCGPyro, TCGHydro, TCGElectro, TCGCryo, TCGAnemo, TCGGeo, TCGDendro } from "../../helpers/ElementIcons"
 
 // Type imports
-import { TCGKeywordIndexData } from "../../types/TCGKeywordIndexData"
+import { TCGKeywordIndexData } from "../../types/tcg/TCGKeywordIndexData"
 
 const CustomBox = styled(Box)(() => ({
     "&.MuiBox-root": {

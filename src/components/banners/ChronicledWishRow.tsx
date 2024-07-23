@@ -9,7 +9,7 @@ import { CurrentBanner } from "../../helpers/CurrentBanner"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 // Type imports
-import { ChronicledWishBannerPhaseData } from "../../types/ChronicledWishBannerPhaseData"
+import { ChronicledWishBannerPhaseData } from "../../types/banner/ChronicledWishBannerPhaseData"
 
 function ChronicledWishRow(props: any) {
 

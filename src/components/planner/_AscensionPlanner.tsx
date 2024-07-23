@@ -13,8 +13,8 @@ import { Box, Typography } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 
 // Type imports
-import { CharacterData } from "../../types/CharacterData"
-import { WeaponData } from "../../types/WeaponData"
+import { CharacterData } from "../../types/character/CharacterData"
+import { WeaponData } from "../../types/weapon/WeaponData"
 import { RootState } from "../../redux/store"
 
 const AscensionPlanner = (props: any) => {

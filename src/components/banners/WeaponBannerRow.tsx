@@ -9,7 +9,7 @@ import { CurrentBanner } from "../../helpers/CurrentBanner"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 // Type imports
-import { BannerRowData } from "../../types/BannerRowData"
+import { BannerRowData } from "../../types/banner/BannerRowData"
 
 function WeaponBannerRow(props: any) {
 

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { fetchArtifacts } from "../actions/fetch"
-import { ArtifactData } from "../../types/ArtifactData"
+import { ArtifactData } from "../../types/artifact/ArtifactData"
 
 interface State {
     loading: boolean,

@@ -19,10 +19,10 @@ import { CustomSelect } from "../helpers/CustomSelect"
 
 // Type imports
 import { RootState } from "../redux/store"
-import { CharacterData } from "../types/CharacterData"
-import { WeaponData } from "../types/WeaponData"
-import { ArtifactData } from "../types/ArtifactData"
-import { TCGCardData } from "../types/TCGData"
+import { CharacterData } from "../types/character/CharacterData"
+import { WeaponData } from "../types/weapon/WeaponData"
+import { ArtifactData } from "../types/artifact/ArtifactData"
+import { TCGCardData } from "../types/tcg/TCGData"
 
 const VersionHighlights = (props: any) => {
 

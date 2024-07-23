@@ -12,8 +12,8 @@ import { EnhancedTableHead, getComparator, stableSort } from "../../helpers/Cust
 import { baseATKScaling, subStatScaling } from "../../helpers/WeaponScalings"
 
 // Type imports
-import { WeaponData } from "../../types/WeaponData"
-import { WeaponRowData } from "../../types/WeaponRowData"
+import { WeaponData } from "../../types/weapon/WeaponData"
+import { WeaponRowData } from "../../types/weapon/WeaponRowData"
 
 function WeaponList(props: any) {
 

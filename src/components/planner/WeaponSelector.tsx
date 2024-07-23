@@ -17,7 +17,7 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 // Type imports
 import { RootState } from "../../redux/store"
-import { WeaponData } from "../../types/WeaponData"
+import { WeaponData } from "../../types/weapon/WeaponData"
 
 const WeaponSelector = (props: any) => {
 

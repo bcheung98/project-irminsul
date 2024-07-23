@@ -18,7 +18,7 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 // Type imports
 import { RootState } from "../../redux/store"
-import { TCGKeywordsData } from "../../types/TCGKeywordsData"
+import { TCGKeywordsData } from "../../types/tcg/TCGKeywordsData"
 
 function TCGActionCardPopup(props: any) {
 

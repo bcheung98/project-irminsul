@@ -11,7 +11,7 @@ import { StyledTab, TabPanel } from "../../../helpers/CustomTabs"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 // Type imports
-import { CharacterData } from "../../../types/CharacterData"
+import { CharacterData } from "../../../types/character/CharacterData"
 
 const CharacterOutfitDisplay = (props: any) => {
 
