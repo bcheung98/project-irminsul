@@ -38,7 +38,7 @@ function CharacterCard(props: any) {
     // const characterIcon = `${process.env.REACT_APP_URL}/characters/icons/${name}.png`
 
     // New Icon
-    const characterIcon = `${process.env.REACT_APP_URL}/characters/avatars/${name.split(" ").join("_")}.png`
+    const characterIcon = `${process.env.REACT_APP_URL}/characters/avatars/${name}.png`
 
     return (
         <Card variant="outlined"
