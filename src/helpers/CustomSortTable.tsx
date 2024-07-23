@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useTheme } from "@mui/material/styles"
-import { styled } from '@mui/material/styles'
+import { styled } from "@mui/material/styles"
 import PropTypes from "prop-types"
 import { TableCell, TableHead, TableRow, Typography } from "@mui/material"
 import TableSortLabel, { tableSortLabelClasses } from "@mui/material/TableSortLabel"
