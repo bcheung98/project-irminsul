@@ -22,7 +22,7 @@ import BannerArchive from "./components/banners/BannerArchive"
 import TCGBrowser from "./components/tcg/TCGBrowser"
 
 // MUI imports
-import theme from "./Theme"
+import theme from "./themes/theme"
 import { ThemeProvider } from "@mui/material/styles"
 import { AppBar, Typography, Box, Fade, useScrollTrigger, Fab, IconButton } from "@mui/material"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
