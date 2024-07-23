@@ -10,8 +10,8 @@ import {
 import { fetchCharacters, fetchWeapons, fetchArtifacts, fetchCharacterBanners, fetchWeaponBanners, fetchChronicledWish, fetchCards } from "./redux/actions/fetch"
 
 // Component imports
-import Home from "./components/Home"
 import Nav from "./components/Nav"
+import Home from "./components/Home"
 import CharacterBrowser from "./components/characters/CharacterBrowser"
 import CharacterPage from "./components/characters/page/_CharacterPage"
 import WeaponBrowser from "./components/weapons/WeaponBrowser"
@@ -20,13 +20,13 @@ import ArtifactBrowser from "./components/artifacts/ArtifactBrowser"
 import AscensionPlanner from "./components/planner/_AscensionPlanner"
 import BannerArchive from "./components/banners/BannerArchive"
 import TCGBrowser from "./components/tcg/TCGBrowser"
+import BottomNav from "./components/BottomNav"
 
 // MUI imports
 import theme from "./themes/theme"
 import { ThemeProvider } from "@mui/material/styles"
-import { AppBar, Typography, Box, Fade, useScrollTrigger, Fab, IconButton } from "@mui/material"
+import { Box, Fade, useScrollTrigger, Fab } from "@mui/material"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
-import GitHubIcon from "@mui/icons-material/GitHub"
 
 // Type imports
 import { AppDispatch } from "./redux/store"
@@ -61,21 +61,7 @@ const App = (props: any) => {
 					<Route path="/banners/" component={BannerArchive} />
 					<Route path="/tcg/" component={TCGBrowser} />
 				</Switch>
-				<AppBar position="static" sx={{
-					mt: 10,
-					mb: -5,
-					pt: 2,
-					textAlign: "center",
-					backgroundColor: `${theme.appbar.backgroundColor}`,
-					borderTop: `1px solid ${theme.border.color}`,
-				}}>
-					<Typography sx={{ fontFamily: "Genshin, sans-serif", mb: "5px" }} variant="body2">Project Irminsul is not affiliated with HoYoverse.<br />Genshin Impact, images and data are registered trademarks of HoYoverse.</Typography>
-					<Box>
-						<IconButton disableRipple href={"https://github.com/bcheung98/project-irminsul"} target="_blank" color="inherit">
-							<GitHubIcon />
-						</IconButton>
-					</Box>
-				</AppBar>
+				<BottomNav />
 				<ScrollTop {...props}>
 					<Fab size="medium" disableRipple color="primary">
 						<KeyboardArrowUpIcon sx={{ color: `${theme.text.color}` }} />
@@ -83,7 +69,6 @@ const App = (props: any) => {
 				</ScrollTop>
 			</Router>
 		</ThemeProvider>
-
 	)
 }
 
