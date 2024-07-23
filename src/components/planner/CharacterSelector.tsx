@@ -19,7 +19,7 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 import { RootState } from "../../redux/store"
 import { CharacterData } from "../../types/character/CharacterData"
 
-const CharacterSelector = (props: any) => {
+function CharacterSelector(props: any) {
 
     const theme = useTheme()
 

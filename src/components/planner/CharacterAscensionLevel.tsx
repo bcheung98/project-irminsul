@@ -11,7 +11,7 @@ import { CustomSwitch } from "../../helpers/CustomSwitch"
 import { updateCharacterCosts, updateTotalCosts } from "../../redux/reducers/AscensionPlannerReducer"
 import { SetCharacterCostsLevel } from "../../helpers/AscensionCostIndex"
 
-const CharacterAscensionLevel = (props: any) => {
+function CharacterAscensionLevel(props: any) {
 
     const theme = useTheme()
 

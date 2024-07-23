@@ -8,7 +8,7 @@ import { ButtonBase, CardHeader, Typography } from "@mui/material"
 import { StyledTableCellNoVert, StyledTableRows } from "../../helpers/CustomTable"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-const CharacterRow = (props: any) => {
+function CharacterRow(props: any) {
 
     let { row, index } = props
 

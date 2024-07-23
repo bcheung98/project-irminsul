@@ -8,7 +8,7 @@ import CharacterRow from "./CharacterRow"
 import { CharacterData } from "../../types/character/CharacterData"
 import { CharacterRowData } from "../../types/character/CharacterRowData"
 
-const CharacterList = (props: any) => {
+function CharacterList(props: any) {
 
     const theme = useTheme()
 

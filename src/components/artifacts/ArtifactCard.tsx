@@ -10,7 +10,7 @@ import { Typography, Card, CardContent, Box, Avatar, Dialog } from "@mui/materia
 // Helper imports
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-const ArtifactCard = (props: any) => {
+function ArtifactCard(props: any) {
 
     const theme = useTheme()
 

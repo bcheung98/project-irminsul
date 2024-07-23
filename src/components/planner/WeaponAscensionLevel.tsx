@@ -10,7 +10,7 @@ import { CustomSlider } from "../../helpers/CustomSlider"
 import { updateWeaponCosts, updateTotalCosts } from "../../redux/reducers/AscensionPlannerReducer"
 import { SetWeaponCostsLevel } from "../../helpers/AscensionCostIndex"
 
-const WeaponAscensionLevel = (props: any) => {
+function WeaponAscensionLevel(props: any) {
 
     const theme = useTheme()
 

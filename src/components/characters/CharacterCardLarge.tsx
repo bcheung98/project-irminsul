@@ -5,7 +5,7 @@ import { CustomTooltip } from "../../helpers/CustomTooltip"
 import { GetRarityColor, GetBackgroundColor } from "../../helpers/RarityColors"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-const CharacterCardLarge = (props: any) => {
+function CharacterCardLarge(props: any) {
 
     const theme = useTheme()
 

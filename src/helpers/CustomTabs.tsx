@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles"
 import { Typography, Tabs, Tab, Box } from "@mui/material"
 
-export const TabPanel = (props: any) => {
+export function TabPanel(props: any) {
 
     const { children, value, index, ...other } = props
     return (

@@ -11,7 +11,7 @@ const createTalentScaling = (level: string, a: string, b: string, c: string, d: 
     return { level, a, b, c, d, e, f, g, h, i, j, k, l, m }
 }
 
-const CharacterTalentScalingTable = (props: any) => {
+function CharacterTalentScalingTable(props: any) {
 
     const theme = useTheme()
 

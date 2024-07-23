@@ -33,7 +33,7 @@ const IconBackground = (rarity: number, theme: Theme) => {
     }
 }
 
-const FarmableToday = (props: any) => {
+function FarmableToday(props: any) {
 
     const theme = useTheme()
 

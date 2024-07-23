@@ -10,7 +10,7 @@ import { Box, Typography } from "@mui/material"
 // Helper imports
 import { CustomSlider } from "../../../helpers/CustomSlider"
 
-const CharacterTalentLevelling = (props: any) => {
+function CharacterTalentLevelling(props: any) {
 
     const theme = useTheme()
 

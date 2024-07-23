@@ -8,7 +8,7 @@ import { Typography, Box, Avatar, CardHeader, AppBar } from "@mui/material"
 // Helper imports
 import { ElementalBorderColor } from "../../../helpers/ElementalColors"
 
-const CharacterConstellationDisplay = (props: any) => {
+function CharacterConstellationDisplay(props: any) {
 
     const theme = useTheme()
 

@@ -23,7 +23,7 @@ import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 import { RootState } from "../../../redux/store"
 import { CharacterData } from "../../../types/character/CharacterData"
 
-const CharacterPage = (props: any) => {
+function CharacterPage(props: any) {
 
     const theme = useTheme()
 

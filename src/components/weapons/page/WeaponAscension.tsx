@@ -10,7 +10,7 @@ import { Box, Typography } from "@mui/material"
 // Helper imports
 import { CustomSlider } from "../../../helpers/CustomSlider"
 
-const WeaponAscension = (props: any) => {
+function WeaponAscension(props: any) {
 
     const theme = useTheme()
 

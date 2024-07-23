@@ -8,7 +8,7 @@ import { Box, AppBar, Typography, Avatar } from "@mui/material"
 import { TabPanel, StyledTabsWithIndicator, StyledTab } from "../../helpers/CustomTabs"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-const ArtifactPopup = (props: any) => {
+function ArtifactPopup(props: any) {
 
     const theme = useTheme()
 

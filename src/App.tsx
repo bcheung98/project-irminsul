@@ -31,7 +31,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
 // Type imports
 import { AppDispatch } from "./redux/store"
 
-const App = (props: any) => {
+function App(props: any) {
 
 	useEffect(() => {
 		fetchCharacters()

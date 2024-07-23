@@ -8,7 +8,7 @@ import { formatCommonMats, formatTalents, formatWeeklyBossMats } from "../../../
 import { Backgrounds } from "../../../helpers/Backgrounds"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
-const CharacterTalentLevellingMaterials = (props: any) => {
+function CharacterTalentLevellingMaterials(props: any) {
 
     const theme = useTheme()
 

@@ -16,7 +16,7 @@ import { CustomTooltip } from "../../helpers/CustomTooltip"
 import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/CustomAccordion"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-const CharacterAscensionCard = (props: any) => {
+function CharacterAscensionCard(props: any) {
 
     const theme = useTheme()
 

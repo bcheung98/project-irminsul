@@ -8,7 +8,7 @@ import { formatWeaponAscMats, formatEliteMats, formatCommonMats } from "../../..
 import { Backgrounds } from "../../../helpers/Backgrounds"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
-const WeaponAscensionMaterials = (props: any) => {
+function WeaponAscensionMaterials(props: any) {
 
     const theme = useTheme()
 

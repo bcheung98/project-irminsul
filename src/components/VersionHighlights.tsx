@@ -24,7 +24,7 @@ import { WeaponData } from "../types/weapon/WeaponData"
 import { ArtifactData } from "../types/artifact/ArtifactData"
 import { TCGCardData } from "../types/tcg/TCGData"
 
-const VersionHighlights = (props: any) => {
+function VersionHighlights(props: any) {
 
     const theme = useTheme()
 

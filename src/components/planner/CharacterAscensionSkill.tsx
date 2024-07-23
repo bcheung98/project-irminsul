@@ -12,7 +12,7 @@ import { updateCharacterCosts, updateTotalCosts } from "../../redux/reducers/Asc
 import { SetCharacterCostsSkill } from "../../helpers/AscensionCostIndex"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-const CharacterAscensionSkill = (props: any) => {
+function CharacterAscensionSkill(props: any) {
 
     const theme = useTheme()
 

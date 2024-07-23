@@ -12,7 +12,7 @@ import { ElementalBorderColor } from "../../../helpers/ElementalColors"
 import CharacterTalentScalingTable from "./CharacterTalentScalingTable"
 import CharacterTalentLevelling from "./CharacterTalentLevelling"
 
-const CharacterTalentDisplay = (props: any) => {
+function CharacterTalentDisplay(props: any) {
 
     const theme = useTheme()
 

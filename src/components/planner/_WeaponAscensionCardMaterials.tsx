@@ -15,7 +15,7 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 import { RootState } from "../../redux/store"
 import { WeaponCosts } from "../../types/weapon/WeaponCosts"
 
-const WeaponAscensionCardMaterials = (props: any) => {
+function WeaponAscensionCardMaterials(props: any) {
 
     const theme = useTheme()
 

@@ -15,7 +15,7 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 import { RootState } from "../../redux/store"
 import { CharacterCosts } from "../../types/character/CharacterCosts"
 
-const CharacterAscensionCardMaterials = (props: any) => {
+function CharacterAscensionCardMaterials(props: any) {
 
     const theme = useTheme()
 

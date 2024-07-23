@@ -8,7 +8,7 @@ import { CustomTooltip } from "../../helpers/CustomTooltip"
 import { formatTalents, formatCommonMats, formatBossMats, formatWeeklyBossMats, formatGemstone } from "../../helpers/TooltipText"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-const CharacterMaterialGrid = (props: any) => {
+function CharacterMaterialGrid(props: any) {
 
     const theme = useTheme()
 

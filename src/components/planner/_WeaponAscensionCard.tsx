@@ -13,7 +13,7 @@ import { CustomTooltip } from "../../helpers/CustomTooltip"
 import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/CustomAccordion"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-const WeaponAscensionCard = (props: any) => {
+function WeaponAscensionCard(props: any) {
 
     const theme = useTheme()
 

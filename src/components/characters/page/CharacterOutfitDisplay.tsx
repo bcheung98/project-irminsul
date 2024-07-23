@@ -13,7 +13,7 @@ import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 // Type imports
 import { CharacterData } from "../../../types/character/CharacterData"
 
-const CharacterOutfitDisplay = (props: any) => {
+function CharacterOutfitDisplay(props: any) {
 
     const theme = useTheme()
 

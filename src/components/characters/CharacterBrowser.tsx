@@ -21,7 +21,7 @@ import { CustomToggleButton } from "../../helpers/CustomToggleButton"
 // Type imports
 import { RootState } from "../../redux/store"
 
-const CharacterBrowser = (props: any) => {
+function CharacterBrowser(props: any) {
 
     const theme = useTheme()
 

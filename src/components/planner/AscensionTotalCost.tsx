@@ -17,7 +17,7 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 // Type imports
 import { RootState } from "../../redux/store"
 
-const AscensionTotalCost = (props: any) => {
+function AscensionTotalCost(props: any) {
 
     const theme = useTheme()
 

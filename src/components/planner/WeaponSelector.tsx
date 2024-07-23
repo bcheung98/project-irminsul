@@ -19,7 +19,7 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 import { RootState } from "../../redux/store"
 import { WeaponData } from "../../types/weapon/WeaponData"
 
-const WeaponSelector = (props: any) => {
+function WeaponSelector(props: any) {
 
     const theme = useTheme()
 

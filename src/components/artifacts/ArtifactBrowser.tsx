@@ -13,7 +13,7 @@ import Grid from "@mui/material/Unstable_Grid2"
 import { RootState } from "../../redux/store"
 import { ArtifactData } from "../../types/artifact/ArtifactData"
 
-const ArtifactBrowser = (props: any) => {
+function ArtifactBrowser(props: any) {
 
     const theme = useTheme()
 

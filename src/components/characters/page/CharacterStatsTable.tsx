@@ -10,7 +10,7 @@ import { CharacterAscensionStatScalings } from "../../../helpers/CharacterAscens
 import { CharacterData } from "../../../types/character/CharacterData"
 import { CharacterStatsDataRow } from "../../../types/character/CharacterStatsDataRow"
 
-const CharacterStatsTable = (props: any) => {
+function CharacterStatsTable(props: any) {
 
     const theme = useTheme()
 

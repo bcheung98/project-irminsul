@@ -8,7 +8,7 @@ import { formatCommonMats, formatBossMats, formatGemstone } from "../../../helpe
 import { Backgrounds } from "../../../helpers/Backgrounds"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
-const CharacterAscensionMaterials = (props: any) => {
+function CharacterAscensionMaterials(props: any) {
 
     const theme = useTheme()
 

@@ -17,7 +17,7 @@ import { CharacterData } from "../../types/character/CharacterData"
 import { WeaponData } from "../../types/weapon/WeaponData"
 import { RootState } from "../../redux/store"
 
-const AscensionPlanner = (props: any) => {
+function AscensionPlanner(props: any) {
 
     const theme = useTheme()
 
