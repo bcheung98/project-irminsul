@@ -18,7 +18,7 @@ export function SetCharacterCostsLevel(start: number, stop: number, selected: bo
     ]
 
     if (selected) {
-        let costArray = materialArray.map((material, index) => (materialArray[index].slice(start, stop).reduce((a, c) => a + c)));
+        let costArray = materialArray.map((material, index) => (materialArray[index].slice(start, stop).reduce((a, c) => a + c)))
         return {
             mora: costArray[0],
             char_xp1: costArray[1],
@@ -71,7 +71,7 @@ export function SetCharacterCostsSkill(start: number, stop: number, selected: bo
     ]
 
     if (selected) {
-        let costArray = materialArray.map((material, index) => (materialArray[index].slice(start, stop).reduce((a, c) => a + c)));
+        let costArray = materialArray.map((material, index) => (materialArray[index].slice(start, stop).reduce((a, c) => a + c)))
         return {
             mora: costArray[0],
             talent1: costArray[1],
@@ -217,6 +217,5 @@ export function SetWeaponCostsLevel(start: number, stop: number, rarity: number)
         common2: costArray[12],
         common3: costArray[13],
     }
-
 
 }
