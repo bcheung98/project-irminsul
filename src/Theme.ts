@@ -32,6 +32,7 @@ declare module "@mui/material/styles" {
         text: {
             color: string,
             colorAlt: string,
+            selected: string
         },
         button: {
             selected: string,
@@ -71,6 +72,7 @@ declare module "@mui/material/styles" {
         text?: {
             color?: string,
             colorAlt?: string,
+            selected?: string
         },
         button?: {
             selected?: string,
@@ -122,7 +124,8 @@ export const defaultTheme = createTheme({
     },
     text: {
         color: "white",
-        colorAlt: "rgb(218, 219, 222)"
+        colorAlt: "rgb(218, 219, 222)",
+        selected: "rgb(25, 118, 210)"
     },
     button: {
         selected: "rgb(0, 127, 255)"
