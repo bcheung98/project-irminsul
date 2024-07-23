@@ -74,5 +74,5 @@ export const SmallAccordionDetails = styled(MuiAccordionDetails)(({ theme }) => 
 
 const ArrowStyle = () => {
     const theme = useTheme()
-    return { fontSize: "0.9rem", color: "dodgerblue" }
+    return { fontSize: "0.9rem", color: `${theme.text.selected}` }
 }
