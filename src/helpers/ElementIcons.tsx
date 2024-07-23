@@ -1,4 +1,4 @@
-import { Avatar } from "@mui/material";
+import { Avatar } from "@mui/material"
 
 const ElementalIcon = { width: "32px", height: "32px" }
 

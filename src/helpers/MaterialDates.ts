@@ -1,7 +1,7 @@
-export const MaterialDates = (day) => {
+export function MaterialDates(day: string) {
 
-    const talents = ["Freedom", "Resistance", "Ballad", "Prosperity", "Diligence", "Gold", "Transience", "Elegance", "Light", "Admonition", "Ingenuity", "Praxis", "Equity", "Justice", "Order"];
-    const weapons = ["Decarabian", "Boreal Wolf", "Dandelion Gladiator", "Guyun", "Mist Veiled Elixir", "Aerosiderite", "Sea Branch", "Narukami", "Oni Mask", "Forest Dew", "Oasis Garden", "Scorching Might", "Chord", "Dewdrop", "Pristine Sea"];
+    const talents = ["Freedom", "Resistance", "Ballad", "Prosperity", "Diligence", "Gold", "Transience", "Elegance", "Light", "Admonition", "Ingenuity", "Praxis", "Equity", "Justice", "Order"]
+    const weapons = ["Decarabian", "Boreal Wolf", "Dandelion Gladiator", "Guyun", "Mist Veiled Elixir", "Aerosiderite", "Sea Branch", "Narukami", "Oni Mask", "Forest Dew", "Oasis Garden", "Scorching Might", "Chord", "Dewdrop", "Pristine Sea"]
 
     switch (day) {
         case "Monday":
@@ -31,8 +31,8 @@ export const MaterialDates = (day) => {
 
 }
 
-const GetMaterials = (arr, start) => {
-    let output = [];
+const GetMaterials = (arr: string[], start: number) => {
+    let output = [] as string[]
     for (let i = start; i < arr.length; i += 3) {
         output.push(arr[i])
     }

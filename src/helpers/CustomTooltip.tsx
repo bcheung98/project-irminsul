@@ -1,7 +1,7 @@
-import { styled } from '@mui/material/styles';
-import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import { styled } from "@mui/material/styles"
+import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip"
 
-export const CustomTooltip = styled(({ className, ...props }) => (
+export const CustomTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} arrow disableInteractive classes={{ popper: className }} />
 ))(({ theme }) => ({
     [`& .${tooltipClasses.arrow}`]: {
@@ -13,9 +13,9 @@ export const CustomTooltip = styled(({ className, ...props }) => (
         fontFamily: "Genshin, sans-serif",
         maxWidth: "none",
     },
-}));
+}))
 
-export const CustomTooltipLarge = styled(({ className, ...props }) => (
+export const CustomTooltipLarge = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} arrow disableInteractive classes={{ popper: className }} />
 ))(({ theme }) => ({
     [`& .${tooltipClasses.arrow}`]: {
@@ -27,4 +27,4 @@ export const CustomTooltipLarge = styled(({ className, ...props }) => (
         fontFamily: "Genshin, sans-serif",
         maxWidth: "none",
     },
-}));
+}))
