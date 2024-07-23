@@ -16,7 +16,7 @@ function WeaponRow(props: any) {
             <StyledTableRows key={index} >
 
                 { /* Name + Icon */}
-                <StyledTableCellNoVert className="genshinFont">
+                <StyledTableCellNoVert>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <CardHeader sx={{ p: 0 }}
                             avatar={
