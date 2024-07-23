@@ -1,89 +1,6 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles'
 
-declare module "@mui/material/styles" {
-    interface Theme {
-        appbar: {
-            backgroundColor: string,
-        },
-        border: {
-            color: string,
-        },
-        paper: {
-            backgroundColor: string,
-        },
-        card: {
-            backgroundColor: string,
-        },
-        table: {
-            header: {
-                backgroundColor: string,
-            },
-            body: {
-                backgroundColor: string,
-                hover: string,
-            },
-        },
-        toolbar: {
-            backgroundColor: string,
-        },
-        materialImage: {
-            backgroundColor: string,
-        },
-        text: {
-            color: string,
-            colorAlt: string,
-            selected: string
-        },
-        button: {
-            selected: string,
-        },
-        chip: {
-            color: string
-        }
-    }
-    interface ThemeOptions {
-        appbar?: {
-            backgroundColor?: string,
-        },
-        border?: {
-            color?: string,
-        },
-        paper?: {
-            backgroundColor?: string,
-        },
-        card?: {
-            backgroundColor?: string,
-        },
-        table?: {
-            header?: {
-                backgroundColor?: string,
-            },
-            body?: {
-                backgroundColor?: string,
-                hover?: string,
-            },
-        },
-        toolbar?: {
-            backgroundColor?: string,
-        },
-        materialImage?: {
-            backgroundColor?: string,
-        },
-        text?: {
-            color?: string,
-            colorAlt?: string,
-            selected?: string
-        },
-        button?: {
-            selected?: string,
-        },
-        chip?: {
-            color?: string,
-        }
-    }
-}
-
-export const defaultTheme = createTheme({
+const defaultTheme = {
     components: {
         MuiAutocomplete: {
             styleOverrides: {
@@ -130,4 +47,15 @@ export const defaultTheme = createTheme({
     button: {
         selected: "rgb(0, 127, 255)"
     }
-});
+}
+
+type CustomTheme = {
+    [Key in keyof typeof defaultTheme]: typeof defaultTheme[Key]
+}
+
+declare module "@mui/material/styles" {
+    interface Theme extends CustomTheme { }
+    interface ThemeOptions extends CustomTheme { }
+}
+
+export default createTheme(defaultTheme)
