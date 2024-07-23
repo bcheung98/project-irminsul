@@ -15,10 +15,6 @@ function WeaponAscensionMatFilter() {
 
     const dispatch = useDispatch()
 
-    const handleClick = (material: string) => {
-        dispatch(setAscensionMats(material))
-    }
-
     return (
         <React.Fragment>
             {
@@ -27,7 +23,7 @@ function WeaponAscensionMatFilter() {
                         {
                             WepAscensionMats[material as keyof typeof WepAscensionMats].map((material, index) => (
                                 <CustomTooltip key={index} title={formatWeaponAscMats(`${material}`)} arrow placement="top">
-                                    <img className="filter-off" id={`weapon-${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${material.split(" ").join("_")}4.png`} alt={material} onClick={() => handleClick(material)} onError={ErrorLoadingImage} />
+                                    <img className="filter-off" id={`weapon-${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${material.split(" ").join("_")}4.png`} alt={material} onClick={() => dispatch(setAscensionMats(material))} onError={ErrorLoadingImage} />
                                 </CustomTooltip>
                             ))
                         }

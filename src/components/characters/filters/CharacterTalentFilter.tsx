@@ -15,10 +15,6 @@ function CharacterTalentFilter() {
 
     const dispatch = useDispatch()
 
-    const handleClick = (material: string) => {
-        dispatch(setTalentBook(material))
-    }
-
     return (
         <React.Fragment>
             {
@@ -27,7 +23,7 @@ function CharacterTalentFilter() {
                         {
                             (TalentBooks[nation as keyof {}] as []).map((talent: string, index) => (
                                 <CustomTooltip key={index} title={formatTalents(`${talent}`)} arrow placement="top">
-                                    <img className="filter-off" id={`${talent.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/talent_mats/${talent}3.png`} alt={talent} onClick={() => handleClick(talent)} onError={ErrorLoadingImage} />
+                                    <img className="filter-off" id={`${talent.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/talent_mats/${talent}3.png`} alt={talent} onClick={() => dispatch(setTalentBook(talent))} onError={ErrorLoadingImage} />
                                 </CustomTooltip>
                             ))
                         }

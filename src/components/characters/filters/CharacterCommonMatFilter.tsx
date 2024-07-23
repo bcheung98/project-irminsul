@@ -12,16 +12,12 @@ function CharacterCommonMatFilter() {
 
     const dispatch = useDispatch()
 
-    const handleClick = (material: string) => {
-        dispatch(setCommonMats(material))
-    }
-
     return (
         <React.Fragment>
             {
                 CommonMats.map((material, index) => (
                     <CustomTooltip key={index} title={formatCommonMats(material)} arrow placement="top">
-                        <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/common_mats/${material.split(" ").join("_")}3.png`} alt={material} onClick={() => handleClick(material)} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/common_mats/${material.split(" ").join("_")}3.png`} alt={material} onClick={() => dispatch(setCommonMats(material))} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }

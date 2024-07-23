@@ -12,16 +12,12 @@ function CharacterBossMatFilter() {
 
     const dispatch = useDispatch()
 
-    const handleClick = (material: string) => {
-        dispatch(setBossMats(material))
-    }
-
     return (
         <React.Fragment>
             {
                 BossMats.map((material, index) => (
                     <CustomTooltip key={index} title={formatBossMats(material)} arrow placement="top">
-                        <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/boss_mats/${material.split(" ").join("_")}.png`} alt={material} onClick={() => handleClick(material)} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/boss_mats/${material.split(" ").join("_")}.png`} alt={material} onClick={() => dispatch(setBossMats(material))} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }

@@ -12,16 +12,12 @@ function WeaponTypeFilter() {
 
     const dispatch = useDispatch()
 
-    const handleClick = (weapon: string) => {
-        dispatch(setWeaponType(weapon))
-    }
-
     return (
         <React.Fragment>
             {
                 Weapons.map((weapon, index) => (
                     <CustomTooltip key={index} title={weapon} arrow placement="top">
-                        <img className="filter-off" id={`weapon-${weapon.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/weapons/icons/Icon_${weapon}.png`} alt={weapon} onClick={() => handleClick(weapon)} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`weapon-${weapon.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/weapons/icons/Icon_${weapon}.png`} alt={weapon} onClick={() => dispatch(setWeaponType(weapon))} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }

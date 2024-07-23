@@ -12,16 +12,12 @@ function TCGCharacterElementFilter() {
 
     const dispatch = useDispatch()
 
-    const handleClick = (element: string) => {
-        dispatch(setElement(element))
-    }
-
     return (
         <React.Fragment>
             {
                 Elements.map((element, index) => (
                     <CustomTooltip key={index} title={element} arrow placement="top">
-                        <img className="filter-off" id={`${element.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/tcg/icons/elements/${element}.png`} alt={element} onClick={() => handleClick(element)} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`${element.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/tcg/icons/elements/${element}.png`} alt={element} onClick={() => dispatch(setElement(element))} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }

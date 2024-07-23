@@ -17,10 +17,6 @@ function CharacterLocalMatFilter() {
 
     const dispatch = useDispatch()
 
-    const handleClick = (material: string) => {
-        dispatch(setLocalMats(material))
-    }
-
     return (
         <Box sx={{ margin: "auto", width: "99%" }}>
             {
@@ -48,7 +44,7 @@ function CharacterLocalMatFilter() {
                             {
                                 (LocalMats[nation as keyof {}] as []).sort().map((material: string, index) => (
                                     <CustomTooltip key={index} title={material} arrow placement="top">
-                                        <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/local_specialties/${material.split(" ").join("_")}.png`} alt={material} onClick={() => handleClick(material)} onError={ErrorLoadingImage} />
+                                        <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/local_specialties/${material.split(" ").join("_")}.png`} alt={material} onClick={() => dispatch(setLocalMats(material))} onError={ErrorLoadingImage} />
                                     </CustomTooltip>
                                 ))
                             }

@@ -12,16 +12,12 @@ function CharacterNationFilter() {
 
     const dispatch = useDispatch()
 
-    const handleClick = (nation: string) => {
-        dispatch(setNation(nation))
-    }
-
     return (
         <React.Fragment>
             {
                 Nations.map((nation, index) => (
                     <CustomTooltip key={index} title={nation} arrow placement="top">
-                        <img className="filter-off" id={`${nation.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/nations/${nation}.png`} alt={nation} onClick={() => handleClick(nation)} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`${nation.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/nations/${nation}.png`} alt={nation} onClick={() => dispatch(setNation(nation))} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }

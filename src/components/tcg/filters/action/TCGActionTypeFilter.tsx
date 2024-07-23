@@ -14,17 +14,13 @@ function TCGActionTypeFilter() {
 
     const dispatch = useDispatch()
 
-    const handleClick = (type: string) => {
-        dispatch(setType(type))
-    }
-
     return (
         <React.Fragment>
             {
                 Types.map((type, index) => (
                     <Box sx={{ display: "inline-flex", mr: "5px" }} key={index} >
                         {/* This is intentionally a <p> */}
-                        <p className="filter-button-off" id={`tcg-action-${type.toLowerCase()}-button`} onClick={() => handleClick(type)} onError={ErrorLoadingImage}>
+                        <p className="filter-button-off" id={`tcg-action-${type.toLowerCase()}-button`} onClick={() => dispatch(setType(type))} onError={ErrorLoadingImage}>
                             {type}
                         </p>
                     </Box>

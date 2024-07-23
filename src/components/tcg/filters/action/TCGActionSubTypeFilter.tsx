@@ -12,16 +12,12 @@ function TCGActionSubTypeFilter() {
 
     const dispatch = useDispatch()
 
-    const handleClick = (type: string) => {
-        dispatch(setSubType(type))
-    }
-
     return (
         <React.Fragment>
             {
                 SubTypes.map((subType, index) => (
                     <CustomTooltip key={index} title={subType} arrow placement="top">
-                        <img className="filter-off" id={`tcg-action-${subType.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/${subType}.png`} alt={subType} onClick={() => handleClick(subType)} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`tcg-action-${subType.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/${subType}.png`} alt={subType} onClick={() => dispatch(setSubType(subType))} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }

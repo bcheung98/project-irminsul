@@ -17,10 +17,6 @@ function CharacterWeeklyBossMatFilter() {
 
     const dispatch = useDispatch()
 
-    const handleClick = (material: string) => {
-        dispatch(setWeeklyBossMats(material))
-    }
-
     return (
         <Box style={{ margin: "auto", width: "99%" }}>
             {
@@ -48,7 +44,7 @@ function CharacterWeeklyBossMatFilter() {
                             {
                                 (WeeklyBossMats[boss as keyof {}] as []).sort().map((material: string, index) => (
                                     <CustomTooltip key={index} title={material} arrow placement="top">
-                                        <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${material.split(" ").join("_")}.png`} alt={material} onClick={() => handleClick(material)} onError={ErrorLoadingImage} />
+                                        <img className="filter-off" id={`${material.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${material.split(" ").join("_")}.png`} alt={material} onClick={() => dispatch(setWeeklyBossMats(material))} onError={ErrorLoadingImage} />
                                     </CustomTooltip>
                                 ))
                             }

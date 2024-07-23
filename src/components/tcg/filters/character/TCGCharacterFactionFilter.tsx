@@ -12,16 +12,12 @@ function TCGCharacterFactionFilter() {
 
     const dispatch = useDispatch()
 
-    const handleClick = (faction: string) => {
-        dispatch(setNation(faction))
-    }
-
     return (
         <React.Fragment>
             {
                 Factions.map((faction, index) => (
                     <CustomTooltip key={index} title={faction} arrow placement="top">
-                        <img className="filter-off" id={`${faction.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${faction}.png`} alt={faction} onClick={() => handleClick(faction)} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`${faction.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${faction}.png`} alt={faction} onClick={() => dispatch(setNation(faction))} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }

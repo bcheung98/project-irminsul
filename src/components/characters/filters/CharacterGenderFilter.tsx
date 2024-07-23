@@ -12,17 +12,13 @@ function CharacterGenderFilter() {
 
     const dispatch = useDispatch()
 
-    const handleClick = (gender: string) => {
-        dispatch(setGender(gender))
-    }
-
     return (
         <Box>
             <CustomTooltip title="Male" arrow placement="top">
-                <img className="filter-off" id="male-button" src={(`${process.env.REACT_APP_URL}/icons/Aether.png`)} alt="Male" onClick={() => handleClick("Male")} onError={ErrorLoadingImage} />
+                <img className="filter-off" id="male-button" src={(`${process.env.REACT_APP_URL}/icons/Aether.png`)} alt="Male" onClick={() => dispatch(setGender("Male"))} onError={ErrorLoadingImage} />
             </CustomTooltip>
             <CustomTooltip title="Female" arrow placement="top">
-                <img className="filter-off" id="female-button" src={(`${process.env.REACT_APP_URL}/icons/Lumine.png`)} alt="Female" onClick={() => handleClick("Female")} onError={ErrorLoadingImage} />
+                <img className="filter-off" id="female-button" src={(`${process.env.REACT_APP_URL}/icons/Lumine.png`)} alt="Female" onClick={() => dispatch(setGender("Female"))} onError={ErrorLoadingImage} />
             </CustomTooltip>
         </Box>
     )
