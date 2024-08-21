@@ -111,7 +111,7 @@ function CharacterSelector(props: any) {
                                         />
                                         <CardHeader
                                             avatar={
-                                                <img alt={option.name} src={`${process.env.REACT_APP_URL}/characters/icons/${option.name}.png`} style={{ width: "48px" }} onError={ErrorLoadingImage} />
+                                                <img alt={option.name} src={`${process.env.REACT_APP_URL}/characters/icons/${option.name.split(" ").join("_")}.png`} style={{ width: "48px" }} onError={ErrorLoadingImage} />
                                             }
                                             title={
                                                 <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif" }}>

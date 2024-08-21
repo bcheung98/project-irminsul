@@ -17,7 +17,7 @@ function TCGActionSubTypeFilter() {
             {
                 SubTypes.map((subType, index) => (
                     <CustomTooltip key={index} title={subType} arrow placement="top">
-                        <img className="filter-off" id={`tcg-action-${subType.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/${subType}.png`} alt={subType} onClick={() => dispatch(setSubType(subType))} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`tcg-action-${subType.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/${subType.split(" ").join("_")}.png`} alt={subType} onClick={() => dispatch(setSubType(subType))} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }

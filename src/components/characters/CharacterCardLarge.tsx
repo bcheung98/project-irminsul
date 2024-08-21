@@ -33,7 +33,7 @@ function CharacterCardLarge(props: any) {
                             height: "225px",
                         }}
                     >
-                        <Avatar variant="square" src={`${process.env.REACT_APP_URL}/characters/wish_multi/${name}.png`} alt={name}
+                        <Avatar variant="square" src={`${process.env.REACT_APP_URL}/characters/wish_multi/${name.split(" ").join("_")}.png`} alt={name}
                             style={{
                                 width: width,
                                 height: "475px",
@@ -41,7 +41,7 @@ function CharacterCardLarge(props: any) {
                                 backgroundColor: `${theme.card.backgroundColor}`,
                             }}
                         >
-                            <img src={`${process.env.REACT_APP_URL}/characters/wish/${name}.png`} alt={name}
+                            <img src={`${process.env.REACT_APP_URL}/characters/wish/${name.split(" ").join("_")}.png`} alt={name}
                                 style={{
                                     width: width,
                                     height: "500px",

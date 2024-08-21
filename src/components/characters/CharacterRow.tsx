@@ -21,7 +21,7 @@ function CharacterRow(props: any) {
                         <CardHeader sx={{ p: 0 }}
                             avatar={
                                 <ButtonBase disableRipple href={`/project-irminsul/character/${row.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                                    <img alt={row.name} src={(`${process.env.REACT_APP_URL}/characters/icons/${row.name}.png`)} style={{ width: "48px", cursor: "pointer" }} onError={ErrorLoadingImage} />
+                                    <img alt={row.name} src={(`${process.env.REACT_APP_URL}/characters/icons/${row.name.split(" ").join("_")}.png`)} style={{ width: "48px", cursor: "pointer" }} onError={ErrorLoadingImage} />
                                 </ButtonBase>
                             }
                             title={

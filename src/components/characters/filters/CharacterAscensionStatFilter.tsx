@@ -16,7 +16,7 @@ function AscensionStatFilter() {
             {
                 Object.keys(CharacterAscensionStats).map((stat, index) => (
                     <CustomTooltip key={index} title={CharacterAscensionStats[stat as keyof {}]["title"]} arrow placement="top">
-                        <img className="filter-off" id={`${stat.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/icons/ascension_stats/${stat}.png`} alt={stat} onClick={() => dispatch(setAscensionStat(stat))} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`${stat.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/icons/ascension_stats/${stat.split(" ").join("_")}.png`} alt={stat} onClick={() => dispatch(setAscensionStat(stat))} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }

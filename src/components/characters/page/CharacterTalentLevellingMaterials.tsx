@@ -106,7 +106,7 @@ function CharacterTalentLevellingMaterials(props: any) {
                 costs[4] !== "0" &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatCommonMats(`${commonMat}1`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["1"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat}1.png`} alt={formatCommonMats(`${commonMat}1`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["1"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}1.png`} alt={formatCommonMats(`${commonMat}1`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -120,7 +120,7 @@ function CharacterTalentLevellingMaterials(props: any) {
                 costs[5] !== "0" &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatCommonMats(`${commonMat}2`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat}2.png`} alt={formatCommonMats(`${commonMat}2`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}2.png`} alt={formatCommonMats(`${commonMat}2`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -134,7 +134,7 @@ function CharacterTalentLevellingMaterials(props: any) {
                 costs[6] !== "0" &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatCommonMats(`${commonMat}3`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat}3.png`} alt={formatCommonMats(`${commonMat}3`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}3.png`} alt={formatCommonMats(`${commonMat}3`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -148,7 +148,7 @@ function CharacterTalentLevellingMaterials(props: any) {
                 costs[7] !== "0" &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatWeeklyBossMats(`${weeklyBossMat}`)} arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["5"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${weeklyBossMat}.png`} alt={formatWeeklyBossMats(`${weeklyBossMat}`)} onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["5"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${weeklyBossMat.split(" ").join("_")}.png`} alt={formatWeeklyBossMats(`${weeklyBossMat}`)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
@@ -162,7 +162,7 @@ function CharacterTalentLevellingMaterials(props: any) {
                 costs[8] !== "0" &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title="Crown of Insight" arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["5"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/talent_mats/Crown of Insight.png`} alt="Crown of Insight" onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["5"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/talent_mats/Crown_of_Insight.png`} alt="Crown of Insight" onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>

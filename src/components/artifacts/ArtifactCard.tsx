@@ -45,8 +45,7 @@ function ArtifactCard(props: any) {
             }}
         >
             <Box>
-                <Avatar variant="square" src={`${process.env.REACT_APP_URL}/artifacts/sets/${name}/${props.artifact.pieces[0].type}.png`} alt={name} sx={artifactIconBackground}
-                    onClick={() => handleClickOpen()}
+                <Avatar variant="square" src={`${process.env.REACT_APP_URL}/artifacts/sets/${name.split(" ").join("_")}/${props.artifact.pieces[0].type}.png`} alt={name} sx={artifactIconBackground} onClick={() => handleClickOpen()}
                 >
                     <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "150px" }} />
                 </Avatar>

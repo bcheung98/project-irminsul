@@ -120,7 +120,7 @@ function FarmableToday(props: any) {
                                         characters.filter((char: CharacterData) => farmableMats["talents"][index].includes(char.materials.talentBook as string)).map((char: CharacterData, index: number) => (
                                             <ButtonBase disableRipple href={`/project-irminsul/character/${char.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
                                                 <CustomTooltip title={char.name} arrow placement="top">
-                                                    <img src={(`${process.env.REACT_APP_URL}/characters/icons/${char.name}.png`)} alt={char.name} style={IconBackground(char.rarity, theme)} onError={ErrorLoadingImage} />
+                                                    <img src={(`${process.env.REACT_APP_URL}/characters/icons/${char.name.split(" ").join("_")}.png`)} alt={char.name} style={IconBackground(char.rarity, theme)} onError={ErrorLoadingImage} />
                                                 </CustomTooltip>
                                             </ButtonBase>
                                         ))
@@ -141,7 +141,7 @@ function FarmableToday(props: any) {
                         farmableMats["weapons"].map((mat: string, index: number) => (
                             <Box key={index}>
                                 <CardHeader
-                                    avatar={<img src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${mat}4.png`} alt={mat} style={{ width: "48px", marginRight: "-10px" }} />}
+                                    avatar={<img src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${mat.split(" ").join("_")}4.png`} alt={mat} style={{ width: "48px", marginRight: "-10px" }} />}
                                     title={
                                         <Typography variant="h6" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
                                             {mat}
@@ -154,13 +154,13 @@ function FarmableToday(props: any) {
                                         weapons.filter((wep: WeaponData) => farmableMats["weapons"][index].includes(wep.materials.ascensionMat as string)).sort((a: WeaponData, b: WeaponData) => b.rarity - a.rarity).map((wep: WeaponData, index: number) => (
                                             <ButtonBase disableRipple href={`/project-irminsul/weapon/${wep.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
                                                 <CustomTooltip title={wep.name} arrow placement="top">
-                                                    <img src={(`${process.env.REACT_APP_URL}/weapons/${wep.name}.png`)} alt={wep.name} style={IconBackground(wep.rarity, theme)} onError={ErrorLoadingImage} />
+                                                    <img src={(`${process.env.REACT_APP_URL}/weapons/${wep.name.split(" ").join("_")}.png`)} alt={wep.name} style={IconBackground(wep.rarity, theme)} onError={ErrorLoadingImage} />
                                                 </CustomTooltip>
                                             </ButtonBase>
                                         ))
                                     }
                                 </Grid>
-                                < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
+                                <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
                             </Box>
                         ))
                     }

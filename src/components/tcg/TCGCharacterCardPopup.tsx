@@ -173,7 +173,7 @@ function TCGCharacterCardPopup(props: any) {
                         </React.Fragment>
                         {/* Card Image */}
                         <React.Fragment>
-                            <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name}.png`} alt={name}
+                            <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}.png`} alt={name}
                                 style={{
                                     width: "250px",
                                     border: `2px solid ${theme.border.color}`,
@@ -220,7 +220,7 @@ function TCGCharacterCardPopup(props: any) {
                     </Box>
                     <Box>
                         <Chip
-                            avatar={<Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/weapons/${weapon}.png`} alt={weapon} />}
+                            avatar={<Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/weapons/${weapon.split(" ").join("_")}.png`} alt={weapon} />}
                             label={
                                 <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
                                     {weapon}
@@ -234,7 +234,7 @@ function TCGCharacterCardPopup(props: any) {
                                     <Chip
                                         key={index}
                                         avatar={
-                                            <Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${faction}.png`} alt={faction}>
+                                            <Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${faction.split(" ").join("_")}.png`} alt={faction}>
                                                 <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "24px", backgroundColor: "rgb(69, 84, 103)" }} />
                                             </Avatar>
                                         }

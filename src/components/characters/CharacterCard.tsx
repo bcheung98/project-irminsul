@@ -35,10 +35,10 @@ function CharacterCard(props: any) {
     }
 
     // Old Icon: 
-    // const characterIcon = `${process.env.REACT_APP_URL}/characters/icons/${name}.png`
+    // const characterIcon = `${process.env.REACT_APP_URL}/characters/icons/${name.split(" ").join("_")}.png`
 
     // New Icon
-    const characterIcon = `${process.env.REACT_APP_URL}/characters/avatars/${name}.png`
+    const characterIcon = `${process.env.REACT_APP_URL}/characters/avatars/${name.split(" ").join("_")}.png`
 
     return (
         <Card variant="outlined"

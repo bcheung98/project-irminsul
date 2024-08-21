@@ -67,7 +67,7 @@ function WeaponPage(props: any) {
             <React.Fragment>
                 <Grid container sx={{ mb: "20px", mt: "10px" }}>
                     <Grid xs="auto">
-                        <img src={(`${process.env.REACT_APP_URL}/weapons/${name}.png`)} alt={name} style={weaponIcon} onError={ErrorLoadingImage} />
+                        <img src={(`${process.env.REACT_APP_URL}/weapons/${name.split(" ").join("_")}.png`)} alt={name} style={weaponIcon} onError={ErrorLoadingImage} />
                     </Grid>
                     <Grid xs>
                         <Box

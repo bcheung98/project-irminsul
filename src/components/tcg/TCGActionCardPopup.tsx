@@ -118,7 +118,7 @@ function TCGActionCardPopup(props: any) {
                         >
                             <TCGDiceCost cost={cost} type={"card-large"} />
                         </Box>
-                        <img src={`${process.env.REACT_APP_URL}/tcg/action_cards/${name}.png`} alt={name}
+                        <img src={`${process.env.REACT_APP_URL}/tcg/action_cards/${name.split(" ").join("_")}.png`} alt={name}
                             style={{
                                 width: "250px",
                                 border: `2px solid ${theme.border.color}`,

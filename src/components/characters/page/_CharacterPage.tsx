@@ -57,7 +57,7 @@ function CharacterPage(props: any) {
             <React.Fragment>
                 <Grid container sx={{ mb: "20px" }}>
                     <Grid xs="auto">
-                        <img src={`${process.env.REACT_APP_URL}/characters/wish/${name}.png`} alt={name}
+                        <img src={`${process.env.REACT_APP_URL}/characters/wish/${name.split(" ").join("_")}.png`} alt={name}
                             onClick={() => handleClickOpen()}
                             style={{
                                 width: "35vw",

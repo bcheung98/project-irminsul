@@ -17,7 +17,7 @@ function TCGCharacterFactionFilter() {
             {
                 Factions.map((faction, index) => (
                     <CustomTooltip key={index} title={faction} arrow placement="top">
-                        <img className="filter-off" id={`${faction.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${faction}.png`} alt={faction} onClick={() => dispatch(setNation(faction))} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`${faction.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${faction.split(" ").join("_")}.png`} alt={faction} onClick={() => dispatch(setNation(faction))} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }

@@ -72,7 +72,7 @@ function ArtifactPopup(props: any) {
                             <Typography variant="subtitle1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, mb: "20px" }}>
                                 <i>{formatPieceType(piece.type)}</i>
                             </Typography>
-                            <Avatar variant="square" src={`${process.env.REACT_APP_URL}/artifacts/sets/${name}/${piece.type}.png`} alt={piece.name} sx={artifactIconBackground}>
+                            <Avatar variant="square" src={`${process.env.REACT_APP_URL}/artifacts/sets/${name.split(" ").join("_")}/${piece.type}.png`} alt={piece.name} sx={artifactIconBackground}>
                                 <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "128px" }} />
                             </Avatar>
                             {

@@ -90,7 +90,7 @@ function TCGCharacterCard(props: any) {
                         ))
                     }
                 </Box>
-                <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name}.png`} alt={name}
+                <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}.png`} alt={name}
                     style={{
                         width: "150px",
                         border: `2px solid ${theme.border.color}`,

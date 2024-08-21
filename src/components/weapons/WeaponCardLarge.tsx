@@ -63,7 +63,7 @@ function WeaponCardLarge(props: any) {
                             height: "200px",
                         }}
                     >
-                        <img src={(`${process.env.REACT_APP_URL}/weapons/${name}.png`)} alt={name} style={weaponIcon} onError={ErrorLoadingImage} />
+                        <img src={(`${process.env.REACT_APP_URL}/weapons/${name.split(" ").join("_")}.png`)} alt={name} style={weaponIcon} onError={ErrorLoadingImage} />
                     </Box>
                 </Box>
             </ButtonBase>

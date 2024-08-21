@@ -17,7 +17,7 @@ function WeaponSubstatFilters() {
             {
                 Object.keys(WeaponSubstats).map((stat, index) => (
                     <CustomTooltip key={index} title={WeaponSubstats[stat as keyof {}]["title"]} arrow placement="top">
-                        <img className="filter-off" id={`weapon-${stat.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/icons/ascension_stats/${stat}.png`} alt={stat} onClick={() => dispatch(setSubstats(stat))} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`weapon-${stat.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/icons/ascension_stats/${stat.split(" ").join("_")}.png`} alt={stat} onClick={() => dispatch(setSubstats(stat))} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }
