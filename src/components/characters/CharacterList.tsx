@@ -44,7 +44,7 @@ function CharacterList(props: any) {
                         {props.characters.length} {props.characters.length === 1 ? "Character" : "Characters"}
                     </Typography>
                 </Toolbar>
-                < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "0px" }} />
+                <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "0px" }} />
                 <TableContainer>
                     <Table>
                         <EnhancedTableHead

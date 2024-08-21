@@ -126,7 +126,7 @@ function FarmableToday(props: any) {
                                         ))
                                     }
                                 </Grid>
-                                < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
+                                <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
                             </Box>
                         ))
                     }
