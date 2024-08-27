@@ -1,4 +1,5 @@
 import * as React from "react"
+import { connect } from "react-redux"
 import parse, { Element, domToReact, HTMLReactParserOptions } from "html-react-parser"
 
 // Component imports
@@ -12,13 +13,14 @@ import { Box, Typography, Dialog } from "@mui/material"
 import { Keywords } from "./TCGKeywords"
 
 // Type imports
+import { RootState } from "../../redux/store"
 import { TCGKeywordsData } from "../../types/tcg/TCGKeywordsData"
 
 function TCGKeywordPopup(props: any) {
 
     const theme = useTheme()
 
-    let { name, type, cost, description } = props
+    let { name, type, cost, description, keywords } = props
 
     const [open, setOpen] = React.useState(false)
     const [tag, setTag] = React.useState("")
@@ -60,7 +62,7 @@ function TCGKeywordPopup(props: any) {
         keywordDescription = Keywords[tag].description
     }
     else if (tag !== "") {
-        let currentKeyword = props.keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
+        let currentKeyword = keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
         keywordName = currentKeyword.name
         keywordDescription = currentKeyword.description
     }
@@ -113,4 +115,8 @@ function TCGKeywordPopup(props: any) {
 
 }
 
-export default TCGKeywordPopup
+const mapStateToProps = (state: RootState) => ({
+    keywords: state.cards.cards[2]
+})
+
+export default connect(mapStateToProps)(TCGKeywordPopup)

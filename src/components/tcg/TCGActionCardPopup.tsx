@@ -78,8 +78,8 @@ function TCGActionCardPopup(props: any) {
         keywordCost = Keywords[tag].cost
         keywordDescription = Keywords[tag].description
     }
-    else if (props.card.keywords && tag !== "") {
-        let currentKeyword = props.card.keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
+    else if (props.keywords && tag !== "") {
+        let currentKeyword = props.keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
         keywordName = currentKeyword.name
         keywordType = currentKeyword.type
         keywordCost = currentKeyword.cost
@@ -169,7 +169,7 @@ function TCGActionCardPopup(props: any) {
                             subType &&
                             <Chip
                                 avatar={
-                                    <Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/${subType}.png`} alt={subType}>
+                                    <Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/${subType.split(" ").join("_")}.png`} alt={subType}>
                                         <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "24px", backgroundColor: "rgb(69, 84, 103)" }} />
                                     </Avatar>
                                 }
@@ -185,7 +185,7 @@ function TCGActionCardPopup(props: any) {
                             props.card.combatAction &&
                             <Chip
                                 avatar={
-                                    <Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/Combat Action.png`} alt="Combat Action">
+                                    <Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/Combat_Action.png`} alt="Combat Action">
                                         <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "24px", backgroundColor: "rgb(69, 84, 103)" }} />
                                     </Avatar>
                                 }
@@ -263,7 +263,8 @@ function TCGActionCardPopup(props: any) {
 }
 
 const mapStateToProps = (state: RootState) => ({
-    deck: state.deck
+    deck: state.deck,
+    keywords: state.cards.cards[2]
 })
 
 export default connect(mapStateToProps)(TCGActionCardPopup)

@@ -80,8 +80,8 @@ function TCGCharacterCardPopup(props: any) {
         keywordType = Keywords[tag].type
         keywordDescription = Keywords[tag].description
     }
-    else if (props.char.keywords && tag !== "") {
-        let currentKeyword = props.char.keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
+    else if (props.keywords && tag !== "") {
+        let currentKeyword = props.keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
         keywordName = currentKeyword.name
         keywordType = currentKeyword.type
         keywordDescription = currentKeyword.description
@@ -352,7 +352,8 @@ function TCGCharacterCardPopup(props: any) {
 }
 
 const mapStateToProps = (state: RootState) => ({
-    deck: state.deck
+    deck: state.deck,
+    keywords: state.cards.cards[2]
 })
 
 export default connect(mapStateToProps)(TCGCharacterCardPopup)
