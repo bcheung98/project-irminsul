@@ -17,7 +17,7 @@ function TCGCharacterWeaponFilter() {
             {
                 Weapons.map((weapon, index) => (
                     <CustomTooltip key={index} title={weapon} arrow placement="top">
-                        <img className="filter-off" id={`${weapon.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/tcg/icons/weapons/${weapon}.png`} alt={weapon} onClick={() => dispatch(setWeapon(weapon))} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`${weapon.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/tcg/icons/weapons/${weapon.split(" ").join("_")}.png`} alt={weapon} onClick={() => dispatch(setWeapon(weapon))} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }

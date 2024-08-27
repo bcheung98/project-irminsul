@@ -1,7 +1,9 @@
+import { TalentBooks, WepAscensionMats } from "./MaterialList"
+
 export function MaterialDates(day: string) {
 
-    const talents = ["Freedom", "Resistance", "Ballad", "Prosperity", "Diligence", "Gold", "Transience", "Elegance", "Light", "Admonition", "Ingenuity", "Praxis", "Equity", "Justice", "Order"]
-    const weapons = ["Decarabian", "Boreal Wolf", "Dandelion Gladiator", "Guyun", "Mist Veiled Elixir", "Aerosiderite", "Sea Branch", "Narukami", "Oni Mask", "Forest Dew", "Oasis Garden", "Scorching Might", "Chord", "Dewdrop", "Pristine Sea"]
+    const talents = Object.values(TalentBooks).flat()
+    const weapons = Object.values(WepAscensionMats).flat()
 
     switch (day) {
         case "Monday":
@@ -31,7 +33,7 @@ export function MaterialDates(day: string) {
 
 }
 
-const GetMaterials = (arr: string[], start: number) => {
+export const GetMaterials = (arr: string[], start: number) => {
     let output = [] as string[]
     for (let i = start; i < arr.length; i += 3) {
         output.push(arr[i])

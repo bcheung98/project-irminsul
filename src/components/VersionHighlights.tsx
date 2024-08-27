@@ -29,6 +29,7 @@ function VersionHighlights(props: any) {
 
     // MAKE SURE TO CHANGE THIS EVERY UPDATE!
     let updates = [
+        { version: "5.0", name: "Flowers Resplendent on the Sun-Scorched Sojourn" },
         { version: "4.8", name: "Summertide Scales and Tales" },
         { version: "4.7", name: "An Everlasting Dream Intertwined" },
         { version: "4.6", name: "Two Worlds Aflame, the Crimson Night Fades" },
@@ -132,7 +133,7 @@ function VersionHighlights(props: any) {
                         updates.map((version, index) => {
                             return (
                                 <MenuItem key={index} value={index}>
-                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center" }}>{version.version} - {version.name}</Typography>
+                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", fontSize: "11pt", textAlign: "center" }}>{version.version} - {version.name}</Typography>
                                 </MenuItem>
                             )
                         })

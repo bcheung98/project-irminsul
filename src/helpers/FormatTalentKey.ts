@@ -18,6 +18,9 @@ export function FormatTalentKey(key: string) {
         case "a4passive":
             key = "4th Ascension Passive"
             break
+        case "nightsoulpassive":
+            key = "Night Realm's Gift Passive"
+            break
         case "utilpassive":
             key = "Utility Passive"
             break

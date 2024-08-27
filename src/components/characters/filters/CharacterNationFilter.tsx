@@ -6,7 +6,7 @@ import { setNation } from "../../../redux/reducers/CharacterFilterReducer"
 import { CustomTooltip } from "../../../helpers/CustomTooltip"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
-const Nations = ["Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine", "Snezhnaya"]
+const Nations = ["Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine", "Natlan", "Snezhnaya"]
 
 function CharacterNationFilter() {
 

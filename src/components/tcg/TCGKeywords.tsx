@@ -461,6 +461,17 @@ export const Keywords: TCGKeywordIndexData = {
             <CustomTypography>
                 Discard Action Cards from Hand to initiate Elemental Tuning.
             </CustomTypography>
+    },
+    "technique": {
+        name:
+            <CustomBox sx={{ display: "inline-flex" }}>
+                <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/Technique.png`} alt="Technique" sx={{ width: "32px", height: "32px", mr: "5px" }} />
+                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Technique</Typography>
+            </CustomBox>,
+        description:
+            <CustomTypography>
+                When the active character is equipped with a <b style={{ color: "white" }}>Technique</b> card, they can use the corresponding <b style={{ color: "white" }}>Technique</b>.<br />Using a <b style={{ color: "white" }}>Technique</b> counts as a Combat Action. If the character is unable to use Skills due to conditions like Frozen, Petrification, or Stun, they are also unable to use the <b style={{ color: "white" }}>Technique</b>.<br />Using a <b style={{ color: "white" }}>Technique</b> is not considered as using a Skill. Therefore, it cannot trigger effects such as "After using a skill" or "After the character triggers an Elemental Reaction." Damage dealt by using a <b style={{ color: "white" }}>Technique</b> is not considered Damage dealt by the character.
+            </CustomTypography>
     }
 
 }

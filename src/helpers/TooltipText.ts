@@ -1,3 +1,6 @@
+import { TalentBooks, WepAscensionMats } from "./MaterialList"
+import { GetMaterials } from "./MaterialDates"
+
 export function formatTalents(talent: string) {
     if (talent.endsWith("1")) {
         talent = "Teachings of " + talent.slice(0, talent.length - 1)
@@ -10,30 +13,18 @@ export function formatTalents(talent: string) {
     }
     let talentSplit = talent.split(" ")
     let talentKey = talentSplit[talentSplit.length - 1]
-    switch (talentKey) {
-        case "Freedom":
-        case "Prosperity":
-        case "Transience":
-        case "Admonition":
-        case "Equity":
-            talent += " (Mon/Thu)"
-            break
-        case "Resistance":
-        case "Diligence":
-        case "Elegance":
-        case "Ingenuity":
-        case "Justice":
-            talent += " (Tue/Fri)"
-            break
-        case "Ballad":
-        case "Gold":
-        case "Light":
-        case "Praxis":
-        case "Order":
-            talent += " (Wed/Sat)"
-            break
-        default:
-            talent += ""
+    let talents = Object.values(TalentBooks).flat()
+    if (GetMaterials(talents, 0).includes(talentKey)) {
+        talent += " (Mon/Thu)"
+    }
+    if (GetMaterials(talents, 1).includes(talentKey)) {
+        talent += " (Tue/Fri)"
+    }
+    if (GetMaterials(talents, 2).includes(talentKey)) {
+        talent += " (Wed/Sat)"
+    }
+    else {
+        talent += ""
     }
     return talent
 }
@@ -242,6 +233,30 @@ export function formatCommonMats(material: string) {
             break
         case "Gear":
             material = "Clockwork Meka Gear"
+            break
+        case "Fang1":
+            material = "Juvenile Fang"
+            break
+        case "Fang2":
+            material = "Seasoned Fang"
+            break
+        case "Fang3":
+            material = "Tyrant's Fang"
+            break
+        case "Fang":
+            material = "Saurian Fang"
+            break
+        case "Whistle1":
+            material = "Sentry's Wooden Whistle"
+            break
+        case "Whistle2":
+            material = "Warrior's Metal Whistle"
+            break
+        case "Whistle3":
+            material = "Saurian-Crowned Warrior's Golden Whistle"
+            break
+        case "Whistle":
+            material = "Sauroform Whistle"
             break
         default:
             material += ""
@@ -479,6 +494,42 @@ export function formatEliteMats(material: string) {
         case "Hilt":
             material = "Praetorian Golem Hilt"
             break
+        case "Will1":
+            material = "Shard of a Shattered Will"
+            break
+        case "Will2":
+            material = "Locus of a Clear Will"
+            break
+        case "Will3":
+            material = "Sigil of a Striding Will"
+            break
+        case "Will":
+            material = "Wayob Manifestation Will"
+            break
+        case "Ignited Core1":
+            material = "Ignited Stone"
+            break
+        case "Ignited Core2":
+            material = "Ignited Seed of Life"
+            break
+        case "Ignited Core3":
+            material = "Ignited Seeing Eye"
+            break
+        case "Ignited Core":
+            material = "Avatar Lava Core"
+            break
+        case "Secret Source1":
+            material = "Axis of the Secret Source"
+            break
+        case "Secret Source2":
+            material = "Sheath of the Secret Source"
+            break
+        case "Secret Source3":
+            material = "Heart of the Secret Source"
+            break
+        case "Secret Source":
+            material = "Secret Source Automaton Core"
+            break
         default:
             material += ""
     }
@@ -579,6 +630,12 @@ export function formatBossMats(material: string) {
             break
         case "Fragment of a Golden Melody":
             material += " (Legatus Golems)"
+            break
+        case "Mark of the Binding Blessing":
+            material += " (Goldflame Qucusaur Tyrant)"
+            break
+        case "Overripe Flamegranate":
+            material += " (Gluttonous Yumkasaur Mountain King)"
             break
         default:
             material += ""
@@ -776,6 +833,24 @@ export function formatWeaponAscMats(material: string) {
             "2": "Wine Goblet of the Pristine Sea",
             "3": "Silver Goblet of the Pristine Sea",
             "4": "Golden Goblet of the Pristine Sea"
+        },
+        "Blazing Sacrificial Heart": {
+            "1": "Blazing Sacrificial Heart's Terror",
+            "2": "Blazing Sacrificial Heart's Hesitance",
+            "3": "Blazing Sacrificial Heart's Resolve",
+            "4": "Blazing Sacrificial Heart's Splendor"
+        },
+        "Sacred Lord": {
+            "1": "Delirious Decadence of the Sacred Lord",
+            "2": "Delirious Desolation of the Sacred Lord",
+            "3": "Delirious Demeanor of the Sacred Lord",
+            "4": "Delirious Divinity of the Sacred Lord"
+        },
+        "Night-Wind": {
+            "1": "Night-Wind's Mystic Consideration",
+            "2": "Night-Wind's Mystic Premonition",
+            "3": "Night-Wind's Mystic Augury",
+            "4": "Night-Wind's Mystic Revelation"
         }
     }
     let materialKey = "" // Raw name of material (no number attached)
@@ -788,30 +863,18 @@ export function formatWeaponAscMats(material: string) {
         materialKey = material
     }
     let materialDate = "" // Day tag to be appended
-    switch (materialKey) {
-        case "Decarabian":
-        case "Guyun":
-        case "Sea Branch":
-        case "Forest Dew":
-        case "Chord":
-            materialDate = "(Mon/Thu)"
-            break
-        case "Boreal Wolf":
-        case "Mist Veiled Elixir":
-        case "Narukami":
-        case "Oasis Garden":
-        case "Dewdrop":
-            materialDate = "(Tue/Fri)"
-            break
-        case "Dandelion Gladiator":
-        case "Aerosiderite":
-        case "Oni Mask":
-        case "Scorching Might":
-        case "Pristine Sea":
-            materialDate = "(Wed/Sat)"
-            break
-        default:
-            materialDate = ""
+    let weaponMats = Object.values(WepAscensionMats).flat()
+    if (GetMaterials(weaponMats, 0).includes(materialKey)) {
+        materialDate += " (Mon/Thu)"
+    }
+    else if (GetMaterials(weaponMats, 1).includes(materialKey)) {
+        materialDate += " (Tue/Fri)"
+    }
+    else if (GetMaterials(weaponMats, 2).includes(materialKey)) {
+        materialDate += " (Wed/Sat)"
+    }
+    else {
+        materialDate += ""
     }
     if (materialIndex !== "") {
         return `${materialNames[materialKey as keyof {}][materialIndex]} ${materialDate}`

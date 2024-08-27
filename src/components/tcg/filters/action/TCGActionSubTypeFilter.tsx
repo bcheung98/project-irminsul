@@ -6,7 +6,7 @@ import { setSubType } from "../../../../redux/reducers/TCGActionFilterReducer"
 import { CustomTooltip } from "../../../../helpers/CustomTooltip"
 import ErrorLoadingImage from "../../../../helpers/ErrorLoadingImage"
 
-const SubTypes = ["Arcane Legend", "Artifact", "Companion", "Elemental Resonance", "Food", "Item", "Location", "Talent", "Weapon"]
+const SubTypes = ["Arcane Legend", "Artifact", "Companion", "Elemental Resonance", "Food", "Item", "Location", "Talent", "Technique", "Weapon"]
 
 function TCGActionSubTypeFilter() {
 
