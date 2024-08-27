@@ -7,6 +7,7 @@ export interface CharacterTalentsData {
     altsprint?: SkillData,
     a1passive: SkillData,
     a4passive: SkillData,
+    nightsoulpassive?: SkillData,
     utilpassive: SkillData,
     passive?: SkillData
 }
