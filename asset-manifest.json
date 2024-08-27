@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/project-irminsul/static/css/main.2f8a72aa.css",
-    "main.js": "/project-irminsul/static/js/main.30c7c0df.js",
+    "main.js": "/project-irminsul/static/js/main.daf84c48.js",
     "static/media/ja-jp.ttf": "/project-irminsul/static/media/ja-jp.1f6e9f5930ddc1ce5c68.ttf",
     "index.html": "/project-irminsul/index.html",
     "main.2f8a72aa.css.map": "/project-irminsul/static/css/main.2f8a72aa.css.map",
-    "main.30c7c0df.js.map": "/project-irminsul/static/js/main.30c7c0df.js.map"
+    "main.daf84c48.js.map": "/project-irminsul/static/js/main.daf84c48.js.map"
   },
   "entrypoints": [
     "static/css/main.2f8a72aa.css",
-    "static/js/main.30c7c0df.js"
+    "static/js/main.daf84c48.js"
   ]
 }
