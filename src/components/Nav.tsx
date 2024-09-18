@@ -34,7 +34,7 @@ function Nav() {
                             color="inherit"
                             onClick={toggleDrawerState}
                             edge="start"
-                            sx={{ mr: "25px", ml: "-8px" }}
+                            sx={{ mr: "25px", ml: "-10px" }}
                         >
                             <MenuIcon />
                         </IconButton>
@@ -86,7 +86,7 @@ function Nav() {
                     <List>
                         {
                             listItems.map((item, index) => (
-                                <ListItem disablePadding key={index} sx={{ mb: "10px"}}>
+                                <ListItem disablePadding key={index} sx={{ mb: "10px", mx: "-2px" }}>
                                     <ButtonBase disableRipple href={item.link}>
                                         <ListItemButton
                                             disableTouchRipple
@@ -103,7 +103,7 @@ function Nav() {
                                                     sx={[
                                                         { minWidth: 0, justifyContent: "center" },
                                                         open ?
-                                                            { mr: 3 }
+                                                            { mr: 2.5 }
                                                             :
                                                             { mr: "auto" },
                                                     ]}
