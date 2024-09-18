@@ -55,7 +55,7 @@ function Nav() {
                                     >
                                         PROJECT IRMINSUL
                                     </Typography>
-                                } F
+                                }
                                 sx={{ px: 0 }}
                             />
                         </ButtonBase>
