@@ -96,7 +96,7 @@ function VersionHighlights(props: any) {
                 display: "block",
                 margin: "auto",
                 mt: "20px",
-                width: "50vw",
+                width: "45vw",
                 color: `${theme.text.color}`,
             }}
         >
@@ -108,8 +108,8 @@ function VersionHighlights(props: any) {
                     p: "10px",
                 }}
             >
-                <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", mt: "5px" }}>
-                    {`Version Highlights`}
+                <Typography variant="h6" component="p" sx={{ fontFamily: "Genshin, sans-serif", ml: "5px", mt: "5px" }}>
+                    Version Highlights
                 </Typography>
             </AppBar>
             <Box

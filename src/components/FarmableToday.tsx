@@ -63,7 +63,7 @@ function FarmableToday(props: any) {
                 display: "block",
                 margin: "auto",
                 mt: "20px",
-                width: "40vw",
+                width: "30vw",
                 color: `${theme.text.color}`,
             }}
         >
@@ -81,7 +81,7 @@ function FarmableToday(props: any) {
                         justifyContent: "space-between"
                     }}
                 >
-                    <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", mt: "5px" }}>
+                    <Typography variant="h6" component="p" sx={{ fontFamily: "Genshin, sans-serif", ml: "5px", mt: "5px" }}>
                         Farming Schedule
                     </Typography>
                     <Select value={day} label="Day" onChange={handleDayChange} input={<CustomSelect />}>

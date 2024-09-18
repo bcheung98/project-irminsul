@@ -49,18 +49,22 @@ function App(props: any) {
 		<ThemeProvider theme={theme}>
 			<Router basename="project-irminsul">
 				<Box id="back-to-top-anchor" />
-				<Nav />
-				<Switch>
-					<Route exact path="/" component={Home} />
-					<Route path="/characters" component={CharacterBrowser} />
-					<Route path="/character/:char_name" children={<CharacterPage />} />
-					<Route path="/weapons" component={WeaponBrowser} />
-					<Route path="/weapon/:weapon_name" children={<WeaponPage />} />
-					<Route path="/artifacts" component={ArtifactBrowser} />
-					<Route path="/planner" component={AscensionPlanner} />
-					<Route path="/banners/" component={BannerArchive} />
-					<Route path="/tcg/" component={TCGBrowser} />
-				</Switch>
+				<Box sx={{ display: "flex" }}>
+					<Nav />
+					<Box sx={{ pt: 10 }}>
+						<Switch>
+							<Route exact path="/" component={Home} />
+							<Route path="/characters" component={CharacterBrowser} />
+							<Route path="/character/:char_name" children={<CharacterPage />} />
+							<Route path="/weapons" component={WeaponBrowser} />
+							<Route path="/weapon/:weapon_name" children={<WeaponPage />} />
+							<Route path="/artifacts" component={ArtifactBrowser} />
+							<Route path="/planner" component={AscensionPlanner} />
+							<Route path="/banners/" component={BannerArchive} />
+							<Route path="/tcg/" component={TCGBrowser} />
+						</Switch>
+					</Box>
+				</Box>
 				<BottomNav />
 				<ScrollTop {...props}>
 					<Fab size="medium" disableRipple color="primary">
