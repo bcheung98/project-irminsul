@@ -14,7 +14,8 @@ function Nav() {
 
     const theme = useTheme()
 
-    const [open, setOpen] = React.useState(false)
+    let initialDrawerState = window.location.href.endsWith("/project-irminsul/") ? true : false
+    const [open, setOpen] = React.useState(initialDrawerState)
     const toggleDrawerState = () => {
         setOpen(!open)
     }
@@ -85,7 +86,7 @@ function Nav() {
                     <List>
                         {
                             listItems.map((item, index) => (
-                                <ListItem disablePadding key={index} sx={{ display: "block" }}>
+                                <ListItem disablePadding key={index} sx={{ mb: "10px"}}>
                                     <ButtonBase disableRipple href={item.link}>
                                         <ListItemButton
                                             disableTouchRipple
