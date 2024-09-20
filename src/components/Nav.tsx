@@ -56,7 +56,7 @@ function Nav() {
                     >
                         <CardHeader
                             avatar={
-                                <Avatar src={`${process.env.REACT_APP_URL}/nations/Sumeru.png`} alt="Project Irminsul" sx={{ height: "48px", width: "48px" }} />
+                                <Avatar src={`${process.env.REACT_APP_URL}/icons/Sumeru.png`} alt="Project Irminsul" sx={{ height: "48px", width: "48px" }} />
                             }
                             title={
                                 <Typography variant="h6"
