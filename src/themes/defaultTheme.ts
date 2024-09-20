@@ -8,6 +8,13 @@ export const defaultTheme = {
                     fontFamily: "Genshin, sans-serif",
                 }
             }
+        },
+        MuiDivider: {
+            styleOverrides: {
+                root: {
+                    borderColor: "rgb(30, 73, 118)"
+                }
+            }
         }
     },
     appbar: {
