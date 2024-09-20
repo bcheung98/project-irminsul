@@ -267,8 +267,6 @@ function Nav() {
                                                     <ListItemText
                                                         primary={item.primaryText}
                                                         primaryTypographyProps={{ color: `${theme.text.color}`, fontFamily: "Genshin, monospace", fontSize: "11pt" }}
-                                                        secondary={item.secondaryText}
-                                                        secondaryTypographyProps={{ color: `${theme.text.color}`, fontFamily: "Genshin, monospace", fontSize: "9pt" }}
                                                         sx={[
                                                             drawerOpen ?
                                                                 { opacity: 1 }
@@ -310,14 +308,6 @@ const closedMixin = (theme: Theme): CSSObject => ({
     overflowX: "hidden",
     width: `${iconSize * 2 + 1}px`,
 })
-
-const DrawerHeader = styled("div")(({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-}))
 
 interface AppBarProps extends MuiAppBarProps {
     open?: boolean
@@ -373,15 +363,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" 
 
 const linkItems = [
     {
-        primaryIcon: <Avatar variant="square" src="https://raw.githubusercontent.com/bcheung98/project-stellaron-assets/main/elements/Element_Imaginary.png" alt="Project Stellaron" sx={{ width: iconSize, height: iconSize }} />,
-        primaryText: "Project Stellaron",
-        secondaryText: "Honkai: Star Rail",
+        primaryIcon: <Avatar src="https://raw.githubusercontent.com/bcheung98/irminsul-gg-assets/main/game-icons/HSR.png" alt="Project Stellaron" sx={{ width: iconSize, height: iconSize }} />,
+        primaryText: "Honkai: Star Rail",
         link: "https://bcheung98.github.io/project-stellaron/"
     },
     {
-        primaryIcon: <Avatar variant="square" src="https://raw.githubusercontent.com/bcheung98/project-tacetite-assets/main/icons/Black_Shores.png" alt="Project Tacetite" sx={{ width: iconSize, height: iconSize }} />,
-        primaryText: "Project Tacetite",
-        secondaryText: "Wuthering Waves",
+        primaryIcon: <Avatar src="https://raw.githubusercontent.com/bcheung98/irminsul-gg-assets/main/game-icons/WutheringWaves.png" alt="Project Tacetite" sx={{ width: iconSize, height: iconSize }} />,
+        primaryText: "Wuthering Waves",
         link: "https://bcheung98.github.io/project-tacetite/"
     }
 ]
