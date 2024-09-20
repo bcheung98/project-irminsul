@@ -2,144 +2,299 @@ import React from "react"
 
 // MUI imports
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles"
-import { Box, Toolbar, Typography, CardHeader, Avatar, ButtonBase, IconButton, List, ListItem, ListItemButton, ListItemAvatar, ListItemText } from "@mui/material"
+import { Avatar, CardHeader, Typography, ButtonBase, IconButton, List, ListItem, ListItemButton, ListItemAvatar, ListItemText, ListItemIcon, Divider, Collapse } from "@mui/material"
 import MuiDrawer from "@mui/material/Drawer"
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar"
-import MenuIcon from "@mui/icons-material/Menu"
+import MenuOpenIcon from "@mui/icons-material/MenuOpen"
+import ExpandLess from "@mui/icons-material/ExpandLess"
+import ExpandMore from "@mui/icons-material/ExpandMore"
 
 // Helper imports
 import { CustomTooltip } from "../helpers/CustomTooltip"
+
+const drawerWidth = 280
+const iconSize = "32px"
 
 function Nav() {
 
     const theme = useTheme()
 
     let initialDrawerState = window.location.href.endsWith("/project-irminsul/") ? true : false
-    const [open, setOpen] = React.useState(initialDrawerState)
+    const [drawerOpen, setDrawerOpen] = React.useState(initialDrawerState)
     const toggleDrawerState = () => {
-        setOpen(!open)
+        setDrawerOpen(!drawerOpen)
+    }
+
+    const [dropdownOpen, setDropdownOpen] = React.useState(false);
+    const toggleDropdownState = () => {
+        setDropdownOpen(!dropdownOpen)
     }
 
     return (
         <React.Fragment>
-            <AppBar position="fixed"
-                sx={{
-                    backgroundColor: `${theme.appbar.backgroundColor}`,
-                    borderBottom: `1px solid ${theme.border.color}`
-                }}
-            >
-                <Toolbar>
-                    <Box sx={{ display: "flex", flexGrow: 0.95 }}>
-                        <IconButton
-                            color="inherit"
-                            onClick={toggleDrawerState}
-                            edge="start"
-                            sx={{ mr: "25px", ml: "-10px" }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <ButtonBase
-                            disableRipple
-                            href={`/project-irminsul/`}
-                        >
-                            <CardHeader
-                                avatar={
-                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Sumeru.png`)} alt="PROJECT IRMINSUL" sx={{ height: "48px", width: "48px" }} />
-                                }
-                                title={
-                                    <Typography variant="h6"
-                                        sx={{
-                                            fontFamily: "Genshin, monospace",
-                                            letterSpacing: ".3rem",
-                                            color: `${theme.text.color}`,
-                                        }}
-                                    >
-                                        PROJECT IRMINSUL
-                                    </Typography>
-                                }
-                                sx={{ px: 0 }}
-                            />
-                        </ButtonBase>
-                    </Box>
-                    {/* <Box>
-                        <ButtonBase disableRipple href="https://bcheung98.github.io/project-stellaron/" target="_blank">
-                            <CustomTooltip title="Project Stellaron" arrow placement="bottom">
-                                <Avatar src="https://raw.githubusercontent.com/bcheung98/project-stellaron-assets/main/assets/elements/Element_Imaginary.png" alt="PROJECT STELLARON" sx={{ height: "32px", width: "32px", mr: "20px" }} />
-                            </CustomTooltip>
-                        </ButtonBase>
-                        <ButtonBase disableRipple href="https://bcheung98.github.io/project-tacetite/" target="_blank">
-                            <CustomTooltip title="Project Tacetite" arrow placement="bottom">
-                                <Avatar src="https://raw.githubusercontent.com/bcheung98/project-tacetite-assets/main/elements/ui/Spectro.png" alt="PROJECT TACETITE" sx={{ height: "48px", width: "48px" }} />
-                            </CustomTooltip>
-                        </ButtonBase>
-                    </Box> */}
-                </Toolbar>
-            </AppBar>
             <Drawer
+                id="drawer"
                 variant="permanent"
-                open={open}
-                sx={{ [`& .MuiDrawer-paper`]: { borderRight: `1px solid ${theme.border.color}`, backgroundColor: `${theme.appbar.backgroundColor}`, pt: 2.5 } }}
+                open={drawerOpen}
+                sx={{ [`& .MuiDrawer-paper`]: { borderRight: `1px solid ${theme.border.color}`, backgroundColor: `${theme.appbar.backgroundColor}` } }}
             >
-                {/* Empty toolbar necessary for content to be below app bar */}
-                <Toolbar />
-                <Box>
-                    <List>
+                <DrawerHeader sx={{ height: "40px", py: "10px" }}>
+                    <IconButton
+                        onClick={toggleDrawerState}
+                        sx={{ color: `${theme.text.color}`, ml: "5px", mr: "10px" }}
+                    >
                         {
-                            listItems.map((item, index) => (
-                                <ListItem disablePadding key={index} sx={{ mb: "10px", mx: "-2px" }}>
-                                    <ButtonBase disableRipple href={item.link}>
-                                        <ListItemButton
-                                            disableTouchRipple
-                                            sx={[
-                                                { minHeight: 48, px: 2.5, width: drawerWidth },
-                                                open ?
-                                                    { justifyContent: "initial" }
-                                                    :
-                                                    { justifyContent: "center" }
-                                            ]}
+                            drawerOpen ?
+                                <MenuOpenIcon />
+                                :
+                                <MenuOpenIcon sx={{ transform: "rotate(180deg)" }} />
+                        }
+                    </IconButton>
+                    <ButtonBase
+                        disableRipple
+                        href={`/project-irminsul/`}
+                    >
+                        {
+                            drawerOpen ?
+                                <CardHeader
+                                    avatar={
+                                        <Avatar src={`${process.env.REACT_APP_URL}/icons/Sumeru.png`} alt="PROJECT IRMINSUL" sx={{ height: "40px", width: "40px" }} />
+                                    }
+                                    title={
+                                        <Typography
+                                            sx={{
+                                                fontSize: "12pt",
+                                                fontFamily: "Genshin, monospace",
+                                                letterSpacing: ".2rem",
+                                                color: `${theme.text.color}`,
+                                            }}
                                         >
-                                            <CustomTooltip title={!open ? item.label : null} arrow placement="right">
-                                                <ListItemAvatar
+                                            PROJECT<br />IRMINSUL
+                                        </Typography>
+                                    }
+                                    sx={{
+                                        p: 1,
+                                        borderRadius: "5px",
+                                        "&:hover": {
+                                            backgroundColor: `${theme.table.body.hover}`
+                                        }
+                                    }}
+                                />
+                                :
+                                null
+                        }
+                    </ButtonBase>
+                </DrawerHeader>
+                <Divider variant="middle" />
+                <List>
+                    {
+                        navItems.map((item, index) => (
+                            <ListItem
+                                key={index}
+                                disablePadding
+                                sx={{ mx: "13px" }}
+                            >
+                                <ButtonBase disableRipple href={item.link}>
+                                    <ListItemButton
+                                        disableTouchRipple
+                                        sx={[
+                                            {
+                                                px: "4px",
+                                                py: 0,
+                                                borderRadius: "5px",
+                                                "&:hover": {
+                                                    backgroundColor: `${theme.table.body.hover}`
+                                                }
+                                            },
+                                            drawerOpen ?
+                                                {
+                                                    width: drawerWidth * 0.8,
+                                                    height: "50px",
+                                                    my: 0,
+                                                    justifyContent: "initial"
+                                                }
+                                                :
+                                                {
+                                                    width: "40px",
+                                                    height: "40px",
+                                                    my: "5px",
+                                                    justifyContent: "center"
+                                                }
+                                        ]}
+                                    >
+                                        <CustomTooltip title={!drawerOpen ? item.primaryText : null} arrow placement="right">
+                                            <ListItemAvatar
+                                                sx={[
+                                                    { minWidth: 0, justifyContent: "center" },
+                                                    drawerOpen ?
+                                                        { mr: 2.5 }
+                                                        :
+                                                        { mr: "auto" },
+                                                ]}
+                                            >
+                                                {item.primaryIcon}
+                                            </ListItemAvatar>
+                                        </CustomTooltip>
+                                        <ListItemText
+                                            primary={item.primaryText}
+                                            primaryTypographyProps={{ color: `${theme.text.color}`, fontFamily: "Genshin, monospace", fontSize: "11pt" }}
+                                            sx={[
+                                                drawerOpen ?
+                                                    { opacity: 1 }
+                                                    :
+                                                    { opacity: 0 }
+                                            ]}
+                                        />
+                                    </ListItemButton>
+                                </ButtonBase>
+                            </ListItem>
+                        ))
+                    }
+                </List>
+                <Divider variant="middle" />
+                <List>
+                    <ListItem
+                        disablePadding
+                        sx={{ mx: "17px" }}
+                    >
+                        <ButtonBase disableRipple onClick={toggleDropdownState}>
+                            <ListItemButton
+                                disableTouchRipple
+                                sx={[
+                                    {
+                                        px: "4px",
+                                        py: 0,
+                                        borderRadius: "5px",
+                                        "&:hover": {
+                                            backgroundColor: `${theme.table.body.hover}`
+                                        }
+                                    },
+                                    drawerOpen ?
+                                        {
+                                            width: drawerWidth * 0.8,
+                                            height: "50px",
+                                            my: 0,
+                                            justifyContent: "initial"
+                                        }
+                                        :
+                                        {
+                                            width: "32px",
+                                            height: "40px",
+                                            my: "5px",
+                                            justifyContent: "center"
+                                        }
+                                ]}
+                            >
+                                <CustomTooltip title={!drawerOpen ? "Other Games" : null} arrow placement="right">
+                                    <ListItemIcon
+                                        sx={[
+                                            {
+                                                minWidth: 0,
+                                                justifyContent: "center",
+                                                color: `${theme.text.color}`
+                                            },
+                                            drawerOpen ?
+                                                { mr: 2.5 }
+                                                :
+                                                { mr: "auto" },
+                                        ]}
+                                    >
+                                        {dropdownOpen ? <ExpandLess /> : <ExpandMore />}
+                                    </ListItemIcon>
+                                </CustomTooltip>
+                                <ListItemText
+                                    primary="Other Games"
+                                    primaryTypographyProps={{ color: `${theme.text.color}`, fontFamily: "Genshin, monospace", fontSize: "11pt" }}
+                                    sx={[
+                                        drawerOpen ?
+                                            { opacity: 1 }
+                                            :
+                                            { opacity: 0 }
+                                    ]}
+                                />
+                            </ListItemButton>
+                        </ButtonBase>
+                    </ListItem>
+                    <ListItem
+                        disablePadding
+                        sx={{ mx: "13px" }}
+                    >
+                        <Collapse in={dropdownOpen} timeout="auto" unmountOnExit>
+                            <List disablePadding>
+                                {
+                                    linkItems.map((item, index) => (
+                                        <ListItem
+                                            key={index}
+                                            disablePadding
+                                        >
+                                            <ButtonBase disableRipple href={item.link}>
+                                                <ListItemButton
+                                                    disableTouchRipple
                                                     sx={[
-                                                        { minWidth: 0, justifyContent: "center" },
-                                                        open ?
-                                                            { mr: 2.5 }
+                                                        {
+                                                            px: "4px",
+                                                            py: 0,
+                                                            borderRadius: "5px",
+                                                            "&:hover": {
+                                                                backgroundColor: `${theme.table.body.hover}`
+                                                            }
+                                                        },
+                                                        drawerOpen ?
+                                                            {
+                                                                width: drawerWidth * 0.8,
+                                                                height: "50px",
+                                                                my: 0,
+                                                                justifyContent: "initial"
+                                                            }
                                                             :
-                                                            { mr: "auto" },
+                                                            {
+                                                                width: "40px",
+                                                                height: "40px",
+                                                                my: "5px",
+                                                                justifyContent: "center"
+                                                            }
                                                     ]}
                                                 >
-                                                    {item.primaryIcon}
-                                                </ListItemAvatar>
-                                            </CustomTooltip>
-                                            <ListItemText
-                                                primary={
-                                                    <Typography variant="subtitle2" sx={{ color: `${theme.text.color}`, fontFamily: "Genshin, monospace" }}>
-                                                        {item.label}
-                                                    </Typography>
-                                                }
-                                                sx={[
-                                                    open ?
-                                                        { opacity: 1 }
-                                                        :
-                                                        { opacity: 0 }
-                                                ]}
-                                            />
-                                        </ListItemButton>
-                                    </ButtonBase>
-                                </ListItem>
-                            ))
-                        }
-                    </List>
-                </Box>
+                                                    <CustomTooltip title={!drawerOpen ? item.primaryText : null} arrow placement="right">
+                                                        <ListItemAvatar
+                                                            sx={[
+                                                                { minWidth: 0, justifyContent: "center" },
+                                                                drawerOpen ?
+                                                                    { mr: 2.5 }
+                                                                    :
+                                                                    { mr: "auto" },
+                                                            ]}
+                                                        >
+                                                            {item.primaryIcon}
+                                                        </ListItemAvatar>
+                                                    </CustomTooltip>
+                                                    <ListItemText
+                                                        primary={item.primaryText}
+                                                        primaryTypographyProps={{ color: `${theme.text.color}`, fontFamily: "Genshin, monospace", fontSize: "11pt" }}
+                                                        secondary={item.secondaryText}
+                                                        secondaryTypographyProps={{ color: `${theme.text.color}`, fontFamily: "Genshin, monospace", fontSize: "9pt" }}
+                                                        sx={[
+                                                            drawerOpen ?
+                                                                { opacity: 1 }
+                                                                :
+                                                                { opacity: 0 }
+                                                        ]}
+                                                    />
+                                                </ListItemButton>
+                                            </ButtonBase>
+                                        </ListItem>
+                                    ))
+                                }
+                            </List>
+                        </Collapse>
+                    </ListItem>
+                </List>
             </Drawer>
-        </React.Fragment >
+        </React.Fragment>
     )
 
 }
 
 export default Nav
-
-const drawerWidth = 240
 
 const openedMixin = (theme: Theme): CSSObject => ({
     width: drawerWidth,
@@ -156,37 +311,18 @@ const closedMixin = (theme: Theme): CSSObject => ({
         duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: "hidden",
-    width: `calc(${theme.spacing(7)} + 1px)`,
+    width: "57px",
     [theme.breakpoints.up("sm")]: {
-        width: `calc(${theme.spacing(8)} + 1px)`,
+        width: "65px",
     },
 })
 
-interface AppBarProps extends MuiAppBarProps {
-    open?: boolean
-}
-
-const AppBar = styled(MuiAppBar, {
-    shouldForwardProp: (prop) => prop !== "open",
-})<AppBarProps>(({ theme }) => ({
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(["width", "margin"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-    }),
-    variants: [
-        {
-            props: ({ open }) => open,
-            style: {
-                marginLeft: drawerWidth,
-                width: `calc(100% - ${drawerWidth}px)`,
-                transition: theme.transitions.create(["width", "margin"], {
-                    easing: theme.transitions.easing.sharp,
-                    duration: theme.transitions.duration.enteringScreen,
-                }),
-            },
-        },
-    ],
+const DrawerHeader = styled("div")(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
 }))
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" })(
@@ -214,41 +350,55 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" 
     }),
 )
 
-const iconSize = "32px"
-const listItems = [
+const linkItems = [
     {
-        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Sumeru.png`)} alt="HOME" sx={{ width: iconSize, height: iconSize }} />,
-        label: "Home",
+        primaryIcon: <Avatar variant="square" src="https://raw.githubusercontent.com/bcheung98/project-stellaron-assets/main/elements/Element_Imaginary.png" alt="Project Stellaron" sx={{ width: iconSize, height: iconSize }} />,
+        primaryText: "Project Stellaron",
+        secondaryText: "Honkai: Star Rail",
+        link: "https://bcheung98.github.io/project-stellaron/"
+    },
+    {
+        primaryIcon: <Avatar variant="square" src="https://raw.githubusercontent.com/bcheung98/project-tacetite-assets/main/icons/Black_Shores.png" alt="Project Tacetite" sx={{ width: iconSize, height: iconSize }} />,
+        primaryText: "Project Tacetite",
+        secondaryText: "Wuthering Waves",
+        link: "https://bcheung98.github.io/project-tacetite/"
+    }
+]
+
+const navItems = [
+    {
+        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Sumeru.png`)} alt="Home" sx={{ width: iconSize, height: iconSize }} />,
+        primaryText: "Home",
         link: "/project-irminsul/"
     },
     {
-        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Aether.png`)} alt="CHARACTERS" sx={{ width: iconSize, height: iconSize }} />,
-        label: "Characters",
+        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Aether.png`)} alt="Characters" sx={{ width: iconSize, height: iconSize }} />,
+        primaryText: "Characters",
         link: "/project-irminsul/characters/"
     },
     {
-        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Weapons.png`)} alt="WEAPONS" sx={{ width: iconSize, height: iconSize }} />,
-        label: "Weapons",
+        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Weapons.png`)} alt="Weapons" sx={{ width: iconSize, height: iconSize }} />,
+        primaryText: "Weapons",
         link: "/project-irminsul/weapons/"
     },
     {
-        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Artifact.png`)} alt="ARTIFACTS" sx={{ width: iconSize, height: iconSize }} />,
-        label: "Artifacts",
+        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Artifact.png`)} alt="Artifacts" sx={{ width: iconSize, height: iconSize }} />,
+        primaryText: "Artifacts",
         link: "/project-irminsul/artifacts/"
     },
     {
-        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Ascension.png`)} alt="ASCENSION" sx={{ width: iconSize, height: iconSize }} />,
-        label: "Ascension Planner",
+        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Ascension.png`)} alt="Ascension" sx={{ width: iconSize, height: iconSize }} />,
+        primaryText: "Ascension Planner",
         link: "/project-irminsul/planner/"
     },
     {
-        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Wish.png`)} alt="BANNERS" sx={{ width: iconSize, height: iconSize }} />,
-        label: "Banner Archive",
+        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Wish.png`)} alt="Banner Archive" sx={{ width: iconSize, height: iconSize }} />,
+        primaryText: "Banner Archive",
         link: "/project-irminsul/banners/"
     },
     {
         primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/tcg.png`)} alt="TCG" sx={{ width: iconSize, height: iconSize }} />,
-        label: "TCG",
+        primaryText: "TCG",
         link: "/project-irminsul/tcg/"
     },
 ]

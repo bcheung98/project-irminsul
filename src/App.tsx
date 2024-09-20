@@ -51,7 +51,7 @@ function App(props: any) {
 				<Box id="back-to-top-anchor" />
 				<Box sx={{ display: "flex" }}>
 					<Nav />
-					<Box sx={{ pt: 10 }}>
+					<Box>
 						<Switch>
 							<Route exact path="/" component={Home} />
 							<Route path="/characters" component={CharacterBrowser} />
