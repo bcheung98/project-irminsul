@@ -2,8 +2,9 @@ import React from "react"
 
 // MUI imports
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles"
-import { Avatar, CardHeader, Typography, ButtonBase, IconButton, List, ListItem, ListItemButton, ListItemAvatar, ListItemText, ListItemIcon, Divider, Collapse } from "@mui/material"
+import { Toolbar, Typography, CardHeader, Avatar, ButtonBase, IconButton, List, ListItem, ListItemButton, ListItemAvatar, ListItemText, ListItemIcon, Divider, Collapse } from "@mui/material"
 import MuiDrawer from "@mui/material/Drawer"
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar"
 import MenuOpenIcon from "@mui/icons-material/MenuOpen"
 import ExpandLess from "@mui/icons-material/ExpandLess"
 import ExpandMore from "@mui/icons-material/ExpandMore"
@@ -31,16 +32,16 @@ function Nav() {
 
     return (
         <React.Fragment>
-            <Drawer
-                id="drawer"
-                variant="permanent"
-                open={drawerOpen}
-                sx={{ [`& .MuiDrawer-paper`]: { borderRight: `1px solid ${theme.border.color}`, backgroundColor: `${theme.appbar.backgroundColor}` } }}
+            <AppBar position="fixed"
+                sx={{
+                    backgroundColor: `${theme.appbar.backgroundColor}`,
+                    borderBottom: `1px solid ${theme.border.color}`
+                }}
             >
-                <DrawerHeader sx={{ height: "40px", py: "10px" }}>
+                <Toolbar>
                     <IconButton
                         onClick={toggleDrawerState}
-                        sx={{ color: `${theme.text.color}`, ml: "5px", mr: "10px" }}
+                        sx={{ color: `${theme.text.color}`, ml: "-10px", mr: "15px" }}
                     >
                         {
                             drawerOpen ?
@@ -53,38 +54,34 @@ function Nav() {
                         disableRipple
                         href={`/project-irminsul/`}
                     >
-                        {
-                            drawerOpen ?
-                                <CardHeader
-                                    avatar={
-                                        <Avatar src={`${process.env.REACT_APP_URL}/icons/Sumeru.png`} alt="PROJECT IRMINSUL" sx={{ height: "40px", width: "40px" }} />
-                                    }
-                                    title={
-                                        <Typography
-                                            sx={{
-                                                fontSize: "12pt",
-                                                fontFamily: "Genshin, monospace",
-                                                letterSpacing: ".2rem",
-                                                color: `${theme.text.color}`,
-                                            }}
-                                        >
-                                            PROJECT<br />IRMINSUL
-                                        </Typography>
-                                    }
+                        <CardHeader
+                            avatar={
+                                <Avatar src={`${process.env.REACT_APP_URL}/nations/Sumeru.png`} alt="Project Irminsul" sx={{ height: "48px", width: "48px" }} />
+                            }
+                            title={
+                                <Typography variant="h6"
                                     sx={{
-                                        p: 1,
-                                        borderRadius: "5px",
-                                        "&:hover": {
-                                            backgroundColor: `${theme.table.body.hover}`
-                                        }
+                                        fontFamily: "Genshin, monospace",
+                                        letterSpacing: ".3rem",
+                                        color: `${theme.text.color}`,
                                     }}
-                                />
-                                :
-                                null
-                        }
+                                >
+                                    PROJECT IRMINSUL
+                                </Typography>
+                            }
+                            sx={{ px: 0 }}
+                        />
                     </ButtonBase>
-                </DrawerHeader>
-                <Divider variant="middle" />
+                </Toolbar>
+            </AppBar>
+            <Drawer
+                id="drawer"
+                variant="permanent"
+                open={drawerOpen}
+                sx={{ [`& .MuiDrawer-paper`]: { borderRight: `1px solid ${theme.border.color}`, backgroundColor: `${theme.appbar.backgroundColor}`, pt: 2.5 } }}
+            >
+                {/* Empty toolbar necessary for content to be below app bar */}
+                <Toolbar />
                 <List>
                     {
                         navItems.map((item, index) => (
@@ -320,6 +317,33 @@ const DrawerHeader = styled("div")(({ theme }) => ({
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
+}))
+
+interface AppBarProps extends MuiAppBarProps {
+    open?: boolean
+}
+
+const AppBar = styled(MuiAppBar, {
+    shouldForwardProp: (prop) => prop !== "open",
+})<AppBarProps>(({ theme }) => ({
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(["width", "margin"], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+    }),
+    variants: [
+        {
+            props: ({ open }) => open,
+            style: {
+                marginLeft: drawerWidth,
+                width: `calc(100% - ${drawerWidth}px)`,
+                transition: theme.transitions.create(["width", "margin"], {
+                    easing: theme.transitions.easing.sharp,
+                    duration: theme.transitions.duration.enteringScreen,
+                }),
+            },
+        },
+    ],
 }))
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" })(

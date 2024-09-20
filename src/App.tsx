@@ -11,6 +11,7 @@ import { fetchCharacters, fetchWeapons, fetchArtifacts, fetchCharacterBanners, f
 
 // Component imports
 import Nav from "./components/Nav"
+import BottomNav from "./components/BottomNav"
 import Home from "./components/Home"
 import CharacterBrowser from "./components/characters/CharacterBrowser"
 import CharacterPage from "./components/characters/page/_CharacterPage"
@@ -20,7 +21,6 @@ import ArtifactBrowser from "./components/artifacts/ArtifactBrowser"
 import AscensionPlanner from "./components/planner/_AscensionPlanner"
 import BannerArchive from "./components/banners/BannerArchive"
 import TCGBrowser from "./components/tcg/TCGBrowser"
-import BottomNav from "./components/BottomNav"
 
 // MUI imports
 import theme from "./themes/theme"
@@ -51,7 +51,7 @@ function App(props: any) {
 				<Box id="back-to-top-anchor" />
 				<Box sx={{ display: "flex" }}>
 					<Nav />
-					<Box>
+					<Box sx={{ pt: 10 }}>
 						<Switch>
 							<Route exact path="/" component={Home} />
 							<Route path="/characters" component={CharacterBrowser} />
