@@ -11,8 +11,8 @@ import ExpandMore from "@mui/icons-material/ExpandMore"
 // Helper imports
 import { CustomTooltip } from "../helpers/CustomTooltip"
 
-const drawerWidth = 280
-const iconSize = "32px"
+const drawerWidth = 280 //px
+const iconSize = 32 //px
 
 function Nav() {
 
@@ -107,15 +107,15 @@ function Nav() {
                                             },
                                             drawerOpen ?
                                                 {
-                                                    width: drawerWidth * 0.8,
+                                                    width: `${drawerWidth * 0.8}px`,
                                                     height: "50px",
                                                     my: 0,
                                                     justifyContent: "initial"
                                                 }
                                                 :
                                                 {
-                                                    width: "40px",
-                                                    height: "40px",
+                                                    width: `calc(${iconSize}px + ${iconSize * 0.25}px)`,
+                                                    height: `calc(${iconSize}px + ${iconSize * 0.25}px)`,
                                                     my: "5px",
                                                     justifyContent: "center"
                                                 }
@@ -170,15 +170,15 @@ function Nav() {
                                     },
                                     drawerOpen ?
                                         {
-                                            width: drawerWidth * 0.8,
+                                            width: `${drawerWidth * 0.8}px`,
                                             height: "50px",
                                             my: 0,
                                             justifyContent: "initial"
                                         }
                                         :
                                         {
-                                            width: "32px",
-                                            height: "40px",
+                                            width: `${iconSize}px`,
+                                            height: `calc(${iconSize}px + ${iconSize * 0.25}px)`,
                                             my: "5px",
                                             justifyContent: "center"
                                         }
@@ -240,15 +240,15 @@ function Nav() {
                                                         },
                                                         drawerOpen ?
                                                             {
-                                                                width: drawerWidth * 0.8,
+                                                                width: `${drawerWidth * 0.8}px`,
                                                                 height: "50px",
                                                                 my: 0,
                                                                 justifyContent: "initial"
                                                             }
                                                             :
                                                             {
-                                                                width: "40px",
-                                                                height: "40px",
+                                                                width: `calc(${iconSize}px + ${iconSize * 0.25}px)`,
+                                                                height: `calc(${iconSize}px + ${iconSize * 0.25}px)`,
                                                                 my: "5px",
                                                                 justifyContent: "center"
                                                             }
@@ -311,10 +311,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
         duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: "hidden",
-    width: "57px",
-    [theme.breakpoints.up("sm")]: {
-        width: "65px",
-    },
+    width: `${iconSize * 2 + 1}px`,
 })
 
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -367,37 +364,37 @@ const linkItems = [
 
 const navItems = [
     {
-        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Sumeru.png`)} alt="Home" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Sumeru.png`)} alt="Home" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Home",
         link: "/project-irminsul/"
     },
     {
-        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Aether.png`)} alt="Characters" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Aether.png`)} alt="Characters" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Characters",
         link: "/project-irminsul/characters/"
     },
     {
-        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Weapons.png`)} alt="Weapons" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Weapons.png`)} alt="Weapons" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Weapons",
         link: "/project-irminsul/weapons/"
     },
     {
-        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Artifact.png`)} alt="Artifacts" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Artifact.png`)} alt="Artifacts" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Artifacts",
         link: "/project-irminsul/artifacts/"
     },
     {
-        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Ascension.png`)} alt="Ascension" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Ascension.png`)} alt="Ascension" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Ascension Planner",
         link: "/project-irminsul/planner/"
     },
     {
-        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Wish.png`)} alt="Banner Archive" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Wish.png`)} alt="Banner Archive" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Banner Archive",
         link: "/project-irminsul/banners/"
     },
     {
-        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/tcg.png`)} alt="TCG" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/tcg.png`)} alt="TCG" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "TCG",
         link: "/project-irminsul/tcg/"
     },
