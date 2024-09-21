@@ -1,6 +1,7 @@
 {
     "short_name": "genshin.irminsul.gg",
     "name": "Irminsul.GG - The database for gacha games",
+    "description": "The database for gacha games.",
     "icons": [
         {
             "src": "favicon.ico",
