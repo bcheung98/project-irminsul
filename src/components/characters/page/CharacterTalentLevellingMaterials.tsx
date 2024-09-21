@@ -50,7 +50,7 @@ function CharacterTalentLevellingMaterials(props: any) {
                 /* Mora */
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title="Mora" arrow placement="top">
-                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}//materials/Mora.png`} alt="Mora" onError={ErrorLoadingImage} />
+                        <img className="material-image-big" style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} src={`${process.env.REACT_APP_URL}/materials/Mora.png`} alt="Mora" onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
