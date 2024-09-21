@@ -39,7 +39,7 @@ function WeaponBrowser(props: any) {
 
     let { weapons, weaponFilters } = props
 
-    document.title = "Weapons - Project Irminsul"
+    document.title = `Weapons ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
     return (
         <React.Fragment>

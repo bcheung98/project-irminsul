@@ -25,7 +25,7 @@ function CharacterCardLarge(props: any) {
                 zIndex: 0,
             }}
         >
-            <ButtonBase disableRipple href={`/project-irminsul/character/${name.split(" ").join("_").toLowerCase()}`} target="_blank">
+            <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${name.split(" ").join("_").toLowerCase()}`} target="_blank">
                 <Box>
                     <Box
                         sx={{
@@ -87,7 +87,7 @@ function CharacterCardLarge(props: any) {
                     <img style={{ width: "33px", marginTop: "5px", marginLeft: "1.5px", marginRight: "1.5px" }} src={(`${process.env.REACT_APP_URL}/weapons/icons/${weapon}.png`)} alt={weapon} onError={ErrorLoadingImage} />
                 </CustomTooltip>
                 <Box>
-                    <ButtonBase disableRipple href={`/project-irminsul/character/${name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                    <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${name.split(" ").join("_").toLowerCase()}`} target="_blank">
                         <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
                             {name}
                         </Typography>

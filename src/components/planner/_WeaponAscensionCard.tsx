@@ -52,7 +52,7 @@ function WeaponAscensionCard(props: any) {
             <CardHeader
                 avatar={
                     <Box sx={{ position: "relative" }}>
-                        <ButtonBase disableRipple href={`/project-irminsul/weapon/${props.weapon.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${props.weapon.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <img alt={name} src={`${process.env.REACT_APP_URL}/weapons/${name.split(" ").join("_")}.png`} style={mainIcon} onError={ErrorLoadingImage} />
                         </ButtonBase>
                         <Box sx={{ position: "absolute", top: "50px", left: "45px" }}>
@@ -64,7 +64,7 @@ function WeaponAscensionCard(props: any) {
                 }
                 title={
                     <React.Fragment>
-                        <ButtonBase disableRipple href={`/project-irminsul/weapon/${props.weapon.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${props.weapon.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
                                 {name}
                             </Typography>

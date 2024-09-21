@@ -23,7 +23,7 @@ function AscensionPlanner(props: any) {
 
     let { characters, weapons } = props
 
-    document.title = "Ascension Planner - Project Irminsul"
+    document.title = `Ascension Planner ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
     return (
         <Box>

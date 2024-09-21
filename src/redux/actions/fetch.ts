@@ -5,21 +5,21 @@ import { TCGCardData } from "../../types/tcg/TCGData"
 import { ArtifactData } from "../../types/artifact/ArtifactData"
 import { BannerData, ChronicledWishBannerData } from "../../types/banner/BannerData"
 
-// https://bcheung98.github.io/project-irminsul-db/characters.json
-const CharactersURL = "https://bcheung98.github.io/project-irminsul-db/characters.json"
+// https://api.irminsul.gg/genshin/characters.json
+const CharactersURL = "https://api.irminsul.gg/genshin/characters.json"
 
-// https://bcheung98.github.io/project-irminsul-db/weapons.json
-const WeaponsURL = "https://bcheung98.github.io/project-irminsul-db/weapons.json"
+// https://api.irminsul.gg/genshin/weapons.json
+const WeaponsURL = "https://api.irminsul.gg/genshin/weapons.json"
 
-// https://bcheung98.github.io/project-irminsul-db/cards.json
-const CardsURL = "https://bcheung98.github.io/project-irminsul-db/cards.json"
+// https://api.irminsul.gg/genshin/cards.json
+const CardsURL = "https://api.irminsul.gg/genshin/cards.json"
 
-// https://bcheung98.github.io/project-irminsul-db/artifacts.json
-const ArtifactsURL = "https://bcheung98.github.io/project-irminsul-db/artifacts.json"
+// https://api.irminsul.gg/genshin/artifacts.json
+const ArtifactsURL = "https://api.irminsul.gg/genshin/artifacts.json"
 
-const CharacterBannerURL = "https://bcheung98.github.io/project-irminsul-db/characterBanners.json"
-const WeaponBannerURL = "https://bcheung98.github.io/project-irminsul-db/weaponBanners.json"
-const ChronicledWishURL = "https://bcheung98.github.io/project-irminsul-db/chronicledWish.json"
+const CharacterBannerURL = "https://api.irminsul.gg/genshin/character-banners.json"
+const WeaponBannerURL = "https://api.irminsul.gg/genshin/weapon-banners.json"
+const ChronicledWishURL = "https://api.irminsul.gg/genshin/chronicled-wish.json"
 
 export const fetchCharacters = createAsyncThunk("GET/characters", async (): Promise<[CharacterData]> => {
     const response = await fetch(CharactersURL)

@@ -60,7 +60,7 @@ function CharacterCard(props: any) {
                         position: "relative"
                     }}
                 >
-                    <ButtonBase disableRipple href={`/project-irminsul/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                    <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                         <Typography variant="h5" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
                             {name}
                         </Typography>
@@ -83,7 +83,7 @@ function CharacterCard(props: any) {
                 <Grid container sx={{ mt: "10px" }}>
                     <Grid xs>
                         <Box sx={{ width: "105px" }}>
-                            <ButtonBase disableRipple href={`/project-irminsul/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                            <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                                 <img src={characterIcon} alt={name} style={characterIconBackground} onError={ErrorLoadingImage} />
                             </ButtonBase>
                             <img src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity}

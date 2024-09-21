@@ -12,14 +12,15 @@ import ExpandMore from "@mui/icons-material/ExpandMore"
 // Helper imports
 import { CustomTooltip } from "../helpers/CustomTooltip"
 
-const drawerWidth = 280 //px
+const drawerWidth = 240 //px
+const buttonHoverWidth = drawerWidth * 0.9 // px
 const iconSize = 32 //px
 
 function Nav() {
 
     const theme = useTheme()
 
-    let initialDrawerState = window.location.href.endsWith("/project-irminsul/") ? true : false
+    let initialDrawerState = window.location.href.endsWith(".gg") ? true : false
     const [drawerOpen, setDrawerOpen] = React.useState(initialDrawerState)
     const toggleDrawerState = () => {
         setDrawerOpen(!drawerOpen)
@@ -50,28 +51,36 @@ function Nav() {
                                 <MenuOpenIcon sx={{ transform: "rotate(180deg)" }} />
                         }
                     </IconButton>
-                    <ButtonBase
-                        disableRipple
-                        href={`/project-irminsul/`}
-                    >
-                        <CardHeader
-                            avatar={
-                                <Avatar src={`${process.env.REACT_APP_URL}/icons/Sumeru.png`} alt="Project Irminsul" sx={{ height: "48px", width: "48px" }} />
-                            }
-                            title={
-                                <Typography variant="h6"
-                                    sx={{
-                                        fontFamily: "Genshin, monospace",
-                                        letterSpacing: ".3rem",
-                                        color: `${theme.text.color}`,
-                                    }}
-                                >
-                                    PROJECT IRMINSUL
-                                </Typography>
-                            }
-                            sx={{ px: 0 }}
-                        />
-                    </ButtonBase>
+                    <CustomTooltip title="Irminsul.GG Portal" arrow placement="right" enterDelay={250}>
+                        <ButtonBase disableRipple href="https://irminsul.gg/">
+                            <CardHeader
+                                avatar={
+                                    <Avatar
+                                        variant="square"
+                                        src="https://assets.irminsul.gg/main/icons/Irminsul.png"
+                                        alt="irminsul.gg"
+                                        sx={{
+                                            height: "48px",
+                                            width: "48px"
+                                        }}
+                                    />
+                                }
+                                title={
+                                    <Typography
+                                        sx={{
+                                            fontFamily: "Bungee, Genshin, Roboto",
+                                            fontSize: "15pt",
+                                            letterSpacing: ".1rem",
+                                            color: `white`
+                                        }}
+                                    >
+                                        Irminsul.GG
+                                    </Typography>
+                                }
+                                sx={{ px: 0 }}
+                            />
+                        </ButtonBase>
+                    </CustomTooltip>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -104,7 +113,7 @@ function Nav() {
                                             },
                                             drawerOpen ?
                                                 {
-                                                    width: `${drawerWidth * 0.8}px`,
+                                                    width: `${buttonHoverWidth}px`,
                                                     height: "50px",
                                                     my: 0,
                                                     justifyContent: "initial"
@@ -237,7 +246,7 @@ function Nav() {
                                                         },
                                                         drawerOpen ?
                                                             {
-                                                                width: `${drawerWidth * 0.8}px`,
+                                                                width: `${buttonHoverWidth}px`,
                                                                 height: "50px",
                                                                 my: 0,
                                                                 justifyContent: "initial"
@@ -363,12 +372,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" 
 
 const linkItems = [
     {
-        primaryIcon: <Avatar src="https://raw.githubusercontent.com/bcheung98/irminsul-gg-assets/main/game-icons/HSR.png" alt="Project Stellaron" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar variant="square" src="https://assets.irminsul.gg/main/game-icons/HSR.png" alt="Project Stellaron" sx={{ width: iconSize, height: iconSize, borderRadius: "5px" }} />,
         primaryText: "Honkai: Star Rail",
         link: "https://bcheung98.github.io/project-stellaron/"
     },
     {
-        primaryIcon: <Avatar src="https://raw.githubusercontent.com/bcheung98/irminsul-gg-assets/main/game-icons/WutheringWaves.png" alt="Project Tacetite" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar variant="square" src="https://assets.irminsul.gg/main/game-icons/WutheringWaves.png" alt="Project Tacetite" sx={{ width: iconSize, height: iconSize, borderRadius: "5px" }} />,
         primaryText: "Wuthering Waves",
         link: "https://bcheung98.github.io/project-tacetite/"
     }
@@ -378,36 +387,36 @@ const navItems = [
     {
         primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Sumeru.png`)} alt="Home" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Home",
-        link: "/project-irminsul/"
+        link: `${process.env.REACT_APP_BASENAME}/`
     },
     {
         primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Aether.png`)} alt="Characters" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Characters",
-        link: "/project-irminsul/characters/"
+        link: `${process.env.REACT_APP_BASENAME}/characters/`
     },
     {
         primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Weapons.png`)} alt="Weapons" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Weapons",
-        link: "/project-irminsul/weapons/"
+        link: `${process.env.REACT_APP_BASENAME}/weapons/`
     },
     {
         primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Artifact.png`)} alt="Artifacts" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Artifacts",
-        link: "/project-irminsul/artifacts/"
+        link: `${process.env.REACT_APP_BASENAME}/artifacts/`
     },
     {
         primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Ascension.png`)} alt="Ascension" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Ascension Planner",
-        link: "/project-irminsul/planner/"
+        link: `${process.env.REACT_APP_BASENAME}/planner/`
     },
     {
         primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/Wish.png`)} alt="Banner Archive" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Banner Archive",
-        link: "/project-irminsul/banners/"
+        link: `${process.env.REACT_APP_BASENAME}/banners/`
     },
     {
         primaryIcon: <Avatar src={(`${process.env.REACT_APP_URL}/icons/tcg.png`)} alt="TCG" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "TCG",
-        link: "/project-irminsul/tcg/"
+        link: `${process.env.REACT_APP_BASENAME}/tcg/`
     },
 ]

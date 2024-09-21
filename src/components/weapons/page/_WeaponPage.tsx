@@ -48,10 +48,10 @@ function WeaponPage(props: any) {
 
         let { name, rarity, type, description } = weapon
 
-        document.title = `${name} - Project Irminsul`
+        document.title = `${name} ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
-        if (weapon.displayName) document.title = `${weapon.displayName} - Project Irminsul`
-        else document.title = `${name} - Project Irminsul`
+        if (weapon.displayName) document.title = `${weapon.displayName} ${process.env.REACT_APP_DOCUMENT_HEADER}`
+        else document.title = `${name} ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
         const weaponIcon = {
             marginLeft: "15px",

@@ -49,9 +49,9 @@ function CharacterPage(props: any) {
         let { name, title, rarity, element, weapon, constellation, description, birthday, nation, voiceActors, release } = character
 
         let visionIcon = nation === "Fontaine" ? `${process.env.REACT_APP_URL}/visions/${nation}_${element}_${character.arkhe}.png` : `${process.env.REACT_APP_URL}/visions/${nation}_${element}.png`
-
-        if (character.fullname) document.title = `${character.fullname} - Project Irminsul`
-        else document.title = `${name} - Project Irminsul`
+        
+        if (character.fullname) document.title = `${character.fullname} ${process.env.REACT_APP_DOCUMENT_HEADER}`
+        else document.title = `${name} ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
         return (
             <React.Fragment>

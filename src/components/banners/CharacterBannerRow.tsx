@@ -32,7 +32,7 @@ function CharacterBannerRow(props: any) {
                     <Box sx={{ display: "flex" }}>
                         {
                             (row as BannerRowData).banner.map((char, index) => (
-                                <ButtonBase disableRipple href={`/project-irminsul/character/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={char} sx={{ m: "2px" }}>
+                                <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={char} sx={{ m: "2px" }}>
                                     <CustomTooltip title={char} arrow placement="top">
                                         <img src={(`${process.env.REACT_APP_URL}/characters/icons/${char.split(" ").join("_")}.png`)} alt={char}
                                             style={{

@@ -2,7 +2,7 @@
   "name": "project-irminsul",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://bcheung98.github.io/project-irminsul",
+  "homepage": "https://genshin.irminsul.gg/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

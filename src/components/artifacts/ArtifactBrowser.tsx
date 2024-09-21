@@ -19,7 +19,7 @@ function ArtifactBrowser(props: any) {
 
     let { artifacts } = props
 
-    document.title = "Artifacts - Project Irminsul"
+    document.title = `Artifacts ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
     return (
         <React.Fragment>

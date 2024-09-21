@@ -102,7 +102,7 @@ function TCGBrowser(props: any) {
         fontFamily: "Genshin, sans-serif",
     }
 
-    document.title = "TCG - Project Irminsul"
+    document.title = `TCG ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
     return (
         <React.Fragment>

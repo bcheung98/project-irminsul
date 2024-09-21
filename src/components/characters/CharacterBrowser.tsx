@@ -39,7 +39,7 @@ function CharacterBrowser(props: any) {
 
     let { characters, characterFilters } = props
 
-    document.title = "Characters - Project Irminsul"
+    document.title = `Characters ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
     return (
         <React.Fragment>

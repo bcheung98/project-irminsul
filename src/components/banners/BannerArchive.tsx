@@ -28,7 +28,7 @@ function BannerArchive(props: any) {
         }
     }
 
-    document.title = "Banner Archive - Project Irminsul"
+    document.title = `Banner Archive ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
     return (
         <React.Fragment>

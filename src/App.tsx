@@ -47,21 +47,21 @@ function App(props: any) {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Router basename="project-irminsul">
+			<Router basename={`${process.env.REACT_APP_BASENAME}`}>
 				<Box id="back-to-top-anchor" />
 				<Box sx={{ display: "flex" }}>
 					<Nav />
 					<Box sx={{ pt: 10 }}>
 						<Switch>
 							<Route exact path="/" component={Home} />
-							<Route path="/characters" component={CharacterBrowser} />
-							<Route path="/character/:char_name" children={<CharacterPage />} />
-							<Route path="/weapons" component={WeaponBrowser} />
-							<Route path="/weapon/:weapon_name" children={<WeaponPage />} />
-							<Route path="/artifacts" component={ArtifactBrowser} />
-							<Route path="/planner" component={AscensionPlanner} />
-							<Route path="/banners/" component={BannerArchive} />
-							<Route path="/tcg/" component={TCGBrowser} />
+							<Route exact path="/characters" component={CharacterBrowser} />
+							<Route path="/characters/:char_name" children={<CharacterPage />} />
+							<Route exact path="/weapons" component={WeaponBrowser} />
+							<Route path="/weapons/:weapon_name" children={<WeaponPage />} />
+							<Route exact path="/artifacts" component={ArtifactBrowser} />
+							<Route exact path="/planner" component={AscensionPlanner} />
+							<Route exact path="/banners/" component={BannerArchive} />
+							<Route exact path="/tcg/" component={TCGBrowser} />
 						</Switch>
 					</Box>
 				</Box>

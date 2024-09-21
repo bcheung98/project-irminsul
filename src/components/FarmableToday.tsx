@@ -118,7 +118,7 @@ function FarmableToday(props: any) {
                                 <Grid>
                                     {
                                         characters.filter((char: CharacterData) => farmableMats["talents"][index].includes(char.materials.talentBook as string)).map((char: CharacterData, index: number) => (
-                                            <ButtonBase disableRipple href={`/project-irminsul/character/${char.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
+                                            <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${char.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
                                                 <CustomTooltip title={char.name} arrow placement="top">
                                                     <img src={(`${process.env.REACT_APP_URL}/characters/icons/${char.name.split(" ").join("_")}.png`)} alt={char.name} style={IconBackground(char.rarity, theme)} onError={ErrorLoadingImage} />
                                                 </CustomTooltip>
@@ -130,7 +130,7 @@ function FarmableToday(props: any) {
                             </Box>
                         ))
                     }
-                    <Button variant="contained" href={`/project-irminsul/characters`}>
+                    <Button variant="contained" href={`${process.env.REACT_APP_BASENAME}/characters`}>
                         <Typography variant="subtitle2" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
                             See all characters
                         </Typography>
@@ -152,7 +152,7 @@ function FarmableToday(props: any) {
                                 <Grid>
                                     {
                                         weapons.filter((wep: WeaponData) => farmableMats["weapons"][index].includes(wep.materials.ascensionMat as string)).sort((a: WeaponData, b: WeaponData) => b.rarity - a.rarity).map((wep: WeaponData, index: number) => (
-                                            <ButtonBase disableRipple href={`/project-irminsul/weapon/${wep.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
+                                            <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${wep.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
                                                 <CustomTooltip title={wep.name} arrow placement="top">
                                                     <img src={(`${process.env.REACT_APP_URL}/weapons/${wep.name.split(" ").join("_")}.png`)} alt={wep.name} style={IconBackground(wep.rarity, theme)} onError={ErrorLoadingImage} />
                                                 </CustomTooltip>
@@ -164,7 +164,7 @@ function FarmableToday(props: any) {
                             </Box>
                         ))
                     }
-                    <Button variant="contained" href={`/project-irminsul/weapons`}>
+                    <Button variant="contained" href={`${process.env.REACT_APP_BASENAME}/weapons`}>
                         <Typography variant="subtitle2" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
                             See all weapons
                         </Typography>
