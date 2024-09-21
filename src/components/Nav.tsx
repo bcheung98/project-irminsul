@@ -26,7 +26,7 @@ function Nav() {
         setDrawerOpen(!drawerOpen)
     }
 
-    const [dropdownOpen, setDropdownOpen] = React.useState(false);
+    const [dropdownOpen, setDropdownOpen] = React.useState(false)
     const toggleDropdownState = () => {
         setDropdownOpen(!dropdownOpen)
     }
