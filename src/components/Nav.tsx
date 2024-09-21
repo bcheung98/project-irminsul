@@ -20,7 +20,7 @@ function Nav() {
 
     const theme = useTheme()
 
-    let initialDrawerState = window.location.href.endsWith(".gg") ? true : false
+    let initialDrawerState = window.location.href.endsWith(".gg/") ? true : false
     const [drawerOpen, setDrawerOpen] = React.useState(initialDrawerState)
     const toggleDrawerState = () => {
         setDrawerOpen(!drawerOpen)
