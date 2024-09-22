@@ -69,7 +69,7 @@ function Nav() {
                                     <Typography
                                         sx={{
                                             fontFamily: "Bungee, Genshin, Roboto",
-                                            fontSize: "15pt",
+                                            fontSize: "16pt",
                                             letterSpacing: ".1rem",
                                             color: `white`
                                         }}
@@ -372,15 +372,15 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" 
 
 const linkItems = [
     {
-        primaryIcon: <Avatar variant="square" src="https://assets.irminsul.gg/main/game-icons/HSR.png" alt="Project Stellaron" sx={{ width: iconSize, height: iconSize, borderRadius: "5px" }} />,
+        primaryIcon: <Avatar variant="square" src="https://assets.irminsul.gg/main/game-icons/HSR.png" alt="hsr.irminsul.gg" sx={{ width: iconSize, height: iconSize, borderRadius: "5px" }} />,
         primaryText: "Honkai: Star Rail",
         link: "https://hsr.irminsul.gg/"
     },
-    // {
-    //     primaryIcon: <Avatar variant="square" src="https://assets.irminsul.gg/main/game-icons/WutheringWaves.png" alt="Project Tacetite" sx={{ width: iconSize, height: iconSize, borderRadius: "5px" }} />,
-    //     primaryText: "Wuthering Waves",
-    //     link: "https://wuwa.irminsul.gg/"
-    // }
+    {
+        primaryIcon: <Avatar variant="square" src="https://assets.irminsul.gg/main/game-icons/WutheringWaves.png" alt="wuwa.irminsul.gg" sx={{ width: iconSize, height: iconSize, borderRadius: "5px" }} />,
+        primaryText: "Wuthering Waves",
+        link: "https://wuwa.irminsul.gg/"
+    }
 ]
 
 const navItems = [
