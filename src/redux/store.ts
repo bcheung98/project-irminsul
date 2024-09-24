@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit"
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux"
 import { combineReducers } from "redux"
 
+import ThemeReducer from "./reducers/ThemeReducer"
 import CharacterReducer from "./reducers/CharacterReducer"
 import WeaponReducer from "./reducers/WeaponReducer"
 import CharacterFilterReducer from "./reducers/CharacterFilterReducer"
@@ -15,6 +16,7 @@ import TCGActionFilterReducer from "./reducers/TCGActionFilterReducer"
 import DeckReducer from "./reducers/DeckReducer"
 
 const rootReducer = combineReducers({
+    theme: ThemeReducer,
     characters: CharacterReducer,
     characterFilters: CharacterFilterReducer,
     weapons: WeaponReducer,

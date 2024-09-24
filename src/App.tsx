@@ -23,15 +23,18 @@ import BannerArchive from "./components/banners/BannerArchive"
 import TCGBrowser from "./components/tcg/TCGBrowser"
 
 // MUI imports
-import theme from "./themes/theme"
-import { ThemeProvider } from "@mui/material/styles"
-import { Box, Fade, useScrollTrigger, Fab } from "@mui/material"
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
+import { ThemeProvider, createTheme } from "@mui/material/styles"
+import { Box } from "@mui/material"
+
+// Helper imports
+import ScrollTopFab from "./helpers/ScrollTopFab"
 
 // Type imports
-import { AppDispatch } from "./redux/store"
+import { AppDispatch, RootState } from "./redux/store"
 
 function App(props: any) {
+
+	let { fetchCharacters, fetchWeapons, fetchArtifacts, fetchCharacterBanners, fetchWeaponBanners, fetchChronicledWish, fetchCards, theme } = props
 
 	useEffect(() => {
 		fetchCharacters()
@@ -43,10 +46,8 @@ function App(props: any) {
 		fetchCards()
 	}, [])
 
-	let { fetchCharacters, fetchWeapons, fetchArtifacts, fetchCharacterBanners, fetchWeaponBanners, fetchChronicledWish, fetchCards } = props
-
 	return (
-		<ThemeProvider theme={theme}>
+		<ThemeProvider theme={createTheme(theme)}>
 			<Router basename={`${process.env.REACT_APP_BASENAME}`}>
 				<Box id="back-to-top-anchor" />
 				<Box sx={{ display: "flex" }}>
@@ -66,24 +67,15 @@ function App(props: any) {
 					</Box>
 				</Box>
 				<BottomNav />
-				<ScrollTop {...props}>
-                    <Fab
-                        size="medium"
-                        disableRipple
-                        sx={{
-                            backgroundColor: `${theme.button.selected}`,
-                            "&:hover": {
-                                backgroundColor: `${theme.button.hover}`
-                            }
-                        }}
-                    >
-                        <KeyboardArrowUpIcon sx={{ color: `${theme.text.color}` }} />
-                    </Fab>
-                </ScrollTop>
+				<ScrollTopFab />
 			</Router>
 		</ThemeProvider>
 	)
 }
+
+const mapStateToProps = (state: RootState) => ({
+	theme: state.theme.theme
+})
 
 const mapDispatchToProps = (dispatch: AppDispatch) => {
 	return {
@@ -97,33 +89,4 @@ const mapDispatchToProps = (dispatch: AppDispatch) => {
 	}
 }
 
-export default connect(null, mapDispatchToProps)(App)
-
-interface ScrollTopProps {
-	children: React.ReactNode
-}
-
-const ScrollTop: React.FC<ScrollTopProps> = (props) => {
-	const { children } = props
-	const trigger = useScrollTrigger({ threshold: 600 })
-
-	const handleClick = (event: React.BaseSyntheticEvent) => {
-		const anchor = (event.target.ownerDocument || document).querySelector("#back-to-top-anchor")
-		if (anchor) {
-			anchor.scrollIntoView({
-				block: "center",
-			})
-		}
-	}
-
-	return (
-		<Fade in={trigger}>
-			<Box
-				onClick={handleClick}
-				sx={{ position: "fixed", bottom: 128, right: 16 }}
-			>
-				{children}
-			</Box>
-		</Fade>
-	)
-}
+export default connect(mapStateToProps, mapDispatchToProps)(App)

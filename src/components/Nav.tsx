@@ -1,8 +1,9 @@
 import React from "react"
+import { connect, useDispatch } from "react-redux"
 
 // MUI imports
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles"
-import { Toolbar, Typography, CardHeader, Avatar, ButtonBase, IconButton, List, ListItem, ListItemButton, ListItemAvatar, ListItemText, ListItemIcon, Divider, Collapse } from "@mui/material"
+import { Toolbar, Typography, CardHeader, Avatar, ButtonBase, IconButton, List, ListItem, ListItemButton, ListItemAvatar, ListItemText, ListItemIcon, Divider, Collapse, Box, Select, MenuItem } from "@mui/material"
 import MuiDrawer from "@mui/material/Drawer"
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar"
 import MenuOpenIcon from "@mui/icons-material/MenuOpen"
@@ -11,14 +12,22 @@ import ExpandMore from "@mui/icons-material/ExpandMore"
 
 // Helper imports
 import { CustomTooltip } from "../helpers/CustomTooltip"
+import { CustomSelect } from "../helpers/CustomSelect"
+import { setTheme } from "../redux/reducers/ThemeReducer"
+import { themes } from "../redux/reducers/ThemeReducer"
+
+// Type imports
+import { RootState } from "../redux/store"
 
 const drawerWidth = 240 //px
 const buttonHoverWidth = drawerWidth * 0.9 // px
 const iconSize = 32 //px
 
-function Nav() {
+function Nav(props: any) {
 
     const theme = useTheme()
+
+    const dispatch = useDispatch()
 
     let initialDrawerState = window.location.href.endsWith(".gg/") ? true : false
     const [drawerOpen, setDrawerOpen] = React.useState(initialDrawerState)
@@ -40,51 +49,63 @@ function Nav() {
                 }}
             >
                 <Toolbar>
-                    <IconButton
-                        onClick={toggleDrawerState}
-                        sx={{ color: `${theme.text.color}`, ml: "-10px", mr: "15px" }}
-                    >
-                        {
-                            drawerOpen ?
-                                <MenuOpenIcon />
-                                :
-                                <MenuOpenIcon sx={{ transform: "rotate(180deg)" }} />
-                        }
-                    </IconButton>
-                    <CustomTooltip title="Irminsul.GG Portal" arrow placement="right" enterDelay={250}>
-                        <ButtonBase disableRipple href="https://irminsul.gg/">
-                            <CardHeader
-                                avatar={
-                                    <Avatar
-                                        variant="square"
-                                        src="https://assets.irminsul.gg/main/icons/Irminsul.png"
-                                        alt="irminsul.gg"
-                                        sx={{
-                                            height: "48px",
-                                            width: "48px"
-                                        }}
-                                    />
-                                }
-                                title={
-                                    <Typography
-                                        sx={{
-                                            fontFamily: "Bungee, Genshin, Roboto",
-                                            fontSize: "16pt",
-                                            letterSpacing: ".1rem",
-                                            color: `white`
-                                        }}
-                                    >
-                                        Irminsul.GG
-                                    </Typography>
-                                }
-                                sx={{ px: 0 }}
-                            />
-                        </ButtonBase>
-                    </CustomTooltip>
+                    <Box sx={{ display: "flex", flexGrow: 0.97 }}>
+                        <IconButton
+                            onClick={toggleDrawerState}
+                            sx={{ color: `${theme.text.color}`, ml: "-10px", mr: "15px" }}
+                        >
+                            {
+                                drawerOpen ?
+                                    <MenuOpenIcon />
+                                    :
+                                    <MenuOpenIcon sx={{ transform: "rotate(180deg)" }} />
+                            }
+                        </IconButton>
+                        <CustomTooltip title="Irminsul.GG Portal" arrow placement="right" enterDelay={250}>
+                            <ButtonBase disableRipple href="https://irminsul.gg/">
+                                <CardHeader
+                                    avatar={
+                                        <Avatar
+                                            variant="square"
+                                            src="https://assets.irminsul.gg/main/icons/Irminsul.png"
+                                            alt="irminsul.gg"
+                                            sx={{
+                                                height: "48px",
+                                                width: "48px"
+                                            }}
+                                        />
+                                    }
+                                    title={
+                                        <Typography
+                                            sx={{
+                                                fontFamily: "Bungee, Genshin, Roboto",
+                                                fontSize: "16pt",
+                                                letterSpacing: ".1rem",
+                                                color: `white`
+                                            }}
+                                        >
+                                            Irminsul.GG
+                                        </Typography>
+                                    }
+                                    sx={{ px: 0 }}
+                                />
+                            </ButtonBase>
+                        </CustomTooltip>
+                    </Box>
+                    <Box>
+                        <Select value={props.themeIndex} label="Theme" input={<CustomSelect />} onChange={(e) => dispatch(setTheme(e.target.value))}>
+                            {
+                                themes.map((t, index) => (
+                                    <MenuItem value={index} key={index}>
+                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt", textAlign: "center" }}>{t.name}</Typography>
+                                    </MenuItem>
+                                ))
+                            }
+                        </Select>
+                    </Box>
                 </Toolbar>
             </AppBar>
             <Drawer
-                id="drawer"
                 variant="permanent"
                 open={drawerOpen}
                 sx={{ [`& .MuiDrawer-paper`]: { borderRight: `1px solid ${theme.border.colorAlt}`, backgroundColor: `${theme.appbar.backgroundColor}`, pt: 2.5 } }}
@@ -298,7 +319,11 @@ function Nav() {
 
 }
 
-export default Nav
+const mapStateToProps = (state: RootState) => ({
+    themeIndex: state.theme.themeIndex
+})
+
+export default connect(mapStateToProps)(Nav)
 
 const openedMixin = (theme: Theme): CSSObject => ({
     width: drawerWidth,
