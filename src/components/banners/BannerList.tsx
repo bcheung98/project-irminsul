@@ -53,7 +53,7 @@ function BannerList(props: any) {
                         marginLeft: "10px",
                         flex: 1,
                         color: `${theme.text.color}`,
-                        fontFamily: "Genshin, sans-serif",
+                        fontFamily: `${theme.font.genshin.family}`,
                     }}
                     placeholder="Search"
                     onChange={handleInputChange}

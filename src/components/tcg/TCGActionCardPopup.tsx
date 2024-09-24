@@ -137,7 +137,7 @@ function TCGActionCardPopup(props: any) {
                                     my: "20px"
                                 }}
                             >
-                                <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                                     <i>{parse(splash.description)}</i>
                                 </Typography>
                             </Box>
@@ -152,14 +152,14 @@ function TCGActionCardPopup(props: any) {
                             mb: "10px",
                         }}
                     >
-                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="h4">
+                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="h4">
                             {props.card.displayName ? props.card.displayName : name}
                         </Typography>
                     </Box>
                     <Box>
                         <Chip
                             label={
-                                <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
+                                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="body2">
                                     {type} Card
                                 </Typography>
                             }
@@ -174,7 +174,7 @@ function TCGActionCardPopup(props: any) {
                                     </Avatar>
                                 }
                                 label={
-                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
+                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="body2">
                                         {subType}
                                     </Typography>
                                 }
@@ -190,7 +190,7 @@ function TCGActionCardPopup(props: any) {
                                     </Avatar>
                                 }
                                 label={
-                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
+                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="body2">
                                         Combat Action
                                     </Typography>
                                 }
@@ -206,7 +206,7 @@ function TCGActionCardPopup(props: any) {
                                     </Avatar>
                                 }
                                 label={
-                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
+                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="body2">
                                         {weaponType}
                                     </Typography>
                                 }
@@ -235,13 +235,13 @@ function TCGActionCardPopup(props: any) {
                             {
                                 props.count < 2 &&
                                 <Button variant="contained" sx={{ mr: "10px", my: "20px" }} onClick={() => dispatch(addActionCard(props.card))}>
-                                    <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>Add to Deck</Typography>
+                                    <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>Add to Deck</Typography>
                                 </Button>
                             }
                             {
                                 props.inDeck === true &&
                                 <Button variant="contained" color="error" sx={{ my: "20px" }} onClick={() => dispatch(removeActionCard(props.card))}>
-                                    <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>Remove from Deck</Typography>
+                                    <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>Remove from Deck</Typography>
                                 </Button>
                             }
                         </React.Fragment>

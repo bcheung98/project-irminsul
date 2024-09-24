@@ -101,7 +101,7 @@ function TCGDiceCost(props: any) {
                                 <Typography
                                     variant={fontSize(props.type)}
                                     sx={{
-                                        fontFamily: "Genshin, sans-serif",
+                                        fontFamily: `${theme.font.genshin.family}`,
                                         position: "absolute",
                                         top: "50%",
                                         left: "50%",

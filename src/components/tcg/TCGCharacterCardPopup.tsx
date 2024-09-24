@@ -157,7 +157,7 @@ function TCGCharacterCardPopup(props: any) {
                                     <Typography
                                         variant="h3"
                                         sx={{
-                                            fontFamily: "Genshin, sans-serif",
+                                            fontFamily: `${theme.font.genshin.family}`,
                                             position: "absolute",
                                             top: "50%",
                                             left: "50%",
@@ -195,7 +195,7 @@ function TCGCharacterCardPopup(props: any) {
                                         my: "20px"
                                     }}
                                 >
-                                    <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                                    <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                                         <i>{parse(splash.description)}</i>
                                     </Typography>
                                 </Box>
@@ -214,7 +214,7 @@ function TCGCharacterCardPopup(props: any) {
                         <CustomTooltip title={element} arrow placement="top">
                             <img src={(`${process.env.REACT_APP_URL}/elements/${element}.png`)} alt={element} onError={ErrorLoadingImage} style={{ marginRight: "10px", width: "64px", height: "64px" }} />
                         </CustomTooltip>
-                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="h4">
+                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="h4">
                             {props.char.fullname ? props.char.fullname : name}
                         </Typography>
                     </Box>
@@ -222,7 +222,7 @@ function TCGCharacterCardPopup(props: any) {
                         <Chip
                             avatar={<Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/weapons/${weapon.split(" ").join("_")}.png`} alt={weapon} />}
                             label={
-                                <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
+                                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="body2">
                                     {weapon}
                                 </Typography>
                             }
@@ -239,7 +239,7 @@ function TCGCharacterCardPopup(props: any) {
                                             </Avatar>
                                         }
                                         label={
-                                            <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
+                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="body2">
                                                 {faction}
                                             </Typography>
                                         }
@@ -257,7 +257,7 @@ function TCGCharacterCardPopup(props: any) {
                                     </Avatar>
                                 }
                                 label={
-                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="body2">
+                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="body2">
                                         Arkhe: {arkhe}
                                     </Typography>
                                 }
@@ -301,10 +301,10 @@ function TCGCharacterCardPopup(props: any) {
                                             }
                                             title={
                                                 <React.Fragment>
-                                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }} variant="h6">
+                                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="h6">
                                                         {talents[key].name}
                                                     </Typography>
-                                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", color: "#ffe7b9" }} variant="body2">
+                                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: "#ffe7b9" }} variant="body2">
                                                         {FormatTCGTalentKey(key)}
                                                     </Typography>
                                                 </React.Fragment>
@@ -326,11 +326,11 @@ function TCGCharacterCardPopup(props: any) {
                             {
                                 props.inDeck === false ?
                                     <Button variant="contained" sx={{ my: "20px" }} onClick={() => dispatch(addCharacterCard(props.char))}>
-                                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>Add to Deck</Typography>
+                                        <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>Add to Deck</Typography>
                                     </Button>
                                     :
                                     <Button variant="contained" color="error" sx={{ my: "20px" }} onClick={() => dispatch(removeCharacterCard(props.char))}>
-                                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>Remove from Deck</Typography>
+                                        <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>Remove from Deck</Typography>
                                     </Button>
                             }
                         </React.Fragment>

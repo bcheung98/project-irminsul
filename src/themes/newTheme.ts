@@ -1,8 +1,8 @@
-const fontNormal = "Roboto, sans-serif"
-const fontNormalWeight = 400
+const fontNormal = "Rowdies, Roboto, sans-serif"
+const fontNormalWeight = 300
 
-const fontStyled = "Genshin, Roboto, sans-serif"
-const fontStyledWeight = 300
+const fontStyled = "Rowdies, Roboto, sans-serif"
+const fontStyledWeight = 400
 
 export const defaultTheme = {
     components: {
@@ -45,7 +45,7 @@ export const defaultTheme = {
     },
     border: {
         color: "rgb(30, 73, 118)",
-        colorAlt: "rgb(30, 73, 118)"
+        colorAlt: "rgb(168, 147, 105)"
     },
     paper: {
         backgroundColor: "rgb(0, 23, 47)",

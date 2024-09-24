@@ -58,7 +58,7 @@ function WeaponBrowser(props: any) {
                         mx: "25px",
                         my: "20px",
                         display: { xs: "none", md: "flex" },
-                        fontFamily: "Genshin, sans-serif",
+                        fontFamily: `${theme.font.genshin.family}`,
                         letterSpacing: ".2rem",
                         color: `${theme.text.color}`,
                         textDecoration: "none",
@@ -110,7 +110,7 @@ function WeaponBrowser(props: any) {
                                 marginLeft: "10px",
                                 flex: 1,
                                 color: `${theme.text.color}`,
-                                fontFamily: "Genshin, sans-serif",
+                                fontFamily: `${theme.font.genshin.family}`,
                             }}
                             placeholder="Search"
                             onChange={handleInputChange}

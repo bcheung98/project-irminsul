@@ -30,7 +30,7 @@ function CharacterLocalMatFilter() {
                                 title={
                                     <Typography variant="body1"
                                         sx={{
-                                            fontFamily: "Genshin, monospace",
+                                            fontFamily: `${theme.font.genshin.family}`,
                                             color: `${theme.text.color}`,
                                             textDecoration: "none",
                                         }}

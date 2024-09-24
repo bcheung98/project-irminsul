@@ -37,7 +37,7 @@ export function EnhancedTableHead(props: EnhancedTableProps) {
                             onClick={createSortHandler(headCell.id)}
                             IconComponent={((orderBy === headCell.id) ? IconActive : IconInactive) as React.JSXElementConstructor<{ className: string }>}
                         >
-                            <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                            <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                                 {headCell.label}
                             </Typography>
                         </TableSortLabel>

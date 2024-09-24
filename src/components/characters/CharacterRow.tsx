@@ -1,6 +1,7 @@
 import * as React from "react"
 
 // MUI imports
+import { useTheme } from "@mui/material/styles"
 import { Box, ButtonBase, CardHeader, Typography } from "@mui/material"
 
 // Helper imports
@@ -8,6 +9,8 @@ import { StyledTableCellNoVert, StyledTableRows } from "../../helpers/CustomTabl
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 function CharacterRow(props: any) {
+
+    const theme = useTheme()
 
     let { row, index } = props
 
@@ -28,7 +31,7 @@ function CharacterRow(props: any) {
                                 <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${row.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                                     <Typography variant="body1"
                                         sx={{
-                                            fontFamily: "Genshin, sans-serif",
+                                            fontFamily: `${theme.font.genshin.family}`,
                                             cursor: "pointer",
                                             "&:hover": {
                                                 color: "rgb(30, 175, 255)",
@@ -59,7 +62,7 @@ function CharacterRow(props: any) {
                                 <img alt={row.element} src={(`${process.env.REACT_APP_URL}/elements/${row.element}.png`)} style={{ width: "32px" }} onError={ErrorLoadingImage} />
                             }
                             title={
-                                <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                                     {row.element}
                                 </Typography>
                             }
@@ -82,7 +85,7 @@ function CharacterRow(props: any) {
                                 />
                             }
                             title={
-                                <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                                     {row.weapon}
                                 </Typography>
                             }
@@ -103,7 +106,7 @@ function CharacterRow(props: any) {
                                 />
                             }
                             title={
-                                <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                                     {row.nation}
                                 </Typography>
                             }
@@ -114,7 +117,7 @@ function CharacterRow(props: any) {
                 { /* Gender */}
                 <StyledTableCellNoVert>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                        <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                             {row.gender}
                         </Typography>
                     </Box>
@@ -123,7 +126,7 @@ function CharacterRow(props: any) {
                 { /* Release date */}
                 <StyledTableCellNoVert>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                        <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                             {`${row.release.date} (${row.release.version})`}
                         </Typography>
                     </Box>

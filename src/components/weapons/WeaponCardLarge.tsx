@@ -89,7 +89,7 @@ function WeaponCardLarge(props: any) {
                 </CustomTooltip>
                 <Box>
                     <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                        <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                             {name}
                         </Typography>
                     </ButtonBase>

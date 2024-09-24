@@ -131,7 +131,7 @@ function CharacterPage(props: any) {
                                         sx={{
                                             mt: "10px",
                                             display: { xs: "none", md: "flex" },
-                                            fontFamily: "Genshin, sans-serif",
+                                            fontFamily: `${theme.font.genshin.family}`,
                                             color: `${theme.text.color}`,
                                             textDecoration: "none",
                                             textAlign: "center",
@@ -145,7 +145,7 @@ function CharacterPage(props: any) {
                                         sx={{
                                             my: "2px",
                                             display: { xs: "none", md: "flex" },
-                                            fontFamily: "Genshin, sans-serif",
+                                            fontFamily: `${theme.font.genshin.family}`,
                                             color: `${theme.text.color}`,
                                             fontStyle: "italic",
                                             textAlign: "center",
@@ -165,7 +165,7 @@ function CharacterPage(props: any) {
                                             <img style={{ height: "30px" }} src={`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`} alt={rarity} onError={ErrorLoadingImage} />
                                         </Box>
                                         <Box sx={{ marginLeft: "5px" }}>
-                                            <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                            <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                                                 • {weapon}
                                             </Typography>
                                         </Box>
@@ -178,7 +178,7 @@ function CharacterPage(props: any) {
                                 sx={{
                                     mb: "20px",
                                     mx: "25px",
-                                    fontFamily: "Genshin, sans-serif",
+                                    fontFamily: `${theme.font.genshin.family}`,
                                     color: `${theme.text.color}`,
                                 }}
                             >

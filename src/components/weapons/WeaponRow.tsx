@@ -1,6 +1,7 @@
 import * as React from "react"
 
 // MUI imports 
+import { useTheme } from "@mui/material/styles"
 import { Box, ButtonBase, CardHeader, Typography } from "@mui/material"
 
 // Helper imports
@@ -8,6 +9,8 @@ import { StyledTableCellNoVert, StyledTableRows } from "../../helpers/CustomTabl
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 function WeaponRow(props: any) {
+
+    const theme = useTheme()
 
     let { row, index } = props
 
@@ -28,7 +31,7 @@ function WeaponRow(props: any) {
                                 <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${row.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                                     <Typography variant="body1"
                                         sx={{
-                                            fontFamily: "Genshin, sans-serif",
+                                            fontFamily: `${theme.font.genshin.family}`,
                                             cursor: "pointer",
                                             "&:hover": {
                                                 color: "rgb(30, 175, 255)",
@@ -65,7 +68,7 @@ function WeaponRow(props: any) {
                                 />
                             }
                             title={
-                                <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                                     {row.type}
                                 </Typography>
                             }
@@ -76,7 +79,7 @@ function WeaponRow(props: any) {
                 { /* Base ATK */}
                 <StyledTableCellNoVert>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                        <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                             {row.atk}
                         </Typography>
                     </Box>
@@ -85,7 +88,7 @@ function WeaponRow(props: any) {
                 { /* 2nd Stat */}
                 <StyledTableCellNoVert>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                        <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                             {row.subStat}
                         </Typography>
                     </Box>

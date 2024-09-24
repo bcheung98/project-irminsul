@@ -55,7 +55,7 @@ function ArtifactPopup(props: any) {
                     borderRadius: "5px 5px 0px 0px",
                 }}
             >
-                <Typography variant="h4" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, p: 2 }} >
+                <Typography variant="h4" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, p: 2 }} >
                     {props.artifact.displayName ? props.artifact.displayName : name}
                 </Typography>
             </AppBar>
@@ -66,10 +66,10 @@ function ArtifactPopup(props: any) {
                 {
                     pieces.map((piece: { name: string, type: string, description: string }, index: number) => (
                         <TabPanel key={index} index={index} value={tabValue}>
-                            <Typography variant="h5" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                            <Typography variant="h5" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                                 {piece.name}
                             </Typography>
-                            <Typography variant="subtitle1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, mb: "20px" }}>
+                            <Typography variant="subtitle1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, mb: "20px" }}>
                                 <i>{formatPieceType(piece.type)}</i>
                             </Typography>
                             <Avatar variant="square" src={`${process.env.REACT_APP_URL}/artifacts/sets/${name.split(" ").join("_")}/${piece.type}.png`} alt={piece.name} sx={artifactIconBackground}>

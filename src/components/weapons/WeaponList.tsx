@@ -58,7 +58,7 @@ function WeaponList(props: any) {
                 <Toolbar sx={{ backgroundColor: `${theme.toolbar.backgroundColor}` }}>
                     <Typography variant="h5" component="div"
                         sx={{
-                            fontFamily: "Genshin, sans-serif",
+                            fontFamily: `${theme.font.genshin.family}`,
                             display: "block",
                             margin: "auto"
                         }}

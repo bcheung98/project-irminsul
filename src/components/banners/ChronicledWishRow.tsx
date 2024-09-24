@@ -22,7 +22,7 @@ function ChronicledWishRow(props: any) {
 
             { /* Version */}
             <StyledTableCell>
-                <Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{row.version}</Typography>
+                <Typography sx={{ fontFamily: `${theme.font.genshin.family}` }}>{row.version}</Typography>
                 <Typography variant="body2">{row.startDate} — {row.endDate}</Typography>
             </StyledTableCell>
 

@@ -88,7 +88,7 @@ function CharacterOutfitDisplay(props: any) {
                                         variant="h6"
                                         sx={{
                                             mb: "10px",
-                                            fontFamily: "Genshin, sans-serif",
+                                            fontFamily: `${theme.font.genshin.family}`,
                                             color: `${theme.text.color}`,
                                         }}
                                     >
@@ -98,7 +98,7 @@ function CharacterOutfitDisplay(props: any) {
                                         variant="body2"
                                         sx={{
                                             mb: "20px",
-                                            fontFamily: "Genshin, sans-serif",
+                                            fontFamily: `${theme.font.genshin.family}`,
                                             color: `${theme.text.color}`,
                                         }}
                                     >

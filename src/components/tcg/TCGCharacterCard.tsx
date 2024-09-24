@@ -61,7 +61,7 @@ function TCGCharacterCard(props: any) {
                         <Typography
                             variant="h5"
                             sx={{
-                                fontFamily: "Genshin, sans-serif",
+                                fontFamily: `${theme.font.genshin.family}`,
                                 position: "absolute",
                                 top: "50%",
                                 left: "50%",
@@ -102,7 +102,7 @@ function TCGCharacterCard(props: any) {
                 <Box>
                     <Typography
                         sx={{
-                            fontFamily: "Genshin, sans-serif",
+                            fontFamily: `${theme.font.genshin.family}`,
                             color: `${theme.text.color}`,
                         }}
                         variant="body2"

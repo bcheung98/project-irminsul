@@ -73,7 +73,7 @@ function CharacterAscensionCard(props: any) {
                 title={
                     <React.Fragment>
                         <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                            <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                            <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                                 {props.character.fullname ? props.character.fullname : name}
                             </Typography>
                         </ButtonBase>
@@ -88,7 +88,7 @@ function CharacterAscensionCard(props: any) {
             />
             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
             <Box sx={{ ml: "15px" }}>
-                <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                     Materials Required
                 </Typography>
                 <CharacterAscensionCardMaterials character={props.character} />
@@ -96,7 +96,7 @@ function CharacterAscensionCard(props: any) {
             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
             <Accordion>
                 <AccordionSummary>
-                    <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                    <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                         Edit
                     </Typography>
                 </AccordionSummary>

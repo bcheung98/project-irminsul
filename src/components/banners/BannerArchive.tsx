@@ -47,7 +47,7 @@ function BannerArchive(props: any) {
                         mx: "25px",
                         my: "20px",
                         display: { xs: "none", md: "flex" },
-                        fontFamily: "Genshin, sans-serif",
+                        fontFamily: `${theme.font.genshin.family}`,
                         letterSpacing: ".2rem",
                         color: `${theme.text.color}`,
                         textDecoration: "none",
@@ -60,10 +60,10 @@ function BannerArchive(props: any) {
 
             <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ mx: "30px", mb: "30px" }}>
                 <CustomToggleButtonText value="normal">
-                    <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Character/Weapon Wish</Typography>
+                    <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Character/Weapon Wish</Typography>
                 </CustomToggleButtonText>
                 <CustomToggleButtonText value="chronicled">
-                    <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Chronicled Wish</Typography>
+                    <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Chronicled Wish</Typography>
                 </CustomToggleButtonText>
             </ToggleButtonGroup>
 

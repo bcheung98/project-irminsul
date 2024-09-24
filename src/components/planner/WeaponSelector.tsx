@@ -66,7 +66,7 @@ function WeaponSelector(props: any) {
                     }}
                 >
                     <Button disableRipple onClick={handleClick}>
-                        <span style={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Weapons</span>
+                        <span style={{ fontFamily: `${theme.font.genshin.family}`, color: "white" }}>Weapons</span>
                         <ArrowForwardIosSharpIcon sx={{ transform: "rotate(90deg)", color: "white" }} />
                     </Button>
                 </Box>
@@ -114,7 +114,7 @@ function WeaponSelector(props: any) {
                                                 <img alt={option.name} src={`${process.env.REACT_APP_URL}/weapons/${option.name.split(" ").join("_")}.png`} style={{ width: "48px" }} onError={ErrorLoadingImage} />
                                             }
                                             title={
-                                                <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", }}>
+                                                <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, }}>
                                                     {option.name}
                                                 </Typography>
                                             }

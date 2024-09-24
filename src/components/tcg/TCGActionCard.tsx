@@ -63,7 +63,7 @@ function TCGActionCard(props: any) {
                 <Box>
                     <Typography
                         sx={{
-                            fontFamily: "Genshin, sans-serif",
+                            fontFamily: `${theme.font.genshin.family}`,
                             color: `${theme.text.color}`,
                         }}
                         variant="body2"

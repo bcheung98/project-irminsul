@@ -34,7 +34,7 @@ function TCGCharacterCardFilter() {
                     sx={{
                         ml: "15px",
                         my: "10px",
-                        fontFamily: "Genshin, sans-serif",
+                        fontFamily: `${theme.font.genshin.family}`,
                     }}>
                     Filters
                 </Typography>
@@ -42,7 +42,7 @@ function TCGCharacterCardFilter() {
                 {/* ELEMENT */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="element-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Element</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="element-filter-text" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Element</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <TCGCharacterElementFilter />
@@ -52,7 +52,7 @@ function TCGCharacterCardFilter() {
                 {/* WEAPON */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="weapon-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Weapon</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="weapon-filter-text" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Weapon</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <TCGCharacterWeaponFilter />
@@ -62,7 +62,7 @@ function TCGCharacterCardFilter() {
                 {/* FACTION */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="nation-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Faction</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="nation-filter-text" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Faction</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <TCGCharacterFactionFilter />

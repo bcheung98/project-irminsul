@@ -40,7 +40,7 @@ function CharacterTalentLevelling(props: any) {
         <Box sx={{ my: "10px" }}>
             <CharacterTalentLevellingMaterials materials={props.character.materials} values={sliderValue} />
             <Box sx={{ display: "flex", alignItems: "center", width: "30%", mt: "15px", ml: "20px" }}>
-                <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, width: "180px", mr: "15px" }}>
+                <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, width: "180px", mr: "15px" }}>
                     Lv. {sliderValue[0]} → Lv. {sliderValue[1]}
                 </Typography>
                 <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={props.character.element} disableSwap />

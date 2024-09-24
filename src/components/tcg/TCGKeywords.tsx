@@ -1,7 +1,7 @@
 import * as React from "react"
 
 // MUI imports
-import { styled } from "@mui/material/styles"
+import { styled, useTheme } from "@mui/material/styles"
 import { Box, Avatar, Typography } from "@mui/material"
 
 // Helper imports
@@ -23,6 +23,7 @@ const CustomTypography = styled(Typography)(() => ({
     }
 }))
 
+
 export const Keywords: TCGKeywordIndexData = {
 
     // ELEMENTS / DMG TYPES
@@ -31,7 +32,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGPhysical />
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px", color: "white" }}>Physical DMG</Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px", color: "white" }}>Physical DMG</Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -41,7 +42,7 @@ export const Keywords: TCGKeywordIndexData = {
     "piercing": {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Piercing DMG</Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Piercing DMG</Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -52,7 +53,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGPyro />
-                <Typography className="text-pyro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Pyro DMG</Typography>
+                <Typography className="text-pyro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Pyro DMG</Typography>
             </CustomBox>,
         description:
             <React.Fragment>
@@ -69,7 +70,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGPyro />
-                <Typography className="text-pyro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Pyro-Related Reactions</Typography>
+                <Typography className="text-pyro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Pyro-Related Reactions</Typography>
             </CustomBox>,
         description:
             <React.Fragment>
@@ -83,7 +84,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGPyro />
-                <Typography className="text-pyro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Pyro Application</Typography>
+                <Typography className="text-pyro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Pyro Application</Typography>
             </CustomBox>,
         description:
             <React.Fragment>
@@ -100,7 +101,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGHydro />
-                <Typography className="text-hydro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Hydro DMG</Typography>
+                <Typography className="text-hydro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Hydro DMG</Typography>
             </CustomBox>,
         description:
             <React.Fragment>
@@ -117,7 +118,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGHydro />
-                <Typography className="text-hydro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Hydro-Related Reactions</Typography>
+                <Typography className="text-hydro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Hydro-Related Reactions</Typography>
             </CustomBox>,
         description:
             <React.Fragment>
@@ -131,7 +132,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGHydro />
-                <Typography className="text-hydro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Hydro Application</Typography>
+                <Typography className="text-hydro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Hydro Application</Typography>
             </CustomBox>,
         description:
             <React.Fragment>
@@ -148,7 +149,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGElectro />
-                <Typography className="text-electro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Electro DMG</Typography>
+                <Typography className="text-electro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Electro DMG</Typography>
             </CustomBox>,
         description:
             <React.Fragment>
@@ -165,7 +166,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGElectro />
-                <Typography className="text-electro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Electro-Related Reactions</Typography>
+                <Typography className="text-electro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Electro-Related Reactions</Typography>
             </CustomBox>,
         description:
             <React.Fragment>
@@ -179,7 +180,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGElectro />
-                <Typography className="text-electro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Electro Application</Typography>
+                <Typography className="text-electro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Electro Application</Typography>
             </CustomBox>,
         description:
             <React.Fragment>
@@ -196,7 +197,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGCryo />
-                <Typography className="text-cryo" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Cryo DMG</Typography>
+                <Typography className="text-cryo" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Cryo DMG</Typography>
             </CustomBox>,
         description:
             <React.Fragment>
@@ -212,7 +213,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGCryo />
-                <Typography className="text-cryo" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Cryo-Related Reactions</Typography>
+                <Typography className="text-cryo" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Cryo-Related Reactions</Typography>
             </CustomBox>,
         description:
             <React.Fragment>
@@ -225,7 +226,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGCryo />
-                <Typography className="text-cryo" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Cryo Application</Typography>
+                <Typography className="text-cryo" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Cryo Application</Typography>
             </CustomBox>,
         description:
             <React.Fragment>
@@ -241,7 +242,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGAnemo />
-                <Typography className="text-anemo" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Anemo DMG</Typography>
+                <Typography className="text-anemo" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Anemo DMG</Typography>
             </CustomBox>,
         description:
             <React.Fragment>
@@ -258,7 +259,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGGeo />
-                <Typography className="text-geo" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Geo DMG</Typography>
+                <Typography className="text-geo" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Geo DMG</Typography>
             </CustomBox>,
         description:
             <React.Fragment>
@@ -275,7 +276,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGDendro />
-                <Typography className="text-dendro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Dendro DMG</Typography>
+                <Typography className="text-dendro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Dendro DMG</Typography>
             </CustomBox>,
         description:
             <React.Fragment>
@@ -291,7 +292,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <TCGDendro />
-                <Typography className="text-dendro" variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px" }}>Dendro-Related Reactions</Typography>
+                <Typography className="text-dendro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Dendro-Related Reactions</Typography>
             </CustomBox>,
         description:
             <React.Fragment>
@@ -306,7 +307,7 @@ export const Keywords: TCGKeywordIndexData = {
     "duration": {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Duration (Rounds)</Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Duration (Rounds)</Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -317,7 +318,7 @@ export const Keywords: TCGKeywordIndexData = {
     "usages": {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Usage(s)</Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Usage(s)</Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -329,7 +330,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/Shield.png`} alt="Shield" sx={{ width: "32px", height: "32px" }} />
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px", color: "white" }}>Shield</Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px", color: "white" }}>Shield</Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -339,7 +340,7 @@ export const Keywords: TCGKeywordIndexData = {
     "combat action": {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Combat Action</Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Combat Action</Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -350,7 +351,7 @@ export const Keywords: TCGKeywordIndexData = {
     "fast action": {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Fast Action</Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Fast Action</Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -361,7 +362,7 @@ export const Keywords: TCGKeywordIndexData = {
     "prepare": {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Prepare Skill</Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Prepare Skill</Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -373,7 +374,7 @@ export const Keywords: TCGKeywordIndexData = {
     "charged attack": {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Charged Attack</Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Charged Attack</Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -383,7 +384,7 @@ export const Keywords: TCGKeywordIndexData = {
     "plunging attack": {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Plunging Attack</Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Plunging Attack</Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -393,7 +394,7 @@ export const Keywords: TCGKeywordIndexData = {
     "immunity to defeat": {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Immunity to Defeat</Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Immunity to Defeat</Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -404,7 +405,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/dice/N.png`} alt="Energy" sx={{ width: "32px", height: "32px" }} />
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px", color: "white" }}>Energy </Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px", color: "white" }}>Energy </Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -414,7 +415,7 @@ export const Keywords: TCGKeywordIndexData = {
     "omni element": {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Omni Element </Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Omni Element </Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -425,7 +426,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/dice/U.png`} alt="Energy" sx={{ width: "32px", height: "32px" }} />
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", ml: "7px", color: "white" }}>Unaligned Element </Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px", color: "white" }}>Unaligned Element </Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -435,7 +436,7 @@ export const Keywords: TCGKeywordIndexData = {
     "char closest to current active char": {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Character Closest to Your Current Active Character</Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Character Closest to Your Current Active Character</Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -445,7 +446,7 @@ export const Keywords: TCGKeywordIndexData = {
     "discard": {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Discard</Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Discard</Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -455,7 +456,7 @@ export const Keywords: TCGKeywordIndexData = {
     "tune": {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Tune</Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Tune</Typography>
             </CustomBox>,
         description:
             <CustomTypography>
@@ -466,7 +467,7 @@ export const Keywords: TCGKeywordIndexData = {
         name:
             <CustomBox sx={{ display: "inline-flex" }}>
                 <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/Technique.png`} alt="Technique" sx={{ width: "32px", height: "32px", mr: "5px" }} />
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>Technique</Typography>
+                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Technique</Typography>
             </CustomBox>,
         description:
             <CustomTypography>

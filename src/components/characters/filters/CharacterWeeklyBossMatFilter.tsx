@@ -30,7 +30,7 @@ function CharacterWeeklyBossMatFilter() {
                                 title={
                                     <Typography
                                         sx={{
-                                            fontFamily: "Genshin, monospace",
+                                            fontFamily: `${theme.font.genshin.family}`,
                                             color: `${theme.text.color}`,
                                             textDecoration: "none",
                                         }}

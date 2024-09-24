@@ -33,7 +33,7 @@ function CharacterStatsTable(props: any) {
         <TableContainer
             component={Paper}
             sx={{
-                border: "2px solid rgb(30, 73, 118)",
+                border: `2px solid ${theme.border.color}`,
                 borderRadius: "5px",
             }}
         >

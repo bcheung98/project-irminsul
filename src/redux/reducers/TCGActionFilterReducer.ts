@@ -34,6 +34,7 @@ export const TCGActionFilterSlice = createSlice({
 export const { setType, setSubType, clearActionFilters } = TCGActionFilterSlice.actions
 export default TCGActionFilterSlice.reducer
 
+
 function changeButton(target: string, type: string) {
     let targetButton: any
     if (target !== undefined) {

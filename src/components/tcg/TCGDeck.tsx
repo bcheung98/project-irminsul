@@ -88,7 +88,7 @@ function TCGDeck(props: any) {
             >
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>
+                        <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>
                             {deck.deck.name} — ({characterCards.length}/3 Character Cards, {actionCards.length}/30 Action Cards)
                         </Typography>
                     </AccordionSummary>
@@ -101,7 +101,7 @@ function TCGDeck(props: any) {
                                 mb: "30px",
                                 backgroundColor: "rgb(0, 127, 255)"
                             }}>
-                            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>
+                            <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>
                                 Save Deck
                             </Typography>
                         </Button>
@@ -114,7 +114,7 @@ function TCGDeck(props: any) {
                                 mb: "30px",
                                 backgroundColor: "rgb(0, 127, 255)"
                             }}>
-                            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>
+                            <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>
                                 Load Deck
                             </Typography>
                             <input id="deck-input" hidden accept=".deck" type="file" onChange={(event: React.BaseSyntheticEvent) => getDeckFromFile(event.target.files[0])} />
@@ -127,7 +127,7 @@ function TCGDeck(props: any) {
                                 mb: "30px",
                                 backgroundColor: "rgb(0, 127, 255)"
                             }}>
-                            <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>
+                            <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>
                                 Rename Deck
                             </Typography>
                         </Button>
@@ -165,7 +165,7 @@ function TCGDeck(props: any) {
                             backgroundColor: "rgb(9, 24, 39)",
                             border: "2px solid rgb(30, 73, 118)",
                             borderRadius: "5px",
-                            fontFamily: "Genshin, sans-serif",
+                            fontFamily: `${theme.font.genshin.family}`,
                         }}
                         placeholder="Deck Name"
                         onChange={handleInputChange}
@@ -179,7 +179,7 @@ function TCGDeck(props: any) {
                             mb: "5px",
                             backgroundColor: "rgb(0, 127, 255)"
                         }}>
-                        <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>
+                        <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>
                             Rename
                         </Typography>
                     </Button>
@@ -192,7 +192,7 @@ function TCGDeck(props: any) {
                             mt: "15px",
                             mb: "5px",
                         }}>
-                        <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, }}>
+                        <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>
                             Cancel
                         </Typography>
                     </Button>

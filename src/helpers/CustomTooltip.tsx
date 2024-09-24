@@ -10,7 +10,7 @@ export const CustomTooltip = styled(({ className, ...props }: TooltipProps) => (
     [`& .${tooltipClasses.tooltip}`]: {
         backgroundColor: theme.palette.common.black,
         fontSize: theme.typography.pxToRem(12),
-        fontFamily: "Genshin, sans-serif",
+        fontFamily: `${theme.font.genshin.family}`,
         maxWidth: "none",
     },
 }))
@@ -24,7 +24,7 @@ export const CustomTooltipLarge = styled(({ className, ...props }: TooltipProps)
     [`& .${tooltipClasses.tooltip}`]: {
         backgroundColor: theme.palette.common.black,
         fontSize: theme.typography.pxToRem(18),
-        fontFamily: "Genshin, sans-serif",
+        fontFamily: `${theme.font.genshin.family}`,
         maxWidth: "none",
     },
 }))

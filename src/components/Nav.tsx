@@ -36,7 +36,7 @@ function Nav() {
             <AppBar position="fixed"
                 sx={{
                     backgroundColor: `${theme.appbar.backgroundColor}`,
-                    borderBottom: `1px solid ${theme.border.color}`
+                    borderBottom: `1px solid ${theme.border.colorAlt}`
                 }}
             >
                 <Toolbar>
@@ -87,7 +87,7 @@ function Nav() {
                 id="drawer"
                 variant="permanent"
                 open={drawerOpen}
-                sx={{ [`& .MuiDrawer-paper`]: { borderRight: `1px solid ${theme.border.color}`, backgroundColor: `${theme.appbar.backgroundColor}`, pt: 2.5 } }}
+                sx={{ [`& .MuiDrawer-paper`]: { borderRight: `1px solid ${theme.border.colorAlt}`, backgroundColor: `${theme.appbar.backgroundColor}`, pt: 2.5 } }}
             >
                 {/* Empty toolbar necessary for content to be below app bar */}
                 <Toolbar />
@@ -142,7 +142,7 @@ function Nav() {
                                         </CustomTooltip>
                                         <ListItemText
                                             primary={item.primaryText}
-                                            primaryTypographyProps={{ color: `${theme.text.color}`, fontFamily: "Genshin, monospace", fontSize: "11pt" }}
+                                            primaryTypographyProps={{ color: `${theme.text.color}`, fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt" }}
                                             sx={[
                                                 drawerOpen ?
                                                     { opacity: 1 }
@@ -209,7 +209,7 @@ function Nav() {
                                 </CustomTooltip>
                                 <ListItemText
                                     primary="Other Games"
-                                    primaryTypographyProps={{ color: `${theme.text.color}`, fontFamily: "Genshin, monospace", fontSize: "11pt" }}
+                                    primaryTypographyProps={{ color: `${theme.text.color}`, fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt" }}
                                     sx={[
                                         drawerOpen ?
                                             { opacity: 1 }
@@ -275,7 +275,7 @@ function Nav() {
                                                     </CustomTooltip>
                                                     <ListItemText
                                                         primary={item.primaryText}
-                                                        primaryTypographyProps={{ color: `${theme.text.color}`, fontFamily: "Genshin, monospace", fontSize: "11pt" }}
+                                                        primaryTypographyProps={{ color: `${theme.text.color}`, fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt" }}
                                                         sx={[
                                                             drawerOpen ?
                                                                 { opacity: 1 }

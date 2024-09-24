@@ -268,7 +268,7 @@ export function Vaporize(props: any) {
 
 const TitleText = () => {
     const theme = useTheme()
-    return { fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, ml: "5px" }
+    return { fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "5px" }
 }
 
 const DescriptionText = () => {

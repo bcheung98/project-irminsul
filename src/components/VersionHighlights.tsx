@@ -108,7 +108,7 @@ function VersionHighlights(props: any) {
                     p: "10px",
                 }}
             >
-                <Typography variant="h6" component="p" sx={{ fontFamily: "Genshin, sans-serif", ml: "5px", mt: "5px" }}>
+                <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, ml: "5px", mt: "5px" }}>
                     Version Highlights
                 </Typography>
             </AppBar>
@@ -123,7 +123,7 @@ function VersionHighlights(props: any) {
                 {
                     index < updates.length - 1 &&
                     <IconButton onClick={handleIndexChangeLeft}>
-                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, mb: "20px" }}>
+                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, mb: "20px" }}>
                             {`<`}
                         </Typography>
                     </IconButton>
@@ -133,7 +133,7 @@ function VersionHighlights(props: any) {
                         updates.map((version, index) => {
                             return (
                                 <MenuItem key={index} value={index}>
-                                    <Typography sx={{ fontFamily: "Genshin, sans-serif", fontSize: "11pt", textAlign: "center" }}>{version.version} - {version.name}</Typography>
+                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt", textAlign: "center" }}>{version.version} - {version.name}</Typography>
                                 </MenuItem>
                             )
                         })
@@ -142,7 +142,7 @@ function VersionHighlights(props: any) {
                 {
                     index > 0 &&
                     <IconButton onClick={handleIndexChangeRight}>
-                        <Typography sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, mb: "20px" }}>
+                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, mb: "20px" }}>
                             {`>`}
                         </Typography>
                     </IconButton>
@@ -153,7 +153,7 @@ function VersionHighlights(props: any) {
             {
                 characters.length > 0 &&
                 <Box sx={{ mx: "30px", mb: "20px" }}>
-                    <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "20px" }}>
+                    <Typography variant="h5" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, textAlign: "center", mb: "20px" }}>
                         New Characters
                     </Typography>
                     <Box>
@@ -173,7 +173,7 @@ function VersionHighlights(props: any) {
             {
                 weapons.length > 0 &&
                 <Box sx={{ mx: "30px", my: "20px" }}>
-                    <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "20px" }}>
+                    <Typography variant="h5" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, textAlign: "center", mb: "20px" }}>
                         New Weapons
                     </Typography>
                     <Box>
@@ -193,7 +193,7 @@ function VersionHighlights(props: any) {
             {
                 artifacts.length > 0 &&
                 <Box sx={{ mx: "30px", mb: "20px" }}>
-                    <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "20px" }}>
+                    <Typography variant="h5" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, textAlign: "center", mb: "20px" }}>
                         New Artifacts
                     </Typography>
                     <Box>
@@ -217,7 +217,7 @@ function VersionHighlights(props: any) {
             {
                 newCards &&
                 <Box sx={{ mx: "10px", my: "20px" }}>
-                    <Typography variant="h5" component="p" sx={{ fontFamily: "Genshin, sans-serif", textAlign: "center", mb: "30px" }}>
+                    <Typography variant="h5" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, textAlign: "center", mb: "30px" }}>
                         New TCG Cards
                     </Typography>
                     <Grid container>

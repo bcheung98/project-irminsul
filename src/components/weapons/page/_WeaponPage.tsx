@@ -91,7 +91,7 @@ function WeaponPage(props: any) {
                                         sx={{
                                             mt: "10px",
                                             display: { xs: "none", md: "flex" },
-                                            fontFamily: "Genshin, sans-serif",
+                                            fontFamily: `${theme.font.genshin.family}`,
                                             color: `${theme.text.color}`,
                                             textDecoration: "none",
                                             textAlign: "center",
@@ -109,7 +109,7 @@ function WeaponPage(props: any) {
                                 variant="body2"
                                 sx={{
                                     mx: "15px",
-                                    fontFamily: "Genshin, sans-serif",
+                                    fontFamily: `${theme.font.genshin.family}`,
                                     color: `${theme.text.color}`,
                                 }}
                             >
@@ -129,7 +129,7 @@ function WeaponPage(props: any) {
                                     color: `${theme.text.color}`,
                                 }}
                             >
-                                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", mx: "15px", }}>
+                                <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, mx: "15px", }}>
                                     {weapon.stats.passive.name}
                                 </Typography>
                                 <br />
@@ -139,7 +139,7 @@ function WeaponPage(props: any) {
                                 {
                                     weapon.stats.passive.scaling &&
                                     <Box sx={{ display: "flex", alignItems: "center", width: "20%", mt: "15px", mx: "15px", }}>
-                                        <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, width: "75px" }}>
+                                        <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, width: "75px" }}>
                                             R{sliderValue}
                                         </Typography>
                                         <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} />

@@ -67,7 +67,7 @@ function ArtifactCard(props: any) {
                     }}
                     onError={ErrorLoadingImage}
                 />
-                <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, cursor: "pointer" }} onClick={() => handleClickOpen()}>
+                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, cursor: "pointer" }} onClick={() => handleClickOpen()}>
                     {props.artifact.displayName ? props.artifact.displayName : name}
                 </Typography>
             </CardContent>

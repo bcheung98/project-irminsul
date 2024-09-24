@@ -88,7 +88,7 @@ function CharacterCardLarge(props: any) {
                 </CustomTooltip>
                 <Box>
                     <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                        <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                        <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                             {name}
                         </Typography>
                     </ButtonBase>

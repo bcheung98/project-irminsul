@@ -9,7 +9,7 @@ export const CustomSelect = styled(InputBase)(({ theme }) => ({
         borderRadius: 5,
         backgroundColor: "white",
         border: "1px solid #ced4da",
-        fontFamily: "Genshin, sans-serif",
+        fontFamily: `${theme.font.genshin.family}`,
         fontSize: 16,
         padding: "10px 26px 10px 12px",
         "&:focus": {

@@ -81,7 +81,7 @@ function TCGKeywordPopup(props: any) {
                 <Box sx={{ mr: "5px" }}>
                     {cost && <TCGDiceCost cost={cost} type={"keyword-popup"} />}
                 </Box>
-                <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: "white" }}>
+                <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: "white" }}>
                     {name}
                 </Typography>
             </Box>

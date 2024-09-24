@@ -33,25 +33,25 @@ function TCGActionCardFilter() {
                     sx={{
                         ml: "15px",
                         my: "10px",
-                        fontFamily: "Genshin, sans-serif",
+                        fontFamily: `${theme.font.genshin.family}`,
                     }}>
                     Filters
                 </Typography>
 
-                {/* ELEMENT */}
+                {/* CARD TYPE */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="type-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Card Type</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="type-filter-text" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Card Type</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <TCGActionTypeFilter />
                     </AccordionDetails>
                 </Accordion>
 
-                {/* WEAPON */}
+                {/* CARD SUB TYPE */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="subtype-filter-text" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Card Group</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="subtype-filter-text" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Card Group</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <TCGActionSubTypeFilter />

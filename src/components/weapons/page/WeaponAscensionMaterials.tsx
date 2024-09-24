@@ -37,7 +37,7 @@ function WeaponAscensionMaterials(props: any) {
     }
 
     const MaterialText = {
-        fontFamily: "Genshin, sans-serif",
+        fontFamily: `${theme.font.genshin.family}`,
         color: "rgb(32, 32, 32)",
         fontSize: "12px"
     }

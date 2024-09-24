@@ -81,7 +81,7 @@ function FarmableToday(props: any) {
                         justifyContent: "space-between"
                     }}
                 >
-                    <Typography variant="h6" component="p" sx={{ fontFamily: "Genshin, sans-serif", ml: "5px", mt: "5px" }}>
+                    <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, ml: "5px", mt: "5px" }}>
                         Farming Schedule
                     </Typography>
                     <Select value={day} label="Day" onChange={handleDayChange} input={<CustomSelect />}>
@@ -89,7 +89,7 @@ function FarmableToday(props: any) {
                             weekday.map((day: string, index: number) => (
                                 <MenuItem key={index} value={day}>
                                     {
-                                        day === today ? <Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{day} {"(Today)"}</Typography> : <Typography sx={{ fontFamily: "Genshin, sans-serif" }}>{day}</Typography>
+                                        day === today ? <Typography sx={{ fontFamily: `${theme.font.genshin.family}` }}>{day} {"(Today)"}</Typography> : <Typography sx={{ fontFamily: `${theme.font.genshin.family}` }}>{day}</Typography>
                                     }
                                 </MenuItem>
                             ))
@@ -109,7 +109,7 @@ function FarmableToday(props: any) {
                                 <CardHeader
                                     avatar={<img src={`${process.env.REACT_APP_URL}/materials/talent_mats/${mat}3.png`} alt={mat} style={{ width: "48px", marginRight: "-10px" }} />}
                                     title={
-                                        <Typography variant="h6" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                        <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                                             {mat}
                                         </Typography>
                                     }
@@ -131,7 +131,7 @@ function FarmableToday(props: any) {
                         ))
                     }
                     <Button variant="contained" href={`${process.env.REACT_APP_BASENAME}/characters`}>
-                        <Typography variant="subtitle2" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                        <Typography variant="subtitle2" component="p" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                             See all characters
                         </Typography>
                     </Button>
@@ -143,7 +143,7 @@ function FarmableToday(props: any) {
                                 <CardHeader
                                     avatar={<img src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${mat.split(" ").join("_")}4.png`} alt={mat} style={{ width: "48px", marginRight: "-10px" }} />}
                                     title={
-                                        <Typography variant="h6" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                        <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                                             {mat}
                                         </Typography>
                                     }
@@ -165,7 +165,7 @@ function FarmableToday(props: any) {
                         ))
                     }
                     <Button variant="contained" href={`${process.env.REACT_APP_BASENAME}/weapons`}>
-                        <Typography variant="subtitle2" component="p" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                        <Typography variant="subtitle2" component="p" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                             See all weapons
                         </Typography>
                     </Button>

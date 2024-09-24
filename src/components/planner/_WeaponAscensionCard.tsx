@@ -65,7 +65,7 @@ function WeaponAscensionCard(props: any) {
                 title={
                     <React.Fragment>
                         <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${props.weapon.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                            <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                            <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                                 {name}
                             </Typography>
                         </ButtonBase>
@@ -80,7 +80,7 @@ function WeaponAscensionCard(props: any) {
             />
             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
             <Box sx={{ ml: "15px" }}>
-                <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                     Materials Required
                 </Typography>
                 <WeaponAscensionCardMaterials weapon={props.weapon} />
@@ -88,7 +88,7 @@ function WeaponAscensionCard(props: any) {
             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
             <Accordion>
                 <AccordionSummary>
-                    <Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                    <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                         Edit
                     </Typography>
                 </AccordionSummary>

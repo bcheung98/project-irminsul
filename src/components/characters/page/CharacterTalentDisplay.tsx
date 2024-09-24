@@ -41,7 +41,7 @@ function CharacterTalentDisplay(props: any) {
                     sx={{
                         m: 2,
                         color: `${theme.text.color}`,
-                        fontFamily: "Genshin, sans-serif",
+                        fontFamily: `${theme.font.genshin.family}`,
                     }}
                 >
                     Talents
@@ -83,10 +83,10 @@ function CharacterTalentDisplay(props: any) {
                             }
                             title={
                                 <React.Fragment>
-                                    <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                    <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                                         {talents[key].name}
                                     </Typography>
-                                    <Typography variant="subtitle2" sx={{ fontFamily: "Genshin, sans-serif", }}>
+                                    <Typography variant="subtitle2" sx={{ fontFamily: `${theme.font.genshin.family}`, }}>
                                         <i>{FormatTalentKey(key).toUpperCase()}</i>
                                     </Typography>
                                 </React.Fragment>

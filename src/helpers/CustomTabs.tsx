@@ -69,7 +69,7 @@ export const StyledTab = styled((props: CustomTabProps) =>
 )(
     ({ theme }) => ({
         color: `${theme.text.color}`,
-        fontFamily: "Genshin, sans-serif",
+        fontFamily: `${theme.font.genshin.family}`,
         "&.Mui-selected": {
             color: `${theme.text.selected}`,
         }

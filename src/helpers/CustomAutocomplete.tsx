@@ -15,7 +15,7 @@ const StyledAutocompletePopper = styled("div")(({ theme }) => ({
         margin: 0,
         color: "inherit",
         fontSize: 13,
-        fontFamily: "Genshin, sans-serif",
+        fontFamily: `${theme.font.genshin.family}`,
     },
     [`& .${autocompleteClasses.listbox}`]: {
         backgroundColor: `${theme.paper.backgroundColor}`,
@@ -50,7 +50,7 @@ export const StyledPopper = styled(Popper)(({ theme }) => ({
     width: 300,
     zIndex: theme.zIndex.modal,
     fontSize: 13,
-    fontFamily: "Genshin, sans-serif",
+    fontFamily: `${theme.font.genshin.family}`,
     color: `${theme.text.color}`,
     backgroundColor: `${theme.appbar.backgroundColor}`
 }))
@@ -66,7 +66,7 @@ export const StyledInput = styled(InputBase)(({ theme }) => ({
         transition: theme.transitions.create(["border-color", "box-shadow"]),
         border: `1px solid ${theme.border.color}`,
         fontSize: 14,
-        fontFamily: "Genshin, sans-serif",
+        fontFamily: `${theme.font.genshin.family}`,
         color: `${theme.text.color}`,
         "&:focus": {
             borderColor: `${theme.border.color}`,
@@ -76,7 +76,7 @@ export const StyledInput = styled(InputBase)(({ theme }) => ({
 
 export const Button = styled(ButtonBase)(({ theme }) => ({
     fontSize: "13pt",
-    fontFamily: "Genshin, sans-serif",
+    fontFamily: `${theme.font.genshin.family}`,
     width: "100%",
     textAlign: "left",
     paddingLeft: 8,

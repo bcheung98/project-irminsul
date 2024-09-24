@@ -50,7 +50,7 @@ function CharacterCard(props: any) {
                 backgroundColor: `${theme.card.backgroundColor}`,
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
-                fontFamily: "Genshin, sans-serif"
+                fontFamily: `${theme.font.genshin.family}`
             }}
         >
             <CardContent sx={{ py: "10px" }}>
@@ -61,7 +61,7 @@ function CharacterCard(props: any) {
                     }}
                 >
                     <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                        <Typography variant="h5" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>
+                        <Typography variant="h5" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                             {name}
                         </Typography>
                     </ButtonBase>

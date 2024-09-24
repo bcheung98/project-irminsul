@@ -38,7 +38,7 @@ function CharacterConstellationDisplay(props: any) {
                     sx={{
                         m: 2,
                         color: `${theme.text.color}`,
-                        fontFamily: "Genshin, sans-serif",
+                        fontFamily: `${theme.font.genshin.family}`,
                     }}
                 >
                     Constellation
@@ -68,10 +68,10 @@ function CharacterConstellationDisplay(props: any) {
                                 }
                                 title={
                                     <React.Fragment>
-                                        <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                        <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                                             {constellation[key].name}
                                         </Typography>
-                                        <Typography variant="subtitle2" sx={{ fontFamily: "Genshin, sans-serif" }}>
+                                        <Typography variant="subtitle2" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                                             <i>{key.toUpperCase()}</i>
                                         </Typography>
                                     </React.Fragment>

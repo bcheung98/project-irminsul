@@ -12,7 +12,7 @@ function BottomNav() {
             sx={{
                 mt: 10,
                 backgroundColor: `${theme.appbar.backgroundColor}`,
-                borderTop: `1px solid ${theme.border.color}`,
+                borderTop: `1px solid ${theme.border.colorAlt}`,
             }}
         >
             <Toolbar sx={{ justifyContent: "center" }}>

@@ -99,7 +99,7 @@ function TCGBrowser(props: any) {
         marginLeft: "10px",
         flex: 1,
         color: `${theme.text.color}`,
-        fontFamily: "Genshin, sans-serif",
+        fontFamily: `${theme.font.genshin.family}`,
     }
 
     document.title = `TCG ${process.env.REACT_APP_DOCUMENT_HEADER}`
@@ -121,7 +121,7 @@ function TCGBrowser(props: any) {
                         mx: "25px",
                         my: "20px",
                         display: { xs: "none", md: "flex" },
-                        fontFamily: "Genshin, sans-serif",
+                        fontFamily: `${theme.font.genshin.family}`,
                         letterSpacing: ".2rem",
                         color: `${theme.text.color}`,
                         textDecoration: "none",
@@ -136,10 +136,10 @@ function TCGBrowser(props: any) {
 
             <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ mx: "30px", mb: "30px" }}>
                 <CustomToggleButtonText value="char">
-                    <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Character Cards</Typography>
+                    <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Character Cards</Typography>
                 </CustomToggleButtonText>
                 <CustomToggleButtonText value="action">
-                    <Typography variant="body2" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Action Cards</Typography>
+                    <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Action Cards</Typography>
                 </CustomToggleButtonText>
             </ToggleButtonGroup>
 
@@ -179,7 +179,7 @@ function TCGBrowser(props: any) {
                                             borderRadius: "5px",
                                         }}
                                     >
-                                        <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, ml: "5px", p: "10px" }}>
+                                        <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "5px", p: "10px" }}>
                                             Sort by
                                         </Typography>
                                         <Box sx={{ p: "10px", backgroundColor: `${theme.paper.backgroundColor}` }}>
@@ -202,10 +202,10 @@ function TCGBrowser(props: any) {
                                                 onChange={handleCharRadioChange}
                                                 sx={{ ml: "5px" }}
                                             >
-                                                <FormControlLabel value="name" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Name</Typography>} />
-                                                <FormControlLabel value="element" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Element</Typography>} />
-                                                <FormControlLabel value="weapon" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Weapon</Typography>} />
-                                                <FormControlLabel value="energy" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Burst Cost</Typography>} />
+                                                <FormControlLabel value="name" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Name</Typography>} />
+                                                <FormControlLabel value="element" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Element</Typography>} />
+                                                <FormControlLabel value="weapon" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Weapon</Typography>} />
+                                                <FormControlLabel value="energy" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Burst Cost</Typography>} />
                                             </RadioGroup>
                                         </Box>
                                     </Paper>
@@ -244,7 +244,7 @@ function TCGBrowser(props: any) {
                                             borderRadius: "5px",
                                         }}
                                     >
-                                        <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, ml: "5px", p: "10px" }}>
+                                        <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "5px", p: "10px" }}>
                                             Sort by
                                         </Typography>
                                         <Box sx={{ p: "10px", backgroundColor: `${theme.paper.backgroundColor}` }}>
@@ -267,8 +267,8 @@ function TCGBrowser(props: any) {
                                                 onChange={handleActionRadioChange}
                                                 sx={{ ml: "5px" }}
                                             >
-                                                <FormControlLabel value="name" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Name</Typography>} />
-                                                <FormControlLabel value="cardGroup" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}` }}>Card Group</Typography>} />
+                                                <FormControlLabel value="name" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Name</Typography>} />
+                                                <FormControlLabel value="cardGroup" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Card Group</Typography>} />
                                             </RadioGroup>
                                         </Box>
                                     </Paper>

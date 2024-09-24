@@ -40,7 +40,7 @@ function AscensionTotalCost(props: any) {
     }
 
     const MaterialText = {
-        fontFamily: "Genshin, sans-serif",
+        fontFamily: `${theme.font.genshin.family}`,
         color: "rgb(32, 32, 32)",
         fontSize: "11.5px"
     }
@@ -79,7 +79,7 @@ function AscensionTotalCost(props: any) {
                         }}
                         ref={componentRef}
                     >
-                        <Typography variant="h6" sx={{ fontFamily: "Genshin, sans-serif", color: `${theme.text.color}`, ml: "15px", my: "15px" }}>
+                        <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "15px", my: "15px" }}>
                             Total Materials Required
                         </Typography>
                         <Grid container sx={{ mx: "15px", mt: "10px" }}>
