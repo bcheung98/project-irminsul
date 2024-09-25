@@ -3,12 +3,13 @@ import { connect, useDispatch } from "react-redux"
 
 // MUI imports
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles"
-import { Toolbar, Typography, CardHeader, Avatar, ButtonBase, IconButton, List, ListItem, ListItemButton, ListItemAvatar, ListItemText, ListItemIcon, Divider, Collapse, Box, Select, MenuItem } from "@mui/material"
+import { Toolbar, Typography, CardHeader, Avatar, ButtonBase, IconButton, List, ListItem, ListItemButton, ListItemAvatar, ListItemText, ListItemIcon, Divider, Collapse, Box, Select, MenuItem, Menu } from "@mui/material"
 import MuiDrawer from "@mui/material/Drawer"
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar"
 import MenuOpenIcon from "@mui/icons-material/MenuOpen"
 import ExpandLess from "@mui/icons-material/ExpandLess"
 import ExpandMore from "@mui/icons-material/ExpandMore"
+import SettingsIcon from "@mui/icons-material/Settings"
 
 // Helper imports
 import { CustomTooltip } from "../helpers/CustomTooltip"
@@ -38,6 +39,15 @@ function Nav(props: any) {
     const [dropdownOpen, setDropdownOpen] = React.useState(false)
     const toggleDropdownState = () => {
         setDropdownOpen(!dropdownOpen)
+    }
+
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+    const settingsOpen = Boolean(anchorEl)
+    const handleSettingsClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget)
+    }
+    const handleSettingsClose = () => {
+        setAnchorEl(null)
     }
 
     return (
@@ -93,15 +103,33 @@ function Nav(props: any) {
                         </CustomTooltip>
                     </Box>
                     <Box>
-                        <Select value={props.themeIndex} label="Theme" input={<CustomSelect />} onChange={(e) => dispatch(setTheme(e.target.value))}>
-                            {
-                                themes.map((t, index) => (
-                                    <MenuItem value={index} key={index}>
-                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt", textAlign: "center" }}>{t.name}</Typography>
-                                    </MenuItem>
-                                ))
-                            }
-                        </Select>
+                        <IconButton
+                            onClick={handleSettingsClick}
+                            size="small"
+                            sx={{ ml: 2, color: `white` }}
+                        >
+                            <SettingsIcon />
+                        </IconButton>
+                        <Menu
+                            anchorEl={anchorEl}
+                            open={settingsOpen}
+                            onClose={handleSettingsClose}
+                            transformOrigin={{ horizontal: "right", vertical: "top" }}
+                            anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+                        >
+                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt", textAlign: "center" }}>Theme</Typography>
+                            <MenuItem>
+                                <Select value={props.themeIndex} label="Theme" input={<CustomSelect />} onChange={(e) => dispatch(setTheme(e.target.value))}>
+                                    {
+                                        themes.map((t, index) => (
+                                            <MenuItem value={index} key={index} onClick={handleSettingsClose}>
+                                                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt", textAlign: "center" }}>{t.name}</Typography>
+                                            </MenuItem>
+                                        ))
+                                    }
+                                </Select>
+                            </MenuItem>
+                        </Menu>
                     </Box>
                 </Toolbar>
             </AppBar>
