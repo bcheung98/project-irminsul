@@ -87,9 +87,9 @@ function FarmableToday(props: any) {
                     <Select value={day} label="Day" onChange={handleDayChange} input={<CustomSelect />}>
                         {
                             weekday.map((day: string, index: number) => (
-                                <MenuItem key={index} value={day}>
+                                <MenuItem key={index} value={day} sx={{ color: `${theme.text.color}`, backgroundColor: `rgb(32, 32, 32)`, "&:hover": { backgroundColor: `rgb(64, 64, 64)` } }}>
                                     {
-                                        day === today ? <Typography sx={{ fontFamily: `${theme.font.genshin.family}` }}>{day} {"(Today)"}</Typography> : <Typography sx={{ fontFamily: `${theme.font.genshin.family}` }}>{day}</Typography>
+                                        day === today ? <Typography sx={{ fontFamily: `${theme.font.genshin.family}` }}>{day} {"(Today)"}</Typography> : <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>{day}</Typography>
                                     }
                                 </MenuItem>
                             ))

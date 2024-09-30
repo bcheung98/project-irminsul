@@ -132,8 +132,8 @@ function VersionHighlights(props: any) {
                     {
                         updates.map((version, index) => {
                             return (
-                                <MenuItem key={index} value={index}>
-                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt", textAlign: "center" }}>{version.version} - {version.name}</Typography>
+                                <MenuItem key={index} value={index} sx={{backgroundColor: "rgb(32, 32, 32)"}}>
+                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt", textAlign: "center", color: `${theme.text.color}` }}>{version.version} - {version.name}</Typography>
                                 </MenuItem>
                             )
                         })
