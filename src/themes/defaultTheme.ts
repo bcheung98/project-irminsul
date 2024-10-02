@@ -1,8 +1,8 @@
-const fontNormal = "Rowdies, Roboto, sans-serif"
-const fontNormalWeight = 300
+const fontNormal = "Roboto, sans-serif"
+const fontNormalWeight = 400
 
 const fontStyled = "Rowdies, Roboto, sans-serif"
-const fontStyledWeight = 400
+const fontStyledWeight = 300
 
 export const defaultTheme = {
     components: {
@@ -25,7 +25,15 @@ export const defaultTheme = {
         MuiDivider: {
             styleOverrides: {
                 root: {
-                    borderColor: "rgb(30, 73, 118)"
+                    borderColor: "rgb(193, 159, 116)"
+                }
+            }
+        },
+        MuiMenu: {
+            styleOverrides: {
+                list: {
+                    backgroundColor: "rgb(32, 32, 32)",
+                    color: "white",
                 }
             }
         }
@@ -76,5 +84,11 @@ export const defaultTheme = {
     button: {
         selected: "rgb(0, 127, 255)",
         hover: "rgb(0, 94, 188)",
+    },
+    menu: {
+        backgroundColor: "rgb(32, 32, 32)",
+        hover: "rgb(64, 64, 64)",
+        selected: "rgb(80, 80, 80)",
+        selectedHover: "rgb(96, 96, 96)"
     }
 }

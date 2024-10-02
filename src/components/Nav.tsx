@@ -3,7 +3,7 @@ import { connect, useDispatch } from "react-redux"
 
 // MUI imports
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles"
-import { Toolbar, Typography, CardHeader, Avatar, ButtonBase, IconButton, List, ListItem, ListItemButton, ListItemAvatar, ListItemText, ListItemIcon, Divider, Collapse, Box, Select, MenuItem, Menu } from "@mui/material"
+import { Toolbar, Typography, CardHeader, Avatar, ButtonBase, IconButton, List, ListItem, ListItemButton, ListItemAvatar, ListItemText, ListItemIcon, Divider, Collapse, Box, Select, Menu } from "@mui/material"
 import MuiDrawer from "@mui/material/Drawer"
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar"
 import MenuOpenIcon from "@mui/icons-material/MenuOpen"
@@ -13,7 +13,8 @@ import SettingsIcon from "@mui/icons-material/Settings"
 
 // Helper imports
 import { CustomTooltip } from "../helpers/CustomTooltip"
-import { CustomSelect } from "../helpers/CustomSelect"
+import { CustomInput } from "../helpers/CustomInput"
+import { CustomMenuItem } from "../helpers/CustomMenu"
 import { setTheme } from "../redux/reducers/ThemeReducer"
 import { themes } from "../redux/reducers/ThemeReducer"
 
@@ -117,22 +118,22 @@ function Nav(props: any) {
                             transformOrigin={{ horizontal: "right", vertical: "top" }}
                             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                         >
-                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt", textAlign: "center" }}>Theme</Typography>
-                            <MenuItem>
-                                <Select value={props.themeIndex} label="Theme" input={<CustomSelect />} onChange={(e) => dispatch(setTheme(e.target.value))}>
+                            <Box sx={{ p: 1 }}>
+                                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt", textAlign: "center", mb: "10px" }}>Theme</Typography>
+                                <Select value={props.themeIndex} label="Theme" input={<CustomInput />} onChange={(e) => dispatch(setTheme(e.target.value))}>
                                     {
                                         themes.map((t, index) => (
-                                            <MenuItem value={index} key={index} onClick={handleSettingsClose}>
+                                            <CustomMenuItem value={index} key={index} onClick={handleSettingsClose}>
                                                 <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt", textAlign: "center" }}>{t.name}</Typography>
-                                            </MenuItem>
+                                            </CustomMenuItem>
                                         ))
                                     }
                                 </Select>
-                            </MenuItem>
+                            </Box>
                         </Menu>
                     </Box>
                 </Toolbar>
-            </AppBar>
+            </AppBar >
             <Drawer
                 variant="permanent"
                 open={drawerOpen}
@@ -342,7 +343,7 @@ function Nav(props: any) {
                     </ListItem>
                 </List>
             </Drawer>
-        </React.Fragment>
+        </React.Fragment >
     )
 
 }

@@ -10,11 +10,12 @@ import TCGActionCard from "./tcg/TCGActionCard"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { Box, Typography, Select, MenuItem, AppBar, IconButton, SelectChangeEvent } from "@mui/material"
+import { Box, Typography, Select, AppBar, IconButton, SelectChangeEvent } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 
 // Helper imports
-import { CustomSelect } from "../helpers/CustomSelect"
+import { CustomInput } from "../helpers/CustomInput"
+import { CustomMenuItem } from "../helpers/CustomMenu"
 
 // Type imports
 import { RootState } from "../redux/store"
@@ -128,15 +129,26 @@ function VersionHighlights(props: any) {
                         </Typography>
                     </IconButton>
                 }
-                <Select value={index.toString()} label="Version" onChange={handleIndexChange} input={<CustomSelect />} sx={{ mx: "5px", mb: "20px", width: "500px" }}>
+                <Select
+                    value={index.toString()}
+                    label="Version"
+                    onChange={handleIndexChange}
+                    input={<CustomInput />}
+                    sx={{
+                        mx: "5px",
+                        mb: "20px",
+                        width: "500px",
+                        "& .MuiSelect-icon": {
+                            color: "white"
+                        }
+                    }}
+                >
                     {
-                        updates.map((version, index) => {
-                            return (
-                                <MenuItem key={index} value={index} sx={{backgroundColor: "rgb(32, 32, 32)"}}>
-                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt", textAlign: "center", color: `${theme.text.color}` }}>{version.version} - {version.name}</Typography>
-                                </MenuItem>
-                            )
-                        })
+                        updates.map((version, index) => (
+                            <CustomMenuItem key={index} value={index}>
+                                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt", textAlign: "center", color: `${theme.text.color}` }}>{version.version} - {version.name}</Typography>
+                            </CustomMenuItem>
+                        ))
                     }
                 </Select>
                 {

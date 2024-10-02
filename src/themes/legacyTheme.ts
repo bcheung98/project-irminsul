@@ -28,6 +28,14 @@ export const legacyTheme = {
                     borderColor: "rgb(30, 73, 118)"
                 }
             }
+        },
+        MuiMenu: {
+            styleOverrides: {
+                list: {
+                    backgroundColor: "rgb(32, 32, 32)",
+                    color: "white"
+                }
+            }
         }
     },
     font: {
@@ -76,5 +84,11 @@ export const legacyTheme = {
     button: {
         selected: "rgb(0, 127, 255)",
         hover: "rgb(0, 94, 188)",
+    },
+    menu: {
+        backgroundColor: "rgb(32, 32, 32)",
+        hover: "rgb(64, 64, 64)",
+        selected: "rgb(80, 80, 80)",
+        selectedHover: "rgb(96, 96, 96)"
     }
 }

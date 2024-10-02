@@ -1,14 +1,14 @@
 import { InputBase } from "@mui/material"
 import { styled } from "@mui/material/styles"
 
-export const CustomSelect = styled(InputBase)(({ theme }) => ({
+export const CustomInput = styled(InputBase)(({ theme }) => ({
     "label + &": {
         marginTop: theme.spacing(3),
     },
     "& .MuiInputBase-input": {
         borderRadius: 5,
-        backgroundColor: `rgb(32, 32, 32)`,
-        border: "1px solid #ced4da",
+        backgroundColor: `${theme.menu.backgroundColor}`,
+        border: `1px solid ${theme.border.color}`,
         color: `${theme.text.color}`,
         fontFamily: `${theme.font.genshin.family}`,
         fontSize: 16,
@@ -17,7 +17,7 @@ export const CustomSelect = styled(InputBase)(({ theme }) => ({
             borderRadius: 4,
             borderColor: "#80bdff",
             boxShadow: "0 0 0 0.2rem rgba(0, 12, 255, .25)",
-            backgroundColor: `rgb(32, 32, 32)`,
+            backgroundColor: `${theme.menu.backgroundColor}`,
         },
     },
 }))

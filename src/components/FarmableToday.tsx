@@ -3,13 +3,14 @@ import { useTheme } from "@mui/material/styles"
 import { connect } from "react-redux"
 
 // MUI imports
-import { Box, Button, ButtonBase, Typography, CardHeader, Tabs, Select, MenuItem, AppBar, SelectChangeEvent, Theme } from "@mui/material"
+import { Box, Button, ButtonBase, Typography, CardHeader, Tabs, Select, AppBar, SelectChangeEvent, Theme } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 
 // Helper imports
 import { MaterialDates } from "../helpers/MaterialDates"
 import { CustomTooltip } from "../helpers/CustomTooltip"
-import { CustomSelect } from "../helpers/CustomSelect"
+import { CustomInput } from "../helpers/CustomInput"
+import { CustomMenuItem } from "../helpers/CustomMenu"
 import { TabPanel, StyledTab } from "../helpers/CustomTabs"
 import ErrorLoadingImage from "../helpers/ErrorLoadingImage"
 
@@ -84,14 +85,24 @@ function FarmableToday(props: any) {
                     <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, ml: "5px", mt: "5px" }}>
                         Farming Schedule
                     </Typography>
-                    <Select value={day} label="Day" onChange={handleDayChange} input={<CustomSelect />}>
+                    <Select
+                        value={day}
+                        label="Day"
+                        onChange={handleDayChange}
+                        input={<CustomInput />}
+                        sx={{
+                            "& .MuiSelect-icon": {
+                                color: "white"
+                            }
+                        }}
+                    >
                         {
                             weekday.map((day: string, index: number) => (
-                                <MenuItem key={index} value={day} sx={{ color: `${theme.text.color}`, backgroundColor: `rgb(32, 32, 32)`, "&:hover": { backgroundColor: `rgb(64, 64, 64)` } }}>
+                                <CustomMenuItem key={index} value={day}>
                                     {
                                         day === today ? <Typography sx={{ fontFamily: `${theme.font.genshin.family}` }}>{day} {"(Today)"}</Typography> : <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>{day}</Typography>
                                     }
-                                </MenuItem>
+                                </CustomMenuItem>
                             ))
                         }
                     </Select>
