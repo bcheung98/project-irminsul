@@ -84,7 +84,8 @@ export const legacyTheme = {
     text: {
         color: "white",
         colorAlt: "rgb(218, 219, 222)",
-        selected: "rgb(25, 118, 210)"
+        selected: "rgb(25, 118, 210)",
+        appbar: "white",
     },
     button: {
         selected: "rgb(0, 127, 255)",

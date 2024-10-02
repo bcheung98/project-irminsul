@@ -4,10 +4,10 @@ const fontNormalWeight = 400
 const fontStyled = "Rowdies, Roboto, sans-serif"
 const fontStyledWeight = 300
 
-export const defaultTheme = {
+export const lightTheme = {
     palette: {
         background: {
-            default: "rgb(0, 30, 60)"
+            default: "white"
         }
     },
     components: {
@@ -37,8 +37,8 @@ export const defaultTheme = {
         MuiMenu: {
             styleOverrides: {
                 list: {
-                    backgroundColor: "rgb(32, 32, 32)",
-                    color: "white",
+                    backgroundColor: "white",
+                    color: "black",
                 }
             }
         }
@@ -54,36 +54,36 @@ export const defaultTheme = {
         }
     },
     appbar: {
-        backgroundColor: "rgb(0, 16, 32)",
+        backgroundColor: "rgb(0, 70, 140)",
     },
     border: {
-        color: "rgb(193, 159, 116)",
+        color: "rgb(30, 73, 118)",
         colorAlt: "rgb(193, 159, 116)"
     },
     paper: {
-        backgroundColor: "rgb(0, 23, 47)",
+        backgroundColor: "rgb(225, 225, 225)",
     },
     card: {
-        backgroundColor: "rgb(0, 23, 47)",
+        backgroundColor: "rgb(225, 225, 225)",
     },
     table: {
         header: {
-            backgroundColor: "rgb(0, 20, 40)",
+            backgroundColor: "rgb(0, 60, 120)",
         },
         body: {
-            backgroundColor: "rgb(0, 30, 60)",
-            hover: "rgb(19, 47, 76)",
+            backgroundColor: "white",
+            hover: "rgb(200, 200, 200)",
         },
     },
     toolbar: {
-        backgroundColor: "rgb(0, 16, 32)",
+        backgroundColor: "rgb(0, 70, 140)",
     },
     materialImage: {
-        backgroundColor: "rgb(0, 30, 60)",
+        backgroundColor: "white",
     },
     text: {
-        color: "white",
-        colorAlt: "rgb(218, 219, 222)",
+        color: "black",
+        colorAlt: "gray",
         selected: "rgb(25, 118, 210)",
         appbar: "white",
     },
@@ -92,9 +92,9 @@ export const defaultTheme = {
         hover: "rgb(0, 94, 188)",
     },
     menu: {
-        backgroundColor: "rgb(32, 32, 32)",
-        hover: "rgb(64, 64, 64)",
-        selected: "rgb(80, 80, 80)",
-        selectedHover: "rgb(96, 96, 96)"
+        backgroundColor: "white",
+        hover: "rgb(200, 200, 200)",
+        selected: "rgb(190, 190, 190)",
+        selectedHover: "rgb(175, 175, 175)"
     }
 }
