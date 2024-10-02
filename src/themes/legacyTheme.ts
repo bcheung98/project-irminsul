@@ -5,6 +5,11 @@ const fontStyled = "Genshin, Roboto, sans-serif"
 const fontStyledWeight = 300
 
 export const legacyTheme = {
+    palette: {
+        background: {
+            default: "rgb(0, 30, 60)"
+        }
+    },
     components: {
         MuiTypography: {
             styleOverrides: {

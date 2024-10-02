@@ -24,7 +24,7 @@ import TCGBrowser from "./components/tcg/TCGBrowser"
 
 // MUI imports
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import { Box } from "@mui/material"
+import { Box, CssBaseline } from "@mui/material"
 
 // Helper imports
 import ScrollTopFab from "./helpers/ScrollTopFab"
@@ -48,6 +48,7 @@ function App(props: any) {
 
 	return (
 		<ThemeProvider theme={createTheme(theme)}>
+			<CssBaseline />
 			<Router basename={`${process.env.REACT_APP_BASENAME}`}>
 				<Box id="back-to-top-anchor" />
 				<Box sx={{ display: "flex" }}>
