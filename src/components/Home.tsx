@@ -3,7 +3,7 @@ import FarmableToday from "./FarmableToday"
 import VersionHighlights from "./VersionHighlights"
 
 // MUI imports
-import Grid from "@mui/material/Unstable_Grid2"
+import Grid from "@mui/material/Grid2"
 
 function Home() {
 
@@ -11,10 +11,10 @@ function Home() {
 
     return (
         <Grid container>
-            <Grid xs={6}>
+            <Grid size={6}>
                 <FarmableToday />
             </Grid>
-            <Grid xs={6}>
+            <Grid size={6}>
                 <VersionHighlights />
             </Grid>
         </Grid>

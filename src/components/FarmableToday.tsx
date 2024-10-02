@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 
 // MUI imports
 import { Box, Button, ButtonBase, Typography, CardHeader, Tabs, Select, AppBar, SelectChangeEvent, Theme } from "@mui/material"
-import Grid from "@mui/material/Unstable_Grid2"
+import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { MaterialDates } from "../helpers/MaterialDates"

@@ -4,7 +4,7 @@ import parse from "html-react-parser"
 // MUI imports
 import { useTheme } from "@mui/material/styles"
 import { Typography, Box, Tabs } from "@mui/material"
-import Grid from "@mui/material/Unstable_Grid2"
+import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { StyledTab, TabPanel } from "../../../helpers/CustomTabs"
@@ -75,7 +75,7 @@ function CharacterOutfitDisplay(props: any) {
                         }
                     </Tabs>
                 </Grid>
-                <Grid xs>
+                <Grid size="auto">
                     {
                         outfits.map((outfit, index) => {
                             return (

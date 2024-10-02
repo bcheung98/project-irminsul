@@ -5,7 +5,7 @@ import { exportComponentAsJPEG } from "react-component-export-image"
 // MUI imports
 import { useTheme } from "@mui/material/styles"
 import { Box, Button, Typography } from "@mui/material"
-import Grid from "@mui/material/Unstable_Grid2"
+import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { CustomTooltip } from "../../helpers/CustomTooltip"

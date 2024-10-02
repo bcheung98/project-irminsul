@@ -7,7 +7,7 @@ import ArtifactCard from "./ArtifactCard"
 
 // MUI imports
 import { Box, Typography } from "@mui/material"
-import Grid from "@mui/material/Unstable_Grid2"
+import Grid from "@mui/material/Grid2"
 
 // Type imports
 import { RootState } from "../../redux/store"

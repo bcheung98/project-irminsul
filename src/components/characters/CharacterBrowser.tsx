@@ -9,7 +9,7 @@ import CharacterFilters from "./filters/_CharacterFilters"
 // MUI imports
 import { useTheme } from "@mui/material/styles"
 import { Box, Typography, Paper, InputBase, Stack, ToggleButtonGroup } from "@mui/material"
-import Grid from "@mui/material/Unstable_Grid2"
+import Grid from "@mui/material/Grid2"
 import AppsSharpIcon from "@mui/icons-material/AppsSharp"
 import ListSharpIcon from "@mui/icons-material/ListSharp"
 import { blue } from "@mui/material/colors"
@@ -76,7 +76,7 @@ function CharacterBrowser(props: any) {
                 </Stack>
             </Box>
             <Grid container sx={{ margin: "auto", width: "98%" }}>
-                <Grid xs={9}>
+                <Grid size={9}>
                     <Grid container>
                         {characters.characters.length > 0 &&
                             <React.Fragment>
@@ -90,7 +90,7 @@ function CharacterBrowser(props: any) {
                         }
                     </Grid>
                 </Grid>
-                <Grid xs={3}>
+                <Grid size={3}>
                     <Paper
                         sx={{
                             border: `2px solid ${theme.border.color}`,

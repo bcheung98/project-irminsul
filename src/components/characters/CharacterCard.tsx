@@ -4,7 +4,7 @@ import CharacterMaterialGrid from "./CharacterMaterialGrid"
 // MUI imports
 import { useTheme } from "@mui/material/styles"
 import { Typography, Card, CardContent, ButtonBase, Box } from "@mui/material"
-import Grid from "@mui/material/Unstable_Grid2"
+import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { CustomTooltip } from "../../helpers/CustomTooltip"
@@ -81,7 +81,7 @@ function CharacterCard(props: any) {
                     </Box>
                 </Box>
                 <Grid container sx={{ mt: "10px" }}>
-                    <Grid xs>
+                    <Grid size="auto">
                         <Box sx={{ width: "105px" }}>
                             <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                                 <img src={characterIcon} alt={name} style={characterIconBackground} onError={ErrorLoadingImage} />
@@ -97,7 +97,7 @@ function CharacterCard(props: any) {
                             />
                         </Box>
                     </Grid>
-                    <Grid xs={7.5}>
+                    <Grid size={7.5}>
                         <CharacterMaterialGrid character={props.character} />
                     </Grid>
                 </Grid>

@@ -11,7 +11,7 @@ import TCGActionCard from "./tcg/TCGActionCard"
 // MUI imports
 import { useTheme } from "@mui/material/styles"
 import { Box, Typography, Select, AppBar, IconButton, SelectChangeEvent } from "@mui/material"
-import Grid from "@mui/material/Unstable_Grid2"
+import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { CustomInput } from "../helpers/CustomInput"

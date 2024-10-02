@@ -8,7 +8,7 @@ import TCGActionCard from "./TCGActionCard"
 // MUI imports
 import { useTheme } from "@mui/material/styles"
 import { Box, Typography, Paper, Button, Dialog, InputBase } from "@mui/material"
-import Grid from "@mui/material/Unstable_Grid2"
+import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { loadDeck, renameDeck } from "../../redux/reducers/DeckReducer"

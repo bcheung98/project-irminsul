@@ -11,7 +11,7 @@ import TCGActionCardFilters from "./filters/action/_TCGActionCardFilters"
 // MUI imports
 import { useTheme } from "@mui/material/styles"
 import { Box, Typography, ToggleButtonGroup, Paper, InputBase, Radio, RadioGroup, FormControlLabel, Stack } from "@mui/material"
-import Grid from "@mui/material/Unstable_Grid2"
+import Grid from "@mui/material/Grid2"
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward"
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward"
 import { blue } from "@mui/material/colors"
@@ -149,12 +149,12 @@ function TCGBrowser(props: any) {
                 (
                     view === "char" ?
                         <Grid container >
-                            <Grid xs={9.5}>
-                                <Grid container sx={{ ml: "15px" }} xs={9}>
+                            <Grid size={9.5}>
+                                <Grid container sx={{ ml: "15px" }} size={9}>
                                     {filterTCGCharacterCards(CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards, charRadioValue, charSortDirection), cardCharFilters, charSearchValue).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
                                 </Grid>
                             </Grid>
-                            <Grid xs>
+                            <Grid size="auto">
                                 <Paper sx={SearchBar}>
                                     <InputBase
                                         sx={SearchBarInput}
@@ -214,12 +214,12 @@ function TCGBrowser(props: any) {
                         </Grid>
                         :
                         <Grid container>
-                            <Grid xs={9.5}>
-                                <Grid container sx={{ ml: "15px" }} xs={9}>
+                            <Grid size={9.5}>
+                                <Grid container sx={{ ml: "15px" }} size={9}>
                                     {filterTCGActionCards(CurrentActionCards(cards.cards[1].cards, deck.deck.actionCards, actionRadioValue, actionSortDirection), cardActionFilters, actionSearchValue).map(card => <TCGActionCard key={card.name} card={card} preview={false} />)}
                                 </Grid>
                             </Grid>
-                            <Grid xs>
+                            <Grid size="auto">
                                 <Paper sx={SearchBar}>
                                     <InputBase
                                         sx={SearchBarInput}

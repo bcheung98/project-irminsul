@@ -12,7 +12,7 @@ import CharacterOutfitDisplay from "./CharacterOutfitDisplay"
 // MUI imports
 import { useTheme } from "@mui/material/styles"
 import { Typography, Tabs, Box, Dialog, Avatar, AppBar } from "@mui/material"
-import Grid from "@mui/material/Unstable_Grid2"
+import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { CustomTooltip } from "../../../helpers/CustomTooltip"
@@ -49,14 +49,14 @@ function CharacterPage(props: any) {
         let { name, title, rarity, element, weapon, constellation, description, birthday, nation, voiceActors, release } = character
 
         let visionIcon = nation === "Fontaine" ? `${process.env.REACT_APP_URL}/visions/${nation}_${element}_${character.arkhe}.png` : `${process.env.REACT_APP_URL}/visions/${nation}_${element}.png`
-        
+
         if (character.fullname) document.title = `${character.fullname} ${process.env.REACT_APP_DOCUMENT_HEADER}`
         else document.title = `${name} ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
         return (
             <React.Fragment>
                 <Grid container sx={{ mb: "20px" }}>
-                    <Grid xs="auto">
+                    <Grid size="auto">
                         <img src={`${process.env.REACT_APP_URL}/characters/wish/${name.split(" ").join("_")}.png`} alt={name}
                             onClick={() => handleClickOpen()}
                             style={{
@@ -107,7 +107,7 @@ function CharacterPage(props: any) {
                             </Box>
                         </Box>
                     </Grid>
-                    <Grid xs>
+                    <Grid size="auto">
                         <Box
                             sx={{
                                 p: "5px",

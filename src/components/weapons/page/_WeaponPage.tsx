@@ -4,7 +4,7 @@ import parse from "html-react-parser"
 import { connect } from "react-redux"
 import { useParams } from "react-router-dom"
 import { Typography, Tabs, Box, AppBar, Avatar } from "@mui/material"
-import Grid from "@mui/material/Unstable_Grid2"
+import Grid from "@mui/material/Grid2"
 import { TabPanel, StyledTab } from "../../../helpers/CustomTabs"
 import WeaponStatsTable from "./WeaponStatsTable"
 import WeaponAscension from "./WeaponAscension"
@@ -66,10 +66,10 @@ function WeaponPage(props: any) {
         return (
             <React.Fragment>
                 <Grid container sx={{ mb: "20px", mt: "10px" }}>
-                    <Grid xs="auto">
+                    <Grid size="auto">
                         <img src={(`${process.env.REACT_APP_URL}/weapons/${name.split(" ").join("_")}.png`)} alt={name} style={weaponIcon} onError={ErrorLoadingImage} />
                     </Grid>
-                    <Grid xs>
+                    <Grid size="auto">
                         <Box
                             sx={{
                                 p: "15px",

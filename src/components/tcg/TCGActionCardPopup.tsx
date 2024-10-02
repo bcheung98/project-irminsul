@@ -9,7 +9,7 @@ import TCGKeywordPopup from "./TCGKeywordPopup"
 // MUI imports
 import { useTheme } from "@mui/material/styles"
 import { Box, Typography, Button, Dialog, Chip, Avatar } from "@mui/material"
-import Grid from "@mui/material/Unstable_Grid2"
+import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { addActionCard, removeActionCard } from "../../redux/reducers/DeckReducer"
@@ -144,7 +144,7 @@ function TCGActionCardPopup(props: any) {
                         }
                     </Box>
                 </Box>
-                <Grid xs>
+                <Grid size="auto">
                     <Box
                         sx={{
                             display: "flex",

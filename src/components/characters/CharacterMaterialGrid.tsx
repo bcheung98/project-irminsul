@@ -1,7 +1,7 @@
 // MUI imports
 import { useTheme } from "@mui/material/styles"
 import { Box } from "@mui/material"
-import Grid from "@mui/material/Unstable_Grid2"
+import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { CustomTooltip } from "../../helpers/CustomTooltip"
@@ -25,7 +25,7 @@ function CharacterMaterialGrid(props: any) {
     return (
         <Box sx={{ ml: "10px" }}>
             <Grid container spacing={1}>
-                <Grid xs="auto">
+                <Grid size="auto">
                     <CustomTooltip title={formatTalents(talentBook)} arrow placement="top">
                         <img style={materialImage} src={(`${process.env.REACT_APP_URL}/materials/talent_mats/${talentBook}3.png`)} alt={talentBook} onError={ErrorLoadingImage} />
                     </CustomTooltip>
