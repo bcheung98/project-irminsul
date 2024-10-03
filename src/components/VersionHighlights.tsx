@@ -167,7 +167,7 @@ function VersionHighlights(props: any) {
             </AppBar>
 
             <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "18pt", color: `${theme.text.color}`, mx: "30px", my: "20px" }}>
-                {updates[index].version} - {updates[index].name}
+                {updates[index].version} - <i>{updates[index].name}</i>
             </Typography>
 
             {/* NEW CHARACTERS */}
