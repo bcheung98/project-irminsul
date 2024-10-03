@@ -55,166 +55,165 @@ function CharacterPage(props: any) {
 
         return (
             <React.Fragment>
-                <Grid container sx={{ mb: "20px" }}>
-                    <Grid size="auto">
-                        <img src={`${process.env.REACT_APP_URL}/characters/wish/${name.split(" ").join("_")}.png`} alt={name}
-                            onClick={() => handleClickOpen()}
-                            style={{
-                                width: "35vw",
-                                height: "600px",
-                                objectFit: "cover",
-                                marginLeft: "15px",
-                                marginTop: "15px",
-                                border: `1px solid ${theme.border.color}`,
-                                borderRadius: "5px",
-                                backgroundColor: `${theme.paper.backgroundColor}`,
-                                cursor: "pointer",
-                            }}
-                            onError={ErrorLoadingImage}
-                        />
-                        <Box
-                            sx={{
-                                border: `1px solid ${theme.border.color}`,
-                                borderRadius: "5px",
-                                color: `${theme.text.color}`,
-                                backgroundColor: `${theme.paper.backgroundColor}`,
-                                ml: "15px",
-                                mt: "10px",
-                                px: "20px",
-                                py: "10px",
-                                width: "32.9vw",
-                            }}
-                        >
+                <Grid container spacing={3}>
+                    <Grid size="auto" sx={{ mb: "20px" }}>
+                        <Box>
+                            <img src={`${process.env.REACT_APP_URL}/characters/wish/${name.split(" ").join("_")}.png`} alt={name}
+                                onClick={() => handleClickOpen()}
+                                style={{
+                                    width: "30vw",
+                                    height: "600px",
+                                    objectFit: "cover",
+                                    border: `1px solid ${theme.border.color}`,
+                                    borderRadius: "5px",
+                                    backgroundColor: `${theme.paper.backgroundColor}`,
+                                    cursor: "pointer",
+                                }}
+                                onError={ErrorLoadingImage}
+                            />
                             <Box
                                 sx={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                }}>
-                                <Box sx={{ textAlign: "left" }}>
-                                    <Typography variant="body2"><b>Constellation</b></Typography>
-                                    <Typography variant="body2"><b>Birthday</b></Typography>
-                                    <Typography variant="body2"><b>Release Date</b></Typography>
-                                    <Typography variant="body2"><b>Voice Actor (EN)</b></Typography>
-                                    <Typography variant="body2"><b>Voice Actor (JP)</b></Typography>
-                                </Box>
-                                <Box sx={{ textAlign: "right" }}>
-                                    <Typography variant="body2">{constellation.name}</Typography>
-                                    <Typography variant="body2">{birthday}</Typography>
-                                    <Typography variant="body2">{`${release.date} (${release.version})`}</Typography>
-                                    <Typography variant="body2">{voiceActors["en"]}</Typography>
-                                    <Typography variant="body2">{voiceActors["jp"]}</Typography>
-                                </Box>
-                            </Box>
-                        </Box>
-                    </Grid>
-                    <Grid size="auto">
-                        <Box
-                            sx={{
-                                p: "5px",
-                                mx: "15px",
-                                marginTop: "15px",
-                                border: `1px solid ${theme.border.color}`,
-                                borderRadius: "5px",
-                                backgroundColor: `${theme.paper.backgroundColor}`,
-                            }}
-                        >
-                            <Box sx={{ display: "flex" }}>
-                                <CustomTooltip title={`${nation} / ${element}`} arrow placement="bottom">
-                                    <Avatar sx={{ marginRight: "-20px", height: "128px", width: "128px", backgroundColor: `${theme.paper.backgroundColor}` }} src={visionIcon} alt={`${nation} / ${element}`}>
-                                        <img style={{ height: "72px", width: "72px" }} src={`${process.env.REACT_APP_URL}/elements/${element}.png`} alt={`${element}`} onError={ErrorLoadingImage} />
-                                    </Avatar>
-                                </CustomTooltip>
-                                <Box sx={{ ml: "20px" }}>
-                                    <Typography
-                                        variant="h4"
-                                        noWrap
-                                        sx={{
-                                            mt: "10px",
-                                            display: { xs: "none", md: "flex" },
-                                            fontFamily: `${theme.font.genshin.family}`,
-                                            color: `${theme.text.color}`,
-                                            textDecoration: "none",
-                                            textAlign: "center",
-                                        }}
-                                    >
-                                        {character.fullname ? character.fullname : name}
-                                    </Typography>
-                                    <Typography
-                                        variant="body1"
-                                        noWrap
-                                        sx={{
-                                            my: "2px",
-                                            display: { xs: "none", md: "flex" },
-                                            fontFamily: `${theme.font.genshin.family}`,
-                                            color: `${theme.text.color}`,
-                                            fontStyle: "italic",
-                                            textAlign: "center",
-                                        }}
-                                    >
-                                        {title}
-                                    </Typography>
-                                    <Box
-                                        sx={{
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "left",
-                                            color: `${theme.text.color}`
-                                        }}
-                                    >
-                                        <Box sx={{ marginLeft: "-5px" }}>
-                                            <img style={{ height: "30px" }} src={`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`} alt={rarity} onError={ErrorLoadingImage} />
-                                        </Box>
-                                        <Box sx={{ marginLeft: "5px" }}>
-                                            <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
-                                                • {weapon}
-                                            </Typography>
-                                        </Box>
+                                    px: "20px",
+                                    py: "10px",
+                                    mt: "15px",
+                                    width: "30vw",
+                                    border: `1px solid ${theme.border.color}`,
+                                    borderRadius: "5px",
+                                    color: `${theme.text.color}`,
+                                    backgroundColor: `${theme.paper.backgroundColor}`,
+                                }}
+                            >
+                                <Box
+                                    sx={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                    }}>
+                                    <Box sx={{ textAlign: "left" }}>
+                                        <Typography variant="body2"><b>Constellation</b></Typography>
+                                        <Typography variant="body2"><b>Birthday</b></Typography>
+                                        <Typography variant="body2"><b>Release Date</b></Typography>
+                                        <Typography variant="body2"><b>Voice Actor (EN)</b></Typography>
+                                        <Typography variant="body2"><b>Voice Actor (JP)</b></Typography>
+                                    </Box>
+                                    <Box sx={{ textAlign: "right" }}>
+                                        <Typography variant="body2">{constellation.name}</Typography>
+                                        <Typography variant="body2">{birthday}</Typography>
+                                        <Typography variant="body2">{`${release.date} (${release.version})`}</Typography>
+                                        <Typography variant="body2">{voiceActors["en"]}</Typography>
+                                        <Typography variant="body2">{voiceActors["jp"]}</Typography>
                                     </Box>
                                 </Box>
                             </Box>
-                            <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "0px 15px 15px 15px" }} />
-                            <Typography
-                                variant="body2"
-                                sx={{
-                                    mb: "20px",
-                                    mx: "25px",
-                                    fontFamily: `${theme.font.genshin.family}`,
-                                    color: `${theme.text.color}`,
-                                }}
-                            >
-                                <i>{description}</i>
-                            </Typography>
-                        </Box>
-                        <Box
-                            sx={{
-                                p: 0,
-                                mx: "15px",
-                                marginTop: "15px",
-                                border: `1px solid ${theme.border.color}`,
-                                borderRadius: "5px",
-                                backgroundColor: `${theme.paper.backgroundColor}`,
-                            }}
-                        >
-                            <AppBar position="static"
-                                sx={{
-                                    backgroundColor: `${theme.appbar.backgroundColor}`,
-                                    borderBottom: `1px solid ${theme.border.color}`,
-                                    borderRadius: "5px 5px 0px 0px",
-                                }}
-                            >
-                                <Tabs value={tabValue} onChange={handleTabChange}>
-                                    <StyledTab label="Stats" />
-                                    <StyledTab label="Ascension" />
-                                </Tabs>
-                            </AppBar>
-                            <TabPanel value={tabValue} index={0}>
-                                <CharacterStatsTable character={character} />
-                            </TabPanel>
-                            <TabPanel value={tabValue} index={1}>
-                                <CharacterAscension character={character} />
-                            </TabPanel>
                         </Box>
                     </Grid>
+                    <Grid size="grow" sx={{ mb: "20px" }}>
+                        <Box>
+                            <Box
+                                sx={{
+                                    p: "5px",
+                                    border: `1px solid ${theme.border.color}`,
+                                    borderRadius: "5px",
+                                    backgroundColor: `${theme.paper.backgroundColor}`,
+                                }}
+                            >
+                                <Box sx={{ display: "flex" }}>
+                                    <CustomTooltip title={`${nation} / ${element}`} arrow placement="bottom">
+                                        <Avatar sx={{ marginRight: "-20px", height: "128px", width: "128px", backgroundColor: `${theme.paper.backgroundColor}` }} src={visionIcon} alt={`${nation} / ${element}`}>
+                                            <img style={{ height: "72px", width: "72px" }} src={`${process.env.REACT_APP_URL}/elements/${element}.png`} alt={`${element}`} onError={ErrorLoadingImage} />
+                                        </Avatar>
+                                    </CustomTooltip>
+                                    <Box sx={{ ml: "20px" }}>
+                                        <Typography
+                                            variant="h4"
+                                            noWrap
+                                            sx={{
+                                                mt: "10px",
+                                                display: { xs: "none", md: "flex" },
+                                                fontFamily: `${theme.font.genshin.family}`,
+                                                color: `${theme.text.color}`,
+                                                textDecoration: "none",
+                                                textAlign: "center",
+                                            }}
+                                        >
+                                            {character.fullname ? character.fullname : name}
+                                        </Typography>
+                                        <Typography
+                                            variant="body1"
+                                            noWrap
+                                            sx={{
+                                                my: "2px",
+                                                display: { xs: "none", md: "flex" },
+                                                fontFamily: `${theme.font.genshin.family}`,
+                                                color: `${theme.text.color}`,
+                                                fontStyle: "italic",
+                                                textAlign: "center",
+                                            }}
+                                        >
+                                            {title}
+                                        </Typography>
+                                        <Box
+                                            sx={{
+                                                display: "flex",
+                                                alignItems: "center",
+                                                justifyContent: "left",
+                                                color: `${theme.text.color}`
+                                            }}
+                                        >
+                                            <Box sx={{ marginLeft: "-5px" }}>
+                                                <img style={{ height: "30px" }} src={`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`} alt={rarity} onError={ErrorLoadingImage} />
+                                            </Box>
+                                            <Box sx={{ marginLeft: "5px" }}>
+                                                <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
+                                                    • {weapon}
+                                                </Typography>
+                                            </Box>
+                                        </Box>
+                                    </Box>
+                                </Box>
+                                <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "0px 15px 15px 15px" }} />
+                                <Typography
+                                    variant="body2"
+                                    sx={{
+                                        mb: "20px",
+                                        mx: "25px",
+                                        fontFamily: `${theme.font.genshin.family}`,
+                                        color: `${theme.text.color}`,
+                                    }}
+                                >
+                                    <i>{description}</i>
+                                </Typography>
+                            </Box>
+                            <Box
+                                sx={{
+                                    p: 0,
+                                    mt: "15px",
+                                    border: `1px solid ${theme.border.color}`,
+                                    borderRadius: "5px",
+                                    backgroundColor: `${theme.paper.backgroundColor}`,
+                                }}
+                            >
+                                <AppBar position="static"
+                                    sx={{
+                                        backgroundColor: `${theme.appbar.backgroundColor}`,
+                                        borderBottom: `1px solid ${theme.border.color}`,
+                                        borderRadius: "5px 5px 0px 0px",
+                                    }}
+                                >
+                                    <Tabs value={tabValue} onChange={handleTabChange}>
+                                        <StyledTab label="Stats" />
+                                        <StyledTab label="Ascension" />
+                                    </Tabs>
+                                </AppBar>
+                                <TabPanel value={tabValue} index={0}>
+                                    <CharacterStatsTable character={character} />
+                                </TabPanel>
+                                <TabPanel value={tabValue} index={1}>
+                                    <CharacterAscension character={character} />
+                                </TabPanel>
+                            </Box>
+                        </Box>
+                    </Grid>
+
                 </Grid>
                 <CharacterTalentDisplay character={character} />
                 <CharacterConstellationDisplay character={character} />
@@ -223,9 +222,11 @@ function CharacterPage(props: any) {
                     onClose={handleClose}
                     maxWidth={false}
                 >
-                    <CharacterOutfitDisplay character={character} />
+                    <Box sx={{ border: `2px solid ${theme.border.color}`, backgroundColor: `${theme.paper.backgroundColor}` }}>
+                        <CharacterOutfitDisplay character={character} />
+                    </Box>
                 </Dialog>
-            </React.Fragment>
+            </React.Fragment >
         )
     }
     else {

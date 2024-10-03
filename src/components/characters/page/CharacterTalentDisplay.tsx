@@ -21,7 +21,6 @@ function CharacterTalentDisplay(props: any) {
     return (
         <Box
             sx={{
-                mx: "15px",
                 color: `${theme.text.color}`,
                 backgroundColor: `${theme.paper.backgroundColor}`,
                 border: `1px solid ${theme.border.color}`,

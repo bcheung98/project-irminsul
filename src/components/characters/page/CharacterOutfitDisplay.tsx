@@ -43,80 +43,80 @@ function CharacterOutfitDisplay(props: any) {
     }
 
     return (
-        <Box
+        <Grid
+            container
             sx={{
                 width: "80vw",
-                backgroundColor: `${theme.paper.backgroundColor}`,
-                border: `2px solid ${theme.border.color}`,
                 borderRadius: "5px",
             }}
         >
-            <Grid container>
-                <Grid sx={{ backgroundColor: `${theme.toolbar.backgroundColor}`, width: "128px" }}>
-                    <Tabs
-                        orientation="vertical"
-                        variant="scrollable"
-                        scrollButtons="auto"
-                        value={tabValue}
-                        onChange={handleChangeTab}
-                    >
-                        {
-                            outfits.map((outfit, index) => (
-                                <StyledTab
-                                    key={index}
-                                    label={
-                                        index === 0 ?
-                                            <img src={`${process.env.REACT_APP_URL}/characters/icons/${name.split(" ").join("_")}.png`} alt={outfit.name} style={OutfitIcon(outfit.rarity)} onError={ErrorLoadingImage} />
-                                            :
-                                            <img src={`${process.env.REACT_APP_URL}/characters/outfits/icon/${outfit.name.split(" ").join("_")}.png`} alt={outfit.name} style={OutfitIcon(outfit.rarity)} onError={ErrorLoadingImage} />
-                                    }
-                                />
-                            ))
-                        }
-                    </Tabs>
-                </Grid>
-                <Grid size="auto">
+            <Grid sx={{ backgroundColor: `${theme.toolbar.backgroundColor}`, width: "128px" }}>
+                <Tabs
+                    orientation="vertical"
+                    variant="scrollable"
+                    scrollButtons="auto"
+                    value={tabValue}
+                    onChange={handleChangeTab}
+                >
                     {
-                        outfits.map((outfit, index) => {
-                            return (
-                                <TabPanel
-                                    key={index}
-                                    index={index}
-                                    value={tabValue}
+                        outfits.map((outfit, index) => (
+                            <StyledTab
+                                key={index}
+                                label={
+                                    index === 0 ?
+                                        <img src={`${process.env.REACT_APP_URL}/characters/icons/${name.split(" ").join("_")}.png`} alt={outfit.name} style={OutfitIcon(outfit.rarity)} onError={ErrorLoadingImage} />
+                                        :
+                                        <img src={`${process.env.REACT_APP_URL}/characters/outfits/icon/${outfit.name.split(" ").join("_")}.png`} alt={outfit.name} style={OutfitIcon(outfit.rarity)} onError={ErrorLoadingImage} />
+                                }
+                            />
+                        ))
+                    }
+                </Tabs>
+            </Grid>
+            <Grid size="grow">
+                {
+                    outfits.map((outfit, index) => {
+                        return (
+                            <TabPanel
+                                key={index}
+                                index={index}
+                                value={tabValue}
+                            >
+                                <Typography
+                                    variant="h6"
+                                    sx={{
+                                        mb: "10px",
+                                        fontFamily: `${theme.font.genshin.family}`,
+                                        color: `${theme.text.color}`,
+                                    }}
                                 >
-                                    <Typography
-                                        variant="h6"
-                                        sx={{
-                                            mb: "10px",
-                                            fontFamily: `${theme.font.genshin.family}`,
-                                            color: `${theme.text.color}`,
-                                        }}
-                                    >
-                                        {outfit.displayName ? outfit.displayName : outfit.name}
-                                    </Typography>
-                                    <Typography
-                                        variant="body2"
-                                        sx={{
-                                            mb: "20px",
-                                            fontFamily: `${theme.font.genshin.family}`,
-                                            color: `${theme.text.color}`,
-                                        }}
-                                    >
-                                        <i>{parse(outfit.description)}</i>
-                                    </Typography>
+                                    {outfit.displayName ? outfit.displayName : outfit.name}
+                                </Typography>
+                                <Typography
+                                    variant="body2"
+                                    sx={{
+                                        mb: "20px",
+                                        fontFamily: `${theme.font.genshin.family}`,
+                                        color: `${theme.text.color}`,
+                                    }}
+                                >
+                                    <i>{parse(outfit.description)}</i>
+                                </Typography>
+                                <Box sx={{ width: "100%", height: "auto", aspectRatio: "2/1" }}>
                                     {
                                         index === 0 ?
                                             <img src={`${process.env.REACT_APP_URL}/characters/wish/${name.split(" ").join("_")}.png`} alt={outfit.name} style={OutfitSplash} onError={ErrorLoadingImage} />
                                             :
                                             <img src={`${process.env.REACT_APP_URL}/characters/outfits/splash/${outfit.name.split(" ").join("_")}.png`} alt={outfit.name} style={OutfitSplash} onError={ErrorLoadingImage} />
                                     }
-                                </TabPanel>
-                            )
-                        })
-                    }
-                </Grid>
+                                </Box>
+                            </TabPanel>
+                        )
+                    })
+                }
             </Grid>
-        </Box>
+        </Grid>
+
     )
 }
 

@@ -17,7 +17,6 @@ function CharacterConstellationDisplay(props: any) {
     return (
         <Box
             sx={{
-                mx: "15px",
                 mt: "15px",
                 color: `${theme.text.color}`,
                 backgroundColor: `${theme.paper.backgroundColor}`,
