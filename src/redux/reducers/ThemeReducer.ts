@@ -5,8 +5,8 @@ import { defaultTheme } from "../../themes/defaultTheme"
 import { legacyTheme } from "../../themes/legacyTheme"
 
 export const themes = [
+    { name: "Legacy", theme: legacyTheme },
     { name: "Default", theme: defaultTheme },
-    { name: "Legacy", theme: legacyTheme }
 ]
 
 export interface ThemeState {
