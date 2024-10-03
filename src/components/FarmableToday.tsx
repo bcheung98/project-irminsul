@@ -4,7 +4,6 @@ import { connect } from "react-redux"
 
 // MUI imports
 import { Box, Button, ButtonBase, Typography, CardHeader, Tabs, Select, AppBar, SelectChangeEvent, Theme } from "@mui/material"
-import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { MaterialDates } from "../helpers/MaterialDates"
@@ -19,18 +18,17 @@ import { RootState } from "../redux/store"
 import { CharacterData } from "../types/character/CharacterData"
 import { WeaponData } from "../types/weapon/WeaponData"
 
-const IconBackground = (rarity: number, theme: Theme) => {
+const IconStyle = (rarity: number, theme: Theme) => {
     return {
-        margin: "auto",
-        ml: "2px",
         border: `1px solid ${theme.border.color}`,
         borderRadius: "5px",
         width: "64px",
         height: "64px",
-        backgroundColor: "rgb(9, 24, 39)",
+        boxSizing: "content-box",
+        backgroundColor: `${theme.materialImage.backgroundColor}`,
         backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
         backgroundSize: "100%"
-    }
+    } as React.CSSProperties
 }
 
 function FarmableToday(props: any) {
@@ -61,10 +59,6 @@ function FarmableToday(props: any) {
                 backgroundColor: `${theme.paper.backgroundColor}`,
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
-                display: "block",
-                margin: "auto",
-                mt: "20px",
-                width: "30vw",
                 color: `${theme.text.color}`,
             }}
         >
@@ -74,15 +68,16 @@ function FarmableToday(props: any) {
                     borderBottom: `1px solid ${theme.border.color}`,
                     borderRadius: "5px 5px 0px 0px",
                     p: "10px",
+                    height: "70px"
                 }}
             >
                 <Box
                     sx={{
                         display: "flex",
-                        justifyContent: "space-between"
+                        justifyContent: "space-between",
                     }}
                 >
-                    <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, ml: "5px", mt: "5px" }}>
+                    <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, ml: "5px", lineHeight: "45px" }}>
                         Farming Schedule
                     </Typography>
                     <Select
@@ -100,7 +95,14 @@ function FarmableToday(props: any) {
                             weekday.map((day: string, index: number) => (
                                 <CustomMenuItem key={index} value={day}>
                                     {
-                                        day === today ? <Typography sx={{ fontFamily: `${theme.font.genshin.family}` }}>{day} {"(Today)"}</Typography> : <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>{day}</Typography>
+                                        day === today ?
+                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}` }}>
+                                                {day} {"(Today)"}
+                                            </Typography>
+                                            :
+                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}` }}>
+                                                {day}
+                                            </Typography>
                                     }
                                 </CustomMenuItem>
                             ))
@@ -126,17 +128,15 @@ function FarmableToday(props: any) {
                                     }
                                     sx={{ p: 0, mb: "5px" }}
                                 />
-                                <Grid>
-                                    {
-                                        characters.filter((char: CharacterData) => farmableMats["talents"][index].includes(char.materials.talentBook as string)).map((char: CharacterData, index: number) => (
-                                            <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${char.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
-                                                <CustomTooltip title={char.name} arrow placement="top">
-                                                    <img src={(`${process.env.REACT_APP_URL}/characters/icons/${char.name.split(" ").join("_")}.png`)} alt={char.name} style={IconBackground(char.rarity, theme)} onError={ErrorLoadingImage} />
-                                                </CustomTooltip>
-                                            </ButtonBase>
-                                        ))
-                                    }
-                                </Grid>
+                                {
+                                    characters.filter((char: CharacterData) => farmableMats["talents"][index].includes(char.materials.talentBook as string)).map((char: CharacterData, index: number) => (
+                                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${char.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
+                                            <CustomTooltip title={char.name} arrow placement="top">
+                                                <img src={(`${process.env.REACT_APP_URL}/characters/icons/${char.name.split(" ").join("_")}.png`)} alt={char.name} style={IconStyle(char.rarity, theme)} onError={ErrorLoadingImage} />
+                                            </CustomTooltip>
+                                        </ButtonBase>
+                                    ))
+                                }
                                 <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
                             </Box>
                         ))
@@ -160,17 +160,15 @@ function FarmableToday(props: any) {
                                     }
                                     sx={{ p: 0, mb: "5px" }}
                                 />
-                                <Grid>
-                                    {
-                                        weapons.filter((wep: WeaponData) => farmableMats["weapons"][index].includes(wep.materials.ascensionMat as string)).sort((a: WeaponData, b: WeaponData) => b.rarity - a.rarity).map((wep: WeaponData, index: number) => (
-                                            <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${wep.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
-                                                <CustomTooltip title={wep.name} arrow placement="top">
-                                                    <img src={(`${process.env.REACT_APP_URL}/weapons/${wep.name.split(" ").join("_")}.png`)} alt={wep.name} style={IconBackground(wep.rarity, theme)} onError={ErrorLoadingImage} />
-                                                </CustomTooltip>
-                                            </ButtonBase>
-                                        ))
-                                    }
-                                </Grid>
+                                {
+                                    weapons.filter((wep: WeaponData) => farmableMats["weapons"][index].includes(wep.materials.ascensionMat as string)).sort((a: WeaponData, b: WeaponData) => b.rarity - a.rarity).map((wep: WeaponData, index: number) => (
+                                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${wep.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
+                                            <CustomTooltip title={wep.name} arrow placement="top">
+                                                <img src={(`${process.env.REACT_APP_URL}/weapons/${wep.name.split(" ").join("_")}.png`)} alt={wep.name} style={IconStyle(wep.rarity, theme)} onError={ErrorLoadingImage} />
+                                            </CustomTooltip>
+                                        </ButtonBase>
+                                    ))
+                                }
                                 <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
                             </Box>
                         ))

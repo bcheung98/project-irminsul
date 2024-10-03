@@ -12,60 +12,32 @@ function WeaponCardLarge(props: any) {
 
     let { name, type, rarity } = props.weapon
 
-    const width = "200px"
-
-    const smallIcon = {
-        width: "30px",
-        marginTop: "5px",
-        marginLeft: "1.5px",
-        marginRight: "1.5px"
-    }
-
-    const weaponIcon = {
-        width: width,
-        borderRadius: "5px 5px 0px 0px",
-        borderBottom: `1px solid ${theme.border.color}`,
-        cursor: "pointer",
-        backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
-        backgroundSize: "100%",
-    }
-
-    const CardStyle = (viewSource = "grid") => {
-        if (viewSource === "version-highlights") {
-            return {
-                width: width,
-                mx: "auto",
-                mb: "20px",
-                backgroundColor: `${theme.card.backgroundColor}`,
-                border: `1px solid ${theme.border.color}`,
-                borderRadius: "5px",
-            }
-        }
-        else {
-            return {
-                width: width,
-                mr: "20px",
-                mb: "20px",
-                backgroundColor: `${theme.card.backgroundColor}`,
-                border: `1px solid ${theme.border.color}`,
-                borderRadius: "5px",
-            }
-        }
-    }
+    const size = "150px"
 
     return (
-        <Card sx={CardStyle(props.viewSource)}>
+        <Card
+            sx={{
+                position: "relative",
+                zIndex: 0,
+                width: size,
+                backgroundColor: `${theme.card.backgroundColor}`,
+                border: `1px solid ${theme.border.color}`,
+                borderRadius: "5px",
+            }}
+        >
             <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                <Box>
-                    <Box
-                        sx={{
-                            width: width,
-                            height: "200px",
-                        }}
-                    >
-                        <img src={(`${process.env.REACT_APP_URL}/weapons/${name.split(" ").join("_")}.png`)} alt={name} style={weaponIcon} onError={ErrorLoadingImage} />
-                    </Box>
-                </Box>
+                <img src={`${process.env.REACT_APP_URL}/weapons/${name.split(" ").join("_")}.png`} alt={name}
+                    style={{
+                        position: "relative",
+                        zIndex: -1,
+                        width: size,
+                        height: size,
+                        backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
+                        backgroundSize: "100%",
+                        cursor: "pointer",
+                    }}
+                    onError={ErrorLoadingImage}
+                />
             </ButtonBase>
             <CardContent
                 sx={{
@@ -79,23 +51,23 @@ function WeaponCardLarge(props: any) {
                         display: "block",
                         margin: "auto",
                         marginTop: "-5px",
-                        marginBottom: "5px",
+                        marginBottom: "10px",
                         height: "25px",
                     }}
                     onError={ErrorLoadingImage}
                 />
-                <CustomTooltip title={type} arrow placement="top">
-                    <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/weapons/icons/${type}.png`)} alt={type} onError={ErrorLoadingImage} />
-                </CustomTooltip>
                 <Box>
-                    <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                        <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
-                            {name}
-                        </Typography>
-                    </ButtonBase>
+                    <CustomTooltip title={type} arrow placement="top">
+                        <img style={{ width: "32px", marginTop: "5px", marginLeft: "1.5px", marginRight: "1.5px" }} src={(`${process.env.REACT_APP_URL}/weapons/icons/${type}.png`)} alt={type} onError={ErrorLoadingImage} />
+                    </CustomTooltip>
                 </Box>
+                <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                    <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
+                        {name}
+                    </Typography>
+                </ButtonBase>
             </CardContent>
-        </Card >
+        </Card>
     )
 
 }

@@ -94,10 +94,6 @@ function VersionHighlights(props: any) {
                 backgroundColor: `${theme.paper.backgroundColor}`,
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
-                display: "block",
-                margin: "auto",
-                mt: "20px",
-                width: "45vw",
                 color: `${theme.text.color}`,
             }}
         >
@@ -107,65 +103,78 @@ function VersionHighlights(props: any) {
                     borderBottom: `1px solid ${theme.border.color}`,
                     borderRadius: "5px 5px 0px 0px",
                     p: "10px",
+                    height: "70px"
                 }}
             >
-                <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, ml: "5px", mt: "5px" }}>
-                    Version Highlights
-                </Typography>
-            </AppBar>
-            <Box
-                sx={{
-                    display: "flex",
-                    margin: "auto",
-                    mt: "20px",
-                    width: "500px"
-                }}
-            >
-                {
-                    index < updates.length - 1 &&
-                    <IconButton onClick={handleIndexChangeLeft}>
-                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, mb: "20px" }}>
-                            {`<`}
-                        </Typography>
-                    </IconButton>
-                }
-                <Select
-                    value={index.toString()}
-                    label="Version"
-                    onChange={handleIndexChange}
-                    input={<CustomInput />}
+                <Box
                     sx={{
-                        mx: "5px",
-                        mb: "20px",
-                        width: "500px",
-                        "& .MuiSelect-icon": {
-                            color: "white"
-                        }
+                        display: "flex",
+                        justifyContent: "space-between",
                     }}
                 >
-                    {
-                        updates.map((version, index) => (
-                            <CustomMenuItem key={index} value={index}>
-                                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt", textAlign: "center", color: `${theme.text.color}` }}>{version.version} - {version.name}</Typography>
-                            </CustomMenuItem>
-                        ))
-                    }
-                </Select>
-                {
-                    index > 0 &&
-                    <IconButton onClick={handleIndexChangeRight}>
-                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, mb: "20px" }}>
-                            {`>`}
-                        </Typography>
-                    </IconButton>
-                }
-            </Box>
+                    <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, ml: "5px", lineHeight: "45px" }}>
+                        Version Highlights
+                    </Typography>
+                    <Box sx={{ display: "flex" }}>
+                        {
+                            index < updates.length - 1 ?
+                                <Box sx={{ width: "32px" }}>
+                                    <IconButton onClick={handleIndexChangeLeft}>
+                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, mt: "2px" }}>
+                                            {`<`}
+                                        </Typography>
+                                    </IconButton>
+                                </Box>
+                                :
+                                <Box sx={{ width: "32px" }} />
+                        }
+                        <Select
+                            value={index.toString()}
+                            label="Version"
+                            onChange={handleIndexChange}
+                            input={<CustomInput />}
+                            sx={{
+                                width: "75px",
+                                "& .MuiSelect-icon": {
+                                    color: "white"
+                                }
+                            }}
+                        >
+                            {
+                                updates.map((version, index) => (
+                                    <CustomMenuItem key={index} value={index}>
+                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt", color: `${theme.text.color}` }}>
+                                            {version.version}
+                                        </Typography>
+                                    </CustomMenuItem>
+                                ))
+                            }
+                        </Select>
+                        {
+                            index > 0 ?
+                                <Box sx={{ width: "32px" }}>
+                                    <IconButton onClick={handleIndexChangeRight}>
+                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, mt: "2px" }}>
+                                            {`>`}
+                                        </Typography>
+                                    </IconButton>
+                                </Box>
+                                :
+                                <Box sx={{ width: "32px" }} />
+                        }
+                    </Box>
+                </Box>
+            </AppBar>
+
+            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "18pt", color: `${theme.text.color}`, mx: "30px", my: "20px" }}>
+                {updates[index].version} - {updates[index].name}
+            </Typography>
 
             {/* NEW CHARACTERS */}
             {
                 characters.length > 0 &&
                 <Box sx={{ mx: "30px", mb: "20px" }}>
-                    <Typography variant="h5" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, textAlign: "center", mb: "20px" }}>
+                    <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, mb: "20px" }}>
                         New Characters
                     </Typography>
                     <Box>
@@ -176,7 +185,7 @@ function VersionHighlights(props: any) {
                         </Grid>
                     </Box>
                     {
-                        weapons.length > 0 || newCards ? <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "15px" }} /> : null
+                        weapons.length > 0 || newCards ? <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "25px 0px 25px 0px" }} /> : null
                     }
                 </Box>
             }
@@ -185,18 +194,18 @@ function VersionHighlights(props: any) {
             {
                 weapons.length > 0 &&
                 <Box sx={{ mx: "30px", my: "20px" }}>
-                    <Typography variant="h5" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, textAlign: "center", mb: "20px" }}>
+                    <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, mb: "20px" }}>
                         New Weapons
                     </Typography>
                     <Box>
                         <Grid container spacing={2}>
                             {
-                                weapons.map((wep: WeaponData, index: number) => <WeaponCardLarge key={index} weapon={wep} viewSource="version-highlights" />)
+                                weapons.map((wep: WeaponData, index: number) => <WeaponCardLarge key={index} weapon={wep} />)
                             }
                         </Grid>
                     </Box>
                     {
-                        artifacts.length > 0 || newCards ? <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "15px" }} /> : null
+                        artifacts.length > 0 || newCards ? <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "25px 0px 25px 0px" }} /> : null
                     }
                 </Box>
             }
@@ -205,22 +214,20 @@ function VersionHighlights(props: any) {
             {
                 artifacts.length > 0 &&
                 <Box sx={{ mx: "30px", mb: "20px" }}>
-                    <Typography variant="h5" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, textAlign: "center", mb: "20px" }}>
+                    <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, mb: "20px" }}>
                         New Artifacts
                     </Typography>
                     <Box>
                         <Grid container spacing={2}>
                             {
                                 artifacts.map((artifact: ArtifactData, index: number) => (
-                                    <Box sx={{ mx: "auto", my: "10px" }} key={index}>
-                                        <ArtifactCard artifact={artifact} />
-                                    </Box>
+                                    <ArtifactCard key={index} artifact={artifact} />
                                 ))
                             }
                         </Grid>
                     </Box>
                     {
-                        newCards ? <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "15px" }} /> : null
+                        newCards ? <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "25px 0px 25px 0px" }} /> : null
                     }
                 </Box>
             }
@@ -228,25 +235,21 @@ function VersionHighlights(props: any) {
             {/* NEW TCG CARDS */}
             {
                 newCards &&
-                <Box sx={{ mx: "10px", my: "20px" }}>
-                    <Typography variant="h5" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, textAlign: "center", mb: "30px" }}>
+                <Box sx={{ mx: "30px", my: "20px" }}>
+                    <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, mb: "30px" }}>
                         New TCG Cards
                     </Typography>
                     <Grid container>
                         {
                             characterCards.map((card: TCGCardData, index: number) => (
-                                <Box sx={{ mx: "auto", my: "10px" }} key={index}>
-                                    <TCGCharacterCard key={card.name} char={card} preview />
-                                </Box>
+                                <TCGCharacterCard key={index} char={card} preview />
                             ))
                         }
                     </Grid>
                     <Grid container>
                         {
                             actionCards.map((card: TCGCardData, index: number) => (
-                                <Box sx={{ mx: "auto", my: "10px" }} key={index}>
-                                    <TCGActionCard key={card.name} card={card} preview />
-                                </Box>
+                                <TCGActionCard key={index} card={card} preview />
                             ))
                         }
                     </Grid>
