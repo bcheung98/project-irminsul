@@ -103,7 +103,7 @@ function Nav(props: any) {
                             </ButtonBase>
                         </CustomTooltip>
                     </Box>
-                    <Box>
+                    {/* <Box>
                         <IconButton
                             onClick={handleSettingsClick}
                             size="small"
@@ -131,7 +131,7 @@ function Nav(props: any) {
                                 </Select>
                             </Box>
                         </Menu>
-                    </Box>
+                    </Box> */}
                 </Toolbar>
             </AppBar >
             <Drawer
