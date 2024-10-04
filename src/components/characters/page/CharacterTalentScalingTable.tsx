@@ -22,7 +22,7 @@ function CharacterTalentScalingTable(props: any) {
             sx={{
                 border: `2px solid ${theme.border.color}`,
                 borderRadius: "5px",
-                margin: "auto",
+                ml: "30px",
                 width: "95%",
             }}
         >
