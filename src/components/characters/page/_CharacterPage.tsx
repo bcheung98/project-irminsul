@@ -63,8 +63,8 @@ function CharacterPage(props: any) {
 
         return (
             <React.Fragment>
-                <Grid container spacing={3}>
-                    <Grid size="auto" sx={{ mb: "20px" }}>
+                <Grid container spacing={3} sx={{ mb: "20px" }}>
+                    <Grid size="auto">
                         <Box>
                             <img src={`${process.env.REACT_APP_URL}/characters/wish/${name.split(" ").join("_")}.png`} alt={name}
                                 onClick={() => handleClickOpen()}
@@ -96,10 +96,10 @@ function CharacterPage(props: any) {
                                             {
                                                 rows.map((row) => (
                                                     <TableRow key={row.key}>
-                                                        <TableCell sx={{ color: `${theme.text.color}`, border: "none" }}>
+                                                        <TableCell sx={{ color: `${theme.text.color}`, border: "none", py: "1.5px" }}>
                                                             <b>{row.key}</b>
                                                         </TableCell>
-                                                        <TableCell align="right" sx={{ color: `${theme.text.color}`, border: "none" }}>
+                                                        <TableCell align="right" sx={{ color: `${theme.text.color}`, border: "none", py: "1.5px" }}>
                                                             {row.value}
                                                         </TableCell>
                                                     </TableRow>
@@ -125,8 +125,15 @@ function CharacterPage(props: any) {
                                     <Grid size="auto">
                                         <Box sx={{ display: "flex" }}>
                                             <CustomTooltip title={`${nation} / ${element}`} arrow placement="bottom">
-                                                <Avatar variant="square" sx={{ marginRight: "-20px", height: "128px", width: "128px", backgroundColor: `${theme.paper.backgroundColor}` }} src={visionIcon} alt={`${nation} / ${element}`}>
-                                                    <img style={{ height: "64px", width: "64px" }} src={`${process.env.REACT_APP_URL}/elements/${element}.png`} alt={`${element}`} onError={ErrorLoadingImage} />
+                                                <Avatar
+                                                    src={visionIcon} alt={`${nation} / ${element}`}
+                                                    variant="square"
+                                                    sx={{ mr: "-20px", height: "128px", width: "128px", backgroundColor: `${theme.paper.backgroundColor}` }}
+                                                >
+                                                    <img src={`${process.env.REACT_APP_URL}/elements/${element}.png`} alt={`${element}`}
+                                                        style={{ height: "64px", width: "64px" }}
+                                                        onError={ErrorLoadingImage}
+                                                    />
                                                 </Avatar>
                                             </CustomTooltip>
                                             <Box sx={{ ml: "20px" }}>
