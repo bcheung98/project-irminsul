@@ -54,8 +54,6 @@ function WeaponPage(props: any) {
         else document.title = `${name} ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
         const weaponIcon = {
-            marginLeft: "15px",
-            marginTop: "5px",
             border: `1px solid ${theme.border.color}`,
             borderRadius: "5px",
             backgroundColor: `${theme.paper.backgroundColor}`,
@@ -65,24 +63,22 @@ function WeaponPage(props: any) {
 
         return (
             <React.Fragment>
-                <Grid container sx={{ mb: "20px", mt: "10px" }}>
+                <Grid container spacing={3}>
                     <Grid size="auto">
                         <img src={(`${process.env.REACT_APP_URL}/weapons/${name.split(" ").join("_")}.png`)} alt={name} style={weaponIcon} onError={ErrorLoadingImage} />
                     </Grid>
-                    <Grid size="auto">
+                    <Grid size="grow">
                         <Box
                             sx={{
                                 p: "15px",
-                                mx: "15px",
-                                mt: "5px",
                                 border: `1px solid ${theme.border.color}`,
                                 borderRadius: "5px",
                                 backgroundColor: `${theme.paper.backgroundColor}`,
                             }}
                         >
-                            <Box sx={{ display: "flex" }}>
+                            <Box sx={{ display: "flex", alignItems: "center" }}>
                                 <CustomTooltip title={`${type}`} arrow placement="bottom">
-                                    <Avatar variant="square" src={`${process.env.REACT_APP_URL}/weapons/icons/${type}.png`} alt={type} onError={ErrorLoadingImage} sx={{ marginRight: "-20px", height: "100px", width: "100px", backgroundColor: `${theme.paper.backgroundColor}` }} />
+                                    <img src={`${process.env.REACT_APP_URL}/weapons/icons/${type}.png`} alt={type} onError={ErrorLoadingImage} style={{ marginRight: "-20px", height: "96px", width: "96px", backgroundColor: `${theme.paper.backgroundColor}` }} />
                                 </CustomTooltip>
                                 <Box sx={{ ml: "30px" }}>
                                     <Typography
@@ -104,13 +100,13 @@ function WeaponPage(props: any) {
                                     </Box>
                                 </Box>
                             </Box>
-                            <hr style={{ border: ".5px solid rgb(30, 73, 118)", marginTop: "15px", marginBottom: "15px" }} />
+                            <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
                             <Typography
                                 variant="body2"
                                 sx={{
-                                    mx: "15px",
                                     fontFamily: `${theme.font.genshin.family}`,
                                     color: `${theme.text.color}`,
+                                    m: "5px"
                                 }}
                             >
                                 <i>{description}</i>
@@ -120,8 +116,8 @@ function WeaponPage(props: any) {
                             weapon.stats.passive.name !== "" &&
                             <Box
                                 sx={{
-                                    p: "15px",
-                                    mx: "15px",
+                                    px: "5px",
+                                    py: "15px",
                                     my: "15px",
                                     border: `1px solid ${theme.border.color}`,
                                     borderRadius: "5px",
@@ -150,7 +146,6 @@ function WeaponPage(props: any) {
                         <Box
                             sx={{
                                 p: 0,
-                                mx: "15px",
                                 marginTop: "15px",
                                 border: `1px solid ${theme.border.color}`,
                                 borderRadius: "5px",
@@ -178,8 +173,9 @@ function WeaponPage(props: any) {
                         </Box>
                     </Grid>
                 </Grid>
-            </React.Fragment >
+            </React.Fragment>
         )
+
     }
     else {
         return (

@@ -11,7 +11,7 @@ import CharacterOutfitDisplay from "./CharacterOutfitDisplay"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { Typography, Tabs, Box, Dialog, Avatar, AppBar } from "@mui/material"
+import { Typography, Tabs, Box, Dialog, Avatar, AppBar, Table, TableContainer, TableBody, TableRow, TableCell } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
@@ -50,6 +50,14 @@ function CharacterPage(props: any) {
 
         let visionIcon = nation === "Fontaine" ? `${process.env.REACT_APP_URL}/visions/${nation}_${element}_${character.arkhe}.png` : `${process.env.REACT_APP_URL}/visions/${nation}_${element}.png`
 
+        const rows = [
+            { key: "Constellation", value: constellation.name },
+            { key: "Birthday", value: birthday },
+            { key: "Release", value: `${release.date} (${release.version})` },
+            { key: "Voice Actor (EN)", value: voiceActors["en"] },
+            { key: "Voice Actor (JP)", value: voiceActors["jp"] },
+        ]
+
         if (character.fullname) document.title = `${character.fullname} ${process.env.REACT_APP_DOCUMENT_HEADER}`
         else document.title = `${name} ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
@@ -71,6 +79,36 @@ function CharacterPage(props: any) {
                                 }}
                                 onError={ErrorLoadingImage}
                             />
+                            <Box
+                                sx={{
+                                    py: "5px",
+                                    mt: "10px",
+                                    width: "30vw",
+                                    border: `1px solid ${theme.border.color}`,
+                                    borderRadius: "5px",
+                                    color: `${theme.text.color}`,
+                                    backgroundColor: `${theme.paper.backgroundColor}`,
+                                }}
+                            >
+                                <TableContainer>
+                                    <Table size="small">
+                                        <TableBody>
+                                            {
+                                                rows.map((row) => (
+                                                    <TableRow key={row.key}>
+                                                        <TableCell sx={{ color: `${theme.text.color}`, border: "none" }}>
+                                                            <b>{row.key}</b>
+                                                        </TableCell>
+                                                        <TableCell align="right" sx={{ color: `${theme.text.color}`, border: "none" }}>
+                                                            {row.value}
+                                                        </TableCell>
+                                                    </TableRow>
+                                                ))
+                                            }
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                            </Box>
                         </Box>
                     </Grid>
                     <Grid size="grow" sx={{ mb: "20px" }}>
@@ -88,7 +126,7 @@ function CharacterPage(props: any) {
                                         <Box sx={{ display: "flex" }}>
                                             <CustomTooltip title={`${nation} / ${element}`} arrow placement="bottom">
                                                 <Avatar variant="square" sx={{ marginRight: "-20px", height: "128px", width: "128px", backgroundColor: `${theme.paper.backgroundColor}` }} src={visionIcon} alt={`${nation} / ${element}`}>
-                                                    <img style={{ height: "72px", width: "72px" }} src={`${process.env.REACT_APP_URL}/elements/${element}.png`} alt={`${element}`} onError={ErrorLoadingImage} />
+                                                    <img style={{ height: "64px", width: "64px" }} src={`${process.env.REACT_APP_URL}/elements/${element}.png`} alt={`${element}`} onError={ErrorLoadingImage} />
                                                 </Avatar>
                                             </CustomTooltip>
                                             <Box sx={{ ml: "20px" }}>
@@ -124,14 +162,13 @@ function CharacterPage(props: any) {
                                                     sx={{
                                                         display: "flex",
                                                         alignItems: "center",
-                                                        justifyContent: "left",
                                                         color: `${theme.text.color}`
                                                     }}
                                                 >
-                                                    <Box sx={{ marginLeft: "-5px" }}>
+                                                    <Box sx={{ ml: "-5px" }}>
                                                         <img style={{ height: "30px" }} src={`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`} alt={rarity} onError={ErrorLoadingImage} />
                                                     </Box>
-                                                    <Box sx={{ marginLeft: "5px" }}>
+                                                    <Box sx={{ ml: "5px", mt: "-2.5px" }}>
                                                         <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                                                             • {weapon}
                                                         </Typography>
@@ -140,35 +177,8 @@ function CharacterPage(props: any) {
                                             </Box>
                                         </Box>
                                     </Grid>
-                                    <Grid size="grow" /> {/* Empty grid to create gap */}
-                                    <Grid size="auto">
-                                        <Box
-                                            sx={{
-                                                display: "flex",
-                                                justifyContent: "space-between",
-                                                color: `${theme.text.color}`,
-                                                px: 2,
-                                                mt: "10px"
-                                            }}
-                                        >
-                                            <Box sx={{ textAlign: "left" }}>
-                                                <Typography variant="body2"><b>Constellation</b></Typography>
-                                                <Typography variant="body2"><b>Birthday</b></Typography>
-                                                <Typography variant="body2"><b>Release Date</b></Typography>
-                                                <Typography variant="body2"><b>Voice Actor (EN)</b></Typography>
-                                                <Typography variant="body2"><b>Voice Actor (JP)</b></Typography>
-                                            </Box>
-                                            <Box sx={{ textAlign: "right", ml: "100px" }}>
-                                                <Typography variant="body2">{constellation.name}</Typography>
-                                                <Typography variant="body2">{birthday}</Typography>
-                                                <Typography variant="body2">{`${release.date} (${release.version})`}</Typography>
-                                                <Typography variant="body2">{voiceActors["en"]}</Typography>
-                                                <Typography variant="body2">{voiceActors["jp"]}</Typography>
-                                            </Box>
-                                        </Box>
-                                    </Grid>
                                 </Grid>
-                                <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "10px 15px 15px 15px" }} />
+                                <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "0px 15px 15px 15px" }} />
                                 <Typography
                                     variant="body2"
                                     sx={{
@@ -211,7 +221,6 @@ function CharacterPage(props: any) {
                             </Box>
                         </Box>
                     </Grid>
-
                 </Grid>
                 <CharacterTalentDisplay character={character} />
                 <CharacterConstellationDisplay character={character} />
@@ -224,8 +233,9 @@ function CharacterPage(props: any) {
                         <CharacterOutfitDisplay character={character} />
                     </Box>
                 </Dialog>
-            </React.Fragment >
+            </React.Fragment>
         )
+
     }
     else {
         return (
