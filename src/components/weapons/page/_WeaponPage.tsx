@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles"
 import parse from "html-react-parser"
 import { connect } from "react-redux"
 import { useParams } from "react-router-dom"
-import { Typography, Tabs, Box, AppBar, Avatar } from "@mui/material"
+import { Typography, Tabs, Box, AppBar } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import { TabPanel, StyledTab } from "../../../helpers/CustomTabs"
 import WeaponStatsTable from "./WeaponStatsTable"
@@ -135,10 +135,17 @@ function WeaponPage(props: any) {
                                 {
                                     weapon.stats.passive.scaling &&
                                     <Box sx={{ display: "flex", alignItems: "center", width: "20%", mt: "15px", mx: "15px", }}>
-                                        <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, width: "75px" }}>
+                                        <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, minWidth: "50px" }}>
                                             R{sliderValue}
                                         </Typography>
-                                        <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} />
+                                        <CustomSlider
+                                            value={sliderValue}
+                                            step={1}
+                                            min={1}
+                                            max={maxValue}
+                                            onChange={handleSliderChange}
+                                            sx={{ minWidth: "100px" }}
+                                        />
                                     </Box>
                                 }
                             </Box>
