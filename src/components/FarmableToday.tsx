@@ -25,8 +25,8 @@ const IconStyle = (rarity: number, theme: Theme) => {
         width: "64px",
         height: "64px",
         boxSizing: "content-box",
-        marginLeft: "2px",
-        marginRight: "2px",
+        marginRight: "5px",
+        marginBottom: "5px",
         backgroundColor: `${theme.materialImage.backgroundColor}`,
         backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
         backgroundSize: "100%"
@@ -79,7 +79,7 @@ function FarmableToday(props: any) {
                         justifyContent: "space-between",
                     }}
                 >
-                    <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, ml: "5px", lineHeight: "45px" }}>
+                    <Typography variant="h6" noWrap sx={{ fontFamily: `${theme.font.genshin.family}`, ml: "5px", lineHeight: "45px" }}>
                         Farming Schedule
                     </Typography>
                     <Select
@@ -124,7 +124,7 @@ function FarmableToday(props: any) {
                                 <CardHeader
                                     avatar={<img src={`${process.env.REACT_APP_URL}/materials/talent_mats/${mat}3.png`} alt={mat} style={{ width: "48px", marginRight: "-10px" }} />}
                                     title={
-                                        <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
+                                        <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                                             {mat}
                                         </Typography>
                                     }
@@ -151,7 +151,7 @@ function FarmableToday(props: any) {
                                 <CardHeader
                                     avatar={<img src={`${process.env.REACT_APP_URL}/materials/weapon_ascension_mats/${mat.split(" ").join("_")}4.png`} alt={mat} style={{ width: "48px", marginRight: "-10px" }} />}
                                     title={
-                                        <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
+                                        <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
                                             {mat}
                                         </Typography>
                                     }
