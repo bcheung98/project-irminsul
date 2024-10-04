@@ -2,7 +2,7 @@ import * as React from "react"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { Box, AppBar, Typography, Avatar } from "@mui/material"
+import { Box, AppBar, Typography } from "@mui/material"
 
 // Helper imports
 import { TabPanel, StyledTabsWithIndicator, StyledTab } from "../../helpers/CustomTabs"
@@ -20,19 +20,21 @@ function ArtifactPopup(props: any) {
         padding: "5px",
         border: `2px solid ${theme.border.color}`,
         borderRadius: "5px",
-    }
+        boxSizing: "content-box"
+    } as React.CSSProperties
 
-    let artifactIconBackground = {
+    const artifactImage = {
         width: "128px",
         height: "128px",
         border: `2px solid ${theme.border.color}`,
         borderRadius: "15px",
-        p: "10px",
-        mb: "20px",
+        padding: "10px",
+        marginBottom: "20px",
         backgroundColor: "rgb(32, 32, 32)",
         backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
         backgroundSize: "100%",
-    }
+        boxSizing: "content-box"
+    } as React.CSSProperties
 
     const [tabValue, setTabValue] = React.useState(0)
     const handleTabChange = (event: React.BaseSyntheticEvent, newValue: number) => {
@@ -72,9 +74,11 @@ function ArtifactPopup(props: any) {
                             <Typography variant="subtitle1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, mb: "20px" }}>
                                 <i>{formatPieceType(piece.type)}</i>
                             </Typography>
-                            <Avatar variant="square" src={`${process.env.REACT_APP_URL}/artifacts/sets/${name.split(" ").join("_")}/${piece.type}.png`} alt={piece.name} sx={artifactIconBackground}>
-                                <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "128px" }} />
-                            </Avatar>
+                            <img src={`${process.env.REACT_APP_URL}/artifacts/sets/${name.split(" ").join("_")}/${piece.type}.png`}
+                                alt={piece.name}
+                                style={artifactImage}
+                                onError={ErrorLoadingImage}
+                            />
                             {
                                 setEffect.onePiece &&
                                 <Typography variant="subtitle1" sx={{ color: `${theme.text.color}` }}>

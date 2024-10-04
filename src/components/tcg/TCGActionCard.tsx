@@ -32,7 +32,7 @@ function TCGActionCard(props: any) {
     }
 
     return (
-        <Box sx={{ mb: "20px" }}>
+        <Box>
             <Box
                 sx={{
                     width: "150px",
@@ -57,6 +57,7 @@ function TCGActionCard(props: any) {
                         border: `2px solid ${theme.border.color}`,
                         borderRadius: "18px",
                     }}
+                    loading="lazy"
                     onError={ErrorLoadingImage}
                 />
                 {/* Card Name */}

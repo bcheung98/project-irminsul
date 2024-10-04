@@ -60,11 +60,10 @@ function AscensionTotalCost(props: any) {
                     <Button
                         variant="contained"
                         sx={{
-                            mx: "20px",
-                            mb: "10px",
+                            my: "20px",
                             p: 1,
                         }}
-                        onClick={() => exportComponentAsJPEG(componentRef, { fileName: "Materials" })}
+                        onClick={() => exportComponentAsJPEG(componentRef, { fileName: "Materials.jpg" })}
                     >
                         Download as Image
                     </Button>
@@ -73,9 +72,7 @@ function AscensionTotalCost(props: any) {
                             border: `1px solid ${theme.border.color}`,
                             borderRadius: "5px",
                             backgroundColor: `${theme.paper.backgroundColor}`,
-                            mx: "20px",
                             mb: "30px",
-                            p: 1,
                         }}
                         ref={componentRef}
                     >

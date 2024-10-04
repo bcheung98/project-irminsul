@@ -73,7 +73,7 @@ function CharacterPage(props: any) {
                             />
                             <Box
                                 sx={{
-                                    px: "20px",
+                                    px: "10px",
                                     py: "10px",
                                     mt: "15px",
                                     width: "30vw",

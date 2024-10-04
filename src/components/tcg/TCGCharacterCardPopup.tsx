@@ -124,13 +124,8 @@ function TCGCharacterCardPopup(props: any) {
                 borderRadius: "5px",
             }}
         >
-            <Grid container sx={{ mt: "10px" }}>
-                <Box
-                    sx={{
-                        display: "flex",
-                        flexDirection: "column"
-                    }}
-                >
+            <Grid container spacing={2} sx={{ mt: "10px" }}>
+                <Grid size="auto">
                     <Box
                         sx={{
                             position: "relative",
@@ -139,49 +134,45 @@ function TCGCharacterCardPopup(props: any) {
                         }}
                     >
                         {/* HP Icon */}
-                        <React.Fragment>
+                        <Box
+                            sx={{
+                                position: "absolute",
+                                top: "-20px",
+                                left: "-20px",
+                            }}
+                        >
                             <Box
                                 sx={{
-                                    position: "absolute",
-                                    top: "-20px",
-                                    left: "-20px",
+                                    position: "relative",
+                                    textAlign: "center",
                                 }}
                             >
-                                <Box
+                                <img src={`${process.env.REACT_APP_URL}/tcg/icons/hp.png`} alt={hp} style={{ width: "80px" }} />
+                                <Typography
+                                    variant="h3"
                                     sx={{
-                                        position: "relative",
-                                        textAlign: "center",
-                                    }}
-                                >
-                                    <img src={`${process.env.REACT_APP_URL}/tcg/icons/hp.png`} alt={hp} style={{ width: "80px" }} />
-                                    <Typography
-                                        variant="h3"
-                                        sx={{
-                                            fontFamily: `${theme.font.genshin.family}`,
-                                            position: "absolute",
-                                            top: "50%",
-                                            left: "50%",
-                                            transform: "translate(-50%, -50%)",
-                                            color: `${theme.text.color}`,
-                                            textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
-                                            userSelect: "none"
-                                        }}>
-                                        {hp}
-                                    </Typography>
-                                </Box>
+                                        fontFamily: `${theme.font.genshin.family}`,
+                                        position: "absolute",
+                                        top: "50%",
+                                        left: "50%",
+                                        transform: "translate(-50%, -50%)",
+                                        color: `white`,
+                                        textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+                                        userSelect: "none"
+                                    }}>
+                                    {hp}
+                                </Typography>
                             </Box>
-                        </React.Fragment>
+                        </Box>
                         {/* Card Image */}
-                        <React.Fragment>
-                            <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}.png`} alt={name}
-                                style={{
-                                    width: "250px",
-                                    border: `2px solid ${theme.border.color}`,
-                                    borderRadius: "28px",
-                                }}
-                                onError={ErrorLoadingImage}
-                            />
-                        </React.Fragment>
+                        <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}.png`} alt={name}
+                            style={{
+                                width: "250px",
+                                border: `2px solid ${theme.border.color}`,
+                                borderRadius: "28px",
+                            }}
+                            onError={ErrorLoadingImage}
+                        />
                         {/* Card Splash Text */}
                         <React.Fragment>
                             {
@@ -202,8 +193,8 @@ function TCGCharacterCardPopup(props: any) {
                             }
                         </React.Fragment>
                     </Box>
-                </Box>
-                <Grid size="auto">
+                </Grid>
+                <Grid size="grow">
                     <Box
                         sx={{
                             display: "flex",
@@ -212,7 +203,7 @@ function TCGCharacterCardPopup(props: any) {
                         }}
                     >
                         <CustomTooltip title={element} arrow placement="top">
-                            <img src={(`${process.env.REACT_APP_URL}/elements/${element}.png`)} alt={element} onError={ErrorLoadingImage} style={{ marginRight: "10px", width: "64px", height: "64px" }} />
+                            <img src={(`${process.env.REACT_APP_URL}/elements/${element}.png`)} alt={element} onError={ErrorLoadingImage} style={{ marginRight: "15px", width: "64px", height: "64px" }} />
                         </CustomTooltip>
                         <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="h4">
                             {props.char.fullname ? props.char.fullname : name}

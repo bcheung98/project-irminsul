@@ -76,14 +76,13 @@ function TCGDeck(props: any) {
     let actionCards = deck.deck.actionCards
 
     return (
-        <Box sx={{ mx: "30px", mb: "20px" }}>
+        <Box>
             <Paper variant="outlined"
                 sx={{
                     color: `${theme.text.color}`,
                     backgroundColor: `${theme.table.body.backgroundColor}`,
                     border: `2px solid ${theme.border.color}`,
                     borderRadius: "5px",
-                    mb: "10px",
                 }}
             >
                 <Accordion>

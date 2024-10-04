@@ -130,7 +130,7 @@ function CharacterTalentDisplay(props: any) {
                                 </Accordion>
                             </Paper>
                         }
-                        {index !== Object.keys(talents).length - 1 && <hr style={{ border: ".5px solid rgb(30, 73, 118)", margin: "10px" }} />}
+                        {index !== Object.keys(talents).length - 1 && <hr style={{ border: `.5px solid ${theme.border.color}`, margin: "10px" }} />}
                     </Box>
                 )
             })}

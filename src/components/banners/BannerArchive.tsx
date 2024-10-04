@@ -8,6 +8,7 @@ import ChronicledWishList from "./ChronicledWishList"
 // MUI imports
 import { useTheme } from "@mui/material/styles"
 import { Box, Typography, ToggleButtonGroup } from "@mui/material"
+import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { CustomToggleButtonText } from "../../helpers/CustomToggleButton"
@@ -37,45 +38,39 @@ function BannerArchive(props: any) {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "left",
+                    mb: "20px",
+                    height: "30px",
                 }}
             >
                 <Typography
-                    variant="h4"
-                    noWrap
-                    component="a"
+                    variant="h5"
                     sx={{
-                        mx: "25px",
-                        my: "20px",
-                        display: { xs: "none", md: "flex" },
+                        mr: "25px",
                         fontFamily: `${theme.font.genshin.family}`,
-                        letterSpacing: ".2rem",
                         color: `${theme.text.color}`,
                         textDecoration: "none",
-                        textAlign: "center",
                     }}
                 >
-                    BANNER ARCHIVE
+                    Banner Archive
                 </Typography>
             </Box>
-
-            <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ mx: "30px", mb: "30px" }}>
+            <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ mb: "30px" }}>
                 <CustomToggleButtonText value="normal">
-                    <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Character/Weapon Wish</Typography>
+                    <Typography sx={{ fontSize: "9.5pt", fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Character/Weapon Wish</Typography>
                 </CustomToggleButtonText>
                 <CustomToggleButtonText value="chronicled">
-                    <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Chronicled Wish</Typography>
+                    <Typography sx={{ fontSize: "9.5pt", fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Chronicled Wish</Typography>
                 </CustomToggleButtonText>
             </ToggleButtonGroup>
-
             {
                 view === "normal" ?
                     <React.Fragment>
                         {
                             banners.characterBanners.length > 0 && banners.weaponBanners.length > 0 &&
-                            <Box sx={{ display: "flex" }}>
+                            <Grid container spacing={2}>
                                 <BannerList banners={banners.characterBanners} type="character" />
                                 <BannerList banners={banners.weaponBanners} type="weapon" />
-                            </Box>
+                            </Grid>
                         }
                     </React.Fragment>
                     :

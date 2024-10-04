@@ -103,10 +103,10 @@ function TCGDiceCost(props: any) {
                                     sx={{
                                         fontFamily: `${theme.font.genshin.family}`,
                                         position: "absolute",
-                                        top: "50%",
-                                        left: "50%",
+                                        top: "48%",
+                                        left: "48%",
                                         transform: "translate(-50%, -50%)",
-                                        color: `${theme.text.color}`,
+                                        color: `white`,
                                         textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
                                         userSelect: "none"
                                     }}>

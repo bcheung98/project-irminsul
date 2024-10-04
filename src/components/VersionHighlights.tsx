@@ -239,14 +239,15 @@ function VersionHighlights(props: any) {
                     <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, mb: "30px" }}>
                         New TCG Cards
                     </Typography>
-                    <Grid container>
+                    <Grid container rowSpacing={3} columnSpacing={0}>
                         {
                             characterCards.map((card: TCGCardData, index: number) => (
                                 <TCGCharacterCard key={index} char={card} preview />
                             ))
                         }
                     </Grid>
-                    <Grid container>
+                    <br />
+                    <Grid container rowSpacing={3} columnSpacing={0}>
                         {
                             actionCards.map((card: TCGCardData, index: number) => (
                                 <TCGActionCard key={index} card={card} preview />

@@ -28,25 +28,29 @@ function ArtifactBrowser(props: any) {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "left",
+                    mb: "20px",
+                    height: "30px",
                 }}
             >
-                <Typography variant="h4"
+                <Typography
+                    variant="h5"
                     sx={{
-                        mx: "25px",
-                        my: "20px",
-                        display: { xs: "none", md: "flex" },
+                        mr: "25px",
                         fontFamily: `${theme.font.genshin.family}`,
-                        letterSpacing: ".2rem",
                         color: `${theme.text.color}`,
                         textDecoration: "none",
-                        textAlign: "center",
                     }}
                 >
-                    ARTIFACTS
+                    Artifacts
                 </Typography>
             </Box>
-            <Grid container sx={{ margin: "auto", width: "98%" }}>
-                {artifacts.artifacts.length > 0 && artifacts.artifacts.map((artifact: ArtifactData, index: number) => <ArtifactCard key={index} artifact={artifact} />)}
+            <Grid container spacing={2}>
+                {
+                    artifacts.artifacts.length > 0 ?
+                        artifacts.artifacts.map((artifact: ArtifactData, index: number) => <ArtifactCard key={index} artifact={artifact} />)
+                        :
+                        null
+                }
             </Grid>
         </React.Fragment>
     )

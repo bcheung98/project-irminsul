@@ -35,16 +35,14 @@ function BannerList(props: any) {
     const rows = filterBanners(props.banners, searchValue)
 
     return (
-        <Box sx={{ width: "100%" }}>
+        <Box>
             <Paper
                 sx={{
                     border: `2px solid ${theme.border.color}`,
                     borderRadius: "5px",
                     backgroundColor: `${theme.paper.backgroundColor}`,
                     display: "flex",
-                    margin: "auto",
                     height: "40px",
-                    width: "90%",
                     marginBottom: "10px",
                 }}
             >
@@ -65,9 +63,6 @@ function BannerList(props: any) {
                     borderRadius: "5px",
                     backgroundColor: `${theme.paper.backgroundColor}`,
                     color: `${theme.text.color}`,
-                    display: "block",
-                    margin: "auto",
-                    mx: "20px",
                 }}
             >
                 <TableContainer>

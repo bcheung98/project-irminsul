@@ -33,7 +33,7 @@ function TCGCharacterCard(props: any) {
     }
 
     return (
-        <Box sx={{ mb: "20px" }}>
+        <Box>
             <Box
                 sx={{
                     width: "150px",
@@ -66,7 +66,7 @@ function TCGCharacterCard(props: any) {
                                 top: "50%",
                                 left: "50%",
                                 transform: "translate(-50%, -50%)",
-                                color: `${theme.text.color}`,
+                                color: `white`,
                                 textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
                                 userSelect: "none"
                             }}>
@@ -79,7 +79,7 @@ function TCGCharacterCard(props: any) {
                     sx={{
                         position: "absolute",
                         top: "10px",
-                        right: "-23px"
+                        right: "-20px"
                     }}
                 >
                     {
@@ -96,6 +96,7 @@ function TCGCharacterCard(props: any) {
                         border: `2px solid ${theme.border.color}`,
                         borderRadius: "18px",
                     }}
+                    loading="lazy"
                     onError={ErrorLoadingImage}
                 />
                 {/* Card Name */}

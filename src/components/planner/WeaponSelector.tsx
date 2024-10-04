@@ -60,7 +60,6 @@ function WeaponSelector(props: any) {
                     sx={{
                         width: 300,
                         p: "5px",
-                        mx: "20px",
                         border: `1px solid ${theme.border.color}`,
                         borderRadius: "5px",
                     }}

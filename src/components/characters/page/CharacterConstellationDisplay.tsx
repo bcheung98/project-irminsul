@@ -80,7 +80,7 @@ function CharacterConstellationDisplay(props: any) {
                                 {parse(constellation[key].description)}
                             </Typography>
                             <br />
-                            {key !== "c6" && <hr style={{ border: ".5px solid rgb(30, 73, 118)", margin: "10px" }} />}
+                            {key !== "c6" && <hr style={{ border: `.5px solid ${theme.border.color}`, margin: "10px" }} />}
                         </React.Fragment>
                     )
                 })

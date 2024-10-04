@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles"
 import { connect } from "react-redux"
 
 // MUI imports
-import { Box, Button, ButtonBase, Typography, CardHeader, Tabs, Select, AppBar, SelectChangeEvent, Theme } from "@mui/material"
+import { Box, ButtonBase, Typography, CardHeader, Tabs, Select, AppBar, SelectChangeEvent, Theme } from "@mui/material"
 
 // Helper imports
 import { MaterialDates } from "../helpers/MaterialDates"
@@ -25,6 +25,8 @@ const IconStyle = (rarity: number, theme: Theme) => {
         width: "64px",
         height: "64px",
         boxSizing: "content-box",
+        marginLeft: "2px",
+        marginRight: "2px",
         backgroundColor: `${theme.materialImage.backgroundColor}`,
         backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
         backgroundSize: "100%"
@@ -126,26 +128,21 @@ function FarmableToday(props: any) {
                                             {mat}
                                         </Typography>
                                     }
-                                    sx={{ p: 0, mb: "5px" }}
+                                    sx={{ p: 0, mb: "10px" }}
                                 />
                                 {
                                     characters.filter((char: CharacterData) => farmableMats["talents"][index].includes(char.materials.talentBook as string)).map((char: CharacterData, index: number) => (
-                                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${char.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
+                                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${char.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index}>
                                             <CustomTooltip title={char.name} arrow placement="top">
                                                 <img src={(`${process.env.REACT_APP_URL}/characters/icons/${char.name.split(" ").join("_")}.png`)} alt={char.name} style={IconStyle(char.rarity, theme)} onError={ErrorLoadingImage} />
                                             </CustomTooltip>
                                         </ButtonBase>
                                     ))
                                 }
-                                <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
+                                {index !== farmableMats["talents"].length - 1 && <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "10px" }} />}
                             </Box>
                         ))
                     }
-                    <Button variant="contained" href={`${process.env.REACT_APP_BASENAME}/characters`}>
-                        <Typography variant="subtitle2" component="p" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
-                            See all characters
-                        </Typography>
-                    </Button>
                 </TabPanel>
                 <TabPanel value={tabValue} index={1}>
                     {
@@ -158,7 +155,7 @@ function FarmableToday(props: any) {
                                             {mat}
                                         </Typography>
                                     }
-                                    sx={{ p: 0, mb: "5px" }}
+                                    sx={{ p: 0, mb: "10px" }}
                                 />
                                 {
                                     weapons.filter((wep: WeaponData) => farmableMats["weapons"][index].includes(wep.materials.ascensionMat as string)).sort((a: WeaponData, b: WeaponData) => b.rarity - a.rarity).map((wep: WeaponData, index: number) => (
@@ -169,15 +166,10 @@ function FarmableToday(props: any) {
                                         </ButtonBase>
                                     ))
                                 }
-                                <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
+                                {index !== farmableMats["weapons"].length - 1 && <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "10px" }} />}
                             </Box>
                         ))
                     }
-                    <Button variant="contained" href={`${process.env.REACT_APP_BASENAME}/weapons`}>
-                        <Typography variant="subtitle2" component="p" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
-                            See all weapons
-                        </Typography>
-                    </Button>
                 </TabPanel>
 
             </Box>

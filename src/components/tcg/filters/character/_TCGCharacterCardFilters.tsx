@@ -5,7 +5,7 @@ import TCGCharacterFactionFilter from "./TCGCharacterFactionFilter"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { Box, Typography, Paper } from "@mui/material"
+import { Typography, Paper } from "@mui/material"
 
 // Helper imports
 import { Accordion, AccordionDetails, AccordionSummary } from "../../../../helpers/CustomAccordion"
@@ -15,62 +15,59 @@ function TCGCharacterCardFilter() {
     const theme = useTheme()
 
     return (
-        <Box
+        <Paper
+            variant="outlined"
+            square
             sx={{
-                margin: "auto",
-                width: "90%",
+                color: `${theme.text.color}`,
+                backgroundColor: `${theme.appbar.backgroundColor}`,
+                border: `2px solid ${theme.border.color}`,
+                borderRadius: "5px",
+                my: "10px",
             }}
         >
-            <Paper variant="outlined" square
+            <Typography
+                variant="h6"
                 sx={{
-                    color: `${theme.text.color}`,
-                    backgroundColor: `${theme.appbar.backgroundColor}`,
-                    border: `2px solid ${theme.border.color}`,
-                    borderRadius: "5px",
+                    ml: "15px",
+                    my: "10px",
+                    fontFamily: `${theme.font.genshin.family}`,
                 }}
             >
-                <Typography
-                    variant="h6"
-                    sx={{
-                        ml: "15px",
-                        my: "10px",
-                        fontFamily: `${theme.font.genshin.family}`,
-                    }}>
-                    Filters
-                </Typography>
+                Filters
+            </Typography>
 
-                {/* ELEMENT */}
-                <Accordion>
-                    <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="element-filter-text" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Element</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <TCGCharacterElementFilter />
-                    </AccordionDetails>
-                </Accordion>
+            {/* ELEMENT */}
+            <Accordion>
+                <AccordionSummary>
+                    <Typography variant="body1" className="filter-text-off" id="element-filter-text" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Element</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <TCGCharacterElementFilter />
+                </AccordionDetails>
+            </Accordion>
 
-                {/* WEAPON */}
-                <Accordion>
-                    <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="weapon-filter-text" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Weapon</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <TCGCharacterWeaponFilter />
-                    </AccordionDetails>
-                </Accordion>
+            {/* WEAPON */}
+            <Accordion>
+                <AccordionSummary>
+                    <Typography variant="body1" className="filter-text-off" id="weapon-filter-text" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Weapon</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <TCGCharacterWeaponFilter />
+                </AccordionDetails>
+            </Accordion>
 
-                {/* FACTION */}
-                <Accordion>
-                    <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="nation-filter-text" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Faction</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <TCGCharacterFactionFilter />
-                    </AccordionDetails>
-                </Accordion>
+            {/* FACTION */}
+            <Accordion>
+                <AccordionSummary>
+                    <Typography variant="body1" className="filter-text-off" id="nation-filter-text" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Faction</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <TCGCharacterFactionFilter />
+                </AccordionDetails>
+            </Accordion>
 
-            </Paper>
-        </Box>
+        </Paper>
     )
 
 }

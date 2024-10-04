@@ -26,16 +26,13 @@ function ChronicledWishList(props: any) {
     const rows = props.banners
 
     return (
-        <Box sx={{ width: "100%" }}>
+        <Box>
             <Paper
                 sx={{
                     border: `2px solid ${theme.border.color}`,
                     borderRadius: "5px",
                     backgroundColor: `${theme.paper.backgroundColor}`,
                     color: `${theme.text.color}`,
-                    display: "block",
-                    margin: "auto",
-                    mx: "20px",
                 }}
             >
                 <TableContainer>

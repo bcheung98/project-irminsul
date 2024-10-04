@@ -96,17 +96,13 @@ function TCGActionCardPopup(props: any) {
                 borderRadius: "5px",
             }}
         >
-            <Grid container sx={{ mt: "10px" }}>
-                <Box
-                    sx={{
-                        display: "flex",
-                        flexDirection: "column"
-                    }}
-                >
+            <Grid container spacing={2} sx={{ mt: "10px" }}>
+                <Grid size="auto">
                     <Box
                         sx={{
                             position: "relative",
                             mx: "25px",
+                            mt: "5px",
                         }}
                     >
                         <Box
@@ -143,8 +139,8 @@ function TCGActionCardPopup(props: any) {
                             </Box>
                         }
                     </Box>
-                </Box>
-                <Grid size="auto">
+                </Grid>
+                <Grid size="grow">
                     <Box
                         sx={{
                             display: "flex",
