@@ -86,7 +86,6 @@ function WeaponPage(props: any) {
                                         noWrap
                                         sx={{
                                             mt: "10px",
-                                            display: { xs: "none", md: "flex" },
                                             fontFamily: `${theme.font.genshin.family}`,
                                             color: `${theme.text.color}`,
                                             textDecoration: "none",
