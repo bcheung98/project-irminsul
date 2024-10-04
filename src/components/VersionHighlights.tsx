@@ -10,7 +10,7 @@ import TCGActionCard from "./tcg/TCGActionCard"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { Box, Typography, Select, AppBar, IconButton, SelectChangeEvent } from "@mui/material"
+import { Box, Typography, Select, AppBar, IconButton, SelectChangeEvent, CardHeader } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
@@ -112,7 +112,7 @@ function VersionHighlights(props: any) {
                         justifyContent: "space-between",
                     }}
                 >
-                    <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, ml: "5px", lineHeight: "45px" }}>
+                    <Typography variant="h6" noWrap sx={{ fontFamily: `${theme.font.genshin.family}`, ml: "5px", lineHeight: "45px" }}>
                         Version Highlights
                     </Typography>
                     <Box sx={{ display: "flex" }}>
@@ -173,10 +173,16 @@ function VersionHighlights(props: any) {
             {/* NEW CHARACTERS */}
             {
                 characters.length > 0 &&
-                <Box sx={{ mx: "30px", mb: "20px" }}>
-                    <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, mb: "20px" }}>
-                        New Characters
-                    </Typography>
+                <Box sx={{ mx: "30px" }}>
+                    <CardHeader
+                        avatar={<img src={`${process.env.REACT_APP_URL}/icons/Aether.png`} alt="New Characters" style={{ width: "40px", marginRight: "-5px" }} />}
+                        title={
+                            <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
+                                New Characters
+                            </Typography>
+                        }
+                        sx={{ p: 0, mb: "20px" }}
+                    />
                     <Box>
                         <Grid container spacing={2}>
                             {
@@ -193,10 +199,16 @@ function VersionHighlights(props: any) {
             {/* NEW WEAPONS */}
             {
                 weapons.length > 0 &&
-                <Box sx={{ mx: "30px", my: "20px" }}>
-                    <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, mb: "20px" }}>
-                        New Weapons
-                    </Typography>
+                <Box sx={{ mx: "30px" }}>
+                    <CardHeader
+                        avatar={<img src={`${process.env.REACT_APP_URL}/icons/Weapons.png`} alt="New Weapons" style={{ width: "40px", marginRight: "-5px" }} />}
+                        title={
+                            <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
+                                New Weapons
+                            </Typography>
+                        }
+                        sx={{ p: 0, mb: "20px" }}
+                    />
                     <Box>
                         <Grid container spacing={2}>
                             {
@@ -213,10 +225,16 @@ function VersionHighlights(props: any) {
             {/* NEW ARTIFACTS */}
             {
                 artifacts.length > 0 &&
-                <Box sx={{ mx: "30px", mb: "20px" }}>
-                    <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, mb: "20px" }}>
-                        New Artifacts
-                    </Typography>
+                <Box sx={{ mx: "30px" }}>
+                    <CardHeader
+                        avatar={<img src={`${process.env.REACT_APP_URL}/icons/Artifact.png`} alt="New Artifacts" style={{ width: "40px", marginRight: "-5px" }} />}
+                        title={
+                            <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
+                                New Artifacts
+                            </Typography>
+                        }
+                        sx={{ p: 0, mb: "20px" }}
+                    />
                     <Box>
                         <Grid container spacing={2}>
                             {
@@ -235,10 +253,16 @@ function VersionHighlights(props: any) {
             {/* NEW TCG CARDS */}
             {
                 newCards &&
-                <Box sx={{ mx: "30px", my: "20px" }}>
-                    <Typography variant="h6" component="p" sx={{ fontFamily: `${theme.font.genshin.family}`, mb: "30px" }}>
-                        New TCG Cards
-                    </Typography>
+                <Box sx={{ mx: "30px" }}>
+                    <CardHeader
+                        avatar={<img src={`${process.env.REACT_APP_URL}/icons/tcg.png`} alt="New TCG Cards" style={{ width: "40px", marginRight: "-5px" }} />}
+                        title={
+                            <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
+                                New TCG Cards
+                            </Typography>
+                        }
+                        sx={{ p: 0, mb: "30px" }}
+                    />
                     <Grid container rowSpacing={3} columnSpacing={0}>
                         {
                             characterCards.map((card: TCGCardData, index: number) => (
