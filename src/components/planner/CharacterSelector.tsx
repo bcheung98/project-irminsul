@@ -65,6 +65,7 @@ function CharacterSelector(props: any) {
                     }}
                 >
                     <Button disableRipple onClick={handleClick}>
+                        <img src={`${process.env.REACT_APP_URL}/icons/Aether.png`} alt="Characters" style={{ width: "32px", marginRight: "10px" }} />
                         <span style={{ fontFamily: `${theme.font.genshin.family}`, color: "white" }}>Characters</span>
                         <ArrowForwardIosSharpIcon sx={{ transform: "rotate(90deg)", color: "white" }} />
                     </Button>
