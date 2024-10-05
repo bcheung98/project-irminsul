@@ -280,6 +280,7 @@ function VersionHighlights(props: any) {
                     </Grid>
                 </Box>
             }
+            <br />
         </Box>
     )
 }
