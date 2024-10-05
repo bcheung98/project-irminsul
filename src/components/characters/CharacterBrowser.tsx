@@ -89,7 +89,7 @@ function CharacterBrowser(props: any) {
                             null
                     }
                 </Grid>
-                <Grid size={2.5}>
+                <Grid size={2.75}>
                     <Paper
                         sx={{
                             border: `2px solid ${theme.border.color}`,

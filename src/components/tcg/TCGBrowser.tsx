@@ -147,7 +147,7 @@ function TCGBrowser(props: any) {
                                     {filterTCGCharacterCards(CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards, charRadioValue, charSortDirection), cardCharFilters, charSearchValue).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
                                 </Grid>
                             </Grid>
-                            <Grid size={2.5}>
+                            <Grid size={2.75}>
                                 <Paper sx={SearchBar}>
                                     <InputBase
                                         sx={SearchBarInput}
@@ -204,7 +204,7 @@ function TCGBrowser(props: any) {
                                     {filterTCGActionCards(CurrentActionCards(cards.cards[1].cards, deck.deck.actionCards, actionRadioValue, actionSortDirection), cardActionFilters, actionSearchValue).map(card => <TCGActionCard key={card.name} card={card} preview={false} />)}
                                 </Grid>
                             </Grid>
-                            <Grid size={2.5}>
+                            <Grid size={2.75}>
                                 <Paper sx={SearchBar}>
                                     <InputBase
                                         sx={SearchBarInput}

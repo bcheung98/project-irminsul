@@ -34,20 +34,6 @@ code {
     background: gray;
 }
 
-.material-image {
-    width: 48px;
-    background-color: rgb(20, 20, 20);
-    background-size: contain;
-    border-radius: 5px 5px 15px 0px;
-}
-
-.material-image-big {
-    width: 72px;
-    background-color: rgb(20, 20, 20);
-    background-size: contain;
-    border-radius: 5px 5px 15px 0px;
-}
-
 .text-physical {
     color: white;
 }
@@ -122,6 +108,7 @@ code {
     margin: 3px;
     border: 1px solid rgb(30, 73, 118);
     border-radius: 5px;
+    box-sizing: content-box;
 }
 
 .filter-off:hover,
