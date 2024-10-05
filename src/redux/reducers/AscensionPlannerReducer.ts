@@ -5,7 +5,7 @@ import { CharacterCosts } from "../../types/character/CharacterCosts"
 import { WeaponCosts } from "../../types/weapon/WeaponCosts"
 
 export interface PlannerState {
-    totalCost: { [propName: string]: number },
+    totalCost: { [propName: string]: [number, string] },
     characters: CharacterData[],
     characterCosts: CharacterCosts[] | [],
     weapons: WeaponData[],
@@ -134,19 +134,19 @@ export const PlannerSlice = createSlice({
             state.characterCosts.forEach((char: CharacterCosts) => {
                 Object.keys(char.costs).forEach((material: string) => {
                     let char_mat = GetMaterial(state.characters.find((c: CharacterData) => c.name === char.name), material)
-                    if (!Object.keys(tempTotalCost).includes(char_mat)) {
-                        tempTotalCost[char_mat] = 0
+                    if (!Object.keys(tempTotalCost).includes(char_mat[1])) {
+                        tempTotalCost[char_mat[1]] = [0, char_mat[0]]
                     }
-                    tempTotalCost[char_mat] += char.costs[material as keyof typeof char.costs].reduce((a: number, c: number) => a + c)
+                    tempTotalCost[char_mat[1]][0] += char.costs[material as keyof typeof char.costs].reduce((a: number, c: number) => a + c)
                 })
             })
             state.weaponCosts.forEach((wep: WeaponCosts) => {
                 Object.keys(wep.costs).forEach((material: string) => {
                     let wep_mat = GetMaterial(state.weapons.find((w: WeaponData) => w.name === wep.name), material)
-                    if (!Object.keys(tempTotalCost).includes(wep_mat)) {
-                        tempTotalCost[wep_mat] = 0
+                    if (!Object.keys(tempTotalCost).includes(wep_mat[1])) {
+                        tempTotalCost[wep_mat[1]] = [0, wep_mat[0]]
                     }
-                    tempTotalCost[wep_mat] += wep.costs[material as keyof typeof wep.costs]
+                    tempTotalCost[wep_mat[1]][0] += wep.costs[material as keyof typeof wep.costs]
                 })
             })
             state.totalCost = tempTotalCost
@@ -158,69 +158,74 @@ export const { setPlannerCharacters, updateCharacterCosts, setPlannerWeapons, up
 export default PlannerSlice.reducer
 
 const GetMaterial = (unit: any, material: string) => {
+    let materialName = material
     switch (material) {
         case "talent1":
-            material = `${unit.materials.talentBook}1`
+            materialName = `${unit.materials.talentBook}1`
             break
         case "talent2":
-            material = `${unit.materials.talentBook}2`
+            materialName = `${unit.materials.talentBook}2`
             break
         case "talent3":
-            material = `${unit.materials.talentBook}3`
+            materialName = `${unit.materials.talentBook}3`
             break
         case "common1":
-            material = `${unit.materials.commonMat}1`
+            materialName = `${unit.materials.commonMat}1`
             break
         case "common2":
-            material = `${unit.materials.commonMat}2`
+            materialName = `${unit.materials.commonMat}2`
             break
         case "common3":
-            material = `${unit.materials.commonMat}3`
+            materialName = `${unit.materials.commonMat}3`
             break
         case "bossMat":
-            material = unit.materials.bossMat
+            materialName = unit.materials.bossMat
             break
         case "localMat":
-            material = unit.materials.localMat
+            materialName = unit.materials.localMat
             break
         case "weeklyBossMat":
-            material = unit.materials.weeklyBossMat
+            materialName = unit.materials.weeklyBossMat
             break
         case "gemstone1":
-            material = `${unit.element}_Sliver`
+            materialName = `${unit.element}_Sliver`
             break
         case "gemstone2":
-            material = `${unit.element}_Fragment`
+            materialName = `${unit.element}_Fragment`
             break
         case "gemstone3":
-            material = `${unit.element}_Chunk`
+            materialName = `${unit.element}_Chunk`
             break
         case "gemstone4":
-            material = `${unit.element}_Gemstone`
+            materialName = `${unit.element}_Gemstone`
             break
         case "ascension1":
-            material = `${unit.materials.ascensionMat}1`
+            materialName = `${unit.materials.ascensionMat}1`
             break
         case "ascension2":
-            material = `${unit.materials.ascensionMat}2`
+            materialName = `${unit.materials.ascensionMat}2`
             break
         case "ascension3":
-            material = `${unit.materials.ascensionMat}3`
+            materialName = `${unit.materials.ascensionMat}3`
             break
         case "ascension4":
-            material = `${unit.materials.ascensionMat}4`
+            materialName = `${unit.materials.ascensionMat}4`
             break
         case "elite1":
-            material = `${unit.materials.eliteMat}1`
+            materialName = `${unit.materials.eliteMat}1`
             break
         case "elite2":
-            material = `${unit.materials.eliteMat}2`
+            materialName = `${unit.materials.eliteMat}2`
             break
         case "elite3":
-            material = `${unit.materials.eliteMat}3`
+            materialName = `${unit.materials.eliteMat}3`
             break
         default:
             break
     }
-    return material
+    let pattern = new RegExp("\\d+$")
+    if (pattern.test(material)) {
+        material = material.slice(0, -1)
+    }
+    return [material, materialName]
 }
