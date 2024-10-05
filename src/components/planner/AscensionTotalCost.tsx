@@ -29,13 +29,13 @@ function AscensionTotalCost(props: any) {
         wep_xp: {},
         bossMat: {},
         weeklyBossMat: {},
-        localMat: {},
+        crown: 0,
         gemstone: {},
+        localMat: {},
         common: {},
         talent: {},
         ascension: {},
         elite: {},
-        crown: 0,
     }
 
     // Sort and populate the above object
@@ -72,6 +72,7 @@ function AscensionTotalCost(props: any) {
     let costData: TotalCostArray[] = []
 
     // Populate the above array
+    // Object.entries will preserve the original order of materials
     Object.entries(costs).forEach(arr => {
         if (arr[0] === "mora") {
             costData.push({ name: "Mora", rarity: "3", cost: arr[1], img: "Mora" })
@@ -114,13 +115,14 @@ function AscensionTotalCost(props: any) {
                             borderRadius: "5px",
                             backgroundColor: `${theme.paper.backgroundColor}`,
                             mb: "30px",
+                            p: 2
                         }}
                         ref={componentRef}
                     >
-                        <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "15px", my: "15px" }}>
+                        <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                             Total Materials Required
                         </Typography>
-                        <Grid container rowSpacing={1} columnSpacing={0}>
+                        <Grid container rowSpacing={1} columnSpacing={0} sx={{ my: "15px" }}>
                             {
                                 costData.map((material, index) => (
                                     material.cost !== 0 &&

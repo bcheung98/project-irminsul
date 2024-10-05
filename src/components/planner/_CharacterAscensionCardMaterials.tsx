@@ -41,7 +41,7 @@ function CharacterAscensionCardMaterials(props: any) {
     ]
 
     return (
-        <Grid container rowSpacing={1} columnSpacing={0}>
+        <Grid container rowSpacing={1} columnSpacing={0} sx={{ my: "15px" }}>
             {
                 costData.map((material, index) => (
                     costArray[index] !== 0 &&

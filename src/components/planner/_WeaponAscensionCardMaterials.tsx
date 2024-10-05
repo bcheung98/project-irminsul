@@ -37,7 +37,7 @@ function WeaponAscensionCardMaterials(props: any) {
     let keys = Object.keys(costs)
 
     return (
-        <Grid container rowSpacing={1} columnSpacing={0}>
+        <Grid container rowSpacing={1} columnSpacing={0} sx={{ my: "15px" }}>
             {
                 costData.map((material, index) => (
                     costs[keys[index]] !== 0 &&
