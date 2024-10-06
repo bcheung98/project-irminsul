@@ -89,13 +89,13 @@ function Nav(props: any) {
                                     title={
                                         <Typography
                                             sx={{
-                                                fontFamily: "Bungee, Genshin, Roboto",
+                                                fontFamily: "Rowdies, Genshin, Roboto",
                                                 fontSize: "16pt",
                                                 letterSpacing: ".1rem",
                                                 color: `white`
                                             }}
                                         >
-                                            Irminsul.GG
+                                            IRMINSUL.GG
                                         </Typography>
                                     }
                                     sx={{ px: 0 }}
