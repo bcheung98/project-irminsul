@@ -55,13 +55,26 @@ function AscensionPlanner(props: any) {
             </Grid>
             <AscensionTotalCost />
             <Grid container spacing={2}>
-                <Grid>
-                    {characters.map((character: CharacterData) => <CharacterAscensionCard key={character.id} character={character} />)}
-                </Grid>
-                <br />
-                <Grid>
-                    {weapons.map((weapon: WeaponData) => <WeaponAscensionCard key={weapon.id} weapon={weapon} />)}
-                </Grid>
+                {
+                    characters.length > 0 ?
+                        <Grid size="grow">
+                            <Grid container rowSpacing={5} columnSpacing={2}>
+                                {characters.map((character: CharacterData) => <CharacterAscensionCard key={character.id} character={character} />)}
+                            </Grid>
+                        </Grid>
+                        :
+                        null
+                }
+                {
+                    weapons.length > 0 ?
+                        <Grid size="grow">
+                            <Grid container rowSpacing={5} columnSpacing={2}>
+                                {weapons.map((weapon: WeaponData) => <WeaponAscensionCard key={weapon.id} weapon={weapon} />)}
+                            </Grid>
+                        </Grid>
+                        :
+                        null
+                }
             </Grid>
         </React.Fragment>
     )

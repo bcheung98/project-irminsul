@@ -47,8 +47,6 @@ function CharacterAscensionCard(props: any) {
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
                 backgroundColor: `${theme.paper.backgroundColor}`,
-                mr: "30px",
-                mb: "30px",
                 p: 1,
             }}
         >
