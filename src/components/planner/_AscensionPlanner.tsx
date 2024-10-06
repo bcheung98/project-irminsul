@@ -57,8 +57,8 @@ function AscensionPlanner(props: any) {
             <Grid container spacing={2}>
                 {
                     characters.length > 0 ?
-                        <Grid size="grow">
-                            <Grid container rowSpacing={5} columnSpacing={2}>
+                        <Grid size={6}>
+                            <Grid container spacing={5}>
                                 {characters.map((character: CharacterData) => <CharacterAscensionCard key={character.id} character={character} />)}
                             </Grid>
                         </Grid>
@@ -67,8 +67,8 @@ function AscensionPlanner(props: any) {
                 }
                 {
                     weapons.length > 0 ?
-                        <Grid size="grow">
-                            <Grid container rowSpacing={5} columnSpacing={2}>
+                        <Grid size={6}>
+                            <Grid container spacing={5}>
                                 {weapons.map((weapon: WeaponData) => <WeaponAscensionCard key={weapon.id} weapon={weapon} />)}
                             </Grid>
                         </Grid>
