@@ -36,7 +36,6 @@ function TCGDiceCost(props: any) {
                 display: "flex",
                 position: "absolute",
                 right: "5px",
-                bottom: "20px"
             }
         }
     }

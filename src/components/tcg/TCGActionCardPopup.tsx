@@ -229,15 +229,15 @@ function TCGActionCardPopup(props: any) {
                     <Box
                         sx={{
                             backgroundColor: `${theme.paper.backgroundColor}`,
-                            border: `2px solid ${theme.border.color}`,
+                            border: `1px solid ${theme.border.color}`,
                             borderRadius: "5px",
                             color: `${theme.text.color}`,
                             maxHeight: "60vh",
                             overflowY: "auto",
-                            p: "15px",
+                            p: 2.5
                         }}
                     >
-                        <Typography variant="body1" sx={{ ml: "20px", mr: "15px", color: `${theme.text.colorAlt}` }}>
+                        <Typography variant="body1" sx={{ color: `${theme.text.colorAlt}` }}>
                             {parse(description, options)}
                         </Typography>
                     </Box>

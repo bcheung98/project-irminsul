@@ -273,48 +273,46 @@ function TCGCharacterCardPopup(props: any) {
                             color: `${theme.text.color}`,
                             maxHeight: "60vh",
                             overflowY: "auto",
+                            p: 2.5
                         }}
                     >
                         {
                             Object.keys(talents).map((key, index) => {
                                 return (
-                                    <Box key={key} sx={{ px: "10px" }}>
-                                        <CardHeader
-                                            sx={{
-                                                display: "flex",
-                                                alignItems: "center"
-                                            }}
-                                            avatar={
-                                                key === "attack" ?
-                                                    GetAttackIcon(key, weapon, element, talents)
-                                                    :
-                                                    <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={(`${process.env.REACT_APP_URL}/tcg/character_talent_icons/${name.split(" ").join("_").toLowerCase()}_${key}.png`)} style={ElementalBorderColor(element)}
-                                                        sx={{
-                                                            display: "flex",
-                                                            flexDirection: "column",
-                                                            width: "48px",
-                                                            height: "48px",
-                                                            border: `2px solid ${theme.border.color}`,
-                                                        }}>
-                                                        <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
-                                                    </Avatar>
-                                            }
-                                            title={
-                                                <React.Fragment>
-                                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="h6">
-                                                        {talents[key].name}
-                                                    </Typography>
-                                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: "#ffe7b9" }} variant="body2">
-                                                        {FormatTCGTalentKey(key)}
-                                                    </Typography>
-                                                </React.Fragment>
-                                            }
-                                        />
-                                        <TCGDiceCost cost={talents[key].cost} type={"popup"} />
-                                        <Typography variant="body1" sx={{ ml: "20px", mr: "15px", mb: "10px", color: `${theme.text.colorAlt}`, }}>
+                                    <Box key={key}>
+                                        <Box sx={{ mb: "15px", display: "flex", justifyContent: "space-between" }}>
+                                            <CardHeader
+                                                sx={{ p: 0 }}
+                                                avatar={
+                                                    key === "attack" ?
+                                                        GetAttackIcon(key, weapon, element, talents)
+                                                        :
+                                                        <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={(`${process.env.REACT_APP_URL}/tcg/character_talent_icons/${name.split(" ").join("_").toLowerCase()}_${key}.png`)} style={ElementalBorderColor(element)}
+                                                            sx={{
+                                                                width: "48px",
+                                                                height: "48px",
+                                                                border: `2px solid ${theme.border.color}`,
+                                                            }}>
+                                                            <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
+                                                        </Avatar>
+                                                }
+                                                title={
+                                                    <React.Fragment>
+                                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="h6">
+                                                            {talents[key].name}
+                                                        </Typography>
+                                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: "#ffe7b9" }} variant="body2">
+                                                            {FormatTCGTalentKey(key)}
+                                                        </Typography>
+                                                    </React.Fragment>
+                                                }
+                                            />
+                                            <TCGDiceCost cost={talents[key].cost} type={"popup"} />
+                                        </Box>
+                                        <Typography variant="body1" sx={{ color: `${theme.text.colorAlt}`, }}>
                                             {parse(talents[key].description, options)}
                                         </Typography>
-                                        {index !== Object.keys(talents).length - 1 && <hr style={{ border: `0.5px solid ${theme.border.color}`, marginBottom: "0px" }} />}
+                                        {index !== Object.keys(talents).length - 1 && <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />}
                                     </Box>
                                 )
                             })
