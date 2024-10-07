@@ -78,17 +78,19 @@ function TCGKeywordPopup(props: any) {
             }}
         >
             <Box sx={{ display: "flex" }}>
-                <Box sx={{ mr: "5px" }}>
-                    {cost && <TCGDiceCost cost={cost} type={"keyword-popup"} />}
-                </Box>
-                <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: "white" }}>
+                {cost &&
+                    <Box sx={{ mr: "5px" }}>
+                        <TCGDiceCost cost={cost} type={"keyword-popup"} />
+                    </Box>
+                }
+                <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                     {name}
                 </Typography>
             </Box>
             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "5px", marginBottom: "10px" }} />
             {
                 type &&
-                <Typography variant="body1" sx={{ color: "#ffe7b9", mb: "5px", fontWeight: "bold" }}>
+                <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, fontWeight: `${theme.font.genshin.weight}`, color: "#ffe7b9", mb: "5px" }}>
                     {type}
                 </Typography>
             }
@@ -110,7 +112,7 @@ function TCGKeywordPopup(props: any) {
                     <TCGKeywordPopup keywords={props.keywords} name={keywordName} description={keywordDescription} />
                 </Dialog>
             }
-        </Box>
+        </Box >
     )
 
 }
