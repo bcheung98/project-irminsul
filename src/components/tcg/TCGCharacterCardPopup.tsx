@@ -13,7 +13,7 @@ import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { addCharacterCard, removeCharacterCard } from "../../redux/reducers/DeckReducer"
-import { CustomTooltip } from "../../helpers/CustomTooltip"
+import { CustomTooltip } from "../_custom/CustomTooltip"
 import { ElementalBorderColor } from "../../helpers/ElementalColors"
 import { FormatTCGTalentKey } from "../../helpers/FormatTCGTalentKey"
 import { Keywords } from "./TCGKeywords"

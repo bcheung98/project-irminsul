@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import { setEliteMats } from "../../../redux/reducers/WeaponFilterReducer"
 import { EliteMats } from "../../../helpers/MaterialList"
 import { formatEliteMats } from "../../../helpers/TooltipText"
-import { CustomTooltip } from "../../../helpers/CustomTooltip"
+import { CustomTooltip } from "../../_custom/CustomTooltip"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 function WeaponEliteMatFilter() {

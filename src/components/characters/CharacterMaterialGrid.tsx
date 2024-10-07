@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles"
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
-import { CustomTooltip } from "../../helpers/CustomTooltip"
+import { CustomTooltip } from "../_custom/CustomTooltip"
 import { formatTalents, formatCommonMats, formatBossMats, formatWeeklyBossMats, formatGemstone } from "../../helpers/TooltipText"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 

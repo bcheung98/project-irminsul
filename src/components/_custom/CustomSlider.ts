@@ -1,6 +1,6 @@
 import { styled } from "@mui/material/styles"
 import { Slider } from "@mui/material"
-import { SliderColor } from "./ElementalColors"
+import { SliderColor } from "../../helpers/ElementalColors"
 
 interface CustomSliderProps {
     element?: string | undefined

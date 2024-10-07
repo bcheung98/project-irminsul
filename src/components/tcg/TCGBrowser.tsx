@@ -19,8 +19,8 @@ import { blue } from "@mui/material/colors"
 // Helper imports
 import { filterTCGCharacterCards } from "../../helpers/FilterTCGCharacterCards"
 import { filterTCGActionCards } from "../../helpers/FilterTCGActionCards"
-import { CustomTooltip } from "../../helpers/CustomTooltip"
-import { CustomToggleButton, CustomToggleButtonText } from "../../helpers/CustomToggleButton"
+import { CustomTooltip } from "../_custom/CustomTooltip"
+import { CustomToggleButton, CustomToggleButtonText } from "../_custom/CustomToggleButton"
 import { clearCharacterFilters } from "../../redux/reducers/TCGCharacterFilterReducer"
 import { clearActionFilters } from "../../redux/reducers/TCGActionFilterReducer"
 

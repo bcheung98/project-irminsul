@@ -8,7 +8,7 @@ import { Box } from "@mui/material"
 import { setTalentBook } from "../../../redux/reducers/CharacterFilterReducer"
 import { formatTalents } from "../../../helpers/TooltipText"
 import { TalentBooks } from "../../../helpers/MaterialList"
-import { CustomTooltip } from "../../../helpers/CustomTooltip"
+import { CustomTooltip } from "../../_custom/CustomTooltip"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 function CharacterTalentFilter() {

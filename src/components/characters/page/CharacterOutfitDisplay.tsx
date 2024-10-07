@@ -7,7 +7,7 @@ import { Typography, Box, Tabs } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
-import { StyledTab, TabPanel } from "../../../helpers/CustomTabs"
+import { StyledTab, TabPanel } from "../../_custom/CustomTabs"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 // Type imports

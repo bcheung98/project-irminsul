@@ -2,7 +2,7 @@
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
-import MaterialImage from "../../../helpers/MaterialImage"
+import MaterialImage from "../../_custom/MaterialImage"
 import { formatCommonMats, formatBossMats, formatGemstone } from "../../../helpers/TooltipText"
 
 function CharacterAscensionMaterials(props: any) {

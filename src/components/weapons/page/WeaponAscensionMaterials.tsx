@@ -2,7 +2,7 @@
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
-import MaterialImage from "../../../helpers/MaterialImage"
+import MaterialImage from "../../_custom/MaterialImage"
 import { formatWeaponAscMats, formatEliteMats, formatCommonMats } from "../../../helpers/TooltipText"
 
 function WeaponAscensionMaterials(props: any) {

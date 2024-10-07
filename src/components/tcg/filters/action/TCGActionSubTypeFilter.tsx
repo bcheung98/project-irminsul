@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 
 // Helper imports
 import { setSubType } from "../../../../redux/reducers/TCGActionFilterReducer"
-import { CustomTooltip } from "../../../../helpers/CustomTooltip"
+import { CustomTooltip } from "../../../_custom/CustomTooltip"
 import ErrorLoadingImage from "../../../../helpers/ErrorLoadingImage"
 
 const SubTypes = ["Arcane Legend", "Artifact", "Companion", "Elemental Resonance", "Food", "Item", "Location", "Talent", "Technique", "Weapon"]

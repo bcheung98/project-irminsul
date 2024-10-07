@@ -15,8 +15,8 @@ import { Typography, Tabs, Box, Dialog, Avatar, AppBar, Table, TableContainer, T
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
-import { CustomTooltip } from "../../../helpers/CustomTooltip"
-import { TabPanel, StyledTab } from "../../../helpers/CustomTabs"
+import { CustomTooltip } from "../../_custom/CustomTooltip"
+import { TabPanel, StyledTab } from "../../_custom/CustomTabs"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 // Type imports

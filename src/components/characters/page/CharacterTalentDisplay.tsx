@@ -4,7 +4,7 @@ import parse from "html-react-parser"
 // MUI imports
 import { useTheme } from "@mui/material/styles"
 import { Typography, Box, Avatar, CardHeader, Paper, AppBar } from "@mui/material"
-import { Accordion, AccordionDetails, AccordionSummary } from "../../../helpers/CustomAccordion"
+import { Accordion, AccordionDetails, AccordionSummary } from "../../_custom/CustomAccordion"
 
 // Helper imports
 import { FormatTalentKey } from "../../../helpers/FormatTalentKey"

@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles"
 import { Box, Avatar, Typography } from "@mui/material"
 
 // Helper imports
-import { TCGPyro, TCGHydro, TCGElectro, TCGCryo, TCGAnemo, TCGGeo, TCGDendro } from "../../helpers/ElementIcons"
+import { TCGPyro, TCGHydro, TCGElectro, TCGCryo, TCGAnemo, TCGGeo, TCGDendro } from "../_custom/ElementIcons"
 
 const MainBoxStyle = {
     mb: "10px",

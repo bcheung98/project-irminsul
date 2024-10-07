@@ -11,7 +11,7 @@ import { Box, Typography, ToggleButtonGroup } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
-import { CustomToggleButtonText } from "../../helpers/CustomToggleButton"
+import { CustomToggleButtonText } from "../_custom/CustomToggleButton"
 
 // Type imports
 import { RootState } from "../../redux/store"

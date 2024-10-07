@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 
 // Helper imports
 import { setElement } from "../../../../redux/reducers/TCGCharacterFilterReducer"
-import { CustomTooltip } from "../../../../helpers/CustomTooltip"
+import { CustomTooltip } from "../../../_custom/CustomTooltip"
 import ErrorLoadingImage from "../../../../helpers/ErrorLoadingImage"
 
 const Elements = ["Pyro", "Hydro", "Electro", "Cryo", "Anemo", "Geo", "Dendro"]

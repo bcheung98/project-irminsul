@@ -5,7 +5,7 @@ import { useTheme } from "@mui/material/styles"
 import { Box, AppBar, Typography } from "@mui/material"
 
 // Helper imports
-import { TabPanel, StyledTabsWithIndicator, StyledTab } from "../../helpers/CustomTabs"
+import { TabPanel, StyledTabsWithIndicator, StyledTab } from "../_custom/CustomTabs"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 function ArtifactPopup(props: any) {

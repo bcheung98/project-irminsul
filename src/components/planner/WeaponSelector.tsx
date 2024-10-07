@@ -10,7 +10,7 @@ import CloseIcon from "@mui/icons-material/Close"
 import DoneIcon from "@mui/icons-material/Done"
 
 // Helper imports
-import { Button, PopperComponent, StyledPopper, StyledInput } from "../../helpers/CustomAutocomplete"
+import { Button, PopperComponent, StyledPopper, StyledInput } from "../_custom/CustomAutocomplete"
 import { GetRarityColor } from "../../helpers/RarityColors"
 import { setPlannerWeapons, updateWeaponCosts, updateTotalCosts } from "../../redux/reducers/AscensionPlannerReducer"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"

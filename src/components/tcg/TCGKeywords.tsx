@@ -6,7 +6,7 @@ import { Box, Avatar, Typography } from "@mui/material"
 
 // Helper imports
 import * as Reactions from "./TCGReactions"
-import { TCGPhysical, TCGPyro, TCGHydro, TCGElectro, TCGCryo, TCGAnemo, TCGGeo, TCGDendro } from "../../helpers/ElementIcons"
+import { TCGPhysical, TCGPyro, TCGHydro, TCGElectro, TCGCryo, TCGAnemo, TCGGeo, TCGDendro } from "../_custom/ElementIcons"
 
 // Type imports
 import { TCGKeywordIndexData } from "../../types/tcg/TCGKeywordIndexData"

@@ -9,7 +9,7 @@ import { useTheme } from "@mui/material/styles"
 import { Box, Table, TableBody, TableContainer, Paper, InputBase } from "@mui/material"
 
 // Helper imports
-import { EnhancedTableHead, getComparator, stableSort } from "../../helpers/CustomSortTable"
+import { EnhancedTableHead, getComparator, stableSort } from "../_custom/CustomSortTable"
 
 // Type imports
 import { BannerRowData } from "../../types/banner/BannerRowData"

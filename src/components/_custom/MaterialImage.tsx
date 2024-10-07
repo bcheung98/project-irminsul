@@ -4,7 +4,7 @@ import { Box, Typography } from "@mui/material"
 
 // Helper imports
 import { CustomTooltip } from "./CustomTooltip"
-import ErrorLoadingImage from "./ErrorLoadingImage"
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 interface MaterialImageProps {
     name: string,

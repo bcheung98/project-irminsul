@@ -12,9 +12,9 @@ import ExpandMore from "@mui/icons-material/ExpandMore"
 import SettingsIcon from "@mui/icons-material/Settings"
 
 // Helper imports
-import { CustomTooltip } from "../helpers/CustomTooltip"
-import { CustomInput } from "../helpers/CustomInput"
-import { CustomMenuItem } from "../helpers/CustomMenu"
+import { CustomTooltip } from "./_custom/CustomTooltip"
+import { CustomInput } from "./_custom/CustomInput"
+import { CustomMenuItem } from "./_custom/CustomMenu"
 import { setTheme } from "../redux/reducers/ThemeReducer"
 import { themes } from "../redux/reducers/ThemeReducer"
 

@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import { setCommonMats } from "../../../redux/reducers/CharacterFilterReducer"
 import { CommonMats } from "../../../helpers/MaterialList"
 import { formatCommonMats } from "../../../helpers/TooltipText"
-import { CustomTooltip } from "../../../helpers/CustomTooltip"
+import { CustomTooltip } from "../../_custom/CustomTooltip"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 function CharacterCommonMatFilter() {

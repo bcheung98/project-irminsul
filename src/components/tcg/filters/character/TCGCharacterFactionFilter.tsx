@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 
 // Helper imports
 import { setNation } from "../../../../redux/reducers/TCGCharacterFilterReducer"
-import { CustomTooltip } from "../../../../helpers/CustomTooltip"
+import { CustomTooltip } from "../../../_custom/CustomTooltip"
 import ErrorLoadingImage from "../../../../helpers/ErrorLoadingImage"
 
 const Factions = ["Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine", "Eremite", "Fatui", "Hilichurl", "Monster", "Consecrated Beast"]

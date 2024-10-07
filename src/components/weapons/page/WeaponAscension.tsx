@@ -8,7 +8,7 @@ import { useTheme } from "@mui/material/styles"
 import { Box, Typography } from "@mui/material"
 
 // Helper imports
-import { CustomSlider } from "../../../helpers/CustomSlider"
+import { CustomSlider } from "../../_custom/CustomSlider"
 
 function WeaponAscension(props: any) {
 

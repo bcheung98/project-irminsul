@@ -6,8 +6,8 @@ import { useTheme } from "@mui/material/styles"
 import { Box, Typography, CardHeader } from "@mui/material"
 
 // Helper imports
-import { CustomSlider } from "../../helpers/CustomSlider"
-import { CustomSwitch } from "../../helpers/CustomSwitch"
+import { CustomSlider } from "../_custom/CustomSlider"
+import { CustomSwitch } from "../_custom/CustomSwitch"
 import { updateCharacterCosts, updateTotalCosts } from "../../redux/reducers/AscensionPlannerReducer"
 import { SetCharacterCostsSkill } from "../../helpers/AscensionCostIndex"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"

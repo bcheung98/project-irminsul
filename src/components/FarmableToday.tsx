@@ -7,10 +7,10 @@ import { Box, ButtonBase, Typography, CardHeader, Tabs, Select, AppBar, SelectCh
 
 // Helper imports
 import { MaterialDates } from "../helpers/MaterialDates"
-import { CustomTooltip } from "../helpers/CustomTooltip"
-import { CustomInput } from "../helpers/CustomInput"
-import { CustomMenuItem } from "../helpers/CustomMenu"
-import { TabPanel, StyledTab } from "../helpers/CustomTabs"
+import { CustomTooltip } from "./_custom/CustomTooltip"
+import { CustomInput } from "./_custom/CustomInput"
+import { CustomMenuItem } from "./_custom/CustomMenu"
+import { TabPanel, StyledTab } from "./_custom/CustomTabs"
 import ErrorLoadingImage from "../helpers/ErrorLoadingImage"
 
 // Type imports

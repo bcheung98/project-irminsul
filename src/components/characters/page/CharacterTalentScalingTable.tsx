@@ -5,7 +5,7 @@ import { useTheme } from "@mui/material/styles"
 
 // Helper imports
 import { Table, TableBody, TableContainer, TableHead } from "@mui/material"
-import { StyledTableCell, StyledTableRows } from "../../../helpers/CustomTable"
+import { StyledTableCell, StyledTableRows } from "../../_custom/CustomTable"
 
 const createTalentScaling = (level: string, a: string, b: string, c: string, d: string, e: string, f: string, g: string, h: string, i: string, j: string, k: string, l: string, m: string) => {
     return { level, a, b, c, d, e, f, g, h, i, j, k, l, m }

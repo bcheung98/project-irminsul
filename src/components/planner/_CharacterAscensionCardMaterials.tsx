@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
-import MaterialImage from "../../helpers/MaterialImage"
+import MaterialImage from "../_custom/MaterialImage"
 import { formatGemstone, formatCommonMats, formatTalents, formatBossMats, formatWeeklyBossMats } from "../../helpers/TooltipText"
 
 // Type imports

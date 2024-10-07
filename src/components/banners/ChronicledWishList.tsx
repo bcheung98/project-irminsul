@@ -8,7 +8,7 @@ import { useTheme } from "@mui/material/styles"
 import { Box, Table, TableBody, TableContainer, Paper } from "@mui/material"
 
 // Helper imports
-import { EnhancedTableHead, getComparator, stableSort } from "../../helpers/CustomSortTable"
+import { EnhancedTableHead, getComparator, stableSort } from "../_custom/CustomSortTable"
 
 function ChronicledWishList(props: any) {
 

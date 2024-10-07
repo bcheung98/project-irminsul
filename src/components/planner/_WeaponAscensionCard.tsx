@@ -9,8 +9,8 @@ import { useTheme } from "@mui/material/styles"
 import { Box, Typography, CardHeader, ButtonBase } from "@mui/material"
 
 // Helper imports
-import { CustomTooltip } from "../../helpers/CustomTooltip"
-import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/CustomAccordion"
+import { CustomTooltip } from "../_custom/CustomTooltip"
+import { Accordion, AccordionDetails, AccordionSummary } from "../_custom/CustomAccordion"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 function WeaponAscensionCard(props: any) {

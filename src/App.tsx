@@ -27,7 +27,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles"
 import { Box, CssBaseline } from "@mui/material"
 
 // Helper imports
-import ScrollTopFab from "./helpers/ScrollTopFab"
+import ScrollTopFab from "./components/_custom/ScrollTopFab"
 
 // Type imports
 import { AppDispatch, RootState } from "./redux/store"

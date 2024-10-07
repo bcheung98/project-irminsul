@@ -8,7 +8,7 @@ import { Box } from "@mui/material"
 import { setAscensionMats } from "../../../redux/reducers/WeaponFilterReducer"
 import { WepAscensionMats } from "../../../helpers/MaterialList"
 import { formatWeaponAscMats } from "../../../helpers/TooltipText"
-import { CustomTooltip } from "../../../helpers/CustomTooltip"
+import { CustomTooltip } from "../../_custom/CustomTooltip"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 function WeaponAscensionMatFilter() {

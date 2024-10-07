@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles"
 import { Typography, ButtonBase, Box, Card, CardContent } from "@mui/material"
 
 // Helper imports
-import { CustomTooltip } from "../../helpers/CustomTooltip"
+import { CustomTooltip } from "../_custom/CustomTooltip"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 function WeaponCardLarge(props: any) {

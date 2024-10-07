@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import { setBossMats } from "../../../redux/reducers/CharacterFilterReducer"
 import { BossMats } from "../../../helpers/MaterialList"
 import { formatBossMats } from "../../../helpers/TooltipText"
-import { CustomTooltip } from "../../../helpers/CustomTooltip"
+import { CustomTooltip } from "../../_custom/CustomTooltip"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 function CharacterBossMatFilter() {

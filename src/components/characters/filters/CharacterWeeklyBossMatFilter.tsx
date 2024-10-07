@@ -7,8 +7,8 @@ import { Box, CardHeader, Typography } from "@mui/material"
 // Helper imports
 import { WeeklyBossMats } from "../../../helpers/MaterialList"
 import { setWeeklyBossMats } from "../../../redux/reducers/CharacterFilterReducer"
-import { SmallAccordion, SmallAccordionDetails, SmallAccordionSummary } from "../../../helpers/CustomAccordion"
-import { CustomTooltip } from "../../../helpers/CustomTooltip"
+import { SmallAccordion, SmallAccordionDetails, SmallAccordionSummary } from "../../_custom/CustomAccordion"
+import { CustomTooltip } from "../../_custom/CustomTooltip"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 function CharacterWeeklyBossMatFilter() {

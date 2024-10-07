@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 
 // Helper imports
 import { setNation } from "../../../redux/reducers/CharacterFilterReducer"
-import { CustomTooltip } from "../../../helpers/CustomTooltip"
+import { CustomTooltip } from "../../_custom/CustomTooltip"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 const Nations = ["Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine", "Natlan", "Snezhnaya"]

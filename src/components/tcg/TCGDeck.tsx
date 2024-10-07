@@ -12,7 +12,7 @@ import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { loadDeck, renameDeck } from "../../redux/reducers/DeckReducer"
-import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/CustomAccordion"
+import { Accordion, AccordionDetails, AccordionSummary } from "../_custom/CustomAccordion"
 
 // Type imports
 import { RootState } from "../../redux/store"

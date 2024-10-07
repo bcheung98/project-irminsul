@@ -3,8 +3,8 @@ import { useTheme } from "@mui/material/styles"
 import { Box, Typography, ButtonBase, TableRow } from "@mui/material"
 
 // Helper imports
-import { StyledTableCell } from "../../helpers/CustomTable"
-import { CustomTooltip } from "../../helpers/CustomTooltip"
+import { StyledTableCell } from "../_custom/CustomTable"
+import { CustomTooltip } from "../_custom/CustomTooltip"
 import { CurrentBanner } from "../../helpers/CurrentBanner"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
