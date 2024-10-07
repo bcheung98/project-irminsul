@@ -213,7 +213,9 @@ function TCGCharacterCardPopup(props: any) {
                             <img src={(`${process.env.REACT_APP_URL}/elements/${element}.png`)} alt={element} onError={ErrorLoadingImage} style={{ marginRight: "15px", width: "64px", height: "64px" }} />
                         </CustomTooltip>
                         <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="h4">
-                            {props.char.fullname ? props.char.fullname : name}
+                            {props.char.displayName && props.char.displayName}
+                            {props.char.fullName && props.char.fullName}
+                            {!props.char.displayName && !props.char.fullName && name}
                         </Typography>
                     </Box>
                     <Box>
