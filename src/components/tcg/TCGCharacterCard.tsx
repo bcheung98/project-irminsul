@@ -32,6 +32,14 @@ function TCGCharacterCard(props: any) {
         setOpen(false)
     }
 
+    let energy
+    try {
+        energy = talents.burst.cost.split(" ")[1].slice(0, -1)
+    }
+    catch {
+        energy = 0
+    }
+
     return (
         <Box>
             <Box
@@ -83,14 +91,15 @@ function TCGCharacterCard(props: any) {
                     }}
                 >
                     {
-                        range(1, talents.burst.energy, 1).map(index => (
+                        range(1, energy, 1).map(index => (
                             <Box key={index}>
                                 <img src={`${process.env.REACT_APP_URL}/tcg/icons/Energy_Card.png`} alt="Energy" style={{ width: "40px", marginBottom: "-15px" }} />
                             </Box>
                         ))
                     }
                 </Box>
-                <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}.png`} alt={name}
+                <img
+                    src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}.png`} alt={name}
                     style={{
                         width: "150px",
                         border: `2px solid ${theme.border.color}`,

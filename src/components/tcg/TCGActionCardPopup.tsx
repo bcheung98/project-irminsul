@@ -80,10 +80,18 @@ function TCGActionCardPopup(props: any) {
     }
     else if (props.keywords && tag !== "") {
         let currentKeyword = props.keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
-        keywordName = currentKeyword.name
-        keywordType = currentKeyword.type
-        keywordCost = currentKeyword.cost
-        keywordDescription = currentKeyword.description
+        try {
+            keywordName = currentKeyword.name
+            keywordType = currentKeyword.type
+            keywordCost = currentKeyword.cost
+            keywordDescription = currentKeyword.description
+        }
+        catch {
+            keywordName = ""
+            keywordType = ""
+            keywordCost = ""
+            keywordDescription = ""
+        }
     }
 
     return (
@@ -91,7 +99,7 @@ function TCGActionCardPopup(props: any) {
             sx={{
                 width: "70vw",
                 p: "15px",
-                backgroundColor: "rgb(0, 30, 60)",
+                backgroundColor: `${theme.table.body.backgroundColor}`,
                 border: `2px solid ${theme.border.color}`,
                 borderRadius: "5px",
             }}

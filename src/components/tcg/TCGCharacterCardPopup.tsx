@@ -82,9 +82,16 @@ function TCGCharacterCardPopup(props: any) {
     }
     else if (props.keywords && tag !== "") {
         let currentKeyword = props.keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
-        keywordName = currentKeyword.name
-        keywordType = currentKeyword.type
-        keywordDescription = currentKeyword.description
+        try {
+            keywordName = currentKeyword.name
+            keywordType = currentKeyword.type
+            keywordDescription = currentKeyword.description
+        }
+        catch {
+            keywordName = ""
+            keywordType = ""
+            keywordDescription = ""
+        }
     }
 
     function GetAttackIcon(key: string, weapon: string, element: string, talents: TCGCardData["talents"]) {
