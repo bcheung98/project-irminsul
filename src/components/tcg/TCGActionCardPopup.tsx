@@ -78,7 +78,6 @@ function TCGActionCardPopup(props: any) {
         let skill = props.characters.cards.find((card: TCGCardData) => tag.split("_")[1].toLowerCase() === card.name.toLowerCase()).talents[tag.split("_")[2]]
         keywordName = skill.name
         keywordType = FormatTCGTalentKey(tag.split("_")[2])
-        keywordCost = skill.cost
         keywordDescription = skill.description
     }
     else if (Keywords[tag]) {
