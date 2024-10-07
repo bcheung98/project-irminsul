@@ -14,11 +14,13 @@ import Grid from "@mui/material/Grid2"
 // Helper imports
 import { addActionCard, removeActionCard } from "../../redux/reducers/DeckReducer"
 import { Keywords } from "./TCGKeywords"
+import { FormatTCGTalentKey } from "../../helpers/FormatTCGTalentKey"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 // Type imports
 import { RootState } from "../../redux/store"
 import { TCGKeywordsData } from "../../types/tcg/TCGKeywordsData"
+import { TCGCardData } from "../../types/tcg/TCGData"
 
 function TCGActionCardPopup(props: any) {
 
@@ -72,7 +74,14 @@ function TCGActionCardPopup(props: any) {
     let keywordType
     let keywordCost
     let keywordDescription
-    if (Keywords[tag]) {
+    if (tag.startsWith("_")) {
+        let skill = props.characters.cards.find((card: TCGCardData) => tag.split("_")[1].toLowerCase() === card.name.toLowerCase()).talents[tag.split("_")[2]]
+        keywordName = skill.name
+        keywordType = FormatTCGTalentKey(tag.split("_")[2])
+        keywordCost = skill.cost
+        keywordDescription = skill.description
+    }
+    else if (Keywords[tag]) {
         keywordName = Keywords[tag].name
         keywordType = Keywords[tag].type
         keywordCost = Keywords[tag].cost
@@ -268,6 +277,7 @@ function TCGActionCardPopup(props: any) {
 
 const mapStateToProps = (state: RootState) => ({
     deck: state.deck,
+    characters: state.cards.cards[0],
     keywords: state.cards.cards[2]
 })
 
