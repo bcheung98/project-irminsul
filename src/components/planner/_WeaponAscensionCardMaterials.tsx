@@ -19,9 +19,9 @@ function WeaponAscensionCardMaterials(props: any) {
 
     let costData = [
         { name: "Mora", rarity: "3", img: "Mora" },
-        { name: "Enhancement Ore", rarity: "2", img: "xp_mats/wep_xp1" },
-        { name: "Fine Enhancement Ore", rarity: "3", img: "xp_mats/wep_xp2" },
-        { name: "Mystic Enhancement Ore", rarity: "4", img: "xp_mats/wep_xp3" },
+        { name: "Enhancement Ore", rarity: "1", img: "xp_mats/wep_xp1" },
+        { name: "Fine Enhancement Ore", rarity: "2", img: "xp_mats/wep_xp2" },
+        { name: "Mystic Enhancement Ore", rarity: "3", img: "xp_mats/wep_xp3" },
         { name: formatWeaponAscMats(`${ascensionMat}1`), rarity: "2", img: `weapon_ascension_mats/${ascensionMat.split(" ").join("_")}1` },
         { name: formatWeaponAscMats(`${ascensionMat}2`), rarity: "3", img: `weapon_ascension_mats/${ascensionMat.split(" ").join("_")}2` },
         { name: formatWeaponAscMats(`${ascensionMat}3`), rarity: "4", img: `weapon_ascension_mats/${ascensionMat.split(" ").join("_")}3` },
