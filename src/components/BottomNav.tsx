@@ -16,20 +16,20 @@ function BottomNav() {
             }}
         >
             <Toolbar sx={{ justifyContent: "center" }}>
-                <Typography sx={{ fontSize: "10.5pt", fontFamily: "Genshin, Roboto, sans-serif" }}>
+                <Typography sx={{ fontSize: "9.5pt", fontFamily: "Genshin, Roboto, sans-serif" }}>
                     Irminsul.GG is not affiliated with HoYoverse.<br />
                     Genshin Impact, images and data are registered trademarks of HoYoverse.
                 </Typography>
                 <Divider orientation="vertical" variant="middle" flexItem sx={{ mx: "25px", my: "10px" }} />
                 {/* <Box sx={{ mt: "10px", textAlign: "center", }}>
-                    <Typography gutterBottom sx={{ fontSize: "10.5pt", fontFamily: "Genshin, Roboto, sans-serif" }}>GitHub:</Typography>
+                    <Typography gutterBottom sx={{ fontSize: "9.5pt", fontFamily: "Genshin, Roboto, sans-serif" }}>GitHub:</Typography>
                     <IconButton disableRipple href={"https://github.com/bcheung98/project-irminsul"} target="_blank" color="inherit">
                         <GitHubIcon sx={{ mb: "6px" }} />
                     </IconButton>
                 </Box>
                 <Divider orientation="vertical" variant="middle" flexItem sx={{ mx: "25px", my: "10px" }} /> */}
                 <Box sx={{ mt: "10px", textAlign: "center", }}>
-                    <Typography gutterBottom sx={{ fontSize: "10.5pt", fontFamily: "Genshin, Roboto, sans-serif" }}>Made with:</Typography>
+                    <Typography gutterBottom sx={{ fontSize: "9.5pt", fontFamily: "Genshin, Roboto, sans-serif" }}>Made with:</Typography>
                     <IconButton disableRipple href={"https://react.dev/"} target="_blank" color="inherit">
                         <ReactIcon sx={{ fontSize: 32 }} />
                     </IconButton>

@@ -53,25 +53,19 @@ function CharacterAscensionLevel(props: any) {
     }
 
     return (
-        <Box
-            sx={{
-                mb: "15px",
-                mx: "15px",
-            }}
-            style={selected ? { opacity: "1" } : { opacity: "0.35" }}
-        >
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-                <CustomSwitch checked={selected} onChange={handleSelect} element={element} />
-                <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "15px" }}>
+        <Box sx={{ opacity: selected ? 1 : 0.35 }}>
+            <Box sx={{ display: "flex", alignItems: "center", mb: "-10px", pb: "16px", pl: "10px" }}>
+                <CustomSwitch checked={selected} onChange={handleSelect} element={element} size="small" />
+                <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "15px" }}>
                     Level
                 </Typography>
             </Box>
             <Box sx={{ display: "flex", alignItems: "center", px: 2 }}>
-                <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, mr: "5px", width: "90px" }}>
+                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, width: "90px" }}>
                     Lv. {levels[sliderValue[0] - 1]}
                 </Typography>
                 <CustomSlider disabled={!selected} value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={element} disableSwap />
-                <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "25px", width: "90px" }}>
+                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "25px", width: "90px" }}>
                     Lv. {levels[sliderValue[1] - 1]}
                 </Typography>
             </Box>

@@ -48,23 +48,18 @@ function WeaponAscensionLevel(props: any) {
     })
 
     return (
-        <Box
-            sx={{
-                mb: "15px",
-                mx: "15px",
-            }}
-        >
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "15px" }}>
+        <Box>
+            <Box sx={{ display: "flex", alignItems: "center", mb: "-10px", pb: "16px", pl: "10px" }}>
+                <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                     Level
                 </Typography>
             </Box>
-            <Box sx={{ display: "flex", alignItems: "center", px: 2 }}>
-                <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, mr: "5px", width: "90px" }}>
+            <Box sx={{ display: "flex", alignItems: "center", pl: "10px" }}>
+                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, width: "90px" }}>
                     Lv. {levels[sliderValue[0] - 1]}
                 </Typography>
                 <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} disableSwap />
-                <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "25px", width: "90px" }}>
+                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "25px", width: "90px" }}>
                     Lv. {levels[sliderValue[1] - 1]}
                 </Typography>
             </Box>

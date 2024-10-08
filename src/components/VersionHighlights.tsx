@@ -12,6 +12,8 @@ import TCGActionCard from "./tcg/TCGActionCard"
 import { useTheme } from "@mui/material/styles"
 import { Box, Typography, Select, AppBar, IconButton, SelectChangeEvent, CardHeader } from "@mui/material"
 import Grid from "@mui/material/Grid2"
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft"
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight"
 
 // Helper imports
 import { CustomInput } from "./_custom/CustomInput"
@@ -117,18 +119,14 @@ function VersionHighlights(props: any) {
                         Version Highlights
                     </Typography>
                     <Box sx={{ display: "flex" }}>
-                        {
-                            index < updates.length - 1 ?
-                                <Box sx={{ width: "32px" }}>
-                                    <IconButton onClick={handleIndexChangeLeft}>
-                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, mt: "2px" }}>
-                                            {`<`}
-                                        </Typography>
-                                    </IconButton>
-                                </Box>
-                                :
-                                <Box sx={{ width: "32px" }} />
-                        }
+                        <Box sx={{ width: "32px" }}>
+                            {
+                                index < updates.length - 1 &&
+                                <IconButton onClick={handleIndexChangeLeft}>
+                                    <KeyboardArrowLeftIcon sx={{ color: `${theme.text.color}`, mt: "2px", ml: "-10px" }} />
+                                </IconButton>
+                            }
+                        </Box>
                         <Select
                             value={index.toString()}
                             label="Version"
@@ -151,18 +149,14 @@ function VersionHighlights(props: any) {
                                 ))
                             }
                         </Select>
-                        {
-                            index > 0 ?
-                                <Box sx={{ width: "32px" }}>
-                                    <IconButton onClick={handleIndexChangeRight}>
-                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, mt: "2px" }}>
-                                            {`>`}
-                                        </Typography>
-                                    </IconButton>
-                                </Box>
-                                :
-                                <Box sx={{ width: "32px" }} />
-                        }
+                        <Box sx={{ width: "32px" }}>
+                            {
+                                index > 0 &&
+                                <IconButton onClick={handleIndexChangeRight}>
+                                    <KeyboardArrowRightIcon sx={{ color: `${theme.text.color}`, mt: "2px" }} />
+                                </IconButton>
+                            }
+                        </Box>
                     </Box>
                 </Box>
             </AppBar>

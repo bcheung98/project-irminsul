@@ -69,9 +69,9 @@ function WeaponAscensionCard(props: any) {
                         </ButtonBase>
                         <img style={{
                             display: "block",
-                            marginLeft: "-5px",
+                            marginLeft: "-2.5px",
                             marginTop: "5px",
-                            height: "25px",
+                            height: "20px",
                         }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} onError={ErrorLoadingImage} />
                     </React.Fragment>
                 }
@@ -83,7 +83,7 @@ function WeaponAscensionCard(props: any) {
                 </Typography>
                 <WeaponAscensionCardMaterials weapon={props.weapon} />
             </Box>
-            <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
+            <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px" }} />
             <Accordion>
                 <AccordionSummary>
                     <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
