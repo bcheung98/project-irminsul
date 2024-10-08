@@ -30,6 +30,7 @@ function VersionHighlights(props: any) {
 
     // MAKE SURE TO CHANGE THIS EVERY UPDATE!
     let updates = [
+        { version: "5.1", name: "The Rainbow Destined to Burn" },
         { version: "5.0", name: "Flowers Resplendent on the Sun-Scorched Sojourn" },
         { version: "4.8", name: "Summertide Scales and Tales" },
         { version: "4.7", name: "An Everlasting Dream Intertwined" },

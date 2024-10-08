@@ -23,7 +23,12 @@ export const CharacterAscensionStatScalings = (rarity: number, ascensionStat: st
 
     // DEF or Physical DMG Bonus ascension
     if (["DEF", "Physical DMG Bonus"].includes(ascensionStat)) {
-        stats[ascensionStat as keyof typeof stats] = ["0%", "0%", "0%", "0%", "7.5%", "7.5%", "15%", "15%", "15%", "15%", "22.5%", "22.5%", "30%", "30%"]
+        if (rarity === 4) {
+            stats[ascensionStat as keyof typeof stats] = ["0%", "0%", "0%", "0%", "7.5%", "7.5%", "15%", "15%", "15%", "15%", "22.5%", "22.5%", "30%", "30%"]
+        }
+        if (rarity === 5) {
+            stats[ascensionStat as keyof typeof stats] = ["0%", "0%", "0%", "0%", "9%", "9%", "18%", "18%", "18%", "18%", "27%", "27%", "36%", "36%"]
+        }
     }
 
     // ATK, HP, or Elemental DMG Bonus ascension

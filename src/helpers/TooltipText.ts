@@ -637,6 +637,9 @@ export function formatBossMats(material: string) {
         case "Overripe Flamegranate":
             material += " (Gluttonous Yumkasaur Mountain King)"
             break
+        case "Gold-Inscribed Secret Source Core":
+            material += " (Secret Source Automaton: Configuration Device)"
+            break
         default:
             material += ""
     }
