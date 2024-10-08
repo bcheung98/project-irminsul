@@ -57,7 +57,7 @@ function AscensionTotalCost(props: any) {
     // [Start rarity, end rarity]
     const materialRarities = {
         char_xp: [2, 4],
-        wep_xp: [2, 4],
+        wep_xp: [1, 3],
         bossMat: [4, 4],
         weeklyBossMat: [5, 5],
         localMat: [1, 1],
