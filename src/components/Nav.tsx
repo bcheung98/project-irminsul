@@ -133,7 +133,7 @@ function Nav(props: any) {
                         </Menu>
                     </Box> */}
                 </Toolbar>
-            </AppBar >
+            </AppBar>
             <Drawer
                 variant="permanent"
                 open={drawerOpen}
@@ -343,7 +343,7 @@ function Nav(props: any) {
                     </ListItem>
                 </List>
             </Drawer>
-        </React.Fragment >
+        </React.Fragment>
     )
 
 }

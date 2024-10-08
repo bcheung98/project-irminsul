@@ -134,7 +134,7 @@ function CharacterTalentDisplay(props: any) {
                     </Box>
                 )
             })}
-        </Box >
+        </Box>
     )
 }
 

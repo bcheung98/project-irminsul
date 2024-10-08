@@ -16,7 +16,7 @@ function WeaponRow(props: any) {
 
     return (
         <React.Fragment>
-            <StyledTableRows key={index} >
+            <StyledTableRows key={index}>
 
                 { /* Name + Icon */}
                 <StyledTableCellNoVert>
@@ -95,7 +95,7 @@ function WeaponRow(props: any) {
                 </StyledTableCellNoVert>
 
             </StyledTableRows>
-        </React.Fragment >
+        </React.Fragment>
     )
 }
 

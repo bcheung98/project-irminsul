@@ -11,7 +11,7 @@ const MainBoxStyle = {
 
 export function Bloom(props: any) {
     return (
-        <Box sx={MainBoxStyle} >
+        <Box sx={MainBoxStyle}>
             <Box sx={{ display: "inline-flex" }}>
                 {
                     props.element === "Hydro" ? <><TCGHydro /><Plus /><TCGDendro /></> : <><TCGDendro /><Plus /><TCGHydro /></>

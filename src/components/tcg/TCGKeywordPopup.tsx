@@ -112,7 +112,7 @@ function TCGKeywordPopup(props: any) {
                     <TCGKeywordPopup keywords={props.keywords} name={keywordName} description={keywordDescription} />
                 </Dialog>
             }
-        </Box >
+        </Box>
     )
 
 }

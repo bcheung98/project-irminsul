@@ -89,7 +89,7 @@ function CharacterCard(props: any) {
                     </Box>
                 </Box>
             </CardContent>
-        </Card >
+        </Card>
     )
 
 }
