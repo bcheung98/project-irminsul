@@ -65,21 +65,15 @@ function CharacterPage(props: any) {
             <React.Fragment>
                 <Grid container spacing={3} sx={{ mb: "20px" }}>
                     <Grid size="auto">
-                        <Box
-                            sx={{
-                                width: "30vw",
-                                height: "600px",
-                                border: `1px solid ${theme.border.color}`,
-                                borderRadius: "5px",
-                                backgroundColor: `${theme.paper.backgroundColor}`,
-                                overflow: "clip",
-                            }}
-                        >
+                        <Box>
                             <img src={`${process.env.REACT_APP_URL}/characters/wish/${name.split(" ").join("_")}.png`} alt={name}
                                 onClick={() => handleClickOpen()}
                                 style={{
-                                    width: "100%",
+                                    width: "30vw",
                                     height: "600px",
+                                    border: `1px solid ${theme.border.color}`,
+                                    borderRadius: "5px",
+                                    backgroundColor: `${theme.paper.backgroundColor}`,
                                     objectFit: "cover",
                                     cursor: "pointer",
                                 }}
