@@ -68,6 +68,7 @@ function CharacterPage(props: any) {
                         <Box
                             sx={{
                                 width: "30vw",
+                                height: "600px",
                                 border: `1px solid ${theme.border.color}`,
                                 borderRadius: "5px",
                                 backgroundColor: `${theme.paper.backgroundColor}`,
