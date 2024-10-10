@@ -65,50 +65,55 @@ function CharacterPage(props: any) {
             <React.Fragment>
                 <Grid container spacing={3} sx={{ mb: "20px" }}>
                     <Grid size="auto">
-                        <Box>
+                        <Box
+                            sx={{
+                                width: "30vw",
+                                border: `1px solid ${theme.border.color}`,
+                                borderRadius: "5px",
+                                backgroundColor: `${theme.paper.backgroundColor}`,
+                                overflow: "clip",
+                            }}
+                        >
                             <img src={`${process.env.REACT_APP_URL}/characters/wish/${name.split(" ").join("_")}.png`} alt={name}
                                 onClick={() => handleClickOpen()}
                                 style={{
-                                    width: "30vw",
+                                    width: "100%",
                                     height: "600px",
                                     objectFit: "cover",
-                                    border: `1px solid ${theme.border.color}`,
-                                    borderRadius: "5px",
-                                    backgroundColor: `${theme.paper.backgroundColor}`,
                                     cursor: "pointer",
                                 }}
                                 onError={ErrorLoadingImage}
                             />
-                            <Box
-                                sx={{
-                                    py: "10px",
-                                    mt: "10px",
-                                    width: "30vw",
-                                    border: `1px solid ${theme.border.color}`,
-                                    borderRadius: "5px",
-                                    color: `${theme.text.color}`,
-                                    backgroundColor: `${theme.paper.backgroundColor}`,
-                                }}
-                            >
-                                <TableContainer>
-                                    <Table size="small">
-                                        <TableBody>
-                                            {
-                                                rows.map((row) => (
-                                                    <TableRow key={row.key}>
-                                                        <TableCell sx={{ color: `${theme.text.color}`, border: "none", py: "1.5px" }}>
-                                                            <b>{row.key}</b>
-                                                        </TableCell>
-                                                        <TableCell align="right" sx={{ color: `${theme.text.color}`, border: "none", py: "1.5px" }}>
-                                                            {row.value}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                ))
-                                            }
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
-                            </Box>
+                        </Box>
+                        <Box
+                            sx={{
+                                py: "10px",
+                                mt: "10px",
+                                width: "30vw",
+                                border: `1px solid ${theme.border.color}`,
+                                borderRadius: "5px",
+                                color: `${theme.text.color}`,
+                                backgroundColor: `${theme.paper.backgroundColor}`,
+                            }}
+                        >
+                            <TableContainer>
+                                <Table size="small">
+                                    <TableBody>
+                                        {
+                                            rows.map((row) => (
+                                                <TableRow key={row.key}>
+                                                    <TableCell sx={{ color: `${theme.text.color}`, border: "none", py: "1.5px" }}>
+                                                        <b>{row.key}</b>
+                                                    </TableCell>
+                                                    <TableCell align="right" sx={{ color: `${theme.text.color}`, border: "none", py: "1.5px" }}>
+                                                        {row.value}
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))
+                                        }
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
                         </Box>
                     </Grid>
                     <Grid size="grow" sx={{ mb: "20px" }}>
@@ -130,7 +135,7 @@ function CharacterPage(props: any) {
                                                     variant="square"
                                                     sx={{ mr: "-20px", height: "128px", width: "128px", backgroundColor: `${theme.paper.backgroundColor}` }}
                                                 >
-                                                    <img src={`${process.env.REACT_APP_URL}/elements/${element}.png`} alt={`${element}`}
+                                                    <img src={`${process.env.REACT_APP_URL}/elements/${element}.png`} alt={element}
                                                         style={{ height: "64px", width: "64px" }}
                                                         onError={ErrorLoadingImage}
                                                     />
@@ -172,13 +177,18 @@ function CharacterPage(props: any) {
                                                         color: `${theme.text.color}`
                                                     }}
                                                 >
-                                                    <Box sx={{ ml: "-5px" }}>
-                                                        <img style={{ height: "30px" }} src={`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`} alt={rarity} onError={ErrorLoadingImage} />
+                                                    <Box sx={{ ml: "-2.5px" }}>
+                                                        <img style={{ height: "30px" }} src={`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`} alt={`${rarity}-Star`} onError={ErrorLoadingImage} />
                                                     </Box>
-                                                    <Box sx={{ ml: "5px", mt: "-2.5px" }}>
-                                                        <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
-                                                            • {weapon}
+                                                    <Box sx={{ mx: "5px" }}>
+                                                        <Typography variant="h6" sx={{ fontFamily: "Rowdies", mb: "5px", userSelect: "none" }}>
+                                                            •
                                                         </Typography>
+                                                    </Box>
+                                                    <Box>
+                                                        <CustomTooltip title={weapon} arrow placement="bottom">
+                                                            <img src={`${process.env.REACT_APP_URL}/weapons/icons/${weapon}.png`} alt={weapon} onError={ErrorLoadingImage} style={{ height: "28px" }} />
+                                                        </CustomTooltip>
                                                     </Box>
                                                 </Box>
                                             </Box>
