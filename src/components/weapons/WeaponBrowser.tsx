@@ -8,10 +8,11 @@ import WeaponCardLarge from "./WeaponCardLarge"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { Box, Typography, Paper, InputBase, ToggleButtonGroup } from "@mui/material"
+import { useMediaQuery, Box, Typography, Paper, InputBase, ToggleButtonGroup, SwipeableDrawer } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import AppsSharpIcon from "@mui/icons-material/AppsSharp"
 import ListSharpIcon from "@mui/icons-material/ListSharp"
+import FilterAltIcon from "@mui/icons-material/FilterAlt"
 
 // Helper imports
 import { filterWeapons } from "../../helpers/FilterWeapons"
@@ -24,6 +25,8 @@ function WeaponBrowser(props: any) {
 
     const theme = useTheme()
 
+    const matches = useMediaQuery(theme.breakpoints.up("sm"))
+
     const [searchValue, setSearchValue] = React.useState("")
     const handleInputChange = (event: React.BaseSyntheticEvent) => {
         setSearchValue(event.target.value)
@@ -35,6 +38,20 @@ function WeaponBrowser(props: any) {
             setView(newView)
         }
     }
+
+    const [drawerOpen, setDrawerOpen] = React.useState(false)
+    const toggleDrawer =
+        (open: boolean) =>
+            (event: React.KeyboardEvent | React.MouseEvent) => {
+                if (
+                    event &&
+                    event.type === "keydown" &&
+                    ((event as React.KeyboardEvent).key === "Tab" || (event as React.KeyboardEvent).key === "Shift")
+                ) {
+                    return
+                }
+                setDrawerOpen(open)
+            }
 
     let { weapons, weaponFilters } = props
 
@@ -70,6 +87,7 @@ function WeaponBrowser(props: any) {
                         <ListSharpIcon sx={{ color: `white` }} />
                     </CustomToggleButton>
                 </ToggleButtonGroup>
+                <FilterAltIcon sx={{ display: { xs: "block", md: "none" }, flexGrow: 1, color: `white` }} fontSize="large" onClick={toggleDrawer(true)} />
             </Box>
             <Grid container spacing={3}>
                 <Grid size="grow">
@@ -89,31 +107,64 @@ function WeaponBrowser(props: any) {
                             null
                     }
                 </Grid>
-                <Grid size={2.75}>
-                    <Paper
-                        sx={{
-                            border: `2px solid ${theme.border.color}`,
-                            borderRadius: "5px",
-                            backgroundColor: `${theme.paper.backgroundColor}`,
-                            display: "flex",
-                            height: "40px",
-                            mb: "10px",
-                        }}
-                    >
-                        <InputBase
+                {
+                    matches &&
+                    <Grid size={2.75}>
+                        <Paper
                             sx={{
-                                marginLeft: "10px",
-                                flex: 1,
-                                color: `${theme.text.color}`,
-                                fontFamily: `${theme.font.genshin.family}`,
+                                border: `2px solid ${theme.border.color}`,
+                                borderRadius: "5px",
+                                backgroundColor: `${theme.paper.backgroundColor}`,
+                                display: "flex",
+                                height: "40px",
+                                mb: "10px",
                             }}
-                            placeholder="Search"
-                            onChange={handleInputChange}
-                        />
-                    </Paper>
-                    <WeaponFilters />
-                </Grid>
+                        >
+                            <InputBase
+                                sx={{
+                                    marginLeft: "10px",
+                                    flex: 1,
+                                    color: `${theme.text.color}`,
+                                    fontFamily: `${theme.font.genshin.family}`,
+                                }}
+                                placeholder="Search"
+                                onChange={handleInputChange}
+                            />
+                        </Paper>
+                        <WeaponFilters />
+                    </Grid>
+                }
             </Grid>
+            <SwipeableDrawer
+                anchor="bottom"
+                open={drawerOpen}
+                onClose={toggleDrawer(false)}
+                onOpen={toggleDrawer(true)}
+                sx={{ [`& .MuiDrawer-paper`]: { borderTop: `2px solid ${theme.border.colorAlt}`, backgroundColor: `${theme.appbar.backgroundColor}`, height: "50vh", p: 2 } }}
+            >
+                <Paper
+                    sx={{
+                        border: `2px solid ${theme.border.color}`,
+                        borderRadius: "5px",
+                        backgroundColor: `${theme.paper.backgroundColor}`,
+                        display: "flex",
+                        height: "40px",
+                        mb: "10px",
+                    }}
+                >
+                    <InputBase
+                        sx={{
+                            marginLeft: "10px",
+                            flex: 1,
+                            color: `${theme.text.color}`,
+                            fontFamily: `${theme.font.genshin.family}`,
+                        }}
+                        placeholder="Search"
+                        onChange={handleInputChange}
+                    />
+                </Paper>
+                <WeaponFilters />
+            </SwipeableDrawer>
         </React.Fragment>
     )
 }
