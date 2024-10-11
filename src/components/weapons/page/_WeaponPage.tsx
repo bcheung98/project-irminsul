@@ -1,16 +1,24 @@
 import * as React from "react"
-import { useTheme } from "@mui/material/styles"
-import parse from "html-react-parser"
 import { connect } from "react-redux"
 import { useParams } from "react-router-dom"
-import { useMediaQuery, Typography, Tabs, Box, AppBar, Avatar } from "@mui/material"
-import Grid from "@mui/material/Grid2"
-import { TabPanel, StyledTab } from "../../_custom/CustomTabs"
+import parse from "html-react-parser"
+
+// Component imports
 import WeaponStatsTable from "./WeaponStatsTable"
 import WeaponAscension from "./WeaponAscension"
+
+// MUI imports
+import { useTheme } from "@mui/material/styles"
+import { useMediaQuery, Typography, Tabs, Box, AppBar } from "@mui/material"
+import Grid from "@mui/material/Grid2"
+
+// Helper imports
 import { CustomTooltip } from "../../_custom/CustomTooltip"
+import { TabPanel, StyledTab } from "../../_custom/CustomTabs"
 import { CustomSlider } from "../../_custom/CustomSlider"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
+
+// Type imports
 import { RootState } from "../../../redux/store"
 import { WeaponData } from "../../../types/weapon/WeaponData"
 

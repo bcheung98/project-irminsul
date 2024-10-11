@@ -175,8 +175,6 @@ function CharacterInfoMain(props: any) {
 
     const theme = useTheme()
 
-    const matches = useMediaQuery(theme.breakpoints.up("sm"))
-
     let { name, title, rarity, element, weapon, description, nation } = props.character
 
     let visionIcon = nation === "Fontaine" ? `${process.env.REACT_APP_URL}/visions/${nation}_${element}_${props.character.arkhe}.png` : `${process.env.REACT_APP_URL}/visions/${nation}_${element}.png`
