@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles"
 import parse from "html-react-parser"
 import { connect } from "react-redux"
 import { useParams } from "react-router-dom"
-import { Typography, Tabs, Box, AppBar } from "@mui/material"
+import { useMediaQuery, Typography, Tabs, Box, AppBar, Avatar } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import { TabPanel, StyledTab } from "../../_custom/CustomTabs"
 import WeaponStatsTable from "./WeaponStatsTable"
@@ -17,6 +17,8 @@ import { WeaponData } from "../../../types/weapon/WeaponData"
 function WeaponPage(props: any) {
 
     const theme = useTheme()
+
+    const matches = useMediaQuery(theme.breakpoints.up("sm"))
 
     let { weapon_name } = useParams<{ weapon_name: string }>()
     let { weapons } = props
@@ -67,7 +69,7 @@ function WeaponPage(props: any) {
                     <Grid size="auto">
                         <img src={(`${process.env.REACT_APP_URL}/weapons/${name.split(" ").join("_")}.png`)} alt={name} style={weaponIcon} onError={ErrorLoadingImage} />
                     </Grid>
-                    <Grid size="grow">
+                    <Grid size={{ xs: 12, sm: "grow" }}>
                         <Box
                             sx={{
                                 p: "15px",
@@ -78,18 +80,26 @@ function WeaponPage(props: any) {
                         >
                             <Box sx={{ display: "flex", alignItems: "center" }}>
                                 <CustomTooltip title={`${type}`} arrow placement="bottom">
-                                    <img src={`${process.env.REACT_APP_URL}/weapons/icons/${type}.png`} alt={type} onError={ErrorLoadingImage} style={{ marginRight: "-20px", height: "96px", width: "96px", backgroundColor: `${theme.paper.backgroundColor}` }} />
+                                    <img
+                                        src={`${process.env.REACT_APP_URL}/weapons/icons/${type}.png`} alt={type}
+                                        style={{
+                                            marginRight: "-20px",
+                                            marginTop: "auto",
+                                            marginBottom: "auto",
+                                            height: matches ? "96px" : "72px",
+                                            width: matches ? "96px" : "72px",
+                                            backgroundColor: `${theme.paper.backgroundColor}`
+                                        }}
+                                        onError={ErrorLoadingImage}
+                                    />
                                 </CustomTooltip>
                                 <Box sx={{ ml: "30px" }}>
                                     <Typography
-                                        variant="h4"
-                                        noWrap
                                         sx={{
                                             mt: "10px",
                                             fontFamily: `${theme.font.genshin.family}`,
+                                            fontSize: { xs: "24px", sm: "32px" },
                                             color: `${theme.text.color}`,
-                                            textDecoration: "none",
-                                            textAlign: "center",
                                         }}
                                     >
                                         {weapon.displayName ? weapon.displayName : name}
@@ -101,9 +111,9 @@ function WeaponPage(props: any) {
                             </Box>
                             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
                             <Typography
-                                variant="body2"
                                 sx={{
                                     fontFamily: `${theme.font.genshin.family}`,
+                                    fontSize: { xs: "14px", sm: "16px" },
                                     color: `${theme.text.color}`,
                                     m: "5px"
                                 }}
@@ -124,11 +134,11 @@ function WeaponPage(props: any) {
                                     color: `${theme.text.color}`,
                                 }}
                             >
-                                <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, mx: "15px", }}>
+                                <Typography sx={{ fontSize: "20px", fontFamily: `${theme.font.genshin.family}`, mx: "15px", }}>
                                     {weapon.stats.passive.name}
                                 </Typography>
                                 <br />
-                                <Typography variant="body1" sx={{ fontSize: "11pt", mx: "15px", }}>
+                                <Typography sx={{ fontSize: "14.5px", mx: "15px", }}>
                                     {parse(weapon.stats.passive.description)}
                                 </Typography>
                                 {

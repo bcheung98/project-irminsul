@@ -3,7 +3,7 @@ import parse from "html-react-parser"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { Typography, Box, Tabs } from "@mui/material"
+import { useMediaQuery, Typography, Box, Tabs } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
@@ -17,6 +17,8 @@ function CharacterOutfitDisplay(props: any) {
 
     const theme = useTheme()
 
+    const matches = useMediaQuery(theme.breakpoints.up("sm"))
+
     let { name, outfits } = props.character as CharacterData
 
     const [tabValue, setTabValue] = React.useState(0)
@@ -26,7 +28,7 @@ function CharacterOutfitDisplay(props: any) {
 
     const OutfitIcon = (rarity: number) => {
         return {
-            width: "90px",
+            width: matches ? "90px" : "64px",
             border: `2px solid ${theme.border.color}`,
             borderRadius: "64px",
             backgroundColor: `${theme.materialImage.backgroundColor}`,
@@ -35,8 +37,10 @@ function CharacterOutfitDisplay(props: any) {
         }
     }
 
-    const OutfitSplash = {
+    const OutfitSplash: React.CSSProperties = {
         width: "100%",
+        height: matches ? "auto" : "475px",
+        objectFit: "cover",
         border: `1px solid ${theme.border.color}`,
         borderRadius: "5px",
         backgroundColor: `${theme.materialImage.backgroundColor}`
@@ -50,9 +54,9 @@ function CharacterOutfitDisplay(props: any) {
                 borderRadius: "5px",
             }}
         >
-            <Grid sx={{ backgroundColor: `${theme.toolbar.backgroundColor}`, width: "128px" }}>
+            <Grid size="auto" sx={{ backgroundColor: `${theme.toolbar.backgroundColor}`, width: { xs: "100%", sm: "128px" } }}>
                 <Tabs
-                    orientation="vertical"
+                    orientation={matches ? "vertical" : "horizontal"}
                     variant="scrollable"
                     scrollButtons="auto"
                     value={tabValue}
@@ -73,7 +77,7 @@ function CharacterOutfitDisplay(props: any) {
                     }
                 </Tabs>
             </Grid>
-            <Grid size="grow">
+            <Grid size={{ xs: 12, sm: "grow" }}>
                 {
                     outfits.map((outfit, index) => {
                         return (
@@ -83,26 +87,26 @@ function CharacterOutfitDisplay(props: any) {
                                 value={tabValue}
                             >
                                 <Typography
-                                    variant="h6"
                                     sx={{
                                         mb: "10px",
                                         fontFamily: `${theme.font.genshin.family}`,
+                                        fontSize: { xs: "17px", sm: "20px" },
                                         color: `${theme.text.color}`,
                                     }}
                                 >
                                     {outfit.displayName ? outfit.displayName : outfit.name}
                                 </Typography>
                                 <Typography
-                                    variant="body2"
                                     sx={{
                                         mb: "20px",
                                         fontFamily: `${theme.font.genshin.family}`,
+                                        fontSize: { xs: "11px", sm: "14px" },
                                         color: `${theme.text.color}`,
                                     }}
                                 >
                                     <i>{parse(outfit.description)}</i>
                                 </Typography>
-                                <Box sx={{ width: "100%", height: "auto", aspectRatio: "2/1" }}>
+                                <Box>
                                     {
                                         index === 0 ?
                                             <img src={`${process.env.REACT_APP_URL}/characters/wish/${name.split(" ").join("_")}.png`} alt={outfit.name} style={OutfitSplash} onError={ErrorLoadingImage} />
