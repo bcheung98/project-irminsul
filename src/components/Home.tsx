@@ -10,7 +10,7 @@ function Home() {
     document.title = `Genshin Impact ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
     return (
-        <Grid container spacing={5}>
+        <Grid container spacing={5} columns={{ xs: 5, sm: 12 }}>
             <Grid size={5}>
                 <FarmableToday />
             </Grid>
@@ -19,7 +19,7 @@ function Home() {
             </Grid>
         </Grid>
     )
-    
+
 }
 
 export default Home

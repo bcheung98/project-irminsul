@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles"
 import { connect } from "react-redux"
 
 // MUI imports
-import { Box, ButtonBase, Typography, CardHeader, Tabs, Select, AppBar, SelectChangeEvent, Theme } from "@mui/material"
+import { useMediaQuery, Box, ButtonBase, Typography, CardHeader, Tabs, Select, AppBar, SelectChangeEvent, Theme } from "@mui/material"
 
 // Helper imports
 import { MaterialDates } from "../helpers/MaterialDates"
@@ -36,6 +36,8 @@ const IconStyle = (rarity: number, theme: Theme) => {
 function FarmableToday(props: any) {
 
     const theme = useTheme()
+
+    const matches = useMediaQuery(theme.breakpoints.up("sm"))
 
     const [tabValue, setTabValue] = React.useState(0)
     const handleTabChange = (event: React.BaseSyntheticEvent, newValue: number) => {
@@ -79,7 +81,7 @@ function FarmableToday(props: any) {
                         justifyContent: "space-between",
                     }}
                 >
-                    <Typography variant="h6" noWrap sx={{ fontFamily: `${theme.font.genshin.family}`, ml: "5px", lineHeight: "45px" }}>
+                    <Typography noWrap sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "16px", sm: "20px" }, ml: "5px", lineHeight: "45px" }}>
                         Farming Schedule
                     </Typography>
                     <Select
@@ -97,12 +99,12 @@ function FarmableToday(props: any) {
                             weekday.map((day: string, index: number) => (
                                 <CustomMenuItem key={index} value={day}>
                                     {
-                                        day === today ?
-                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}` }}>
-                                                {day} {"(Today)"}
+                                        day === today && matches ?
+                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "14px", sm: "16px" } }}>
+                                                {`${day} (Today)`}
                                             </Typography>
                                             :
-                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}` }}>
+                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "14px", sm: "16px" } }}>
                                                 {day}
                                             </Typography>
                                     }

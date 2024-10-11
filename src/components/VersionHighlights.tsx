@@ -115,15 +115,15 @@ function VersionHighlights(props: any) {
                         justifyContent: "space-between",
                     }}
                 >
-                    <Typography variant="h6" noWrap sx={{ fontFamily: `${theme.font.genshin.family}`, ml: "5px", lineHeight: "45px" }}>
+                    <Typography noWrap sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "16px", sm: "20px" }, ml: "5px", lineHeight: "45px" }}>
                         Version Highlights
                     </Typography>
                     <Box sx={{ display: "flex" }}>
-                        <Box sx={{ width: "32px" }}>
+                        <Box sx={{ width: "24px" }}>
                             {
                                 index < updates.length - 1 &&
-                                <IconButton onClick={handleIndexChangeLeft}>
-                                    <KeyboardArrowLeftIcon sx={{ color: `${theme.text.color}`, mt: "2px", ml: "-10px" }} />
+                                <IconButton onClick={handleIndexChangeLeft} sx={{ px: 0 }}>
+                                    <KeyboardArrowLeftIcon sx={{ color: `${theme.text.color}`, mt: "2px", mr: 0 }} />
                                 </IconButton>
                             }
                         </Box>
@@ -142,17 +142,17 @@ function VersionHighlights(props: any) {
                             {
                                 updates.map((version, index) => (
                                     <CustomMenuItem key={index} value={index}>
-                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11pt", color: `${theme.text.color}` }}>
+                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "14px", sm: "16px" }, color: `${theme.text.color}` }}>
                                             {version.version}
                                         </Typography>
                                     </CustomMenuItem>
                                 ))
                             }
                         </Select>
-                        <Box sx={{ width: "32px" }}>
+                        <Box sx={{ width: "24px" }}>
                             {
                                 index > 0 &&
-                                <IconButton onClick={handleIndexChangeRight}>
+                                <IconButton onClick={handleIndexChangeRight} sx={{ px: 0 }}>
                                     <KeyboardArrowRightIcon sx={{ color: `${theme.text.color}`, mt: "2px" }} />
                                 </IconButton>
                             }
@@ -161,7 +161,7 @@ function VersionHighlights(props: any) {
                 </Box>
             </AppBar>
 
-            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "18pt", color: `${theme.text.color}`, mx: "30px", my: "20px" }}>
+            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "20px", sm: "24px" }, color: `${theme.text.color}`, mx: "30px", my: "20px" }}>
                 {updates[index].version} - <i>{updates[index].name}</i>
             </Typography>
 

@@ -24,7 +24,7 @@ function BottomNav() {
                     my: "15px"
                 }}
             >
-                <Typography sx={{ fontSize: { xs: "7pt", sm: "9.5pt" }, fontFamily: `${theme.font.genshin.family}` }}>
+                <Typography sx={{ fontSize: { xs: "9pt", sm: "9.5pt" }, fontFamily: `${theme.font.genshin.family}` }}>
                     IRMINSUL.GG is not affiliated with HoYoverse.<br />
                     Game contents are trademarks and copyrights of HoYoverse.
                 </Typography>
@@ -46,7 +46,7 @@ function BottomNav() {
                                 display: { xs: "flex", sm: "block" }
                             }}
                         >
-                            <Typography gutterBottom sx={{ fontSize: { xs: "7pt", sm: "9.5pt" }, fontFamily: `${theme.font.genshin.family}` }}>GitHub:</Typography>
+                            <Typography gutterBottom sx={{ fontSize: { xs: "9pt", sm: "9.5pt" }, fontFamily: `${theme.font.genshin.family}` }}>GitHub:</Typography>
                             <IconButton
                                 disableRipple
                                 href="https://github.com/bcheung98/project-irminsul"
@@ -73,7 +73,7 @@ function BottomNav() {
                                 display: { xs: "flex", sm: "block" }
                             }}
                         >
-                            <Typography gutterBottom sx={{ fontSize: { xs: "7pt", sm: "9.5pt" }, fontFamily: `${theme.font.genshin.family}` }}>Made with:</Typography>
+                            <Typography gutterBottom sx={{ fontSize: { xs: "9pt", sm: "9.5pt" }, fontFamily: `${theme.font.genshin.family}` }}>Made with:</Typography>
                             <Box sx={{ display: "flex" }}>
                                 <IconButton
                                     disableRipple
