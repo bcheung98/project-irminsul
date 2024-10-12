@@ -21,7 +21,7 @@ function BottomNav() {
                 sx={{
                     justifyContent: "center",
                     display: { xs: "block", sm: "flex" },
-                    my: "15px"
+                    my: "10px"
                 }}
             >
                 <Typography sx={{ fontSize: { xs: "9pt", sm: "9.5pt" }, fontFamily: `${theme.font.genshin.family}` }}>
