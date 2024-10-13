@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 // Component imports
 import CharacterCard from "./CharacterCard"
 import CharacterList from "./CharacterList"
-import CharacterFilters from "./filters/_CharacterFilters"
+import CharacterFilters from "./CharacterFilters"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"

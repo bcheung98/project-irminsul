@@ -5,8 +5,8 @@ import { connect, useDispatch } from "react-redux"
 import TCGCharacterCard from "./TCGCharacterCard"
 import TCGActionCard from "./TCGActionCard"
 import TCGDeck from "./TCGDeck"
-import TCGCharacterCardFilters from "./filters/character/_TCGCharacterCardFilters"
-import TCGActionCardFilters from "./filters/action/_TCGActionCardFilters"
+import TCGCharacterCardFilters from "./TCGCharacterCardFilters"
+import TCGActionCardFilters from "./TCGActionCardFilters"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
@@ -14,7 +14,6 @@ import { Box, Typography, ToggleButtonGroup, Paper, InputBase, Radio, RadioGroup
 import Grid from "@mui/material/Grid2"
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward"
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward"
-import { blue } from "@mui/material/colors"
 
 // Helper imports
 import { filterTCGCharacterCards } from "../../helpers/FilterTCGCharacterCards"
@@ -173,12 +172,12 @@ function TCGBrowser(props: any) {
                                             <ToggleButtonGroup value={charSortDirection} size="small" exclusive onChange={handleCharacterSortDirectionChange} sx={{ border: `1px solid ${theme.border.color}` }}>
                                                 <CustomTooltip title="Ascending" arrow placement="top">
                                                     <CustomToggleButton value="asc">
-                                                        <ArrowUpwardIcon sx={{ color: blue[50] }} />
+                                                        <ArrowUpwardIcon sx={{ color: `${theme.text.color}` }} />
                                                     </CustomToggleButton>
                                                 </CustomTooltip>
                                                 <CustomTooltip title="Descending" arrow placement="top">
                                                     <CustomToggleButton value="desc">
-                                                        <ArrowDownwardIcon sx={{ color: blue[50] }} />
+                                                        <ArrowDownwardIcon sx={{ color: `${theme.text.color}` }} />
                                                     </CustomToggleButton>
                                                 </CustomTooltip>
                                             </ToggleButtonGroup>
@@ -230,12 +229,12 @@ function TCGBrowser(props: any) {
                                             <ToggleButtonGroup value={actionSortDirection} size="small" exclusive onChange={handleActionSortDirectionChange} sx={{ border: `1px solid ${theme.border.color}` }}>
                                                 <CustomTooltip title="Ascending" arrow placement="top">
                                                     <CustomToggleButton value="asc">
-                                                        <ArrowUpwardIcon sx={{ color: blue[50] }} />
+                                                        <ArrowUpwardIcon sx={{ color: `${theme.text.color}` }} />
                                                     </CustomToggleButton>
                                                 </CustomTooltip>
                                                 <CustomTooltip title="Descending" arrow placement="top">
                                                     <CustomToggleButton value="desc">
-                                                        <ArrowDownwardIcon sx={{ color: blue[50] }} />
+                                                        <ArrowDownwardIcon sx={{ color: `${theme.text.color}` }} />
                                                     </CustomToggleButton>
                                                 </CustomTooltip>
                                             </ToggleButtonGroup>

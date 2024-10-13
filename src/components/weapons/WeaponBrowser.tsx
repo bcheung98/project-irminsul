@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 
 // Component imports
 import WeaponList from "./WeaponList"
-import WeaponFilters from "./filters/_WeaponFilters"
+import WeaponFilters from "./WeaponFilters"
 import WeaponCardLarge from "./WeaponCardLarge"
 
 // MUI imports
