@@ -6,8 +6,7 @@ import TCGDiceCost from "./TCGDiceCost"
 import TCGActionCardPopup from "./TCGActionCardPopup"
 
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Typography, Dialog } from "@mui/material"
+import { useTheme, Box, Typography, Dialog } from "@mui/material"
 
 // Helper imports
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
@@ -32,7 +31,7 @@ function TCGActionCard(props: any) {
     }
 
     return (
-        <Box>
+        <React.Fragment>
             <Box
                 sx={{
                     width: "150px",
@@ -45,7 +44,7 @@ function TCGActionCard(props: any) {
                 <Box
                     sx={{
                         position: "absolute",
-                        top: "-15px",
+                        top: "-10px",
                         left: "-15px"
                     }}
                 >
@@ -81,8 +80,9 @@ function TCGActionCard(props: any) {
             >
                 <TCGActionCardPopup key={name} card={props.card} inDeck={deck.actionCards.includes(props.card)} count={deck.actionCards.filter((card: TCGDeckData) => card === props.card).length} preview={props.preview} />
             </Dialog>
-        </Box>
+        </React.Fragment>
     )
+
 }
 
 const mapStateToProps = (state: RootState) => ({

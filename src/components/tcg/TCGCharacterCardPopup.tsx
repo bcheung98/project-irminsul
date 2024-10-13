@@ -7,8 +7,7 @@ import TCGDiceCost from "./TCGDiceCost"
 import TCGKeywordPopup from "./TCGKeywordPopup"
 
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Typography, CardHeader, Avatar, Button, Dialog, Chip } from "@mui/material"
+import { useTheme, Box, Typography, CardHeader, Avatar, Button, Dialog, Chip } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
@@ -126,7 +125,7 @@ function TCGCharacterCardPopup(props: any) {
             sx={{
                 width: "70vw",
                 p: "15px",
-                backgroundColor: "rgb(0, 30, 60)",
+                backgroundColor: `${theme.materialImage.backgroundColor}`,
                 border: `2px solid ${theme.border.color}`,
                 borderRadius: "5px",
             }}
@@ -150,19 +149,21 @@ function TCGCharacterCardPopup(props: any) {
                         >
                             <Box
                                 sx={{
-                                    position: "relative",
+                                    border: "2px solid transparent", // This actually centers the number
                                     textAlign: "center",
+                                    width: "80px",
+                                    height: "98px",
+                                    backgroundImage: `url(${process.env.REACT_APP_URL}/tcg/icons/hp.png)`,
+                                    backgroundPosition: "center",
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundSize: "100%",
                                 }}
                             >
-                                <img src={`${process.env.REACT_APP_URL}/tcg/icons/hp.png`} alt={hp} style={{ width: "80px" }} />
                                 <Typography
-                                    variant="h3"
                                     sx={{
                                         fontFamily: `${theme.font.genshin.family}`,
-                                        position: "absolute",
-                                        top: "50%",
-                                        left: "50%",
-                                        transform: "translate(-50%, -50%)",
+                                        fontSize: "40px",
+                                        lineHeight: "98px",
                                         color: `white`,
                                         textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
                                         userSelect: "none"
@@ -220,7 +221,7 @@ function TCGCharacterCardPopup(props: any) {
                     </Box>
                     <Box>
                         <Chip
-                            avatar={<Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/weapons/${weapon.split(" ").join("_")}.png`} alt={weapon} />}
+                            avatar={<img src={`${process.env.REACT_APP_URL}/tcg/icons/weapons/${weapon.split(" ").join("_")}.png`} alt={weapon} onError={ErrorLoadingImage} />}
                             label={
                                 <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="body2">
                                     {weapon}
@@ -233,13 +234,9 @@ function TCGCharacterCardPopup(props: any) {
                                 return (
                                     <Chip
                                         key={index}
-                                        avatar={
-                                            <Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${faction.split(" ").join("_")}.png`} alt={faction}>
-                                                <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "24px", backgroundColor: "rgb(69, 84, 103)" }} />
-                                            </Avatar>
-                                        }
+                                        avatar={<img src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${faction.split(" ").join("_")}.png`} alt={faction} onError={ErrorLoadingImage} />}
                                         label={
-                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="body2">
+                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `white` }} variant="body2">
                                                 {faction}
                                             </Typography>
                                         }
@@ -251,11 +248,7 @@ function TCGCharacterCardPopup(props: any) {
                         {
                             arkhe &&
                             <Chip
-                                avatar={
-                                    <Avatar variant="square" src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${arkhe}.png`} alt={arkhe}>
-                                        <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "24px", backgroundColor: "rgb(69, 84, 103)" }} />
-                                    </Avatar>
-                                }
+                                avatar={<img src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${arkhe}.png`} alt={arkhe} onError={ErrorLoadingImage} />}
                                 label={
                                     <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="body2">
                                         Arkhe: {arkhe}
@@ -324,11 +317,11 @@ function TCGCharacterCardPopup(props: any) {
                             {
                                 props.inDeck === false ?
                                     <Button variant="contained" sx={{ my: "20px" }} onClick={() => dispatch(addCharacterCard(props.char))}>
-                                        <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>Add to Deck</Typography>
+                                        <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>Add to Deck</Typography>
                                     </Button>
                                     :
                                     <Button variant="contained" color="error" sx={{ my: "20px" }} onClick={() => dispatch(removeCharacterCard(props.char))}>
-                                        <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>Remove from Deck</Typography>
+                                        <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>Remove from Deck</Typography>
                                     </Button>
                             }
                         </React.Fragment>
@@ -347,6 +340,7 @@ function TCGCharacterCardPopup(props: any) {
             </Grid>
         </Box>
     )
+
 }
 
 const mapStateToProps = (state: RootState) => ({

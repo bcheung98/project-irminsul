@@ -5,8 +5,7 @@ import { connect } from "react-redux"
 import TCGCharacterCardPopup from "./TCGCharacterCardPopup"
 
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Typography, Dialog } from "@mui/material"
+import { useTheme, Box, Typography, Dialog } from "@mui/material"
 
 // Helper imports
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
@@ -41,7 +40,7 @@ function TCGCharacterCard(props: any) {
     }
 
     return (
-        <Box>
+        <React.Fragment>
             <Box
                 sx={{
                     width: "150px",
@@ -61,19 +60,21 @@ function TCGCharacterCard(props: any) {
                 >
                     <Box
                         sx={{
-                            position: "relative",
-                            textAlign: "center"
+                            border: "2px solid transparent", // This actually centers the number
+                            textAlign: "center",
+                            width: "48px",
+                            height: "58px",
+                            backgroundImage: `url(${process.env.REACT_APP_URL}/tcg/icons/hp.png)`,
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "100%",
                         }}
                     >
-                        <img src={`${process.env.REACT_APP_URL}/tcg/icons/hp.png`} alt={hp} style={{ width: "40px" }} />
                         <Typography
-                            variant="h5"
                             sx={{
                                 fontFamily: `${theme.font.genshin.family}`,
-                                position: "absolute",
-                                top: "50%",
-                                left: "50%",
-                                transform: "translate(-50%, -50%)",
+                                fontSize: "24px",
+                                lineHeight: "58px",
                                 color: `white`,
                                 textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
                                 userSelect: "none"
@@ -129,8 +130,9 @@ function TCGCharacterCard(props: any) {
             >
                 <TCGCharacterCardPopup key={name} char={props.char} inDeck={deck.characterCards.includes(props.char)} preview={props.preview} />
             </Dialog>
-        </Box>
+        </React.Fragment>
     )
+
 }
 
 const mapStateToProps = (state: RootState) => ({

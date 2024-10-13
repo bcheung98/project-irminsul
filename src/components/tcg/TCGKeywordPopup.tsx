@@ -77,8 +77,9 @@ function TCGKeywordPopup(props: any) {
                 borderRadius: "5px",
             }}
         >
-            <Box sx={{ display: "flex" }}>
-                {cost &&
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+                {
+                    cost &&
                     <Box sx={{ mr: "5px" }}>
                         <TCGDiceCost cost={cost} type={"keyword-popup"} />
                     </Box>

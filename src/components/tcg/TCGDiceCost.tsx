@@ -1,6 +1,5 @@
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, SxProps, Typography } from "@mui/material"
+import { useTheme, Box, Typography } from "@mui/material"
 
 function TCGDiceCost(props: any) {
 
@@ -11,113 +10,72 @@ function TCGDiceCost(props: any) {
         cost = props.cost.split(" ")
     }
 
-    const position = (type: string) => {
-        if (type === "card") {
-            return {
-                position: "absolute",
-                top: "5px",
-                left: "-2px"
-            }
-        }
-        else if (type === "card-large") {
-            return {
-                position: "absolute",
-                top: "2px",
-                left: "-16px"
-            }
-        }
-        else if (type === "keyword-popup") {
-            return {
-
-            }
-        }
-        else {
-            return {
-                display: "flex",
-                position: "absolute",
-                right: "5px",
-            }
-        }
-    }
-
     const size = (type: string) => {
-        if (type === "card") {
-            return {
-                width: "56px"
-            }
+        if (type === "card" || type === "popup") {
+            return "60px"
         }
         else if (type === "card-large") {
-            return {
-                width: "96px"
-            }
+            return "96px"
         }
         else if (type === "keyword-popup") {
-            return {
-                width: "32px"
-            }
+            return "40px"
         }
         else {
-            return {
-                width: "48px"
-            }
+            return "56px"
         }
     }
 
     const fontSize = (type: string) => {
-        if (type === "card") {
-            return "h5"
+        if (type === "card" || type === "popup") {
+            return "24px"
         }
         else if (type === "card-large") {
-            return "h3"
+            return "38.4px"
         }
         else if (type === "keyword-popup") {
-            return "h6"
+            return "20px"
         }
         else {
-            return "h5"
+            return "22.4px"
         }
     }
 
     return (
-        <Box
-            sx={{
-                display: "flex",
-                position: "relative"
-            }}
-        >
-            <Box sx={position(props.type) as SxProps}>
-                {
-                    cost.map((dice: string, index: number) => {
-                        return (
-                            <Box
+        <Box sx={{ display: props.type === "popup" ? "flex" : "block" }}>
+            {
+                cost.map((dice: string, index: number) => {
+                    return (
+                        <Box
+                            sx={{
+                                border: "2px solid transparent", // This actually centers the number
+                                textAlign: "center",
+                                width: size(props.type),
+                                height: size(props.type),
+                                backgroundImage: `url(${process.env.REACT_APP_URL}/tcg/icons/dice/${dice.slice(-1)}.png)`,
+                                backgroundPosition: "center",
+                                backgroundRepeat: "no-repeat",
+                                backgroundSize: "100%",
+                            }}
+                            key={index}
+                        >
+                            <Typography
                                 sx={{
-                                    position: "relative",
-                                    textAlign: "center",
-                                }}
-                                key={index}
-                            >
-                                <img src={`${process.env.REACT_APP_URL}/tcg/icons/dice/${dice.slice(-1)}.png`} alt={dice.slice(-1)} style={size(props.type)} />
-                                <Typography
-                                    variant={fontSize(props.type)}
-                                    sx={{
-                                        fontFamily: `${theme.font.genshin.family}`,
-                                        position: "absolute",
-                                        top: "48%",
-                                        left: "48%",
-                                        transform: "translate(-50%, -50%)",
-                                        color: `white`,
-                                        textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
-                                        userSelect: "none"
-                                    }}>
-                                    {dice.slice(0, -1)}
-                                </Typography>
-                            </Box>
-                        )
-                    })
-                }
-            </Box>
+                                    fontFamily: `${theme.font.genshin.family}`,
+                                    fontSize: fontSize(props.type),
+                                    lineHeight: size(props.type),
+                                    color: `white`,
+                                    textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+                                    userSelect: "none",
+                                }}>
+                                {dice.slice(0, -1)}
+                            </Typography>
+                        </Box>
+                    )
+                })
+            }
         </Box>
     )
+
 }
 
 export default TCGDiceCost
