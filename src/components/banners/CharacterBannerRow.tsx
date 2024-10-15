@@ -1,21 +1,26 @@
+import { connect } from "react-redux"
+
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Typography, ButtonBase, TableRow } from "@mui/material"
+import { useTheme, Typography, ButtonBase, TableRow } from "@mui/material"
+import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { StyledTableCell } from "../_custom/CustomTable"
 import { CustomTooltip } from "../_custom/CustomTooltip"
 import { CurrentBanner } from "../../helpers/CurrentBanner"
+import BannerRarityBackgrounds from "../../helpers/BannerRarityBackground"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 // Type imports
+import { RootState } from "../../redux/store"
 import { BannerRowData } from "../../types/banner/BannerRowData"
+import { CharacterData } from "../../types/character/CharacterData"
 
 function CharacterBannerRow(props: any) {
 
     const theme = useTheme()
 
-    let { row, index } = props
+    let { row, index, characters } = props
 
     return (
         <TableRow key={index} sx={CurrentBanner(row.startDate, row.endDate)}>
@@ -29,30 +34,31 @@ function CharacterBannerRow(props: any) {
             { /* Banners */}
             <StyledTableCell>
                 {
-                    <Box sx={{ display: "flex" }}>
+                    <Grid container spacing={0.75}>
                         {
-                            (row as BannerRowData).banner.map((char, index) => (
-                                <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={char} sx={{ m: "2px" }}>
-                                    <CustomTooltip title={char} arrow placement="top">
-                                        <img src={(`${process.env.REACT_APP_URL}/characters/icons/${char.split(" ").join("_")}.png`)} alt={char}
-                                            style={{
-                                                margin: "auto",
-                                                marginLeft: "2px",
-                                                border: `1px solid ${theme.border.color}`,
-                                                borderRadius: "5px",
-                                                width: "64px",
-                                                height: "64px",
-                                                backgroundColor: `${theme.materialImage.backgroundColor}`,
-                                                backgroundSize: "100%",
-                                                backgroundImage: `${CharIconBackground(index, row.banner.length)}`
-                                            }}
-                                            onError={ErrorLoadingImage}
-                                        />
-                                    </CustomTooltip>
-                                </ButtonBase>
-                            ))
+                            (row as BannerRowData).banner.map((char, index) => {
+                                let rarity = characters.find((c: CharacterData) => c.name === char).rarity
+                                return (
+                                    <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={index}>
+                                        <CustomTooltip title={char} arrow placement="top">
+                                            <img src={`${process.env.REACT_APP_URL}/characters/icons/${char.split(" ").join("_")}.png`} alt={char}
+                                                style={{
+                                                    border: `1px solid ${theme.border.color}`,
+                                                    borderRadius: "5px",
+                                                    width: "64px",
+                                                    height: "64px",
+                                                    backgroundColor: `${theme.materialImage.backgroundColor}`,
+                                                    backgroundSize: "100%",
+                                                    backgroundImage: BannerRarityBackgrounds(rarity)
+                                                }}
+                                                onError={ErrorLoadingImage}
+                                            />
+                                        </CustomTooltip>
+                                    </ButtonBase>
+                                )
+                            })
                         }
-                    </Box>
+                    </Grid>
                 }
             </StyledTableCell>
 
@@ -60,22 +66,8 @@ function CharacterBannerRow(props: any) {
     )
 }
 
-export default CharacterBannerRow
+const mapStateToProps = (state: RootState) => ({
+    characters: state.characters.characters
+})
 
-function CharIconBackground(index: number, len: number) {
-    if (index === 0 && len === 4) {
-        return `url(${process.env.REACT_APP_URL}/backgrounds/Background_5_Star.png)`
-    }
-    else if (index <= 1 && len === 5) {
-        return `url(${process.env.REACT_APP_URL}/backgrounds/Background_5_Star.png)`
-    }
-    else if (index !== 0 && len === 4) {
-        return `url(${process.env.REACT_APP_URL}/backgrounds/Background_4_Star.png)`
-    }
-    else if (index >= 2 && len === 5) {
-        return `url(${process.env.REACT_APP_URL}/backgrounds/Background_4_Star.png)`
-    }
-    else {
-        return `url(${process.env.REACT_APP_URL}/backgrounds/Background_1_Star.png)`
-    }
-}
+export default connect(mapStateToProps)(CharacterBannerRow)
