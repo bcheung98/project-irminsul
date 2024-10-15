@@ -1,6 +1,6 @@
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { Box, Avatar, Typography } from "@mui/material"
+import { Box, Avatar, Typography, SxProps } from "@mui/material"
 
 // Helper imports
 import { TCGPyro, TCGHydro, TCGElectro, TCGCryo, TCGAnemo, TCGGeo, TCGDendro } from "../_custom/ElementIcons"
@@ -9,14 +9,18 @@ const MainBoxStyle = {
     mb: "10px",
 }
 
+const headerStyle: SxProps = {
+    display: "flex",
+    alignItems: "center",
+    my: "10px"
+}
+
 export function Bloom(props: any) {
     return (
         <Box sx={MainBoxStyle}>
-            <Box sx={{ display: "inline-flex" }}>
-                {
-                    props.element === "Hydro" ? <><TCGHydro /><Plus /><TCGDendro /></> : <><TCGDendro /><Plus /><TCGHydro /></>
-                }
-                <Typography variant="h6" sx={TitleText}>
+            <Box sx={headerStyle}>
+                {props.element === "Hydro" ? <><TCGHydro /><Plus /><TCGDendro /></> : <><TCGDendro /><Plus /><TCGHydro /></>}
+                <Typography sx={TitleText}>
                     Bloom
                 </Typography>
             </Box>
@@ -37,11 +41,11 @@ export function Bloom(props: any) {
 export function Burning(props: any) {
     return (
         <Box sx={MainBoxStyle}>
-            <Box sx={{ display: "inline-flex" }}>
+            <Box sx={headerStyle}>
                 {
                     props.element === "Pyro" ? <><TCGPyro /><Plus /><TCGDendro /></> : <><TCGDendro /><Plus /><TCGPyro /></>
                 }
-                <Typography variant="h6" sx={TitleText}>
+                <Typography sx={TitleText}>
                     Burning
                 </Typography>
             </Box>
@@ -62,9 +66,9 @@ export function Burning(props: any) {
 export function Crystallize(props: any) {
     return (
         <Box sx={MainBoxStyle}>
-            <Box sx={{ display: "inline-flex" }}>
+            <Box sx={headerStyle}>
                 <TCGGeo /><Plus /><Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/${props.element}.png`} alt={`${props.element}`} sx={{ width: "32px", height: "32px" }} />
-                <Typography variant="h6" sx={TitleText}>
+                <Typography sx={TitleText}>
                     {props.element} Crystallize
                 </Typography>
             </Box>
@@ -78,11 +82,11 @@ export function Crystallize(props: any) {
 export function Electrocharged(props: any) {
     return (
         <Box sx={{ mb: "5px" }}>
-            <Box sx={{ display: "inline-flex" }}>
+            <Box sx={headerStyle}>
                 {
                     props.element === "Electro" ? <><TCGElectro /><Plus /><TCGHydro /></> : <><TCGHydro /><Plus /><TCGElectro /></>
                 }
-                <Typography variant="h6" sx={TitleText}>
+                <Typography sx={TitleText}>
                     Electro-Charged
                 </Typography>
             </Box>
@@ -103,11 +107,11 @@ export function Electrocharged(props: any) {
 export function Frozen(props: any) {
     return (
         <Box sx={MainBoxStyle}>
-            <Box sx={{ display: "inline-flex" }}>
+            <Box sx={headerStyle}>
                 {
                     props.element === "Cryo" ? <><TCGCryo /><Plus /><TCGHydro /></> : <><TCGHydro /><Plus /><TCGCryo /></>
                 }
-                <Typography variant="h6" sx={TitleText}>
+                <Typography sx={TitleText}>
                     Frozen
                 </Typography>
             </Box>
@@ -128,11 +132,11 @@ export function Frozen(props: any) {
 export function Melt(props: any) {
     return (
         <Box sx={MainBoxStyle}>
-            <Box sx={{ display: "inline-flex" }}>
+            <Box sx={headerStyle}>
                 {
                     props.element === "Pyro" ? <><TCGPyro /><Plus /><TCGCryo /></> : <><TCGCryo /><Plus /><TCGPyro /></>
                 }
-                <Typography variant="h6" sx={TitleText}>
+                <Typography sx={TitleText}>
                     Melt
                 </Typography>
             </Box>
@@ -153,11 +157,11 @@ export function Melt(props: any) {
 export function Overloaded(props: any) {
     return (
         <Box sx={MainBoxStyle}>
-            <Box sx={{ display: "inline-flex" }}>
+            <Box sx={headerStyle}>
                 {
                     props.element === "Electro" ? <><TCGElectro /><Plus /><TCGPyro /></> : <><TCGPyro /><Plus /><TCGElectro /></>
                 }
-                <Typography variant="h6" sx={TitleText}>
+                <Typography sx={TitleText}>
                     Overloaded
                 </Typography>
             </Box>
@@ -178,11 +182,11 @@ export function Overloaded(props: any) {
 export function Quicken(props: any) {
     return (
         <Box sx={MainBoxStyle}>
-            <Box sx={{ display: "inline-flex" }}>
+            <Box sx={headerStyle}>
                 {
                     props.element === "Dendro" ? <><TCGDendro /><Plus /><TCGElectro /></> : <><TCGElectro /><Plus /><TCGDendro /></>
                 }
-                <Typography variant="h6" sx={TitleText}>
+                <Typography sx={TitleText}>
                     Quicken
                 </Typography>
             </Box>
@@ -203,11 +207,11 @@ export function Quicken(props: any) {
 export function Superconduct(props: any) {
     return (
         <Box sx={MainBoxStyle}>
-            <Box sx={{ display: "inline-flex" }}>
+            <Box sx={headerStyle}>
                 {
                     props.element === "Cryo" ? <><TCGCryo /><Plus /><TCGElectro /></> : <><TCGElectro /><Plus /><TCGCryo /></>
                 }
-                <Typography variant="h6" sx={TitleText}>
+                <Typography sx={TitleText}>
                     Superconduct
                 </Typography>
             </Box>
@@ -228,9 +232,9 @@ export function Superconduct(props: any) {
 export function Swirl(props: any) {
     return (
         <Box sx={MainBoxStyle}>
-            <Box sx={{ display: "inline-flex" }}>
+            <Box sx={headerStyle}>
                 <TCGAnemo /><Plus /><Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/${props.element}.png`} alt={`${props.element}`} sx={{ width: "32px", height: "32px" }} />
-                <Typography variant="h6" sx={TitleText}>
+                <Typography sx={TitleText}>
                     {`${props.element} Swirl`}
                 </Typography>
             </Box>
@@ -244,11 +248,11 @@ export function Swirl(props: any) {
 export function Vaporize(props: any) {
     return (
         <Box sx={MainBoxStyle}>
-            <Box sx={{ display: "inline-flex" }}>
+            <Box sx={headerStyle}>
                 {
                     props.element === "Hydro" ? <><TCGHydro /><Plus /><TCGPyro /></> : <><TCGPyro /><Plus /><TCGHydro /></>
                 }
-                <Typography variant="h6" sx={TitleText}>
+                <Typography sx={TitleText}>
                     Vaporize
                 </Typography>
             </Box>
@@ -268,7 +272,12 @@ export function Vaporize(props: any) {
 
 const TitleText = () => {
     const theme = useTheme()
-    return { fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "5px" }
+    return {
+        fontFamily: `${theme.font.genshin.family}`,
+        fontSize: "20px",
+        color: `${theme.text.color}`,
+        ml: "5px"
+    }
 }
 
 const DescriptionText = () => {

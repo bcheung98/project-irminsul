@@ -1,65 +1,39 @@
 import * as React from "react"
 
 // MUI imports
-import { styled, useTheme } from "@mui/material/styles"
-import { Box, Avatar, Typography } from "@mui/material"
+import { Typography } from "@mui/material"
 
 // Helper imports
+import { themes } from "../../redux/reducers/ThemeReducer"
 import * as Reactions from "./TCGReactions"
 import { TCGPhysical, TCGPyro, TCGHydro, TCGElectro, TCGCryo, TCGAnemo, TCGGeo, TCGDendro } from "../_custom/ElementIcons"
 
 // Type imports
 import { TCGKeywordIndexData } from "../../types/tcg/TCGKeywordIndexData"
 
-const CustomBox = styled(Box)(() => ({
-    "&.MuiBox-root": {
-        display: "inlineFlex"
-    }
-}))
-
-const CustomTypography = styled(Typography)(() => ({
-    "&.MuiTypography-root": {
-        marginBottom: "10px"
-    }
-}))
-
+const theme = themes[Number(localStorage.getItem("theme"))].theme
 
 export const Keywords: TCGKeywordIndexData = {
 
     // ELEMENTS / DMG TYPES
 
     "physical": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGPhysical />
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px", color: "white" }}>Physical DMG</Typography>
-            </CustomBox>,
-        description:
-            <CustomTypography>
-                Physical DMG will not apply any Elements, nor can it engage in Elemental Reactions.
-            </CustomTypography>
+        name: "Physical DMG",
+        image: <TCGPhysical />,
+        description: "Physical DMG will not apply any Elements, nor can it engage in Elemental Reactions."
     },
     "piercing": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Piercing DMG</Typography>
-            </CustomBox>,
-        description:
-            <CustomTypography>
-                Piercing DMG cannot be increased by any bonuses, but cannot be defended against using Shields or DMG Immunity either.
-            </CustomTypography>
+        name: "Piercing DMG",
+        description: "Piercing DMG cannot be increased by any bonuses, but cannot be defended against using Shields or DMG Immunity either."
     },
     "pyro": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGPyro />
-                <Typography className="text-pyro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Pyro DMG</Typography>
-            </CustomBox>,
+        name: <span className="text-pyro" style={{ fontWeight: `${theme.font.genshin.weight}` }}>Pyro DMG</span>,
+        image: <TCGPyro />,
         description:
             <React.Fragment>
-                <CustomTypography>
-                    Applies <b className="text-pyro">Pyro</b> and can trigger the following Elemental Reactions:
-                </CustomTypography>
+                <Typography gutterBottom>
+                    Applies <span className="text-pyro">Pyro</span> and can trigger the following Elemental Reactions:
+                </Typography>
                 <Reactions.Melt element="Pyro" />
                 <Reactions.Vaporize element="Pyro" />
                 <Reactions.Overloaded element="Pyro" />
@@ -67,11 +41,8 @@ export const Keywords: TCGKeywordIndexData = {
             </React.Fragment>
     },
     "pyro reaction": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGPyro />
-                <Typography className="text-pyro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Pyro-Related Reactions</Typography>
-            </CustomBox>,
+        name: <span className="text-pyro" style={{ fontWeight: `${theme.font.genshin.weight}` }}>Pyro-Related Reactions</span>,
+        image: <TCGPyro />,
         description:
             <React.Fragment>
                 <Reactions.Melt element="Pyro" />
@@ -81,16 +52,13 @@ export const Keywords: TCGKeywordIndexData = {
             </React.Fragment>
     },
     "pyro application": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGPyro />
-                <Typography className="text-pyro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Pyro Application</Typography>
-            </CustomBox>,
+        name: <span className="text-pyro" style={{ fontWeight: `${theme.font.genshin.weight}` }}>Pyro Application</span>,
+        image: <TCGPyro />,
         description:
             <React.Fragment>
-                <CustomTypography>
-                    When <b className="text-pyro">Pyro</b> is applied without dealing any DMG, the Elemental Reaction triggered will ignore DMG-dealing effects:
-                </CustomTypography>
+                <Typography gutterBottom>
+                    When <span className="text-pyro">Pyro</span> is applied without dealing any DMG, the Elemental Reaction triggered will ignore DMG-dealing effects:
+                </Typography>
                 <Reactions.Melt element="Pyro" application />
                 <Reactions.Vaporize element="Pyro" application />
                 <Reactions.Overloaded element="Pyro" application />
@@ -98,16 +66,13 @@ export const Keywords: TCGKeywordIndexData = {
             </React.Fragment>
     },
     "hydro": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGHydro />
-                <Typography className="text-hydro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Hydro DMG</Typography>
-            </CustomBox>,
+        name: <span className="text-hydro" style={{ fontWeight: `${theme.font.genshin.weight}` }}>Hydro DMG</span>,
+        image: <TCGHydro />,
         description:
             <React.Fragment>
-                <CustomTypography>
-                    Applies <b className="text-hydro">Hydro</b> and can trigger the following Elemental Reactions:
-                </CustomTypography>
+                <Typography gutterBottom>
+                    Applies <span className="text-hydro">Hydro</span> and can trigger the following Elemental Reactions:
+                </Typography>
                 <Reactions.Vaporize element="Hydro" />
                 <Reactions.Electrocharged element="Hydro" />
                 <Reactions.Frozen element="Hydro" />
@@ -115,11 +80,8 @@ export const Keywords: TCGKeywordIndexData = {
             </React.Fragment>
     },
     "hydro reaction": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGHydro />
-                <Typography className="text-hydro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Hydro-Related Reactions</Typography>
-            </CustomBox>,
+        name: <span className="text-hydro" style={{ fontWeight: `${theme.font.genshin.weight}` }}>Hydro-Related Reactions</span>,
+        image: <TCGHydro />,
         description:
             <React.Fragment>
                 <Reactions.Vaporize element="Hydro" />
@@ -129,16 +91,13 @@ export const Keywords: TCGKeywordIndexData = {
             </React.Fragment>
     },
     "hydro application": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGHydro />
-                <Typography className="text-hydro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Hydro Application</Typography>
-            </CustomBox>,
+        name: <span className="text-hydro" style={{ fontWeight: `${theme.font.genshin.weight}` }}>Hydro Application</span>,
+        image: <TCGHydro />,
         description:
             <React.Fragment>
-                <CustomTypography>
-                    When <b className="text-hydro">Hydro</b> is applied without dealing any DMG, the Elemental Reaction triggered will ignore DMG-dealing effects:
-                </CustomTypography>
+                <Typography gutterBottom>
+                    When <span className="text-hydro">Hydro</span> is applied without dealing any DMG, the Elemental Reaction triggered will ignore DMG-dealing effects:
+                </Typography>
                 <Reactions.Vaporize element="Hydro" application />
                 <Reactions.Electrocharged element="Hydro" application />
                 <Reactions.Frozen element="Hydro" application />
@@ -146,16 +105,13 @@ export const Keywords: TCGKeywordIndexData = {
             </React.Fragment>
     },
     "electro": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGElectro />
-                <Typography className="text-electro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Electro DMG</Typography>
-            </CustomBox>,
+        name: <span className="text-electro" style={{ fontWeight: `${theme.font.genshin.weight}` }}>Electro DMG</span>,
+        image: <TCGElectro />,
         description:
             <React.Fragment>
-                <CustomTypography>
-                    Applies <b className="text-electro">Electro</b> and can trigger the following Elemental Reactions:
-                </CustomTypography>
+                <Typography gutterBottom>
+                    Applies <span className="text-electro">Electro</span> and can trigger the following Elemental Reactions:
+                </Typography>
                 <Reactions.Overloaded element="Electro" />
                 <Reactions.Superconduct element="Electro" />
                 <Reactions.Electrocharged element="Electro" />
@@ -163,11 +119,8 @@ export const Keywords: TCGKeywordIndexData = {
             </React.Fragment>
     },
     "electro reaction": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGElectro />
-                <Typography className="text-electro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Electro-Related Reactions</Typography>
-            </CustomBox>,
+        name: <span className="text-electro" style={{ fontWeight: `${theme.font.genshin.weight}` }}>Electro-Related Reactions</span>,
+        image: <TCGElectro />,
         description:
             <React.Fragment>
                 <Reactions.Overloaded element="Electro" />
@@ -177,16 +130,13 @@ export const Keywords: TCGKeywordIndexData = {
             </React.Fragment>
     },
     "electro application": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGElectro />
-                <Typography className="text-electro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Electro Application</Typography>
-            </CustomBox>,
+        name: <span className="text-electro" style={{ fontWeight: `${theme.font.genshin.weight}` }}>Electro Application</span>,
+        image: <TCGElectro />,
         description:
             <React.Fragment>
-                <CustomTypography>
-                    When <b className="text-electro">Electro</b> is applied without dealing any DMG, the Elemental Reaction triggered will ignore DMG-dealing effects:
-                </CustomTypography>
+                <Typography gutterBottom>
+                    When <span className="text-electro">Electro</span> is applied without dealing any DMG, the Elemental Reaction triggered will ignore DMG-dealing effects:
+                </Typography>
                 <Reactions.Overloaded element="Electro" application />
                 <Reactions.Superconduct element="Electro" application />
                 <Reactions.Electrocharged element="Electro" application />
@@ -194,27 +144,21 @@ export const Keywords: TCGKeywordIndexData = {
             </React.Fragment>
     },
     "cryo": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGCryo />
-                <Typography className="text-cryo" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Cryo DMG</Typography>
-            </CustomBox>,
+        name: <span className="text-cryo" style={{ fontWeight: `${theme.font.genshin.weight}` }}>Cryo DMG</span>,
+        image: <TCGCryo />,
         description:
             <React.Fragment>
-                <CustomTypography>
-                    Applies <b className="text-cryo">Cryo</b> and can trigger the following Elemental Reactions:
-                </CustomTypography>
+                <Typography gutterBottom>
+                    Applies <span className="text-cryo">Cryo</span> and can trigger the following Elemental Reactions:
+                </Typography>
                 <Reactions.Melt element="Cryo" />
                 <Reactions.Superconduct element="Cryo" />
                 <Reactions.Frozen element="Cryo" />
             </React.Fragment>
     },
     "cryo reaction": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGCryo />
-                <Typography className="text-cryo" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Cryo-Related Reactions</Typography>
-            </CustomBox>,
+        name: <span className="text-cryo" style={{ fontWeight: `${theme.font.genshin.weight}` }}>Cryo-Related Reactions</span>,
+        image: <TCGCryo />,
         description:
             <React.Fragment>
                 <Reactions.Melt element="Cryo" />
@@ -223,32 +167,26 @@ export const Keywords: TCGKeywordIndexData = {
             </React.Fragment>
     },
     "cryo application": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGCryo />
-                <Typography className="text-cryo" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Cryo Application</Typography>
-            </CustomBox>,
+        name: <span className="text-cryo" style={{ fontWeight: `${theme.font.genshin.weight}` }}>Cryo Application</span>,
+        image: <TCGCryo />,
         description:
             <React.Fragment>
-                <CustomTypography>
-                    When <b className="text-cryo">Cryo</b> is applied without dealing any DMG, the Elemental Reaction triggered will ignore DMG-dealing effects:
-                </CustomTypography>
+                <Typography gutterBottom>
+                    When <span className="text-cryo">Cryo</span> is applied without dealing any DMG, the Elemental Reaction triggered will ignore DMG-dealing effects:
+                </Typography>
                 <Reactions.Melt element="Cryo" application />
                 <Reactions.Superconduct element="Cryo" application />
                 <Reactions.Frozen element="Cryo" application />
             </React.Fragment>
     },
     "anemo": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGAnemo />
-                <Typography className="text-anemo" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Anemo DMG</Typography>
-            </CustomBox>,
+        name: <span className="text-anemo" style={{ fontWeight: `${theme.font.genshin.weight}` }}>Anemo DMG</span>,
+        image: <TCGAnemo />,
         description:
             <React.Fragment>
-                <CustomTypography>
+                <Typography gutterBottom>
                     Reacts with Elements if they are already applied:
-                </CustomTypography>
+                </Typography>
                 <Reactions.Swirl element="Cryo" />
                 <Reactions.Swirl element="Electro" />
                 <Reactions.Swirl element="Hydro" />
@@ -256,16 +194,13 @@ export const Keywords: TCGKeywordIndexData = {
             </React.Fragment>
     },
     "geo": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGGeo />
-                <Typography className="text-geo" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Geo DMG</Typography>
-            </CustomBox>,
+        name: <span className="text-geo" style={{ fontWeight: `${theme.font.genshin.weight}` }}>Geo DMG</span>,
+        image: <TCGGeo />,
         description:
             <React.Fragment>
-                <CustomTypography>
+                <Typography gutterBottom>
                     Reacts with Elements if they are already applied:
-                </CustomTypography>
+                </Typography>
                 <Reactions.Crystallize element="Cryo" />
                 <Reactions.Crystallize element="Electro" />
                 <Reactions.Crystallize element="Hydro" />
@@ -273,27 +208,21 @@ export const Keywords: TCGKeywordIndexData = {
             </React.Fragment>
     },
     "dendro": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGDendro />
-                <Typography className="text-dendro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Dendro DMG</Typography>
-            </CustomBox>,
+        name: <span className="text-dendro" style={{ fontWeight: `${theme.font.genshin.weight}` }}>Dendro DMG</span>,
+        image: <TCGDendro />,
         description:
             <React.Fragment>
-                <CustomTypography>
-                    Applies <b className="text-dendro">Dendro</b> and can trigger the following Elemental Reactions:
-                </CustomTypography>
+                <Typography gutterBottom>
+                    Applies <span className="text-dendro">Dendro</span> and can trigger the following Elemental Reactions:
+                </Typography>
                 <Reactions.Bloom element="Dendro" />
                 <Reactions.Burning element="Dendro" />
                 <Reactions.Quicken element="Dendro" />
             </React.Fragment>
     },
     "dendro reaction": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <TCGDendro />
-                <Typography className="text-dendro" variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px" }}>Dendro-Related Reactions</Typography>
-            </CustomBox>,
+        name: <span className="text-dendro" style={{ fontWeight: `${theme.font.genshin.weight}` }}>Dendro-Related Reactions</span>,
+        image: <TCGDendro />,
         description:
             <React.Fragment>
                 <Reactions.Bloom element="Dendro" />
@@ -305,174 +234,127 @@ export const Keywords: TCGKeywordIndexData = {
     // TERMS
 
     "duration": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Duration (Rounds)</Typography>
-            </CustomBox>,
+        name: "Duration (Rounds)",
         description:
-            <CustomTypography>
-                Each time you reach the end of a Round, <b style={{ color: "white" }}>Duration (Rounds)</b> -1.<br />
-                This card will be discarded immediately once <b style={{ color: "white" }}>Duration (Rounds)</b> runs out.
-            </CustomTypography>
+            <Typography>
+                Each time you reach the end of a Round, <span style={{ color: `white` }}>Duration (Rounds)</span> -1.<br />
+                This card will be discarded immediately once <span style={{ color: `white` }}>Duration (Rounds)</span> runs out.
+            </Typography>
     },
     "usages": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Usage(s)</Typography>
-            </CustomBox>,
+        name: "Usage(s)",
         description:
-            <CustomTypography>
-                After this card's effect is triggered, 1 <b style={{ color: "white" }}>Usage</b> of it will be consumed.<br />
-                This card will be discarded immediately once it has 0 <b style={{ color: "white" }}>Usages</b> runs out.
-            </CustomTypography>
+            <Typography>
+                After this card's effect is triggered, 1 <span style={{ color: `white` }}>Usage</span> of it will be consumed.<br />
+                This card will be discarded immediately once it has 0 <span style={{ color: `white` }}>Usages</span> runs out.
+            </Typography>
     },
     "shield": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/Shield.png`} alt="Shield" sx={{ width: "32px", height: "32px" }} />
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px", color: "white" }}>Shield</Typography>
-            </CustomBox>,
+        name: "Shield",
+        image: <img src={`${process.env.REACT_APP_URL}/tcg/icons/Shield.png`} alt="Shield" style={{ width: "32px", height: "32px" }} />,
         description:
-            <CustomTypography>
+            <Typography>
                 This Shield will be consumed to protect the character who equips it from DMG.
-            </CustomTypography>
+            </Typography>
     },
     "combat action": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Combat Action</Typography>
-            </CustomBox>,
+        name: "Combat Action",
         description:
-            <CustomTypography>
+            <Typography>
                 After you finish 1 Combat Action, it will be your opponent's turn.<br />
-                <b style={{ color: "white" }}>Playing a card from your Hand with this rule is also a Combat Action rather than a Fast Action</b>.
-            </CustomTypography>
+                <span style={{ color: `white` }}>Playing a card from your Hand with this rule is also a Combat Action rather than a Fast Action</span>.
+            </Typography>
     },
     "fast action": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Fast Action</Typography>
-            </CustomBox>,
+        name: "Fast Action",
         description:
-            <CustomTypography>
+            <Typography>
                 You can continue with other actions after conducting 1 Fast action<br />
                 Only after conducting 1 Combat Action will the turn pass over to your opponent.
-            </CustomTypography>
+            </Typography>
     },
     "prepare": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Prepare Skill</Typography>
-            </CustomBox>,
+        name: "Prepare Skill",
         description:
-            <CustomTypography>
-                Some Skills cannot be used directly. Instead they need to be <b style={{ color: "white" }}>prepared</b> over a certain number of turns.<br />
-                When it is a certain player's turn, and this player's active character is currently <b style={{ color: "white" }}>preparing</b> a Skill, this player's turn will be skipped. If the Skill has finished being <b style={{ color: "white" }}>prepared</b>, the character will directly use that Skill at this time. (Skills that require <b style={{ color: "white" }}>preparing</b> cannot activate effects triggered by "using a Skill")<br />
-                Only active characters can <b style={{ color: "white" }}>prepare</b> Skills, and if an active character who is <b style={{ color: "white" }}>preparing</b> a Skill gets switched off-field, their <b style={{ color: "white" }}>preparation</b> will be interrupted.
-            </CustomTypography>
+            <Typography>
+                Some Skills cannot be used directly. Instead they need to be <span style={{ color: `white` }}>prepared</span> over a certain number of turns.<br />
+                When it is a certain player's turn, and this player's active character is currently <span style={{ color: `white` }}>preparing</span> a Skill, this player's turn will be skipped. If the Skill has finished being <span style={{ color: `white` }}>prepared</span>, the character will directly use that Skill at this time. (Skills that require <span style={{ color: `white` }}>preparing</span> cannot activate effects triggered by "using a Skill")<br />
+                Only active characters can <span style={{ color: `white` }}>prepare</span> Skills, and if an active character who is <span style={{ color: `white` }}>preparing</span> a Skill gets switched off-field, their <span style={{ color: `white` }}>preparation</span> will be interrupted.
+            </Typography>
     },
     "charged attack": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Charged Attack</Typography>
-            </CustomBox>,
+        name: "Charged Attack",
         description:
-            <CustomTypography>
+            <Typography>
                 Before your Action Phase, should the total number of your Elemental Dice be even, your Normal Attack will be considered a Charged Attack.
-            </CustomTypography>
+            </Typography>
     },
     "plunging attack": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Plunging Attack</Typography>
-            </CustomBox>,
+        name: "Plunging Attack",
         description:
-            <CustomTypography>
+            <Typography>
                 After a character is switched in to be the Active Character, should their next Combat Action within this Round be a Normal Attack, it will be considered a Plunging Attack for the instance.
-            </CustomTypography>
+            </Typography>
     },
     "immunity to defeat": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Immunity to Defeat</Typography>
-            </CustomBox>,
+        name: "Immunity to Defeat",
         description:
-            <CustomTypography>
-                Certain effects will grant characters an <b style={{ color: "white" }}>immunity to being defeated</b> when their HP hits 0, and will heal them for a certain amount thereafter.<br />When this occurs, characters will not be regarded as having experienced a <b style={{ color: "white" }}>defeat</b>.<br />(Hence, their attached equipment and statuses will not be removed, and their Energy will remain uncleared.)
-            </CustomTypography>
+            <Typography>
+                Certain effects will grant characters an <span style={{ color: `white` }}>immunity to being defeated</span> when their HP hits 0, and will heal them for a certain amount thereafter.<br />When this occurs, characters will not be regarded as having experienced a <span style={{ color: `white` }}>defeat</span>.<br />(Hence, their attached equipment and statuses will not be removed, and their Energy will remain uncleared.)
+            </Typography>
     },
     "energy": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/dice/N.png`} alt="Energy" sx={{ width: "32px", height: "32px" }} />
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px", color: "white" }}>Energy </Typography>
-            </CustomBox>,
+        name: "Energy",
+        image: <img src={`${process.env.REACT_APP_URL}/tcg/icons/dice_alt/N.png`} alt="Energy" style={{ width: "32px", height: "32px" }} />,
         description:
-            <CustomTypography>
+            <Typography>
                 Characters must consume Energy to use their Elemental Bursts.<br />When characters use an Elemental Skill or a Normal Attack, they will gain 1 Energy.
-            </CustomTypography>
+            </Typography>
     },
     "omni element": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Omni Element </Typography>
-            </CustomBox>,
+        name: "Omni Element",
+        image: <img src={`${process.env.REACT_APP_URL}/tcg/icons/dice_alt/O.png`} alt="Omni" style={{ width: "32px", height: "32px" }} />,
         description:
-            <CustomTypography>
+            <Typography>
                 The Omni Element can be considered as any kind of element, and can be used to pay for costs of various kinds.
-            </CustomTypography>
+            </Typography>
     },
     "unaligned element": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/dice/U.png`} alt="Energy" sx={{ width: "32px", height: "32px" }} />
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, ml: "7px", color: "white" }}>Unaligned Element </Typography>
-            </CustomBox>,
+        name: "Unaligned Element",
+        image: <img src={`${process.env.REACT_APP_URL}/tcg/icons/dice_alt/U.png`} alt="Unaligned" style={{ width: "32px", height: "32px" }} />,
         description:
-            <CustomTypography>
+            <Typography>
                 You may use Elemental Dice of any element to pay this type of cost.
-            </CustomTypography>
+            </Typography>
     },
     "char closest to current active char": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Character Closest to Your Current Active Character</Typography>
-            </CustomBox>,
+        name: "Character Closest to Your Current Active Character",
         description:
-            <CustomTypography>
+            <Typography>
                 The opposing "character closest to your current active character" is the opposing character whose position is closest to that of your active character.<br />If multiple such characters exist, the one with the foremost position will be viewd as being "closest".
-            </CustomTypography>
+            </Typography>
     },
     "discard": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Discard</Typography>
-            </CustomBox>,
+        name: "Discard",
         description:
-            <CustomTypography>
+            <Typography>
                 Use Action Cards or Character Skill effects to Discard Action Cards from Hand or Deck.
-            </CustomTypography>
+            </Typography>
     },
     "tune": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Tune</Typography>
-            </CustomBox>,
+        name: "Tune",
         description:
-            <CustomTypography>
+            <Typography>
                 Discard Action Cards from Hand to initiate Elemental Tuning.
-            </CustomTypography>
+            </Typography>
     },
     "technique": {
-        name:
-            <CustomBox sx={{ display: "inline-flex" }}>
-                <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/Technique.png`} alt="Technique" sx={{ width: "32px", height: "32px", mr: "5px" }} />
-                <Typography variant="h6" sx={{ fontFamily: `Genshin, Roboto, sans-serif`, color: "white" }}>Technique</Typography>
-            </CustomBox>,
+        name: "Technique",
+        image: <img src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/Technique.png`} alt="Technique" style={{ width: "32px", height: "32px", marginRight: "5px" }} />,
         description:
-            <CustomTypography>
-                When the active character is equipped with a <b style={{ color: "white" }}>Technique</b> card, they can use the corresponding <b style={{ color: "white" }}>Technique</b>.<br />Using a <b style={{ color: "white" }}>Technique</b> counts as a Combat Action. If the character is unable to use Skills due to conditions like Frozen, Petrification, or Stun, they are also unable to use the <b style={{ color: "white" }}>Technique</b>.<br />Using a <b style={{ color: "white" }}>Technique</b> is not considered as using a Skill. Therefore, it cannot trigger effects such as "After using a skill" or "After the character triggers an Elemental Reaction." Damage dealt by using a <b style={{ color: "white" }}>Technique</b> is not considered Damage dealt by the character.
-            </CustomTypography>
+            <Typography>
+                When the active character is equipped with a <span style={{ color: `white` }}>Technique</span> card, they can use the corresponding <span style={{ color: `white` }}>Technique</span>.<br />Using a <span style={{ color: `white` }}>Technique</span> counts as a Combat Action. If the character is unable to use Skills due to conditions like Frozen, Petrification, or Stun, they are also unable to use the <span style={{ color: `white` }}>Technique</span>.<br />Using a <span style={{ color: `white` }}>Technique</span> is not considered as using a Skill. Therefore, it cannot trigger effects such as "After using a skill" or "After the character triggers an Elemental Reaction." Damage dealt by using a <span style={{ color: `white` }}>Technique</span> is not considered Damage dealt by the character.
+            </Typography>
     }
 
 }

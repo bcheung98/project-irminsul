@@ -7,8 +7,9 @@ import TCGDiceCost from "./TCGDiceCost"
 import TCGKeywordPopup from "./TCGKeywordPopup"
 
 // MUI imports
-import { useTheme, Box, Typography, Button, Dialog, Chip } from "@mui/material"
+import { useTheme, useMediaQuery, Box, Typography, Button, Dialog, Chip, AppBar, IconButton } from "@mui/material"
 import Grid from "@mui/material/Grid2"
+import CloseIcon from "@mui/icons-material/Close"
 
 // Helper imports
 import { addActionCard, removeActionCard } from "../../redux/reducers/DeckReducer"
@@ -25,6 +26,8 @@ function TCGActionCardPopup(props: any) {
 
     const theme = useTheme()
 
+    const matches = useMediaQuery(theme.breakpoints.up("sm"))
+
     const dispatch = useDispatch()
 
     let { name, type, subType, weaponType, cost, description, splash } = props.card
@@ -39,11 +42,23 @@ function TCGActionCardPopup(props: any) {
         setOpen(false)
     }
 
-    const ChipStyle = {
+    const chipStyle = {
         px: "5px",
         mr: "10px",
         mb: "10px",
+        height: { xs: "24px", md: "32px" },
         backgroundColor: "rgb(69, 84, 103)"
+    }
+
+    const chipImage = {
+        width: matches ? "24px" : "18px",
+        height: matches ? "24px" : "18px"
+    }
+
+    const chipText = {
+        fontFamily: `${theme.font.genshin.family}`,
+        fontSize: matches ? "14px" : "11.5px",
+        color: `white`
     }
 
     // The following code block transforms certain keywords into underlined elements
@@ -70,6 +85,7 @@ function TCGActionCardPopup(props: any) {
     }
 
     let keywordName
+    let keywordImage
     let keywordType
     let keywordCost
     let keywordDescription
@@ -81,6 +97,7 @@ function TCGActionCardPopup(props: any) {
     }
     else if (Keywords[tag]) {
         keywordName = Keywords[tag].name
+        keywordImage = Keywords[tag].image
         keywordType = Keywords[tag].type
         keywordCost = Keywords[tag].cost
         keywordDescription = Keywords[tag].description
@@ -89,147 +106,224 @@ function TCGActionCardPopup(props: any) {
         let currentKeyword = props.keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
         try {
             keywordName = currentKeyword.name
+            keywordImage = currentKeyword.image && currentKeyword.image
             keywordType = currentKeyword.type
             keywordCost = currentKeyword.cost
             keywordDescription = currentKeyword.description
         }
         catch {
             keywordName = ""
+            keywordImage = null
             keywordType = ""
             keywordCost = ""
             keywordDescription = ""
         }
     }
 
+    function CardImage() {
+        return (
+            <Box sx={{ position: "relative" }}>
+                <Box
+                    sx={{
+                        position: "absolute",
+                        top: "-20px",
+                        left: "-25px"
+                    }}
+                >
+                    <TCGDiceCost cost={cost} size={matches ? "96px" : "56px"} />
+                </Box>
+                {/* Card Image */}
+                <img src={`${process.env.REACT_APP_URL}/tcg/action_cards/${name.split(" ").join("_")}.png`} alt={name}
+                    style={{
+                        width: matches ? "250px" : "150px",
+                        border: `2px solid ${theme.border.color}`,
+                        borderRadius: matches ? "28px" : "18px",
+                    }}
+                    onError={ErrorLoadingImage}
+                />
+            </Box>
+        )
+    }
+
+    function CardName() {
+        return (
+            <React.Fragment>
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        mb: "10px",
+                    }}
+                >
+                    <Typography
+                        sx={{
+                            fontFamily: `${theme.font.genshin.family}`,
+                            fontSize: matches ? "40px" : "20px",
+                            color: `${theme.text.color}`
+                        }}
+                    >
+                        {props.card.displayName ? props.card.displayName : name}
+                    </Typography>
+                </Box>
+                <Box>
+                    <Chip
+                        label={
+                            <Typography sx={chipText}>
+                                {type} Card
+                            </Typography>
+                        }
+                        sx={chipStyle}
+                    />
+                    {
+                        subType &&
+                        <Chip
+                            avatar={<img src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/${subType.split(" ").join("_")}.png`} alt={subType} style={chipImage} onError={ErrorLoadingImage} />}
+                            label={
+                                <Typography sx={chipText} variant="body2">
+                                    {subType}
+                                </Typography>
+                            }
+                            sx={chipStyle}
+                        />
+                    }
+                    {
+                        props.card.combatAction &&
+                        <Chip
+                            avatar={<img src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/Combat_Action.png`} alt="Combat Action" style={chipImage} onError={ErrorLoadingImage} />}
+                            label={
+                                <Typography sx={chipText} variant="body2">
+                                    Combat Action
+                                </Typography>
+                            }
+                            sx={chipStyle}
+                        />
+                    }
+                    {
+                        weaponType &&
+                        <Chip
+                            avatar={<img src={`${process.env.REACT_APP_URL}/tcg/icons/weapons/${weaponType}.png`} alt={weaponType} style={chipImage} onError={ErrorLoadingImage} />}
+                            label={
+                                <Typography sx={chipText} variant="body2">
+                                    {weaponType}
+                                </Typography>
+                            }
+                            sx={chipStyle}
+                        />
+                    }
+                </Box>
+            </React.Fragment>
+        )
+    }
+
+    function SplashText() {
+        return (
+            <React.Fragment>
+                {
+                    splash !== undefined &&
+                    <Box
+                        sx={{
+                            maxWidth: { xs: "auto", lg: "250px" },
+                            maxHeight: "250px",
+                            overflowY: "auto",
+                            pr: "10px",
+                            ml: { xs: "20px", sm: "40px", lg: 0 },
+                            mr: "-20px",
+                            my: { xs: 0, lg: "20px" }
+                        }}
+                    >
+                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: matches ? "14px" : "11px", color: `${theme.text.color}` }}>
+                            <i>{parse(splash.description)}</i>
+                        </Typography>
+                    </Box>
+                }
+            </React.Fragment>
+        )
+    }
+
+    function CardSkill() {
+        return (
+            <Box
+                sx={{
+                    backgroundColor: `${theme.paper.backgroundColor}`,
+                    border: `1px solid ${theme.border.color}`,
+                    borderRadius: "5px",
+                    color: `${theme.text.color}`,
+                    overflowY: "auto",
+                    p: 2.5
+                }}
+            >
+                <Typography sx={{ color: `${theme.text.colorAlt}`, fontSize: { xs: "14px", sm: "16px" } }}>
+                    {parse(description, options)}
+                </Typography>
+            </Box>
+        )
+    }
+
     return (
         <Box
             sx={{
-                width: "70vw",
-                p: "15px",
-                backgroundColor: `${theme.table.body.backgroundColor}`,
-                border: `2px solid ${theme.border.color}`,
-                borderRadius: "5px",
+                width: { xs: "100%", md: "70vw" },
+                minHeight: { xs: "100vh", sm: "70vh" },
+                overflowY: "auto",
+                backgroundColor: `${theme.materialImage.backgroundColor}`,
+                border: { xs: "none", sm: `2px solid ${theme.border.color}` },
+                borderRadius: { xs: "0px", sm: "5px" },
             }}
         >
-            <Grid container spacing={2} sx={{ mt: "10px" }}>
-                <Grid size="auto">
-                    <Box
+            {
+                !matches &&
+                <React.Fragment>
+                    <AppBar position="sticky"
                         sx={{
-                            position: "relative",
-                            mx: "25px",
-                            mt: "5px",
+                            backgroundColor: `${theme.appbar.backgroundColor}`,
+                            borderTop: `2px solid ${theme.border.color}`,
+                            borderBottom: `1px solid ${theme.border.color}`,
+                            px: 2,
+                            py: 1
                         }}
                     >
-                        <Box
-                            sx={{
-                                position: "absolute",
-                                top: "-20px",
-                                left: "-25px"
-                            }}
-                        >
-                            <TCGDiceCost cost={cost} type={"card-large"} />
-                        </Box>
-                        <img src={`${process.env.REACT_APP_URL}/tcg/action_cards/${name.split(" ").join("_")}.png`} alt={name}
-                            style={{
-                                width: "250px",
-                                border: `2px solid ${theme.border.color}`,
-                                borderRadius: "28px",
-                            }}
-                            onError={ErrorLoadingImage}
-                        />
                         {
-                            splash !== undefined &&
-                            <Box
-                                sx={{
-                                    maxWidth: "250px",
-                                    maxHeight: "250px",
-                                    overflowY: "auto",
-                                    pr: "10px",
-                                    my: "20px"
-                                }}
-                            >
-                                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
-                                    <i>{parse(splash.description)}</i>
-                                </Typography>
+                            props.preview === false &&
+                            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                <Grid container spacing={2}>
+                                    {
+                                        props.count < 2 &&
+                                        <Button variant="contained" sx={{ height: "24px", px: 1 }} onClick={() => dispatch(addActionCard(props.card))}>
+                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11.5px" }}>Add to Deck</Typography>
+                                        </Button>
+                                    }
+                                    {
+                                        props.inDeck === true &&
+                                        <Button variant="contained" color="error" sx={{ height: "24px", px: 1 }} onClick={() => dispatch(removeActionCard(props.card))}>
+                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11.5px" }}>Remove from Deck</Typography>
+                                        </Button>
+                                    }
+                                </Grid>
+                                <IconButton onClick={props.handleClose}>
+                                    <CloseIcon sx={{ color: `white` }} />
+                                </IconButton>
                             </Box>
                         }
+                    </AppBar>
+                    <Box sx={{ px: "15px", pt: "10px" }}>
+                        <CardName />
+                    </Box>
+                </React.Fragment>
+            }
+            <Grid container spacing={2} sx={{ mt: "10px", p: "15px" }}>
+                <Grid size={{ xs: 12, lg: "auto" }} sx={{ mx: "25px", mt: "5px" }}>
+                    <Box sx={{ display: { xs: "flex", lg: "block" } }}>
+                        {/* Card Image */}
+                        <CardImage />
+                        {/* Card Splash Text */}
+                        <SplashText />
                     </Box>
                 </Grid>
-                <Grid size="grow">
-                    <Box
-                        sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            mb: "10px",
-                        }}
-                    >
-                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="h4">
-                            {props.card.displayName ? props.card.displayName : name}
-                        </Typography>
-                    </Box>
-                    <Box>
-                        <Chip
-                            label={
-                                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `white` }} variant="body2">
-                                    {type} Card
-                                </Typography>
-                            }
-                            sx={ChipStyle}
-                        />
-                        {
-                            subType &&
-                            <Chip
-                                avatar={<img src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/${subType.split(" ").join("_")}.png`} alt={subType} onError={ErrorLoadingImage} />}
-                                label={
-                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `white` }} variant="body2">
-                                        {subType}
-                                    </Typography>
-                                }
-                                sx={ChipStyle}
-                            />
-                        }
-                        {
-                            props.card.combatAction &&
-                            <Chip
-                                avatar={<img src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/Combat_Action.png`} alt="Combat Action" onError={ErrorLoadingImage} />}
-                                label={
-                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="body2">
-                                        Combat Action
-                                    </Typography>
-                                }
-                                sx={ChipStyle}
-                            />
-                        }
-                        {
-                            weaponType &&
-                            <Chip
-                                avatar={<img src={`${process.env.REACT_APP_URL}/tcg/icons/weapons/${weaponType}.png`} alt={weaponType} onError={ErrorLoadingImage} />}
-                                label={
-                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="body2">
-                                        {weaponType}
-                                    </Typography>
-                                }
-                                sx={ChipStyle}
-                            />
-                        }
-                    </Box>
-                    <Box
-                        sx={{
-                            backgroundColor: `${theme.paper.backgroundColor}`,
-                            border: `1px solid ${theme.border.color}`,
-                            borderRadius: "5px",
-                            color: `${theme.text.color}`,
-                            maxHeight: "60vh",
-                            overflowY: "auto",
-                            p: 2.5
-                        }}
-                    >
-                        <Typography variant="body1" sx={{ color: `${theme.text.colorAlt}` }}>
-                            {parse(description, options)}
-                        </Typography>
-                    </Box>
+                <Grid size={{ xs: 12, sm: "grow" }}>
+                    {matches && <CardName />}
+                    <CardSkill />
                     {
-                        props.preview === false &&
+                        matches && props.preview === false &&
                         <React.Fragment>
                             {
                                 props.count < 2 &&
@@ -252,7 +346,7 @@ function TCGActionCardPopup(props: any) {
                             onClose={handleClose}
                             maxWidth={false}
                         >
-                            <TCGKeywordPopup keywords={props.card.keywords} name={keywordName} type={keywordType} cost={keywordCost} description={keywordDescription} />
+                            <TCGKeywordPopup keywords={props.card.keywords} name={keywordName} image={keywordImage} type={keywordType} cost={keywordCost} description={keywordDescription} />
                         </Dialog>
                     }
                 </Grid>

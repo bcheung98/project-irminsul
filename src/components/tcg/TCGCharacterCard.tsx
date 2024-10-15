@@ -5,7 +5,8 @@ import { connect } from "react-redux"
 import TCGCharacterCardPopup from "./TCGCharacterCardPopup"
 
 // MUI imports
-import { useTheme, Box, Typography, Dialog } from "@mui/material"
+import { useTheme, useMediaQuery, Box, Typography, Dialog, Slide } from "@mui/material"
+import { TransitionProps } from "@mui/material/transitions"
 
 // Helper imports
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
@@ -16,6 +17,8 @@ import { RootState } from "../../redux/store"
 function TCGCharacterCard(props: any) {
 
     const theme = useTheme()
+
+    const matches = useMediaQuery(theme.breakpoints.up("sm"))
 
     let { name, hp, talents } = props.char
     let { deck } = props.deck
@@ -126,9 +129,11 @@ function TCGCharacterCard(props: any) {
             <Dialog
                 open={open}
                 onClose={handleClose}
+                TransitionComponent={!matches ? Transition : undefined}
+                fullScreen={!matches}
                 maxWidth={false}
             >
-                <TCGCharacterCardPopup key={name} char={props.char} inDeck={deck.characterCards.includes(props.char)} preview={props.preview} />
+                <TCGCharacterCardPopup key={name} char={props.char} inDeck={deck.characterCards.includes(props.char)} preview={props.preview} handleClose={handleClose} />
             </Dialog>
         </React.Fragment>
     )
@@ -140,3 +145,12 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 export default connect(mapStateToProps)(TCGCharacterCard)
+
+const Transition = React.forwardRef(function Transition(
+    props: TransitionProps & {
+        children: React.ReactElement<any, any>
+    },
+    ref: React.Ref<unknown>,
+) {
+    return <Slide direction="up" ref={ref} {...props} />
+})

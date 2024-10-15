@@ -151,7 +151,7 @@ function TCGBrowser(props: any) {
                         <Typography sx={{ fontSize: "9pt", fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Action Cards</Typography>
                     </CustomToggleButtonText>
                 </ToggleButtonGroup>
-                <FilterAltIcon sx={{ display: { xs: "block", md: "none" }, flexGrow: 1, color: `white` }} fontSize="large" onClick={toggleDrawer(true)} />
+                <FilterAltIcon sx={{ display: { xs: "block", sm: "none" }, flexGrow: 1, color: `white` }} fontSize="large" onClick={toggleDrawer(true)} />
             </Box>
 
             {/* Cards */}

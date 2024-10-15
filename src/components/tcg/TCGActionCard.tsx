@@ -6,7 +6,8 @@ import TCGDiceCost from "./TCGDiceCost"
 import TCGActionCardPopup from "./TCGActionCardPopup"
 
 // MUI imports
-import { useTheme, Box, Typography, Dialog } from "@mui/material"
+import { useTheme, useMediaQuery, Box, Typography, Dialog, Slide } from "@mui/material"
+import { TransitionProps } from "@mui/material/transitions"
 
 // Helper imports
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
@@ -18,6 +19,8 @@ import { TCGDeckData } from "../../types/tcg/TCGDeckData"
 function TCGActionCard(props: any) {
 
     const theme = useTheme()
+
+    const matches = useMediaQuery(theme.breakpoints.up("sm"))
 
     let { name, cost } = props.card
     let { deck } = props.deck
@@ -48,7 +51,7 @@ function TCGActionCard(props: any) {
                         left: "-15px"
                     }}
                 >
-                    <TCGDiceCost cost={cost} type={"card"} />
+                    <TCGDiceCost cost={cost} />
                 </Box>
                 <img src={`${process.env.REACT_APP_URL}/tcg/action_cards/${name.split(" ").join("_")}.png`} alt={name}
                     style={{
@@ -76,6 +79,8 @@ function TCGActionCard(props: any) {
             <Dialog
                 open={open}
                 onClose={handleClose}
+                TransitionComponent={!matches ? Transition : undefined}
+                fullScreen={!matches}
                 maxWidth={false}
             >
                 <TCGActionCardPopup key={name} card={props.card} inDeck={deck.actionCards.includes(props.card)} count={deck.actionCards.filter((card: TCGDeckData) => card === props.card).length} preview={props.preview} />
@@ -90,3 +95,12 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 export default connect(mapStateToProps)(TCGActionCard)
+
+const Transition = React.forwardRef(function Transition(
+    props: TransitionProps & {
+        children: React.ReactElement<any, any>
+    },
+    ref: React.Ref<unknown>,
+) {
+    return <Slide direction="up" ref={ref} {...props} />
+})

@@ -20,7 +20,7 @@ function TCGKeywordPopup(props: any) {
 
     const theme = useTheme()
 
-    let { name, type, cost, description, keywords } = props
+    let { name, type, image, cost, description, keywords } = props
 
     const [open, setOpen] = React.useState(false)
     const [tag, setTag] = React.useState("")
@@ -56,46 +56,66 @@ function TCGKeywordPopup(props: any) {
     }
 
     let keywordName
+    let keywordImage
+    let keywordType
     let keywordDescription
     if (Keywords[tag]) {
         keywordName = Keywords[tag].name
+        keywordImage = Keywords[tag].image
+        keywordType = Keywords[tag].type
         keywordDescription = Keywords[tag].description
     }
     else if (tag !== "") {
         let currentKeyword = keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
-        keywordName = currentKeyword.name
-        keywordDescription = currentKeyword.description
+        try {
+            keywordName = currentKeyword.name
+            keywordImage = currentKeyword.image
+            keywordType = currentKeyword.type
+            keywordDescription = currentKeyword.description
+        }
+        catch {
+            keywordName = ""
+            keywordImage = null
+            keywordType = ""
+            keywordDescription = ""
+        }
     }
 
     return (
         <Box
             sx={{
-                width: "25vw",
+                width: { xs: "100%", sm: "35vw" },
                 p: "15px",
                 backgroundColor: `${theme.paper.backgroundColor}`,
                 border: `2px solid ${theme.border.color}`,
                 borderRadius: "5px",
             }}
         >
-            <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box sx={{ mb: "10px" }}>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                    {
+                        image &&
+                        <Box sx={{ mr: "10px", height: "32px" }}>{image}</Box>
+                    }
+                    {
+                        cost &&
+                        <Box sx={{ mr: "5px" }}>
+                            <TCGDiceCost cost={cost} />
+                        </Box>
+                    }
+                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "16px", sm: "20px" }, fontWeight: `${theme.font.genshin.weight}`, color: `${theme.text.color}` }}>
+                        {name}
+                    </Typography>
+                </Box>
                 {
-                    cost &&
-                    <Box sx={{ mr: "5px" }}>
-                        <TCGDiceCost cost={cost} type={"keyword-popup"} />
-                    </Box>
+                    type &&
+                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontWeight: `${theme.font.genshin.weight}`, fontSize: { xs: "14px", sm: "16px" }, color: "#ffe7b9", mt: "5px" }}>
+                        {type}
+                    </Typography>
                 }
-                <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
-                    {name}
-                </Typography>
             </Box>
-            <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "5px", marginBottom: "10px" }} />
-            {
-                type &&
-                <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, fontWeight: `${theme.font.genshin.weight}`, color: "#ffe7b9", mb: "5px" }}>
-                    {type}
-                </Typography>
-            }
-            <Typography variant="body1" component="span" sx={{ color: `${theme.text.colorAlt}`, mb: "5px" }}>
+            <hr style={{ border: `.5px solid ${theme.border.color}` }} />
+            <Typography component="span" sx={{ fontSize: { xs: "14px", sm: "16px" }, color: `${theme.text.colorAlt}`, mb: "5px" }}>
                 {
                     typeof (description) === "object" ?
                         description
@@ -110,7 +130,7 @@ function TCGKeywordPopup(props: any) {
                     onClose={handleClose}
                     maxWidth={false}
                 >
-                    <TCGKeywordPopup keywords={props.keywords} name={keywordName} description={keywordDescription} />
+                    <TCGKeywordPopup keywords={props.keywords} name={keywordName} image={keywordImage} type={keywordType} description={keywordDescription} />
                 </Dialog>
             }
         </Box>

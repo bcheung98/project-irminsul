@@ -7,8 +7,9 @@ import TCGDiceCost from "./TCGDiceCost"
 import TCGKeywordPopup from "./TCGKeywordPopup"
 
 // MUI imports
-import { useTheme, Box, Typography, CardHeader, Avatar, Button, Dialog, Chip } from "@mui/material"
+import { useTheme, useMediaQuery, Box, Typography, CardHeader, Avatar, Button, Dialog, Chip, AppBar, IconButton } from "@mui/material"
 import Grid from "@mui/material/Grid2"
+import CloseIcon from "@mui/icons-material/Close"
 
 // Helper imports
 import { addCharacterCard, removeCharacterCard } from "../../redux/reducers/DeckReducer"
@@ -27,6 +28,8 @@ function TCGCharacterCardPopup(props: any) {
 
     const theme = useTheme()
 
+    const matches = useMediaQuery(theme.breakpoints.up("sm"))
+
     const dispatch = useDispatch()
 
     let { name, element, arkhe, weapon, factions, hp, talents, splash } = props.char
@@ -41,11 +44,29 @@ function TCGCharacterCardPopup(props: any) {
         setOpen(false)
     }
 
-    const ChipStyle = {
+    const chipStyle = {
         px: "5px",
         mr: "10px",
         mb: "10px",
+        height: { xs: "24px", md: "32px" },
         backgroundColor: "rgb(69, 84, 103)"
+    }
+
+    const chipImage = {
+        width: matches ? "24px" : "18px",
+        height: matches ? "24px" : "18px"
+    }
+
+    const chipText = {
+        fontFamily: `${theme.font.genshin.family}`,
+        fontSize: matches ? "14px" : "11.5px",
+        color: `white`
+    }
+
+    const skillIcon = {
+        width: matches ? "48px" : "32px",
+        height: matches ? "48px" : "32px",
+        border: `2px solid ${theme.border.color}`,
     }
 
     // The following code block transforms certain keywords into underlined elements
@@ -72,10 +93,12 @@ function TCGCharacterCardPopup(props: any) {
     }
 
     let keywordName
+    let keywordImage
     let keywordType
     let keywordDescription
     if (Keywords[tag]) {
         keywordName = Keywords[tag].name
+        keywordImage = Keywords[tag].image
         keywordType = Keywords[tag].type
         keywordDescription = Keywords[tag].description
     }
@@ -83,14 +106,144 @@ function TCGCharacterCardPopup(props: any) {
         let currentKeyword = props.keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
         try {
             keywordName = currentKeyword.name
+            keywordImage = currentKeyword.image
             keywordType = currentKeyword.type
             keywordDescription = currentKeyword.description
         }
         catch {
             keywordName = ""
+            keywordImage = null
             keywordType = ""
             keywordDescription = ""
         }
+    }
+
+    function CardImage() {
+        return (
+            <Box sx={{ position: "relative" }}>
+                {/* HP Icon */}
+                <Box
+                    sx={{
+                        position: "absolute",
+                        top: "-20px",
+                        left: "-20px",
+                    }}
+                >
+                    <Box
+                        sx={{
+                            border: "2px solid transparent", // This actually centers the number
+                            textAlign: "center",
+                            width: matches ? "80px" : "48px",
+                            height: matches ? "98px" : "58px",
+                            backgroundImage: `url(${process.env.REACT_APP_URL}/tcg/icons/hp.png)`,
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "100%",
+                        }}
+                    >
+                        <Typography
+                            sx={{
+                                fontFamily: `${theme.font.genshin.family}`,
+                                fontSize: matches ? "40px" : "24px",
+                                lineHeight: matches ? "98px" : "58px",
+                                color: `white`,
+                                textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+                                userSelect: "none"
+                            }}>
+                            {hp}
+                        </Typography>
+                    </Box>
+                </Box>
+                {/* Card Image */}
+                <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}.png`} alt={name}
+                    style={{
+                        width: matches ? "250px" : "150px",
+                        border: `2px solid ${theme.border.color}`,
+                        borderRadius: matches ? "28px" : "18px",
+                    }}
+                    onError={ErrorLoadingImage}
+                />
+            </Box>
+        )
+    }
+
+    function CardName() {
+
+        let card_name
+        if (props.char.displayName) { card_name = props.char.displayName }
+        else if (props.char.fullname) { card_name = props.char.fullname }
+        else { card_name = name }
+
+        return (
+            <React.Fragment>
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        mb: "10px",
+                    }}
+                >
+                    <CustomTooltip title={element} arrow placement="top">
+                        <img
+                            src={(`${process.env.REACT_APP_URL}/elements/${element}.png`)} alt={element}
+                            style={{
+                                marginRight: "15px",
+                                width: matches ? "64px" : "32px"
+                            }}
+                            onError={ErrorLoadingImage}
+                        />
+                    </CustomTooltip>
+                    <Typography
+                        sx={{
+                            fontFamily: `${theme.font.genshin.family}`,
+                            fontSize: matches ? "40px" : "20px",
+                            color: `${theme.text.color}`
+                        }}
+                    >
+                        {card_name}
+                    </Typography>
+                </Box>
+                <Box>
+                    <Chip
+                        avatar={<img src={`${process.env.REACT_APP_URL}/tcg/icons/weapons/${weapon.split(" ").join("_")}.png`} alt={weapon} style={chipImage} onError={ErrorLoadingImage} />}
+                        label={
+                            <Typography sx={chipText}>
+                                {weapon}
+                            </Typography>
+                        }
+                        sx={chipStyle}
+                    />
+                    {
+                        factions.map((faction: string, index: number) => {
+                            return (
+                                <Chip
+                                    key={index}
+                                    avatar={<img src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${faction.split(" ").join("_")}.png`} alt={faction} style={chipImage} onError={ErrorLoadingImage} />}
+                                    label={
+                                        <Typography sx={chipText}>
+                                            {faction}
+                                        </Typography>
+                                    }
+                                    sx={chipStyle}
+                                />
+                            )
+                        })
+                    }
+                    {
+                        arkhe &&
+                        <Chip
+                            avatar={<img src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${arkhe}.png`} alt={arkhe} style={chipImage} onError={ErrorLoadingImage} />}
+                            label={
+                                <Typography sx={chipText}>
+                                    Arkhe: {arkhe}
+                                </Typography>
+                            }
+                            sx={chipStyle}
+                        />
+                    }
+                </Box>
+            </React.Fragment>
+        )
     }
 
     function GetAttackIcon(key: string, weapon: string, element: string, talents: TCGCardData["talents"]) {
@@ -105,223 +258,160 @@ function TCGCharacterCardPopup(props: any) {
             }
         }
         return (
-            <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={src} style={ElementalBorderColor(element)}
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "48px",
-                    height: "48px",
-                    border: `2px solid ${theme.border.color}`,
-                }}
-            >
+            <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={src} style={ElementalBorderColor(element)} sx={skillIcon}>
                 <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
             </Avatar>
         )
 
     }
 
+    function SplashText() {
+        return (
+            <React.Fragment>
+                {
+                    splash !== undefined &&
+                    <Box
+                        sx={{
+                            maxWidth: { xs: "auto", lg: "250px" },
+                            maxHeight: "250px",
+                            overflowY: "auto",
+                            pr: "10px",
+                            ml: { xs: "20px", sm: "40px", lg: 0 },
+                            mr: "-20px",
+                            my: { xs: 0, lg: "20px" }
+                        }}
+                    >
+                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: matches ? "14px" : "11px", color: `${theme.text.color}` }}>
+                            <i>{parse(splash.description)}</i>
+                        </Typography>
+                    </Box>
+                }
+            </React.Fragment>
+        )
+    }
+
+    function CardSkill() {
+        return (
+            <Box
+                sx={{
+                    backgroundColor: `${theme.paper.backgroundColor}`,
+                    border: `1px solid ${theme.border.color}`,
+                    borderRadius: "5px",
+                    color: `${theme.text.color}`,
+                    overflowY: "auto",
+                    p: 2.5
+                }}
+            >
+                {
+                    Object.keys(talents).map((key, index) => {
+                        return (
+                            <Box key={key}>
+                                <Box sx={{ mb: "15px", display: "flex", justifyContent: "space-between" }}>
+                                    <CardHeader
+                                        sx={{ p: 0 }}
+                                        avatar={
+                                            key === "attack" ?
+                                                GetAttackIcon(key, weapon, element, talents)
+                                                :
+                                                <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={(`${process.env.REACT_APP_URL}/tcg/character_talent_icons/${name.split(" ").join("_").toLowerCase()}_${key}.png`)} style={ElementalBorderColor(element)} sx={skillIcon}>
+                                                    <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
+                                                </Avatar>
+                                        }
+                                        title={
+                                            <React.Fragment>
+                                                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "16px", sm: "20px" }, color: `${theme.text.color}` }}>
+                                                    {talents[key].name}
+                                                </Typography>
+                                                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "14px", sm: "16px" }, color: "#ffe7b9" }} variant="body2">
+                                                    {FormatTCGTalentKey(key)}
+                                                </Typography>
+                                            </React.Fragment>
+                                        }
+                                    />
+                                    <TCGDiceCost cost={talents[key].cost} display="flex" size={matches ? "56px" : "36px"} />
+                                </Box>
+                                <Typography sx={{ color: `${theme.text.colorAlt}`, fontSize: { xs: "14px", sm: "16px" } }}>
+                                    {parse(talents[key].description, options)}
+                                </Typography>
+                                {index !== Object.keys(talents).length - 1 && <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />}
+                            </Box>
+                        )
+                    })
+                }
+            </Box>
+        )
+    }
+
     return (
         <Box
             sx={{
-                width: "70vw",
-                p: "15px",
+                width: { xs: "100%", md: "70vw" },
+                minHeight: { xs: "100vh", sm: "70vh" },
+                overflowY: "auto",
                 backgroundColor: `${theme.materialImage.backgroundColor}`,
-                border: `2px solid ${theme.border.color}`,
-                borderRadius: "5px",
+                border: { xs: "none", sm: `2px solid ${theme.border.color}` },
+                borderRadius: { xs: "0px", sm: "5px" },
             }}
         >
-            <Grid container spacing={2} sx={{ mt: "10px" }}>
-                <Grid size="auto">
-                    <Box
+            {
+                !matches &&
+                <React.Fragment>
+                    <AppBar position="sticky"
                         sx={{
-                            position: "relative",
-                            mx: "25px",
-                            mt: "5px",
+                            backgroundColor: `${theme.appbar.backgroundColor}`,
+                            borderTop: `2px solid ${theme.border.color}`,
+                            borderBottom: `1px solid ${theme.border.color}`,
+                            px: 2,
+                            py: 1
                         }}
                     >
-                        {/* HP Icon */}
-                        <Box
-                            sx={{
-                                position: "absolute",
-                                top: "-20px",
-                                left: "-20px",
-                            }}
-                        >
-                            <Box
-                                sx={{
-                                    border: "2px solid transparent", // This actually centers the number
-                                    textAlign: "center",
-                                    width: "80px",
-                                    height: "98px",
-                                    backgroundImage: `url(${process.env.REACT_APP_URL}/tcg/icons/hp.png)`,
-                                    backgroundPosition: "center",
-                                    backgroundRepeat: "no-repeat",
-                                    backgroundSize: "100%",
-                                }}
-                            >
-                                <Typography
-                                    sx={{
-                                        fontFamily: `${theme.font.genshin.family}`,
-                                        fontSize: "40px",
-                                        lineHeight: "98px",
-                                        color: `white`,
-                                        textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
-                                        userSelect: "none"
-                                    }}>
-                                    {hp}
-                                </Typography>
+                        {
+                            props.preview === false &&
+                            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                {
+                                    props.inDeck === false ?
+                                        <Button variant="contained" sx={{ height: "24px", px: 1 }} onClick={() => dispatch(addCharacterCard(props.char))}>
+                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11.5px" }}>Add to Deck</Typography>
+                                        </Button>
+                                        :
+                                        <Button variant="contained" color="error" sx={{ height: "24px", px: 1 }} onClick={() => dispatch(removeCharacterCard(props.char))}>
+                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11.5px" }}>Remove from Deck</Typography>
+                                        </Button>
+                                }
+                                <IconButton onClick={props.handleClose}>
+                                    <CloseIcon sx={{ color: `white` }} />
+                                </IconButton>
                             </Box>
-                        </Box>
+                        }
+                    </AppBar>
+                    <Box sx={{ px: "15px", pt: "10px" }}>
+                        <CardName />
+                    </Box>
+                </React.Fragment>
+            }
+            <Grid container spacing={2} sx={{ mt: "10px", p: "15px" }}>
+                <Grid size={{ xs: 12, lg: "auto" }} sx={{ mx: "25px", mt: "5px" }}>
+                    <Box sx={{ display: { xs: "flex", lg: "block" } }}>
                         {/* Card Image */}
-                        <img src={`${process.env.REACT_APP_URL}/tcg/character_cards/${name.split(" ").join("_")}.png`} alt={name}
-                            style={{
-                                width: "250px",
-                                border: `2px solid ${theme.border.color}`,
-                                borderRadius: "28px",
-                            }}
-                            onError={ErrorLoadingImage}
-                        />
+                        <CardImage />
                         {/* Card Splash Text */}
-                        <React.Fragment>
-                            {
-                                splash !== undefined &&
-                                <Box
-                                    sx={{
-                                        maxWidth: "250px",
-                                        maxHeight: "250px",
-                                        overflowY: "auto",
-                                        pr: "10px",
-                                        my: "20px"
-                                    }}
-                                >
-                                    <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
-                                        <i>{parse(splash.description)}</i>
-                                    </Typography>
-                                </Box>
-                            }
-                        </React.Fragment>
+                        <SplashText />
                     </Box>
                 </Grid>
-                <Grid size="grow">
-                    <Box
-                        sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            mb: "10px",
-                        }}
-                    >
-                        <CustomTooltip title={element} arrow placement="top">
-                            <img src={(`${process.env.REACT_APP_URL}/elements/${element}.png`)} alt={element} onError={ErrorLoadingImage} style={{ marginRight: "15px", width: "64px", height: "64px" }} />
-                        </CustomTooltip>
-                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="h4">
-                            {props.char.displayName && props.char.displayName}
-                            {props.char.fullName && props.char.fullName}
-                            {!props.char.displayName && !props.char.fullName && name}
-                        </Typography>
-                    </Box>
-                    <Box>
-                        <Chip
-                            avatar={<img src={`${process.env.REACT_APP_URL}/tcg/icons/weapons/${weapon.split(" ").join("_")}.png`} alt={weapon} onError={ErrorLoadingImage} />}
-                            label={
-                                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="body2">
-                                    {weapon}
-                                </Typography>
-                            }
-                            sx={ChipStyle}
-                        />
-                        {
-                            factions.map((faction: string, index: number) => {
-                                return (
-                                    <Chip
-                                        key={index}
-                                        avatar={<img src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${faction.split(" ").join("_")}.png`} alt={faction} onError={ErrorLoadingImage} />}
-                                        label={
-                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `white` }} variant="body2">
-                                                {faction}
-                                            </Typography>
-                                        }
-                                        sx={ChipStyle}
-                                    />
-                                )
-                            })
-                        }
-                        {
-                            arkhe &&
-                            <Chip
-                                avatar={<img src={`${process.env.REACT_APP_URL}/tcg/icons/factions/${arkhe}.png`} alt={arkhe} onError={ErrorLoadingImage} />}
-                                label={
-                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="body2">
-                                        Arkhe: {arkhe}
-                                    </Typography>
-                                }
-                                sx={ChipStyle}
-                            />
-                        }
-                    </Box>
-                    <Box
-                        sx={{
-                            backgroundColor: `${theme.paper.backgroundColor}`,
-                            border: `1px solid ${theme.border.color}`,
-                            borderRadius: "5px",
-                            color: `${theme.text.color}`,
-                            maxHeight: "60vh",
-                            overflowY: "auto",
-                            p: 2.5
-                        }}
-                    >
-                        {
-                            Object.keys(talents).map((key, index) => {
-                                return (
-                                    <Box key={key}>
-                                        <Box sx={{ mb: "15px", display: "flex", justifyContent: "space-between" }}>
-                                            <CardHeader
-                                                sx={{ p: 0 }}
-                                                avatar={
-                                                    key === "attack" ?
-                                                        GetAttackIcon(key, weapon, element, talents)
-                                                        :
-                                                        <Avatar alt={`name.split(" ").join("_").toLowerCase()}_${key}`} src={(`${process.env.REACT_APP_URL}/tcg/character_talent_icons/${name.split(" ").join("_").toLowerCase()}_${key}.png`)} style={ElementalBorderColor(element)}
-                                                            sx={{
-                                                                width: "48px",
-                                                                height: "48px",
-                                                                border: `2px solid ${theme.border.color}`,
-                                                            }}>
-                                                            <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
-                                                        </Avatar>
-                                                }
-                                                title={
-                                                    <React.Fragment>
-                                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }} variant="h6">
-                                                            {talents[key].name}
-                                                        </Typography>
-                                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, color: "#ffe7b9" }} variant="body2">
-                                                            {FormatTCGTalentKey(key)}
-                                                        </Typography>
-                                                    </React.Fragment>
-                                                }
-                                            />
-                                            <TCGDiceCost cost={talents[key].cost} type={"popup"} />
-                                        </Box>
-                                        <Typography variant="body1" sx={{ color: `${theme.text.colorAlt}`, }}>
-                                            {parse(talents[key].description, options)}
-                                        </Typography>
-                                        {index !== Object.keys(talents).length - 1 && <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />}
-                                    </Box>
-                                )
-                            })
-                        }
-                    </Box>
+                <Grid size={{ xs: 12, sm: "grow" }}>
+                    {matches && <CardName />}
+                    <CardSkill />
                     {
-                        props.preview === false &&
+                        matches && props.preview === false &&
                         <React.Fragment>
                             {
                                 props.inDeck === false ?
                                     <Button variant="contained" sx={{ my: "20px" }} onClick={() => dispatch(addCharacterCard(props.char))}>
-                                        <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>Add to Deck</Typography>
+                                        <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `white`, }}>Add to Deck</Typography>
                                     </Button>
                                     :
                                     <Button variant="contained" color="error" sx={{ my: "20px" }} onClick={() => dispatch(removeCharacterCard(props.char))}>
-                                        <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>Remove from Deck</Typography>
+                                        <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `white`, }}>Remove from Deck</Typography>
                                     </Button>
                             }
                         </React.Fragment>
@@ -333,7 +423,7 @@ function TCGCharacterCardPopup(props: any) {
                             onClose={handleClose}
                             maxWidth={false}
                         >
-                            <TCGKeywordPopup keywords={props.char.keywords} name={keywordName} type={keywordType} description={keywordDescription} />
+                            <TCGKeywordPopup keywords={props.char.keywords} name={keywordName} image={keywordImage} type={keywordType} description={keywordDescription} />
                         </Dialog>
                     }
                 </Grid>

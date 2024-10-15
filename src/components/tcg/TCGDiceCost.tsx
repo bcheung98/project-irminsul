@@ -1,56 +1,51 @@
 // MUI imports
 import { useTheme, Box, Typography } from "@mui/material"
 
-function TCGDiceCost(props: any) {
+interface TCGDiceCostProps {
+    cost: string,
+    display?: "block" | "flex",
+    size?: string
+}
+
+function TCGDiceCost({
+    cost,
+    display = "block",
+    size = "56px"
+}: TCGDiceCostProps) {
 
     const theme = useTheme()
 
-    let cost = []
-    if (props.cost !== undefined) {
-        cost = props.cost.split(" ")
+    let costArray: string[] = []
+    if (cost !== undefined) {
+        costArray = cost.split(" ")
     }
 
-    const size = (type: string) => {
-        if (type === "card" || type === "popup") {
-            return "60px"
-        }
-        else if (type === "card-large") {
-            return "96px"
-        }
-        else if (type === "keyword-popup") {
-            return "40px"
-        }
-        else {
-            return "56px"
-        }
-    }
-
-    const fontSize = (type: string) => {
-        if (type === "card" || type === "popup") {
-            return "24px"
-        }
-        else if (type === "card-large") {
-            return "38.4px"
-        }
-        else if (type === "keyword-popup") {
-            return "20px"
-        }
-        else {
-            return "22.4px"
-        }
-    }
+    // const size = (type: string) => {
+    //     if (type === "card" || type === "popup") {
+    //         return "60px"
+    //     }
+    //     else if (type === "card-large") {
+    //         return "96px"
+    //     }
+    //     else if (type === "keyword-popup") {
+    //         return "40px"
+    //     }
+    //     else {
+    //         return "56px"
+    //     }
+    // }
 
     return (
-        <Box sx={{ display: props.type === "popup" ? "flex" : "block" }}>
+        <Box sx={{ display: display }}>
             {
-                cost.map((dice: string, index: number) => {
+                costArray.map((dice: string, index: number) => {
                     return (
                         <Box
                             sx={{
                                 border: "2px solid transparent", // This actually centers the number
                                 textAlign: "center",
-                                width: size(props.type),
-                                height: size(props.type),
+                                width: size,
+                                height: size,
                                 backgroundImage: `url(${process.env.REACT_APP_URL}/tcg/icons/dice/${dice.slice(-1)}.png)`,
                                 backgroundPosition: "center",
                                 backgroundRepeat: "no-repeat",
@@ -61,8 +56,8 @@ function TCGDiceCost(props: any) {
                             <Typography
                                 sx={{
                                     fontFamily: `${theme.font.genshin.family}`,
-                                    fontSize: fontSize(props.type),
-                                    lineHeight: size(props.type),
+                                    fontSize: `calc(${size} / 2.5)`,
+                                    lineHeight: size,
                                     color: `white`,
                                     textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
                                     userSelect: "none",

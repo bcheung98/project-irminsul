@@ -1,20 +1,22 @@
 import { Avatar } from "@mui/material"
 
-const ElementalIcon = { width: "32px", height: "32px" }
+interface IconProps {
+    size?: string
+}
 
-export const Pyro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Pyro.png`} alt="Pyro" sx={ElementalIcon} />
-export const Hydro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Hydro.png`} alt="Hydro" sx={ElementalIcon} />
-export const Electro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Electro.png`} alt="Electro" sx={ElementalIcon} />
-export const Cryo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Cryo.png`} alt="Cryo" sx={ElementalIcon} />
-export const Anemo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Anemo.png`} alt="Anemo" sx={ElementalIcon} />
-export const Geo = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Geo.png`} alt="Geo" sx={ElementalIcon} />
-export const Dendro = () => <Avatar src={`${process.env.REACT_APP_URL}/elements/Dendro.png`} alt="Dendro" sx={ElementalIcon} />
+export const Pyro = ({ size = "32px" }: IconProps) => <Avatar src={`${process.env.REACT_APP_URL}/elements/Pyro.png`} alt="Pyro" sx={{ width: size, height: size }} />
+export const Hydro = ({ size = "32px" }: IconProps) => <Avatar src={`${process.env.REACT_APP_URL}/elements/Hydro.png`} alt="Hydro" sx={{ width: size, height: size }} />
+export const Electro = ({ size = "32px" }: IconProps) => <Avatar src={`${process.env.REACT_APP_URL}/elements/Electro.png`} alt="Electro" sx={{ width: size, height: size }} />
+export const Cryo = ({ size = "32px" }: IconProps) => <Avatar src={`${process.env.REACT_APP_URL}/elements/Cryo.png`} alt="Cryo" sx={{ width: size, height: size }} />
+export const Anemo = ({ size = "32px" }: IconProps) => <Avatar src={`${process.env.REACT_APP_URL}/elements/Anemo.png`} alt="Anemo" sx={{ width: size, height: size }} />
+export const Geo = ({ size = "32px" }: IconProps) => <Avatar src={`${process.env.REACT_APP_URL}/elements/Geo.png`} alt="Geo" sx={{ width: size, height: size }} />
+export const Dendro = ({ size = "32px" }: IconProps) => <Avatar src={`${process.env.REACT_APP_URL}/elements/Dendro.png`} alt="Dendro" sx={{ width: size, height: size }} />
 
-export const TCGPhysical = () => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Physical.png`} alt="Physical" sx={ElementalIcon} />
-export const TCGPyro = () => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Pyro.png`} alt="Pyro" sx={ElementalIcon} />
-export const TCGHydro = () => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Hydro.png`} alt="Hydro" sx={ElementalIcon} />
-export const TCGElectro = () => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Electro.png`} alt="Electro" sx={ElementalIcon} />
-export const TCGCryo = () => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Cryo.png`} alt="Cryo" sx={ElementalIcon} />
-export const TCGAnemo = () => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Anemo.png`} alt="Anemo" sx={ElementalIcon} />
-export const TCGGeo = () => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Geo.png`} alt="Geo" sx={ElementalIcon} />
-export const TCGDendro = () => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Dendro.png`} alt="Dendro" sx={ElementalIcon} />
+export const TCGPhysical = ({ size = "32px" }: IconProps) => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Physical.png`} alt="Physical" sx={{ width: size, height: size }} />
+export const TCGPyro = ({ size = "32px" }: IconProps) => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Pyro.png`} alt="Pyro" sx={{ width: size, height: size }} />
+export const TCGHydro = ({ size = "32px" }: IconProps) => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Hydro.png`} alt="Hydro" sx={{ width: size, height: size }} />
+export const TCGElectro = ({ size = "32px" }: IconProps) => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Electro.png`} alt="Electro" sx={{ width: size, height: size }} />
+export const TCGCryo = ({ size = "32px" }: IconProps) => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Cryo.png`} alt="Cryo" sx={{ width: size, height: size }} />
+export const TCGAnemo = ({ size = "32px" }: IconProps) => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Anemo.png`} alt="Anemo" sx={{ width: size, height: size }} />
+export const TCGGeo = ({ size = "32px" }: IconProps) => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Geo.png`} alt="Geo" sx={{ width: size, height: size }} />
+export const TCGDendro = ({ size = "32px" }: IconProps) => <Avatar src={`${process.env.REACT_APP_URL}/tcg/icons/elements/Dendro.png`} alt="Dendro" sx={{ width: size, height: size }} />
