@@ -1,34 +1,39 @@
-import { connect } from "react-redux"
-
 // MUI imports
 import { useTheme, Typography, ButtonBase, TableRow } from "@mui/material"
 import Grid from "@mui/material/Grid2"
-
-// Helper imports
 import { StyledTableCell } from "../_custom/CustomTable"
 import { CustomTooltip } from "../_custom/CustomTooltip"
-import { CurrentBanner } from "../../helpers/CurrentBanner"
-import BannerRarityBackgrounds from "../../helpers/BannerRarityBackground"
+
+// Helper imports
+import { convertToDateObject, convertToDateString, isCurrentBanner } from "../../helpers/dates"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 // Type imports
-import { RootState } from "../../redux/store"
-import { BannerRowData } from "../../types/banner/BannerRowData"
-import { WeaponData } from "../../types/weapon/WeaponData"
+import { BannerData } from "../../types/banner/BannerData"
+
 
 function WeaponBannerRow(props: any) {
 
     const theme = useTheme()
 
-    let { row, index, weapons } = props
+    let { row } = props
+    let { version, subVersion } = props.row
+
+    let startDate = convertToDateObject(row.start, subVersion.split(".")[2] === "1")
+    let endDate = convertToDateObject(row.end)
+
+    let start = convertToDateString(startDate)
+    let end = convertToDateString(endDate)
 
     return (
-        <TableRow key={index} sx={CurrentBanner(row.startDate, row.endDate)}>
+        <TableRow sx={{ backgroundColor: isCurrentBanner(startDate, endDate) ? `${theme.button.selected}` : "none" }}>
 
             { /* Version */}
             <StyledTableCell>
-                <Typography sx={{ fontFamily: `${theme.font.genshin.family}` }}>{row.version}</Typography>
-                <Typography variant="body2">{row.startDate} — {row.endDate}</Typography>
+                <Typography sx={{ fontFamily: `${theme.font.genshin.family}` }}>{version}</Typography>
+                <CustomTooltip title={`${start.date} ${start.time} — ${end.date} ${end.time}`} arrow placement="bottom">
+                    <Typography variant="body2">{start.date} — {end.date}</Typography>
+                </CustomTooltip>
             </StyledTableCell>
 
             { /* Banners */}
@@ -36,8 +41,7 @@ function WeaponBannerRow(props: any) {
                 {
                     <Grid container spacing={0.75}>
                         {
-                            (row as BannerRowData).banner.map((wep, index) => {
-                                let rarity = weapons.find((w: WeaponData) => w.name === wep).rarity
+                            (row as BannerData).fiveStars.map((wep, index) => {
                                 return (
                                     <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${wep.split(" ").join("_").toLowerCase()}`} target="_blank" key={index}>
                                         <CustomTooltip title={wep} arrow placement="top">
@@ -49,8 +53,32 @@ function WeaponBannerRow(props: any) {
                                                     height: "64px",
                                                     backgroundColor: `${theme.materialImage.backgroundColor}`,
                                                     backgroundSize: "100%",
-                                                    backgroundImage: BannerRarityBackgrounds(rarity)
+                                                    backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_5_Star.png)`
                                                 }}
+                                                loading="lazy"
+                                                onError={ErrorLoadingImage}
+                                            />
+                                        </CustomTooltip>
+                                    </ButtonBase>
+                                )
+                            })
+                        }
+                        {
+                            (row as BannerData).fourStars.map((wep, index) => {
+                                return (
+                                    <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${wep.split(" ").join("_").toLowerCase()}`} target="_blank" key={index}>
+                                        <CustomTooltip title={wep} arrow placement="top">
+                                            <img src={`${process.env.REACT_APP_URL}/weapons/${wep.split(" ").join("_")}.png`} alt={wep}
+                                                style={{
+                                                    border: `1px solid ${theme.border.color}`,
+                                                    borderRadius: "5px",
+                                                    width: "64px",
+                                                    height: "64px",
+                                                    backgroundColor: `${theme.materialImage.backgroundColor}`,
+                                                    backgroundSize: "100%",
+                                                    backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_4_Star.png)`
+                                                }}
+                                                loading="lazy"
                                                 onError={ErrorLoadingImage}
                                             />
                                         </CustomTooltip>
@@ -66,8 +94,4 @@ function WeaponBannerRow(props: any) {
     )
 }
 
-const mapStateToProps = (state: RootState) => ({
-    weapons: state.weapons.weapons
-})
-
-export default connect(mapStateToProps)(WeaponBannerRow)
+export default WeaponBannerRow

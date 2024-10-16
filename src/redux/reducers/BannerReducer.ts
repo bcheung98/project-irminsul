@@ -1,13 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { fetchCharacterBanners, fetchWeaponBanners, fetchChronicledWish } from "../actions/fetch"
 import { BannerData, ChronicledWishBannerData } from "../../types/banner/BannerData"
-import { BannerRowData } from "../../types/banner/BannerRowData"
 
 export interface BannerState {
     loading: boolean,
-    characterBanners: BannerRowData[],
-    weaponBanners: BannerRowData[],
-    chronicledWish: BannerRowData[]
+    characterBanners: BannerData[],
+    weaponBanners: BannerData[],
+    chronicledWish: ChronicledWishBannerData[]
 }
 
 const initialState: BannerState = {
@@ -26,15 +25,7 @@ export const BannerSlice = createSlice({
             state.loading = true
         })
         builder.addCase(fetchCharacterBanners.fulfilled, (state, action) => {
-            let characterBanners: BannerRowData[] = []
-            action.payload.map((version: BannerData) => Object.keys(version).slice(1).forEach((phase: string) => characterBanners.push({
-                version: version.version,
-                subVersion: `${version.version}.${phase.slice(-1)}`,
-                startDate: (version[phase as keyof {}])["startDate"],
-                endDate: (version[phase as keyof {}])["endDate"],
-                banner: (version[phase as keyof {}])["banner"]
-            } as BannerRowData)))
-            state.characterBanners = characterBanners
+            state.characterBanners = action.payload
             state.loading = false
         })
         builder.addCase(fetchCharacterBanners.rejected, (state) => {
@@ -44,15 +35,7 @@ export const BannerSlice = createSlice({
             state.loading = true
         })
         builder.addCase(fetchWeaponBanners.fulfilled, (state, action) => {
-            let weaponBanners: BannerRowData[] = []
-            action.payload.map((version: BannerData) => Object.keys(version).slice(1).forEach((phase: string) => weaponBanners.push({
-                version: version.version,
-                subVersion: `${version.version}.${phase.slice(-1)}`,
-                startDate: (version[phase as keyof {}])["startDate"],
-                endDate: (version[phase as keyof {}])["endDate"],
-                banner: (version[phase as keyof {}])["banner"]
-            } as BannerRowData)))
-            state.weaponBanners = weaponBanners
+            state.weaponBanners = action.payload
             state.loading = false
         })
         builder.addCase(fetchWeaponBanners.rejected, (state) => {
@@ -62,15 +45,7 @@ export const BannerSlice = createSlice({
             state.loading = true
         })
         builder.addCase(fetchChronicledWish.fulfilled, (state, action) => {
-            let chronicledWishBanners: BannerRowData[] = []
-            action.payload.map((version: ChronicledWishBannerData) => Object.keys(version).slice(1).forEach((phase: string) => chronicledWishBanners.push({
-                version: version.version,
-                subVersion: `${version.version}.${phase.slice(-1)}`,
-                startDate: (version[phase as keyof {}])["startDate"],
-                endDate: (version[phase as keyof {}])["endDate"],
-                banner: (version[phase as keyof {}])["banner"]
-            } as BannerRowData)))
-            state.chronicledWish = chronicledWishBanners
+            state.chronicledWish = action.payload
             state.loading = false
         })
         builder.addCase(fetchChronicledWish.rejected, (state) => {

@@ -1,15 +1,23 @@
-import { BannerPhaseData } from "./BannerPhaseData"
-import { ChronicledWishPhaseData } from "../banner/ChronicledWishPhaseData"
-
 export interface BannerData {
     version: string,
-    phase1: BannerPhaseData,
-    phase2?: BannerPhaseData,
-    phase3?: BannerPhaseData
+    subVersion: string,
+    start: string,
+    end: string,
+    fiveStars: string[],
+    fourStars: string[]
 }
 
 export interface ChronicledWishBannerData {
     version: string,
-    phase1: ChronicledWishPhaseData,
-    phase2?: ChronicledWishPhaseData
+    subVersion: string,
+    start: string,
+    end: string,
+    characters: {
+        fiveStars: string[],
+        fourStars: string[]
+    },
+    weapons: {
+        fiveStars: string[],
+        fourStars: string[]
+    }
 }

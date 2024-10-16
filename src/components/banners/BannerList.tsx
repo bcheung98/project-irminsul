@@ -1,22 +1,36 @@
 import * as React from "react"
 
 // Component imports
+import { CustomMenuItem } from "../_custom/CustomMenu"
+import { CustomTooltip } from "../_custom/CustomTooltip"
 import CharacterBannerRow from "./CharacterBannerRow"
 import WeaponBannerRow from "./WeaponBannerRow"
 
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Table, TableBody, TableContainer, Paper, InputBase } from "@mui/material"
+import { useTheme, useMediaQuery, Box, Table, TableBody, TableContainer, Paper, Autocomplete, TextField, Typography } from "@mui/material"
+import HelpIcon from "@mui/icons-material/Help"
 
 // Helper imports
 import { EnhancedTableHead, getComparator, stableSort } from "../_custom/CustomSortTable"
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 // Type imports
-import { BannerRowData } from "../../types/banner/BannerRowData"
+import { BannerData } from "../../types/banner/BannerData"
+import { CustomSwitch } from "../_custom/CustomSwitch"
 
 function BannerList(props: any) {
 
     const theme = useTheme()
+
+    const matches = useMediaQuery(theme.breakpoints.down("md"))
+
+    let { type } = props
+
+    let URL = type === "character" ? "characters/icons" : "weapons"
+
+    const [options, setOptions] = React.useState<string[]>([])
+    const [rows, setRows] = React.useState<any[]>([])
+    const [values, setValue] = React.useState<string[]>([])
 
     const [order, setOrder] = React.useState("desc")
     const [orderBy, setOrderBy] = React.useState("subVersion")
@@ -27,36 +41,111 @@ function BannerList(props: any) {
         setOrderBy(property)
     }
 
-    const [searchValue, setSearchValue] = React.useState("")
-    const handleInputChange = (event: React.BaseSyntheticEvent) => {
-        setSearchValue(event.target.value)
+    const [selected, setSelected] = React.useState(true)
+    const handleSelect = () => {
+        setSelected(!selected)
     }
 
-    const rows = filterBanners(props.banners, searchValue)
+    const filterBanners = (banners: any[], searchValue: string[]) => {
+        if (searchValue.length > 0) {
+            banners = banners.filter((banner: BannerData) => {
+                if (selected) {
+                    return searchValue.every((item: string) => banner.fiveStars.concat(banner.fourStars).includes(item))
+                }
+                else {
+                    return searchValue.some((item: string) => banner.fiveStars.concat(banner.fourStars).includes(item))
+                }
+            })
+        }
+        return banners
+    }
+
+    React.useEffect(() => {
+        setRows(filterBanners(props.banners, values))
+        setOptions([...new Set(props.banners.map((banner: BannerData) => banner.fiveStars.concat(banner.fourStars)).flat().sort((a: string, b: string) => a.localeCompare(b)))] as string[])
+    }, [props.banners, values, selected])
 
     return (
-        <Box>
-            <Paper
-                sx={{
-                    border: `2px solid ${theme.border.color}`,
-                    borderRadius: "5px",
-                    backgroundColor: `${theme.paper.backgroundColor}`,
-                    display: "flex",
-                    height: "40px",
-                    marginBottom: "10px",
-                }}
-            >
-                <InputBase
-                    sx={{
-                        marginLeft: "10px",
-                        flex: 1,
-                        color: `${theme.text.color}`,
-                        fontFamily: `${theme.font.genshin.family}`,
+        <React.Fragment>
+            <Box>
+                <Autocomplete
+                    multiple
+                    autoComplete
+                    options={options}
+                    getOptionLabel={(option: string) => option}
+                    filterSelectedOptions
+                    noOptionsText={type === "character" ? "No Characters" : "No Weapons"}
+                    value={values}
+                    onChange={(event: any, newValue: string[] | null) => {
+                        setValue(newValue as string[])
                     }}
-                    placeholder="Search"
-                    onChange={handleInputChange}
+                    ChipProps={{
+                        sx: {
+                            color: `${theme.text.color}`,
+                            fontFamily: `${theme.font.genshin.family}`,
+                            backgroundColor: `${theme.button.selected}`,
+                            "& .MuiChip-deleteIcon": {
+                                color: `${theme.text.color}`,
+                                ":hover": {
+                                    color: `${theme.text.colorAlt}`
+                                }
+                            },
+                        }
+                    }}
+                    ListboxProps={{
+                        sx: {
+                            backgroundColor: `${theme.menu.backgroundColor}`,
+                        }
+                    }}
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            sx={{
+                                "& .MuiAutocomplete-input": {
+                                    color: `${theme.text.color}`,
+                                    fontFamily: `${theme.font.genshin.family}`,
+                                },
+                                "& .MuiOutlinedInput-root": {
+                                    "& fieldset": {
+                                        borderColor: `${theme.border.color}`,
+                                        borderWidth: "2px",
+                                        borderRadius: "5px",
+                                    },
+                                    "&:hover fieldset": {
+                                        borderColor: `${theme.border.color}`,
+                                    },
+                                },
+                                "& .MuiButtonBase-root": {
+                                    color: `${theme.text.color}`,
+                                }
+                            }}
+                            placeholder={type === "character" ? "Characters" : "Weapons"}
+                        />
+                    )}
+                    renderOption={(props, option) => (
+                        <CustomMenuItem
+                            {...props}
+                            key={option}
+                        >
+                            <Box sx={{ display: "flex", alignItems: "center", p: 0, width: "100%" }}>
+                                <img alt={option} src={`${process.env.REACT_APP_URL}/${URL}/${option.split(" ").join("_")}.png`} style={{ width: matches ? "42px" : "48px", marginRight: "20px" }} onError={ErrorLoadingImage} />
+                                <Typography noWrap sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "14px", md: "16px" }, color: `${theme.text.color}` }}>
+                                    {option}
+                                </Typography>
+                            </Box>
+                        </CustomMenuItem>
+                    )}
                 />
-            </Paper>
+                <Box sx={{ display: "flex", alignItems: "center", my: "10px" }}>
+                    <CustomSwitch checked={selected} onChange={handleSelect} />
+                    <Typography sx={{ color: `${theme.text.color}`, fontFamily: `${theme.font.genshin.family}`, fontSize: "13.5px" }}>
+                        Toggle "AND" Filter
+                    </Typography>
+                    <CustomTooltip title="If toggled, will filter banners that only contain all selected items." arrow placement="top">
+                        <HelpIcon sx={{ color: `${theme.text.color}`, cursor: "pointer", mx: "10px" }} />
+                    </CustomTooltip>
+                </Box>
+            </Box>
             <Paper
                 sx={{
                     border: `2px solid ${theme.border.color}`,
@@ -79,7 +168,7 @@ function BannerList(props: any) {
                                 stableSort(rows, getComparator(order, orderBy))
                                     .map((row, index) => {
                                         return (
-                                            props.type === "character" ? <CharacterBannerRow key={index} row={row} /> : <WeaponBannerRow key={index} row={row} />
+                                            type === "character" ? <CharacterBannerRow key={index} row={row} /> : <WeaponBannerRow key={index} row={row} />
                                         )
                                     })
                             }
@@ -87,7 +176,7 @@ function BannerList(props: any) {
                     </Table>
                 </TableContainer>
             </Paper>
-        </Box>
+        </React.Fragment>
     )
 }
 
@@ -96,10 +185,3 @@ export default BannerList
 const headCells = [
     { id: "subVersion", label: "Version" },
 ]
-
-const filterBanners = (banners: any[], searchValue: string) => {
-    if (searchValue !== "") {
-        banners = banners.filter((banner: BannerRowData) => banner.banner.map((char: string) => char.toLowerCase()).join("|").includes(searchValue.toLowerCase()))
-    }
-    return banners
-}

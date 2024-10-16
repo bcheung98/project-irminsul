@@ -6,8 +6,7 @@ import BannerList from "./BannerList"
 import ChronicledWishList from "./ChronicledWishList"
 
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Typography, ToggleButtonGroup } from "@mui/material"
+import { useTheme, Box, Typography, ToggleButtonGroup } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
@@ -67,9 +66,13 @@ function BannerArchive(props: any) {
                     <React.Fragment>
                         {
                             banners.characterBanners.length > 0 && banners.weaponBanners.length > 0 &&
-                            <Grid container spacing={2}>
-                                <BannerList banners={banners.characterBanners} type="character" />
-                                <BannerList banners={banners.weaponBanners} type="weapon" />
+                            <Grid container spacing={3} columns={{ xs: 1, sm: 12 }}>
+                                <Grid size={6}>
+                                    <BannerList banners={banners.characterBanners} type="character" />
+                                </Grid>
+                                <Grid size={6}>
+                                    <BannerList banners={banners.weaponBanners} type="weapon" />
+                                </Grid>
                             </Grid>
                         }
                     </React.Fragment>

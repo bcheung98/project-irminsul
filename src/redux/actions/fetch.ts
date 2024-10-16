@@ -17,9 +17,9 @@ const CardsURL = "https://api.irminsul.gg/genshin/cards.json"
 // https://api.irminsul.gg/genshin/artifacts.json
 const ArtifactsURL = "https://api.irminsul.gg/genshin/artifacts.json"
 
-const CharacterBannerURL = "https://api.irminsul.gg/genshin/character-banners.json"
-const WeaponBannerURL = "https://api.irminsul.gg/genshin/weapon-banners.json"
-const ChronicledWishURL = "https://api.irminsul.gg/genshin/chronicled-wish.json"
+const CharacterBannerURL = "https://api.irminsul.gg/genshin/character-banners-v2.json"
+const WeaponBannerURL = "https://api.irminsul.gg/genshin/weapon-banners-v2.json"
+const ChronicledWishURL = "https://api.irminsul.gg/genshin/chronicled-wish-v2.json"
 
 export const fetchCharacters = createAsyncThunk("GET/characters", async (): Promise<[CharacterData]> => {
     const response = await fetch(CharactersURL)
