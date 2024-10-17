@@ -52,9 +52,9 @@ function NavMobile(props: { navItems: NavItem[], linkItems: NavItem[] }) {
                         open={drawerOpen}
                         onClose={toggleDrawer(false)}
                         onOpen={toggleDrawer(true)}
-                        sx={{ [`& .MuiDrawer-paper`]: { backgroundColor: `${theme.appbar.backgroundColor}`, mt: -1, height: "100%" } }}
+                        sx={{ [`& .MuiDrawer-paper`]: { backgroundColor: `${theme.appbar.backgroundColor}`, borderBottom: `2px solid ${theme.border.color}`, height: "100%", overflowX: "hidden" } }}
                     >
-                        <Box>
+                        <Box sx={{ mt: -1 }}>
                             <List>
                                 <ListItem disablePadding sx={{ display: "block", ml: "15px" }}>
                                     <IconButton
