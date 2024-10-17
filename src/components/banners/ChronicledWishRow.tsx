@@ -5,27 +5,20 @@ import { StyledTableCell } from "../_custom/CustomTable"
 import { CustomTooltip } from "../_custom/CustomTooltip"
 
 // Helper imports
-import { convertToDateObject, convertToDateString, isCurrentBanner } from "../../helpers/dates"
+import { createDateObject, isCurrentBanner } from "../../helpers/dates"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
-
-// Type imports
-import { ChronicledWishBannerData } from "../../types/banner/BannerData"
 
 function ChronicledWishRow(props: any) {
 
     const theme = useTheme()
 
-    let { row } = props
-    let { version, subVersion } = props.row
+    let { version, characters, weapons } = props.row
 
-    let startDate = convertToDateObject(row.start, subVersion.split(".")[2] === "1")
-    let endDate = convertToDateObject(row.end)
-
-    let start = convertToDateString(startDate)
-    let end = convertToDateString(endDate)
+    let start = createDateObject(props.row.start)
+    let end = createDateObject(props.row.end)
 
     return (
-        <TableRow sx={{ backgroundColor: isCurrentBanner(startDate, endDate) ? `${theme.button.selected}` : "none" }}>
+        <TableRow sx={{ backgroundColor: isCurrentBanner(start.obj, end.obj) ? `${theme.button.selected}` : "none" }}>
 
             { /* Version */}
             <StyledTableCell>
@@ -41,7 +34,7 @@ function ChronicledWishRow(props: any) {
                 { /* Characters */}
                 <Grid container spacing={0.75}>
                     {
-                        (row as ChronicledWishBannerData).characters.fiveStars.map((char) => (
+                        characters.fiveStars.map((char: string) => (
                             <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={char} sx={{ m: "2px" }}>
                                 <CustomTooltip title={char} arrow placement="top">
                                     <img src={`${process.env.REACT_APP_URL}/characters/icons/${char.split(" ").join("_")}.png`} alt={char}
@@ -62,7 +55,7 @@ function ChronicledWishRow(props: any) {
                         ))
                     }
                     {
-                        (row as ChronicledWishBannerData).characters.fourStars.map((char) => (
+                        characters.fourStars.map((char: string) => (
                             <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={char} sx={{ m: "2px" }}>
                                 <CustomTooltip title={char} arrow placement="top">
                                     <img src={`${process.env.REACT_APP_URL}/characters/icons/${char.split(" ").join("_")}.png`} alt={char}
@@ -89,7 +82,7 @@ function ChronicledWishRow(props: any) {
                 { /* Weapons */}
                 <Grid container spacing={0.75}>
                     {
-                        (row as ChronicledWishBannerData).weapons.fiveStars.map((wep) => (
+                        weapons.fiveStars.map((wep: string) => (
                             <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${wep.split(" ").join("_").toLowerCase()}`} target="_blank" key={wep} sx={{ m: "2px" }}>
                                 <CustomTooltip title={wep} arrow placement="top">
                                     <img src={`${process.env.REACT_APP_URL}/weapons/${wep.split(" ").join("_")}.png`} alt={wep}
@@ -110,7 +103,7 @@ function ChronicledWishRow(props: any) {
                         ))
                     }
                     {
-                        (row as ChronicledWishBannerData).weapons.fourStars.map((wep) => (
+                        weapons.fourStars.map((wep: string) => (
                             <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${wep.split(" ").join("_").toLowerCase()}`} target="_blank" key={wep} sx={{ m: "2px" }}>
                                 <CustomTooltip title={wep} arrow placement="top">
                                     <img src={`${process.env.REACT_APP_URL}/weapons/${wep.split(" ").join("_")}.png`} alt={wep}

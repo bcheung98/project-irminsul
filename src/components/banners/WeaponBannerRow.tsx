@@ -5,28 +5,20 @@ import { StyledTableCell } from "../_custom/CustomTable"
 import { CustomTooltip } from "../_custom/CustomTooltip"
 
 // Helper imports
-import { convertToDateObject, convertToDateString, isCurrentBanner } from "../../helpers/dates"
+import { createDateObject, isCurrentBanner } from "../../helpers/dates"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
-
-// Type imports
-import { BannerData } from "../../types/banner/BannerData"
-
 
 function WeaponBannerRow(props: any) {
 
     const theme = useTheme()
 
-    let { row } = props
-    let { version, subVersion } = props.row
+    let { version, fiveStars, fourStars } = props.row
 
-    let startDate = convertToDateObject(row.start, subVersion.split(".")[2] === "1")
-    let endDate = convertToDateObject(row.end)
-
-    let start = convertToDateString(startDate)
-    let end = convertToDateString(endDate)
+    let start = createDateObject(props.row.start)
+    let end = createDateObject(props.row.end)
 
     return (
-        <TableRow sx={{ backgroundColor: isCurrentBanner(startDate, endDate) ? `${theme.button.selected}` : "none" }}>
+        <TableRow sx={{ backgroundColor: isCurrentBanner(start.obj, end.obj) ? `${theme.button.selected}` : "none" }}>
 
             { /* Version */}
             <StyledTableCell>
@@ -41,7 +33,7 @@ function WeaponBannerRow(props: any) {
                 {
                     <Grid container spacing={0.75}>
                         {
-                            (row as BannerData).fiveStars.map((wep, index) => {
+                            fiveStars.map((wep: string, index: number) => {
                                 return (
                                     <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${wep.split(" ").join("_").toLowerCase()}`} target="_blank" key={index}>
                                         <CustomTooltip title={wep} arrow placement="top">
@@ -64,7 +56,7 @@ function WeaponBannerRow(props: any) {
                             })
                         }
                         {
-                            (row as BannerData).fourStars.map((wep, index) => {
+                            fourStars.map((wep: string, index: number) => {
                                 return (
                                     <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${wep.split(" ").join("_").toLowerCase()}`} target="_blank" key={index}>
                                         <CustomTooltip title={wep} arrow placement="top">
