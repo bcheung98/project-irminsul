@@ -43,7 +43,7 @@ function CharacterAscensionCard(props: any) {
     return (
         <Box
             sx={{
-                width: "750px",
+                width: "100%",
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
                 backgroundColor: `${theme.paper.backgroundColor}`,
@@ -98,7 +98,7 @@ function CharacterAscensionCard(props: any) {
                         Edit
                     </Typography>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails sx={{ mx: "10px", px: 0 }}>
                     <CharacterAscensionLevel character={props.character} />
                     <CharacterAscensionATK character={props.character} />
                     <CharacterAscensionSkill character={props.character} />

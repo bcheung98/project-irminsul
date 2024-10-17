@@ -2,8 +2,7 @@ import * as React from "react"
 import { useDispatch } from "react-redux"
 
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Typography, CardHeader } from "@mui/material"
+import { useTheme, useMediaQuery, Box, Typography, CardHeader } from "@mui/material"
 
 // Helper imports
 import { CustomSlider } from "../_custom/CustomSlider"
@@ -15,6 +14,8 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 function CharacterAscensionBurst(props: any) {
 
     const theme = useTheme()
+
+    const matches = useMediaQuery(theme.breakpoints.down("sm"))
 
     const dispatch = useDispatch()
 
@@ -54,27 +55,27 @@ function CharacterAscensionBurst(props: any) {
     }
 
     return (
-        <Box sx={{ width: "350px", opacity: selected ? 1 : 0.35 }}>
-            <Box sx={{ display: "flex", alignItems: "center", mb: "-10px", pl: "10px" }}>
-                <CustomSwitch checked={selected} onChange={handleSelect} element={element} size="small" />
+        <Box sx={{ width: { xs: "100%", sm: "60%" }, opacity: selected ? 1 : 0.35 }}>
+            <Box sx={{ display: "flex", alignItems: "center", mb: "-10px" }}>
+                <CustomSwitch checked={selected} onChange={handleSelect} element={element} size="small" sx={{ ml: "-5px" }} />
                 <CardHeader
                     avatar={
-                        <img alt={name} src={`${process.env.REACT_APP_URL}/characters/talents/${name.split(" ").join("_").toLowerCase()}_burst.png`} style={{ width: "40px", border: `1px solid ${theme.border.color}`, borderRadius: "48px" }} onError={ErrorLoadingImage} />
+                        <img alt={name} src={`${process.env.REACT_APP_URL}/characters/talents/${name.split(" ").join("_").toLowerCase()}_burst.png`} style={{ width: matches ? "32px" : "40px", border: `1px solid ${theme.border.color}`, borderRadius: "48px" }} onError={ErrorLoadingImage} />
                     }
                     title={
-                        <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
+                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "14px", sm: "16px" }, color: `${theme.text.color}` }}>
                             Elemental Burst
                         </Typography>
                     }
                     sx={{ ml: "-5px" }}
                 />
             </Box>
-            <Box sx={{ display: "flex", alignItems: "center", px: 2 }}>
-                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, mr: "18px", width: "90px" }}>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "12px", sm: "16px" }, color: `${theme.text.color}`, mr: { xs: 0, sm: "11px" }, width: "90px" }}>
                     Lv. {levels[sliderValue[0] - 1]}
                 </Typography>
-                <CustomSlider disabled={!selected} value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={element} disableSwap />
-                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "25px", width: "90px" }}>
+                <CustomSlider disabled={!selected} value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={element} disableSwap size={matches ? "small" : "medium"} />
+                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "12px", sm: "16px" }, color: `${theme.text.color}`, ml: "25px", width: "90px" }}>
                     Lv. {levels[sliderValue[1] - 1]}
                 </Typography>
             </Box>

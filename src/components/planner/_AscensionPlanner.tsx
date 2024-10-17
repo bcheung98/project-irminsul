@@ -49,12 +49,12 @@ function AscensionPlanner(props: any) {
                     Ascension Planner
                 </Typography>
             </Box>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} columns={{ xs: 1, md: 12 }}>
                 <CharacterSelector />
                 <WeaponSelector />
             </Grid>
             <AscensionTotalCost />
-            <Grid container spacing={2}>
+            <Grid container spacing={2} columns={{ xs: 1, md: 12 }}>
                 {
                     characters.length > 0 ?
                         <Grid size={6}>

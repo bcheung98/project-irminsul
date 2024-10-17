@@ -40,7 +40,7 @@ function WeaponAscensionCard(props: any) {
     return (
         <Box
             sx={{
-                width: "750px",
+                width: "100%",
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
                 backgroundColor: `${theme.paper.backgroundColor}`,
@@ -90,7 +90,7 @@ function WeaponAscensionCard(props: any) {
                         Edit
                     </Typography>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails sx={{ mx: "10px", px: 0 }}>
                     <WeaponAscensionLevel weapon={props.weapon} />
                 </AccordionDetails>
             </Accordion>

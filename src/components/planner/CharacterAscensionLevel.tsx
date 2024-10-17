@@ -2,8 +2,7 @@ import * as React from "react"
 import { useDispatch } from "react-redux"
 
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Typography } from "@mui/material"
+import { useTheme, useMediaQuery, Box, Typography } from "@mui/material"
 
 // Helper imports
 import { CustomSlider } from "../_custom/CustomSlider"
@@ -14,6 +13,8 @@ import { SetCharacterCostsLevel } from "../../helpers/AscensionCostIndex"
 function CharacterAscensionLevel(props: any) {
 
     const theme = useTheme()
+
+    const matches = useMediaQuery(theme.breakpoints.down("sm"))
 
     const dispatch = useDispatch()
 
@@ -53,19 +54,19 @@ function CharacterAscensionLevel(props: any) {
     }
 
     return (
-        <Box sx={{ opacity: selected ? 1 : 0.35 }}>
-            <Box sx={{ display: "flex", alignItems: "center", mb: "-10px", pb: "16px", pl: "10px" }}>
-                <CustomSwitch checked={selected} onChange={handleSelect} element={element} size="small" />
-                <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "15px" }}>
+        <Box sx={{ width: "100%", opacity: selected ? 1 : 0.35 }}>
+            <Box sx={{ display: "flex", alignItems: "center", mb: "-10px", pb: "16px" }}>
+                <CustomSwitch checked={selected} onChange={handleSelect} element={element} size="small" sx={{ ml: "-5px" }} />
+                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "14px", sm: "16px" }, color: `${theme.text.color}`, ml: "15px" }}>
                     Level
                 </Typography>
             </Box>
-            <Box sx={{ display: "flex", alignItems: "center", px: 2 }}>
-                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, width: "90px" }}>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "12px", sm: "16px" }, color: `${theme.text.color}`, width: "90px" }}>
                     Lv. {levels[sliderValue[0] - 1]}
                 </Typography>
-                <CustomSlider disabled={!selected} value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={element} disableSwap />
-                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "25px", width: "90px" }}>
+                <CustomSlider disabled={!selected} value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={element} disableSwap size={matches ? "small" : "medium"} />
+                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "12px", sm: "16px" }, color: `${theme.text.color}`, ml: "25px", width: "90px" }}>
                     Lv. {levels[sliderValue[1] - 1]}
                 </Typography>
             </Box>
