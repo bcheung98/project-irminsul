@@ -9,7 +9,7 @@ import TCGCharacterCardFilters from "./TCGCharacterCardFilters"
 import TCGActionCardFilters from "./TCGActionCardFilters"
 
 // MUI imports
-import { useTheme, useMediaQuery, Box, Typography, ToggleButtonGroup, Paper, InputBase, Radio, RadioGroup, FormControlLabel, Stack, SwipeableDrawer } from "@mui/material"
+import { useTheme, useMediaQuery, Box, Typography, ToggleButtonGroup, Paper, InputBase, Radio, RadioGroup, FormControlLabel, Stack, SwipeableDrawer, Button } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward"
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward"
@@ -142,7 +142,7 @@ function TCGBrowser(props: any) {
 
             <TCGDeck cards={deck.deck} />
 
-            <Box sx={{ display: "flex", alignItems: "center", mt: "20px", mb: "30px" }}>
+            <Box sx={{ display: "flex", alignItems: "center", mt: "20px", mb: { xs: "20px", sm: "30px" } }}>
                 <ToggleButtonGroup value={view} exclusive onChange={handleView}>
                     <CustomToggleButtonText value="char">
                         <Typography sx={{ fontSize: "9pt", fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Character Cards</Typography>
@@ -151,8 +151,24 @@ function TCGBrowser(props: any) {
                         <Typography sx={{ fontSize: "9pt", fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Action Cards</Typography>
                     </CustomToggleButtonText>
                 </ToggleButtonGroup>
-                <FilterAltIcon sx={{ display: { xs: "block", sm: "none" }, flexGrow: 1, color: `white` }} fontSize="large" onClick={toggleDrawer(true)} />
             </Box>
+
+            <Button
+                onClick={toggleDrawer(true)}
+                variant="contained"
+                startIcon={<FilterAltIcon sx={{ color: `${theme.text.color}` }} />}
+                sx={{ display: { xs: "flex", sm: "none" }, mb: "30px", px: 1 }}
+            >
+                <Typography
+                    sx={{
+                        fontFamily: `${theme.font.genshin.family}`,
+                        fontSize: "14px",
+                        textTransform: "none"
+                    }}
+                >
+                    Filters
+                </Typography>
+            </Button>
 
             {/* Cards */}
             {
