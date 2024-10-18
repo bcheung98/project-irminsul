@@ -1,7 +1,6 @@
 import * as React from "react"
 
 // Component imports
-import { CustomMenuItem } from "../_custom/CustomMenu"
 import { CustomTooltip } from "../_custom/CustomTooltip"
 import CharacterBannerRow from "./CharacterBannerRow"
 import WeaponBannerRow from "./WeaponBannerRow"
@@ -24,11 +23,10 @@ function BannerList(props: any) {
 
     const matches = useMediaQuery(theme.breakpoints.down("md"))
 
-    let { type } = props
+    let { type, banners } = props
 
     let URL = type === "character" ? "characters/icons" : "weapons"
 
-    const [options, setOptions] = React.useState<string[]>([])
     const [rows, setRows] = React.useState<any[]>([])
     const [values, setValue] = React.useState<string[]>([])
 
@@ -46,28 +44,11 @@ function BannerList(props: any) {
         setSelected(!selected)
     }
 
-    const filterBanners = (banners: any[], searchValue: string[]) => {
-        if (searchValue.length > 0) {
-            banners = banners.filter((banner: BannerData) => {
-                if (selected) {
-                    return searchValue.every((item: string) => banner.fiveStars.concat(banner.fourStars).includes(item))
-                }
-                else {
-                    return searchValue.some((item: string) => banner.fiveStars.concat(banner.fourStars).includes(item))
-                }
-            })
-        }
-        return banners
-    }
+    const options = createOptions(banners)
 
     React.useEffect(() => {
-        setRows(filterBanners(props.banners, values))
-        setOptions([...new Set(props.banners
-            .map((banner: BannerData) => banner.fiveStars.concat(banner.fourStars))
-            .flat().sort((a: string, b: string) => a.localeCompare(b)))
-        ] as string[]
-        )
-    }, [props.banners, values, selected])
+        setRows(filterBanners(banners, values, selected))
+    }, [banners, values, selected])
 
     return (
         <Box>
@@ -188,3 +169,25 @@ const headCells = [
 ]
 
 export const isTBA = (name: string) => name === "TBA" || name === "To be announced"
+
+const filterBanners = (banners: BannerData[], searchValue: string[], unique: boolean) => {
+    if (searchValue.length > 0) {
+        banners = banners.filter((banner: BannerData) => {
+            if (unique) {
+                return searchValue.every((item) => banner.fiveStars.concat(banner.fourStars).includes(item))
+            }
+            else {
+                return searchValue.some((item) => banner.fiveStars.concat(banner.fourStars).includes(item))
+            }
+        })
+    }
+    return banners
+}
+
+const createOptions = (banners: BannerData[]) => {
+    return [...new Set(banners
+        .map((banner: BannerData) => banner.fiveStars.concat(banner.fourStars))
+        .flat().filter((item: string) => !isTBA(item))
+        .sort((a: string, b: string) => a.localeCompare(b)))
+    ]
+}
