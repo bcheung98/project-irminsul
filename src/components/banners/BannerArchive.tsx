@@ -6,11 +6,8 @@ import BannerList from "./BannerList"
 import ChronicledWishList from "./ChronicledWishList"
 
 // MUI imports
-import { useTheme, Box, Typography, ToggleButtonGroup } from "@mui/material"
+import { useTheme, useMediaQuery, Box, Typography, Radio, RadioGroup, FormControlLabel } from "@mui/material"
 import Grid from "@mui/material/Grid2"
-
-// Helper imports
-import { CustomToggleButtonText } from "../_custom/CustomToggleButton"
 
 // Type imports
 import { RootState } from "../../redux/store"
@@ -19,13 +16,13 @@ function BannerArchive(props: any) {
 
     const theme = useTheme()
 
+    const matches = useMediaQuery(theme.breakpoints.down("md"))
+
     let { banners } = props
 
-    const [view, setView] = React.useState("normal")
-    const handleView = (event: React.BaseSyntheticEvent, newView: string) => {
-        if (newView !== null) {
-            setView(newView)
-        }
+    const [value, setValue] = React.useState("character")
+    const handleRadioChange = (event: React.BaseSyntheticEvent) => {
+        setValue(event.target.value)
     }
 
     document.title = `Banner Archive ${process.env.REACT_APP_DOCUMENT_HEADER}`
@@ -37,56 +34,106 @@ function BannerArchive(props: any) {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "left",
-                    mb: "20px",
+                    mb: "30px",
                     height: "30px",
                 }}
             >
                 <Typography
-                    variant="h5"
                     sx={{
-                        mr: "25px",
                         fontFamily: `${theme.font.genshin.family}`,
+                        fontSize: "24px",
                         color: `${theme.text.color}`,
-                        textDecoration: "none",
                     }}
                 >
                     Banner Archive
                 </Typography>
             </Box>
-            <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ mb: "30px" }}>
-                <CustomToggleButtonText value="normal">
-                    <Typography sx={{ fontSize: "9.5pt", fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Character/Weapon Wish</Typography>
-                </CustomToggleButtonText>
-                <CustomToggleButtonText value="chronicled">
-                    <Typography sx={{ fontSize: "9.5pt", fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Chronicled Wish</Typography>
-                </CustomToggleButtonText>
-            </ToggleButtonGroup>
+            <RadioGroup
+                value={value}
+                onChange={handleRadioChange}
+                sx={{
+                    mb: "30px",
+                    display: { xs: "block", md: "none" }
+                }}
+            >
+                <FormControlLabel
+                    value="character"
+                    control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />}
+                    label={
+                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "13.5px", color: `${theme.text.color}` }}>
+                            Character Event Wish
+                        </Typography>
+                    }
+                />
+                <FormControlLabel
+                    value="weapon"
+                    control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />}
+                    label={
+                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "13.5px", color: `${theme.text.color}` }}>
+                            Weapon Event Wish
+                        </Typography>
+                    }
+                />
+                <FormControlLabel
+                    value="chronicled"
+                    control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />}
+                    label={
+                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "13.5px", color: `${theme.text.color}` }}>
+                            Chronicled Wish
+                        </Typography>
+                    }
+                />
+            </RadioGroup>
             {
-                view === "normal" ?
-                    <React.Fragment>
-                        {
-                            banners.characterBanners.length > 0 && banners.weaponBanners.length > 0 &&
-                            <Grid container spacing={3} columns={{ xs: 1, sm: 12 }}>
-                                <Grid size={6}>
-                                    <BannerList banners={banners.characterBanners} type="character" />
-                                </Grid>
-                                <Grid size={6}>
-                                    <BannerList banners={banners.weaponBanners} type="weapon" />
-                                </Grid>
-                            </Grid>
-                        }
-                    </React.Fragment>
+                !matches ?
+                    <Grid container spacing={5} columns={{ xs: 1, md: 12 }}>
+                        <Grid size={4}>
+                            <Typography
+                                sx={{
+                                    fontFamily: `${theme.font.genshin.family}`,
+                                    fontSize: "20px",
+                                    color: `${theme.text.color}`,
+                                    mb: "20px"
+                                }}
+                            >
+                                Character Banner
+                            </Typography>
+                            <BannerList banners={banners.characterBanners} type="character" />
+                        </Grid>
+                        <Grid size={4}>
+                            <Typography
+                                sx={{
+                                    fontFamily: `${theme.font.genshin.family}`,
+                                    fontSize: "20px",
+                                    color: `${theme.text.color}`,
+                                    mb: "20px"
+                                }}
+                            >
+                                Weapon Banner
+                            </Typography>
+                            <BannerList banners={banners.weaponBanners} type="weapon" />
+                        </Grid>
+                        <Grid size={4}>
+                            <Typography
+                                sx={{
+                                    fontFamily: `${theme.font.genshin.family}`,
+                                    fontSize: "20px",
+                                    color: `${theme.text.color}`,
+                                    mb: "20px"
+                                }}
+                            >
+                                Chronicled Wish
+                            </Typography>
+                            <ChronicledWishList banners={banners.chronicledWish} />
+                        </Grid>
+                    </Grid>
                     :
                     <React.Fragment>
-                        {
-                            banners.chronicledWish.length > 0 &&
-                            <Box>
-                                <ChronicledWishList banners={banners.chronicledWish} />
-                            </Box>
-                        }
+                        {value === "character" && <BannerList banners={banners.characterBanners} type="character" />}
+                        {value === "weapon" && <BannerList banners={banners.weaponBanners} type="weapon" />}
+                        {value === "chronicled" && <ChronicledWishList banners={banners.chronicledWish} />}
                     </React.Fragment>
             }
-
         </React.Fragment>
     )
 
