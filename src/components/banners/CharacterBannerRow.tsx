@@ -1,87 +1,37 @@
+// Component imports
+import CustomCard from "../_custom/CustomCard"
+import { StyledTableCellNoVert } from "../_custom/CustomTable"
+
 // MUI imports
-import { useTheme, Typography, ButtonBase, TableRow } from "@mui/material"
+import { useTheme, Typography, TableRow } from "@mui/material"
 import Grid from "@mui/material/Grid2"
-import { StyledTableCell } from "../_custom/CustomTable"
-import { CustomTooltip } from "../_custom/CustomTooltip"
 
 // Helper imports
 import { createDateObject, isCurrentBanner } from "../../helpers/dates"
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
+import { isTBA } from "./BannerList"
 
 function CharacterBannerRow(props: any) {
 
     const theme = useTheme()
 
-    let { version, fiveStars, fourStars } = props.row
+    let { version, subVersion, fiveStars, fourStars } = props.row
 
     let start = createDateObject(props.row.start)
     let end = createDateObject(props.row.end)
 
     return (
         <TableRow sx={{ backgroundColor: isCurrentBanner(start.obj, end.obj) ? `${theme.button.selected}` : "none" }}>
-
-            { /* Version */}
-            <StyledTableCell>
-                <Typography sx={{ fontFamily: `${theme.font.genshin.family}` }}>{version}</Typography>
-                <CustomTooltip title={`${start.date} ${start.time} — ${end.date} ${end.time}`} arrow placement="bottom">
-                    <Typography variant="body2">{start.date} — {end.date}</Typography>
-                </CustomTooltip>
-            </StyledTableCell>
-
-            { /* Banners */}
-            <StyledTableCell>
+            <StyledTableCellNoVert sx={{ py: "10px" }}>
+                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, textAlign: "left", mb: "10px" }}>
+                    {`${version} Phase ${subVersion.split(".")[2]}: ${start.date} — ${end.date}`}
+                </Typography>
                 {
                     <Grid container spacing={0.75}>
-                        {
-                            fiveStars.map((char: string, index: number) => {
-                                return (
-                                    <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={index}>
-                                        <CustomTooltip title={char} arrow placement="top">
-                                            <img src={`${process.env.REACT_APP_URL}/characters/icons/${char.split(" ").join("_")}.png`} alt={char}
-                                                style={{
-                                                    border: `1px solid ${theme.border.color}`,
-                                                    borderRadius: "5px",
-                                                    width: "64px",
-                                                    height: "64px",
-                                                    backgroundColor: `${theme.materialImage.backgroundColor}`,
-                                                    backgroundSize: "100%",
-                                                    backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_5_Star.png)`
-                                                }}
-                                                loading="lazy"
-                                                onError={ErrorLoadingImage}
-                                            />
-                                        </CustomTooltip>
-                                    </ButtonBase>
-                                )
-                            })
-                        }
-                        {
-                            fourStars.map((char: string, index: number) => {
-                                return (
-                                    <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={index}>
-                                        <CustomTooltip title={char} arrow placement="top">
-                                            <img src={`${process.env.REACT_APP_URL}/characters/icons/${char.split(" ").join("_")}.png`} alt={char}
-                                                style={{
-                                                    border: `1px solid ${theme.border.color}`,
-                                                    borderRadius: "5px",
-                                                    width: "64px",
-                                                    height: "64px",
-                                                    backgroundColor: `${theme.materialImage.backgroundColor}`,
-                                                    backgroundSize: "100%",
-                                                    backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_4_Star.png)`
-                                                }}
-                                                loading="lazy"
-                                                onError={ErrorLoadingImage}
-                                            />
-                                        </CustomTooltip>
-                                    </ButtonBase>
-                                )
-                            })
-                        }
+                        {fiveStars.map((char: string, index: number) => <CustomCard key={index} type="character" name={char} rarity={!isTBA(char) ? 5 : 1} disableLink={isTBA(char)} />)}
+                        {fourStars.map((char: string, index: number) => <CustomCard key={index} type="character" name={char} rarity={!isTBA(char) ? 4 : 1} disableLink={isTBA(char)} />)}
                     </Grid>
                 }
-            </StyledTableCell>
-
+            </StyledTableCellNoVert>
         </TableRow>
     )
 }

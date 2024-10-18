@@ -2,13 +2,10 @@ import * as React from "react"
 
 // Component imports
 import ChronicledWishRow from "./ChronicledWishRow"
+import { EnhancedTableHead, getComparator, stableSort } from "../_custom/CustomSortTable"
 
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Table, TableBody, TableContainer, Paper } from "@mui/material"
-
-// Helper imports
-import { EnhancedTableHead, getComparator, stableSort } from "../_custom/CustomSortTable"
+import { useTheme, Table, TableBody, TableContainer, Paper } from "@mui/material"
 
 function ChronicledWishList(props: any) {
 
@@ -26,38 +23,36 @@ function ChronicledWishList(props: any) {
     const rows = props.banners
 
     return (
-        <Box>
-            <Paper
-                sx={{
-                    border: `2px solid ${theme.border.color}`,
-                    borderRadius: "5px",
-                    backgroundColor: `${theme.paper.backgroundColor}`,
-                    color: `${theme.text.color}`,
-                }}
-            >
-                <TableContainer>
-                    <Table>
-                        <EnhancedTableHead
-                            order={order}
-                            orderBy={orderBy}
-                            onRequestSort={handleRequestSort}
-                            rowCount={rows.length}
-                            headCells={headCells}
-                        />
-                        <TableBody>
-                            {
-                                stableSort(rows, getComparator(order, orderBy))
-                                    .map((row, index) => {
-                                        return (
-                                            <ChronicledWishRow key={index} row={row} />
-                                        )
-                                    })
-                            }
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </Paper>
-        </Box>
+        <Paper
+            sx={{
+                border: `2px solid ${theme.border.color}`,
+                borderRadius: "5px",
+                backgroundColor: `${theme.paper.backgroundColor}`,
+                color: `${theme.text.color}`,
+            }}
+        >
+            <TableContainer>
+                <Table sx={{ backgroundColor: `${theme.table.header.backgroundColor}` }}>
+                    <EnhancedTableHead
+                        order={order}
+                        orderBy={orderBy}
+                        onRequestSort={handleRequestSort}
+                        rowCount={rows.length}
+                        headCells={headCells}
+                    />
+                    <TableBody sx={{ backgroundColor: `${theme.paper.backgroundColor}` }}>
+                        {
+                            stableSort(rows, getComparator(order, orderBy))
+                                .map((row, index) => {
+                                    return (
+                                        <ChronicledWishRow key={index} row={row} />
+                                    )
+                                })
+                        }
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Paper>
     )
 
 }

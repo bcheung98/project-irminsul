@@ -62,89 +62,92 @@ function BannerList(props: any) {
 
     React.useEffect(() => {
         setRows(filterBanners(props.banners, values))
-        setOptions([...new Set(props.banners.map((banner: BannerData) => banner.fiveStars.concat(banner.fourStars)).flat().sort((a: string, b: string) => a.localeCompare(b)))] as string[])
+        setOptions([...new Set(props.banners
+            .map((banner: BannerData) => banner.fiveStars.concat(banner.fourStars))
+            .flat().sort((a: string, b: string) => a.localeCompare(b)))
+        ] as string[]
+        )
     }, [props.banners, values, selected])
 
     return (
-        <React.Fragment>
-            <Box>
-                <Autocomplete
-                    multiple
-                    autoComplete
-                    options={options}
-                    getOptionLabel={(option: string) => option}
-                    filterSelectedOptions
-                    noOptionsText={type === "character" ? "No Characters" : "No Weapons"}
-                    value={values}
-                    onChange={(event: any, newValue: string[] | null) => {
-                        setValue(newValue as string[])
-                    }}
-                    ChipProps={{
-                        sx: {
+        <Box>
+            <Autocomplete
+                multiple
+                autoComplete
+                options={options}
+                getOptionLabel={(option: string) => option}
+                filterSelectedOptions
+                noOptionsText={type === "character" ? "No Characters" : "No Weapons"}
+                value={values}
+                onChange={(event: any, newValue: string[] | null) => {
+                    setValue(newValue as string[])
+                }}
+                ChipProps={{
+                    sx: {
+                        color: `${theme.text.color}`,
+                        fontFamily: `${theme.font.genshin.family}`,
+                        backgroundColor: `${theme.button.selected}`,
+                        "& .MuiChip-deleteIcon": {
                             color: `${theme.text.color}`,
-                            fontFamily: `${theme.font.genshin.family}`,
-                            backgroundColor: `${theme.button.selected}`,
-                            "& .MuiChip-deleteIcon": {
+                            ":hover": {
+                                color: `${theme.text.colorAlt}`
+                            }
+                        },
+                    }
+                }}
+                ListboxProps={{
+                    sx: {
+                        backgroundColor: `${theme.paper.backgroundColor}`,
+                    }
+                }}
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        sx={{
+                            "& .MuiAutocomplete-input": {
                                 color: `${theme.text.color}`,
-                                ":hover": {
-                                    color: `${theme.text.colorAlt}`
-                                }
+                                fontFamily: `${theme.font.genshin.family}`,
                             },
-                        }
-                    }}
-                    ListboxProps={{
-                        sx: {
-                            backgroundColor: `${theme.menu.backgroundColor}`,
-                        }
-                    }}
-                    renderInput={(params) => (
-                        <TextField
-                            {...params}
-                            sx={{
-                                "& .MuiAutocomplete-input": {
-                                    color: `${theme.text.color}`,
-                                    fontFamily: `${theme.font.genshin.family}`,
+                            "& .MuiOutlinedInput-root": {
+                                backgroundColor: `${theme.table.header.backgroundColor}`,
+                                "& fieldset": {
+                                    borderColor: `${theme.border.color}`,
+                                    borderWidth: "2px",
+                                    borderRadius: "5px",
                                 },
-                                "& .MuiOutlinedInput-root": {
-                                    "& fieldset": {
-                                        borderColor: `${theme.border.color}`,
-                                        borderWidth: "2px",
-                                        borderRadius: "5px",
-                                    },
-                                    "&:hover fieldset": {
-                                        borderColor: `${theme.border.color}`,
-                                    },
+                                "&:hover fieldset": {
+                                    borderColor: `${theme.border.color}`,
                                 },
-                                "& .MuiButtonBase-root": {
-                                    color: `${theme.text.color}`,
-                                }
-                            }}
-                            placeholder={type === "character" ? "Characters" : "Weapons"}
-                        />
-                    )}
-                    renderOption={(props, option) => (
-                        <CustomMenuItem
-                            {...props}
-                            key={option}
-                        >
-                            <Box sx={{ display: "flex", alignItems: "center", p: 0, width: "100%" }}>
-                                <img alt={option} src={`${process.env.REACT_APP_URL}/${URL}/${option.split(" ").join("_")}.png`} style={{ width: matches ? "42px" : "48px", marginRight: "20px" }} onError={ErrorLoadingImage} />
-                                <Typography noWrap sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "14px", md: "16px" }, color: `${theme.text.color}` }}>
-                                    {option}
-                                </Typography>
-                            </Box>
-                        </CustomMenuItem>
-                    )}
-                />
-                <Box sx={{ display: "flex", alignItems: "center", my: "10px" }}>
-                    <CustomSwitch checked={selected} onChange={handleSelect} />
-                    <Typography sx={{ color: `${theme.text.color}`, fontFamily: `${theme.font.genshin.family}`, fontSize: "13.5px" }}>
-                        Toggle "AND" Filter
-                    </Typography>
-                    <CustomTooltip title="If toggled, will filter banners that only contain all selected items." arrow placement="top">
-                        <HelpIcon sx={{ color: `${theme.text.color}`, cursor: "pointer", mx: "10px" }} />
-                    </CustomTooltip>
-                </Box>
+                            },
+                            "& .MuiButtonBase-root": {
+                                color: `${theme.text.color}`,
+                            }
+                        }}
+                        placeholder={type === "character" ? "Characters" : "Weapons"}
+                    />
+                )}
+                renderOption={(props, option) => (
+                    <li
+                        {...props}
+                        key={option}
+                    >
+                        <Box sx={{ display: "flex", alignItems: "center", p: 0, width: "100%" }}>
+                            <img alt={option} src={`${process.env.REACT_APP_URL}/${URL}/${option.split(" ").join("_")}.png`} style={{ width: matches ? "42px" : "48px", marginRight: "20px" }} onError={ErrorLoadingImage} />
+                            <Typography noWrap sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "14px", md: "16px" }, color: `${theme.text.color}` }}>
+                                {option}
+                            </Typography>
+                        </Box>
+                    </li>
+                )}
+            />
+            <Box sx={{ display: "flex", alignItems: "center", my: "10px" }}>
+                <CustomSwitch checked={selected} onChange={handleSelect} />
+                <Typography sx={{ color: `${theme.text.color}`, fontFamily: `${theme.font.genshin.family}`, fontSize: "13.5px" }}>
+                    Toggle "AND" Filter
+                </Typography>
+                <CustomTooltip title="If toggled, will filter banners that only contain all selected items." arrow placement="top">
+                    <HelpIcon sx={{ color: `${theme.text.color}`, cursor: "pointer", mx: "10px" }} />
+                </CustomTooltip>
             </Box>
             <Paper
                 sx={{
@@ -155,7 +158,7 @@ function BannerList(props: any) {
                 }}
             >
                 <TableContainer>
-                    <Table>
+                    <Table sx={{ backgroundColor: `${theme.table.header.backgroundColor}` }}>
                         <EnhancedTableHead
                             order={order}
                             orderBy={orderBy}
@@ -163,20 +166,18 @@ function BannerList(props: any) {
                             rowCount={rows.length}
                             headCells={headCells}
                         />
-                        <TableBody>
+                        <TableBody sx={{ backgroundColor: `${theme.paper.backgroundColor}` }}>
                             {
                                 stableSort(rows, getComparator(order, orderBy))
-                                    .map((row, index) => {
-                                        return (
-                                            type === "character" ? <CharacterBannerRow key={index} row={row} /> : <WeaponBannerRow key={index} row={row} />
-                                        )
-                                    })
+                                    .map((row, index) => (
+                                        type === "character" ? <CharacterBannerRow key={index} row={row} /> : <WeaponBannerRow key={index} row={row} />
+                                    ))
                             }
                         </TableBody>
                     </Table>
                 </TableContainer>
             </Paper>
-        </React.Fragment>
+        </Box>
     )
 }
 
@@ -185,3 +186,5 @@ export default BannerList
 const headCells = [
     { id: "subVersion", label: "Version" },
 ]
+
+export const isTBA = (name: string) => name === "TBA" || name === "To be announced"
