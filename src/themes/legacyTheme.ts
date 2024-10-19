@@ -28,6 +28,13 @@ export const legacyTheme = {
                 }
             }
         },
+        MuiDialog: {
+            styleOverrides: {
+                paper: {
+                    backgroundColor: "rgb(0, 23, 47)"
+                }
+            }
+        },
         MuiDivider: {
             styleOverrides: {
                 root: {
