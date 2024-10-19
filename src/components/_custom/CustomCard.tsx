@@ -1,14 +1,19 @@
 import React from "react"
 
 // Component imports
+import ArtifactPopup from "../artifacts/ArtifactPopup"
 import { CustomTooltip } from "../_custom/CustomTooltip"
+import { Transition } from "./Transition"
 
 // MUI imports
-import { useTheme, Typography, ButtonBase, Box, Dialog } from "@mui/material"
+import { useTheme, useMediaQuery, Typography, ButtonBase, Box, Dialog } from "@mui/material"
 
 // Helper imports
 import { GetRarityColor, GetBackgroundColor } from "../../helpers/RarityColors"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
+
+// Type imports
+import { ArtifactData } from "../../types/artifact/ArtifactData"
 
 interface CustomCardProps {
     name: string,
@@ -21,9 +26,8 @@ interface CustomCardProps {
     hideStars?: boolean,
     element?: string | undefined,
     weaponType?: string | undefined,
-    popup?: React.ReactElement | undefined,
+    artifact?: ArtifactData,
     disableLink?: boolean,
-    props?: { [x: string]: any }
 }
 
 function CustomCard({
@@ -37,12 +41,13 @@ function CustomCard({
     hideStars = false,
     element,
     weaponType,
-    popup,
+    artifact,
     disableLink = false,
-    props
 }: CustomCardProps) {
 
     const theme = useTheme()
+
+    const matches = useMediaQuery(theme.breakpoints.up("sm"))
 
     const [open, setOpen] = React.useState(false)
     const handleClickOpen = () => {
@@ -55,9 +60,9 @@ function CustomCard({
     let imageURL
     if (type === "character") { imageURL = `${process.env.REACT_APP_URL}/characters/${variant}s/${name.split(" ").join("_")}.png` }
     if (type === "weapon") { imageURL = `${process.env.REACT_APP_URL}/weapons/${name.split(" ").join("_")}.png` }
-    if (type === "artifact") { imageURL = `${process.env.REACT_APP_URL}/artifacts/sets/${name.split(" ").join("_")}/${props?.artifact.pieces[0].type}.png` }
+    if (type === "artifact") { imageURL = `${process.env.REACT_APP_URL}/artifacts/sets/${name.split(" ").join("_")}/${artifact?.pieces[0].type}.png` }
 
-    const href = disableLink || popup !== undefined ? "" : `${process.env.REACT_APP_BASENAME}/${type}s/${name.split(" ").join("_").toLowerCase()}`
+    const href = disableLink || type === "artifact" ? "" : `${process.env.REACT_APP_BASENAME}/${type}s/${name.split(" ").join("_").toLowerCase()}`
 
     const cardImageStyle: React.CSSProperties = {
         position: "relative",
@@ -96,7 +101,7 @@ function CustomCard({
                             src={imageURL} alt={name}
                             style={cardImageStyle}
                             loading="lazy"
-                            onClick={() => popup === undefined ? null : handleClickOpen()}
+                            onClick={() => type !== "artifact" ? null : handleClickOpen()}
                             onError={ErrorLoadingImage}
                         />
                     </CustomTooltip>
@@ -182,7 +187,7 @@ function CustomCard({
                                     color: `${theme.text.color}`,
                                     mx: 1,
                                 }}
-                                onClick={() => popup === undefined ? null : handleClickOpen()}
+                                onClick={() => type !== "artifact" ? null : handleClickOpen()}
                             >
                                 {displayName}
                             </Typography>
@@ -190,13 +195,18 @@ function CustomCard({
                     </Box>
                 }
             </Box>
-            <Dialog
-                open={open}
-                onClose={handleClose}
-                maxWidth={false}
-            >
-                {popup}
-            </Dialog>
+            {
+                type === "artifact" &&
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    TransitionComponent={!matches ? Transition : undefined}
+                    maxWidth={false}
+                    fullScreen={!matches}
+                >
+                    <ArtifactPopup artifact={artifact} handleClose={handleClose} />
+                </Dialog>
+            }
         </Box>
     )
 

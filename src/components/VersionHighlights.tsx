@@ -3,7 +3,6 @@ import { connect } from "react-redux"
 
 // Component imports
 import CustomCard from "./_custom/CustomCard"
-import ArtifactPopup from "./artifacts/ArtifactPopup"
 import TCGCharacterCard from "./tcg/TCGCharacterCard"
 import TCGActionCard from "./tcg/TCGActionCard"
 
@@ -233,7 +232,7 @@ function VersionHighlights(props: any) {
                         <Grid container spacing={2.5}>
                             {
                                 artifacts.map((artifact: ArtifactData, index: number) => (
-                                    <CustomCard key={index} type="artifact" name={artifact.name} rarity={artifact.rarity} size="150px" showInfo props={{ artifact: artifact }} popup={<ArtifactPopup artifact={artifact} />} />
+                                    <CustomCard key={index} type="artifact" name={artifact.name} rarity={artifact.rarity} size="150px" showInfo artifact={artifact} />
                                 ))
                             }
                         </Grid>

@@ -2,7 +2,6 @@ import * as React from "react"
 import { connect } from "react-redux"
 
 // Component imports
-import ArtifactPopup from "./ArtifactPopup"
 import CustomCard from "../_custom/CustomCard"
 
 // MUI imports
@@ -47,7 +46,7 @@ function ArtifactBrowser(props: any) {
             <Grid container spacing={2}>
                 {
                     artifacts.artifacts.length > 0 ?
-                        artifacts.artifacts.map((artifact: ArtifactData, index: number) => <CustomCard key={index} type="artifact" name={artifact.name} rarity={artifact.rarity} size="128px" showInfo props={{ artifact: artifact }} popup={<ArtifactPopup artifact={artifact} />} />)
+                        artifacts.artifacts.map((artifact: ArtifactData, index: number) => <CustomCard key={index} type="artifact" name={artifact.name} rarity={artifact.rarity} size="128px" showInfo artifact={artifact} />)
                         :
                         null
                 }
