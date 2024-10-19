@@ -74,7 +74,7 @@ function CustomCard({
         backgroundPosition: "center",
     }
 
-    const smallIconSize = `calc(${size} / 6.5)`
+    const smallIconSize = `calc(${size} / 6)`
     const smallIconStyle = {
         width: smallIconSize,
         height: smallIconSize,
