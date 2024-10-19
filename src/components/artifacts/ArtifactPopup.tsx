@@ -1,16 +1,20 @@
 import * as React from "react"
 
+// Component imports
+import { TabPanel, StyledTab } from "../_custom/CustomTabs"
+
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, AppBar, Typography } from "@mui/material"
+import { useTheme, useMediaQuery, Box, AppBar, Typography, Tabs, IconButton } from "@mui/material"
+import CloseIcon from "@mui/icons-material/Close"
 
 // Helper imports
-import { TabPanel, StyledTabsWithIndicator, StyledTab } from "../_custom/CustomTabs"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 function ArtifactPopup(props: any) {
 
     const theme = useTheme()
+
+    const matches = useMediaQuery(theme.breakpoints.up("sm"))
 
     let { name, rarity, setEffect, pieces } = props.artifact
 
@@ -44,10 +48,12 @@ function ArtifactPopup(props: any) {
     return (
         <Box
             sx={{
-                width: "50vw",
+                width: { xs: "100%", md: "50vw" },
+                minHeight: { xs: "100vh", sm: "30vw" },
+                overflowY: "auto",
                 backgroundColor: `${theme.paper.backgroundColor}`,
-                border: `2px solid ${theme.border.color}`,
-                borderRadius: "5px",
+                border: { xs: "none", sm: `2px solid ${theme.border.color}` },
+                borderRadius: { xs: "0px", sm: "5px" },
             }}
         >
             <AppBar position="static"
@@ -57,18 +63,60 @@ function ArtifactPopup(props: any) {
                     borderRadius: "5px 5px 0px 0px",
                 }}
             >
-                <Typography variant="h4" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, p: 2 }} >
-                    {props.artifact.displayName ? props.artifact.displayName : name}
-                </Typography>
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <Typography
+                        sx={{
+                            fontFamily: `${theme.font.genshin.family}`,
+                            fontSize: matches ? "36px" : "24px",
+                            color: `${theme.text.color}`,
+                            p: 2
+                        }}
+                    >
+                        {props.artifact.displayName ? props.artifact.displayName : name}
+                    </Typography>
+                    <IconButton onClick={props.handleClose} sx={{ display: { xs: "block", sm: "none" } }}>
+                        <CloseIcon sx={{ color: `white` }} />
+                    </IconButton>
+                </Box>
             </AppBar>
-            <Box sx={{ mt: "10px" }}>
-                <StyledTabsWithIndicator value={tabValue} onChange={handleTabChange}>
-                    {pieces.map((piece: { name: string, type: string }, index: number) => <StyledTab key={index} label={<img src={`${process.env.REACT_APP_URL}/artifacts/icons/${piece.type}.png`} style={pieceIcon} alt={piece.name} onError={ErrorLoadingImage} />} />)}
-                </StyledTabsWithIndicator>
+            <Box>
+                <Tabs
+                    variant="scrollable"
+                    value={tabValue}
+                    onChange={handleTabChange}
+                    scrollButtons={!matches}
+                    allowScrollButtonsMobile={!matches}
+                    sx={{
+                        backgroundColor: matches ? "none" : `${theme.table.header.backgroundColor}`,
+                        "& .MuiTabScrollButton-root": {
+                            color: `${theme.text.color}`,
+                        },
+                    }}
+                >
+                    {
+                        pieces.map((piece: { name: string, type: string }, index: number) =>
+                            <StyledTab
+                                key={index}
+                                label={
+                                    <img
+                                        src={`${process.env.REACT_APP_URL}/artifacts/icons/${piece.type}.png`}
+                                        style={pieceIcon}
+                                        alt={piece.name}
+                                        onError={ErrorLoadingImage}
+                                    />}
+                            />
+                        )}
+                </Tabs>
                 {
                     pieces.map((piece: { name: string, type: string, description: string }, index: number) => (
                         <TabPanel key={index} index={index} value={tabValue}>
-                            <Typography variant="h5" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
+                            <Typography
+                                sx={{
+                                    fontFamily: `${theme.font.genshin.family}`,
+                                    fontSize: { xs: "20px", sm: "24px" },
+                                    color: `${theme.text.color}`
+                                }}
+                            >
                                 {piece.name}
                             </Typography>
                             <Typography variant="subtitle1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, mb: "20px" }}>
@@ -105,7 +153,7 @@ function ArtifactPopup(props: any) {
                     ))
                 }
             </Box>
-        </Box>
+        </Box >
     )
 
 }
