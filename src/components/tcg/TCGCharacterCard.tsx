@@ -3,10 +3,10 @@ import { connect } from "react-redux"
 
 // Component imports
 import TCGCharacterCardPopup from "./TCGCharacterCardPopup"
+import { Transition } from "../_custom/Transition"
 
 // MUI imports
-import { useTheme, useMediaQuery, Box, Typography, Dialog, Slide } from "@mui/material"
-import { TransitionProps } from "@mui/material/transitions"
+import { useTheme, useMediaQuery, Box, Typography, Dialog } from "@mui/material"
 
 // Helper imports
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
@@ -145,12 +145,3 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 export default connect(mapStateToProps)(TCGCharacterCard)
-
-const Transition = React.forwardRef(function Transition(
-    props: TransitionProps & {
-        children: React.ReactElement<any, any>
-    },
-    ref: React.Ref<unknown>,
-) {
-    return <Slide direction="up" ref={ref} {...props} />
-})
