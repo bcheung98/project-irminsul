@@ -1,3 +1,4 @@
+import * as React from "react"
 import { connect, useDispatch } from "react-redux"
 
 // Component imports
@@ -5,8 +6,9 @@ import { Accordion, AccordionDetails, AccordionSummary } from "../_custom/Custom
 import FilterButton from "../_custom/FilterButton"
 
 // MUI imports
-import { useTheme, Typography, Paper, Box } from "@mui/material"
+import { useTheme, Typography, Box, AppBar, IconButton } from "@mui/material"
 import Grid from "@mui/material/Grid2"
+import CloseIcon from "@mui/icons-material/Close"
 
 // Helper imports
 import { CharacterFilterState, setElement, setWeapon, setRarity, setAscensionStat, setTalentBook, setCommonMats, setBossMats, setWeeklyBossMats, setLocalMats, setNation, setGender } from "../../redux/reducers/CharacterFilterReducer"
@@ -18,7 +20,10 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 // Type imports
 import { RootState } from "../../redux/store"
 
-function CharacterFilters(props: { characterFilters: CharacterFilterState }) {
+function CharacterFilters(props: {
+    characterFilters: CharacterFilterState,
+    handleClose?: () => void
+}) {
 
     const theme = useTheme()
 
@@ -177,26 +182,38 @@ function CharacterFilters(props: { characterFilters: CharacterFilterState }) {
         ]
 
     return (
-        <Paper
-            variant="outlined"
-            square
+        <Box
             sx={{
                 color: `${theme.text.color}`,
-                backgroundColor: `${theme.appbar.backgroundColor}`,
-                border: `2px solid ${theme.border.color}`,
+                backgroundColor: `${theme.card.backgroundColor}`,
+                border: { xs: "none", sm: `2px solid ${theme.border.color}` },
                 borderRadius: "5px",
+                width: "100%"
             }}
         >
-            <Typography
+            <AppBar position="static"
                 sx={{
-                    px: 2,
-                    py: 1.5,
-                    fontFamily: `${theme.font.genshin.family}`,
-                    fontSize: "18px",
+                    backgroundColor: `${theme.appbar.backgroundColor}`,
+                    borderBottom: `1px solid ${theme.border.color}`,
                 }}
             >
-                Filters
-            </Typography>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <Typography
+                        sx={{
+                            px: 2,
+                            py: 1.5,
+                            fontFamily: `${theme.font.genshin.family}`,
+                            fontSize: "18px",
+                            flexGrow: 1
+                        }}
+                    >
+                        Filters
+                    </Typography>
+                    <IconButton onClick={props.handleClose}>
+                        <CloseIcon sx={{ color: `white` }} />
+                    </IconButton>
+                </Box>
+            </AppBar>
             {
                 filters.map((filter, index) => (
                     <Accordion key={index}>
@@ -216,7 +233,7 @@ function CharacterFilters(props: { characterFilters: CharacterFilterState }) {
                     </Accordion>
                 ))
             }
-        </Paper>
+        </Box>
     )
 
 }

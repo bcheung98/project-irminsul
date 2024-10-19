@@ -3,13 +3,13 @@ import { connect } from "react-redux"
 
 // Component imports
 import CustomCard from "../_custom/CustomCard"
+import SearchBar from "../_custom/SearchBar"
 import CharacterCard from "./CharacterCard"
 import CharacterList from "./CharacterList"
 import CharacterFilters from "./CharacterFilters"
 
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { useMediaQuery, Box, Typography, Paper, InputBase, ToggleButtonGroup, SwipeableDrawer, Button } from "@mui/material"
+import { useTheme, useMediaQuery, Box, Typography, Button, ToggleButtonGroup, Dialog, SwipeableDrawer } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import AppsSharpIcon from "@mui/icons-material/AppsSharp"
 import ViewModuleSharpIcon from "@mui/icons-material/ViewModuleSharp"
@@ -42,6 +42,14 @@ function CharacterBrowser(props: any) {
         }
     }
 
+    const [dialogOpen, setDialogOpen] = React.useState(false)
+    const handleDialogOpen = () => {
+        setDialogOpen(true)
+    }
+    const handleDialogClose = () => {
+        setDialogOpen(false)
+    }
+
     const [drawerOpen, setDrawerOpen] = React.useState(false)
     const toggleDrawer =
         (open: boolean) =>
@@ -62,54 +70,55 @@ function CharacterBrowser(props: any) {
 
     return (
         <React.Fragment>
-            <Box
-                sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "left",
-                    mb: "20px",
-                    height: "30px",
-                    containerType: "inline-size"
-                }}
-            >
-                <Typography
-                    sx={{
-                        mr: "25px",
-                        fontFamily: `${theme.font.genshin.family}`,
-                        fontSize: "24px",
-                        color: `${theme.text.color}`,
-                    }}
-                >
-                    Characters
-                </Typography>
-                <ToggleButtonGroup value={view} exclusive onChange={handleView}>
-                    <CustomToggleButton value="card" size="small">
-                        <AppsSharpIcon sx={{ color: `white` }} />
-                    </CustomToggleButton>
-                    <CustomToggleButton value="grid" size="small">
-                        <ViewModuleSharpIcon sx={{ color: `white` }} />
-                    </CustomToggleButton>
-                    <CustomToggleButton value="list" size="small">
-                        <ListSharpIcon sx={{ color: `white` }} />
-                    </CustomToggleButton>
-                </ToggleButtonGroup>
-            </Box>
-            <Button
-                onClick={toggleDrawer(true)}
-                variant="contained"
-                startIcon={<FilterAltIcon sx={{ color: `${theme.text.color}` }} />}
-                sx={{ display: { xs: "flex", sm: "none" }, mb: "20px", px: 1 }}
-            >
-                <Typography
-                    sx={{
-                        fontFamily: `${theme.font.genshin.family}`,
-                        fontSize: "14px",
-                        textTransform: "none"
-                    }}
-                >
-                    Filters
-                </Typography>
-            </Button>
+            <Grid container rowSpacing={2} columnSpacing={4} sx={{ mb: "20px" }}>
+                <Grid size={{ xs: 12, sm: "auto" }}>
+                    <Box sx={{ display: "flex" }}>
+                        <Typography
+                            sx={{
+                                mr: "25px",
+                                fontFamily: `${theme.font.genshin.family}`,
+                                fontSize: "24px",
+                                color: `${theme.text.color}`,
+                                lineHeight: "40px"
+                            }}
+                        >
+                            Characters
+                        </Typography>
+                        <ToggleButtonGroup value={view} exclusive onChange={handleView}>
+                            <CustomToggleButton value="card" size="small">
+                                <AppsSharpIcon sx={{ color: `white` }} />
+                            </CustomToggleButton>
+                            <CustomToggleButton value="grid" size="small">
+                                <ViewModuleSharpIcon sx={{ color: `white` }} />
+                            </CustomToggleButton>
+                            <CustomToggleButton value="list" size="small">
+                                <ListSharpIcon sx={{ color: `white` }} />
+                            </CustomToggleButton>
+                        </ToggleButtonGroup>
+                    </Box>
+                </Grid>
+                <Grid size="grow">
+                    <Box sx={{ display: "flex" }}>
+                        <Button
+                            onClick={matches ? () => handleDialogOpen() : toggleDrawer(true)}
+                            variant="contained"
+                            startIcon={<FilterAltIcon sx={{ color: `${theme.text.color}` }} />}
+                            sx={{ px: 3, mr: "25px", backgroundColor: `${theme.button.selected}` }}
+                        >
+                            <Typography
+                                sx={{
+                                    fontFamily: `${theme.font.genshin.family}`,
+                                    fontSize: "14px",
+                                    textTransform: "none"
+                                }}
+                            >
+                                Filters
+                            </Typography>
+                        </Button>
+                        <SearchBar placeholder="Search" onChange={handleInputChange} size={{ width: "80%", height: "40px" }} />
+                    </Box>
+                </Grid>
+            </Grid>
             <Grid container spacing={3}>
                 <Grid size="grow">
                     {
@@ -142,64 +151,40 @@ function CharacterBrowser(props: any) {
                             null
                     }
                 </Grid>
+                {/* {
+                    matches && filterPosition === "side" ?
+                        <Grid size={2.75}>
+                            <CharacterFilters />
+                        </Grid>
+                        :
+                        null
+                } */}
                 {
-                    matches &&
-                    <Grid size={2.75}>
-                        <Paper
+                    matches ?
+                        <Dialog
+                            open={dialogOpen}
+                            onClose={handleDialogClose}
+                        >
+                            <CharacterFilters handleClose={handleDialogClose} />
+                        </Dialog>
+                        :
+                        <SwipeableDrawer
+                            anchor="bottom"
+                            open={drawerOpen}
+                            onClose={toggleDrawer(false)}
+                            onOpen={toggleDrawer(true)}
                             sx={{
-                                border: `2px solid ${theme.border.color}`,
-                                borderRadius: "5px",
-                                backgroundColor: `${theme.paper.backgroundColor}`,
-                                display: "flex",
-                                height: "40px",
-                                mb: "10px",
+                                [`& .MuiDrawer-paper`]: {
+                                    borderTop: `2px solid ${theme.border.colorAlt}`,
+                                    backgroundColor: `${theme.appbar.backgroundColor}`,
+                                    height: "auto",
+                                }
                             }}
                         >
-                            <InputBase
-                                sx={{
-                                    marginLeft: "10px",
-                                    flex: 1,
-                                    color: `${theme.text.color}`,
-                                    fontFamily: `${theme.font.genshin.family}`,
-                                }}
-                                placeholder="Search"
-                                onChange={handleInputChange}
-                            />
-                        </Paper>
-                        <CharacterFilters />
-                    </Grid>
+                            <CharacterFilters />
+                        </SwipeableDrawer>
                 }
             </Grid>
-            <SwipeableDrawer
-                anchor="bottom"
-                open={drawerOpen}
-                onClose={toggleDrawer(false)}
-                onOpen={toggleDrawer(true)}
-                sx={{ [`& .MuiDrawer-paper`]: { borderTop: `2px solid ${theme.border.colorAlt}`, backgroundColor: `${theme.appbar.backgroundColor}`, height: "50vh", p: 2 } }}
-            >
-                <Paper
-                    sx={{
-                        border: `2px solid ${theme.border.color}`,
-                        borderRadius: "5px",
-                        backgroundColor: `${theme.paper.backgroundColor}`,
-                        display: "flex",
-                        height: "40px",
-                        mb: "10px",
-                    }}
-                >
-                    <InputBase
-                        sx={{
-                            marginLeft: "10px",
-                            flex: 1,
-                            color: `${theme.text.color}`,
-                            fontFamily: `${theme.font.genshin.family}`,
-                        }}
-                        placeholder="Search"
-                        onChange={handleInputChange}
-                    />
-                </Paper>
-                <CharacterFilters />
-            </SwipeableDrawer>
         </React.Fragment>
     )
 }

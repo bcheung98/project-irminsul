@@ -5,8 +5,9 @@ import { Accordion, AccordionDetails, AccordionSummary } from "../_custom/Custom
 import FilterButton from "../_custom/FilterButton"
 
 // MUI imports
-import { useTheme, Typography, Paper, Box } from "@mui/material"
+import { useTheme, Typography, Box, AppBar, IconButton } from "@mui/material"
 import Grid from "@mui/material/Grid2"
+import CloseIcon from "@mui/icons-material/Close"
 
 // Helper imports
 import { WeaponFilterState, setWeaponType, setRarity, setSubstats, setAscensionMats, setEliteMats, setCommonMats } from "../../redux/reducers/WeaponFilterReducer"
@@ -17,7 +18,10 @@ import { formatWeaponAscMats, formatEliteMats, formatCommonMats } from "../../he
 // Type imports
 import { RootState } from "../../redux/store"
 
-function WeaponFilters(props: { weaponFilters: WeaponFilterState }) {
+function WeaponFilters(props: {
+    weaponFilters: WeaponFilterState,
+    handleClose?: () => void
+}) {
 
     const theme = useTheme()
 
@@ -93,26 +97,38 @@ function WeaponFilters(props: { weaponFilters: WeaponFilterState }) {
         ]
 
     return ((
-        <Paper
-            variant="outlined"
-            square
+        <Box
             sx={{
                 color: `${theme.text.color}`,
-                backgroundColor: `${theme.appbar.backgroundColor}`,
-                border: `2px solid ${theme.border.color}`,
+                backgroundColor: `${theme.card.backgroundColor}`,
+                border: { xs: "none", sm: `2px solid ${theme.border.color}` },
                 borderRadius: "5px",
+                width: "100%"
             }}
         >
-            <Typography
+            <AppBar position="static"
                 sx={{
-                    px: 2,
-                    py: 1.5,
-                    fontFamily: `${theme.font.genshin.family}`,
-                    fontSize: "18px",
+                    backgroundColor: `${theme.appbar.backgroundColor}`,
+                    borderBottom: `1px solid ${theme.border.color}`,
                 }}
             >
-                Filters
-            </Typography>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <Typography
+                        sx={{
+                            px: 2,
+                            py: 1.5,
+                            fontFamily: `${theme.font.genshin.family}`,
+                            fontSize: "18px",
+                            flexGrow: 1
+                        }}
+                    >
+                        Filters
+                    </Typography>
+                    <IconButton onClick={props.handleClose}>
+                        <CloseIcon sx={{ color: `white` }} />
+                    </IconButton>
+                </Box>
+            </AppBar>
             {
                 filters.map((filter, index) => (
                     <Accordion key={index}>
@@ -132,7 +148,7 @@ function WeaponFilters(props: { weaponFilters: WeaponFilterState }) {
                     </Accordion>
                 ))
             }
-        </Paper>
+        </Box>
     ))
 }
 
