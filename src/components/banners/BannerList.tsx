@@ -3,6 +3,7 @@ import * as React from "react"
 // Component imports
 import { CustomTooltip } from "../_custom/CustomTooltip"
 import { CustomMenuItem } from "../_custom/CustomMenu"
+import SearchBar from "../_custom/SearchBar"
 import CharacterBannerRow from "./CharacterBannerRow"
 import WeaponBannerRow from "./WeaponBannerRow"
 
@@ -78,35 +79,10 @@ function BannerList(props: any) {
                     }
                 }}
                 ListboxProps={{
-                    sx: {
-                        backgroundColor: `${theme.paper.backgroundColor}`,
-                    }
+                    sx: { backgroundColor: `${theme.paper.backgroundColor}` }
                 }}
                 renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        sx={{
-                            "& .MuiAutocomplete-input": {
-                                color: `${theme.text.color}`,
-                                fontFamily: `${theme.font.genshin.family}`,
-                            },
-                            "& .MuiOutlinedInput-root": {
-                                backgroundColor: `${theme.table.header.backgroundColor}`,
-                                "& fieldset": {
-                                    borderColor: `${theme.border.color}`,
-                                    borderWidth: "2px",
-                                    borderRadius: "5px",
-                                },
-                                "&:hover fieldset": {
-                                    borderColor: `${theme.border.color}`,
-                                },
-                            },
-                            "& .MuiButtonBase-root": {
-                                color: `${theme.text.color}`,
-                            }
-                        }}
-                        placeholder={type === "character" ? "Characters" : "Weapons"}
-                    />
+                    <SearchBar params={params} placeholder={type === "character" ? "Characters" : "Weapons"} />
                 )}
                 renderOption={(props, option) => (
                     <CustomMenuItem
