@@ -14,7 +14,13 @@ interface MaterialImageProps {
     size?: number
 }
 
-function MaterialImage({ name, rarity, cost, img, size = 72 }: MaterialImageProps) {
+function MaterialImage({
+    name,
+    rarity,
+    cost,
+    img,
+    size = 72
+}: MaterialImageProps) {
 
     const theme = useTheme()
 
