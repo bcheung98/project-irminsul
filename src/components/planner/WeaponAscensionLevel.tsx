@@ -7,7 +7,7 @@ import { useTheme, useMediaQuery, Box, Typography } from "@mui/material"
 // Helper imports
 import { CustomSlider } from "../_custom/CustomSlider"
 import { updateWeaponCosts, updateTotalCosts } from "../../redux/reducers/AscensionPlannerReducer"
-import { SetWeaponCostsLevel } from "../../data/AscensionCostIndex"
+import { SetWeaponCostsLevel } from "../../helpers/AscensionCostIndex"
 
 function WeaponAscensionLevel(props: any) {
 
