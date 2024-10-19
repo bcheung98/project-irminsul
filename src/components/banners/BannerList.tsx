@@ -2,6 +2,7 @@ import * as React from "react"
 
 // Component imports
 import { CustomTooltip } from "../_custom/CustomTooltip"
+import { CustomMenuItem } from "../_custom/CustomMenu"
 import CharacterBannerRow from "./CharacterBannerRow"
 import WeaponBannerRow from "./WeaponBannerRow"
 
@@ -108,7 +109,7 @@ function BannerList(props: any) {
                     />
                 )}
                 renderOption={(props, option) => (
-                    <li
+                    <CustomMenuItem
                         {...props}
                         key={option}
                     >
@@ -118,7 +119,7 @@ function BannerList(props: any) {
                                 {option}
                             </Typography>
                         </Box>
-                    </li>
+                    </CustomMenuItem>
                 )}
             />
             <Box sx={{ display: "flex", alignItems: "center", my: "10px" }}>
