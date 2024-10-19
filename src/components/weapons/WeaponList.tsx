@@ -9,7 +9,7 @@ import { Box, Table, TableBody, TableContainer, Toolbar, Typography, Paper } fro
 
 // Helper imports
 import { EnhancedTableHead, getComparator, stableSort } from "../_custom/CustomSortTable"
-import { baseATKScaling, subStatScaling } from "../../helpers/WeaponScalings"
+import { baseATKScaling, subStatScaling } from "../../data/WeaponScalings"
 
 // Type imports
 import { WeaponData } from "../../types/weapon/WeaponData"

@@ -15,7 +15,7 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft"
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight"
 
 // Helper imports
-import { updates } from "../helpers/Versions"
+import { updates } from "../data/Versions"
 
 // Type imports
 import { RootState } from "../redux/store"

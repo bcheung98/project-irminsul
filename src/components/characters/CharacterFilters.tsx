@@ -10,8 +10,8 @@ import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { CharacterFilterState, setElement, setWeapon, setRarity, setAscensionStat, setTalentBook, setCommonMats, setBossMats, setWeeklyBossMats, setLocalMats, setNation, setGender } from "../../redux/reducers/CharacterFilterReducer"
-import { CharacterAscensionStats } from "../../helpers/CharacterAscensionStats"
-import { TalentBooks, CommonMats, BossMats, WeeklyBossMats, LocalMats } from "../../helpers/MaterialList"
+import { CharacterAscensionStats } from "../../data/CharacterAscensionStats"
+import { TalentBooks, CommonMats, BossMats, WeeklyBossMats, LocalMats } from "../../data/MaterialList"
 import { formatTalents, formatCommonMats, formatBossMats } from "../../helpers/TooltipText"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 

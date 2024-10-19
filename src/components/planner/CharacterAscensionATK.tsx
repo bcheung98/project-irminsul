@@ -8,7 +8,7 @@ import { useTheme, useMediaQuery, Box, Typography, CardHeader } from "@mui/mater
 import { CustomSlider } from "../_custom/CustomSlider"
 import { CustomSwitch } from "../_custom/CustomSwitch"
 import { updateCharacterCosts, updateTotalCosts } from "../../redux/reducers/AscensionPlannerReducer"
-import { SetCharacterCostsSkill } from "../../helpers/AscensionCostIndex"
+import { SetCharacterCostsSkill } from "../../data/AscensionCostIndex"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 function CharacterAscensionATK(props: any) {

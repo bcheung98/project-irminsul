@@ -1,4 +1,4 @@
-import { TalentBooks, WepAscensionMats } from "./MaterialList"
+import { TalentBooks, WepAscensionMats } from "../data/MaterialList"
 
 export function MaterialDates(day: string) {
 

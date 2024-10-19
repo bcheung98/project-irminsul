@@ -10,8 +10,8 @@ import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { WeaponFilterState, setWeaponType, setRarity, setSubstats, setAscensionMats, setEliteMats, setCommonMats } from "../../redux/reducers/WeaponFilterReducer"
-import { WeaponSubstats } from "../../helpers/WeaponSubstats"
-import { WepAscensionMats, EliteMats, CommonMats } from "../../helpers/MaterialList"
+import { WeaponSubstats } from "../../data/WeaponSubstats"
+import { WepAscensionMats, EliteMats, CommonMats } from "../../data/MaterialList"
 import { formatWeaponAscMats, formatEliteMats, formatCommonMats } from "../../helpers/TooltipText"
 
 // Type imports

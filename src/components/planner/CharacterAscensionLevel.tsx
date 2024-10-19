@@ -8,7 +8,7 @@ import { useTheme, useMediaQuery, Box, Typography } from "@mui/material"
 import { CustomSlider } from "../_custom/CustomSlider"
 import { CustomSwitch } from "../_custom/CustomSwitch"
 import { updateCharacterCosts, updateTotalCosts } from "../../redux/reducers/AscensionPlannerReducer"
-import { SetCharacterCostsLevel } from "../../helpers/AscensionCostIndex"
+import { SetCharacterCostsLevel } from "../../data/AscensionCostIndex"
 
 function CharacterAscensionLevel(props: any) {
 

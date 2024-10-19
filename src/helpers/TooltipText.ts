@@ -1,4 +1,4 @@
-import { TalentBooks, WepAscensionMats } from "./MaterialList"
+import { TalentBooks, WepAscensionMats } from "../data/MaterialList"
 import { GetMaterials } from "./MaterialDates"
 
 export function formatTalents(talent: string) {

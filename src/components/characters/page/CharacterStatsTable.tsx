@@ -4,7 +4,7 @@ import { Table, TableBody, TableContainer, TableHead, Paper } from "@mui/materia
 
 // Helper imports
 import { StyledTableCell, StyledTableRows } from "../../_custom/CustomTable"
-import { CharacterAscensionStatScalings } from "../../../helpers/CharacterAscensionStatScalings"
+import { CharacterAscensionStatScalings } from "../../../data/CharacterAscensionStatScalings"
 
 // Type imports
 import { CharacterData } from "../../../types/character/CharacterData"

@@ -4,7 +4,7 @@ import { Table, TableBody, TableContainer, TableHead, Paper } from "@mui/materia
 
 // Helper imports
 import { StyledTableCell, StyledTableRows } from "../../_custom/CustomTable"
-import { baseATKScaling, subStatScaling } from "../../../helpers/WeaponScalings"
+import { baseATKScaling, subStatScaling } from "../../../data/WeaponScalings"
 
 // Type imports
 import { WeaponStatsDataRow } from "../../../types/weapon/WeaponStatsDataRow"
