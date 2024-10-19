@@ -4,15 +4,15 @@ import * as React from "react"
 import { CustomTooltip } from "../_custom/CustomTooltip"
 import { CustomMenuItem } from "../_custom/CustomMenu"
 import SearchBar from "../_custom/SearchBar"
-import CharacterBannerRow from "./CharacterBannerRow"
-import WeaponBannerRow from "./WeaponBannerRow"
+import BannerRow from "./BannerRow"
 
 // MUI imports
-import { useTheme, useMediaQuery, Box, Table, TableBody, TableContainer, Paper, Autocomplete, TextField, Typography } from "@mui/material"
+import { useTheme, useMediaQuery, Box, Table, TableBody, TableContainer, Paper, Autocomplete, Typography } from "@mui/material"
 import HelpIcon from "@mui/icons-material/Help"
 
 // Helper imports
 import { EnhancedTableHead, getComparator, stableSort } from "../_custom/CustomSortTable"
+import { isTBA } from "../../helpers/isTBA"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 // Type imports
@@ -127,9 +127,7 @@ function BannerList(props: any) {
                         <TableBody sx={{ backgroundColor: `${theme.paper.backgroundColor}` }}>
                             {
                                 stableSort(rows, getComparator(order, orderBy))
-                                    .map((row, index) => (
-                                        type === "character" ? <CharacterBannerRow key={index} row={row} /> : <WeaponBannerRow key={index} row={row} />
-                                    ))
+                                    .map((row, index) => <BannerRow type={type} key={index} row={row as unknown as BannerData} />)
                             }
                         </TableBody>
                     </Table>
@@ -144,8 +142,6 @@ export default BannerList
 const headCells = [
     { id: "subVersion", label: "Version" },
 ]
-
-export const isTBA = (name: string) => name === "TBA" || name === "To be announced"
 
 const filterBanners = (banners: BannerData[], searchValue: string[], unique: boolean) => {
     if (searchValue.length > 0) {

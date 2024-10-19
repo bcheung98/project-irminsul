@@ -8,7 +8,7 @@ import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { createDateObject, isCurrentBanner } from "../../helpers/dates"
-import { isTBA } from "./BannerList"
+import { isTBA } from "../../helpers/isTBA"
 
 function ChronicledWishRow(props: any) {
 

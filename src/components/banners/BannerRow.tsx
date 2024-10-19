@@ -8,12 +8,19 @@ import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { createDateObject, isCurrentBanner } from "../../helpers/dates"
-import { isTBA } from "./BannerList"
+import { isTBA } from "../../helpers/isTBA"
 
-function WeaponBannerRow(props: any) {
+// Type imports
+import { BannerData } from "../../types/banner/BannerData"
+
+function BannerRow(props: {
+    type: "character" | "weapon",
+    row: BannerData
+}) {
 
     const theme = useTheme()
 
+    let { type } = props
     let { version, subVersion, fiveStars, fourStars } = props.row
 
     let start = createDateObject(props.row.start)
@@ -25,15 +32,14 @@ function WeaponBannerRow(props: any) {
                 <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, textAlign: "left", mb: "10px" }}>
                     {`${version} Phase ${subVersion.split(".")[2]}: ${start.date} — ${end.date}`}
                 </Typography>
-                {
-                    <Grid container spacing={0.75}>
-                        {fiveStars.map((wep: string, index: number) => <CustomCard key={index} type="weapon" name={wep} rarity={!isTBA(wep) ? 5 : 1} disableLink={isTBA(wep)} />)}
-                        {fourStars.map((wep: string, index: number) => <CustomCard key={index} type="weapon" name={wep} rarity={!isTBA(wep) ? 4 : 1} disableLink={isTBA(wep)} />)}
-                    </Grid>
-                }
+                <Grid container spacing={0.75}>
+                    {fiveStars.map((item: string, index: number) => <CustomCard key={index} type={type} name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
+                    {fourStars.map((item: string, index: number) => <CustomCard key={index} type={type} name={item} rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
+                </Grid>
             </StyledTableCellNoVert>
         </TableRow>
     )
 }
 
-export default WeaponBannerRow
+
+export default BannerRow
