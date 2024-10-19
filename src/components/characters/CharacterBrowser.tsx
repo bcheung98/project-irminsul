@@ -2,15 +2,17 @@ import * as React from "react"
 import { connect } from "react-redux"
 
 // Component imports
+import CustomCard from "../_custom/CustomCard"
 import CharacterCard from "./CharacterCard"
 import CharacterList from "./CharacterList"
 import CharacterFilters from "./CharacterFilters"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { useMediaQuery, Box, Typography, Paper, InputBase, ToggleButtonGroup, SwipeableDrawer } from "@mui/material"
+import { useMediaQuery, Box, Typography, Paper, InputBase, ToggleButtonGroup, SwipeableDrawer, Button } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import AppsSharpIcon from "@mui/icons-material/AppsSharp"
+import ViewModuleSharpIcon from "@mui/icons-material/ViewModuleSharp"
 import ListSharpIcon from "@mui/icons-material/ListSharp"
 import FilterAltIcon from "@mui/icons-material/FilterAlt"
 
@@ -32,7 +34,8 @@ function CharacterBrowser(props: any) {
         setSearchValue(event.target.value)
     }
 
-    const [view, setView] = React.useState("grid")
+    const defaultView = matches ? "grid" : "card"
+    const [view, setView] = React.useState(defaultView)
     const handleView = (event: React.BaseSyntheticEvent, newView: string) => {
         if (newView !== null) {
             setView(newView)
@@ -66,41 +69,73 @@ function CharacterBrowser(props: any) {
                     justifyContent: "left",
                     mb: "20px",
                     height: "30px",
+                    containerType: "inline-size"
                 }}
             >
                 <Typography
-                    variant="h5"
                     sx={{
                         mr: "25px",
                         fontFamily: `${theme.font.genshin.family}`,
+                        fontSize: "24px",
                         color: `${theme.text.color}`,
-                        textDecoration: "none",
                     }}
                 >
                     Characters
                 </Typography>
-                <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ border: `1px solid ${theme.border.color}` }}>
-                    <CustomToggleButton value="grid" size="small">
+                <ToggleButtonGroup value={view} exclusive onChange={handleView}>
+                    <CustomToggleButton value="card" size="small">
                         <AppsSharpIcon sx={{ color: `white` }} />
+                    </CustomToggleButton>
+                    <CustomToggleButton value="grid" size="small">
+                        <ViewModuleSharpIcon sx={{ color: `white` }} />
                     </CustomToggleButton>
                     <CustomToggleButton value="list" size="small">
                         <ListSharpIcon sx={{ color: `white` }} />
                     </CustomToggleButton>
                 </ToggleButtonGroup>
-                <FilterAltIcon sx={{ display: { xs: "block", md: "none" }, flexGrow: 1, color: `white` }} fontSize="large" onClick={toggleDrawer(true)} />
             </Box>
+            <Button
+                onClick={toggleDrawer(true)}
+                variant="contained"
+                startIcon={<FilterAltIcon sx={{ color: `${theme.text.color}` }} />}
+                sx={{ display: { xs: "flex", sm: "none" }, mb: "20px", px: 1 }}
+            >
+                <Typography
+                    sx={{
+                        fontFamily: `${theme.font.genshin.family}`,
+                        fontSize: "14px",
+                        textTransform: "none"
+                    }}
+                >
+                    Filters
+                </Typography>
+            </Button>
             <Grid container spacing={3}>
                 <Grid size="grow">
                     {
                         characters.characters.length > 0 ?
                             <React.Fragment>
                                 {
-                                    view === "grid" ?
-                                        <Grid container spacing={2}>
-                                            {filterCharacters(characters.characters, characterFilters, searchValue).map(char => <CharacterCard key={char.id} character={char} />)}
-                                        </Grid>
-                                        :
-                                        <CharacterList characters={filterCharacters(characters.characters, characterFilters, searchValue)} />
+                                    view === "card" &&
+                                    <Grid container spacing={2.5}>
+                                        {
+                                            filterCharacters(characters.characters, characterFilters, searchValue)
+                                                .map(char => <CustomCard key={char.id} type="character" name={char.name} rarity={char.rarity} element={char.element} weaponType={char.weapon} variant="avatar" size="128px" showInfo />)
+                                        }
+                                    </Grid>
+                                }
+                                {
+                                    view === "grid" &&
+                                    <Grid container spacing={2}>
+                                        {
+                                            filterCharacters(characters.characters, characterFilters, searchValue)
+                                                .map(char => <CharacterCard key={char.id} character={char} />)
+                                        }
+                                    </Grid>
+                                }
+                                {
+                                    view === "list" &&
+                                    <CharacterList characters={filterCharacters(characters.characters, characterFilters, searchValue)} />
                                 }
                             </React.Fragment>
                             :

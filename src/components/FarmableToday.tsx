@@ -1,37 +1,23 @@
 import * as React from "react"
-import { useTheme } from "@mui/material/styles"
 import { connect } from "react-redux"
 
-// MUI imports
-import { useMediaQuery, Box, ButtonBase, Typography, CardHeader, Tabs, Select, AppBar, SelectChangeEvent, Theme } from "@mui/material"
-
-// Helper imports
-import { MaterialDates } from "../helpers/MaterialDates"
-import { CustomTooltip } from "./_custom/CustomTooltip"
+// Component imports
+import CustomCard from "./_custom/CustomCard"
 import { CustomInput } from "./_custom/CustomInput"
 import { CustomMenuItem } from "./_custom/CustomMenu"
 import { TabPanel, StyledTab } from "./_custom/CustomTabs"
-import ErrorLoadingImage from "../helpers/ErrorLoadingImage"
+
+// MUI imports
+import { useTheme, useMediaQuery, Box, Typography, CardHeader, Tabs, Select, AppBar, SelectChangeEvent } from "@mui/material"
+import Grid from "@mui/material/Grid2"
+
+// Helper imports
+import { MaterialDates } from "../helpers/MaterialDates"
 
 // Type imports
 import { RootState } from "../redux/store"
 import { CharacterData } from "../types/character/CharacterData"
 import { WeaponData } from "../types/weapon/WeaponData"
-
-const IconStyle = (rarity: number, theme: Theme) => {
-    return {
-        border: `1px solid ${theme.border.color}`,
-        borderRadius: "5px",
-        width: "64px",
-        height: "64px",
-        boxSizing: "content-box",
-        marginRight: "5px",
-        marginBottom: "5px",
-        backgroundColor: `${theme.materialImage.backgroundColor}`,
-        backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
-        backgroundSize: "100%"
-    } as React.CSSProperties
-}
 
 function FarmableToday(props: any) {
 
@@ -132,15 +118,14 @@ function FarmableToday(props: any) {
                                     }
                                     sx={{ p: 0, mb: "10px" }}
                                 />
-                                {
-                                    characters.filter((char: CharacterData) => farmableMats["talents"][index].includes(char.materials.talentBook as string)).map((char: CharacterData, index: number) => (
-                                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${char.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index}>
-                                            <CustomTooltip title={char.name} arrow placement="top">
-                                                <img src={(`${process.env.REACT_APP_URL}/characters/icons/${char.name.split(" ").join("_")}.png`)} alt={char.name} style={IconStyle(char.rarity, theme)} onError={ErrorLoadingImage} />
-                                            </CustomTooltip>
-                                        </ButtonBase>
-                                    ))
-                                }
+                                <Grid container spacing={1}>
+                                    {
+                                        characters.filter((char: CharacterData) => farmableMats["talents"][index].includes(char.materials.talentBook as string))
+                                            .map((char: CharacterData) => (
+                                                <CustomCard key={char.name} type="character" name={char.name} rarity={char.rarity} />
+                                            ))
+                                    }
+                                </Grid>
                                 {index !== farmableMats["talents"].length - 1 && <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "10px" }} />}
                             </Box>
                         ))
@@ -159,21 +144,18 @@ function FarmableToday(props: any) {
                                     }
                                     sx={{ p: 0, mb: "10px" }}
                                 />
-                                {
-                                    weapons.filter((wep: WeaponData) => farmableMats["weapons"][index].includes(wep.materials.ascensionMat as string)).sort((a: WeaponData, b: WeaponData) => b.rarity - a.rarity).map((wep: WeaponData, index: number) => (
-                                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${wep.name.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
-                                            <CustomTooltip title={wep.name} arrow placement="top">
-                                                <img src={(`${process.env.REACT_APP_URL}/weapons/${wep.name.split(" ").join("_")}.png`)} alt={wep.name} style={IconStyle(wep.rarity, theme)} onError={ErrorLoadingImage} />
-                                            </CustomTooltip>
-                                        </ButtonBase>
-                                    ))
-                                }
+                                <Grid container spacing={1}>
+                                    {
+                                        weapons.filter((wep: WeaponData) => farmableMats["weapons"][index].includes(wep.materials.ascensionMat as string)).sort((a: WeaponData, b: WeaponData) => b.rarity - a.rarity).map((wep: WeaponData) => (
+                                            <CustomCard key={wep.name} type="weapon" name={wep.name} rarity={wep.rarity} />
+                                        ))
+                                    }
+                                </Grid>
                                 {index !== farmableMats["weapons"].length - 1 && <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "10px" }} />}
                             </Box>
                         ))
                     }
                 </TabPanel>
-
             </Box>
         </Box>
     )

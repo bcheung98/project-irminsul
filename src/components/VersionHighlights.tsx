@@ -2,9 +2,8 @@ import * as React from "react"
 import { connect } from "react-redux"
 
 // Component imports
-import CharacterCardLarge from "./characters/CharacterCardLarge"
-import WeaponCardLarge from "./weapons/WeaponCardLarge"
-import ArtifactCard from "./artifacts/ArtifactCard"
+import CustomCard from "./_custom/CustomCard"
+import ArtifactPopup from "./artifacts/ArtifactPopup"
 import TCGCharacterCard from "./tcg/TCGCharacterCard"
 import TCGActionCard from "./tcg/TCGActionCard"
 
@@ -161,7 +160,7 @@ function VersionHighlights(props: any) {
                 </Box>
             </AppBar>
 
-            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "20px", sm: "24px" }, color: `${theme.text.color}`, mx: "30px", my: "20px" }}>
+            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "20px", sm: "24px" }, color: `${theme.text.color}`, mx: "20px", my: "20px" }}>
                 {updates[index].version} - <i>{updates[index].name}</i>
             </Typography>
 
@@ -176,12 +175,12 @@ function VersionHighlights(props: any) {
                                 New Characters
                             </Typography>
                         }
-                        sx={{ p: 0, mb: "20px" }}
+                        sx={{ p: 0, ml: "-10px", mb: "25px" }}
                     />
                     <Box>
-                        <Grid container spacing={2}>
+                        <Grid container spacing={2.5}>
                             {
-                                characters.map((char: CharacterData, index: number) => <CharacterCardLarge key={index} character={char} />)
+                                characters.map((char: CharacterData, index: number) => <CustomCard key={index} type="character" name={char.name} rarity={char.rarity} element={char.element} weaponType={char.weapon} variant="avatar" size="150px" showInfo />)
                             }
                         </Grid>
                     </Box>
@@ -202,12 +201,12 @@ function VersionHighlights(props: any) {
                                 New Weapons
                             </Typography>
                         }
-                        sx={{ p: 0, mb: "20px" }}
+                        sx={{ p: 0, ml: "-10px", mb: "25px" }}
                     />
                     <Box>
-                        <Grid container spacing={2}>
+                        <Grid container spacing={2.5}>
                             {
-                                weapons.map((wep: WeaponData, index: number) => <WeaponCardLarge key={index} weapon={wep} />)
+                                weapons.map((wep: WeaponData, index: number) => <CustomCard key={index} type="weapon" name={wep.name} displayName={wep.displayName} rarity={wep.rarity} weaponType={wep.type} size="150px" showInfo />)
                             }
                         </Grid>
                     </Box>
@@ -228,13 +227,13 @@ function VersionHighlights(props: any) {
                                 New Artifacts
                             </Typography>
                         }
-                        sx={{ p: 0, mb: "20px" }}
+                        sx={{ p: 0, ml: "-10px", mb: "20px" }}
                     />
                     <Box>
-                        <Grid container spacing={2}>
+                        <Grid container spacing={2.5}>
                             {
                                 artifacts.map((artifact: ArtifactData, index: number) => (
-                                    <ArtifactCard key={index} artifact={artifact} />
+                                    <CustomCard key={index} type="artifact" name={artifact.name} rarity={artifact.rarity} size="150px" showInfo props={{ artifact: artifact }} popup={<ArtifactPopup artifact={artifact} />} />
                                 ))
                             }
                         </Grid>
@@ -256,7 +255,7 @@ function VersionHighlights(props: any) {
                                 New TCG Cards
                             </Typography>
                         }
-                        sx={{ p: 0, mb: "30px" }}
+                        sx={{ p: 0, ml: "-10px", mb: "30px" }}
                     />
                     <Grid container rowSpacing={3} columnSpacing={0}>
                         {

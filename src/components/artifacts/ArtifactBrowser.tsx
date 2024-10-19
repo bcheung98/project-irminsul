@@ -1,12 +1,12 @@
 import * as React from "react"
-import { useTheme } from "@mui/material/styles"
 import { connect } from "react-redux"
 
 // Component imports
-import ArtifactCard from "./ArtifactCard"
+import ArtifactPopup from "./ArtifactPopup"
+import CustomCard from "../_custom/CustomCard"
 
 // MUI imports
-import { Box, Typography } from "@mui/material"
+import { useTheme, Box, Typography } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Type imports
@@ -30,15 +30,15 @@ function ArtifactBrowser(props: any) {
                     justifyContent: "left",
                     mb: "20px",
                     height: "30px",
+                    containerType: "inline-size"
                 }}
             >
                 <Typography
-                    variant="h5"
                     sx={{
                         mr: "25px",
                         fontFamily: `${theme.font.genshin.family}`,
+                        fontSize: "24px",
                         color: `${theme.text.color}`,
-                        textDecoration: "none",
                     }}
                 >
                     Artifacts
@@ -47,7 +47,7 @@ function ArtifactBrowser(props: any) {
             <Grid container spacing={2}>
                 {
                     artifacts.artifacts.length > 0 ?
-                        artifacts.artifacts.map((artifact: ArtifactData, index: number) => <ArtifactCard key={index} artifact={artifact} />)
+                        artifacts.artifacts.map((artifact: ArtifactData, index: number) => <CustomCard key={index} type="artifact" name={artifact.name} rarity={artifact.rarity} size="128px" showInfo props={{ artifact: artifact }} popup={<ArtifactPopup artifact={artifact} />} />)
                         :
                         null
                 }

@@ -2,13 +2,13 @@ import * as React from "react"
 import { connect } from "react-redux"
 
 // Component imports
+import CustomCard from "../_custom/CustomCard"
 import WeaponList from "./WeaponList"
 import WeaponFilters from "./WeaponFilters"
-import WeaponCardLarge from "./WeaponCardLarge"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { useMediaQuery, Box, Typography, Paper, InputBase, ToggleButtonGroup, SwipeableDrawer } from "@mui/material"
+import { useMediaQuery, Box, Typography, Paper, InputBase, ToggleButtonGroup, SwipeableDrawer, Button } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import AppsSharpIcon from "@mui/icons-material/AppsSharp"
 import ListSharpIcon from "@mui/icons-material/ListSharp"
@@ -66,20 +66,20 @@ function WeaponBrowser(props: any) {
                     justifyContent: "left",
                     mb: "20px",
                     height: "30px",
+                    containerType: "inline-size"
                 }}
             >
                 <Typography
-                    variant="h5"
                     sx={{
                         mr: "25px",
                         fontFamily: `${theme.font.genshin.family}`,
+                        fontSize: "24px",
                         color: `${theme.text.color}`,
-                        textDecoration: "none",
                     }}
                 >
                     Weapons
                 </Typography>
-                <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ border: `1px solid ${theme.border.color}` }}>
+                <ToggleButtonGroup value={view} exclusive onChange={handleView}>
                     <CustomToggleButton value="grid" size="small">
                         <AppsSharpIcon sx={{ color: `white` }} />
                     </CustomToggleButton>
@@ -87,8 +87,23 @@ function WeaponBrowser(props: any) {
                         <ListSharpIcon sx={{ color: `white` }} />
                     </CustomToggleButton>
                 </ToggleButtonGroup>
-                <FilterAltIcon sx={{ display: { xs: "block", md: "none" }, flexGrow: 1, color: `white` }} fontSize="large" onClick={toggleDrawer(true)} />
             </Box>
+            <Button
+                onClick={toggleDrawer(true)}
+                variant="contained"
+                startIcon={<FilterAltIcon sx={{ color: `${theme.text.color}` }} />}
+                sx={{ display: { xs: "flex", sm: "none" }, mb: "20px", px: 1 }}
+            >
+                <Typography
+                    sx={{
+                        fontFamily: `${theme.font.genshin.family}`,
+                        fontSize: "14px",
+                        textTransform: "none"
+                    }}
+                >
+                    Filters
+                </Typography>
+            </Button>
             <Grid container spacing={3}>
                 <Grid size="grow">
                     {
@@ -96,8 +111,8 @@ function WeaponBrowser(props: any) {
                             <React.Fragment>
                                 {
                                     view === "grid" ?
-                                        <Grid container spacing={2}>
-                                            {filterWeapons(weapons.weapons, weaponFilters, searchValue).sort((a, b) => a.rarity > b.rarity ? -1 : 1).map(wep => <WeaponCardLarge key={wep.id} weapon={wep} />)}
+                                        <Grid container spacing={2.5}>
+                                            {filterWeapons(weapons.weapons, weaponFilters, searchValue).sort((a, b) => a.rarity > b.rarity ? -1 : 1).map(wep => <CustomCard key={wep.id} type="weapon" name={wep.name} displayName={wep.displayName} rarity={wep.rarity} weaponType={wep.type} size="128px" showInfo />)}
                                         </Grid>
                                         :
                                         <WeaponList weapons={filterWeapons(weapons.weapons, weaponFilters, searchValue)} />
