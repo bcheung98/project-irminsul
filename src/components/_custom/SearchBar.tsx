@@ -3,6 +3,7 @@ import { useTheme, TextField } from "@mui/material"
 
 interface SearchBarProps {
     onChange?: (event: React.BaseSyntheticEvent) => void,
+    value?: string,
     placeholder?: string,
     size?: {
         width?: string,
@@ -13,6 +14,7 @@ interface SearchBarProps {
 
 function SearchBar({
     onChange,
+    value,
     placeholder = "Search",
     size = {
         width: "100%",
@@ -50,6 +52,7 @@ function SearchBar({
                 }
             }}
             onChange={onChange}
+            value={value}
             placeholder={placeholder}
             fullWidth
         />
