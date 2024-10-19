@@ -32,7 +32,7 @@ function TCGActionCardFilter(props: { cardActionFilters: TCGActionFilterState })
                 tag: "type",
                 component:
                     <Grid container spacing={1}>
-                        {["Event", "Equipment", "Support"].map((type, index) => <FilterButton key={index} variant="text" tag={type} active={cardActionFilters.type.includes(type)} dispatch={() => dispatch(setType(type))} />)}
+                        {["Event", "Equipment", "Support"].map((type, index) => <FilterButton key={index} variant="text" tag={type} active={cardActionFilters.type.includes(type)} onClick={() => dispatch(setType(type))} />)}
                     </Grid>
             },
             {
@@ -40,7 +40,7 @@ function TCGActionCardFilter(props: { cardActionFilters: TCGActionFilterState })
                 tag: "subType",
                 component:
                     <Grid container spacing={1}>
-                        {["Arcane Legend", "Artifact", "Companion", "Elemental Resonance", "Food", "Item", "Location", "Talent", "Technique", "Weapon"].map((type, index) => <FilterButton key={index} tag={type} img={`tcg/icons/subtypes/${type.split(" ").join("_")}`} active={cardActionFilters.subType.includes(type)} dispatch={() => dispatch(setSubType(type))} />)}
+                        {["Arcane Legend", "Artifact", "Companion", "Elemental Resonance", "Food", "Item", "Location", "Talent", "Technique", "Weapon"].map((type, index) => <FilterButton key={index} tag={type} img={`tcg/icons/subtypes/${type.split(" ").join("_")}`} active={cardActionFilters.subType.includes(type)} onClick={() => dispatch(setSubType(type))} />)}
                     </Grid>
             }
         ]

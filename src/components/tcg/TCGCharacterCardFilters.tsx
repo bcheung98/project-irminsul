@@ -32,7 +32,7 @@ function TCGCharacterCardFilter(props: { cardCharFilters: TCGCharacterFilterStat
                 tag: "element",
                 component:
                     <Grid container spacing={1}>
-                        {["Pyro", "Hydro", "Electro", "Cryo", "Anemo", "Geo", "Dendro"].map((element, index) => <FilterButton key={index} tag={element} img={`tcg/icons/elements/${element}`} active={cardCharFilters.element.includes(element)} dispatch={() => dispatch(setElement(element))} />)}
+                        {["Pyro", "Hydro", "Electro", "Cryo", "Anemo", "Geo", "Dendro"].map((element, index) => <FilterButton key={index} tag={element} img={`tcg/icons/elements/${element}`} active={cardCharFilters.element.includes(element)} onClick={() => dispatch(setElement(element))} />)}
                     </Grid>
             },
             {
@@ -40,7 +40,7 @@ function TCGCharacterCardFilter(props: { cardCharFilters: TCGCharacterFilterStat
                 tag: "weapon",
                 component:
                     <Grid container spacing={1}>
-                        {["Sword", "Claymore", "Polearm", "Bow", "Catalyst"].map((weapon, index) => <FilterButton key={index} tag={weapon} img={`tcg/icons/weapons/${weapon}`} active={cardCharFilters.weapon.includes(weapon)} dispatch={() => dispatch(setWeapon(weapon))} />)}
+                        {["Sword", "Claymore", "Polearm", "Bow", "Catalyst"].map((weapon, index) => <FilterButton key={index} tag={weapon} img={`tcg/icons/weapons/${weapon}`} active={cardCharFilters.weapon.includes(weapon)} onClick={() => dispatch(setWeapon(weapon))} />)}
                     </Grid>
             },
             {
@@ -48,7 +48,7 @@ function TCGCharacterCardFilter(props: { cardCharFilters: TCGCharacterFilterStat
                 tag: "faction",
                 component:
                     <Grid container spacing={1}>
-                        {["Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine", "Eremite", "Fatui", "Hilichurl", "Monster", "Consecrated Beast"].map((faction, index) => <FilterButton key={index} tag={faction} img={`tcg/icons/factions/${faction.split(" ").join("_")}`} active={cardCharFilters.faction.includes(faction)} dispatch={() => dispatch(setFaction(faction))} />)}
+                        {["Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine", "Eremite", "Fatui", "Hilichurl", "Monster", "Consecrated Beast"].map((faction, index) => <FilterButton key={index} tag={faction} img={`tcg/icons/factions/${faction.split(" ").join("_")}`} active={cardCharFilters.faction.includes(faction)} onClick={() => dispatch(setFaction(faction))} />)}
                     </Grid>
             }
         ]

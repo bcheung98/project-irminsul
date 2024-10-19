@@ -35,7 +35,7 @@ function WeaponFilters(props: { weaponFilters: WeaponFilterState }) {
                 tag: "weaponType",
                 component:
                     <Grid container spacing={1}>
-                        {["Sword", "Claymore", "Polearm", "Bow", "Catalyst"].map((weapon, index) => <FilterButton key={index} tag={weapon} img={`weapons/icons/${weapon}`} active={weaponFilters.weaponType.includes(weapon)} dispatch={() => dispatch(setWeaponType(weapon))} />)}
+                        {["Sword", "Claymore", "Polearm", "Bow", "Catalyst"].map((weapon, index) => <FilterButton key={index} tag={weapon} img={`weapons/icons/${weapon}`} active={weaponFilters.weaponType.includes(weapon)} onClick={() => dispatch(setWeaponType(weapon))} />)}
                     </Grid>
             },
             {
@@ -43,7 +43,7 @@ function WeaponFilters(props: { weaponFilters: WeaponFilterState }) {
                 tag: "rarity",
                 component:
                     <Grid container spacing={1}>
-                        {["5", "4", "3", "2", "1"].map((rarity, index) => <FilterButton key={index} variant="text" tag={`${rarity}★`} active={weaponFilters.rarity.includes(rarity)} dispatch={() => dispatch(setRarity(rarity))} />)}
+                        {["5", "4", "3", "2", "1"].map((rarity, index) => <FilterButton key={index} variant="text" tag={`${rarity}★`} active={weaponFilters.rarity.includes(rarity)} onClick={() => dispatch(setRarity(rarity))} />)}
                     </Grid>
             },
             {
@@ -51,7 +51,7 @@ function WeaponFilters(props: { weaponFilters: WeaponFilterState }) {
                 tag: "substats",
                 component:
                     <Grid container spacing={1}>
-                        {Object.keys(WeaponSubstats).map((stat, index) => <FilterButton key={index} tag={WeaponSubstats[stat as keyof {}]["title"]} img={`icons/ascension_stats/${stat.split(" ").join("_")}`} active={weaponFilters.substats.includes(stat)} dispatch={() => dispatch(setSubstats(stat))} />)}
+                        {Object.keys(WeaponSubstats).map((stat, index) => <FilterButton key={index} tag={WeaponSubstats[stat as keyof {}]["title"]} img={`icons/ascension_stats/${stat.split(" ").join("_")}`} active={weaponFilters.substats.includes(stat)} onClick={() => dispatch(setSubstats(stat))} />)}
                     </Grid>
             },
             {
@@ -65,7 +65,7 @@ function WeaponFilters(props: { weaponFilters: WeaponFilterState }) {
                                     <Grid container spacing={1}>
                                         {
                                             WepAscensionMats[nation as keyof typeof WepAscensionMats].map((material: string, index) => (
-                                                <FilterButton key={index} tag={formatWeaponAscMats(material)} img={`materials/weapon_ascension_mats/${material.split(" ").join("_")}4`} active={weaponFilters.ascensionMat.includes(material)} dispatch={() => dispatch(setAscensionMats(material))} />
+                                                <FilterButton key={index} tag={formatWeaponAscMats(material)} img={`materials/weapon_ascension_mats/${material.split(" ").join("_")}4`} active={weaponFilters.ascensionMat.includes(material)} onClick={() => dispatch(setAscensionMats(material))} />
                                             ))
                                         }
                                     </Grid>
@@ -79,7 +79,7 @@ function WeaponFilters(props: { weaponFilters: WeaponFilterState }) {
                 tag: "eliteMat",
                 component:
                     <Grid container spacing={1}>
-                        {EliteMats.map((material, index) => <FilterButton key={index} tag={formatEliteMats(material)} img={`materials/elite_mats/${material.split(" ").join("_")}3`} active={weaponFilters.eliteMat.includes(material)} dispatch={() => dispatch(setEliteMats(material))} />)}
+                        {EliteMats.map((material, index) => <FilterButton key={index} tag={formatEliteMats(material)} img={`materials/elite_mats/${material.split(" ").join("_")}3`} active={weaponFilters.eliteMat.includes(material)} onClick={() => dispatch(setEliteMats(material))} />)}
                     </Grid>
             },
             {
@@ -87,7 +87,7 @@ function WeaponFilters(props: { weaponFilters: WeaponFilterState }) {
                 tag: "commonMat",
                 component:
                     <Grid container spacing={1}>
-                        {CommonMats.map((material, index) => <FilterButton key={index} tag={formatCommonMats(material)} img={`materials/common_mats/${material.split(" ").join("_")}3`} active={weaponFilters.commonMat.includes(material)} dispatch={() => dispatch(setCommonMats(material))} />)}
+                        {CommonMats.map((material, index) => <FilterButton key={index} tag={formatCommonMats(material)} img={`materials/common_mats/${material.split(" ").join("_")}3`} active={weaponFilters.commonMat.includes(material)} onClick={() => dispatch(setCommonMats(material))} />)}
                     </Grid>
             },
         ]

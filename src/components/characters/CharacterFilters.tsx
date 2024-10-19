@@ -36,7 +36,7 @@ function CharacterFilters(props: { characterFilters: CharacterFilterState }) {
                 tag: "element",
                 component:
                     <Grid container spacing={1}>
-                        {["Pyro", "Hydro", "Electro", "Cryo", "Anemo", "Geo", "Dendro"].map((element, index) => <FilterButton key={index} tag={element} img={`elements/${element}`} active={characterFilters.element.includes(element)} dispatch={() => dispatch(setElement(element))} />)}
+                        {["Pyro", "Hydro", "Electro", "Cryo", "Anemo", "Geo", "Dendro"].map((element, index) => <FilterButton key={index} tag={element} img={`elements/${element}`} active={characterFilters.element.includes(element)} onClick={() => dispatch(setElement(element))} />)}
                     </Grid>
             },
             {
@@ -44,7 +44,7 @@ function CharacterFilters(props: { characterFilters: CharacterFilterState }) {
                 tag: "weapon",
                 component:
                     <Grid container spacing={1}>
-                        {["Sword", "Claymore", "Polearm", "Bow", "Catalyst"].map((weapon, index) => <FilterButton key={index} tag={weapon} img={`weapons/icons/${weapon}`} active={characterFilters.weapon.includes(weapon)} dispatch={() => dispatch(setWeapon(weapon))} />)}
+                        {["Sword", "Claymore", "Polearm", "Bow", "Catalyst"].map((weapon, index) => <FilterButton key={index} tag={weapon} img={`weapons/icons/${weapon}`} active={characterFilters.weapon.includes(weapon)} onClick={() => dispatch(setWeapon(weapon))} />)}
                     </Grid>
             },
             {
@@ -52,7 +52,7 @@ function CharacterFilters(props: { characterFilters: CharacterFilterState }) {
                 tag: "rarity",
                 component:
                     <Grid container spacing={1}>
-                        {["5", "4"].map((rarity, index) => <FilterButton key={index} variant="text" tag={`${rarity}★`} active={characterFilters.rarity.includes(rarity)} dispatch={() => dispatch(setRarity(rarity))} />)}
+                        {["5", "4"].map((rarity, index) => <FilterButton key={index} variant="text" tag={`${rarity}★`} active={characterFilters.rarity.includes(rarity)} onClick={() => dispatch(setRarity(rarity))} />)}
                     </Grid>
             },
             {
@@ -60,7 +60,7 @@ function CharacterFilters(props: { characterFilters: CharacterFilterState }) {
                 tag: "ascStat",
                 component:
                     <Grid container spacing={1}>
-                        {Object.keys(CharacterAscensionStats).map((stat, index) => <FilterButton key={index} tag={CharacterAscensionStats[stat as keyof {}]["title"]} img={`icons/ascension_stats/${stat.split(" ").join("_")}`} active={characterFilters.ascStat.includes(stat)} dispatch={() => dispatch(setAscensionStat(stat))} />)}
+                        {Object.keys(CharacterAscensionStats).map((stat, index) => <FilterButton key={index} tag={CharacterAscensionStats[stat as keyof {}]["title"]} img={`icons/ascension_stats/${stat.split(" ").join("_")}`} active={characterFilters.ascStat.includes(stat)} onClick={() => dispatch(setAscensionStat(stat))} />)}
                     </Grid>
             },
             {
@@ -80,7 +80,7 @@ function CharacterFilters(props: { characterFilters: CharacterFilterState }) {
                                     <Grid container spacing={1} key={index}>
                                         {
                                             TalentBooks[nation as keyof typeof TalentBooks].map((talent: string, index) => (
-                                                <FilterButton key={index} tag={formatTalents(talent)} img={`materials/talent_mats/${talent}3`} active={characterFilters.talent.includes(talent)} dispatch={() => dispatch(setTalentBook(talent))} />
+                                                <FilterButton key={index} tag={formatTalents(talent)} img={`materials/talent_mats/${talent}3`} active={characterFilters.talent.includes(talent)} onClick={() => dispatch(setTalentBook(talent))} />
                                             ))
                                         }
                                     </Grid>
@@ -94,7 +94,7 @@ function CharacterFilters(props: { characterFilters: CharacterFilterState }) {
                 tag: "commonMat",
                 component:
                     <Grid container spacing={1}>
-                        {CommonMats.map((material, index) => <FilterButton key={index} tag={formatCommonMats(material)} img={`materials/common_mats/${material.split(" ").join("_")}3`} active={characterFilters.commonMat.includes(material)} dispatch={() => dispatch(setCommonMats(material))} />)}
+                        {CommonMats.map((material, index) => <FilterButton key={index} tag={formatCommonMats(material)} img={`materials/common_mats/${material.split(" ").join("_")}3`} active={characterFilters.commonMat.includes(material)} onClick={() => dispatch(setCommonMats(material))} />)}
                     </Grid>
             },
             {
@@ -102,7 +102,7 @@ function CharacterFilters(props: { characterFilters: CharacterFilterState }) {
                 tag: "bossMat",
                 component:
                     <Grid container spacing={1}>
-                        {BossMats.map((material, index) => <FilterButton key={index} tag={formatBossMats(material)} img={`materials/boss_mats/${material.split(" ").join("_")}`} active={characterFilters.bossMat.includes(material)} dispatch={() => dispatch(setBossMats(material))} />)}
+                        {BossMats.map((material, index) => <FilterButton key={index} tag={formatBossMats(material)} img={`materials/boss_mats/${material.split(" ").join("_")}`} active={characterFilters.bossMat.includes(material)} onClick={() => dispatch(setBossMats(material))} />)}
                     </Grid>
             },
             {
@@ -123,7 +123,7 @@ function CharacterFilters(props: { characterFilters: CharacterFilterState }) {
                                     </AccordionSummary>
                                     <AccordionDetails>
                                         <Grid container spacing={1}>
-                                            {WeeklyBossMats[boss as keyof typeof WeeklyBossMats].sort().map((material: string, index) => <FilterButton key={index} tag={material} img={`materials/weekly_boss_mats/${material.split(" ").join("_")}`} active={characterFilters.weeklyBossMat.includes(material)} dispatch={() => dispatch(setWeeklyBossMats(material))} />)}
+                                            {WeeklyBossMats[boss as keyof typeof WeeklyBossMats].sort().map((material: string, index) => <FilterButton key={index} tag={material} img={`materials/weekly_boss_mats/${material.split(" ").join("_")}`} active={characterFilters.weeklyBossMat.includes(material)} onClick={() => dispatch(setWeeklyBossMats(material))} />)}
                                         </Grid>
                                     </AccordionDetails>
                                 </Accordion>
@@ -149,7 +149,7 @@ function CharacterFilters(props: { characterFilters: CharacterFilterState }) {
                                     </AccordionSummary>
                                     <AccordionDetails>
                                         <Grid container spacing={1}>
-                                            {LocalMats[nation as keyof typeof LocalMats].sort().map((material: string, index) => <FilterButton key={index} tag={material} img={`materials/local_specialties/${material.split(" ").join("_")}`} active={characterFilters.localMat.includes(material)} dispatch={() => dispatch(setLocalMats(material))} />)}
+                                            {LocalMats[nation as keyof typeof LocalMats].sort().map((material: string, index) => <FilterButton key={index} tag={material} img={`materials/local_specialties/${material.split(" ").join("_")}`} active={characterFilters.localMat.includes(material)} onClick={() => dispatch(setLocalMats(material))} />)}
                                         </Grid>
                                     </AccordionDetails>
                                 </Accordion>
@@ -162,7 +162,7 @@ function CharacterFilters(props: { characterFilters: CharacterFilterState }) {
                 tag: "nation",
                 component:
                     <Grid container spacing={1}>
-                        {["Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine", "Natlan", "Snezhnaya"].map((nation, index) => <FilterButton key={index} tag={nation} img={`nations/${nation}`} active={characterFilters.nation.includes(nation)} dispatch={() => dispatch(setNation(nation))} />)}
+                        {["Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine", "Natlan", "Snezhnaya"].map((nation, index) => <FilterButton key={index} tag={nation} img={`nations/${nation}`} active={characterFilters.nation.includes(nation)} onClick={() => dispatch(setNation(nation))} />)}
                     </Grid>
             },
             {
@@ -170,8 +170,8 @@ function CharacterFilters(props: { characterFilters: CharacterFilterState }) {
                 tag: "gender",
                 component:
                     <Grid container spacing={1}>
-                        <FilterButton img={`icons/Aether`} tag="Male" active={characterFilters.gender.includes("Male")} dispatch={() => dispatch(setGender("Male"))} />
-                        <FilterButton img={`icons/Lumine`} tag="Female" active={characterFilters.gender.includes("Female")} dispatch={() => dispatch(setGender("Female"))} />
+                        <FilterButton img={`icons/Aether`} tag="Male" active={characterFilters.gender.includes("Male")} onClick={() => dispatch(setGender("Male"))} />
+                        <FilterButton img={`icons/Lumine`} tag="Female" active={characterFilters.gender.includes("Female")} onClick={() => dispatch(setGender("Female"))} />
                     </Grid>
             }
         ]

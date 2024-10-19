@@ -9,21 +9,20 @@ interface FilterButtonProps {
     tag?: string,
     img?: string,
     active?: boolean,
-    dispatch?: () => void
+    onClick: () => void
 }
 
-function FilterButton(
-    {
-        variant = "image",
-        tag,
-        img = `${process.env.REACT_APP_URL}/Unknown.png`,
-        active = false,
-        dispatch
-    }: FilterButtonProps) {
+function FilterButton({
+    variant = "image",
+    tag,
+    img = `${process.env.REACT_APP_URL}/Unknown.png`,
+    active = false,
+    onClick
+}: FilterButtonProps) {
 
     const theme = useTheme()
 
-    const filterStyles: SxProps = {
+    const filterButtonStyles: SxProps = {
         height: variant === "image" ? "38px" : "auto",
         width: "auto",
         p: variant === "image" ? "2.5px" : "6px",
@@ -35,8 +34,8 @@ function FilterButton(
         backgroundColor: active ? `${theme.materialImage.backgroundColor}` : `${theme.card.backgroundColor}`,
         opacity: active ? 1 : 0.35,
         "&:hover": {
-            border: "1px solid dodgerblue",
-            boxShadow: "0 0 5px 1px dodgerblue",
+            border: `1px solid dodgerblue`,
+            boxShadow: `0 0 5px 1px dodgerblue`,
             cursor: "pointer",
         }
     }
@@ -48,9 +47,9 @@ function FilterButton(
                     <Avatar
                         variant="square"
                         src={`${process.env.REACT_APP_URL}/${img}.png`}
-                        sx={filterStyles}
+                        sx={filterButtonStyles}
                         alt={tag}
-                        onClick={dispatch}
+                        onClick={onClick}
                     >
                         <img
                             src={`${process.env.REACT_APP_URL}/Unknown.png`}
@@ -59,7 +58,7 @@ function FilterButton(
                         />
                     </Avatar>
                     :
-                    <Typography sx={filterStyles} onClick={dispatch}>{tag}</Typography>
+                    <Typography sx={filterButtonStyles} onClick={onClick}>{tag}</Typography>
             }
         </CustomTooltip>
     )
