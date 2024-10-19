@@ -188,7 +188,7 @@ function TCGCharacterCardPopup(props: any) {
                             src={(`${process.env.REACT_APP_URL}/elements/${element}.png`)} alt={element}
                             style={{
                                 marginRight: "15px",
-                                width: matches ? "64px" : "32px"
+                                width: matches ? "56px" : "32px"
                             }}
                             onError={ErrorLoadingImage}
                         />
@@ -196,7 +196,7 @@ function TCGCharacterCardPopup(props: any) {
                     <Typography
                         sx={{
                             fontFamily: `${theme.font.genshin.family}`,
-                            fontSize: matches ? "40px" : "20px",
+                            fontSize: matches ? "32px" : "20px",
                             color: `${theme.text.color}`
                         }}
                     >

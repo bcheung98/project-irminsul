@@ -67,7 +67,7 @@ function ArtifactPopup(props: any) {
                     <Typography
                         sx={{
                             fontFamily: `${theme.font.genshin.family}`,
-                            fontSize: matches ? "36px" : "24px",
+                            fontSize: matches ? "28px" : "24px",
                             color: `${theme.text.color}`,
                             p: 2
                         }}

@@ -158,7 +158,7 @@ function TCGActionCardPopup(props: any) {
                     <Typography
                         sx={{
                             fontFamily: `${theme.font.genshin.family}`,
-                            fontSize: matches ? "40px" : "20px",
+                            fontSize: matches ? "32px" : "20px",
                             color: `${theme.text.color}`
                         }}
                     >
