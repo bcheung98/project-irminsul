@@ -83,7 +83,7 @@ function TCGActionCard(props: any) {
                 fullScreen={!matches}
                 maxWidth={false}
             >
-                <TCGActionCardPopup key={name} card={props.card} inDeck={deck.actionCards.includes(props.card)} count={deck.actionCards.filter((card: TCGDeckData) => card === props.card).length} preview={props.preview} />
+                <TCGActionCardPopup key={name} card={props.card} inDeck={deck.actionCards.includes(props.card)} count={deck.actionCards.filter((card: TCGDeckData) => card === props.card).length} preview={props.preview} handleClose={handleClose} />
             </Dialog>
         </React.Fragment>
     )
