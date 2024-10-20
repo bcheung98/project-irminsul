@@ -244,7 +244,7 @@ export const Keywords: TCGKeywordIndexData = {
     "duration": {
         name: "Duration (Rounds)",
         description:
-            <Typography>
+            <Typography gutterBottom sx={DescriptionText}>
                 Each time you reach the end of a Round, <span style={{ color: `white` }}>Duration (Rounds)</span> -1.<br />
                 This card will be discarded immediately once <span style={{ color: `white` }}>Duration (Rounds)</span> runs out.
             </Typography>
@@ -252,7 +252,7 @@ export const Keywords: TCGKeywordIndexData = {
     "usages": {
         name: "Usage(s)",
         description:
-            <Typography>
+            <Typography gutterBottom sx={DescriptionText}>
                 After this card's effect is triggered, 1 <span style={{ color: `white` }}>Usage</span> of it will be consumed.<br />
                 This card will be discarded immediately once it has 0 <span style={{ color: `white` }}>Usages</span> runs out.
             </Typography>
@@ -261,14 +261,14 @@ export const Keywords: TCGKeywordIndexData = {
         name: "Shield",
         image: <img src={`${process.env.REACT_APP_URL}/tcg/icons/Shield.png`} alt="Shield" style={{ width: "32px", height: "32px" }} />,
         description:
-            <Typography>
+            <Typography gutterBottom sx={DescriptionText}>
                 This Shield will be consumed to protect the character who equips it from DMG.
             </Typography>
     },
     "combat action": {
         name: "Combat Action",
         description:
-            <Typography>
+            <Typography gutterBottom sx={DescriptionText}>
                 After you finish 1 Combat Action, it will be your opponent's turn.<br />
                 <span style={{ color: `white` }}>Playing a card from your Hand with this rule is also a Combat Action rather than a Fast Action</span>.
             </Typography>
@@ -276,7 +276,7 @@ export const Keywords: TCGKeywordIndexData = {
     "fast action": {
         name: "Fast Action",
         description:
-            <Typography>
+            <Typography gutterBottom sx={DescriptionText}>
                 You can continue with other actions after conducting 1 Fast action<br />
                 Only after conducting 1 Combat Action will the turn pass over to your opponent.
             </Typography>
@@ -284,7 +284,7 @@ export const Keywords: TCGKeywordIndexData = {
     "prepare": {
         name: "Prepare Skill",
         description:
-            <Typography>
+            <Typography gutterBottom sx={DescriptionText}>
                 Some Skills cannot be used directly. Instead they need to be <span style={{ color: `white` }}>prepared</span> over a certain number of turns.<br />
                 When it is a certain player's turn, and this player's active character is currently <span style={{ color: `white` }}>preparing</span> a Skill, this player's turn will be skipped. If the Skill has finished being <span style={{ color: `white` }}>prepared</span>, the character will directly use that Skill at this time. (Skills that require <span style={{ color: `white` }}>preparing</span> cannot activate effects triggered by "using a Skill")<br />
                 Only active characters can <span style={{ color: `white` }}>prepare</span> Skills, and if an active character who is <span style={{ color: `white` }}>preparing</span> a Skill gets switched off-field, their <span style={{ color: `white` }}>preparation</span> will be interrupted.
@@ -293,21 +293,21 @@ export const Keywords: TCGKeywordIndexData = {
     "charged attack": {
         name: "Charged Attack",
         description:
-            <Typography>
+            <Typography gutterBottom sx={DescriptionText}>
                 Before your Action Phase, should the total number of your Elemental Dice be even, your Normal Attack will be considered a Charged Attack.
             </Typography>
     },
     "plunging attack": {
         name: "Plunging Attack",
         description:
-            <Typography>
+            <Typography gutterBottom sx={DescriptionText}>
                 After a character is switched in to be the Active Character, should their next Combat Action within this Round be a Normal Attack, it will be considered a Plunging Attack for the instance.
             </Typography>
     },
     "immunity to defeat": {
         name: "Immunity to Defeat",
         description:
-            <Typography>
+            <Typography gutterBottom sx={DescriptionText}>
                 Certain effects will grant characters an <span style={{ color: `white` }}>immunity to being defeated</span> when their HP hits 0, and will heal them for a certain amount thereafter.<br />When this occurs, characters will not be regarded as having experienced a <span style={{ color: `white` }}>defeat</span>.<br />(Hence, their attached equipment and statuses will not be removed, and their Energy will remain uncleared.)
             </Typography>
     },
@@ -315,7 +315,7 @@ export const Keywords: TCGKeywordIndexData = {
         name: "Energy",
         image: <img src={`${process.env.REACT_APP_URL}/tcg/icons/dice_alt/N.png`} alt="Energy" style={{ width: "32px", height: "32px" }} />,
         description:
-            <Typography>
+            <Typography gutterBottom sx={DescriptionText}>
                 Characters must consume Energy to use their Elemental Bursts.<br />When characters use an Elemental Skill or a Normal Attack, they will gain 1 Energy.
             </Typography>
     },
@@ -323,7 +323,7 @@ export const Keywords: TCGKeywordIndexData = {
         name: "Omni Element",
         image: <img src={`${process.env.REACT_APP_URL}/tcg/icons/dice_alt/O.png`} alt="Omni" style={{ width: "32px", height: "32px" }} />,
         description:
-            <Typography>
+            <Typography gutterBottom sx={DescriptionText}>
                 The Omni Element can be considered as any kind of element, and can be used to pay for costs of various kinds.
             </Typography>
     },
@@ -331,28 +331,28 @@ export const Keywords: TCGKeywordIndexData = {
         name: "Unaligned Element",
         image: <img src={`${process.env.REACT_APP_URL}/tcg/icons/dice_alt/U.png`} alt="Unaligned" style={{ width: "32px", height: "32px" }} />,
         description:
-            <Typography>
+            <Typography gutterBottom sx={DescriptionText}>
                 You may use Elemental Dice of any element to pay this type of cost.
             </Typography>
     },
     "char closest to current active char": {
         name: "Character Closest to Your Current Active Character",
         description:
-            <Typography>
+            <Typography gutterBottom sx={DescriptionText}>
                 The opposing "character closest to your current active character" is the opposing character whose position is closest to that of your active character.<br />If multiple such characters exist, the one with the foremost position will be viewd as being "closest".
             </Typography>
     },
     "discard": {
         name: "Discard",
         description:
-            <Typography>
+            <Typography gutterBottom sx={DescriptionText}>
                 Use Action Cards or Character Skill effects to Discard Action Cards from Hand or Deck.
             </Typography>
     },
     "tune": {
         name: "Tune",
         description:
-            <Typography>
+            <Typography gutterBottom sx={DescriptionText}>
                 Discard Action Cards from Hand to initiate Elemental Tuning.
             </Typography>
     },
@@ -360,7 +360,7 @@ export const Keywords: TCGKeywordIndexData = {
         name: "Technique",
         image: <img src={`${process.env.REACT_APP_URL}/tcg/icons/subtypes/Technique.png`} alt="Technique" style={{ width: "32px", height: "32px", marginRight: "5px" }} />,
         description:
-            <Typography>
+            <Typography gutterBottom sx={DescriptionText}>
                 When the active character is equipped with a <span style={{ color: `white` }}>Technique</span> card, they can use the corresponding <span style={{ color: `white` }}>Technique</span>.<br />Using a <span style={{ color: `white` }}>Technique</span> counts as a Combat Action. If the character is unable to use Skills due to conditions like Frozen, Petrification, or Stun, they are also unable to use the <span style={{ color: `white` }}>Technique</span>.<br />Using a <span style={{ color: `white` }}>Technique</span> is not considered as using a Skill. Therefore, it cannot trigger effects such as "After using a skill" or "After the character triggers an Elemental Reaction." Damage dealt by using a <span style={{ color: `white` }}>Technique</span> is not considered Damage dealt by the character.
             </Typography>
     }
