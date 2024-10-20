@@ -2,31 +2,25 @@ import * as React from "react"
 import { connect, useDispatch } from "react-redux"
 
 // Component imports
-import TCGCharacterCard from "./TCGCharacterCard"
-import TCGActionCard from "./TCGActionCard"
 import TCGDeck from "./TCGDeck"
+import TCGCharacterCardBrowser from "./TCGCharacterCardBrowser"
+import TCGActionCardBrowser from "./TCGActionCardBrowser"
 import TCGCharacterCardFilters from "./TCGCharacterCardFilters"
 import TCGActionCardFilters from "./TCGActionCardFilters"
+import SearchBar from "../_custom/SearchBar"
+import { CustomToggleButtonText } from "../_custom/CustomToggleButton"
 
 // MUI imports
-import { useTheme, useMediaQuery, Box, Typography, ToggleButtonGroup, Paper, InputBase, Radio, RadioGroup, FormControlLabel, Stack, SwipeableDrawer, Button } from "@mui/material"
+import { useTheme, useMediaQuery, Box, Typography, ToggleButtonGroup, SwipeableDrawer, Button, Dialog } from "@mui/material"
 import Grid from "@mui/material/Grid2"
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward"
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward"
 import FilterAltIcon from "@mui/icons-material/FilterAlt"
 
 // Helper imports
-import { filterTCGCharacterCards } from "../../helpers/FilterTCGCharacterCards"
-import { filterTCGActionCards } from "../../helpers/FilterTCGActionCards"
-import { CustomTooltip } from "../_custom/CustomTooltip"
-import { CustomToggleButton, CustomToggleButtonText } from "../_custom/CustomToggleButton"
 import { clearCharacterFilters } from "../../redux/reducers/TCGCharacterFilterReducer"
 import { clearActionFilters } from "../../redux/reducers/TCGActionFilterReducer"
 
 // Type imports
 import { RootState } from "../../redux/store"
-import { TCGCardData } from "../../types/tcg/TCGData"
-import { TCGDeckData } from "../../types/tcg/TCGDeckData"
 
 function TCGBrowser(props: any) {
 
@@ -36,40 +30,9 @@ function TCGBrowser(props: any) {
 
     const dispatch = useDispatch()
 
-    let { cards, deck, cardCharFilters, cardActionFilters } = props
-
-    const [charSearchValue, setCharSearchValue] = React.useState("")
-    const handleCharInputChange = (event: React.BaseSyntheticEvent) => {
-        setCharSearchValue(event.target.value)
-    }
-
-    const [actionSearchValue, setActionSearchValue] = React.useState("")
-    const handleActionInputChange = (event: React.BaseSyntheticEvent) => {
-        setActionSearchValue(event.target.value)
-    }
-
-    const [charRadioValue, setCharRadioValue] = React.useState("name")
-    const handleCharRadioChange = (event: React.BaseSyntheticEvent) => {
-        setCharRadioValue(event.target.value)
-    }
-
-    const [charSortDirection, setCharSortDirection] = React.useState("asc")
-    const handleCharacterSortDirectionChange = (event: React.BaseSyntheticEvent, newSort: "asc" | "desc") => {
-        if (newSort !== null) {
-            setCharSortDirection(newSort)
-        }
-    }
-
-    const [actionRadioValue, setActionRadioValue] = React.useState("name")
-    const handleActionRadioChange = (event: React.BaseSyntheticEvent) => {
-        setActionRadioValue(event.target.value)
-    }
-
-    const [actionSortDirection, setActionSortDirection] = React.useState("asc")
-    const handleActionSortDirectionChange = (event: React.BaseSyntheticEvent, newSort: "asc" | "desc") => {
-        if (newSort !== null) {
-            setActionSortDirection(newSort)
-        }
+    const [searchValue, setSearchValue] = React.useState("")
+    const handleInputChange = (event: React.BaseSyntheticEvent) => {
+        setSearchValue(event.target.value)
     }
 
     const [view, setView] = React.useState("char")
@@ -80,9 +43,16 @@ function TCGBrowser(props: any) {
             // Clear filter and search values when switching between Character and Action Card view
             dispatch(clearCharacterFilters())
             dispatch(clearActionFilters())
-            setCharSearchValue("")
-            setActionSearchValue("")
+            setSearchValue("")
         }
+    }
+
+    const [dialogOpen, setDialogOpen] = React.useState(false)
+    const handleDialogOpen = () => {
+        setDialogOpen(true)
+    }
+    const handleDialogClose = () => {
+        setDialogOpen(false)
     }
 
     const [drawerOpen, setDrawerOpen] = React.useState(false)
@@ -99,309 +69,105 @@ function TCGBrowser(props: any) {
                 setDrawerOpen(open)
             }
 
-    const SearchBar = {
-        border: `2px solid ${theme.border.color}`,
-        borderRadius: "5px",
-        backgroundColor: `${theme.table.body.backgroundColor}`,
-        display: "flex",
-        height: "40px",
-    }
-
-    const SearchBarInput = {
-        marginLeft: "10px",
-        flex: 1,
-        color: `${theme.text.color}`,
-        fontFamily: `${theme.font.genshin.family}`,
-    }
-
     document.title = `TCG ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
     return (
         <React.Fragment>
-            <Box
+            <Typography
                 sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "left",
+                    mr: "25px",
                     mb: "20px",
-                    height: "30px",
+                    fontFamily: `${theme.font.genshin.family}`,
+                    fontSize: "24px",
+                    color: `${theme.text.color}`,
+                    lineHeight: "40px"
                 }}
             >
-                <Typography
-                    variant="h5"
-                    sx={{
-                        mr: "25px",
-                        fontFamily: `${theme.font.genshin.family}`,
-                        color: `${theme.text.color}`,
-                        textDecoration: "none",
-                    }}
-                >
-                    TCG
-                </Typography>
-            </Box>
+                TCG
+            </Typography>
 
-            <TCGDeck cards={deck.deck} />
+            <TCGDeck cards={props.deck.deck} />
 
-            <Box sx={{ display: "flex", alignItems: "center", mt: "20px", mb: { xs: "20px", sm: "30px" } }}>
-                <ToggleButtonGroup value={view} exclusive onChange={handleView}>
-                    <CustomToggleButtonText value="char">
-                        <Typography sx={{ fontSize: "9pt", fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Character Cards</Typography>
-                    </CustomToggleButtonText>
-                    <CustomToggleButtonText value="action">
-                        <Typography sx={{ fontSize: "9pt", fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Action Cards</Typography>
-                    </CustomToggleButtonText>
-                </ToggleButtonGroup>
-            </Box>
-
-            <Button
-                onClick={toggleDrawer(true)}
-                variant="contained"
-                startIcon={<FilterAltIcon sx={{ color: `${theme.text.color}` }} />}
-                sx={{ display: { xs: "flex", sm: "none" }, mb: "30px", px: 1 }}
-            >
-                <Typography
-                    sx={{
-                        fontFamily: `${theme.font.genshin.family}`,
-                        fontSize: "14px",
-                        textTransform: "none"
-                    }}
-                >
-                    Filters
-                </Typography>
-            </Button>
-
-            {/* Cards */}
+            <Grid container rowSpacing={2} columnSpacing={4} sx={{ mt: "20px", mb: "30px" }}>
+                <Grid size={{ xs: 12, sm: "auto" }}>
+                    <Box sx={{ display: "flex" }}>
+                        <ToggleButtonGroup value={view} exclusive onChange={handleView}>
+                            <CustomToggleButtonText value="char" sx={{ height: "40px" }}>
+                                <Typography sx={{ fontSize: "14px", fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, textTransform: "none" }}>
+                                    Character Cards
+                                </Typography>
+                            </CustomToggleButtonText>
+                            <CustomToggleButtonText value="action" sx={{ height: "40px" }}>
+                                <Typography sx={{ fontSize: "14px", fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, textTransform: "none" }}>
+                                    Action Cards
+                                </Typography>
+                            </CustomToggleButtonText>
+                        </ToggleButtonGroup>
+                    </Box>
+                </Grid>
+                <Grid size="grow">
+                    <Box sx={{ display: "flex" }}>
+                        <Button
+                            onClick={matches ? () => handleDialogOpen() : toggleDrawer(true)}
+                            variant="contained"
+                            startIcon={<FilterAltIcon sx={{ color: `${theme.text.color}` }} />}
+                            sx={{ px: 3, mr: "25px", backgroundColor: `${theme.button.selected}` }}
+                        >
+                            <Typography
+                                sx={{
+                                    fontFamily: `${theme.font.genshin.family}`,
+                                    fontSize: "14px",
+                                    textTransform: "none"
+                                }}
+                            >
+                                Filters
+                            </Typography>
+                        </Button>
+                        <SearchBar placeholder="Search" onChange={handleInputChange} value={searchValue} size={{ width: "80%", height: "40px" }} />
+                    </Box>
+                </Grid>
+            </Grid>
             {
-                cards.cards.length > 0 &&
-                (
-                    view === "char" ?
-                        <Grid container spacing={3}>
-                            <Grid size="grow">
-                                <Grid container rowSpacing={3} columnSpacing={0}>
-                                    {filterTCGCharacterCards(CurrentCharacterCards(cards.cards[0].cards, deck.deck.characterCards, charRadioValue, charSortDirection), cardCharFilters, charSearchValue).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
-                                </Grid>
-                            </Grid>
-                            {
-                                matches &&
-                                <Grid size={2.75}>
-                                    <Paper sx={SearchBar}>
-                                        <InputBase
-                                            sx={SearchBarInput}
-                                            placeholder="Search"
-                                            onChange={handleCharInputChange}
-                                            value={charSearchValue}
-                                        />
-                                    </Paper>
-                                    <TCGCharacterCardFilters />
-                                    <Paper variant="outlined" square
-                                        sx={{
-                                            color: `${theme.text.color}`,
-                                            backgroundColor: `${theme.appbar.backgroundColor}`,
-                                            border: `2px solid ${theme.border.color}`,
-                                            borderRadius: "5px",
-                                        }}
-                                    >
-                                        <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "5px", p: "10px" }}>
-                                            Sort by
-                                        </Typography>
-                                        <Box sx={{ p: "10px", backgroundColor: `${theme.paper.backgroundColor}` }}>
-                                            <Stack direction="row" spacing={4} sx={{ my: "10px" }}>
-                                                <ToggleButtonGroup value={charSortDirection} size="small" exclusive onChange={handleCharacterSortDirectionChange} sx={{ border: `1px solid ${theme.border.color}` }}>
-                                                    <CustomTooltip title="Ascending" arrow placement="top">
-                                                        <CustomToggleButton value="asc">
-                                                            <ArrowUpwardIcon sx={{ color: `${theme.text.color}` }} />
-                                                        </CustomToggleButton>
-                                                    </CustomTooltip>
-                                                    <CustomTooltip title="Descending" arrow placement="top">
-                                                        <CustomToggleButton value="desc">
-                                                            <ArrowDownwardIcon sx={{ color: `${theme.text.color}` }} />
-                                                        </CustomToggleButton>
-                                                    </CustomTooltip>
-                                                </ToggleButtonGroup>
-                                            </Stack>
-                                            <RadioGroup
-                                                value={charRadioValue}
-                                                onChange={handleCharRadioChange}
-                                                sx={{ ml: "5px" }}
-                                            >
-                                                <FormControlLabel value="name" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Name</Typography>} />
-                                                <FormControlLabel value="element" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Element</Typography>} />
-                                                <FormControlLabel value="weapon" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Weapon</Typography>} />
-                                                <FormControlLabel value="energy" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Burst Cost</Typography>} />
-                                            </RadioGroup>
-                                        </Box>
-                                    </Paper>
-                                </Grid>
-                            }
-                        </Grid>
-                        :
-                        <Grid container spacing={3}>
-                            <Grid size="grow">
-                                <Grid container rowSpacing={3} columnSpacing={0}>
-                                    {filterTCGActionCards(CurrentActionCards(cards.cards[1].cards, deck.deck.actionCards, actionRadioValue, actionSortDirection), cardActionFilters, actionSearchValue).map(card => <TCGActionCard key={card.name} card={card} preview={false} />)}
-                                </Grid>
-                            </Grid>
-                            {
-                                matches &&
-                                <Grid size={2.75}>
-                                    <Paper sx={SearchBar}>
-                                        <InputBase
-                                            sx={SearchBarInput}
-                                            placeholder="Search"
-                                            onChange={handleActionInputChange}
-                                            value={actionSearchValue}
-                                        />
-                                    </Paper>
-                                    <TCGActionCardFilters />
-                                    <Paper variant="outlined" square
-                                        sx={{
-                                            color: `${theme.text.color}`,
-                                            backgroundColor: `${theme.appbar.backgroundColor}`,
-                                            border: `2px solid ${theme.border.color}`,
-                                            borderRadius: "5px",
-                                        }}
-                                    >
-                                        <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "5px", p: "10px" }}>
-                                            Sort by
-                                        </Typography>
-                                        <Box sx={{ p: "10px", backgroundColor: `${theme.paper.backgroundColor}` }}>
-                                            <Stack direction="row" spacing={4} sx={{ my: "10px" }}>
-                                                <ToggleButtonGroup value={actionSortDirection} size="small" exclusive onChange={handleActionSortDirectionChange} sx={{ border: `1px solid ${theme.border.color}` }}>
-                                                    <CustomTooltip title="Ascending" arrow placement="top">
-                                                        <CustomToggleButton value="asc">
-                                                            <ArrowUpwardIcon sx={{ color: `${theme.text.color}` }} />
-                                                        </CustomToggleButton>
-                                                    </CustomTooltip>
-                                                    <CustomTooltip title="Descending" arrow placement="top">
-                                                        <CustomToggleButton value="desc">
-                                                            <ArrowDownwardIcon sx={{ color: `${theme.text.color}` }} />
-                                                        </CustomToggleButton>
-                                                    </CustomTooltip>
-                                                </ToggleButtonGroup>
-                                            </Stack>
-                                            <RadioGroup
-                                                value={actionRadioValue}
-                                                onChange={handleActionRadioChange}
-                                                sx={{ ml: "5px" }}
-                                            >
-                                                <FormControlLabel value="name" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Name</Typography>} />
-                                                <FormControlLabel value="cardGroup" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Card Group</Typography>} />
-                                            </RadioGroup>
-                                        </Box>
-                                    </Paper>
-                                </Grid>
-                            }
-                        </Grid>
-                )
+                view === "char" ?
+                    <TCGCharacterCardBrowser searchValue={searchValue} />
+                    :
+                    <TCGActionCardBrowser searchValue={searchValue} />
             }
-            <SwipeableDrawer
-                anchor="bottom"
-                open={drawerOpen}
-                onClose={toggleDrawer(false)}
-                onOpen={toggleDrawer(true)}
-                sx={{ [`& .MuiDrawer-paper`]: { borderTop: `2px solid ${theme.border.colorAlt}`, backgroundColor: `${theme.appbar.backgroundColor}`, height: "50vh", p: 2 } }}
-            >
-                {
-                    view === "char" ?
-                        <React.Fragment>
-                            <Paper sx={SearchBar}>
-                                <InputBase
-                                    sx={SearchBarInput}
-                                    placeholder="Search"
-                                    onChange={handleCharInputChange}
-                                    value={charSearchValue}
-                                />
-                            </Paper>
-                            <TCGCharacterCardFilters />
-                            <Paper variant="outlined" square
-                                sx={{
-                                    color: `${theme.text.color}`,
-                                    backgroundColor: `${theme.appbar.backgroundColor}`,
-                                    border: `2px solid ${theme.border.color}`,
-                                    borderRadius: "5px",
-                                }}
-                            >
-                                <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "5px", p: "10px" }}>
-                                    Sort by
-                                </Typography>
-                                <Box sx={{ p: "10px", backgroundColor: `${theme.paper.backgroundColor}` }}>
-                                    <Stack direction="row" spacing={4} sx={{ my: "10px" }}>
-                                        <ToggleButtonGroup value={charSortDirection} size="small" exclusive onChange={handleCharacterSortDirectionChange} sx={{ border: `1px solid ${theme.border.color}` }}>
-                                            <CustomTooltip title="Ascending" arrow placement="top">
-                                                <CustomToggleButton value="asc">
-                                                    <ArrowUpwardIcon sx={{ color: `${theme.text.color}` }} />
-                                                </CustomToggleButton>
-                                            </CustomTooltip>
-                                            <CustomTooltip title="Descending" arrow placement="top">
-                                                <CustomToggleButton value="desc">
-                                                    <ArrowDownwardIcon sx={{ color: `${theme.text.color}` }} />
-                                                </CustomToggleButton>
-                                            </CustomTooltip>
-                                        </ToggleButtonGroup>
-                                    </Stack>
-                                    <RadioGroup
-                                        value={charRadioValue}
-                                        onChange={handleCharRadioChange}
-                                        sx={{ ml: "5px" }}
-                                    >
-                                        <FormControlLabel value="name" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Name</Typography>} />
-                                        <FormControlLabel value="element" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Element</Typography>} />
-                                        <FormControlLabel value="weapon" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Weapon</Typography>} />
-                                        <FormControlLabel value="energy" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Burst Cost</Typography>} />
-                                    </RadioGroup>
-                                </Box>
-                            </Paper>
-                        </React.Fragment>
-                        :
-                        <React.Fragment>
-                            <Paper sx={SearchBar}>
-                                <InputBase
-                                    sx={SearchBarInput}
-                                    placeholder="Search"
-                                    onChange={handleActionInputChange}
-                                    value={actionSearchValue}
-                                />
-                            </Paper>
-                            <TCGActionCardFilters />
-                            <Paper variant="outlined" square
-                                sx={{
-                                    color: `${theme.text.color}`,
-                                    backgroundColor: `${theme.appbar.backgroundColor}`,
-                                    border: `2px solid ${theme.border.color}`,
-                                    borderRadius: "5px",
-                                }}
-                            >
-                                <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, ml: "5px", p: "10px" }}>
-                                    Sort by
-                                </Typography>
-                                <Box sx={{ p: "10px", backgroundColor: `${theme.paper.backgroundColor}` }}>
-                                    <Stack direction="row" spacing={4} sx={{ my: "10px" }}>
-                                        <ToggleButtonGroup value={actionSortDirection} size="small" exclusive onChange={handleActionSortDirectionChange} sx={{ border: `1px solid ${theme.border.color}` }}>
-                                            <CustomTooltip title="Ascending" arrow placement="top">
-                                                <CustomToggleButton value="asc">
-                                                    <ArrowUpwardIcon sx={{ color: `${theme.text.color}` }} />
-                                                </CustomToggleButton>
-                                            </CustomTooltip>
-                                            <CustomTooltip title="Descending" arrow placement="top">
-                                                <CustomToggleButton value="desc">
-                                                    <ArrowDownwardIcon sx={{ color: `${theme.text.color}` }} />
-                                                </CustomToggleButton>
-                                            </CustomTooltip>
-                                        </ToggleButtonGroup>
-                                    </Stack>
-                                    <RadioGroup
-                                        value={actionRadioValue}
-                                        onChange={handleActionRadioChange}
-                                        sx={{ ml: "5px" }}
-                                    >
-                                        <FormControlLabel value="name" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Name</Typography>} />
-                                        <FormControlLabel value="cardGroup" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Card Group</Typography>} />
-                                    </RadioGroup>
-                                </Box>
-                            </Paper>
-                        </React.Fragment>
-                }
-            </SwipeableDrawer>
+            {
+                matches ?
+                    <Dialog
+                        open={dialogOpen}
+                        onClose={handleDialogClose}
+                    >
+                        {
+                            view === "char" ?
+                                <TCGCharacterCardFilters handleClose={handleDialogClose} />
+                                :
+                                <TCGActionCardFilters handleClose={handleDialogClose} />
+                        }
+                    </Dialog>
+                    :
+                    <SwipeableDrawer
+                        anchor="bottom"
+                        open={drawerOpen}
+                        onClose={toggleDrawer(false)}
+                        onOpen={toggleDrawer(true)}
+                        sx={{
+                            [`& .MuiDrawer-paper`]: {
+                                borderTop: `2px solid ${theme.border.colorAlt}`,
+                                backgroundColor: `${theme.appbar.backgroundColor}`,
+                                height: "auto",
+                            }
+                        }}
+                    >
+                        {
+                            view === "char" ?
+                                <TCGCharacterCardFilters handleClose={handleDialogClose} />
+                                :
+                                <TCGActionCardFilters handleClose={handleDialogClose} />
+                        }
+                    </SwipeableDrawer>
+            }
         </React.Fragment>
     )
 }
@@ -414,55 +180,3 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 export default connect(mapStateToProps)(TCGBrowser)
-
-// Filters out Character Cards that are already in the deck, then sorts them based on the selected option
-function CurrentCharacterCards(cards: TCGCardData[], deck: TCGDeckData[], sortBy: string, sortDirection: string) {
-    let deckNames = deck.map(card => card.name)
-    let charCardResult = cards.filter(card => !deckNames.includes(card.name))
-    switch (sortBy) {
-        case "name":
-            charCardResult = charCardResult.sort((a, b) => a.name.localeCompare(b.name))
-            break
-        case "element":
-            charCardResult = charCardResult.sort((a, b) => a.element.localeCompare(b.element) || a.name.localeCompare(b.name))
-            break
-        case "weapon":
-            charCardResult = charCardResult.sort((a, b) => a.weapon.localeCompare(b.weapon) || a.name.localeCompare(b.name))
-            break
-        case "energy":
-            charCardResult = charCardResult.sort((a: any, b: any) => b.talents.burst.energy - a.talents.burst.energy || a.name.localeCompare(b.name))
-            break
-        default:
-            break
-    }
-    if (sortDirection === "asc") {
-        return charCardResult
-    }
-    else {
-        return charCardResult.reverse()
-    }
-}
-
-// Filters out Action Cards that have been added twice to the deck, then sorts them based on the selected option
-function CurrentActionCards(cards: TCGCardData[], deck: TCGDeckData[], sortBy: string, sortDirection: string) {
-    let deckNames = deck.map(card => card.name)
-    let counts: { [propName: string]: number } = {}
-    deckNames.forEach((card: string) => counts[card as keyof {}] === undefined ? counts[card] = 1 : counts[card] += 1)
-    let actionCardResult = cards.filter(card => counts[card.name as keyof {}] !== 2)
-    switch (sortBy) {
-        case "name":
-            actionCardResult = actionCardResult.sort((a, b) => a.name.localeCompare(b.name))
-            break
-        case "cardGroup":
-            actionCardResult = actionCardResult.sort((a, b) => a.subType.localeCompare(b.subType) || a.name.localeCompare(b.name))
-            break
-        default:
-            break
-    }
-    if (sortDirection === "asc") {
-        return actionCardResult
-    }
-    else {
-        return actionCardResult.reverse()
-    }
-}
