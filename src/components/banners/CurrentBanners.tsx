@@ -15,6 +15,7 @@ import { isTBA } from "../../helpers/isTBA"
 // Type imports
 import { RootState } from "../../redux/store"
 import { BannerData } from "../../types/banner/BannerData"
+import Countdown from "../_custom/Countdown"
 
 function CurrentBanners(props: any) {
 
@@ -66,6 +67,7 @@ function CurrentBanners(props: any) {
                                             {currentCharacterBanners[0].fiveStars.map((item: string, index: number) => <CustomCard key={index} type="character" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
                                             {currentCharacterBanners[0].fourStars.map((item: string, index: number) => <CustomCard key={index} type="character" name={item} rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
                                         </Grid>
+                                        <Countdown date={createDateObject(currentCharacterBanners[0].end)} />
                                     </Grid>
                                 }
                                 {
@@ -78,6 +80,7 @@ function CurrentBanners(props: any) {
                                             {currentWeaponBanners[0].fiveStars.map((item: string, index: number) => <CustomCard key={index} type="weapon" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
                                             {currentWeaponBanners[0].fourStars.map((item: string, index: number) => <CustomCard key={index} type="weapon" name={item} rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
                                         </Grid>
+                                        <Countdown date={createDateObject(currentWeaponBanners[0].end)} />
                                     </Grid>
                                 }
                             </Grid>
@@ -97,20 +100,22 @@ function CurrentBanners(props: any) {
                                         {currentChronicledWish[0].weapons.fiveStars.map((item: string, index: number) => <CustomCard key={index} type="weapon" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
                                         {currentChronicledWish[0].weapons.fourStars.map((item: string, index: number) => <CustomCard key={index} type="weapon" name={item} rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
                                     </Grid>
+                                    <Countdown date={createDateObject(currentChronicledWish[0].end)} />
                                 </Box>
                             }
                         </React.Fragment>
                         :
-                        <React.Fragment>
-                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px", mb: "10px" }}>
-                                There are no active banners
-                            </Typography>
-                            <img
-                                src={`${process.env.REACT_APP_URL}/emotes/error9.png`}
-                                alt="No Banners"
-                                style={{ width: "150px" }}
-                            />
-                        </React.Fragment>
+                        // <React.Fragment>
+                        //     <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px", mb: "10px" }}>
+                        //         There are no active banners
+                        //     </Typography>
+                        //     <img
+                        //         src={`${process.env.REACT_APP_URL}/emotes/error9.png`}
+                        //         alt="No Banners"
+                        //         style={{ width: "150px" }}
+                        //     />
+                        // </React.Fragment>
+                        null
                 }
             </Box>
         </Box>
