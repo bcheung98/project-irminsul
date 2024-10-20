@@ -1,8 +1,11 @@
 import * as React from "react"
-import { useTheme } from "@mui/material/styles"
-import { Box, Table, TableBody, TableContainer, Toolbar, Typography, Paper } from "@mui/material"
-import { EnhancedTableHead, getComparator, stableSort } from "../_custom/CustomSortTable"
+
+// Component imports
 import CharacterRow from "./CharacterRow"
+import { EnhancedTableHead, getComparator, stableSort } from "../_custom/CustomSortTable"
+
+// MUI imports
+import { useTheme, Table, TableBody, TableContainer, Toolbar, Typography, Paper } from "@mui/material"
 
 // Type imports
 import { CharacterData } from "../../types/character/CharacterData"
@@ -37,44 +40,42 @@ function CharacterList(props: any) {
     }) as CharacterRowData)
 
     return (
-        <Box sx={{ width: "90%" }}>
-            <Paper
-                sx={{
-                    backgroundColor: `${theme.paper.backgroundColor}`,
-                    border: `2px solid ${theme.border.color}`,
-                    borderRadius: "5px",
-                    color: `${theme.text.color}`,
-                }}
-            >
-                <Toolbar sx={{ backgroundColor: `${theme.toolbar.backgroundColor}`, borderRadius: "5px 5px 0px 0px" }}>
-                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px" }}>
-                        {props.characters.length} {props.characters.length === 1 ? "Character" : "Characters"}
-                    </Typography>
-                </Toolbar>
-                <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "0px" }} />
-                <TableContainer>
-                    <Table>
-                        <EnhancedTableHead
-                            order={order}
-                            orderBy={orderBy}
-                            onRequestSort={handleRequestSort}
-                            rowCount={rows.length}
-                            headCells={headCells}
-                        />
-                        <TableBody>
-                            {
-                                stableSort(rows, getComparator(order, orderBy))
-                                    .map((row, index) => {
-                                        return (
-                                            <CharacterRow key={index} row={row} characters={props.characters} />
-                                        )
-                                    })
-                            }
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </Paper>
-        </Box>
+        <Paper
+            sx={{
+                backgroundColor: `${theme.paper.backgroundColor}`,
+                border: `2px solid ${theme.border.color}`,
+                borderRadius: "5px",
+                color: `${theme.text.color}`,
+            }}
+        >
+            <Toolbar sx={{ backgroundColor: `${theme.toolbar.backgroundColor}`, borderRadius: "5px 5px 0px 0px" }}>
+                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px" }}>
+                    {props.characters.length} {props.characters.length === 1 ? "Character" : "Characters"}
+                </Typography>
+            </Toolbar>
+            <hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "0px" }} />
+            <TableContainer>
+                <Table>
+                    <EnhancedTableHead
+                        order={order}
+                        orderBy={orderBy}
+                        onRequestSort={handleRequestSort}
+                        rowCount={rows.length}
+                        headCells={headCells}
+                    />
+                    <TableBody>
+                        {
+                            stableSort(rows, getComparator(order, orderBy))
+                                .map((row, index) => {
+                                    return (
+                                        <CharacterRow key={index} row={row} characters={props.characters} />
+                                    )
+                                })
+                        }
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Paper>
     )
 
 }
