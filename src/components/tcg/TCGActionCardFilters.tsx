@@ -68,6 +68,11 @@ function TCGActionCardFilter(props: {
             }
         ]
 
+    const radioOptions: { name: string, value: string }[] = [
+        { name: "Name", value: "name" },
+        { name: "Card Group", value: "group" },
+    ]
+
     return (
         <Box
             sx={{
@@ -155,8 +160,22 @@ function TCGActionCardFilter(props: {
                     onChange={handleActionRadioChange}
                     sx={{ ml: "5px", mt: "5px" }}
                 >
-                    <FormControlLabel value="name" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Name</Typography>} />
-                    <FormControlLabel value="cardGroup" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Card Group</Typography>} />
+                    {
+                        radioOptions.map((option) =>
+                            <FormControlLabel
+                                key={option.value}
+                                value={option.value}
+                                control={
+                                    <Radio size="small" sx={{ color: `${theme.text.color}` }} />
+                                }
+                                label={
+                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "16px", color: `${theme.text.color}` }}>
+                                        {option.name}
+                                    </Typography>
+                                }
+                            />
+                        )
+                    }
                 </RadioGroup>
             </Box>
         </Box>

@@ -76,6 +76,13 @@ function TCGCharacterCardFilter(props: {
             }
         ]
 
+    const radioOptions: { name: string, value: string }[] = [
+        { name: "Name", value: "name" },
+        { name: "Element", value: "element" },
+        { name: "Weapon", value: "weapon" },
+        { name: "Burst Cost", value: "energy" },
+    ]
+
     return (
         <Box
             sx={{
@@ -163,10 +170,22 @@ function TCGCharacterCardFilter(props: {
                     onChange={handleCharRadioChange}
                     sx={{ ml: "5px", mt: "5px" }}
                 >
-                    <FormControlLabel value="name" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Name</Typography>} />
-                    <FormControlLabel value="element" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Element</Typography>} />
-                    <FormControlLabel value="weapon" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Weapon</Typography>} />
-                    <FormControlLabel value="energy" control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />} label={<Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>Burst Cost</Typography>} />
+                    {
+                        radioOptions.map((option) =>
+                            <FormControlLabel
+                                key={option.value}
+                                value={option.value}
+                                control={
+                                    <Radio size="small" sx={{ color: `${theme.text.color}` }} />
+                                }
+                                label={
+                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "16px", color: `${theme.text.color}` }}>
+                                        {option.name}
+                                    </Typography>
+                                }
+                            />
+                        )
+                    }
                 </RadioGroup>
             </Box>
         </Box>
