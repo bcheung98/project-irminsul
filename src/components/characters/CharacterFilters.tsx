@@ -22,7 +22,7 @@ import { RootState } from "../../redux/store"
 
 function CharacterFilters(props: {
     characterFilters: CharacterFilterState,
-    handleClose?: () => void
+    handleClose?: (arg0: any) => void
 }) {
 
     const theme = useTheme()

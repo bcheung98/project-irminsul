@@ -22,7 +22,7 @@ import { RootState } from "../../redux/store"
 
 function TCGActionCardFilter(props: {
     cardActionFilters: TCGActionFilterState,
-    handleClose?: () => void
+    handleClose?: (arg0: any) => void
 }) {
 
     const theme = useTheme()

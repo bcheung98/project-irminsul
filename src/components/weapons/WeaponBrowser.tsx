@@ -162,7 +162,7 @@ function WeaponBrowser(props: any) {
                             }
                         }}
                     >
-                        <WeaponFilters />
+                        <WeaponFilters handleClose={toggleDrawer(false)} />
                     </SwipeableDrawer>
             }
         </React.Fragment>

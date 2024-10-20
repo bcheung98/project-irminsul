@@ -181,7 +181,7 @@ function CharacterBrowser(props: any) {
                                 }
                             }}
                         >
-                            <CharacterFilters />
+                            <CharacterFilters handleClose={toggleDrawer(false)} />
                         </SwipeableDrawer>
                 }
             </Grid>

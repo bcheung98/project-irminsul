@@ -161,9 +161,9 @@ function TCGBrowser(props: any) {
                     >
                         {
                             view === "char" ?
-                                <TCGCharacterCardFilters handleClose={handleDialogClose} />
+                                <TCGCharacterCardFilters handleClose={toggleDrawer(false)} />
                                 :
-                                <TCGActionCardFilters handleClose={handleDialogClose} />
+                                <TCGActionCardFilters handleClose={toggleDrawer(false)} />
                         }
                     </SwipeableDrawer>
             }

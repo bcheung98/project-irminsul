@@ -22,7 +22,7 @@ import { RootState } from "../../redux/store"
 
 function TCGCharacterCardFilter(props: {
     cardCharFilters: TCGCharacterFilterState,
-    handleClose?: () => void
+    handleClose?: (arg0: any) => void
 }) {
 
     const theme = useTheme()

@@ -20,7 +20,7 @@ import { RootState } from "../../redux/store"
 
 function WeaponFilters(props: {
     weaponFilters: WeaponFilterState,
-    handleClose?: () => void
+    handleClose?: (arg0: any) => void
 }) {
 
     const theme = useTheme()
