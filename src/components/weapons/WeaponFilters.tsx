@@ -103,7 +103,8 @@ function WeaponFilters(props: {
                 backgroundColor: `${theme.card.backgroundColor}`,
                 border: { xs: "none", sm: `2px solid ${theme.border.color}` },
                 borderRadius: "5px",
-                width: "100%"
+                width: "100%",
+                overflow: { xs: "none", sm: "hidden" }
             }}
         >
             <AppBar position="static"
