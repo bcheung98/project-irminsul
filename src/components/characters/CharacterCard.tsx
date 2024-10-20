@@ -7,37 +7,14 @@ import { Typography, Card, CardContent, ButtonBase, Box } from "@mui/material"
 
 // Helper imports
 import { CustomTooltip } from "../_custom/CustomTooltip"
-import { GetRarityColor } from "../../helpers/RarityColors"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
+import CustomCard from "../_custom/CustomCard"
 
 function CharacterCard(props: any) {
 
     const theme = useTheme()
 
     let { name, rarity, element, weapon } = props.character
-
-    const characterIconBackground = {
-        backgroundColor: `${theme.materialImage.backgroundColor}`,
-        backgroundSize: "100%",
-        border: `1px solid ${theme.border.color}`,
-        borderRadius: "5px",
-        boxSizing: "content-box",
-        width: "96px",
-        height: "96px",
-
-        // Comment out following line if using new icon
-        // backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
-
-        // Comment out following line if using old icon
-        borderBottom: `5px solid ${GetRarityColor(rarity)}`,
-
-    } as React.CSSProperties
-
-    // Old Icon: 
-    // const characterIcon = `${process.env.REACT_APP_URL}/characters/icons/${name.split(" ").join("_")}.png`
-
-    // New Icon:
-    const characterIcon = `${process.env.REACT_APP_URL}/characters/avatars/${name.split(" ").join("_")}.png`
 
     return (
         <Card variant="outlined"
@@ -54,26 +31,24 @@ function CharacterCard(props: any) {
                 <Box sx={{ display: "flex", mx: "12px", mt: "10px" }}>
                     <Box sx={{ flexGrow: 1 }}>
                         <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                            <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
+                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px", color: `${theme.text.color}` }}>
                                 {name}
                             </Typography>
                         </ButtonBase>
                     </Box>
                     <Box>
                         <CustomTooltip title={element} arrow placement="top">
-                            <img style={{ height: "32px" }} src={(`${process.env.REACT_APP_URL}/elements/${element}.png`)} alt={element} onError={ErrorLoadingImage} />
+                            <img style={{ height: "32px" }} src={`${process.env.REACT_APP_URL}/elements/${element}.png`} alt={element} onError={ErrorLoadingImage} />
                         </CustomTooltip>
                         <CustomTooltip title={weapon} arrow placement="top">
-                            <img style={{ height: "32px", marginLeft: "2px" }} src={(`${process.env.REACT_APP_URL}/weapons/icons/${weapon}.png`)} alt={weapon} onError={ErrorLoadingImage} />
+                            <img style={{ height: "32px", marginLeft: "2px" }} src={`${process.env.REACT_APP_URL}/weapons/icons/${weapon}.png`} alt={weapon} onError={ErrorLoadingImage} />
                         </CustomTooltip>
                     </Box>
                 </Box>
                 <Box sx={{ display: "flex", mx: "10px", mt: "5px" }}>
-                    <Box sx={{ mr: "15px" }}>
-                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                            <img src={characterIcon} alt={name} style={characterIconBackground} onError={ErrorLoadingImage} />
-                        </ButtonBase>
-                        <img src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity}
+                    <Box sx={{ mr: "10px" }}>
+                        <CustomCard name={name} type="character" rarity={rarity} size="96px" variant="avatar" />
+                        <img src={`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`} alt={rarity}
                             style={{
                                 display: "block",
                                 marginLeft: "auto",
@@ -85,7 +60,7 @@ function CharacterCard(props: any) {
                         />
                     </Box>
                     <Box>
-                        <CharacterMaterialGrid character={props.character} />
+                        <CharacterMaterialGrid element={element} materials={props.character.materials} />
                     </Box>
                 </Box>
             </CardContent>
