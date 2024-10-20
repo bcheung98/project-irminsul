@@ -1,7 +1,7 @@
 import * as React from "react"
 
 // MUI imports
-import { Typography } from "@mui/material"
+import { useTheme, Typography } from "@mui/material"
 
 // Helper imports
 import { themes } from "../../redux/reducers/ThemeReducer"
@@ -12,6 +12,14 @@ import { TCGPhysical, TCGPyro, TCGHydro, TCGElectro, TCGCryo, TCGAnemo, TCGGeo, 
 import { TCGKeywordIndexData } from "../../types/tcg/TCGKeywordIndexData"
 
 const theme = themes[Number(localStorage.getItem("theme"))].theme
+
+const DescriptionText = () => {
+    const theme = useTheme()
+    return {
+        color: `${theme.text.colorAlt}`,
+        fontSize: { xs: "14px", sm: "16px" }
+    }
+}
 
 export const Keywords: TCGKeywordIndexData = {
 
@@ -31,7 +39,7 @@ export const Keywords: TCGKeywordIndexData = {
         image: <TCGPyro />,
         description:
             <React.Fragment>
-                <Typography gutterBottom>
+                <Typography gutterBottom sx={DescriptionText}>
                     Applies <span className="text-pyro">Pyro</span> and can trigger the following Elemental Reactions:
                 </Typography>
                 <Reactions.Melt element="Pyro" />
@@ -56,7 +64,7 @@ export const Keywords: TCGKeywordIndexData = {
         image: <TCGPyro />,
         description:
             <React.Fragment>
-                <Typography gutterBottom>
+                <Typography gutterBottom sx={DescriptionText}>
                     When <span className="text-pyro">Pyro</span> is applied without dealing any DMG, the Elemental Reaction triggered will ignore DMG-dealing effects:
                 </Typography>
                 <Reactions.Melt element="Pyro" application />
@@ -70,7 +78,7 @@ export const Keywords: TCGKeywordIndexData = {
         image: <TCGHydro />,
         description:
             <React.Fragment>
-                <Typography gutterBottom>
+                <Typography gutterBottom sx={DescriptionText}>
                     Applies <span className="text-hydro">Hydro</span> and can trigger the following Elemental Reactions:
                 </Typography>
                 <Reactions.Vaporize element="Hydro" />
@@ -95,7 +103,7 @@ export const Keywords: TCGKeywordIndexData = {
         image: <TCGHydro />,
         description:
             <React.Fragment>
-                <Typography gutterBottom>
+                <Typography gutterBottom sx={DescriptionText}>
                     When <span className="text-hydro">Hydro</span> is applied without dealing any DMG, the Elemental Reaction triggered will ignore DMG-dealing effects:
                 </Typography>
                 <Reactions.Vaporize element="Hydro" application />
@@ -109,7 +117,7 @@ export const Keywords: TCGKeywordIndexData = {
         image: <TCGElectro />,
         description:
             <React.Fragment>
-                <Typography gutterBottom>
+                <Typography gutterBottom sx={DescriptionText}>
                     Applies <span className="text-electro">Electro</span> and can trigger the following Elemental Reactions:
                 </Typography>
                 <Reactions.Overloaded element="Electro" />
@@ -134,7 +142,7 @@ export const Keywords: TCGKeywordIndexData = {
         image: <TCGElectro />,
         description:
             <React.Fragment>
-                <Typography gutterBottom>
+                <Typography gutterBottom sx={DescriptionText}>
                     When <span className="text-electro">Electro</span> is applied without dealing any DMG, the Elemental Reaction triggered will ignore DMG-dealing effects:
                 </Typography>
                 <Reactions.Overloaded element="Electro" application />
@@ -148,7 +156,7 @@ export const Keywords: TCGKeywordIndexData = {
         image: <TCGCryo />,
         description:
             <React.Fragment>
-                <Typography gutterBottom>
+                <Typography gutterBottom sx={DescriptionText}>
                     Applies <span className="text-cryo">Cryo</span> and can trigger the following Elemental Reactions:
                 </Typography>
                 <Reactions.Melt element="Cryo" />
@@ -171,7 +179,7 @@ export const Keywords: TCGKeywordIndexData = {
         image: <TCGCryo />,
         description:
             <React.Fragment>
-                <Typography gutterBottom>
+                <Typography gutterBottom sx={DescriptionText}>
                     When <span className="text-cryo">Cryo</span> is applied without dealing any DMG, the Elemental Reaction triggered will ignore DMG-dealing effects:
                 </Typography>
                 <Reactions.Melt element="Cryo" application />
@@ -184,7 +192,7 @@ export const Keywords: TCGKeywordIndexData = {
         image: <TCGAnemo />,
         description:
             <React.Fragment>
-                <Typography gutterBottom>
+                <Typography gutterBottom sx={DescriptionText}>
                     Reacts with Elements if they are already applied:
                 </Typography>
                 <Reactions.Swirl element="Cryo" />
@@ -198,7 +206,7 @@ export const Keywords: TCGKeywordIndexData = {
         image: <TCGGeo />,
         description:
             <React.Fragment>
-                <Typography gutterBottom>
+                <Typography gutterBottom sx={DescriptionText}>
                     Reacts with Elements if they are already applied:
                 </Typography>
                 <Reactions.Crystallize element="Cryo" />
@@ -212,7 +220,7 @@ export const Keywords: TCGKeywordIndexData = {
         image: <TCGDendro />,
         description:
             <React.Fragment>
-                <Typography gutterBottom>
+                <Typography gutterBottom sx={DescriptionText}>
                     Applies <span className="text-dendro">Dendro</span> and can trigger the following Elemental Reactions:
                 </Typography>
                 <Reactions.Bloom element="Dendro" />

@@ -274,7 +274,7 @@ const TitleText = () => {
     const theme = useTheme()
     return {
         fontFamily: `${theme.font.genshin.family}`,
-        fontSize: "20px",
+        fontSize: { xs: "16px", sm: "20px" },
         color: `${theme.text.color}`,
         ml: "5px"
     }
@@ -282,7 +282,10 @@ const TitleText = () => {
 
 const DescriptionText = () => {
     const theme = useTheme()
-    return { color: `${theme.text.colorAlt}` }
+    return {
+        color: `${theme.text.colorAlt}`,
+        fontSize: { xs: "14px", sm: "16px" }
+    }
 }
 
 const Plus = () => {
