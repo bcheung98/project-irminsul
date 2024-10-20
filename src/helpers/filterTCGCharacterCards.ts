@@ -15,5 +15,26 @@ export const filterTCGCharacterCards = (characterCards: TCGCardData[], filters: 
     if (searchValue !== "") {
         cards = cards.filter(card => card.name.toLowerCase().includes(searchValue.toLowerCase()))
     }
-    return cards
+    switch (filters.sortBy) {
+        case "name":
+            cards = cards.sort((a, b) => a.name.localeCompare(b.name))
+            break
+        case "element":
+            cards = cards.sort((a, b) => a.element.localeCompare(b.element) || a.name.localeCompare(b.name))
+            break
+        case "weapon":
+            cards = cards.sort((a, b) => a.weapon.localeCompare(b.weapon) || a.name.localeCompare(b.name))
+            break
+        case "energy":
+            cards = cards.sort((a: any, b: any) => b.talents.burst.cost.split(" ")[1].slice(0, -1) > a.talents.burst.cost.split(" ")[1].slice(0, -1) || a.name.localeCompare(b.name))
+            break
+        default:
+            break
+    }
+    if (filters.sortDirection === "asc") {
+        return cards
+    }
+    else {
+        return cards.reverse()
+    }
 }

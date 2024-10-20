@@ -12,5 +12,20 @@ export function filterTCGActionCards(actionCards: TCGCardData[], filters: TCGAct
     if (searchValue !== "") {
         cards = cards.filter(card => card.name.toLowerCase().includes(searchValue.toLowerCase()))
     }
-    return cards
+    switch (filters.sortBy) {
+        case "name":
+            cards = cards.sort((a, b) => a.name.localeCompare(b.name))
+            break
+        case "group":
+            cards = cards.sort((a, b) => a.subType.localeCompare(b.subType) || a.name.localeCompare(b.name))
+            break
+        default:
+            break
+    }
+    if (filters.sortDirection === "asc") {
+        return cards
+    }
+    else {
+        return cards.reverse()
+    }
 }
