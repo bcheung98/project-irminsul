@@ -276,34 +276,31 @@ function TCGActionCardPopup(props: any) {
                     <AppBar position="sticky"
                         sx={{
                             backgroundColor: `${theme.appbar.backgroundColor}`,
-                            borderTop: `2px solid ${theme.border.color}`,
                             borderBottom: `1px solid ${theme.border.color}`,
                             px: 2,
                             py: 1
                         }}
                     >
-                        {
-                            props.preview === false &&
-                            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                <Grid container spacing={2}>
-                                    {
-                                        props.count < 2 &&
-                                        <Button variant="contained" sx={{ height: "24px", px: 1 }} onClick={() => dispatch(addActionCard(props.card))}>
-                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11.5px" }}>Add to Deck</Typography>
-                                        </Button>
-                                    }
-                                    {
-                                        props.inDeck === true &&
-                                        <Button variant="contained" color="error" sx={{ height: "24px", px: 1 }} onClick={() => dispatch(removeActionCard(props.card))}>
-                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11.5px" }}>Remove from Deck</Typography>
-                                        </Button>
-                                    }
-                                </Grid>
-                                <IconButton onClick={props.handleClose}>
-                                    <CloseIcon sx={{ color: `white` }} />
-                                </IconButton>
-                            </Box>
-                        }
+                        <Box sx={{ display: "flex", justifyContent: !props.preview ? "space-between" : "right", alignItems: "center" }}>
+                            <Grid container spacing={2} sx={{ display: !props.preview ? "block" : "none" }}>
+                                {
+                                    props.count < 2 &&
+                                    <Button variant="contained" sx={{ height: "24px", px: 1 }} onClick={() => dispatch(addActionCard(props.card))}>
+                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11.5px" }}>Add to Deck</Typography>
+                                    </Button>
+                                }
+                                {
+                                    props.inDeck === true &&
+                                    <Button variant="contained" color="error" sx={{ height: "24px", px: 1 }} onClick={() => dispatch(removeActionCard(props.card))}>
+                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11.5px" }}>Remove from Deck</Typography>
+                                    </Button>
+                                }
+                            </Grid>
+                            <IconButton onClick={props.handleClose}>
+                                <CloseIcon sx={{ color: `white` }} />
+                            </IconButton>
+                        </Box>
+
                     </AppBar>
                     <Box sx={{ px: "15px", pt: "10px" }}>
                         <CardName />

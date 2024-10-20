@@ -359,15 +359,13 @@ function TCGCharacterCardPopup(props: any) {
                     <AppBar position="sticky"
                         sx={{
                             backgroundColor: `${theme.appbar.backgroundColor}`,
-                            borderTop: `2px solid ${theme.border.color}`,
                             borderBottom: `1px solid ${theme.border.color}`,
                             px: 2,
                             py: 1
                         }}
                     >
-                        {
-                            props.preview === false &&
-                            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <Box sx={{ display: "flex", justifyContent: !props.preview ? "space-between" : "right", alignItems: "center" }}>
+                            <Box sx={{ display: !props.preview ? "block" : "none" }}>
                                 {
                                     props.inDeck === false ?
                                         <Button variant="contained" sx={{ height: "24px", px: 1 }} onClick={() => dispatch(addCharacterCard(props.char))}>
@@ -378,11 +376,11 @@ function TCGCharacterCardPopup(props: any) {
                                             <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11.5px" }}>Remove from Deck</Typography>
                                         </Button>
                                 }
-                                <IconButton onClick={props.handleClose}>
-                                    <CloseIcon sx={{ color: `white` }} />
-                                </IconButton>
                             </Box>
-                        }
+                            <IconButton onClick={props.handleClose}>
+                                <CloseIcon sx={{ color: `white` }} />
+                            </IconButton>
+                        </Box>
                     </AppBar>
                     <Box sx={{ px: "15px", pt: "10px" }}>
                         <CardName />
