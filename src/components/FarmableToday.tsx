@@ -39,6 +39,8 @@ function FarmableToday(props: any) {
         setDay(event.target.value)
     }
 
+    const formatDayString = (day: string) => matches ? day : day.slice(0, 3)
+
     let farmableMats = MaterialDates(day)
     let characters = props.characters.characters.filter((char: CharacterData) => farmableMats["talents"].includes(char.materials.talentBook as string))
     let weapons = props.weapons.weapons.filter((wep: WeaponData) => farmableMats["weapons"].includes(wep.materials.ascensionMat as string))
@@ -58,12 +60,13 @@ function FarmableToday(props: any) {
                     borderBottom: `1px solid ${theme.border.color}`,
                     borderRadius: "5px 5px 0px 0px",
                     p: "10px",
-                    height: "70px"
+                    minHeight: "70px"
                 }}
             >
                 <Box
                     sx={{
                         display: "flex",
+                        flexWrap: "wrap",
                         justifyContent: "space-between",
                     }}
                 >
@@ -87,11 +90,11 @@ function FarmableToday(props: any) {
                                     {
                                         day === today && matches ?
                                             <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "14px", sm: "16px" } }}>
-                                                {`${day} (Today)`}
+                                                {`${formatDayString(day)} (Today)`}
                                             </Typography>
                                             :
                                             <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "14px", sm: "16px" } }}>
-                                                {day}
+                                                {formatDayString(day)}
                                             </Typography>
                                     }
                                 </CustomMenuItem>
