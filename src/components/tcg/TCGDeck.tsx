@@ -92,47 +92,47 @@ function TCGDeck(props: any) {
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <Button onClick={() => saveDeck(deck.deck)}
-                            variant="contained"
-                            sx={{
-                                ml: "20px",
-                                mt: "5px",
-                                mb: "30px",
-                                backgroundColor: "rgb(0, 127, 255)"
-                            }}>
-                            <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>
-                                Save Deck
-                            </Typography>
-                        </Button>
-                        <Button
-                            variant="contained"
-                            component="label"
-                            sx={{
-                                ml: "10px",
-                                mt: "5px",
-                                mb: "30px",
-                                backgroundColor: "rgb(0, 127, 255)"
-                            }}>
-                            <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>
-                                Load Deck
-                            </Typography>
-                            <input id="deck-input" hidden accept=".deck" type="file" onChange={(event: React.BaseSyntheticEvent) => getDeckFromFile(event.target.files[0])} />
-                        </Button>
-                        <Button onClick={() => handleClickOpen()}
-                            variant="contained"
-                            sx={{
-                                ml: "10px",
-                                mt: "5px",
-                                mb: "30px",
-                                backgroundColor: "rgb(0, 127, 255)"
-                            }}>
-                            <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>
-                                Rename Deck
-                            </Typography>
-                        </Button>
+                        <Box sx={{ mt: "5px", mb: "30px" }}>
+                            <Button onClick={() => saveDeck(deck.deck)}
+                                variant="contained"
+                                sx={{
+                                    ml: "10px",
+                                    mb: "10px",
+                                    backgroundColor: "rgb(0, 127, 255)"
+                                }}>
+                                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>
+                                    Save Deck
+                                </Typography>
+                            </Button>
+                            <Button
+                                variant="contained"
+                                component="label"
+                                sx={{
+                                    ml: "10px",
+                                    mb: "10px",
+                                    backgroundColor: "rgb(0, 127, 255)"
+                                }}>
+                                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>
+                                    Load Deck
+                                </Typography>
+                                <input id="deck-input" hidden accept=".deck" type="file" onChange={(event: React.BaseSyntheticEvent) => getDeckFromFile(event.target.files[0])} />
+                            </Button>
+                            <Button onClick={() => handleClickOpen()}
+                                variant="contained"
+                                sx={{
+                                    ml: "10px",
+                                    mb: "10px",
+                                    backgroundColor: "rgb(0, 127, 255)"
+                                }}>
+                                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>
+                                    Rename Deck
+                                </Typography>
+                            </Button>
+                        </Box>
                         <Grid container>
                             {(characterCards as TCGCardData[]).map(card => <TCGCharacterCard key={card.name} char={card} preview={false} />)}
                         </Grid>
+                        <br />
                         <Grid container>
                             {(actionCards as TCGCardData[]).map((card, index) => <TCGActionCard key={index} card={card} preview={false} />)}
                         </Grid>
