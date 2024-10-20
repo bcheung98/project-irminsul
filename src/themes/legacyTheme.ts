@@ -28,6 +28,13 @@ export const legacyTheme = {
                 }
             }
         },
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "rgb(0, 101, 202)"
+                }
+            }
+        },
         MuiDialog: {
             styleOverrides: {
                 paper: {
@@ -99,7 +106,7 @@ export const legacyTheme = {
         appbar: "white",
     },
     button: {
-        selected: "rgb(0, 127, 255)",
+        selected: "rgb(0, 101, 202)",
         hover: "rgb(0, 94, 188)",
     },
     menu: {

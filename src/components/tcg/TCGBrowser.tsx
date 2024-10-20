@@ -92,12 +92,12 @@ function TCGBrowser(props: any) {
                     <Box sx={{ display: "flex" }}>
                         <ToggleButtonGroup value={view} exclusive onChange={handleView}>
                             <CustomToggleButtonText value="char" sx={{ height: "40px" }}>
-                                <Typography sx={{ fontSize: "14px", fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, textTransform: "none" }}>
+                                <Typography sx={{ fontSize: "14px", fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                                     Character Cards
                                 </Typography>
                             </CustomToggleButtonText>
                             <CustomToggleButtonText value="action" sx={{ height: "40px" }}>
-                                <Typography sx={{ fontSize: "14px", fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, textTransform: "none" }}>
+                                <Typography sx={{ fontSize: "14px", fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                                     Action Cards
                                 </Typography>
                             </CustomToggleButtonText>
@@ -110,15 +110,9 @@ function TCGBrowser(props: any) {
                             onClick={matches ? () => handleDialogOpen() : toggleDrawer(true)}
                             variant="contained"
                             startIcon={<FilterAltIcon sx={{ color: `${theme.text.color}` }} />}
-                            sx={{ px: 3, mr: "25px", backgroundColor: `${theme.button.selected}` }}
+                            sx={{ px: 3, mr: "25px" }}
                         >
-                            <Typography
-                                sx={{
-                                    fontFamily: `${theme.font.genshin.family}`,
-                                    fontSize: "14px",
-                                    textTransform: "none"
-                                }}
-                            >
+                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "14px" }}>
                                 Filters
                             </Typography>
                         </Button>

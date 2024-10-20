@@ -103,15 +103,9 @@ function CharacterBrowser(props: any) {
                             onClick={matches ? () => handleDialogOpen() : toggleDrawer(true)}
                             variant="contained"
                             startIcon={<FilterAltIcon sx={{ color: `${theme.text.color}` }} />}
-                            sx={{ px: 3, mr: "25px", backgroundColor: `${theme.button.selected}` }}
+                            sx={{ px: 3, mr: "25px" }}
                         >
-                            <Typography
-                                sx={{
-                                    fontFamily: `${theme.font.genshin.family}`,
-                                    fontSize: "14px",
-                                    textTransform: "none"
-                                }}
-                            >
+                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "14px" }}>
                                 Filters
                             </Typography>
                         </Button>

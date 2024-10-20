@@ -98,7 +98,6 @@ function TCGDeck(props: any) {
                                 sx={{
                                     ml: "10px",
                                     mb: "10px",
-                                    backgroundColor: "rgb(0, 127, 255)"
                                 }}>
                                 <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>
                                     Save Deck
@@ -110,7 +109,6 @@ function TCGDeck(props: any) {
                                 sx={{
                                     ml: "10px",
                                     mb: "10px",
-                                    backgroundColor: "rgb(0, 127, 255)"
                                 }}>
                                 <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>
                                     Load Deck
@@ -122,7 +120,6 @@ function TCGDeck(props: any) {
                                 sx={{
                                     ml: "10px",
                                     mb: "10px",
-                                    backgroundColor: "rgb(0, 127, 255)"
                                 }}>
                                 <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>
                                     Rename Deck

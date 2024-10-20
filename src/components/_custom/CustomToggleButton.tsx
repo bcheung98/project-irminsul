@@ -14,7 +14,7 @@ export const CustomToggleButtonText = styled(ToggleButton)(({ theme }) => ({
     "&.MuiToggleButton-root": {
         border: `2px solid ${theme.border.color}`,
         "&.Mui-selected": {
-            backgroundColor: "rgb(0, 127, 255)"
+            backgroundColor: `${theme.button.selected}`
         }
     }
 }))
