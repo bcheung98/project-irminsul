@@ -1,5 +1,6 @@
 // Component imports
 import FarmableToday from "./FarmableToday"
+import CurrentBanners from "./banners/CurrentBanners"
 import VersionHighlights from "./VersionHighlights"
 
 // MUI imports
@@ -15,6 +16,7 @@ function Home() {
                 <FarmableToday />
             </Grid>
             <Grid size="grow">
+                <CurrentBanners />
                 <VersionHighlights />
             </Grid>
         </Grid>
