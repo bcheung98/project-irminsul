@@ -113,6 +113,7 @@ function BannerList(props: any) {
                     borderRadius: "5px",
                     backgroundColor: `${theme.paper.backgroundColor}`,
                     color: `${theme.text.color}`,
+                    overflow: "hidden"
                 }}
             >
                 <TableContainer>
