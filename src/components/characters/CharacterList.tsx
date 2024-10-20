@@ -21,7 +21,20 @@ function CharacterList(props: any) {
         setOrderBy(property)
     }
 
-    const rows = props.characters.map((char: CharacterData) => char as CharacterRowData)
+    const rows = props.characters.map((char: CharacterData) => ({
+        id: char.id,
+        name: char.name,
+        rarity: char.rarity,
+        element: char.element,
+        weapon: char.weapon,
+        ascensionStat: char.stats.ascensionStat,
+        nation: char.nation,
+        gender: char.gender,
+        release: {
+            date: char.release.date,
+            version: char.release.version
+        }
+    }) as CharacterRowData)
 
     return (
         <Box sx={{ width: "90%" }}>
@@ -73,6 +86,7 @@ const headCells = [
     { id: "rarity", label: "Rarity" },
     { id: "element", label: "Element" },
     { id: "weapon", label: "Weapon" },
+    { id: "ascensionStat", label: "Ascension Stat" },
     { id: "nation", label: "Nation" },
     { id: "gender", label: "Gender" },
     { id: "id", label: "Release Date" }

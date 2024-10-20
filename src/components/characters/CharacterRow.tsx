@@ -93,6 +93,29 @@ function CharacterRow(props: any) {
                     </Box>
                 </StyledTableCellNoVert>
 
+                { /* Ascension Stat */}
+                <StyledTableCellNoVert>
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                        <CardHeader sx={{ p: 0 }}
+                            avatar={
+                                <img alt={row.ascensionStat} src={(`${process.env.REACT_APP_URL}/icons/ascension_stats/${row.ascensionStat.split(" ").join("_")}.png`)}
+                                    style={{
+                                        width: "36px",
+                                        border: "1px solid rgba(0, 30, 60, 0)",
+                                        borderRadius: "64px",
+                                    }}
+                                    onError={ErrorLoadingImage}
+                                />
+                            }
+                            title={
+                                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
+                                    {row.ascensionStat}
+                                </Typography>
+                            }
+                        />
+                    </Box>
+                </StyledTableCellNoVert>
+
                 { /* Nation */}
                 <StyledTableCellNoVert>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -100,7 +123,7 @@ function CharacterRow(props: any) {
                             avatar={
                                 <img alt={row.nation} src={(`${process.env.REACT_APP_URL}/nations/${row.nation}.png`)}
                                     style={{
-                                        width: "48px",
+                                        width: "40px",
                                     }}
                                     onError={ErrorLoadingImage}
                                 />
