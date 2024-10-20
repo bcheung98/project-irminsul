@@ -99,7 +99,7 @@ function WeaponBrowser(props: any) {
                             startIcon={<FilterAltIcon sx={{ color: `${theme.text.color}` }} />}
                             sx={{ px: 3, mr: "25px" }}
                         >
-                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "14px" }}>
+                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "12px", sm: "14px" } }}>
                                 Filters
                             </Typography>
                         </Button>
