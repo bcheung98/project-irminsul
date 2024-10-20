@@ -75,7 +75,6 @@ function TCGBrowser(props: any) {
         <React.Fragment>
             <Typography
                 sx={{
-                    mr: "25px",
                     mb: "20px",
                     fontFamily: `${theme.font.genshin.family}`,
                     fontSize: "24px",

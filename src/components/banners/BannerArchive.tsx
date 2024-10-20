@@ -6,7 +6,7 @@ import BannerList from "./BannerList"
 import ChronicledWishList from "./ChronicledWishList"
 
 // MUI imports
-import { useTheme, useMediaQuery, Box, Typography, Radio, RadioGroup, FormControlLabel } from "@mui/material"
+import { useTheme, useMediaQuery, Typography, Radio, RadioGroup, FormControlLabel } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Type imports
@@ -29,25 +29,17 @@ function BannerArchive(props: any) {
 
     return (
         <React.Fragment>
-            <Box
+            <Typography
                 sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "left",
-                    mb: "30px",
-                    height: "30px",
+                    mb: "20px",
+                    fontFamily: `${theme.font.genshin.family}`,
+                    fontSize: "24px",
+                    color: `${theme.text.color}`,
+                    lineHeight: "40px"
                 }}
             >
-                <Typography
-                    sx={{
-                        fontFamily: `${theme.font.genshin.family}`,
-                        fontSize: "24px",
-                        color: `${theme.text.color}`,
-                    }}
-                >
-                    Banner Archive
-                </Typography>
-            </Box>
+                Banner Archive
+            </Typography>
             <RadioGroup
                 value={value}
                 onChange={handleRadioChange}

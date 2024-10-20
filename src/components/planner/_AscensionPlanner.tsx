@@ -8,8 +8,7 @@ import WeaponAscensionCard from "./_WeaponAscensionCard"
 import AscensionTotalCost from "./AscensionTotalCost"
 
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Typography } from "@mui/material"
+import { useTheme, Typography } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Type imports
@@ -28,27 +27,17 @@ function AscensionPlanner(props: any) {
 
     return (
         <React.Fragment>
-            <Box
+            <Typography
                 sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "left",
                     mb: "20px",
-                    height: "30px",
+                    fontFamily: `${theme.font.genshin.family}`,
+                    fontSize: "24px",
+                    color: `${theme.text.color}`,
+                    lineHeight: "40px"
                 }}
             >
-                <Typography
-                    variant="h5"
-                    sx={{
-                        mr: "25px",
-                        fontFamily: `${theme.font.genshin.family}`,
-                        color: `${theme.text.color}`,
-                        textDecoration: "none",
-                    }}
-                >
-                    Ascension Planner
-                </Typography>
-            </Box>
+                Ascension Planner
+            </Typography>
             <Grid container spacing={2} columns={{ xs: 1, md: 12 }}>
                 <CharacterSelector />
                 <WeaponSelector />
