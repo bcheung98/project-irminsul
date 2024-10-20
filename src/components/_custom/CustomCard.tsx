@@ -9,7 +9,7 @@ import { Transition } from "./Transition"
 import { useTheme, useMediaQuery, Typography, ButtonBase, Box, Dialog } from "@mui/material"
 
 // Helper imports
-import { GetRarityColor, GetBackgroundColor } from "../../helpers/RarityColors"
+import { GetRarityColor } from "../../helpers/RarityColors"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 // Type imports
@@ -22,7 +22,6 @@ interface CustomCardProps {
     rarity?: number | undefined,
     size?: string
     variant?: "icon" | "avatar",
-    glow?: boolean,
     showInfo?: boolean,
     hideStars?: boolean,
     element?: string | undefined,
@@ -39,7 +38,6 @@ function CustomCard({
     rarity = 1,
     size = "64px",
     variant = "icon",
-    glow = false,
     showInfo = false,
     hideStars = false,
     element,
@@ -70,9 +68,9 @@ function CustomCard({
 
     const cardImageStyle: React.CSSProperties = {
         position: "relative",
-        zIndex: !glow ? 0 : -1,
         width: size,
         borderBottom: variant === "icon" ? "none" : `calc(${size} / 16) solid ${GetRarityColor(rarity)}`,
+        borderRadius: showInfo ? "4px 4px 0px 0px" : "4px",
         backgroundColor: `${theme.table.header.backgroundColor}`,
         backgroundImage: variant === "icon" ? `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)` : "none",
         backgroundSize: "100%",
@@ -88,15 +86,16 @@ function CustomCard({
     }
 
     return (
-        <Box sx={{ position: "relative", zIndex: 0 }}>
+        <React.Fragment>
             <Box
                 sx={{
                     width: size,
                     height: showInfo ? "100%" : "auto",
+                    backgroundColor: `${theme.appbar.backgroundColor}`,
                     border: `1px solid ${theme.border.color}`,
                     borderRadius: "5px",
+                    position: "relative",
                     boxSizing: "content-box",
-                    overflow: "hidden",
                     containerType: "inline-size"
                 }}
             >
@@ -111,21 +110,11 @@ function CustomCard({
                         />
                     </CustomTooltip>
                 </ButtonBase>
-                {
-                    glow &&
-                    <Box
-                        sx={{
-                            mt: `calc(${size} * -1/3)`,
-                            background: `linear-gradient(transparent, ${GetBackgroundColor(rarity)})`,
-                            height: `calc(${size} * 1/3)`
-                        }}
-                    />
-                }
+
                 {
                     showInfo &&
                     <Box
                         sx={{
-                            height: "100%",
                             backgroundColor: `${theme.appbar.backgroundColor}`,
                             textAlign: "center",
                             pt: 0.5,
@@ -212,7 +201,7 @@ function CustomCard({
                     <ArtifactPopup artifact={artifact} handleClose={handleClose} />
                 </Dialog>
             }
-        </Box>
+        </React.Fragment>
     )
 
 }

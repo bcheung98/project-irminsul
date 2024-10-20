@@ -24,7 +24,7 @@ function FilterButton({
 
     const filterButtonStyles: SxProps = {
         height: variant === "image" ? "38px" : "auto",
-        width: "auto",
+        width: variant === "image" ? "38px" : "auto",
         p: variant === "image" ? "2.5px" : "6px",
         border: `1px solid ${theme.border.color}`,
         borderRadius: "5px",
