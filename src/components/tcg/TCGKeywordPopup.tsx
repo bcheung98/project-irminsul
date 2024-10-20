@@ -130,8 +130,7 @@ function TCGKeywordPopup(props: any) {
                     top: "auto",
                     bottom: 0,
                     backgroundColor: `${theme.appbar.backgroundColor}`,
-                    px: 2,
-                    py: 1,
+                    p: 1
                 }}
             >
                 <Button variant="contained" sx={{ height: "18px", p: 0, backgroundColor: "#d32f2f" }} onClick={props.handleClose}>
