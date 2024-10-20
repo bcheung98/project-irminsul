@@ -140,7 +140,7 @@ function VersionHighlights(props: any) {
                     <Box>
                         <Grid container spacing={2.5}>
                             {
-                                characters.map((char: CharacterData, index: number) => <CustomCard key={index} type="character" name={char.name} rarity={char.rarity} element={char.element} weaponType={char.weapon} variant="avatar" size="150px" showInfo />)
+                                characters.map((char: CharacterData, index: number) => <CustomCard key={index} type="character" name={char.name} rarity={char.rarity} element={char.element} weaponType={char.weapon} variant="avatar" glow size="150px" showInfo />)
                             }
                         </Grid>
                     </Box>

@@ -47,7 +47,7 @@ function CharacterCard(props: any) {
                 </Box>
                 <Box sx={{ display: "flex", mx: "10px", mt: "5px" }}>
                     <Box sx={{ mr: "10px" }}>
-                        <CustomCard name={name} type="character" rarity={rarity} size="96px" variant="avatar" />
+                        <CustomCard name={name} type="character" rarity={rarity} size="96px" variant="avatar" disableTooltip />
                         <img src={`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`} alt={rarity}
                             style={{
                                 display: "block",

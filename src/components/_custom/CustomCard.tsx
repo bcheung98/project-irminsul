@@ -22,11 +22,13 @@ interface CustomCardProps {
     rarity?: number | undefined,
     size?: string
     variant?: "icon" | "avatar",
+    glow?: boolean,
     showInfo?: boolean,
     hideStars?: boolean,
     element?: string | undefined,
     weaponType?: string | undefined,
     artifact?: ArtifactData,
+    disableTooltip?: boolean,
     disableLink?: boolean,
 }
 
@@ -37,11 +39,13 @@ function CustomCard({
     rarity = 1,
     size = "64px",
     variant = "icon",
+    glow = false,
     showInfo = false,
     hideStars = false,
     element,
     weaponType,
     artifact,
+    disableTooltip = showInfo,
     disableLink = false,
 }: CustomCardProps) {
 
@@ -66,8 +70,9 @@ function CustomCard({
 
     const cardImageStyle: React.CSSProperties = {
         position: "relative",
-        zIndex: variant === "icon" ? 0 : -1,
+        zIndex: !glow ? 0 : -1,
         width: size,
+        borderBottom: variant === "icon" ? "none" : `calc(${size} / 16) solid ${GetRarityColor(rarity)}`,
         backgroundColor: `${theme.table.header.backgroundColor}`,
         backgroundImage: variant === "icon" ? `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)` : "none",
         backgroundSize: "100%",
@@ -96,7 +101,7 @@ function CustomCard({
                 }}
             >
                 <ButtonBase disableRipple href={href} target="_blank">
-                    <CustomTooltip title={!showInfo ? displayName : ""} arrow placement="top">
+                    <CustomTooltip title={!disableTooltip ? displayName : ""} arrow placement="top">
                         <img
                             src={imageURL} alt={name}
                             style={cardImageStyle}
@@ -106,16 +111,16 @@ function CustomCard({
                         />
                     </CustomTooltip>
                 </ButtonBase>
-                <Box
-                    sx={{
-                        display: variant === "avatar" ? "block" : "none",
-                        mt: `calc(${size} * -1/3)`,
-                        background: variant === "avatar" ? `linear-gradient(transparent, ${GetBackgroundColor(rarity)})` : "none",
-                        borderBottom: variant === "icon" ? "none" : `calc(${size} / 16) solid ${GetRarityColor(rarity)}`,
-                    }}
-                >
-                    <Box sx={{ height: `calc(${size} * 1/3)` }} />
-                </Box>
+                {
+                    glow &&
+                    <Box
+                        sx={{
+                            mt: `calc(${size} * -1/3)`,
+                            background: `linear-gradient(transparent, ${GetBackgroundColor(rarity)})`,
+                            height: `calc(${size} * 1/3)`
+                        }}
+                    />
+                }
                 {
                     showInfo &&
                     <Box
