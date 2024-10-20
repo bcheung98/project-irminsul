@@ -88,9 +88,26 @@ function WeaponRow(props: any) {
                 { /* 2nd Stat */}
                 <StyledTableCellNoVert>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
-                            {row.subStat}
-                        </Typography>
+                        <CardHeader sx={{ p: 0 }}
+                            avatar={
+                                row.subStat.trim() !== "-" ?
+                                    <img alt={row.subStat} src={(`${process.env.REACT_APP_URL}/icons/ascension_stats/${row.subStat.split(" ").slice(0, -1).join("_")}.png`)}
+                                        style={{
+                                            width: "36px",
+                                            border: "1px solid rgba(0, 30, 60, 0)",
+                                            borderRadius: "64px",
+                                        }}
+                                        onError={ErrorLoadingImage}
+                                    />
+                                    :
+                                    null
+                            }
+                            title={
+                                <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}` }}>
+                                    {row.subStat}
+                                </Typography>
+                            }
+                        />
                     </Box>
                 </StyledTableCellNoVert>
 
