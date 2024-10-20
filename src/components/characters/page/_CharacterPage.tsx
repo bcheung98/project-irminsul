@@ -150,9 +150,7 @@ function CharacterPage(props: any) {
                     onClose={handleClose}
                     maxWidth={false}
                 >
-                    <Box sx={{ border: `2px solid ${theme.border.color}`, backgroundColor: `${theme.paper.backgroundColor}` }}>
-                        <CharacterOutfitDisplay character={character} />
-                    </Box>
+                    <CharacterOutfitDisplay character={character} />
                 </Dialog>
             </React.Fragment >
         )

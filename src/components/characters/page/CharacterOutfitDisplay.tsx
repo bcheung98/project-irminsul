@@ -47,79 +47,83 @@ function CharacterOutfitDisplay(props: any) {
     }
 
     return (
-        <Grid
-            container
+        <Box
             sx={{
+                color: `${theme.text.color}`,
+                backgroundColor: `${theme.paper.backgroundColor}`,
+                border: `2px solid ${theme.border.color}`,
+                borderRadius: { xs: "0px", sm: "5px" },
                 width: "80vw",
-                borderRadius: "5px",
             }}
         >
-            <Grid size="auto" sx={{ backgroundColor: `${theme.toolbar.backgroundColor}`, width: { xs: "100%", sm: "128px" } }}>
-                <Tabs
-                    orientation={matches ? "vertical" : "horizontal"}
-                    variant="scrollable"
-                    scrollButtons="auto"
-                    value={tabValue}
-                    onChange={handleChangeTab}
-                >
-                    {
-                        outfits.map((outfit, index) => (
-                            <StyledTab
-                                key={index}
-                                label={
-                                    index === 0 ?
-                                        <img src={`${process.env.REACT_APP_URL}/characters/icons/${name.split(" ").join("_")}.png`} alt={outfit.name} style={OutfitIcon(outfit.rarity)} onError={ErrorLoadingImage} />
-                                        :
-                                        <img src={`${process.env.REACT_APP_URL}/characters/outfits/icon/${outfit.name.split(" ").join("_")}.png`} alt={outfit.name} style={OutfitIcon(outfit.rarity)} onError={ErrorLoadingImage} />
-                                }
-                            />
-                        ))
-                    }
-                </Tabs>
-            </Grid>
-            <Grid size={{ xs: 12, sm: "grow" }}>
-                {
-                    outfits.map((outfit, index) => {
-                        return (
-                            <TabPanel
-                                key={index}
-                                index={index}
-                                value={tabValue}
-                            >
-                                <Typography
-                                    sx={{
-                                        mb: "10px",
-                                        fontFamily: `${theme.font.genshin.family}`,
-                                        fontSize: { xs: "17px", sm: "20px" },
-                                        color: `${theme.text.color}`,
-                                    }}
-                                >
-                                    {outfit.displayName ? outfit.displayName : outfit.name}
-                                </Typography>
-                                <Typography
-                                    sx={{
-                                        mb: "20px",
-                                        fontFamily: `${theme.font.genshin.family}`,
-                                        fontSize: { xs: "11px", sm: "14px" },
-                                        color: `${theme.text.color}`,
-                                    }}
-                                >
-                                    <i>{parse(outfit.description)}</i>
-                                </Typography>
-                                <Box>
-                                    {
+            <Grid container>
+                <Grid size="auto" sx={{ backgroundColor: `${theme.toolbar.backgroundColor}`, width: { xs: "100%", sm: "128px" }, borderRadius: "5px 0px 0px 5px" }}>
+                    <Tabs
+                        orientation={matches ? "vertical" : "horizontal"}
+                        variant="scrollable"
+                        scrollButtons="auto"
+                        value={tabValue}
+                        onChange={handleChangeTab}
+                    >
+                        {
+                            outfits.map((outfit, index) => (
+                                <StyledTab
+                                    key={index}
+                                    label={
                                         index === 0 ?
-                                            <img src={`${process.env.REACT_APP_URL}/characters/wish/${name.split(" ").join("_")}.png`} alt={outfit.name} style={OutfitSplash} onError={ErrorLoadingImage} />
+                                            <img src={`${process.env.REACT_APP_URL}/characters/icons/${name.split(" ").join("_")}.png`} alt={outfit.name} style={OutfitIcon(outfit.rarity)} onError={ErrorLoadingImage} />
                                             :
-                                            <img src={`${process.env.REACT_APP_URL}/characters/outfits/splash/${outfit.name.split(" ").join("_")}.png`} alt={outfit.name} style={OutfitSplash} onError={ErrorLoadingImage} />
+                                            <img src={`${process.env.REACT_APP_URL}/characters/outfits/icon/${outfit.name.split(" ").join("_")}.png`} alt={outfit.name} style={OutfitIcon(outfit.rarity)} onError={ErrorLoadingImage} />
                                     }
-                                </Box>
-                            </TabPanel>
-                        )
-                    })
-                }
+                                />
+                            ))
+                        }
+                    </Tabs>
+                </Grid>
+                <Grid size={{ xs: 12, sm: "grow" }}>
+                    {
+                        outfits.map((outfit, index) => {
+                            return (
+                                <TabPanel
+                                    key={index}
+                                    index={index}
+                                    value={tabValue}
+                                >
+                                    <Typography
+                                        sx={{
+                                            mb: "10px",
+                                            fontFamily: `${theme.font.genshin.family}`,
+                                            fontSize: { xs: "17px", sm: "20px" },
+                                            color: `${theme.text.color}`,
+                                        }}
+                                    >
+                                        {outfit.displayName ? outfit.displayName : outfit.name}
+                                    </Typography>
+                                    <Typography
+                                        sx={{
+                                            mb: "20px",
+                                            fontFamily: `${theme.font.genshin.family}`,
+                                            fontSize: { xs: "11px", sm: "14px" },
+                                            color: `${theme.text.color}`,
+                                        }}
+                                    >
+                                        <i>{parse(outfit.description)}</i>
+                                    </Typography>
+                                    <Box>
+                                        {
+                                            index === 0 ?
+                                                <img src={`${process.env.REACT_APP_URL}/characters/wish/${name.split(" ").join("_")}.png`} alt={outfit.name} style={OutfitSplash} onError={ErrorLoadingImage} />
+                                                :
+                                                <img src={`${process.env.REACT_APP_URL}/characters/outfits/splash/${outfit.name.split(" ").join("_")}.png`} alt={outfit.name} style={OutfitSplash} onError={ErrorLoadingImage} />
+                                        }
+                                    </Box>
+                                </TabPanel>
+                            )
+                        })
+                    }
+                </Grid>
             </Grid>
-        </Grid>
+        </Box>
 
     )
 }
