@@ -55,6 +55,7 @@ function SearchBar({
             value={value}
             placeholder={placeholder}
             fullWidth
+            autoComplete="off"
         />
     )
 
