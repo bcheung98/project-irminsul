@@ -69,12 +69,14 @@ function CustomCard({
     const cardImageStyle: React.CSSProperties = {
         position: "relative",
         width: size,
+        height: size,
         borderBottom: variant === "icon" ? "none" : `calc(${size} / 16) solid ${GetRarityColor(rarity)}`,
         borderRadius: showInfo ? "4px 4px 0px 0px" : "4px",
         backgroundColor: `${theme.table.header.backgroundColor}`,
         backgroundImage: variant === "icon" ? `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)` : "none",
         backgroundSize: "100%",
         backgroundPosition: "center",
+        boxSizing: "content-box",
     }
 
     const smallIconSize = `calc(${size} / 6)`
@@ -90,7 +92,7 @@ function CustomCard({
             <Box
                 sx={{
                     width: size,
-                    height: showInfo ? "100%" : "auto",
+                    height: "auto",
                     backgroundColor: `${theme.appbar.backgroundColor}`,
                     border: `1px solid ${theme.border.color}`,
                     borderRadius: "5px",
@@ -110,12 +112,12 @@ function CustomCard({
                         />
                     </CustomTooltip>
                 </ButtonBase>
-
                 {
                     showInfo &&
                     <Box
                         sx={{
                             backgroundColor: `${theme.appbar.backgroundColor}`,
+                            borderRadius: "0px 0px 5px 5px",
                             textAlign: "center",
                             pt: 0.5,
                             py: 1
