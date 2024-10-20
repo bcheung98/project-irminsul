@@ -12,11 +12,11 @@ function Home() {
 
     return (
         <Grid container rowSpacing={2.5} columnSpacing={5} columns={{ xs: 5, md: 12 }}>
-            <Grid size={5}>
+            <Grid size={6}>
+                <CurrentBanners />
                 <FarmableToday />
             </Grid>
-            <Grid size="grow">
-                <CurrentBanners />
+            <Grid size={6}>
                 <VersionHighlights />
             </Grid>
         </Grid>
