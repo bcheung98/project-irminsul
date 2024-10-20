@@ -11,7 +11,7 @@ function Home() {
     document.title = `Genshin Impact ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
     return (
-        <Grid container spacing={5} columns={{ xs: 5, sm: 12 }}>
+        <Grid container rowSpacing={2.5} columnSpacing={5} columns={{ xs: 5, md: 12 }}>
             <Grid size={5}>
                 <FarmableToday />
             </Grid>

@@ -48,7 +48,7 @@ function CurrentBanners(props: any) {
                     height: "70px"
                 }}
             >
-                <Typography noWrap sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "16px", sm: "20px" }, ml: "5px", lineHeight: "45px" }}>
+                <Typography noWrap sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px", ml: "5px", lineHeight: "45px" }}>
                     Current Banners
                 </Typography>
             </AppBar>

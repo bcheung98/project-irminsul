@@ -39,7 +39,15 @@ function FarmableToday(props: any) {
         setDay(event.target.value)
     }
 
-    const formatDayString = (day: string) => matches ? day : day.slice(0, 3)
+    const formatDayString = (day: string) => {
+        if (!matches) {
+            day = day.slice(0, 3)
+        }
+        if (day === today && matches) {
+            day += " (Today)"
+        }
+        return day
+    }
 
     let farmableMats = MaterialDates(day)
     let characters = props.characters.characters.filter((char: CharacterData) => farmableMats["talents"].includes(char.materials.talentBook as string))
@@ -70,7 +78,7 @@ function FarmableToday(props: any) {
                         justifyContent: "space-between",
                     }}
                 >
-                    <Typography noWrap sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "16px", sm: "20px" }, ml: "5px", lineHeight: "45px" }}>
+                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px", ml: "5px", lineHeight: "45px" }}>
                         Farming Schedule
                     </Typography>
                     <Select
@@ -87,16 +95,9 @@ function FarmableToday(props: any) {
                         {
                             weekday.map((day: string, index: number) => (
                                 <CustomMenuItem key={index} value={day}>
-                                    {
-                                        day === today && matches ?
-                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "14px", sm: "16px" } }}>
-                                                {`${formatDayString(day)} (Today)`}
-                                            </Typography>
-                                            :
-                                            <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "14px", sm: "16px" } }}>
-                                                {formatDayString(day)}
-                                            </Typography>
-                                    }
+                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "14px", sm: "16px" } }}>
+                                        {formatDayString(day)}
+                                    </Typography>
                                 </CustomMenuItem>
                             ))
                         }

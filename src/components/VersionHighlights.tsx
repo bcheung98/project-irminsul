@@ -65,16 +65,17 @@ function VersionHighlights(props: any) {
                     borderBottom: `1px solid ${theme.border.color}`,
                     borderRadius: "5px 5px 0px 0px",
                     p: "10px",
-                    height: "70px"
+                    minHeight: "70px"
                 }}
             >
                 <Box
                     sx={{
                         display: "flex",
+                        flexWrap: "wrap",
                         justifyContent: "space-between",
                     }}
                 >
-                    <Typography noWrap sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "16px", sm: "20px" }, ml: "5px", lineHeight: "45px" }}>
+                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px", ml: "5px", lineHeight: "45px" }}>
                         Version Highlights
                     </Typography>
                     <Box sx={{ display: "flex" }}>
