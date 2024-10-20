@@ -421,7 +421,7 @@ function TCGCharacterCardPopup(props: any) {
                             onClose={handleClose}
                             maxWidth={false}
                         >
-                            <TCGKeywordPopup keywords={props.char.keywords} name={keywordName} image={keywordImage} type={keywordType} description={keywordDescription} />
+                            <TCGKeywordPopup keywords={props.char.keywords} name={keywordName} image={keywordImage} type={keywordType} description={keywordDescription} handleClose={handleClose} />
                         </Dialog>
                     }
                 </Grid>

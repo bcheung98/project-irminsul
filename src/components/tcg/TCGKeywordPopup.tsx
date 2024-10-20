@@ -7,7 +7,7 @@ import TCGDiceCost from "./TCGDiceCost"
 
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { Box, Typography, Dialog } from "@mui/material"
+import { Box, Typography, Dialog, AppBar, Button } from "@mui/material"
 
 // Helper imports
 import { Keywords } from "./TCGKeywords"
@@ -85,44 +85,59 @@ function TCGKeywordPopup(props: any) {
         <Box
             sx={{
                 width: { xs: "100%", sm: "35vw" },
-                p: "15px",
                 backgroundColor: `${theme.paper.backgroundColor}`,
                 border: `2px solid ${theme.border.color}`,
                 borderRadius: "5px",
             }}
         >
-            <Box sx={{ mb: "10px" }}>
-                <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box sx={{ p: "10px" }}>
+                <Box sx={{ mb: "10px" }}>
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                        {
+                            image &&
+                            <Box sx={{ mr: "10px", height: "32px" }}>{image}</Box>
+                        }
+                        {
+                            cost &&
+                            <Box sx={{ mr: "5px" }}>
+                                <TCGDiceCost cost={cost} />
+                            </Box>
+                        }
+                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "16px", sm: "20px" }, fontWeight: `${theme.font.genshin.weight}`, color: `${theme.text.color}` }}>
+                            {name}
+                        </Typography>
+                    </Box>
                     {
-                        image &&
-                        <Box sx={{ mr: "10px", height: "32px" }}>{image}</Box>
+                        type &&
+                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontWeight: `${theme.font.genshin.weight}`, fontSize: { xs: "14px", sm: "16px" }, color: "#ffe7b9", mt: "5px" }}>
+                            {type}
+                        </Typography>
                     }
-                    {
-                        cost &&
-                        <Box sx={{ mr: "5px" }}>
-                            <TCGDiceCost cost={cost} />
-                        </Box>
-                    }
-                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "16px", sm: "20px" }, fontWeight: `${theme.font.genshin.weight}`, color: `${theme.text.color}` }}>
-                        {name}
-                    </Typography>
                 </Box>
-                {
-                    type &&
-                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontWeight: `${theme.font.genshin.weight}`, fontSize: { xs: "14px", sm: "16px" }, color: "#ffe7b9", mt: "5px" }}>
-                        {type}
-                    </Typography>
-                }
+                <hr style={{ border: `.5px solid ${theme.border.color}` }} />
+                <Typography component="span" sx={{ fontSize: { xs: "14px", sm: "16px" }, color: `${theme.text.colorAlt}`, mb: "5px" }}>
+                    {
+                        typeof (description) === "object" ?
+                            description
+                            :
+                            parse(description, options)
+                    }
+                </Typography>
             </Box>
-            <hr style={{ border: `.5px solid ${theme.border.color}` }} />
-            <Typography component="span" sx={{ fontSize: { xs: "14px", sm: "16px" }, color: `${theme.text.colorAlt}`, mb: "5px" }}>
-                {
-                    typeof (description) === "object" ?
-                        description
-                        :
-                        parse(description, options)
-                }
-            </Typography>
+            <AppBar position="sticky"
+                sx={{
+                    display: { xs: "block", sm: "none" },
+                    top: "auto",
+                    bottom: 0,
+                    backgroundColor: `${theme.appbar.backgroundColor}`,
+                    px: 2,
+                    py: 1,
+                }}
+            >
+                <Button variant="contained" sx={{ height: "18px", p: 0, backgroundColor: "#d32f2f" }} onClick={props.handleClose}>
+                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11px" }}>Close</Typography>
+                </Button>
+            </AppBar>
             {
                 keywordName && keywordDescription &&
                 <Dialog
@@ -130,7 +145,7 @@ function TCGKeywordPopup(props: any) {
                     onClose={handleClose}
                     maxWidth={false}
                 >
-                    <TCGKeywordPopup keywords={props.keywords} name={keywordName} image={keywordImage} type={keywordType} description={keywordDescription} />
+                    <TCGKeywordPopup keywords={props.keywords} name={keywordName} image={keywordImage} type={keywordType} description={keywordDescription} handleClose={handleClose} />
                 </Dialog>
             }
         </Box>
