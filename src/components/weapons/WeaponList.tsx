@@ -46,7 +46,7 @@ function WeaponList(props: any) {
     })
 
     return (
-        <Box sx={{ width: "100%" }}>
+        <Box sx={{ width: "90%" }}>
             <Paper
                 sx={{
                     backgroundColor: `${theme.paper.backgroundColor}`,
@@ -55,14 +55,8 @@ function WeaponList(props: any) {
                     color: `${theme.text.color}`,
                 }}
             >
-                <Toolbar sx={{ backgroundColor: `${theme.toolbar.backgroundColor}` }}>
-                    <Typography variant="h5" component="div"
-                        sx={{
-                            fontFamily: `${theme.font.genshin.family}`,
-                            display: "block",
-                            margin: "auto"
-                        }}
-                    >
+                <Toolbar sx={{ backgroundColor: `${theme.toolbar.backgroundColor}`, borderRadius: "5px 5px 0px 0px" }}>
+                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px" }}>
                         {props.weapons.length} {props.weapons.length === 1 ? "Weapon" : "Weapons"}
                     </Typography>
                 </Toolbar>

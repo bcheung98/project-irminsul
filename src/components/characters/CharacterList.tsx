@@ -24,7 +24,7 @@ function CharacterList(props: any) {
     const rows = props.characters.map((char: CharacterData) => char as CharacterRowData)
 
     return (
-        <Box sx={{ width: "100%" }}>
+        <Box sx={{ width: "90%" }}>
             <Paper
                 sx={{
                     backgroundColor: `${theme.paper.backgroundColor}`,
@@ -33,14 +33,8 @@ function CharacterList(props: any) {
                     color: `${theme.text.color}`,
                 }}
             >
-                <Toolbar sx={{ backgroundColor: `${theme.toolbar.backgroundColor}` }}>
-                    <Typography variant="h5" component="div"
-                        sx={{
-                            fontFamily: `${theme.font.genshin.family}`,
-                            display: "block",
-                            margin: "auto"
-                        }}
-                    >
+                <Toolbar sx={{ backgroundColor: `${theme.toolbar.backgroundColor}`, borderRadius: "5px 5px 0px 0px" }}>
+                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px" }}>
                         {props.characters.length} {props.characters.length === 1 ? "Character" : "Characters"}
                     </Typography>
                 </Toolbar>
