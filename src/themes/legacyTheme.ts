@@ -44,9 +44,12 @@ export const legacyTheme = {
         },
         MuiMenu: {
             styleOverrides: {
+                paper: {
+                    backgroundColor: "rgb(0, 23, 47)"
+                },
                 list: {
                     backgroundColor: "rgb(0, 23, 47)",
-                    color: "white"
+                    color: "white",
                 }
             }
         }
