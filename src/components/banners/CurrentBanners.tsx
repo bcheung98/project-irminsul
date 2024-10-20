@@ -56,10 +56,10 @@ function CurrentBanners(props: any) {
                 {
                     activeBanners ?
                         <React.Fragment>
-                            <Grid container spacing={2}>
+                            <Grid container rowSpacing={1} columnSpacing={3}>
                                 {
                                     currentCharacterBanners.length > 0 &&
-                                    <Grid size={{ xs: 12, lg: 5 }}>
+                                    <Grid size={{ xs: 12, lg: "auto" }}>
                                         <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px", mb: "10px" }}>
                                             Character Event Wish
                                         </Typography>
@@ -72,7 +72,7 @@ function CurrentBanners(props: any) {
                                 }
                                 {
                                     currentWeaponBanners.length > 0 &&
-                                    <Grid size={{ xs: 12, lg: 7 }}>
+                                    <Grid size={{ xs: 12, lg: "grow" }}>
                                         <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px", mb: "10px" }}>
                                             Weapon Event Wish
                                         </Typography>
