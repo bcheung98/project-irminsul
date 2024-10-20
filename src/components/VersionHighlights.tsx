@@ -140,7 +140,7 @@ function VersionHighlights(props: any) {
                     <Box>
                         <Grid container spacing={2.5}>
                             {
-                                characters.map((char: CharacterData, index: number) => <CustomCard key={index} type="character" name={char.name} rarity={char.rarity} element={char.element} weaponType={char.weapon} variant="avatar" glow size="150px" showInfo />)
+                                characters.map((char: CharacterData, index: number) => <CustomCard key={index} type="character" name={char.name} rarity={char.rarity} element={char.element} weaponType={char.weapon} variant="avatar" glow size="128px" showInfo />)
                             }
                         </Grid>
                     </Box>
@@ -166,7 +166,7 @@ function VersionHighlights(props: any) {
                     <Box>
                         <Grid container spacing={2.5}>
                             {
-                                weapons.map((wep: WeaponData, index: number) => <CustomCard key={index} type="weapon" name={wep.name} displayName={wep.displayName} rarity={wep.rarity} weaponType={wep.type} size="150px" showInfo />)
+                                weapons.map((wep: WeaponData, index: number) => <CustomCard key={index} type="weapon" name={wep.name} displayName={wep.displayName} rarity={wep.rarity} weaponType={wep.type} size="128px" showInfo />)
                             }
                         </Grid>
                     </Box>
@@ -193,7 +193,7 @@ function VersionHighlights(props: any) {
                         <Grid container spacing={2.5}>
                             {
                                 artifacts.map((artifact: ArtifactData, index: number) => (
-                                    <CustomCard key={index} type="artifact" name={artifact.name} rarity={artifact.rarity} size="150px" showInfo artifact={artifact} />
+                                    <CustomCard key={index} type="artifact" name={artifact.name} rarity={artifact.rarity} size="128px" showInfo artifact={artifact} />
                                 ))
                             }
                         </Grid>
