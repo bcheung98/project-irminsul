@@ -1,6 +1,6 @@
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { Table, TableBody, TableContainer, TableHead, Paper } from "@mui/material"
+import { Table, TableBody, TableContainer, TableHead } from "@mui/material"
 
 // Helper imports
 import { StyledTableCell, StyledTableRows } from "../../_custom/CustomTable"
@@ -31,7 +31,6 @@ function CharacterStatsTable(props: any) {
 
     return (
         <TableContainer
-            component={Paper}
             sx={{
                 border: `2px solid ${theme.border.color}`,
                 borderRadius: "5px",
