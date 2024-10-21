@@ -7,6 +7,9 @@ import { EnhancedTableHead, getComparator, stableSort } from "../_custom/CustomS
 // MUI imports
 import { useTheme, Table, TableBody, TableContainer, Toolbar, Typography, Paper } from "@mui/material"
 
+// Helper imports
+import { createDateObject } from "../../helpers/dates"
+
 // Type imports
 import { CharacterData } from "../../types/character/CharacterData"
 import { CharacterRowData } from "../../types/character/CharacterRowData"
@@ -34,7 +37,7 @@ function CharacterList(props: any) {
         nation: char.nation,
         gender: char.gender,
         release: {
-            date: char.release.date,
+            date: char.release.date !== "" ? createDateObject(char.release.date as string).date : "",
             version: char.release.version
         }
     }) as CharacterRowData)

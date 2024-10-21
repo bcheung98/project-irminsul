@@ -8,15 +8,15 @@ import CharacterAscension from "./CharacterAscension"
 import CharacterTalentDisplay from "./CharacterTalentDisplay"
 import CharacterConstellationDisplay from "./CharacterConstellationDisplay"
 import CharacterOutfitDisplay from "./CharacterOutfitDisplay"
+import { CustomTooltip } from "../../_custom/CustomTooltip"
+import { TabPanel, StyledTab } from "../../_custom/CustomTabs"
 
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { useMediaQuery, Typography, Tabs, Box, Dialog, Avatar, AppBar, Table, TableContainer, TableBody, TableRow, TableCell } from "@mui/material"
+import { useTheme, useMediaQuery, Typography, Tabs, Box, Dialog, Avatar, AppBar, Table, TableContainer, TableBody, TableRow, TableCell } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
-import { CustomTooltip } from "../../_custom/CustomTooltip"
-import { TabPanel, StyledTab } from "../../_custom/CustomTabs"
+import { createDateObject } from "../../../helpers/dates"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 // Type imports
@@ -53,7 +53,7 @@ function CharacterPage(props: any) {
         const rows = [
             { key: "Constellation", value: constellation.name },
             { key: "Birthday", value: birthday },
-            { key: "Release", value: `${release.date} (${release.version})` },
+            { key: "Release", value: `${release.date !== "" ? createDateObject(release.date as string).date : ""} (${release.version})` },
             { key: "Voice Actor (EN)", value: voiceActors["en"] },
             { key: "Voice Actor (JP)", value: voiceActors["jp"] },
         ]
