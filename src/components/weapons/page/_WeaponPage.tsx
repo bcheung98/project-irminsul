@@ -121,7 +121,7 @@ function WeaponPage(props: any) {
                             <Typography
                                 sx={{
                                     fontFamily: `${theme.font.genshin.family}`,
-                                    fontSize: { xs: "14px", sm: "16px" },
+                                    fontSize: { xs: "12px", sm: "14px" },
                                     color: `${theme.text.color}`,
                                     m: "5px"
                                 }}

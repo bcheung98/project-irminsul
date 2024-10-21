@@ -18,6 +18,8 @@ function CharacterRow(props: any) {
         <StyledTableRows key={index}
             sx={{
                 backgroundImage: `linear-gradient(to left, ${theme.table.header.backgroundColor}, 90%, ${rowColor})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "100%",
                 "&:hover": {
                     backgroundImage: `linear-gradient(to left, ${theme.table.body.hover}, 90%, ${rowColor})`
                 }
