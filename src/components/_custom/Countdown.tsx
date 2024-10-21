@@ -43,7 +43,7 @@ function Countdown(props: { date: { obj: Date, date: string, time: string } }) {
                     <React.Fragment>
                         {`Ends in `}
                         <CustomTooltip title={`${props.date.date} ${props.date.time}`} arrow placement="bottom">
-                            <span style={{ textDecoration: "underline dotted" }}>{`${days}d ${hours}h ${minutes}m ${seconds}s`}</span>
+                            <span style={{ textDecoration: "underline dotted", cursor: "help" }}>{`${days}d ${hours}h ${minutes}m ${seconds}s`}</span>
                         </CustomTooltip>
                     </React.Fragment>
                     :
