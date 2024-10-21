@@ -3,7 +3,6 @@ import { useTheme, Box, ButtonBase, CardHeader, Typography } from "@mui/material
 import { StyledTableCellNoVert, StyledTableRows } from "../_custom/CustomTable"
 
 // Helper imports
-import { GetBackgroundColor } from "../../helpers/RarityColors"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 function WeaponRow(props: any) {
@@ -12,19 +11,8 @@ function WeaponRow(props: any) {
 
     let { row, index } = props
 
-    const rowColor = GetBackgroundColor(row.rarity, 0.6)
-
     return (
-        <StyledTableRows key={index}
-            sx={{
-                backgroundImage: `linear-gradient(to left, ${theme.table.header.backgroundColor}, 90%, ${rowColor})`,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "100%",
-                "&:hover": {
-                    backgroundImage: `linear-gradient(to left, ${theme.table.body.hover}, 90%, ${rowColor})`
-                }
-            }}
-        >
+        <StyledTableRows key={index}>
 
             { /* Name + Icon */}
             <StyledTableCellNoVert>
