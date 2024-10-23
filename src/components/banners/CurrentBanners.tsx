@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 import CustomCard from "../_custom/CustomCard"
 
 // MUI imports
-import { useTheme, Box, Typography, AppBar } from "@mui/material"
+import { useTheme, Box, Typography, AppBar, LinearProgress } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
@@ -28,6 +28,19 @@ function CurrentBanners(props: any) {
     const currentChronicledWish = chronicledWish.filter((banner: BannerData) => isCurrentBanner(createDateObject(banner.start).obj, createDateObject(banner.end).obj))
 
     const activeBanners = currentCharacterBanners.concat(currentWeaponBanners, currentChronicledWish).length > 0
+    const [loading, setLoading] = React.useState(true)
+
+    React.useEffect(() => {
+        if (!activeBanners) {
+            const timer = setTimeout(() => {
+                setLoading(false)
+                clearTimeout(timer)
+            }, 5000)
+        }
+        else {
+            setLoading(false)
+        }
+    }, [activeBanners, setLoading])
 
     return (
         <Box
@@ -105,17 +118,37 @@ function CurrentBanners(props: any) {
                             }
                         </React.Fragment>
                         :
-                        // <React.Fragment>
-                        //     <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px", mb: "10px" }}>
-                        //         There are no active banners
-                        //     </Typography>
-                        //     <img
-                        //         src={`${process.env.REACT_APP_URL}/emotes/error9.png`}
-                        //         alt="No Banners"
-                        //         style={{ width: "150px" }}
-                        //     />
-                        // </React.Fragment>
-                        null
+                        <Box>
+                            <Box sx={{ display: "flex", alignItems: "center" }}>
+                                <Box
+                                    sx={{
+                                        display: loading ? "block" : "none",
+                                        width: "100%",
+                                        color: theme.button.selected
+                                    }}
+                                >
+                                    <LinearProgress color="inherit" />
+                                </Box>
+                                <Typography
+                                    sx={{
+                                        display: !loading && !activeBanners ? "block" : "none",
+                                        fontFamily: theme.font.genshin.family,
+                                        fontSize: "18px",
+                                    }}
+                                >
+                                    There are no active banners.
+                                </Typography>
+                            </Box>
+                            <img
+                                src={`${process.env.REACT_APP_URL}/emotes/error5.png`}
+                                alt="No banners"
+                                style={{
+                                    display: !loading && !activeBanners ? "block" : "none",
+                                    height: "128px",
+                                    marginTop: "20px",
+                                }}
+                            />
+                        </Box>
                 }
             </Box>
         </Box>
