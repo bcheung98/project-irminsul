@@ -1,3 +1,4 @@
+import * as React from "react"
 import { connect, useDispatch } from "react-redux"
 
 // Component imports
@@ -32,7 +33,7 @@ function WeaponFilters(props: {
     const filters: {
         name: string,
         tag: string,
-        component: JSX.Element
+        component: React.ReactNode
     }[] = [
             {
                 name: "Weapon",
@@ -104,7 +105,7 @@ function WeaponFilters(props: {
                 border: { xs: "none", sm: `2px solid ${theme.border.color}` },
                 borderRadius: "5px",
                 width: "100%",
-                overflow: { xs: "none", sm: "hidden" }
+                overflowY: { xs: "none", sm: "auto" }
             }}
         >
             <AppBar position="static"

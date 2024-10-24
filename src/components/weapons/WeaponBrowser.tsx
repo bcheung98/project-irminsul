@@ -153,6 +153,7 @@ function WeaponBrowser(props: any) {
                                 borderTop: `2px solid ${theme.border.colorAlt}`,
                                 backgroundColor: `${theme.appbar.backgroundColor}`,
                                 height: "auto",
+                                maxHeight: "88%"
                             }
                         }}
                     >
