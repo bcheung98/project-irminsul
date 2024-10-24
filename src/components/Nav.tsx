@@ -15,7 +15,7 @@ function Nav() {
 
     const matches = useMediaQuery(theme.breakpoints.up("sm"))
 
-    const onHomePage = window.location.pathname === "/" ? true : false
+    const onHomePage = window.location.pathname === "/"
 
     return (
         <React.Fragment>

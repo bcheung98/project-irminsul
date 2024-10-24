@@ -1,8 +1,7 @@
 import React from "react"
 
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { AppBar, Toolbar, Typography, Container, ButtonBase, Avatar, IconButton, SwipeableDrawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, CardHeader, Box } from "@mui/material"
+import { useTheme, AppBar, Toolbar, Typography, Container, ButtonBase, Avatar, IconButton, SwipeableDrawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, CardHeader, Box } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu"
 import CloseIcon from "@mui/icons-material/Close"
 

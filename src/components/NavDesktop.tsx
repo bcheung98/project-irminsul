@@ -2,8 +2,7 @@ import React from "react"
 import { connect, useDispatch } from "react-redux"
 
 // MUI imports
-import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles"
-import { Toolbar, Typography, CardHeader, Avatar, ButtonBase, IconButton, List, ListItem, ListItemButton, ListItemAvatar, ListItemText, ListItemIcon, Divider, Collapse, Box, Select, Menu } from "@mui/material"
+import { styled, useTheme, Theme, CSSObject, Toolbar, Typography, CardHeader, Avatar, ButtonBase, IconButton, List, ListItem, ListItemButton, ListItemAvatar, ListItemText, ListItemIcon, Divider, Collapse, Box, Select, Menu } from "@mui/material"
 import MuiDrawer from "@mui/material/Drawer"
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar"
 import MenuOpenIcon from "@mui/icons-material/MenuOpen"
