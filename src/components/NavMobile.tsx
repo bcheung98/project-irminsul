@@ -6,13 +6,10 @@ import { AppBar, Toolbar, Typography, Container, ButtonBase, Avatar, IconButton,
 import MenuIcon from "@mui/icons-material/Menu"
 import CloseIcon from "@mui/icons-material/Close"
 
-// Helper imports
-import { CustomTooltip } from "./_custom/CustomTooltip"
-
 // Type imports
-import { NavItem } from "./Nav"
+import { NavProps } from "./Nav"
 
-function NavMobile(props: { navItems: NavItem[], linkItems: NavItem[] }) {
+function NavMobile({ onHomePage, navItems, linkItems }: NavProps) {
 
     const theme = useTheme()
 
@@ -64,40 +61,38 @@ function NavMobile(props: { navItems: NavItem[], linkItems: NavItem[] }) {
                                     >
                                         <CloseIcon />
                                     </IconButton>
-                                    <CustomTooltip title="Irminsul.GG Portal" arrow placement="right" enterDelay={250}>
-                                        <ButtonBase disableRipple href="https://irminsul.gg/">
-                                            <CardHeader
-                                                avatar={
-                                                    <Avatar
-                                                        variant="square"
-                                                        src="https://assets.irminsul.gg/main/icons/Irminsul.png"
-                                                        alt="irminsul.gg"
-                                                        sx={{
-                                                            height: "48px",
-                                                            width: "48px"
-                                                        }}
-                                                    />
-                                                }
-                                                title={
-                                                    <Typography
-                                                        sx={{
-                                                            fontFamily: "Rowdies, Genshin, Roboto",
-                                                            fontSize: "16pt",
-                                                            letterSpacing: ".1rem",
-                                                            color: `white`
-                                                        }}
-                                                    >
-                                                        IRMINSUL.GG
-                                                    </Typography>
-                                                }
-                                                sx={{ px: 0 }}
-                                            />
-                                        </ButtonBase>
-                                    </CustomTooltip>
+                                    <ButtonBase disableRipple href="https://irminsul.gg/">
+                                        <CardHeader
+                                            avatar={
+                                                <Avatar
+                                                    variant="square"
+                                                    src="https://assets.irminsul.gg/main/icons/Irminsul.png"
+                                                    alt="irminsul.gg"
+                                                    sx={{
+                                                        height: "48px",
+                                                        width: "48px"
+                                                    }}
+                                                />
+                                            }
+                                            title={
+                                                <Typography
+                                                    sx={{
+                                                        fontFamily: "Rowdies, Genshin, Roboto",
+                                                        fontSize: "16pt",
+                                                        letterSpacing: ".1rem",
+                                                        color: `white`
+                                                    }}
+                                                >
+                                                    IRMINSUL.GG
+                                                </Typography>
+                                            }
+                                            sx={{ px: 0 }}
+                                        />
+                                    </ButtonBase>
                                 </ListItem>
                                 <Divider sx={{ mb: "5px" }} />
                                 {
-                                    props.navItems.map((item, index) => (
+                                    navItems.map((item, index) => (
                                         <ListItem
                                             key={index}
                                             disablePadding
@@ -129,7 +124,7 @@ function NavMobile(props: { navItems: NavItem[], linkItems: NavItem[] }) {
                                     />
                                 </ListItem>
                                 {
-                                    props.linkItems.map((item, index) => (
+                                    linkItems.map((item, index) => (
                                         <ListItem
                                             key={index}
                                             disablePadding
@@ -152,36 +147,34 @@ function NavMobile(props: { navItems: NavItem[], linkItems: NavItem[] }) {
                             </List>
                         </Box>
                     </SwipeableDrawer>
-                    <CustomTooltip title="Irminsul.GG Portal" arrow placement="right" enterDelay={250}>
-                        <ButtonBase disableRipple href="https://irminsul.gg/">
-                            <CardHeader
-                                avatar={
-                                    <Avatar
-                                        variant="square"
-                                        src="https://assets.irminsul.gg/main/icons/Irminsul.png"
-                                        alt="irminsul.gg"
-                                        sx={{
-                                            height: "48px",
-                                            width: "48px"
-                                        }}
-                                    />
-                                }
-                                title={
-                                    <Typography
-                                        sx={{
-                                            fontFamily: "Rowdies, Genshin, Roboto",
-                                            fontSize: "16pt",
-                                            letterSpacing: ".1rem",
-                                            color: `white`
-                                        }}
-                                    >
-                                        IRMINSUL.GG
-                                    </Typography>
-                                }
-                                sx={{ px: 0 }}
-                            />
-                        </ButtonBase>
-                    </CustomTooltip>
+                    <ButtonBase disableRipple href={onHomePage ? "https://irminsul.gg/" : `${process.env.REACT_APP_BASENAME}/`}>
+                        <CardHeader
+                            avatar={
+                                <Avatar
+                                    variant="square"
+                                    src="https://assets.irminsul.gg/main/icons/Irminsul.png"
+                                    alt="irminsul.gg"
+                                    sx={{
+                                        height: "48px",
+                                        width: "48px"
+                                    }}
+                                />
+                            }
+                            title={
+                                <Typography
+                                    sx={{
+                                        fontFamily: "Rowdies, Genshin, Roboto",
+                                        fontSize: "16pt",
+                                        letterSpacing: ".1rem",
+                                        color: `white`
+                                    }}
+                                >
+                                    IRMINSUL.GG
+                                </Typography>
+                            }
+                            sx={{ px: 0 }}
+                        />
+                    </ButtonBase>
                 </Toolbar>
             </Container>
         </AppBar>

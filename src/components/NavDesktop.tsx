@@ -20,19 +20,18 @@ import { themes } from "../redux/reducers/ThemeReducer"
 
 // Type imports
 import { RootState } from "../redux/store"
-import { NavItem } from "./Nav"
+import { NavProps } from "./Nav"
 
 const drawerWidth = 240 //px
 const buttonHoverWidth = drawerWidth * 0.9 // px
 const iconSize = 32 //px
 
-function NavDesktop(props: { navItems: NavItem[], linkItems: NavItem[], themeIndex: number }) {
+function NavDesktop({ onHomePage, navItems, linkItems }: NavProps) {
 
     const theme = useTheme()
 
     const dispatch = useDispatch()
 
-    const onHomePage = window.location.pathname === "/" ? true : false
     const [drawerOpen, setDrawerOpen] = React.useState(onHomePage)
     const toggleDrawerState = () => {
         setDrawerOpen(!drawerOpen)
@@ -73,36 +72,34 @@ function NavDesktop(props: { navItems: NavItem[], linkItems: NavItem[], themeInd
                                     <MenuOpenIcon sx={{ transform: "rotate(180deg)" }} />
                             }
                         </IconButton>
-                        <CustomTooltip title="Irminsul.GG Portal" arrow placement="right" enterDelay={250}>
-                            <ButtonBase disableRipple href={onHomePage ? "https://irminsul.gg/" : `${process.env.REACT_APP_BASENAME}/`}>
-                                <CardHeader
-                                    avatar={
-                                        <Avatar
-                                            variant="square"
-                                            src="https://assets.irminsul.gg/main/icons/Irminsul.png"
-                                            alt="irminsul.gg"
-                                            sx={{
-                                                height: "48px",
-                                                width: "48px"
-                                            }}
-                                        />
-                                    }
-                                    title={
-                                        <Typography
-                                            sx={{
-                                                fontFamily: "Rowdies, Genshin, Roboto",
-                                                fontSize: "16pt",
-                                                letterSpacing: ".1rem",
-                                                color: `white`
-                                            }}
-                                        >
-                                            IRMINSUL.GG
-                                        </Typography>
-                                    }
-                                    sx={{ px: 0 }}
-                                />
-                            </ButtonBase>
-                        </CustomTooltip>
+                        <ButtonBase disableRipple href={onHomePage ? "https://irminsul.gg/" : `${process.env.REACT_APP_BASENAME}/`}>
+                            <CardHeader
+                                avatar={
+                                    <Avatar
+                                        variant="square"
+                                        src="https://assets.irminsul.gg/main/icons/Irminsul.png"
+                                        alt="irminsul.gg"
+                                        sx={{
+                                            height: "48px",
+                                            width: "48px"
+                                        }}
+                                    />
+                                }
+                                title={
+                                    <Typography
+                                        sx={{
+                                            fontFamily: "Rowdies, Genshin, Roboto",
+                                            fontSize: "16pt",
+                                            letterSpacing: ".1rem",
+                                            color: `white`
+                                        }}
+                                    >
+                                        IRMINSUL.GG
+                                    </Typography>
+                                }
+                                sx={{ px: 0 }}
+                            />
+                        </ButtonBase>
                     </Box>
 
                     {/* Theme Settings */}
@@ -147,7 +144,7 @@ function NavDesktop(props: { navItems: NavItem[], linkItems: NavItem[], themeInd
                 <Toolbar />
                 <List>
                     {
-                        props.navItems.map((item, index) => (
+                        navItems.map((item, index) => (
                             <ListItem
                                 key={index}
                                 disablePadding
@@ -281,7 +278,7 @@ function NavDesktop(props: { navItems: NavItem[], linkItems: NavItem[], themeInd
                         <Collapse in={dropdownOpen} timeout="auto" unmountOnExit>
                             <List disablePadding>
                                 {
-                                    props.linkItems.map((item, index) => (
+                                    linkItems.map((item, index) => (
                                         <ListItem
                                             key={index}
                                             disablePadding

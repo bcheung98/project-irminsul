@@ -5,8 +5,7 @@ import NavDesktop from "./NavDesktop"
 import NavMobile from "./NavMobile"
 
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { useMediaQuery, Avatar } from "@mui/material"
+import { useTheme, useMediaQuery, Avatar } from "@mui/material"
 
 const iconSize = 32 //px
 
@@ -16,9 +15,16 @@ function Nav() {
 
     const matches = useMediaQuery(theme.breakpoints.up("sm"))
 
+    const onHomePage = window.location.pathname === "/" ? true : false
+
     return (
         <React.Fragment>
-            {matches ? <NavDesktop navItems={navItems} linkItems={linkItems} /> : <NavMobile navItems={navItems} linkItems={linkItems} />}
+            {
+                matches ?
+                    <NavDesktop onHomePage={onHomePage} navItems={navItems} linkItems={linkItems} />
+                    :
+                    <NavMobile onHomePage={onHomePage} navItems={navItems} linkItems={linkItems} />
+            }
         </React.Fragment>
     )
 
@@ -26,7 +32,13 @@ function Nav() {
 
 export default Nav
 
-export type NavItem = {
+export interface NavProps {
+    onHomePage: boolean
+    navItems: NavItem[]
+    linkItems: NavItem[]
+}
+
+export interface NavItem {
     icon: JSX.Element,
     text: string,
     link: string
