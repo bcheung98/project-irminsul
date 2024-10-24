@@ -32,8 +32,8 @@ function NavDesktop(props: { navItems: NavItem[], linkItems: NavItem[], themeInd
 
     const dispatch = useDispatch()
 
-    let initialDrawerState = window.location.href.endsWith(".gg/") ? true : false
-    const [drawerOpen, setDrawerOpen] = React.useState(initialDrawerState)
+    const onHomePage = window.location.pathname === "/" ? true : false
+    const [drawerOpen, setDrawerOpen] = React.useState(onHomePage)
     const toggleDrawerState = () => {
         setDrawerOpen(!drawerOpen)
     }
@@ -74,7 +74,7 @@ function NavDesktop(props: { navItems: NavItem[], linkItems: NavItem[], themeInd
                             }
                         </IconButton>
                         <CustomTooltip title="Irminsul.GG Portal" arrow placement="right" enterDelay={250}>
-                            <ButtonBase disableRipple href="https://irminsul.gg/">
+                            <ButtonBase disableRipple href={onHomePage ? "https://irminsul.gg/" : `${process.env.REACT_APP_BASENAME}/`}>
                                 <CardHeader
                                     avatar={
                                         <Avatar
