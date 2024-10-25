@@ -1,5 +1,5 @@
 import * as React from "react"
-import { connect } from "react-redux"
+import { useSelector } from "react-redux"
 
 // Component imports
 import CustomCard from "../_custom/CustomCard"
@@ -20,12 +20,20 @@ import { CustomToggleButton } from "../_custom/CustomToggleButton"
 
 // Type imports
 import { RootState } from "../../redux/store"
+import { WeaponFilterState } from "../../redux/reducers/WeaponFilterReducer"
+
+document.title = `Weapons ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
 function WeaponBrowser(props: any) {
 
     const theme = useTheme()
 
     const matches = useMediaQuery(theme.breakpoints.up("sm"))
+
+    const weapons = useSelector((state: RootState) => state.weapons.weapons)
+    const weaponFilters = useSelector((state: RootState) => state.weaponFilters)
+
+    const activeFilters = Object.keys(weaponFilters).filter((filter) => weaponFilters[filter as keyof WeaponFilterState].length).length > 0
 
     const [searchValue, setSearchValue] = React.useState("")
     const handleInputChange = (event: React.BaseSyntheticEvent) => {
@@ -61,10 +69,6 @@ function WeaponBrowser(props: any) {
                 setDrawerOpen(open)
             }
 
-    let { weapons, weaponFilters } = props
-
-    document.title = `Weapons ${process.env.REACT_APP_DOCUMENT_HEADER}`
-
     return (
         <React.Fragment>
             <Grid container rowSpacing={2} columnSpacing={4} sx={{ mb: "20px" }}>
@@ -97,7 +101,11 @@ function WeaponBrowser(props: any) {
                             onClick={matches ? () => handleDialogOpen() : toggleDrawer(true)}
                             variant="contained"
                             startIcon={<FilterAltIcon sx={{ color: `${theme.text.color}` }} />}
-                            sx={{ px: 3, mr: "25px" }}
+                            sx={{
+                                px: 3,
+                                mr: "25px",
+                                backgroundColor: activeFilters ? `rgb(211, 47, 47)` : "none"
+                            }}
                         >
                             <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "12px", sm: "14px" } }}>
                                 Filters
@@ -110,15 +118,15 @@ function WeaponBrowser(props: any) {
             <Grid container spacing={3}>
                 <Grid size="grow">
                     {
-                        weapons.weapons.length > 0 ?
+                        weapons.length > 0 ?
                             <React.Fragment>
                                 {
                                     view === "card" ?
                                         <Grid container spacing={2.5}>
-                                            {filterWeapons(weapons.weapons, weaponFilters, searchValue).sort((a, b) => a.rarity > b.rarity ? -1 : 1).map(wep => <CustomCard key={wep.id} type="weapon" name={wep.name} displayName={wep.displayName} rarity={wep.rarity} weaponType={wep.type} size="128px" showInfo />)}
+                                            {filterWeapons(weapons, weaponFilters, searchValue).sort((a, b) => a.rarity > b.rarity ? -1 : 1).map(wep => <CustomCard key={wep.id} type="weapon" name={wep.name} displayName={wep.displayName} rarity={wep.rarity} weaponType={wep.type} size="128px" showInfo />)}
                                         </Grid>
                                         :
-                                        <WeaponList weapons={filterWeapons(weapons.weapons, weaponFilters, searchValue)} />
+                                        <WeaponList weapons={filterWeapons(weapons, weaponFilters, searchValue)} />
                                 }
                             </React.Fragment>
                             :
@@ -164,9 +172,4 @@ function WeaponBrowser(props: any) {
     )
 }
 
-const mapStateToProps = (state: RootState) => ({
-    weapons: state.weapons,
-    weaponFilters: state.weaponFilters
-})
-
-export default connect(mapStateToProps)(WeaponBrowser)
+export default WeaponBrowser

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { connect, useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 
 // Component imports
 import TCGDeck from "./TCGDeck"
@@ -21,12 +21,30 @@ import { clearActionFilters } from "../../redux/reducers/TCGActionFilterReducer"
 
 // Type imports
 import { RootState } from "../../redux/store"
+import { TCGCharacterFilterState } from "../../redux/reducers/TCGCharacterFilterReducer"
+import { TCGActionFilterState } from "../../redux/reducers/TCGActionFilterReducer"
 
-function TCGBrowser(props: any) {
+document.title = `TCG ${process.env.REACT_APP_DOCUMENT_HEADER}`
+
+function TCGBrowser() {
 
     const theme = useTheme()
 
     const matches = useMediaQuery(theme.breakpoints.up("sm"))
+
+    const deck = useSelector((state: RootState) => state.deck.deck)
+    const characterCardFilters = useSelector((state: RootState) => state.cardCharFilters)
+    const actionCardFilters = useSelector((state: RootState) => state.cardActionFilters)
+
+    const activeCharFilters = Object.keys(characterCardFilters).filter((filter) =>
+        typeof characterCardFilters[filter as keyof TCGCharacterFilterState] === "object" &&
+        characterCardFilters[filter as keyof TCGCharacterFilterState].length
+    ).length > 0
+    const activeActionFilters = Object.keys(actionCardFilters).filter((filter) =>
+        typeof actionCardFilters[filter as keyof TCGActionFilterState] === "object" &&
+        actionCardFilters[filter as keyof TCGActionFilterState].length
+    ).length > 0
+    const activeFilters = activeCharFilters || activeActionFilters
 
     const dispatch = useDispatch()
 
@@ -69,8 +87,6 @@ function TCGBrowser(props: any) {
                 setDrawerOpen(open)
             }
 
-    document.title = `TCG ${process.env.REACT_APP_DOCUMENT_HEADER}`
-
     return (
         <React.Fragment>
             <Typography
@@ -85,7 +101,7 @@ function TCGBrowser(props: any) {
                 TCG
             </Typography>
 
-            <TCGDeck cards={props.deck.deck} />
+            <TCGDeck cards={deck} />
 
             <Grid container rowSpacing={2} columnSpacing={4} sx={{ mt: "20px", mb: "30px" }}>
                 <Grid size={{ xs: 12, sm: "auto" }}>
@@ -110,7 +126,11 @@ function TCGBrowser(props: any) {
                             onClick={matches ? () => handleDialogOpen() : toggleDrawer(true)}
                             variant="contained"
                             startIcon={<FilterAltIcon sx={{ color: `${theme.text.color}` }} />}
-                            sx={{ px: 3, mr: "25px" }}
+                            sx={{
+                                px: 3,
+                                mr: "25px",
+                                backgroundColor: activeFilters ? `rgb(211, 47, 47)` : "none"
+                            }}
                         >
                             <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "12px", sm: "14px" } }}>
                                 Filters
@@ -165,11 +185,4 @@ function TCGBrowser(props: any) {
     )
 }
 
-const mapStateToProps = (state: RootState) => ({
-    cards: state.cards,
-    deck: state.deck,
-    cardCharFilters: state.cardCharFilters,
-    cardActionFilters: state.cardActionFilters
-})
-
-export default connect(mapStateToProps)(TCGBrowser)
+export default TCGBrowser

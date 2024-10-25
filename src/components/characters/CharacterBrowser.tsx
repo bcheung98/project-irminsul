@@ -1,5 +1,5 @@
 import * as React from "react"
-import { connect } from "react-redux"
+import { useSelector } from "react-redux"
 
 // Component imports
 import CustomCard from "../_custom/CustomCard"
@@ -22,12 +22,20 @@ import { CustomToggleButton } from "../_custom/CustomToggleButton"
 
 // Type imports
 import { RootState } from "../../redux/store"
+import { CharacterFilterState } from "../../redux/reducers/CharacterFilterReducer"
 
-function CharacterBrowser(props: any) {
+document.title = `Characters ${process.env.REACT_APP_DOCUMENT_HEADER}`
+
+function CharacterBrowser() {
 
     const theme = useTheme()
 
     const matches = useMediaQuery(theme.breakpoints.up("sm"))
+
+    const characters = useSelector((state: RootState) => state.characters.characters)
+    const characterFilters = useSelector((state: RootState) => state.characterFilters)
+
+    const activeFilters = Object.keys(characterFilters).filter((filter) => characterFilters[filter as keyof CharacterFilterState].length).length > 0
 
     const [searchValue, setSearchValue] = React.useState("")
     const handleInputChange = (event: React.BaseSyntheticEvent) => {
@@ -64,10 +72,6 @@ function CharacterBrowser(props: any) {
                 setDrawerOpen(open)
             }
 
-    let { characters, characterFilters } = props
-
-    document.title = `Characters ${process.env.REACT_APP_DOCUMENT_HEADER}`
-
     return (
         <React.Fragment>
             <Grid container rowSpacing={2} columnSpacing={4} sx={{ mb: "20px" }}>
@@ -103,7 +107,11 @@ function CharacterBrowser(props: any) {
                             onClick={matches ? () => handleDialogOpen() : toggleDrawer(true)}
                             variant="contained"
                             startIcon={<FilterAltIcon sx={{ color: `${theme.text.color}` }} />}
-                            sx={{ px: 3, mr: "25px" }}
+                            sx={{
+                                px: 3,
+                                mr: "25px",
+                                backgroundColor: activeFilters ? `rgb(211, 47, 47)` : "none"
+                            }}
                         >
                             <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "12px", sm: "14px" } }}>
                                 Filters
@@ -116,13 +124,13 @@ function CharacterBrowser(props: any) {
             <Grid container spacing={3}>
                 <Grid size="grow">
                     {
-                        characters.characters.length > 0 ?
+                        characters.length > 0 ?
                             <React.Fragment>
                                 {
                                     view === "card" &&
                                     <Grid container spacing={2.5}>
                                         {
-                                            filterCharacters(characters.characters, characterFilters, searchValue)
+                                            filterCharacters(characters, characterFilters, searchValue)
                                                 .map(char => <CustomCard key={char.id} type="character" name={char.name} rarity={char.rarity} element={char.element} weaponType={char.weapon} variant="avatar" size="128px" showInfo />)
                                         }
                                     </Grid>
@@ -131,14 +139,14 @@ function CharacterBrowser(props: any) {
                                     view === "grid" &&
                                     <Grid container spacing={2}>
                                         {
-                                            filterCharacters(characters.characters, characterFilters, searchValue)
+                                            filterCharacters(characters, characterFilters, searchValue)
                                                 .map(char => <CharacterCard key={char.id} character={char} />)
                                         }
                                     </Grid>
                                 }
                                 {
                                     view === "list" &&
-                                    <CharacterList characters={filterCharacters(characters.characters, characterFilters, searchValue)} />
+                                    <CharacterList characters={filterCharacters(characters, characterFilters, searchValue)} />
                                 }
                             </React.Fragment>
                             :
@@ -184,9 +192,4 @@ function CharacterBrowser(props: any) {
     )
 }
 
-const mapStateToProps = (state: RootState) => ({
-    characters: state.characters,
-    characterFilters: state.characterFilters
-})
-
-export default connect(mapStateToProps)(CharacterBrowser)
+export default CharacterBrowser
