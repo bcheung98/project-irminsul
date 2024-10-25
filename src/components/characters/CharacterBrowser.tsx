@@ -24,8 +24,6 @@ import { CustomToggleButton } from "../_custom/CustomToggleButton"
 import { RootState } from "../../redux/store"
 import { CharacterFilterState } from "../../redux/reducers/CharacterFilterReducer"
 
-document.title = `Characters ${process.env.REACT_APP_DOCUMENT_HEADER}`
-
 function CharacterBrowser() {
 
     const theme = useTheme()
@@ -71,6 +69,8 @@ function CharacterBrowser() {
                 }
                 setDrawerOpen(open)
             }
+
+    document.title = `Characters ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
     return (
         <React.Fragment>

@@ -22,8 +22,6 @@ import { CustomToggleButton } from "../_custom/CustomToggleButton"
 import { RootState } from "../../redux/store"
 import { WeaponFilterState } from "../../redux/reducers/WeaponFilterReducer"
 
-document.title = `Weapons ${process.env.REACT_APP_DOCUMENT_HEADER}`
-
 function WeaponBrowser(props: any) {
 
     const theme = useTheme()
@@ -68,6 +66,8 @@ function WeaponBrowser(props: any) {
                 }
                 setDrawerOpen(open)
             }
+
+    document.title = `Weapons ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
     return (
         <React.Fragment>

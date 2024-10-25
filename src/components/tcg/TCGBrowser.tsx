@@ -24,8 +24,6 @@ import { RootState } from "../../redux/store"
 import { TCGCharacterFilterState } from "../../redux/reducers/TCGCharacterFilterReducer"
 import { TCGActionFilterState } from "../../redux/reducers/TCGActionFilterReducer"
 
-document.title = `TCG ${process.env.REACT_APP_DOCUMENT_HEADER}`
-
 function TCGBrowser() {
 
     const theme = useTheme()
@@ -86,6 +84,8 @@ function TCGBrowser() {
                 }
                 setDrawerOpen(open)
             }
+
+    document.title = `TCG ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
     return (
         <React.Fragment>
