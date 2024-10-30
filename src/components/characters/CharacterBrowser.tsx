@@ -7,6 +7,7 @@ import SearchBar from "../_custom/SearchBar"
 import CharacterCard from "./CharacterCard"
 import CharacterList from "./CharacterList"
 import CharacterFilters from "./CharacterFilters"
+import { CustomToggleButton } from "../_custom/CustomToggleButton"
 
 // MUI imports
 import { useTheme, useMediaQuery, Box, Typography, Button, ToggleButtonGroup, Dialog, SwipeableDrawer } from "@mui/material"
@@ -18,7 +19,6 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt"
 
 // Helper imports
 import { filterCharacters } from "../../helpers/FilterCharacters"
-import { CustomToggleButton } from "../_custom/CustomToggleButton"
 
 // Type imports
 import { RootState } from "../../redux/store"
@@ -39,6 +39,11 @@ function CharacterBrowser() {
     const handleInputChange = (event: React.BaseSyntheticEvent) => {
         setSearchValue(event.target.value)
     }
+
+    const currentCharacters = React.useMemo(() =>
+        filterCharacters(characters, characterFilters, searchValue),
+        [characters, characterFilters, searchValue]
+    )
 
     const defaultView = matches ? "grid" : "card"
     const [view, setView] = React.useState(defaultView)
@@ -130,8 +135,18 @@ function CharacterBrowser() {
                                     view === "card" &&
                                     <Grid container spacing={2.5}>
                                         {
-                                            filterCharacters(characters, characterFilters, searchValue)
-                                                .map(char => <CustomCard key={char.id} type="character" name={char.name} rarity={char.rarity} element={char.element} weaponType={char.weapon} variant="avatar" size="128px" showInfo />)
+                                            currentCharacters.map(char =>
+                                                <CustomCard
+                                                    key={char.id}
+                                                    type="character"
+                                                    name={char.name}
+                                                    rarity={char.rarity}
+                                                    element={char.element}
+                                                    weaponType={char.weapon}
+                                                    variant="avatar"
+                                                    size="128px"
+                                                    showInfo
+                                                />)
                                         }
                                     </Grid>
                                 }
@@ -139,14 +154,15 @@ function CharacterBrowser() {
                                     view === "grid" &&
                                     <Grid container spacing={2}>
                                         {
-                                            filterCharacters(characters, characterFilters, searchValue)
-                                                .map(char => <CharacterCard key={char.id} character={char} />)
+                                            currentCharacters.map(char =>
+                                                <CharacterCard key={char.id} character={char} />
+                                            )
                                         }
                                     </Grid>
                                 }
                                 {
                                     view === "list" &&
-                                    <CharacterList characters={filterCharacters(characters, characterFilters, searchValue)} />
+                                    <CharacterList characters={currentCharacters} />
                                 }
                             </React.Fragment>
                             :

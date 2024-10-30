@@ -6,6 +6,7 @@ import CustomCard from "../_custom/CustomCard"
 import SearchBar from "../_custom/SearchBar"
 import WeaponList from "./WeaponList"
 import WeaponFilters from "./WeaponFilters"
+import { CustomToggleButton } from "../_custom/CustomToggleButton"
 
 // MUI imports
 import { useTheme, useMediaQuery, Box, Typography, Button, ToggleButtonGroup, Dialog, SwipeableDrawer } from "@mui/material"
@@ -16,13 +17,12 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt"
 
 // Helper imports
 import { filterWeapons } from "../../helpers/FilterWeapons"
-import { CustomToggleButton } from "../_custom/CustomToggleButton"
 
 // Type imports
 import { RootState } from "../../redux/store"
 import { WeaponFilterState } from "../../redux/reducers/WeaponFilterReducer"
 
-function WeaponBrowser(props: any) {
+function WeaponBrowser() {
 
     const theme = useTheme()
 
@@ -37,6 +37,11 @@ function WeaponBrowser(props: any) {
     const handleInputChange = (event: React.BaseSyntheticEvent) => {
         setSearchValue(event.target.value)
     }
+
+    const currentWeapons = React.useMemo(() =>
+        filterWeapons(weapons, weaponFilters, searchValue),
+        [weapons, weaponFilters, searchValue]
+    )
 
     const [view, setView] = React.useState("card")
     const handleView = (event: React.BaseSyntheticEvent, newView: string) => {
@@ -118,15 +123,27 @@ function WeaponBrowser(props: any) {
             <Grid container spacing={3}>
                 <Grid size="grow">
                     {
-                        weapons.length > 0 ?
+                        currentWeapons.length > 0 ?
                             <React.Fragment>
                                 {
                                     view === "card" ?
                                         <Grid container spacing={2.5}>
-                                            {filterWeapons(weapons, weaponFilters, searchValue).sort((a, b) => a.rarity > b.rarity ? -1 : 1).map(wep => <CustomCard key={wep.id} type="weapon" name={wep.name} displayName={wep.displayName} rarity={wep.rarity} weaponType={wep.type} size="128px" showInfo />)}
+                                            {
+                                                currentWeapons.sort((a, b) => a.rarity > b.rarity ? -1 : 1).map(wep =>
+                                                    <CustomCard
+                                                        key={wep.id}
+                                                        type="weapon"
+                                                        name={wep.name}
+                                                        displayName={wep.displayName}
+                                                        rarity={wep.rarity}
+                                                        weaponType={wep.type}
+                                                        size="128px"
+                                                        showInfo
+                                                    />)
+                                            }
                                         </Grid>
                                         :
-                                        <WeaponList weapons={filterWeapons(weapons, weaponFilters, searchValue)} />
+                                        <WeaponList weapons={currentWeapons} />
                                 }
                             </React.Fragment>
                             :
