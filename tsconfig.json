@@ -19,7 +19,14 @@
         "isolatedModules": true,
         "noEmit": true,
         "jsx": "react-jsx",
-        "downlevelIteration": true
+        "downlevelIteration": true,
+        "paths": {
+            "components/*": ["./src/components/*"],
+            "data/*": ["./src/data/*"],
+            "helpers/*": ["./src/helpers/*"],
+            "redux/*": ["./src/redux/*"],
+            "types/*": ["./src/types/*"]
+        }
     },
     "include": [
         "src"
