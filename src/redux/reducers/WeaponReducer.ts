@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { fetchWeapons } from "../actions/fetch"
-import { WeaponData } from "../../types/weapon/WeaponData"
+import { Weapon } from "types/weapon"
 
 export interface WeaponState {
     loading: boolean,
-    weapons: WeaponData[]
+    weapons: Weapon[]
 }
 
 const initialState: WeaponState = {
