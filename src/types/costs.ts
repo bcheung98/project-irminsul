@@ -40,7 +40,7 @@ export interface CharacterCost {
     characterXP: CostArray,
     bossMat: CostArray,
     weeklyBossMat: CostArray,
-    crown: number,
+    crown: number[],
     gemstone: CostArray,
     localMat: CostArray,
     talentBook: CostArray,
@@ -51,7 +51,6 @@ export interface WeaponCostObject {
     name: string,
     displayName?: string,
     rarity: Rarity,
-    element: Element,
     type: WeaponType,
     materials: WeaponMaterials
     costs: WeaponCost
@@ -59,10 +58,10 @@ export interface WeaponCostObject {
 
 export interface WeaponCost {
     mora: number,
-    weaponXP: CostArray,
-    ascensionMat: CostArray,
-    eliteMat: CostArray,
-    commonMat: CostArray
+    weaponXP: CostNumber,
+    ascensionMat: CostNumber,
+    eliteMat: CostNumber,
+    commonMat: CostNumber
 }
 
 export interface PayloadCostObject {
