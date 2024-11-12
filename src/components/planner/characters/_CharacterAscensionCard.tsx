@@ -6,21 +6,23 @@ import CharacterAscensionLevel from "./CharacterAscensionLevel"
 import CharacterAscensionATK from "./CharacterAscensionATK"
 import CharacterAscensionSkill from "./CharacterAscensionSkill"
 import CharacterAscensionBurst from "./CharacterAscensionBurst"
+import { CustomTooltip } from "components/_custom/CustomTooltip"
+import { Accordion, AccordionDetails, AccordionSummary } from "components/_custom/CustomAccordion"
 
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Typography, CardHeader, ButtonBase } from "@mui/material"
+import { useTheme, Box, Typography, CardHeader, ButtonBase } from "@mui/material"
 
 // Helper imports
-import { CustomTooltip } from "../_custom/CustomTooltip"
-import { Accordion, AccordionDetails, AccordionSummary } from "../_custom/CustomAccordion"
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
+import ErrorLoadingImage from "helpers/ErrorLoadingImage"
 
-function CharacterAscensionCard(props: any) {
+// Type imports
+import { CharacterCostObject } from "types/costs"
+
+function CharacterAscensionCard({ character }: { character: CharacterCostObject }) {
 
     const theme = useTheme()
 
-    let { name, rarity, element, weapon } = props.character
+    const { name, rarity, element, weapon } = character
 
     const smallIcon = {
         width: "24px",
@@ -43,7 +45,6 @@ function CharacterAscensionCard(props: any) {
     return (
         <Box
             sx={{
-                width: "100%",
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
                 backgroundColor: `${theme.paper.backgroundColor}`,
@@ -53,7 +54,7 @@ function CharacterAscensionCard(props: any) {
             <CardHeader
                 avatar={
                     <Box sx={{ position: "relative" }}>
-                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <img alt={name} src={`${process.env.REACT_APP_URL}/characters/icons/${name.split(" ").join("_")}.png`} style={mainIcon} onError={ErrorLoadingImage} />
                         </ButtonBase>
                         <Box sx={{ position: "absolute", top: "50px", left: "-5px" }}>
@@ -70,9 +71,9 @@ function CharacterAscensionCard(props: any) {
                 }
                 title={
                     <React.Fragment>
-                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
-                                {props.character.fullname ? props.character.fullname : name}
+                                {character.displayName ? character.displayName : name}
                             </Typography>
                         </ButtonBase>
                         <img style={{
@@ -80,7 +81,7 @@ function CharacterAscensionCard(props: any) {
                             marginLeft: "-2.5px",
                             marginTop: "5px",
                             height: "20px",
-                        }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} onError={ErrorLoadingImage} />
+                        }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity.toString()} onError={ErrorLoadingImage} />
                     </React.Fragment>
                 }
             />
@@ -89,7 +90,7 @@ function CharacterAscensionCard(props: any) {
                 <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                     Materials Required
                 </Typography>
-                <CharacterAscensionCardMaterials character={props.character} />
+                <CharacterAscensionCardMaterials character={character} />
             </Box>
             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px" }} />
             <Accordion>
@@ -99,10 +100,10 @@ function CharacterAscensionCard(props: any) {
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{ mx: "10px", px: 0 }}>
-                    <CharacterAscensionLevel character={props.character} />
-                    <CharacterAscensionATK character={props.character} />
-                    <CharacterAscensionSkill character={props.character} />
-                    <CharacterAscensionBurst character={props.character} />
+                    <CharacterAscensionLevel character={character} />
+                    <CharacterAscensionATK character={character} />
+                    <CharacterAscensionSkill character={character} />
+                    <CharacterAscensionBurst character={character} />
                 </AccordionDetails>
             </Accordion>
         </Box>

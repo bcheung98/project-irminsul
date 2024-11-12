@@ -1,17 +1,22 @@
 import * as React from "react"
 import { useDispatch } from "react-redux"
 
+// Component imports
+import { CustomSlider } from "components/_custom/CustomSlider"
+import { CustomSwitch } from "components/_custom/CustomSwitch"
+
 // MUI imports
 import { useTheme, useMediaQuery, Box, Typography, CardHeader } from "@mui/material"
 
 // Helper imports
-import { CustomSlider } from "../_custom/CustomSlider"
-import { CustomSwitch } from "../_custom/CustomSwitch"
-import { updateCharacterCosts, updateTotalCosts } from "../../redux/reducers/AscensionPlannerReducer"
-import { SetCharacterCostsSkill } from "../../helpers/AscensionCostIndex"
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
+import { updateCharacterCosts, updateTotalCosts } from "../../../redux/reducers/AscensionPlannerReducer"
+import { getCharacterTalentCost } from "data/levelUpCosts"
+import ErrorLoadingImage from "helpers/ErrorLoadingImage"
 
-function CharacterAscensionATK(props: any) {
+// Type imports
+import { CharacterCostObject } from "types/costs"
+
+function CharacterAscensionBurst({ character }: { character: CharacterCostObject }) {
 
     const theme = useTheme()
 
@@ -19,10 +24,10 @@ function CharacterAscensionATK(props: any) {
 
     const dispatch = useDispatch()
 
-    let { name, element, weapon } = props.character
+    const { name, element } = character
 
     const minDistance = 1
-    let maxValue = 10
+    const maxValue = 10
     const levels = [...Array(maxValue).keys()].map((i) => i + 1)
     const [sliderValue, setSliderValue] = React.useState([1, maxValue])
     const handleSliderChange = (event: Event, newValue: number | number[], activeThumb: number) => {
@@ -44,15 +49,15 @@ function CharacterAscensionATK(props: any) {
         }
     }
 
-    React.useEffect(() => {
-        dispatch(updateCharacterCosts([name, "attack", SetCharacterCostsSkill(sliderValue[0], sliderValue[1], selected)]))
-        dispatch(updateTotalCosts())
-    })
-
     const [selected, setSelected] = React.useState(true)
     const handleSelect = () => {
         setSelected(!selected)
     }
+
+    React.useEffect(() => {
+        dispatch(updateCharacterCosts({ name: name, type: "burst", costs: getCharacterTalentCost(sliderValue, selected) }))
+        dispatch(updateTotalCosts())
+    })
 
     return (
         <Box sx={{ width: { xs: "100%", sm: "60%" }, opacity: selected ? 1 : 0.35 }}>
@@ -60,11 +65,11 @@ function CharacterAscensionATK(props: any) {
                 <CustomSwitch checked={selected} onChange={handleSelect} element={element} size="small" sx={{ ml: "-5px" }} />
                 <CardHeader
                     avatar={
-                        <img alt={name} src={`${process.env.REACT_APP_URL}/characters/talents/attack_${weapon.toLowerCase()}.png`} style={{ width: matches ? "32px" : "40px", border: `1px solid ${theme.border.color}`, borderRadius: "48px" }} onError={ErrorLoadingImage} />
+                        <img alt={name} src={`${process.env.REACT_APP_URL}/characters/talents/${name.split(" ").join("_").toLowerCase()}_burst.png`} style={{ width: matches ? "32px" : "40px", border: `1px solid ${theme.border.color}`, borderRadius: "48px" }} onError={ErrorLoadingImage} />
                     }
                     title={
                         <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "14px", sm: "16px" }, color: `${theme.text.color}` }}>
-                            Normal Attack
+                            Elemental Burst
                         </Typography>
                     }
                     sx={{ ml: "-5px" }}
@@ -84,4 +89,4 @@ function CharacterAscensionATK(props: any) {
 
 }
 
-export default CharacterAscensionATK
+export default CharacterAscensionBurst

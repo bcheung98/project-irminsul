@@ -1,91 +1,60 @@
 import * as React from "react"
-import { connect } from "react-redux"
+import { useSelector } from "react-redux"
 import { exportComponentAsJPEG } from "react-component-export-image"
 
+// Component imports
+import MaterialImage from "components/_custom/MaterialImage"
+
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Button, Typography } from "@mui/material"
+import { useTheme, Box, Button, Typography } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
-import MaterialImage from "../_custom/MaterialImage"
 import { formatXPMats, formatGemstone, formatCommonMats, formatTalents, formatBossMats, formatWeeklyBossMats, formatWeaponAscMats, formatEliteMats } from "../../helpers/TooltipText"
 
 // Type imports
 import { RootState } from "../../redux/store"
 
-function AscensionTotalCost(props: any) {
+function AscensionTotalCost() {
 
     const theme = useTheme()
 
     const componentRef = React.useRef() as React.RefObject<React.ReactInstance>
 
-    let { totalCost } = props
-
-    // This object will sort all the materials from `totalCost` based on their type
-    let costs: TotalCost = {
-        mora: 0,
-        char_xp: {},
-        wep_xp: {},
-        bossMat: {},
-        weeklyBossMat: {},
-        crown: 0,
-        gemstone: {},
-        localMat: {},
-        common: {},
-        talent: {},
-        ascension: {},
-        elite: {},
-    }
-
-    // Sort and populate the above object
-    Object.keys(totalCost).forEach((material: string) => {
-        let cost = totalCost[material][0]
-        let materialType = totalCost[material][1]
-        if (materialType === "mora" || materialType === "crown") {
-            costs[materialType] += cost
-        }
-        else if (Object.keys(costs).includes(materialType)) {
-            if (!Object.keys(costs[materialType as keyof typeof costs]).includes(material)) {
-                costs[materialType][material] = 0
-            }
-            costs[materialType][material] += cost
-        }
-    })
+    const totalCosts = useSelector((state: RootState) => state.ascensionPlanner.totalCost)
 
     // Rarities for each type of material
     // [Start rarity, end rarity]
     const materialRarities = {
-        char_xp: [2, 4],
-        wep_xp: [1, 3],
+        characterXP: [2, 4],
+        weaponXP: [1, 3],
         bossMat: [4, 4],
         weeklyBossMat: [5, 5],
-        localMat: [1, 1],
         gemstone: [2, 5],
-        common: [1, 3],
-        talent: [2, 4],
-        ascension: [2, 5],
-        elite: [2, 4],
+        localMat: [1, 1],
+        talentBook: [2, 4],
+        ascensionMat: [2, 5],
+        eliteMat: [2, 4],
+        commonMat: [1, 3],
     }
 
-    // Array that will hold all the cost data to be rendered
-    let costData: TotalCostArray[] = []
+    let costData: { name: string, rarity: number, cost: number, img: string }[] = []
 
     // Populate the above array
     // Object.entries will preserve the original order of materials
-    Object.entries(costs).forEach(arr => {
-        if (arr[0] === "mora") {
-            costData.push({ name: "Mora", rarity: "3", cost: arr[1], img: "Mora" })
+    Object.entries(totalCosts).forEach(([key, value]) => {
+        if (key === "mora") {
+            costData.push({ name: "Mora", rarity: 3, cost: value, img: "Mora" })
         }
-        else if (arr[0] === "crown") {
-            costData.push({ name: "Crown of Insight", rarity: "5", cost: arr[1], img: "talent_mats/Crown_of_Insight" })
+        else if (key === "crown") {
+            costData.push({ name: "Crown of Insight", rarity: 5, cost: value, img: "talent_mats/Crown_of_Insight" })
         }
         else {
-            let rarityIndex = materialRarities[arr[0] as keyof typeof materialRarities]
+            let rarityIndex = materialRarities[key as keyof typeof materialRarities]
             let rarity = rarityIndex[0]
             let maxRarity = rarityIndex[1]
-            Object.keys(arr[1]).forEach((mat) => {
-                costData.push({ name: getMaterialName(arr[0], mat), rarity: rarity.toString(), cost: arr[1][mat], img: `${getImagePath(arr[0])}/${mat.split(" ").join("_")}` })
+            Object.keys(value).forEach((mat) => {
+                costData.push({ name: getMaterialName(key, mat), rarity: rarity, cost: value[mat], img: `${getImagePath(key)}/${mat.split(" ").join("_")}` })
                 rarity += 1
                 if (rarity > maxRarity) {
                     rarity = rarityIndex[0]
@@ -97,7 +66,7 @@ function AscensionTotalCost(props: any) {
     return (
         <React.Fragment>
             {
-                Object.keys(totalCost).length > 0 &&
+                Object.values(costData).map((obj) => obj.cost).reduce((a, c) => a + c) > 0 &&
                 <React.Fragment>
                     <Button
                         variant="contained"
@@ -126,7 +95,7 @@ function AscensionTotalCost(props: any) {
                             {
                                 costData.map((material, index) => (
                                     material.cost !== 0 &&
-                                    <MaterialImage key={index} name={material.name} rarity={material.rarity} cost={material.cost.toLocaleString()} img={material.img} size={64} />
+                                    <MaterialImage key={index} name={material.name} rarity={material.rarity.toString()} cost={material.cost.toLocaleString()} img={material.img} size={64} />
                                 ))
                             }
                         </Grid>
@@ -138,30 +107,26 @@ function AscensionTotalCost(props: any) {
 
 }
 
-const mapStateToProps = (state: RootState) => ({
-    totalCost: state.ascensionPlanner.totalCost
-})
-
-export default connect(mapStateToProps)(AscensionTotalCost)
+export default AscensionTotalCost
 
 const getMaterialName = (type: string, material: string) => {
     switch (type) {
-        case "char_xp":
-        case "wep_xp":
+        case "characterXP":
+        case "weaponXP":
             return formatXPMats(material)
         case "bossMat":
             return formatBossMats(material)
         case "weeklyBossMat":
             return formatWeeklyBossMats(material)
         case "gemstone":
-            return formatGemstone(material)
-        case "common":
+            return formatGemstone(material.split(" ").join("_"))
+        case "commonMat":
             return formatCommonMats(material)
-        case "talent":
+        case "talentBook":
             return formatTalents(material)
-        case "ascension":
+        case "ascensionMat":
             return formatWeaponAscMats(material)
-        case "elite":
+        case "eliteMat":
             return formatEliteMats(material)
         default:
             return material
@@ -171,8 +136,8 @@ const getMaterialName = (type: string, material: string) => {
 const getImagePath = (type: string) => {
     let path = ""
     switch (type) {
-        case "char_xp":
-        case "wep_xp":
+        case "characterXP":
+        case "weaponXP":
             path = "xp_mats"
             break
         case "bossMat":
@@ -187,16 +152,16 @@ const getImagePath = (type: string) => {
         case "gemstone":
             path = "ascension_gems"
             break
-        case "common":
+        case "commonMat":
             path = "common_mats"
             break
-        case "talent":
+        case "talentBook":
             path = "talent_mats"
             break
-        case "ascension":
+        case "ascensionMat":
             path = "weapon_ascension_mats"
             break
-        case "elite":
+        case "eliteMat":
             path = "elite_mats"
             break
         default:
@@ -204,9 +169,3 @@ const getImagePath = (type: string) => {
     }
     return path
 }
-
-interface TotalCost {
-    [key: string]: any
-}
-
-type TotalCostArray = { name: string, rarity: string, cost: number, img: string }

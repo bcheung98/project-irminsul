@@ -1,15 +1,20 @@
 import * as React from "react"
 import { useDispatch } from "react-redux"
 
+// Component imports
+import { CustomSlider } from "components/_custom/CustomSlider"
+
 // MUI imports
 import { useTheme, useMediaQuery, Box, Typography } from "@mui/material"
 
 // Helper imports
-import { CustomSlider } from "../_custom/CustomSlider"
-import { updateWeaponCosts, updateTotalCosts } from "../../redux/reducers/AscensionPlannerReducer"
-import { SetWeaponCostsLevel } from "../../helpers/AscensionCostIndex"
+import { updateWeaponCosts, updateTotalCosts } from "../../../redux/reducers/AscensionPlannerReducer"
+import { getWeaponLevelCost } from "data/levelUpCosts"
 
-function WeaponAscensionLevel(props: any) {
+// Type imports
+import { WeaponCostObject } from "types/costs"
+
+function WeaponAscensionLevel({ weapon }: { weapon: WeaponCostObject }) {
 
     const theme = useTheme()
 
@@ -17,12 +22,11 @@ function WeaponAscensionLevel(props: any) {
 
     const dispatch = useDispatch()
 
-    let { name, rarity } = props.weapon
+    const { name, rarity } = weapon
 
-    let levels
-    rarity > 2 ? levels = ["1", "20", "20+", "40", "40+", "50", "50+", "60", "60+", "70", "70+", "80", "80+", "90"] : levels = ["1", "20", "20+", "40", "40+", "50", "50+", "60", "60+", "70"]
+    const levels = rarity > 2 ? ["1", "20", "20+", "40", "40+", "50", "50+", "60", "60+", "70", "70+", "80", "80+", "90"] : ["1", "20", "20+", "40", "40+", "50", "50+", "60", "60+", "70"]
     const minDistance = 1
-    let maxValue = levels.length
+    const maxValue = levels.length
     const [sliderValue, setSliderValue] = React.useState([1, maxValue])
     const handleSliderChange = (event: Event, newValue: number | number[], activeThumb: number) => {
         if (!Array.isArray(newValue)) {
@@ -44,7 +48,7 @@ function WeaponAscensionLevel(props: any) {
     }
 
     React.useEffect(() => {
-        dispatch(updateWeaponCosts([name, "level", SetWeaponCostsLevel(sliderValue[0], sliderValue[1], rarity)]))
+        dispatch(updateWeaponCosts({ name: name, type: "level", costs: getWeaponLevelCost(rarity, sliderValue) }))
         dispatch(updateTotalCosts())
     })
 

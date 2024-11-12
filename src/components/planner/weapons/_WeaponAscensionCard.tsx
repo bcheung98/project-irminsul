@@ -3,21 +3,23 @@ import * as React from "react"
 // Component imports
 import WeaponAscensionCardMaterials from "./_WeaponAscensionCardMaterials"
 import WeaponAscensionLevel from "./WeaponAscensionLevel"
+import { CustomTooltip } from "components/_custom/CustomTooltip"
+import { Accordion, AccordionDetails, AccordionSummary } from "components/_custom/CustomAccordion"
 
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Typography, CardHeader, ButtonBase } from "@mui/material"
+import { useTheme, Box, Typography, CardHeader, ButtonBase } from "@mui/material"
 
 // Helper imports
-import { CustomTooltip } from "../_custom/CustomTooltip"
-import { Accordion, AccordionDetails, AccordionSummary } from "../_custom/CustomAccordion"
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
+import ErrorLoadingImage from "helpers/ErrorLoadingImage"
 
-function WeaponAscensionCard(props: any) {
+// Type imports
+import { WeaponCostObject } from "types/costs"
+
+function WeaponAscensionCard({ weapon }: { weapon: WeaponCostObject }) {
 
     const theme = useTheme()
 
-    let { name, rarity, type } = props.weapon
+    const { name, rarity, type } = weapon
 
     const smallIcon = {
         width: "24px",
@@ -50,7 +52,7 @@ function WeaponAscensionCard(props: any) {
             <CardHeader
                 avatar={
                     <Box sx={{ position: "relative" }}>
-                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${props.weapon.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${weapon.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <img alt={name} src={`${process.env.REACT_APP_URL}/weapons/${name.split(" ").join("_")}.png`} style={mainIcon} onError={ErrorLoadingImage} />
                         </ButtonBase>
                         <Box sx={{ position: "absolute", top: "50px", left: "45px" }}>
@@ -62,7 +64,7 @@ function WeaponAscensionCard(props: any) {
                 }
                 title={
                     <React.Fragment>
-                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${props.weapon.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${weapon.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                                 {name}
                             </Typography>
@@ -72,7 +74,7 @@ function WeaponAscensionCard(props: any) {
                             marginLeft: "-2.5px",
                             marginTop: "5px",
                             height: "20px",
-                        }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} onError={ErrorLoadingImage} />
+                        }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity.toString()} onError={ErrorLoadingImage} />
                     </React.Fragment>
                 }
             />
@@ -81,7 +83,7 @@ function WeaponAscensionCard(props: any) {
                 <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
                     Materials Required
                 </Typography>
-                <WeaponAscensionCardMaterials weapon={props.weapon} />
+                <WeaponAscensionCardMaterials weapon={weapon} />
             </Box>
             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px" }} />
             <Accordion>
@@ -91,7 +93,7 @@ function WeaponAscensionCard(props: any) {
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{ mx: "10px", px: 0 }}>
-                    <WeaponAscensionLevel weapon={props.weapon} />
+                    <WeaponAscensionLevel weapon={weapon} />
                 </AccordionDetails>
             </Accordion>
         </Box>

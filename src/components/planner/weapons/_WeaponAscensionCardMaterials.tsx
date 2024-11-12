@@ -1,23 +1,37 @@
-import { connect } from "react-redux"
+import { useSelector } from "react-redux"
 
 // MUI imports
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
-import MaterialImage from "../_custom/MaterialImage"
-import { formatWeaponAscMats, formatEliteMats, formatCommonMats } from "../../helpers/TooltipText"
+import MaterialImage from "../../_custom/MaterialImage"
+import { formatWeaponAscMats, formatEliteMats, formatCommonMats } from "../../../helpers/TooltipText"
 
 // Type imports
-import { RootState } from "../../redux/store"
-import { WeaponCosts } from "../../types/weapon/WeaponCosts"
+import { RootState } from "../../../redux/store"
+import { WeaponCost, WeaponCostObject } from "types/costs"
 
-function WeaponAscensionCardMaterials(props: any) {
+function WeaponAscensionCardMaterials({ weapon }: { weapon: WeaponCostObject }) {
 
-    let { name } = props.weapon
-    let { ascensionMat, eliteMat, commonMat } = props.weapon.materials
-    let costs = props.costs.find((wep: WeaponCosts) => wep.name === name).costs
+    const weaponCosts = useSelector((state: RootState) => state.ascensionPlanner.weaponCosts)
 
-    let costData = [
+    const { name } = weapon
+    const { ascensionMat, eliteMat, commonMat } = weapon.materials
+    const costs = weaponCosts.find((wep: WeaponCostObject) => wep.name === name)?.costs as WeaponCost
+
+    let costArray: number[] = []
+    Object.entries(costs).forEach(([key, value]) => {
+        if (key === "mora") {
+            costArray.push(value as number)
+        }
+        else {
+            Object.entries(value).forEach(([k, v]) => {
+                costArray.push(v as number)
+            })
+        }
+    })
+
+    const costData = [
         { name: "Mora", rarity: "3", img: "Mora" },
         { name: "Enhancement Ore", rarity: "1", img: "xp_mats/wep_xp1" },
         { name: "Fine Enhancement Ore", rarity: "2", img: "xp_mats/wep_xp2" },
@@ -34,14 +48,12 @@ function WeaponAscensionCardMaterials(props: any) {
         { name: formatCommonMats(`${commonMat}3`), rarity: "3", img: `common_mats/${commonMat.split(" ").join("_")}3` }
     ]
 
-    let keys = Object.keys(costs)
-
     return (
         <Grid container rowSpacing={1} columnSpacing={0} sx={{ my: "15px" }}>
             {
                 costData.map((material, index) => (
-                    costs[keys[index]] !== 0 &&
-                    <MaterialImage key={index} name={material.name} rarity={material.rarity} cost={costs[keys[index]].toLocaleString()} img={material.img} size={64} />
+                    costArray[index] !== 0 &&
+                    <MaterialImage key={index} name={material.name} rarity={material.rarity} cost={costArray[index].toLocaleString()} img={material.img} size={64} />
                 ))
             }
         </Grid>
@@ -49,8 +61,4 @@ function WeaponAscensionCardMaterials(props: any) {
 
 }
 
-const mapStateToProps = (state: RootState) => ({
-    costs: state.ascensionPlanner.weaponCosts
-})
-
-export default connect(mapStateToProps)(WeaponAscensionCardMaterials)
+export default WeaponAscensionCardMaterials

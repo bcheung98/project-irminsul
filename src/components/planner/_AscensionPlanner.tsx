@@ -1,10 +1,11 @@
-import { connect } from "react-redux"
+import React from "react"
+import { useSelector } from "react-redux"
 
 // Component imports
 import CharacterSelector from "./CharacterSelector"
-import CharacterAscensionCard from "./_CharacterAscensionCard"
+import CharacterAscensionCard from "./characters/_CharacterAscensionCard"
 import WeaponSelector from "./WeaponSelector"
-import WeaponAscensionCard from "./_WeaponAscensionCard"
+import WeaponAscensionCard from "./weapons/_WeaponAscensionCard"
 import AscensionTotalCost from "./AscensionTotalCost"
 
 // MUI imports
@@ -12,16 +13,14 @@ import { useTheme, Typography } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Type imports
-import { CharacterData } from "../../types/character/CharacterData"
-import { WeaponData } from "../../types/weapon/WeaponData"
-import { RootState } from "../../redux/store"
-import React from "react"
+import { RootState } from "redux/store"
 
-function AscensionPlanner(props: any) {
+function AscensionPlanner() {
 
     const theme = useTheme()
 
-    let { characters, weapons } = props
+    const characters = useSelector((state: RootState) => state.ascensionPlanner.characterCosts)
+    const weapons = useSelector((state: RootState) => state.ascensionPlanner.weaponCosts)
 
     document.title = `Ascension Planner ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
@@ -38,31 +37,22 @@ function AscensionPlanner(props: any) {
             >
                 Ascension Planner
             </Typography>
-            <Grid container spacing={2} columns={{ xs: 1, md: 12 }}>
-                <CharacterSelector />
-                <WeaponSelector />
+            <Grid container spacing={5}>
+                <Grid size={{ xs: 12, md: 6, xl: 5 }}>
+                    <CharacterSelector />
+                </Grid>
+                <Grid size={{ xs: 12, md: 6, xl: 5 }}>
+                    <WeaponSelector />
+                </Grid>
             </Grid>
             <AscensionTotalCost />
-            <Grid container spacing={2} columns={{ xs: 1, md: 12 }}>
+            <Grid container spacing={5}>
                 {
-                    characters.length > 0 ?
-                        <Grid size={6}>
-                            <Grid container spacing={5}>
-                                {characters.map((character: CharacterData) => <CharacterAscensionCard key={character.name} character={character} />)}
-                            </Grid>
+                    [...characters, ...weapons].map(item =>
+                        <Grid key={item.name} size={{ xs: 12, md: 6, xl: 5 }}>
+                            {"element" in item ? <CharacterAscensionCard key={item.name} character={item} /> : <WeaponAscensionCard key={item.name} weapon={item} />}
                         </Grid>
-                        :
-                        null
-                }
-                {
-                    weapons.length > 0 ?
-                        <Grid size={6}>
-                            <Grid container spacing={5}>
-                                {weapons.map((weapon: WeaponData) => <WeaponAscensionCard key={weapon.name} weapon={weapon} />)}
-                            </Grid>
-                        </Grid>
-                        :
-                        null
+                    )
                 }
             </Grid>
         </React.Fragment>
@@ -70,9 +60,4 @@ function AscensionPlanner(props: any) {
 
 }
 
-const mapStateToProps = (state: RootState) => ({
-    characters: state.ascensionPlanner.characters,
-    weapons: state.ascensionPlanner.weapons
-})
-
-export default connect(mapStateToProps)(AscensionPlanner)
+export default AscensionPlanner

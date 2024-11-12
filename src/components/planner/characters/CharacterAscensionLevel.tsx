@@ -1,16 +1,21 @@
 import * as React from "react"
 import { useDispatch } from "react-redux"
 
+// Component imports
+import { CustomSlider } from "components/_custom/CustomSlider"
+import { CustomSwitch } from "components/_custom/CustomSwitch"
+
 // MUI imports
 import { useTheme, useMediaQuery, Box, Typography } from "@mui/material"
 
 // Helper imports
-import { CustomSlider } from "../_custom/CustomSlider"
-import { CustomSwitch } from "../_custom/CustomSwitch"
-import { updateCharacterCosts, updateTotalCosts } from "../../redux/reducers/AscensionPlannerReducer"
-import { SetCharacterCostsLevel } from "../../helpers/AscensionCostIndex"
+import { updateCharacterCosts, updateTotalCosts } from "../../../redux/reducers/AscensionPlannerReducer"
+import { getCharacterLevelCost } from "data/levelUpCosts"
 
-function CharacterAscensionLevel(props: any) {
+// Type imports
+import { CharacterCostObject } from "types/costs"
+
+function CharacterAscensionLevel({ character }: { character: CharacterCostObject }) {
 
     const theme = useTheme()
 
@@ -18,11 +23,11 @@ function CharacterAscensionLevel(props: any) {
 
     const dispatch = useDispatch()
 
-    let { name, element } = props.character
+    const { name, element } = character
 
     const levels = ["1", "20", "20+", "40", "40+", "50", "50+", "60", "60+", "70", "70+", "80", "80+", "90"]
     const minDistance = 1
-    let maxValue = levels.length
+    const maxValue = levels.length
     const [sliderValue, setSliderValue] = React.useState([1, maxValue])
     const handleSliderChange = (event: Event, newValue: number | number[], activeThumb: number) => {
         if (!Array.isArray(newValue)) {
@@ -43,15 +48,16 @@ function CharacterAscensionLevel(props: any) {
         }
     }
 
-    React.useEffect(() => {
-        dispatch(updateCharacterCosts([name, "level", SetCharacterCostsLevel(sliderValue[0], sliderValue[1], selected)]))
-        dispatch(updateTotalCosts())
-    })
-
     const [selected, setSelected] = React.useState(true)
     const handleSelect = () => {
         setSelected(!selected)
     }
+
+    React.useEffect(() => {
+        dispatch(updateCharacterCosts({ name: name, type: "level", costs: getCharacterLevelCost(sliderValue, selected) }))
+        dispatch(updateTotalCosts())
+    })
+
 
     return (
         <Box sx={{ width: "100%", opacity: selected ? 1 : 0.35 }}>
