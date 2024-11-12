@@ -889,22 +889,22 @@ export function formatWeaponAscMats(material: string) {
 
 export function formatXPMats(material: string) {
     switch (material) {
-        case "char_xp1":
+        case "characterXP1":
             material = "Wanderer's Advice"
             break
-        case "char_xp2":
+        case "characterXP2":
             material = "Adventurer's Experience"
             break
-        case "char_xp3":
+        case "characterXP3":
             material = "Hero's Wit"
             break
-        case "wep_xp1":
+        case "weaponXP1":
             material = "Enhancement Ore"
             break
-        case "wep_xp2":
+        case "weaponXP2":
             material = "Fine Enhancement Ore"
             break
-        case "wep_xp3":
+        case "weaponXP3":
             material = "Mystic Enhancement Ore"
             break
         default:
