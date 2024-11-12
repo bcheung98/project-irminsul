@@ -123,12 +123,12 @@ export const weaponLevelWithXP = (rarity: number): CostArray => {
         ascensionMat2: weaponCostsWithXP.ascensionMat2[rarity],
         ascensionMat3: weaponCostsWithXP.ascensionMat3[rarity],
         ascensionMat4: weaponCostsWithXP.ascensionMat4[rarity],
-        eliteMat1: weaponCosts.eliteMat1[rarity],
-        eliteMat2: weaponCosts.eliteMat2[rarity],
-        eliteMat3: weaponCosts.eliteMat3[rarity],
-        commonMat1: weaponCosts.commonMat1[rarity],
-        commonMat2: weaponCosts.commonMat2[rarity],
-        commonMat3: weaponCosts.commonMat3[rarity]
+        eliteMat1: weaponCostsWithXP.eliteMat1[rarity],
+        eliteMat2: weaponCostsWithXP.eliteMat2[rarity],
+        eliteMat3: weaponCostsWithXP.eliteMat3[rarity],
+        commonMat1: weaponCostsWithXP.commonMat1[rarity],
+        commonMat2: weaponCostsWithXP.commonMat2[rarity],
+        commonMat3: weaponCostsWithXP.commonMat3[rarity]
     }
 }
 
