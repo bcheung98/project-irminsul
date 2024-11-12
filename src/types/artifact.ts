@@ -1,3 +1,4 @@
+import { Rarity } from "./_common"
 import { Version } from "./version"
 
 export interface ArtifactProps {
@@ -6,7 +7,7 @@ export interface ArtifactProps {
 
 export interface Artifact {
     name: string,
-    rarity: number,
+    rarity: Rarity,
     setEffect: {
         onePiece?: string,
         twoPiece?: string,
