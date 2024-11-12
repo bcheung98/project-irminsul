@@ -11,7 +11,7 @@ export interface CharacterProps {
 export interface Character {
     id: number,
     name: string,
-    fullName?: string,
+    fullname?: string,
     displayName?: string,
     title: string,
     rarity: Rarity,

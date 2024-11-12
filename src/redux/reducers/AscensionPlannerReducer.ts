@@ -91,7 +91,7 @@ export const PlannerSlice = createSlice({
                     }
                     return {
                         name: char.name,
-                        displayName: char.fullName ? char.fullName : char.name,
+                        displayName: char.fullname ? char.fullname : char.name,
                         rarity: char.rarity,
                         element: char.element,
                         weapon: char.weapon,

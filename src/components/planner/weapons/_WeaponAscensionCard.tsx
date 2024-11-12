@@ -66,7 +66,7 @@ function WeaponAscensionCard({ weapon }: { weapon: WeaponCostObject }) {
                     <React.Fragment>
                         <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/weapons/${weapon.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <Typography variant="h6" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}` }}>
-                                {name}
+                                {weapon.displayName ? weapon.displayName : name}
                             </Typography>
                         </ButtonBase>
                         <img style={{
