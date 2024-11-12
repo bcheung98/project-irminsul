@@ -8,6 +8,14 @@ export type TCGFaction = typeof tcgFactions[number]
 export type TCGActionCardType = typeof tcgActionCardTypes[number]
 export type TCGActionCardSubType = typeof tcgActionCardSubTypes[number]
 
+export interface TCGCharacterCardProps {
+    card: TCGCharacterCard
+}
+
+export interface TCGActionCardProps {
+    card: TCGActionCard
+}
+
 export interface TCGCard {
     name: string,
     displayName?: string,

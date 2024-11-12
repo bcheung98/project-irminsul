@@ -4,6 +4,10 @@ import { Rarity, Element, WeaponType, Nation } from "./_common"
 import { CharacterAscensionStats } from "data/CharacterAscensionStats"
 import { Version } from "./version"
 
+export interface CharacterProps {
+    character: Character
+}
+
 export interface Character {
     id: number,
     name: string,

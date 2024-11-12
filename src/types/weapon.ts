@@ -4,6 +4,10 @@ import { Skill } from "./skill"
 import { WeaponMaterials } from "./materials"
 import { Version } from "./version"
 
+export interface WeaponProps {
+    weapon: Weapon
+}
+
 export interface Weapon {
     id: number,
     name: string,

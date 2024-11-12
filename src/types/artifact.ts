@@ -1,5 +1,9 @@
 import { Version } from "./version"
 
+export interface ArtifactProps {
+    artifact: Artifact
+}
+
 export interface Artifact {
     name: string,
     rarity: number,
