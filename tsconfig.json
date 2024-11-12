@@ -20,12 +20,13 @@
         "noEmit": true,
         "jsx": "react-jsx",
         "downlevelIteration": true,
+        "baseUrl": "src/",
         "paths": {
-            "components/*": ["./src/components/*"],
-            "data/*": ["./src/data/*"],
-            "helpers/*": ["./src/helpers/*"],
-            "redux/*": ["./src/redux/*"],
-            "types/*": ["./src/types/*"]
+            "components/*": ["components/*"],
+            "data/*": ["data/*"],
+            "helpers/*": ["helpers/*"],
+            "redux/*": ["redux/*"],
+            "types/*": ["types/*"]
         }
     },
     "include": [
