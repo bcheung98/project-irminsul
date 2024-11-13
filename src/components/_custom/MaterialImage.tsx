@@ -27,11 +27,10 @@ function MaterialImage({
     return (
         <Box
             sx={{
-                width: `${size + 2}px`,
+                width: `${size}px`,
                 height: `${size * 1.3}px`,
                 mr: "15px",
                 backgroundColor: `rgb(233, 229, 220)`,
-                border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
             }}
         >
