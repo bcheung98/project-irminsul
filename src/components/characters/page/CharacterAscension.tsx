@@ -2,22 +2,22 @@ import React from "react"
 
 // Component imports
 import CharacterAscensionMaterials from "./CharacterAscensionMaterials"
-
-// MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Typography } from "@mui/material"
-
-// Helper imports
 import { CustomSlider } from "../../_custom/CustomSlider"
 
-function CharacterAscension(props: any) {
+// MUI imports
+import { useTheme, Box, Typography } from "@mui/material"
+
+// Type imports
+import { CharacterProps } from "types/character"
+
+function CharacterAscension({ character }: CharacterProps) {
 
     const theme = useTheme()
 
     const levels = ["20", "40", "50", "60", "70", "80", "90"]
 
     const minDistance = 1
-    let maxValue = levels.length
+    const maxValue = levels.length
     const [sliderValue, setSliderValue] = React.useState([1, maxValue])
     const handleSliderChange = (event: Event, newValue: number | number[], activeThumb: number) => {
         if (!Array.isArray(newValue)) {
@@ -40,9 +40,9 @@ function CharacterAscension(props: any) {
 
     return (
         <Box sx={{ my: "10px" }}>
-            <CharacterAscensionMaterials materials={props.character.materials} element={props.character.element} values={sliderValue} />
-            <Box sx={{ display: "flex", alignItems: "center", width: "50%", mt: "15px" }}>
-                <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, minWidth: "150px" }}>
+            <CharacterAscensionMaterials materials={character.materials} element={character.element} values={sliderValue} />
+            <Box sx={{ display: { xs: "block", sm: "flex" }, alignItems: "center", width: "50%", mt: "15px" }}>
+                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "16px", color: `${theme.text.color}`, minWidth: "150px" }}>
                     Lv. {levels[sliderValue[0] - 1]} → Lv. {levels[sliderValue[1] - 1]}
                 </Typography>
                 <CustomSlider
@@ -51,12 +51,12 @@ function CharacterAscension(props: any) {
                     min={1}
                     max={maxValue}
                     onChange={handleSliderChange}
-                    element={props.character.element}
+                    element={character.element}
                     disableSwap
-                    sx={{ minWidth: "100px" }}
+                    sx={{ minWidth: "200px", ml: "10px" }}
                 />
             </Box>
-        </Box>
+        </Box >
     )
 
 }

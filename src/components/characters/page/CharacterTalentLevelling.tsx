@@ -2,15 +2,15 @@ import React from "react"
 
 // Component imports
 import CharacterTalentLevellingMaterials from "./CharacterTalentLevellingMaterials"
-
-// MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Typography } from "@mui/material"
-
-// Helper imports
 import { CustomSlider } from "../../_custom/CustomSlider"
 
-function CharacterTalentLevelling(props: any) {
+// MUI imports
+import { useTheme, Box, Typography } from "@mui/material"
+
+// Helper imports
+import { CharacterProps } from "types/character"
+
+function CharacterTalentLevelling({ character }: CharacterProps) {
 
     const theme = useTheme()
 
@@ -37,10 +37,10 @@ function CharacterTalentLevelling(props: any) {
     }
 
     return (
-        <Box sx={{ ml: "30px", my: "10px" }}>
-            <CharacterTalentLevellingMaterials materials={props.character.materials} values={sliderValue} />
-            <Box sx={{ display: "flex", alignItems: "center", width: "30%", mt: "15px" }}>
-                <Typography variant="body1" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, minWidth: "150px" }}>
+        <Box sx={{ ml: { xs: "5px", sm: "30px" }, my: "10px" }}>
+            <CharacterTalentLevellingMaterials materials={character.materials} values={sliderValue} />
+            <Box sx={{ display: { xs: "block", sm: "flex" }, alignItems: "center", width: "40%", mt: "15px" }}>
+                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "16px", color: `${theme.text.color}`, minWidth: "150px" }}>
                     Lv. {sliderValue[0]} → Lv. {sliderValue[1]}
                 </Typography>
                 <CustomSlider
@@ -49,9 +49,9 @@ function CharacterTalentLevelling(props: any) {
                     min={1}
                     max={maxValue}
                     onChange={handleSliderChange}
-                    element={props.character.element}
+                    element={character.element}
                     disableSwap
-                    sx={{ minWidth: "100px" }}
+                    sx={{ minWidth: "200px", ml: "10px" }}
                 />
             </Box>
         </Box>

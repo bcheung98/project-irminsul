@@ -1,5 +1,5 @@
 import * as React from "react"
-import { connect } from "react-redux"
+import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 
 // Component imports
@@ -21,138 +21,54 @@ import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 // Type imports
 import { RootState } from "../../../redux/store"
-import { CharacterData } from "../../../types/character/CharacterData"
+import { Character, CharacterProps } from "types/character"
 
-function CharacterPage(props: any) {
+function CharacterPage() {
 
     const theme = useTheme()
 
-    const matches = useMediaQuery(theme.breakpoints.up("sm"))
+    const matches_md_up = useMediaQuery(theme.breakpoints.up("md"))
 
-    let { char_name } = useParams<{ char_name: string }>()
-    let { characters } = props
-    let character = characters.characters.find((char: CharacterData) => char.name.split(" ").join("_").toLowerCase() === char_name)
-
-    const [tabValue, setTabValue] = React.useState(0)
-    const handleTabChange = (event: React.BaseSyntheticEvent, newValue: number) => {
-        setTabValue(newValue)
-    }
-
-    const [open, setOpen] = React.useState(false)
-    const handleClickOpen = () => {
-        setOpen(true)
-    }
-    const handleClose = () => {
-        setOpen(false)
-    }
+    const { char_name } = useParams<{ char_name: string }>()
+    const characters = useSelector((state: RootState) => state.characters.characters)
+    const character = characters.find((char: Character) => char.name.split(" ").join("_").toLowerCase() === char_name)
 
     if (character !== undefined) {
 
-        let { name, constellation, birthday, voiceActors, release } = character
-
-        const rows = [
-            { key: "Constellation", value: constellation.name },
-            { key: "Birthday", value: birthday },
-            { key: "Release", value: `${release.date !== "" ? createDateObject(release.date as string).date : ""} (${release.version})` },
-            { key: "Voice Actor (EN)", value: voiceActors["en"] },
-            { key: "Voice Actor (JP)", value: voiceActors["jp"] },
-        ]
+        const { name } = character
 
         if (character.fullname) document.title = `${character.fullname} ${process.env.REACT_APP_DOCUMENT_HEADER}`
         else document.title = `${name} ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
         return (
             <React.Fragment>
-                <Grid container spacing={3} sx={{ mb: "20px" }}>
-                    <Grid size={{ xs: 12, sm: "auto" }}>
-                        {!matches && <CharacterInfoMain character={character} />}
-                        <img src={`${process.env.REACT_APP_URL}/characters/wish/${name.split(" ").join("_")}.png`} alt={name}
-                            onClick={() => handleClickOpen()}
-                            style={{
-                                width: matches ? "30vw" : "90vw",
-                                height: "600px",
-                                border: `1px solid ${theme.border.color}`,
-                                borderRadius: "5px",
-                                backgroundColor: `${theme.paper.backgroundColor}`,
-                                objectFit: "cover",
-                                cursor: "pointer",
-                            }}
-                            onError={ErrorLoadingImage}
-                        />
-                        <Box
-                            sx={{
-                                py: "10px",
-                                mt: "10px",
-                                width: { xs: "90vw", sm: "30vw" },
-                                border: `1px solid ${theme.border.color}`,
-                                borderRadius: "5px",
-                                color: `${theme.text.color}`,
-                                backgroundColor: `${theme.paper.backgroundColor}`,
-                            }}
-                        >
-                            <TableContainer>
-                                <Table size="small">
-                                    <TableBody>
-                                        {
-                                            rows.map((row) => (
-                                                <TableRow key={row.key}>
-                                                    <TableCell sx={{ color: `${theme.text.color}`, border: "none", py: "1.5px" }}>
-                                                        <b>{row.key}</b>
-                                                    </TableCell>
-                                                    <TableCell align="right" sx={{ color: `${theme.text.color}`, border: "none", py: "1.5px" }}>
-                                                        {row.value}
-                                                    </TableCell>
-                                                </TableRow>
-                                            ))
-                                        }
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Box>
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: "grow" }} sx={{ mb: "20px" }}>
-                        <Box>
-                            {matches && <CharacterInfoMain character={character} />}
-                            <Box
-                                sx={{
-                                    p: 0,
-                                    border: `1px solid ${theme.border.color}`,
-                                    borderRadius: "5px",
-                                    backgroundColor: `${theme.paper.backgroundColor}`,
-                                }}
-                            >
-                                <AppBar position="static"
-                                    sx={{
-                                        backgroundColor: `${theme.appbar.backgroundColor}`,
-                                        borderBottom: `1px solid ${theme.border.color}`,
-                                        borderRadius: "5px 5px 0px 0px",
-                                    }}
-                                >
-                                    <Tabs value={tabValue} onChange={handleTabChange}>
-                                        <StyledTab label="Stats" />
-                                        <StyledTab label="Ascension" />
-                                    </Tabs>
-                                </AppBar>
-                                <TabPanel value={tabValue} index={0}>
-                                    <CharacterStatsTable character={character} />
-                                </TabPanel>
-                                <TabPanel value={tabValue} index={1}>
-                                    <CharacterAscension character={character} />
-                                </TabPanel>
-                            </Box>
-                        </Box>
-                    </Grid>
-                </Grid>
+                <Box sx={{ mb: "15px" }}>
+                    {
+                        matches_md_up ?
+                            <Grid container spacing={3}>
+                                <Grid size={4}>
+                                    <CharacterImage character={character} />
+                                    <Box sx={{ my: "10px" }} />
+                                    <CharacterInfoMisc character={character} />
+                                </Grid>
+                                <Grid size="grow">
+                                    <CharacterInfoMain character={character} />
+                                    <Box sx={{ my: "15px" }} />
+                                    <CharacterTable character={character} />
+                                </Grid>
+                            </Grid>
+                            :
+                            <Grid container spacing={2} columns={1}>
+                                <CharacterInfoMain character={character} />
+                                <CharacterImage character={character} />
+                                <CharacterTable character={character} />
+                                <CharacterInfoMisc character={character} />
+                            </Grid>
+                    }
+                </Box>
                 <CharacterTalentDisplay character={character} />
                 <CharacterConstellationDisplay character={character} />
-                <Dialog
-                    open={open}
-                    onClose={handleClose}
-                    maxWidth={false}
-                >
-                    <CharacterOutfitDisplay character={character} />
-                </Dialog>
-            </React.Fragment >
+            </React.Fragment>
         )
 
     }
@@ -163,25 +79,20 @@ function CharacterPage(props: any) {
     }
 }
 
-const mapStateToProps = (state: RootState) => ({
-    characters: state.characters
-})
+export default CharacterPage
 
-export default connect(mapStateToProps)(CharacterPage)
-
-function CharacterInfoMain(props: any) {
+function CharacterInfoMain({ character }: CharacterProps) {
 
     const theme = useTheme()
 
-    let { name, title, rarity, element, weapon, description, nation } = props.character
+    const { name, title, rarity, element, weapon, description, nation } = character
 
-    let visionIcon = nation === "Fontaine" ? `${process.env.REACT_APP_URL}/visions/${nation}_${element}_${props.character.arkhe}.png` : `${process.env.REACT_APP_URL}/visions/${nation}_${element}.png`
+    const visionIcon = nation === "Fontaine" ? `${process.env.REACT_APP_URL}/visions/${nation}_${element}_${character.arkhe}.png` : `${process.env.REACT_APP_URL}/visions/${nation}_${element}.png`
 
     return (
         <Box
             sx={{
                 p: "5px",
-                mb: "15px",
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
                 backgroundColor: `${theme.paper.backgroundColor}`,
@@ -215,7 +126,7 @@ function CharacterInfoMain(props: any) {
                             color: `${theme.text.color}`,
                         }}
                     >
-                        {props.character.fullname ? props.character.fullname : name}
+                        {character.fullname ? character.fullname : name}
                     </Typography>
                     <Typography
                         sx={{
@@ -236,7 +147,7 @@ function CharacterInfoMain(props: any) {
                         }}
                     >
                         <Box sx={{ ml: "-2.5px" }}>
-                            <img style={{ height: "30px" }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity} />
+                            <img style={{ height: "30px" }} src={(`${process.env.REACT_APP_URL}/stars/Icon_${rarity}_Stars.png`)} alt={rarity.toString()} />
                         </Box>
                         <Box sx={{ mx: "5px" }}>
                             <Typography variant="h6" sx={{ fontFamily: "Rowdies", mb: "5px", userSelect: "none" }}>
@@ -264,6 +175,139 @@ function CharacterInfoMain(props: any) {
                 <i>{description}</i>
             </Typography>
         </Box >
+    )
+
+}
+
+function CharacterInfoMisc({ character }: CharacterProps) {
+
+    const theme = useTheme()
+
+    const { constellation, birthday, voiceActors, release } = character
+
+    const rows = [
+        { key: "Constellation", value: constellation.name },
+        { key: "Birthday", value: birthday },
+        { key: "Release", value: `${release.date !== "" ? createDateObject(release.date as string).date : ""} (${release.version})` },
+        { key: "Voice Actor (EN)", value: voiceActors["en"] },
+        { key: "Voice Actor (JP)", value: voiceActors["jp"] },
+    ]
+
+    return (
+        <Box
+            sx={{
+                py: "10px",
+                width: "100%",
+                border: `1px solid ${theme.border.color}`,
+                borderRadius: "5px",
+                color: `${theme.text.color}`,
+                backgroundColor: `${theme.paper.backgroundColor}`,
+            }}
+        >
+            <TableContainer>
+                <Table size="small">
+                    <TableBody>
+                        {
+                            rows.map((row) => (
+                                <TableRow key={row.key}>
+                                    <TableCell sx={{ color: `${theme.text.color}`, border: "none", py: "1.5px" }}>
+                                        <b>{row.key}</b>
+                                    </TableCell>
+                                    <TableCell align="right" sx={{ color: `${theme.text.color}`, border: "none", py: "1.5px" }}>
+                                        {row.value}
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        }
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Box>
+    )
+
+}
+
+function CharacterImage({ character }: CharacterProps) {
+
+    const theme = useTheme()
+
+    const { name } = character
+
+    const [open, setOpen] = React.useState(false)
+    const handleClickOpen = () => {
+        setOpen(true)
+    }
+    const handleClose = () => {
+        setOpen(false)
+    }
+
+    return (
+        <React.Fragment>
+            <img
+                src={`${process.env.REACT_APP_URL}/characters/wish/${name.split(" ").join("_")}.png`}
+                alt={name}
+                onClick={() => handleClickOpen()}
+                style={{
+                    width: "100%",
+                    height: "600px",
+                    border: `1px solid ${theme.border.color}`,
+                    borderRadius: "5px",
+                    backgroundColor: `${theme.paper.backgroundColor}`,
+                    objectFit: "cover",
+                    cursor: "pointer",
+                }}
+                onError={ErrorLoadingImage}
+            />
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                maxWidth={false}
+            >
+                <CharacterOutfitDisplay character={character} />
+            </Dialog>
+        </React.Fragment>
+    )
+
+}
+
+function CharacterTable({ character }: CharacterProps) {
+
+    const theme = useTheme()
+
+    const [tabValue, setTabValue] = React.useState(0)
+    const handleTabChange = (event: React.BaseSyntheticEvent, newValue: number) => {
+        setTabValue(newValue)
+    }
+
+    return (
+        <Box
+            sx={{
+                p: 0,
+                width: "100%",
+                border: `1px solid ${theme.border.color}`,
+                borderRadius: "5px",
+                backgroundColor: `${theme.paper.backgroundColor}`,
+            }}
+        >
+            <AppBar position="static"
+                sx={{
+                    backgroundColor: `${theme.appbar.backgroundColor}`,
+                    borderBottom: `1px solid ${theme.border.color}`,
+                    borderRadius: "5px 5px 0px 0px",
+                }}
+            >
+                <Tabs value={tabValue} onChange={handleTabChange}>
+                    <StyledTab label="Stats" />
+                    <StyledTab label="Ascension" />
+                </Tabs>
+            </AppBar>
+            <TabPanel value={tabValue} index={0}>
+                <CharacterStatsTable character={character} />
+            </TabPanel>
+            <TabPanel value={tabValue} index={1}>
+                <CharacterAscension character={character} />
+            </TabPanel>
+        </Box>
     )
 
 }
