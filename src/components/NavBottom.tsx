@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles"
 import { useMediaQuery, AppBar, Toolbar, Box, Typography, Divider, IconButton, createSvgIcon } from "@mui/material"
 import GitHubIcon from "@mui/icons-material/GitHub"
 
-function BottomNav() {
+function NavBottom() {
 
     const theme = useTheme()
 
@@ -12,7 +12,6 @@ function BottomNav() {
     return (
         <AppBar position="static"
             sx={{
-                mt: 10,
                 backgroundColor: `${theme.appbar.backgroundColor}`,
                 borderTop: `1px solid ${theme.border.color}`,
             }}
@@ -24,7 +23,7 @@ function BottomNav() {
                     my: "10px"
                 }}
             >
-                <Typography sx={{ fontSize: { xs: "9pt", sm: "9.5pt" }, fontFamily: `${theme.font.genshin.family}` }}>
+                <Typography sx={{ fontSize: { xs: "11px", sm: "12px" }, fontFamily: `${theme.font.genshin.family}` }}>
                     IRMINSUL.GG is not affiliated with HoYoverse.<br />
                     Game contents are trademarks and copyrights of HoYoverse.
                 </Typography>
@@ -39,14 +38,14 @@ function BottomNav() {
                         }}
                     />
                     <Box sx={{ display: "flex" }}>
-                        {/* <Box
+                        <Box
                             sx={{
                                 textAlign: "center",
                                 alignItems: "center",
                                 display: { xs: "flex", sm: "block" }
                             }}
                         >
-                            <Typography gutterBottom sx={{ fontSize: { xs: "9pt", sm: "9.5pt" }, fontFamily: `${theme.font.genshin.family}` }}>GitHub:</Typography>
+                            <Typography gutterBottom sx={{ fontSize: { xs: "11px", sm: "12px" }, fontFamily: `${theme.font.genshin.family}` }}>GitHub:</Typography>
                             <IconButton
                                 disableRipple
                                 href="https://github.com/bcheung98/project-irminsul"
@@ -65,7 +64,7 @@ function BottomNav() {
                                 mx: { xs: "10px", sm: "25px" },
                                 my: 0
                             }}
-                        /> */}
+                        />
                         <Box
                             sx={{
                                 textAlign: "center",
@@ -73,7 +72,7 @@ function BottomNav() {
                                 display: { xs: "flex", sm: "block" }
                             }}
                         >
-                            <Typography gutterBottom sx={{ fontSize: { xs: "9pt", sm: "9.5pt" }, fontFamily: `${theme.font.genshin.family}` }}>Made with:</Typography>
+                            <Typography gutterBottom sx={{ fontSize: { xs: "11px", sm: "12px" }, fontFamily: `${theme.font.genshin.family}` }}>Made with:</Typography>
                             <Box sx={{ display: "flex" }}>
                                 <IconButton
                                     disableRipple
@@ -103,7 +102,7 @@ function BottomNav() {
 
 }
 
-export default BottomNav
+export default NavBottom
 
 const ReactIcon = createSvgIcon(
     // Credit: React logo from https://react.dev/
