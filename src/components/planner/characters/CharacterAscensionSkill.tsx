@@ -60,7 +60,7 @@ function CharacterAscensionSkill({ character }: { character: CharacterCostObject
     })
 
     return (
-        <Box sx={{ width: { xs: "100%", sm: "60%" }, opacity: selected ? 1 : 0.35 }}>
+        <Box sx={{ width: "100%", opacity: selected ? 1 : 0.35 }}>
             <Box sx={{ display: "flex", alignItems: "center", mb: "-10px" }}>
                 <CustomSwitch checked={selected} onChange={handleSelect} element={element} size="small" sx={{ ml: "-5px" }} />
                 <CardHeader
