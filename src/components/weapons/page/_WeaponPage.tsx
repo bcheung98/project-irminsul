@@ -24,36 +24,9 @@ import { Weapon, WeaponProps } from "types/weapon"
 
 function WeaponPage() {
 
-    const theme = useTheme()
-
-    const matches = useMediaQuery(theme.breakpoints.up("sm"))
-    const matches_md_up = useMediaQuery(theme.breakpoints.up("md"))
-
     const { weapon_name } = useParams<{ weapon_name: string }>()
     const weapons = useSelector((state: RootState) => state.weapons.weapons)
     const weapon = weapons.find((wep: Weapon) => wep.name.split(" ").join("_").toLowerCase() === weapon_name)
-
-    const [tabValue, setTabValue] = React.useState(0)
-    const handleTabChange = (e: React.SyntheticEvent, newValue: number) => {
-        setTabValue(newValue)
-    }
-
-    let maxValue = 5
-    const [sliderValue, setSliderValue] = React.useState(1)
-    const handleSliderChange = (event: Event, newValue: number | number[]) => {
-        setSliderValue(newValue as number)
-    }
-    let scaling
-    if (weapon !== undefined) {
-        scaling = weapon.stats.passive.scaling
-    }
-    let targets = document.getElementsByClassName("text-refinement")
-    if (scaling !== undefined) {
-        scaling.forEach((subScaling: string[], index: number) => {
-            let target = targets[index]
-            if (target !== undefined) { target.innerHTML = subScaling[sliderValue - 1] }
-        })
-    }
 
     if (weapon !== undefined) {
 

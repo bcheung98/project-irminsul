@@ -7,7 +7,7 @@ import TCGDiceCost from "./TCGDiceCost"
 import TCGKeywordPopup from "./TCGKeywordPopup"
 
 // MUI imports
-import { useTheme, useMediaQuery, Box, Typography, CardHeader, Avatar, Button, Dialog, Chip, AppBar, IconButton } from "@mui/material"
+import { useTheme, useMediaQuery, Box, Typography, CardHeader, Avatar, Button, Dialog, Chip, IconButton } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import CloseIcon from "@mui/icons-material/Close"
 
