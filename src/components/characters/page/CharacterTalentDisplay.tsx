@@ -61,10 +61,9 @@ function CharacterTalentDisplay(props: any) {
                                             sx={{
                                                 display: "flex",
                                                 flexDirection: "column",
-                                                width: "48px",
-                                                height: "48px",
+                                                width: { xs: "40px", sm: "48px" },
+                                                height: { xs: "40px", sm: "48px" },
                                                 border: "2px solid rgb(30, 73, 118)",
-                                                boxSizing: "content-box"
                                             }}
                                         >
                                             <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
@@ -74,10 +73,9 @@ function CharacterTalentDisplay(props: any) {
                                             sx={{
                                                 display: "flex",
                                                 flexDirection: "column",
-                                                width: "48px",
-                                                height: "48px",
+                                                width: { xs: "40px", sm: "48px" },
+                                                height: { xs: "40px", sm: "48px" },
                                                 border: "2px solid rgb(30, 73, 118)",
-                                                boxSizing: "content-box"
                                             }}
                                         >
                                             <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
@@ -85,10 +83,10 @@ function CharacterTalentDisplay(props: any) {
                                 }
                                 title={
                                     <React.Fragment>
-                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px" }}>
+                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "16px", sm: "20px" } }}>
                                             {talents[key].name}
                                         </Typography>
-                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "14px" }}>
+                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "12px", sm: "14px" } }}>
                                             <i>{FormatTalentKey(key).toUpperCase()}</i>
                                         </Typography>
                                     </React.Fragment>
