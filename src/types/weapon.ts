@@ -1,6 +1,6 @@
 import { WeaponSubstats } from "data/WeaponSubstats"
 import { Rarity, WeaponType } from "./_common"
-import { Skill } from "./skill"
+import { Skill, SkillWithScaling } from "./skill"
 import { WeaponMaterials } from "./materials"
 import { Version } from "./version"
 
@@ -23,5 +23,9 @@ export interface Weapon {
 export interface WeaponStats {
     atk: string,
     subStat: keyof typeof WeaponSubstats,
-    passive: Skill
+    passive: {
+        name: string,
+        description: string,
+        scaling?: string[][]
+    }
 }
