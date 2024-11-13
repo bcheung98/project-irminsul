@@ -126,15 +126,15 @@ function TCGKeywordPopup(props: any) {
             </Box>
             <AppBar position="sticky"
                 sx={{
-                    display: { xs: "block", sm: "none" },
+                    display: "block",
                     top: "auto",
                     bottom: 0,
                     backgroundColor: `${theme.appbar.backgroundColor}`,
                     p: 1
                 }}
             >
-                <Button variant="contained" sx={{ height: "18px", p: 0, backgroundColor: "#d32f2f" }} onClick={props.handleClose}>
-                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11px" }}>Close</Typography>
+                <Button variant="contained" sx={{ height: { xs: "24px", sm: "32px" }, px: 1, backgroundColor: "#d32f2f" }} onClick={props.handleClose}>
+                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "11px", sm: "14px" } }}>Close</Typography>
                 </Button>
             </AppBar>
             {

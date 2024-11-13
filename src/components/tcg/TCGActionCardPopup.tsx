@@ -26,7 +26,8 @@ function TCGActionCardPopup(props: any) {
 
     const theme = useTheme()
 
-    const matches = useMediaQuery(theme.breakpoints.up("sm"))
+    const matches_sm_up = useMediaQuery(theme.breakpoints.up("sm"))
+    const matches_lg_up = useMediaQuery(theme.breakpoints.up("lg"))
 
     const dispatch = useDispatch()
 
@@ -40,25 +41,6 @@ function TCGActionCardPopup(props: any) {
     }
     const handleClose = () => {
         setOpen(false)
-    }
-
-    const chipStyle = {
-        px: "5px",
-        mr: "10px",
-        mb: "10px",
-        height: { xs: "24px", md: "32px" },
-        backgroundColor: "rgb(69, 84, 103)"
-    }
-
-    const chipImage = {
-        width: matches ? "24px" : "18px",
-        height: matches ? "24px" : "18px"
-    }
-
-    const chipText = {
-        fontFamily: `${theme.font.genshin.family}`,
-        fontSize: matches ? "14px" : "11.5px",
-        color: `white`
     }
 
     // The following code block transforms certain keywords into underlined elements
@@ -130,14 +112,14 @@ function TCGActionCardPopup(props: any) {
                         left: "-25px"
                     }}
                 >
-                    <TCGDiceCost cost={cost} size={matches ? "96px" : "56px"} />
+                    <TCGDiceCost cost={cost} size={matches_sm_up ? "96px" : "56px"} />
                 </Box>
                 {/* Card Image */}
                 <img src={`${process.env.REACT_APP_URL}/tcg/action_cards/${name.split(" ").join("_")}.png`} alt={name}
                     style={{
-                        width: matches ? "250px" : "150px",
+                        width: matches_sm_up ? "250px" : "150px",
                         border: `2px solid ${theme.border.color}`,
-                        borderRadius: matches ? "28px" : "18px",
+                        borderRadius: matches_sm_up ? "28px" : "18px",
                     }}
                     onError={ErrorLoadingImage}
                 />
@@ -145,7 +127,27 @@ function TCGActionCardPopup(props: any) {
         )
     }
 
-    function CardName() {
+    function CardInfo() {
+
+        const chipStyle = {
+            px: "5px",
+            mr: "10px",
+            mb: "10px",
+            height: { xs: "24px", sm: "32px" },
+            backgroundColor: "rgb(69, 84, 103)"
+        }
+
+        const chipImage = {
+            width: matches_sm_up ? "24px" : "18px",
+            height: matches_sm_up ? "24px" : "18px"
+        }
+
+        const chipText = {
+            fontFamily: `${theme.font.genshin.family}`,
+            fontSize: matches_sm_up ? "14px" : "11.5px",
+            color: `white`
+        }
+
         return (
             <React.Fragment>
                 <Box
@@ -153,12 +155,13 @@ function TCGActionCardPopup(props: any) {
                         display: "flex",
                         alignItems: "center",
                         mb: "10px",
+                        mr: "25px"
                     }}
                 >
                     <Typography
                         sx={{
                             fontFamily: `${theme.font.genshin.family}`,
-                            fontSize: matches ? "32px" : "20px",
+                            fontSize: matches_sm_up ? "32px" : "20px",
                             color: `${theme.text.color}`
                         }}
                     >
@@ -222,16 +225,15 @@ function TCGActionCardPopup(props: any) {
                     splash !== undefined &&
                     <Box
                         sx={{
-                            maxWidth: { xs: "auto", lg: "250px" },
-                            maxHeight: "250px",
+                            maxWidth: { xs: "auto", lg: "256px" },
+                            maxHeight: { xs: "200px", sm: "400px", lg: "300px" },
                             overflowY: "auto",
-                            pr: "10px",
-                            ml: { xs: "20px", sm: "40px", lg: 0 },
-                            mr: "-20px",
-                            my: { xs: 0, lg: "20px" }
+                            px: "10px",
+                            mt: { xs: 0, lg: "15px" },
+                            mx: { sm: "15px", lg: 0 }
                         }}
                     >
-                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: matches ? "14px" : "11px", color: `${theme.text.color}` }}>
+                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: matches_sm_up ? "14px" : "11px", color: `${theme.text.color}` }}>
                             <i>{parse(splash.description)}</i>
                         </Typography>
                     </Box>
@@ -249,7 +251,8 @@ function TCGActionCardPopup(props: any) {
                     borderRadius: "5px",
                     color: `${theme.text.color}`,
                     overflowY: "auto",
-                    p: 2.5
+                    p: 2.5,
+                    mb: "15px"
                 }}
             >
                 <Typography sx={{ color: `${theme.text.colorAlt}`, fontSize: { xs: "14px", sm: "16px" } }}>
@@ -259,95 +262,96 @@ function TCGActionCardPopup(props: any) {
         )
     }
 
+    function AddToDeck() {
+
+        return (
+            <React.Fragment>
+                {
+                    !props.preview &&
+                    <React.Fragment>
+                        {
+                            props.count < 2 &&
+                            <Box>
+                                <Button variant="contained" sx={{ height: { xs: "24px", sm: "32px" }, px: 1, mb: "10px" }} onClick={() => dispatch(addActionCard(props.card))}>
+                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "11.5px", sm: "13px" } }}>Add to Deck</Typography>
+                                </Button>
+                            </Box>
+                        }
+                        {
+                            props.inDeck === true &&
+                            <Box>
+                                <Button variant="contained" sx={{ height: { xs: "24px", sm: "32px" }, px: 1, mb: "20px", backgroundColor: `#d32f2f` }} onClick={() => dispatch(removeActionCard(props.card))}>
+                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: { xs: "11.5px", sm: "13px" } }}>Remove from Deck</Typography>
+                                </Button>
+                            </Box>
+                        }
+                    </React.Fragment>
+                }
+            </React.Fragment>
+        )
+
+    }
+
     return (
         <Box
             sx={{
+                position: "relative",
                 width: { xs: "100%", md: "70vw" },
                 minHeight: { xs: "100vh", sm: "70vh" },
+                p: "25px",
                 overflowY: "auto",
                 backgroundColor: `${theme.materialImage.backgroundColor}`,
                 border: { xs: "none", sm: `2px solid ${theme.border.color}` },
                 borderRadius: { xs: "0px", sm: "5px" },
             }}
         >
+            <Box
+                sx={{
+                    position: "absolute",
+                    right: "0px",
+                    top: "5px",
+                }}
+            >
+                <IconButton onClick={props.handleClose}>
+                    <CloseIcon fontSize={matches_sm_up ? "large" : "medium"} sx={{ color: `white` }} />
+                </IconButton>
+            </Box>
             {
-                !matches &&
-                <React.Fragment>
-                    <AppBar position="sticky"
-                        sx={{
-                            backgroundColor: `${theme.appbar.backgroundColor}`,
-                            borderBottom: `1px solid ${theme.border.color}`,
-                            px: 2,
-                            py: 1
-                        }}
-                    >
-                        <Box sx={{ display: "flex", justifyContent: !props.preview ? "space-between" : "right", alignItems: "center" }}>
-                            <Grid container spacing={2} sx={{ display: !props.preview ? "block" : "none" }}>
-                                {
-                                    props.count < 2 &&
-                                    <Button variant="contained" sx={{ height: "24px", px: 1 }} onClick={() => dispatch(addActionCard(props.card))}>
-                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11.5px" }}>Add to Deck</Typography>
-                                    </Button>
-                                }
-                                {
-                                    props.inDeck === true &&
-                                    <Button variant="contained" color="error" sx={{ height: "24px", px: 1 }} onClick={() => dispatch(removeActionCard(props.card))}>
-                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "11.5px" }}>Remove from Deck</Typography>
-                                    </Button>
-                                }
-                            </Grid>
-                            <IconButton onClick={props.handleClose}>
-                                <CloseIcon sx={{ color: `white` }} />
-                            </IconButton>
+                matches_lg_up ?
+                    <Grid container spacing={2}>
+                        <Grid size="auto">
+                            <Box sx={{ mt: "10px" }}>
+                                <CardImage />
+                                <SplashText />
+                            </Box>
+                        </Grid>
+                        <Grid size="grow">
+                            <CardInfo />
+                            <CardSkill />
+                            <AddToDeck />
+                        </Grid>
+                    </Grid>
+                    :
+                    <React.Fragment>
+                        <CardInfo />
+                        <Box sx={{ display: "flex", my: "15px" }}>
+                            <CardImage />
+                            <SplashText />
                         </Box>
-
-                    </AppBar>
-                    <Box sx={{ px: "15px", pt: "10px" }}>
-                        <CardName />
-                    </Box>
-                </React.Fragment>
+                        <AddToDeck />
+                        <CardSkill />
+                    </React.Fragment>
             }
-            <Grid container spacing={2} sx={{ mt: "10px", p: "15px" }}>
-                <Grid size={{ xs: 12, lg: "auto" }} sx={{ mx: "25px", mt: "5px" }}>
-                    <Box sx={{ display: { xs: "flex", lg: "block" } }}>
-                        {/* Card Image */}
-                        <CardImage />
-                        {/* Card Splash Text */}
-                        <SplashText />
-                    </Box>
-                </Grid>
-                <Grid size={{ xs: 12, sm: "grow" }}>
-                    {matches && <CardName />}
-                    <CardSkill />
-                    {
-                        matches && props.preview === false &&
-                        <React.Fragment>
-                            {
-                                props.count < 2 &&
-                                <Button variant="contained" sx={{ mr: "10px", my: "20px" }} onClick={() => dispatch(addActionCard(props.card))}>
-                                    <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>Add to Deck</Typography>
-                                </Button>
-                            }
-                            {
-                                props.inDeck === true &&
-                                <Button variant="contained" color="error" sx={{ my: "20px" }} onClick={() => dispatch(removeActionCard(props.card))}>
-                                    <Typography variant="body2" sx={{ fontFamily: `${theme.font.genshin.family}`, color: `${theme.text.color}`, }}>Remove from Deck</Typography>
-                                </Button>
-                            }
-                        </React.Fragment>
-                    }
-                    {
-                        keywordName && keywordDescription &&
-                        <Dialog
-                            open={open}
-                            onClose={handleClose}
-                            maxWidth={false}
-                        >
-                            <TCGKeywordPopup keywords={props.card.keywords} name={keywordName} image={keywordImage} type={keywordType} cost={keywordCost} description={keywordDescription} handleClose={handleClose} />
-                        </Dialog>
-                    }
-                </Grid>
-            </Grid>
+            {
+                keywordName && keywordDescription &&
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    maxWidth={false}
+                >
+                    <TCGKeywordPopup keywords={props.card.keywords} name={keywordName} image={keywordImage} type={keywordType} cost={keywordCost} description={keywordDescription} handleClose={handleClose} />
+                </Dialog>
+            }
         </Box>
     )
 
