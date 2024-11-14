@@ -34,7 +34,7 @@ import { AppDispatch, RootState } from "./redux/store"
 
 function App(props: any) {
 
-	let { fetchCharacters, fetchWeapons, fetchArtifacts, fetchCharacterBanners, fetchWeaponBanners, fetchChronicledWish, fetchCards, theme } = props
+	const { fetchCharacters, fetchWeapons, fetchArtifacts, fetchCharacterBanners, fetchWeaponBanners, fetchChronicledWish, fetchCards, theme } = props
 
 	useEffect(() => {
 		fetchCharacters()
@@ -53,8 +53,8 @@ function App(props: any) {
 				<Box id="back-to-top-anchor" />
 				<Box sx={{ display: "flex" }}>
 					<Nav />
-					<Box sx={{ mt: "100px", width: "100vw" }}>
-						<Box sx={{ mx: "20px", mb: "50px", minHeight: "100vh" }}>
+					<Box sx={{ minWidth: "50vw", width: "100vw" }}>
+						<Box sx={{ px: "20px", pt: "100px", pb: "50px", minHeight: "100vh" }}>
 							<Switch>
 								<Route exact path="/" component={Home} />
 								<Route exact path="/characters" component={CharacterBrowser} />
@@ -70,7 +70,6 @@ function App(props: any) {
 						<NavBottom />
 					</Box>
 				</Box>
-
 				<ScrollTopFab />
 			</Router>
 		</ThemeProvider>
@@ -81,16 +80,14 @@ const mapStateToProps = (state: RootState) => ({
 	theme: state.theme.theme
 })
 
-const mapDispatchToProps = (dispatch: AppDispatch) => {
-	return {
-		fetchCharacters: () => dispatch(fetchCharacters()),
-		fetchWeapons: () => dispatch(fetchWeapons()),
-		fetchArtifacts: () => dispatch(fetchArtifacts()),
-		fetchCharacterBanners: () => dispatch(fetchCharacterBanners()),
-		fetchWeaponBanners: () => dispatch(fetchWeaponBanners()),
-		fetchChronicledWish: () => dispatch(fetchChronicledWish()),
-		fetchCards: () => dispatch(fetchCards())
-	}
-}
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+	fetchCharacters: () => dispatch(fetchCharacters()),
+	fetchWeapons: () => dispatch(fetchWeapons()),
+	fetchArtifacts: () => dispatch(fetchArtifacts()),
+	fetchCharacterBanners: () => dispatch(fetchCharacterBanners()),
+	fetchWeaponBanners: () => dispatch(fetchWeaponBanners()),
+	fetchChronicledWish: () => dispatch(fetchChronicledWish()),
+	fetchCards: () => dispatch(fetchCards())
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
