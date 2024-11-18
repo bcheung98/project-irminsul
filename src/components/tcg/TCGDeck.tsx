@@ -11,7 +11,7 @@ import { Box, Typography, Paper, Button, Dialog, InputBase } from "@mui/material
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
-import { loadDeck, renameDeck } from "../../redux/reducers/DeckReducer"
+import { loadDeck, renameDeck } from "../../redux/reducers/TCGDeckReducer"
 import { Accordion, AccordionDetails, AccordionSummary } from "../_custom/CustomAccordion"
 
 // Type imports

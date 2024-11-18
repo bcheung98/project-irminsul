@@ -13,7 +13,7 @@ import AscensionPlannerReducer from "./reducers/AscensionPlannerReducer"
 import TCGReducer from "./reducers/TCGReducer"
 import TCGCharacterFilterReducer from "./reducers/TCGCharacterFilterReducer"
 import TCGActionFilterReducer from "./reducers/TCGActionFilterReducer"
-import DeckReducer from "./reducers/DeckReducer"
+import DeckReducer from "./reducers/TCGDeckReducer"
 
 const rootReducer = combineReducers({
     theme: ThemeReducer,

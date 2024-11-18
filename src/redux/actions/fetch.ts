@@ -1,57 +1,57 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { Character } from "types/character"
 import { Weapon } from "types/weapon"
-import { TCGCardData } from "../../types/tcg/TCGData"
+import { TCGData } from "types/tcg"
 import { Artifact } from "types/artifact"
 import { Banner, ChronicledWishBanner } from "types/banner"
 
 // https://api.irminsul.gg/genshin/characters.json
-const CharactersURL = "https://api.irminsul.gg/genshin/characters.json"
+const charactersURL = "https://api.irminsul.gg/genshin/characters.json"
 
 // https://api.irminsul.gg/genshin/weapons.json
-const WeaponsURL = "https://api.irminsul.gg/genshin/weapons.json"
+const weaponsURL = "https://api.irminsul.gg/genshin/weapons.json"
 
 // https://api.irminsul.gg/genshin/cards.json
-const CardsURL = "https://api.irminsul.gg/genshin/cards.json"
+const cardsURL = "https://api.irminsul.gg/genshin/cards.json"
 
 // https://api.irminsul.gg/genshin/artifacts.json
-const ArtifactsURL = "https://api.irminsul.gg/genshin/artifacts.json"
+const artifactsURL = "https://api.irminsul.gg/genshin/artifacts.json"
 
-const CharacterBannerURL = "https://api.irminsul.gg/genshin/character-banners.json"
-const WeaponBannerURL = "https://api.irminsul.gg/genshin/weapon-banners.json"
-const ChronicledWishURL = "https://api.irminsul.gg/genshin/chronicled-wish.json"
+const characterBannerURL = "https://api.irminsul.gg/genshin/character-banners.json"
+const weaponBannerURL = "https://api.irminsul.gg/genshin/weapon-banners.json"
+const chronicledWishURL = "https://api.irminsul.gg/genshin/chronicled-wish.json"
 
 export const fetchCharacters = createAsyncThunk("GET/characters", async (): Promise<Character[]> => {
-    const response = await fetch(CharactersURL)
+    const response = await fetch(charactersURL)
     return await response.json()
 })
 
 export const fetchWeapons = createAsyncThunk("GET/weapons", async (): Promise<Weapon[]> => {
-    const response = await fetch(WeaponsURL)
+    const response = await fetch(weaponsURL)
     return await response.json()
 })
 
-export const fetchCards = createAsyncThunk("GET/cards", async (): Promise<[TCGCardData]> => {
-    const response = await fetch(CardsURL)
+export const fetchCards = createAsyncThunk("GET/cards", async (): Promise<TCGData> => {
+    const response = await fetch(cardsURL)
     return await response.json()
 })
 
-export const fetchArtifacts = createAsyncThunk("GET/artifacts", async (): Promise<[Artifact]> => {
-    const response = await fetch(ArtifactsURL)
+export const fetchArtifacts = createAsyncThunk("GET/artifacts", async (): Promise<Artifact[]> => {
+    const response = await fetch(artifactsURL)
     return await response.json()
 })
 
 export const fetchCharacterBanners = createAsyncThunk("GET/characterBanners", async (): Promise<Banner[]> => {
-    const response = await fetch(CharacterBannerURL)
+    const response = await fetch(characterBannerURL)
     return await response.json()
 })
 
 export const fetchWeaponBanners = createAsyncThunk("GET/weaponBanners", async (): Promise<Banner[]> => {
-    const response = await fetch(WeaponBannerURL)
+    const response = await fetch(weaponBannerURL)
     return await response.json()
 })
 
 export const fetchChronicledWish = createAsyncThunk("GET/chronicledWish", async (): Promise<ChronicledWishBanner[]> => {
-    const response = await fetch(ChronicledWishURL)
+    const response = await fetch(chronicledWishURL)
     return await response.json()
 })

@@ -8,9 +8,6 @@ import { themes } from "../../redux/reducers/ThemeReducer"
 import * as Reactions from "./TCGReactions"
 import { TCGPhysical, TCGPyro, TCGHydro, TCGElectro, TCGCryo, TCGAnemo, TCGGeo, TCGDendro } from "../_custom/ElementIcons"
 
-// Type imports
-import { TCGKeywordIndexData } from "../../types/tcg/TCGKeywordIndexData"
-
 const theme = themes[Number(localStorage.getItem("theme"))].theme
 
 const DescriptionText = () => {
@@ -18,6 +15,16 @@ const DescriptionText = () => {
     return {
         color: `${theme.text.colorAlt}`,
         fontSize: { xs: "14px", sm: "16px" }
+    }
+}
+
+interface TCGKeywordIndexData {
+    [propName: string]: {
+        name: string | React.ReactNode,
+        image?: React.ReactNode,
+        type?: string,
+        cost?: string,
+        description: string | React.ReactNode
     }
 }
 

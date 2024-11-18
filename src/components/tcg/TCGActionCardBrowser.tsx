@@ -1,4 +1,4 @@
-import { connect } from "react-redux"
+import { useSelector } from "react-redux"
 
 // Component imports
 import TCGActionCard from "./TCGActionCard"
@@ -8,54 +8,39 @@ import Grid from "@mui/material/Grid2"
 
 // Helper imports
 import { filterTCGActionCards } from "../../helpers/filterTCGActionCards"
+import { selectDeck } from "../../redux/reducers/TCGDeckReducer"
 
 // Type imports
 import { RootState } from "../../redux/store"
-import { TCGCardData } from "../../types/tcg/TCGData"
+import { TCGActionCard as TCGActionCardType, TCGDeck } from "types/tcg"
 
-function TCGActionCardBrowser(props: any) {
+function TCGActionCardBrowser({ searchValue }: { searchValue: string }) {
 
-    let { searchValue, cardActionFilters } = props
+    const cardActionFilters = useSelector((state: RootState) => state.cardActionFilters)
+    const cards = useSelector((state: RootState) => state.cards.actionCards)
+    const deck = useSelector(selectDeck)
 
-    if (props.cards.cards[1] !== undefined) {
-
-        let cards = props.cards.cards[1].cards
-        let deck = props.deck.deck.actionCards
-
-        return (
-            <Grid container spacing={3}>
-                <Grid size="grow">
-                    <Grid container rowSpacing={3} columnSpacing={0}>
-                        {
-                            filterTCGActionCards(CurrentActionCards(cards, deck), cardActionFilters, searchValue)
-                                .map(card => <TCGActionCard key={card.name} card={card} preview={false} />)
-                        }
-                    </Grid>
+    return (
+        <Grid container spacing={3}>
+            <Grid size="grow">
+                <Grid container rowSpacing={3} columnSpacing={0}>
+                    {
+                        filterTCGActionCards(CurrentActionCards(cards, deck), cardActionFilters, searchValue)
+                            .map(card => <TCGActionCard key={card.name} card={card} preview={false} />)
+                    }
                 </Grid>
             </Grid>
-        )
-    }
-    else {
-        return (
-            <>
-            </>
-        )
-    }
+        </Grid>
+    )
 
 }
 
-const mapStateToProps = (state: RootState) => ({
-    cards: state.cards,
-    deck: state.deck,
-    cardActionFilters: state.cardActionFilters
-})
-
-export default connect(mapStateToProps)(TCGActionCardBrowser)
+export default TCGActionCardBrowser
 
 // Filters out Action Cards that have been added twice to the deck, then sorts them based on the selected option
-function CurrentActionCards(cards: TCGCardData[], deck: TCGCardData[]) {
-    let deckNames = deck.map(card => card.name)
-    let counts: { [propName: string]: number } = {}
-    deckNames.forEach((card: string) => counts[card as keyof {}] === undefined ? counts[card] = 1 : counts[card] += 1)
-    return cards.filter(card => counts[card.name as keyof {}] !== 2)
+function CurrentActionCards(cards: TCGActionCardType[], deck: TCGDeck) {
+    const deckNames = deck.actionCards.map(card => card.name)
+    const counts: { [cardName: string]: number } = {}
+    deckNames.forEach((card: string) => counts[card] === undefined ? counts[card] = 1 : counts[card] += 1)
+    return cards.filter(card => counts[card.name] !== 2)
 }

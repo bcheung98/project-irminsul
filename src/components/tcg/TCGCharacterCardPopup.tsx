@@ -1,10 +1,11 @@
 import * as React from "react"
-import { connect, useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import parse, { Element, domToReact, HTMLReactParserOptions } from "html-react-parser"
 
 // Component imports
 import TCGDiceCost from "./TCGDiceCost"
 import TCGKeywordPopup from "./TCGKeywordPopup"
+import { CustomTooltip } from "../_custom/CustomTooltip"
 
 // MUI imports
 import { useTheme, useMediaQuery, Box, Typography, CardHeader, Avatar, Button, Dialog, Chip, IconButton } from "@mui/material"
@@ -12,8 +13,7 @@ import Grid from "@mui/material/Grid2"
 import CloseIcon from "@mui/icons-material/Close"
 
 // Helper imports
-import { addCharacterCard, removeCharacterCard } from "../../redux/reducers/DeckReducer"
-import { CustomTooltip } from "../_custom/CustomTooltip"
+import { addCharacterCard, removeCharacterCard } from "../../redux/reducers/TCGDeckReducer"
 import { ElementalBorderColor } from "../../helpers/ElementalColors"
 import { FormatTCGTalentKey } from "../../helpers/FormatTCGTalentKey"
 import { Keywords } from "./TCGKeywords"
@@ -34,6 +34,8 @@ function TCGCharacterCardPopup(props: any) {
     const dispatch = useDispatch()
 
     const { name, element, arkhe, weapon, factions, hp, talents, splash } = props.char
+
+    const keywords = useSelector((state: RootState) => state.cards.keywords)
 
     const [open, setOpen] = React.useState(false)
     const [tag, setTag] = React.useState("")
@@ -84,15 +86,15 @@ function TCGCharacterCardPopup(props: any) {
         keywordType = Keywords[tag].type
         keywordDescription = Keywords[tag].description
     }
-    else if (props.keywords && tag !== "") {
-        let currentKeyword = props.keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
-        try {
+    else if (keywords && tag !== "") {
+        const currentKeyword = keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
+        if (currentKeyword) {
             keywordName = currentKeyword.name
-            keywordImage = currentKeyword.image
+            keywordImage = null
             keywordType = currentKeyword.type
             keywordDescription = currentKeyword.description
         }
-        catch {
+        else {
             keywordName = ""
             keywordImage = null
             keywordType = ""
@@ -431,9 +433,4 @@ function TCGCharacterCardPopup(props: any) {
 
 }
 
-const mapStateToProps = (state: RootState) => ({
-    deck: state.deck,
-    keywords: state.cards.cards[2]
-})
-
-export default connect(mapStateToProps)(TCGCharacterCardPopup)
+export default TCGCharacterCardPopup

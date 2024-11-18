@@ -1,19 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { fetchCards } from "../actions/fetch"
-import { TCGCardData } from "../../types/tcg/TCGData"
+import { TCGCharacterCard, TCGActionCard, TCGKeyword } from "types/tcg"
 
 export interface TCGState {
     loading: boolean,
-    cards: TCGCardData[]
+    characterCards: TCGCharacterCard[],
+    actionCards: TCGActionCard[],
+    keywords: TCGKeyword[]
 }
 
 const initialState: TCGState = {
     loading: false,
-    cards: []
+    characterCards: [],
+    actionCards: [],
+    keywords: []
 }
 
 export const TCGSlice = createSlice({
-    name: "card cards",
+    name: "cards",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -21,7 +25,10 @@ export const TCGSlice = createSlice({
             state.loading = true
         })
         builder.addCase(fetchCards.fulfilled, (state, action) => {
-            state.cards = action.payload
+            const { characterCards, actionCards, keywords } = action.payload
+            state.characterCards = characterCards
+            state.actionCards = actionCards
+            state.keywords = keywords
             state.loading = false
         })
         builder.addCase(fetchCards.rejected, (state) => {

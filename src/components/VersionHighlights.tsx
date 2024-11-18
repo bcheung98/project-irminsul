@@ -1,5 +1,5 @@
 import * as React from "react"
-import { connect } from "react-redux"
+import { useSelector } from "react-redux"
 
 // Component imports
 import CustomCard from "./_custom/CustomCard"
@@ -19,10 +19,10 @@ import { updates } from "../data/Versions"
 
 // Type imports
 import { RootState } from "../redux/store"
-import { CharacterData } from "../types/character/CharacterData"
-import { WeaponData } from "../types/weapon/WeaponData"
-import { ArtifactData } from "../types/artifact/ArtifactData"
-import { TCGCardData } from "../types/tcg/TCGData"
+import { Character } from "types/character"
+import { Weapon } from "types/weapon"
+import { Artifact } from "types/artifact"
+import { TCGCard } from "types/tcg"
 
 function VersionHighlights(props: any) {
 
@@ -39,16 +39,20 @@ function VersionHighlights(props: any) {
         if (index - 1 >= 0) setIndex(index - 1)
     }
 
-    let version = updates[index].version
+    const version = updates[index].version
 
-    let characters = props.characters.characters.filter((char: CharacterData) => char.release.version === version).sort((a: CharacterData, b: CharacterData) => a.id - b.id)
-    let weapons = props.weapons.weapons.filter((wep: WeaponData) => wep.release.version === version).sort((a: WeaponData, b: WeaponData) => b.rarity - a.rarity || a.name.localeCompare(b.name))
-    let artifacts = props.artifacts.artifacts.filter((artifact: ArtifactData) => artifact.release.version === version)
-    let characterCards = []
-    let actionCards = []
-    if (props.cards.cards[0] !== undefined) { characterCards = props.cards.cards[0].cards.filter((card: TCGCardData) => card.release.version === version).sort((a: TCGCardData, b: TCGCardData) => a.name.localeCompare(b.name)) }
-    if (props.cards.cards[1] !== undefined) { actionCards = props.cards.cards[1].cards.filter((card: TCGCardData) => card.release.version === version).sort((a: TCGCardData, b: TCGCardData) => a.subType.localeCompare(b.subType) || a.name.localeCompare(b.name)) }
-    let newCards = characterCards.length > 0 || actionCards.length > 0
+    const characters = useSelector((state: RootState) => state.characters.characters)
+    const weapons = useSelector((state: RootState) => state.weapons.weapons)
+    const artifacts = useSelector((state: RootState) => state.artifacts.artifacts)
+    const characterCards = useSelector((state: RootState) => state.cards.characterCards)
+    const actionCards = useSelector((state: RootState) => state.cards.actionCards)
+
+    const currentCharacters = characters.filter((char: Character) => char.release.version === version).sort((a, b) => a.id - b.id)
+    const currentWeapons = weapons.filter((wep: Weapon) => wep.release.version === version).sort((a, b) => b.rarity - a.rarity || a.name.localeCompare(b.name))
+    const currentArtifacts = artifacts.filter((artifact: Artifact) => artifact.release.version === version)
+    const currentCharacterCards = characterCards.filter((card: TCGCard) => card.release.version === version).sort((a, b) => a.name.localeCompare(b.name))
+    const currentActionCards = actionCards.filter((card: TCGCard) => card.release.version === version).sort((a, b) => a.subType.localeCompare(b.subType) || a.name.localeCompare(b.name))
+    const newCards = [...characterCards, ...actionCards].length > 0
 
     return (
         <Box
@@ -127,7 +131,7 @@ function VersionHighlights(props: any) {
 
             {/* NEW CHARACTERS */}
             {
-                characters.length > 0 &&
+                currentCharacters.length > 0 &&
                 <Box sx={{ mx: "30px" }}>
                     <CardHeader
                         avatar={<img src={`${process.env.REACT_APP_URL}/icons/Aether.png`} alt="New Characters" style={{ width: "40px", marginRight: "-5px" }} />}
@@ -141,19 +145,19 @@ function VersionHighlights(props: any) {
                     <Box>
                         <Grid container spacing={2.5}>
                             {
-                                characters.map((char: CharacterData, index: number) => <CustomCard key={index} type="character" name={char.name} rarity={char.rarity} element={char.element} weaponType={char.weapon} variant="avatar" size="128px" showInfo />)
+                                currentCharacters.map((char, index) => <CustomCard key={index} type="character" name={char.name} rarity={char.rarity} element={char.element} weaponType={char.weapon} variant="avatar" size="128px" showInfo />)
                             }
                         </Grid>
                     </Box>
                     {
-                        weapons.length > 0 || newCards ? <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "25px 0px 25px 0px" }} /> : null
+                        currentWeapons.length > 0 || newCards ? <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "25px 0px 25px 0px" }} /> : null
                     }
                 </Box>
             }
 
             {/* NEW WEAPONS */}
             {
-                weapons.length > 0 &&
+                currentWeapons.length > 0 &&
                 <Box sx={{ mx: "30px" }}>
                     <CardHeader
                         avatar={<img src={`${process.env.REACT_APP_URL}/icons/Weapons.png`} alt="New Weapons" style={{ width: "40px", marginRight: "-5px" }} />}
@@ -167,19 +171,19 @@ function VersionHighlights(props: any) {
                     <Box>
                         <Grid container spacing={2.5}>
                             {
-                                weapons.map((wep: WeaponData, index: number) => <CustomCard key={index} type="weapon" name={wep.name} displayName={wep.displayName} rarity={wep.rarity} weaponType={wep.type} size="128px" showInfo />)
+                                currentWeapons.map((wep, index) => <CustomCard key={index} type="weapon" name={wep.name} displayName={wep.displayName} rarity={wep.rarity} weaponType={wep.type} size="128px" showInfo />)
                             }
                         </Grid>
                     </Box>
                     {
-                        artifacts.length > 0 || newCards ? <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "25px 0px 25px 0px" }} /> : null
+                        currentArtifacts.length > 0 || newCards ? <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "25px 0px 25px 0px" }} /> : null
                     }
                 </Box>
             }
 
             {/* NEW ARTIFACTS */}
             {
-                artifacts.length > 0 &&
+                currentArtifacts.length > 0 &&
                 <Box sx={{ mx: "30px" }}>
                     <CardHeader
                         avatar={<img src={`${process.env.REACT_APP_URL}/icons/Artifact.png`} alt="New Artifacts" style={{ width: "40px", marginRight: "-5px" }} />}
@@ -193,7 +197,7 @@ function VersionHighlights(props: any) {
                     <Box>
                         <Grid container spacing={2.5}>
                             {
-                                artifacts.map((artifact: ArtifactData, index: number) => (
+                                currentArtifacts.map((artifact, index) => (
                                     <CustomCard key={index} type="artifact" name={artifact.name} rarity={artifact.rarity} size="128px" showInfo artifact={artifact} />
                                 ))
                             }
@@ -220,7 +224,7 @@ function VersionHighlights(props: any) {
                     />
                     <Grid container rowSpacing={3} columnSpacing={0}>
                         {
-                            characterCards.map((card: TCGCardData, index: number) => (
+                            currentCharacterCards.map((card, index) => (
                                 <TCGCharacterCard key={index} char={card} preview />
                             ))
                         }
@@ -228,7 +232,7 @@ function VersionHighlights(props: any) {
                     <br />
                     <Grid container rowSpacing={3} columnSpacing={0}>
                         {
-                            actionCards.map((card: TCGCardData, index: number) => (
+                            currentActionCards.map((card, index) => (
                                 <TCGActionCard key={index} card={card} preview />
                             ))
                         }
@@ -240,11 +244,4 @@ function VersionHighlights(props: any) {
     )
 }
 
-const mapStateToProps = (state: RootState) => ({
-    characters: state.characters,
-    weapons: state.weapons,
-    artifacts: state.artifacts,
-    cards: state.cards
-})
-
-export default connect(mapStateToProps)(VersionHighlights)
+export default VersionHighlights

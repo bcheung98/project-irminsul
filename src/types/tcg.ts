@@ -8,6 +8,12 @@ export type TCGFaction = typeof tcgFactions[number]
 export type TCGActionCardType = typeof tcgActionCardTypes[number]
 export type TCGActionCardSubType = typeof tcgActionCardSubTypes[number]
 
+export interface TCGData {
+    characterCards: TCGCharacterCard[],
+    actionCards: TCGActionCard[],
+    keywords: TCGKeyword[]
+}
+
 export interface TCGCharacterCardProps {
     card: TCGCharacterCard
 }
@@ -62,4 +68,10 @@ export interface TCGTalents {
 export interface TCGKeyword extends TCGSkill {
     tag: string,
     type?: string
+}
+
+export interface TCGDeck {
+    name: string,
+    characterCards: TCGCharacterCard[],
+    actionCards: TCGActionCard[]
 }

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { connect, useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import parse, { Element, domToReact, HTMLReactParserOptions } from "html-react-parser"
 
 // Component imports
@@ -12,7 +12,7 @@ import Grid from "@mui/material/Grid2"
 import CloseIcon from "@mui/icons-material/Close"
 
 // Helper imports
-import { addActionCard, removeActionCard } from "../../redux/reducers/DeckReducer"
+import { addActionCard, removeActionCard } from "../../redux/reducers/TCGDeckReducer"
 import { Keywords } from "./TCGKeywords"
 import { FormatTCGTalentKey } from "../../helpers/FormatTCGTalentKey"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
@@ -20,7 +20,7 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 // Type imports
 import { RootState } from "../../redux/store"
 import { TCGKeywordsData } from "../../types/tcg/TCGKeywordsData"
-import { TCGCardData } from "../../types/tcg/TCGData"
+import { TCGCharacterCard, TCGSkill, TCGTalents } from "types/tcg"
 
 function TCGActionCardPopup(props: any) {
 
@@ -31,7 +31,10 @@ function TCGActionCardPopup(props: any) {
 
     const dispatch = useDispatch()
 
-    let { name, type, subType, weaponType, cost, description, splash } = props.card
+    const { name, type, subType, weaponType, cost, description, splash } = props.card
+
+    const characterCards = useSelector((state: RootState) => state.cards.characterCards)
+    const keywords = useSelector((state: RootState) => state.cards.keywords)
 
     const [open, setOpen] = React.useState(false)
     const [tag, setTag] = React.useState("")
@@ -72,7 +75,8 @@ function TCGActionCardPopup(props: any) {
     let keywordCost
     let keywordDescription
     if (tag.startsWith("_")) {
-        let skill = props.characters.cards.find((card: TCGCardData) => tag.split("_")[1].toLowerCase() === card.name.toLowerCase()).talents[tag.split("_")[2]]
+        const skill = characterCards.find((card: TCGCharacterCard) => tag.split("_")[1].toLowerCase() === card.name.toLowerCase())
+            ?.talents[tag.split("_")[2] as keyof TCGTalents] as TCGSkill
         keywordName = skill.name
         keywordType = FormatTCGTalentKey(tag.split("_")[2])
         keywordDescription = skill.description
@@ -84,16 +88,16 @@ function TCGActionCardPopup(props: any) {
         keywordCost = Keywords[tag].cost
         keywordDescription = Keywords[tag].description
     }
-    else if (props.keywords && tag !== "") {
-        let currentKeyword = props.keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
-        try {
+    else if (keywords && tag !== "") {
+        const currentKeyword = keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
+        if (currentKeyword) {
             keywordName = currentKeyword.name
-            keywordImage = currentKeyword.image && currentKeyword.image
+            keywordImage = null
             keywordType = currentKeyword.type
             keywordCost = currentKeyword.cost
             keywordDescription = currentKeyword.description
         }
-        catch {
+        else {
             keywordName = ""
             keywordImage = null
             keywordType = ""
@@ -357,10 +361,4 @@ function TCGActionCardPopup(props: any) {
 
 }
 
-const mapStateToProps = (state: RootState) => ({
-    deck: state.deck,
-    characters: state.cards.cards[0],
-    keywords: state.cards.cards[2]
-})
-
-export default connect(mapStateToProps)(TCGActionCardPopup)
+export default TCGActionCardPopup

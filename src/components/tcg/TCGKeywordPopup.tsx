@@ -1,5 +1,5 @@
 import * as React from "react"
-import { connect } from "react-redux"
+import { useSelector } from "react-redux"
 import parse, { Element, domToReact, HTMLReactParserOptions } from "html-react-parser"
 
 // Component imports
@@ -20,7 +20,8 @@ function TCGKeywordPopup(props: any) {
 
     const theme = useTheme()
 
-    let { name, type, image, cost, description, keywords } = props
+    const { name, type, image, cost, description } = props
+    const keywords = useSelector((state: RootState) => state.cards.keywords)
 
     const [open, setOpen] = React.useState(false)
     const [tag, setTag] = React.useState("")
@@ -66,14 +67,14 @@ function TCGKeywordPopup(props: any) {
         keywordDescription = Keywords[tag].description
     }
     else if (tag !== "") {
-        let currentKeyword = keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
-        try {
+        const currentKeyword = keywords.find((kw: TCGKeywordsData) => kw.tag === tag)
+        if (currentKeyword) {
             keywordName = currentKeyword.name
-            keywordImage = currentKeyword.image
+            keywordImage = null
             keywordType = currentKeyword.type
             keywordDescription = currentKeyword.description
         }
-        catch {
+        else {
             keywordName = ""
             keywordImage = null
             keywordType = ""
@@ -152,8 +153,4 @@ function TCGKeywordPopup(props: any) {
 
 }
 
-const mapStateToProps = (state: RootState) => ({
-    keywords: state.cards.cards[2]
-})
-
-export default connect(mapStateToProps)(TCGKeywordPopup)
+export default TCGKeywordPopup
