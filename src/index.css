@@ -18,6 +18,11 @@ code {
     src: url("./fonts/ja-jp.ttf");
 }
 
+ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;

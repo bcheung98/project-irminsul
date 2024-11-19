@@ -92,9 +92,11 @@ function CharacterTalentDisplay(props: any) {
                                     </React.Fragment>
                                 }
                             />
-                            <Typography sx={{ fontSize: "11pt", mx: "20px" }}>
-                                {parse(talents[key].description)}
-                            </Typography>
+                            <Box sx={{ mx: "20px" }}>
+                                <Typography sx={{ fontSize: "11pt" }} component="span">
+                                    {parse(talents[key].description)}
+                                </Typography>
+                            </Box>
                             {
                                 talents[key].splash &&
                                 <React.Fragment>
