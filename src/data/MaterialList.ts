@@ -1,12 +1,6 @@
 // MAKE SURE TO UPDATE THESE WHEN NEW DROPS/ENEMIES ARE ADDED!!!
 
-export const CharXPMats = ["char_xp1", "char_xp2", "char_xp3"]
-
-export const WepXPMats = ["wep_xp1", "wep_xp2", "wep_xp3"]
-
-export const Gemstones = ["Pyro_Sliver", "Pyro_Fragment", "Pyro_Chunk", "Pyro_Gemstone", "Hydro_Sliver", "Hydro_Fragment", "Hydro_Chunk", "Hydro_Gemstone", "Electro_Sliver", "Electro_Fragment", "Electro_Chunk", "Electro_Gemstone", "Cryo_Sliver", "Cryo_Fragment", "Cryo_Chunk", "Cryo_Gemstone", "Anemo_Sliver", "Anemo_Fragment", "Anemo_Chunk", "Anemo_Gemstone", "Geo_Sliver", "Geo_Fragment", "Geo_Chunk", "Geo_Gemstone", "Dendro_Sliver", "Dendro_Fragment", "Dendro_Chunk", "Dendro_Gemstone"]
-
-export const BossMats = ["Basalt Pillar", "Cleansing Heart", "Everflame Seed", "Hoarfrost Core", "Hurricane Seed", "Lightning Prism", "Juvenile Jade", "Crystalline Bloom", "Marionette Core", "Perpetual Heart", "Smoldering Pearl", "Dew of Repudiation", "Storm Beads", "Riftborn Regalia", "Dragonheir's False Fin", "Runic Fang", "Majestic Hooked Beak", "Thunderclap Fruitcore", "Light Guiding Tetrahedron", "Perpetual Caliber", "Quelled Creeper", "Pseudo-Stamens", "Evergloom Ring", "Clockwork Coppelius", "Clockwork Geppelia", "Emperor's Resolution", "Fontemer Horn", "Tubion Device", "Water That Failed To Transcend", "Cloudseam Scale", "Fragment of a Golden Melody", "Mark of the Binding Blessing", "Overripe Flamegranate", "Gold-Inscribed Secret Source Core"]
+export const BossMats = ["Basalt Pillar", "Cleansing Heart", "Everflame Seed", "Hoarfrost Core", "Hurricane Seed", "Lightning Prism", "Juvenile Jade", "Crystalline Bloom", "Marionette Core", "Perpetual Heart", "Smoldering Pearl", "Dew of Repudiation", "Storm Beads", "Riftborn Regalia", "Dragonheir's False Fin", "Runic Fang", "Majestic Hooked Beak", "Thunderclap Fruitcore", "Light Guiding Tetrahedron", "Perpetual Caliber", "Quelled Creeper", "Pseudo-Stamens", "Evergloom Ring", "Clockwork Coppelius", "Clockwork Geppelia", "Emperor's Resolution", "Fontemer Horn", "Tubion Device", "Water That Failed To Transcend", "Cloudseam Scale", "Fragment of a Golden Melody", "Mark of the Binding Blessing", "Overripe Flamegranate", "Gold-Inscribed Secret Source Core", "Ensnaring Gaze"]
 
 export const TalentBooks = {
     "Mondstadt": ["Freedom", "Resistance", "Ballad"],
@@ -23,7 +17,7 @@ export const LocalMats = {
     "Inazuma": ["Crystal Marrow", "Dendrobium", "Naku Weed", "Onikabuto", "Sakura Bloom", "Sea Ganoderma", "Amakumo Fruit", "Sango Pearl", "Fluorescent Fungus"],
     "Sumeru": ["Kalpalata Lotus", "Nilotpala Lotus", "Padisarah", "Rukkhashava Mushrooms", "Henna Berry", "Scarab", "Sand Grease Pupa", "Mourning Flower", "Trishiraite"],
     "Fontaine": ["Beryl Conch", "Lumidouce Bell", "Rainbow Rose", "Romaritime Flower", "Lumitoile", "Subdetection Unit", "Lakelight Lily", "Spring of the First Dewdrop"],
-    "Natlan": ["Brilliant Chrysanthemum", "Quenepa Berry", "Saurian Claw Succulent", "Sprayfeather Gill"]
+    "Natlan": ["Brilliant Chrysanthemum", "Quenepa Berry", "Saurian Claw Succulent", "Sprayfeather Gill", "Glowing Hornshroom", "Withering Purpurbloom"]
 }
 
 export const WeeklyBossMats = {
@@ -50,4 +44,4 @@ export const WepAscensionMats = {
     "Natlan": ["Blazing Sacrificial Heart", "Sacred Lord", "Night-Wind"]
 }
 
-export const EliteMats = ["Horn", "Ley Line Branch", "Chaos Part", "Mist Grass", "Sacrificial Knife", "Bone Shard", "Sentinel Chaos Part", "Mirror Maiden Prism", "Riftwolf Claw", "Statuette", "Fungal Nucleus", "Drake Chaos Part", "Primal Construct Prism", "Shell", "Flower", "Tainted Water", "Rift Core", "Watch", "Fin", "Hilt", "Will", "Ignited Core", "Secret Source"]
+export const EliteMats = ["Horn", "Ley Line Branch", "Chaos Part", "Mist Grass", "Sacrificial Knife", "Bone Shard", "Sentinel Chaos Part", "Mirror Maiden Prism", "Riftwolf Claw", "Statuette", "Fungal Nucleus", "Drake Chaos Part", "Primal Construct Prism", "Shell", "Flower", "Tainted Water", "Rift Core", "Watch", "Fin", "Hilt", "Will", "Ignited Core", "Secret Source", "Leafcoil"]
