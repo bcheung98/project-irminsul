@@ -15,7 +15,7 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft"
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight"
 
 // Helper imports
-import { updates } from "../data/Versions"
+import { updates } from "../data/versions"
 
 // Type imports
 import { RootState } from "../redux/store"
@@ -24,7 +24,7 @@ import { Weapon } from "types/weapon"
 import { Artifact } from "types/artifact"
 import { TCGCard } from "types/tcg"
 
-function VersionHighlights(props: any) {
+function VersionHighlights() {
 
     const theme = useTheme()
 
