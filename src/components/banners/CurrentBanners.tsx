@@ -1,8 +1,9 @@
 import * as React from "react"
-import { connect } from "react-redux"
+import { useSelector } from "react-redux"
 
 // Component imports
 import CustomCard from "../_custom/CustomCard"
+import Countdown from "../_custom/Countdown"
 
 // MUI imports
 import { useTheme, Box, Typography, AppBar, LinearProgress } from "@mui/material"
@@ -14,20 +15,21 @@ import { isTBA } from "../../helpers/isTBA"
 
 // Type imports
 import { RootState } from "../../redux/store"
-import { BannerData } from "../../types/banner/BannerData"
-import Countdown from "../_custom/Countdown"
+import { BannerData, ChronicledWishBannerData } from "../../types/banner/BannerData"
 
-function CurrentBanners(props: any) {
+function CurrentBanners() {
 
     const theme = useTheme()
 
-    let { characterBanners, weaponBanners, chronicledWish } = props.banners
+    const characterBanners = useSelector((state: RootState) => state.banners.characterBanners)
+    const weaponBanners = useSelector((state: RootState) => state.banners.weaponBanners)
+    const chronicledWish = useSelector((state: RootState) => state.banners.chronicledWish)
 
     const currentCharacterBanners = characterBanners.filter((banner: BannerData) => isCurrentBanner(createDateObject(banner.start).obj, createDateObject(banner.end).obj))
     const currentWeaponBanners = weaponBanners.filter((banner: BannerData) => isCurrentBanner(createDateObject(banner.start).obj, createDateObject(banner.end).obj))
-    const currentChronicledWish = chronicledWish.filter((banner: BannerData) => isCurrentBanner(createDateObject(banner.start).obj, createDateObject(banner.end).obj))
+    const currentChronicledWish = chronicledWish.filter((banner: ChronicledWishBannerData) => isCurrentBanner(createDateObject(banner.start).obj, createDateObject(banner.end).obj))
 
-    const activeBanners = currentCharacterBanners.concat(currentWeaponBanners, currentChronicledWish).length > 0
+    const activeBanners = [...currentCharacterBanners, ...currentWeaponBanners, ...currentChronicledWish].length > 0
     const [loading, setLoading] = React.useState(true)
 
     React.useEffect(() => {
@@ -74,7 +76,7 @@ function CurrentBanners(props: any) {
                                     currentCharacterBanners.length > 0 &&
                                     <Grid size={{ xs: 12, lg: "auto" }}>
                                         <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px", mb: "10px" }}>
-                                            Character Event Wish
+                                            Character Banner
                                         </Typography>
                                         <Grid container spacing={0.75}>
                                             {currentCharacterBanners[0].fiveStars.map((item: string, index: number) => <CustomCard key={index} type="character" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
@@ -87,7 +89,7 @@ function CurrentBanners(props: any) {
                                     currentWeaponBanners.length > 0 &&
                                     <Grid size={{ xs: 12, lg: "grow" }}>
                                         <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px", mb: "10px" }}>
-                                            Weapon Event Wish
+                                            Weapon Banner
                                         </Typography>
                                         <Grid container spacing={0.75}>
                                             {currentWeaponBanners[0].fiveStars.map((item: string, index: number) => <CustomCard key={index} type="weapon" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
@@ -156,8 +158,4 @@ function CurrentBanners(props: any) {
 
 }
 
-const mapStateToProps = (state: RootState) => ({
-    banners: state.banners
-})
-
-export default connect(mapStateToProps)(CurrentBanners)
+export default CurrentBanners
