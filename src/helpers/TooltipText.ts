@@ -530,6 +530,18 @@ export function formatEliteMats(material: string) {
         case "Secret Source":
             material = "Secret Source Automaton Core"
             break
+        case "Leafcoil1":
+            material = "Refractive Bud"
+            break
+        case "Leafcoil2":
+            material = "Bewildering Broadleaf"
+            break
+        case "Leafcoil3":
+            material = "Illusory Leafcoil"
+            break
+        case "Leafcoil":
+            material = "Mimiflora Leafcoil"
+            break
         default:
             material += ""
     }
@@ -639,6 +651,9 @@ export function formatBossMats(material: string) {
             break
         case "Gold-Inscribed Secret Source Core":
             material += " (Secret Source Automaton: Configuration Device)"
+            break
+        case "Ensnaring Gaze":
+            material += " (Tenebrous Papilla)"
             break
         default:
             material += ""
