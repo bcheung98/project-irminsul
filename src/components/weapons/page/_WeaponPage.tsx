@@ -195,7 +195,7 @@ function WeaponPassive({ weapon }: WeaponProps) {
             </Typography>
             {
                 weapon.stats.passive.scaling &&
-                <Box sx={{ display: { xs: "block", sm: "flex" }, alignItems: "center", width: "20%", mt: "15px", mx: "15px", }}>
+                <Box sx={{ display: { xs: "block", md: "flex" }, alignItems: "center", width: "20%", mt: "15px", mx: "15px", }}>
                     <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "16px", color: `${theme.text.color}`, minWidth: "50px" }}>
                         R{sliderValue}
                     </Typography>

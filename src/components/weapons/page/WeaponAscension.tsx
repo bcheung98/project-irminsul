@@ -43,7 +43,7 @@ function WeaponAscension(props: any) {
     return (
         <Box sx={{ my: "10px" }}>
             <WeaponAscensionMaterials materials={props.weapon.materials} rarity={rarity} values={sliderValue} />
-            <Box sx={{ display: { xs: "block", sm: "flex" }, alignItems: "center", width: "50%", mt: "15px" }}>
+            <Box sx={{ display: { xs: "block", md: "flex" }, alignItems: "center", width: "50%", mt: "15px" }}>
                 <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "16px", color: `${theme.text.color}`, minWidth: "150px" }}>
                     Lv. {levels[sliderValue[0] - 1]} → Lv. {levels[sliderValue[1] - 1]}
                 </Typography>
