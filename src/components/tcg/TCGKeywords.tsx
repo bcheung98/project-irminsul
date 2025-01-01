@@ -346,7 +346,7 @@ export const Keywords: TCGKeywordIndexData = {
         name: "Character Closest to Your Current Active Character",
         description:
             <Typography gutterBottom sx={DescriptionText}>
-                The opposing "character closest to your current active character" is the opposing character whose position is closest to that of your active character.<br />If multiple such characters exist, the one with the foremost position will be viewd as being "closest".
+                The opposing "character closest to your current active character" is the opposing character whose position is closest to that of your active character.<br />If multiple such characters exist, the one with the foremost position will be viewed as being "closest".
             </Typography>
     },
     "discard": {
@@ -369,6 +369,13 @@ export const Keywords: TCGKeywordIndexData = {
         description:
             <Typography gutterBottom sx={DescriptionText}>
                 When the active character is equipped with a <span style={{ color: `white` }}>Technique</span> card, they can use the corresponding <span style={{ color: `white` }}>Technique</span>.<br />Using a <span style={{ color: `white` }}>Technique</span> counts as a Combat Action. If the character is unable to use Skills due to conditions like Frozen, Petrification, or Stun, they are also unable to use the <span style={{ color: `white` }}>Technique</span>.<br />Using a <span style={{ color: `white` }}>Technique</span> is not considered as using a Skill. Therefore, it cannot trigger effects such as "After using a skill" or "After the character triggers an Elemental Reaction." Damage dealt by using a <span style={{ color: `white` }}>Technique</span> is not considered Damage dealt by the character.
+            </Typography>
+    },
+    "nightsoul blessing": {
+        name: "Nightsoul's Blessing",
+        description:
+            <Typography gutterBottom sx={DescriptionText}>
+                The character to which this is attached accumulates <span style={{ color: `white` }}>"Nightsoul points."</span> (Max 2 points)
             </Typography>
     }
 

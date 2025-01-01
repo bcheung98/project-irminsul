@@ -1,6 +1,6 @@
 // MAKE SURE TO UPDATE THESE WHEN NEW DROPS/ENEMIES ARE ADDED!!!
 
-export const BossMats = ["Basalt Pillar", "Cleansing Heart", "Everflame Seed", "Hoarfrost Core", "Hurricane Seed", "Lightning Prism", "Juvenile Jade", "Crystalline Bloom", "Marionette Core", "Perpetual Heart", "Smoldering Pearl", "Dew of Repudiation", "Storm Beads", "Riftborn Regalia", "Dragonheir's False Fin", "Runic Fang", "Majestic Hooked Beak", "Thunderclap Fruitcore", "Light Guiding Tetrahedron", "Perpetual Caliber", "Quelled Creeper", "Pseudo-Stamens", "Evergloom Ring", "Clockwork Coppelius", "Clockwork Geppelia", "Emperor's Resolution", "Fontemer Horn", "Tubion Device", "Water That Failed To Transcend", "Cloudseam Scale", "Fragment of a Golden Melody", "Mark of the Binding Blessing", "Overripe Flamegranate", "Gold-Inscribed Secret Source Core", "Ensnaring Gaze"]
+export const BossMats = ["Basalt Pillar", "Cleansing Heart", "Everflame Seed", "Hoarfrost Core", "Hurricane Seed", "Lightning Prism", "Juvenile Jade", "Crystalline Bloom", "Marionette Core", "Perpetual Heart", "Smoldering Pearl", "Dew of Repudiation", "Storm Beads", "Riftborn Regalia", "Dragonheir's False Fin", "Runic Fang", "Majestic Hooked Beak", "Thunderclap Fruitcore", "Light Guiding Tetrahedron", "Perpetual Caliber", "Quelled Creeper", "Pseudo-Stamens", "Evergloom Ring", "Clockwork Coppelius", "Clockwork Geppelia", "Emperor's Resolution", "Fontemer Horn", "Tubion Device", "Water That Failed To Transcend", "Cloudseam Scale", "Fragment of a Golden Melody", "Mark of the Binding Blessing", "Overripe Flamegranate", "Gold-Inscribed Secret Source Core", "Ensnaring Gaze", "Talisman of the Enigmatic Land"]
 
 export const TalentBooks = {
     "Mondstadt": ["Freedom", "Resistance", "Ballad"],
@@ -30,7 +30,8 @@ export const WeeklyBossMats = {
     "Shouki no Kami": ["Daka's Bell", "Mirror of Mushin", "Puppet Strings"],
     "Guardian of Apep's Oasis": ["Everamber", "Primordial Greenbloom", "Worldspan Fern"],
     "All-Devouring Narwhal": ["Lightless Eye of the Maelstrom", "Lightless Mass", "Lightless Silk String"],
-    "The Knave": ["Fading Candle", "Silken Feather", "Denial and Judgment"]
+    "The Knave": ["Fading Candle", "Silken Feather", "Denial and Judgment"],
+    "Lord of Eroded Primal Fire": ["Eroded Horn", "Eroded Sunfire", "Eroded Scale-Feather"]
 }
 
 export const CommonMats = ["Arrow", "Fatui Insignia", "Mask", "Nectar", "Scroll", "Slime", "Treasure Hoarder Insignia", "Handguard", "Specter", "Fungi", "Headband", "Aberrant", "Gear", "Fang", "Whistle"]

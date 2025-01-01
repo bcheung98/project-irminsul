@@ -81,6 +81,11 @@ export function formatWeeklyBossMats(material: string) {
         case "Denial and Judgment":
             material += " (The Knave)"
             break
+        case "Eroded Horn":
+        case "Eroded Scale-Feather":
+        case "Eroded Sunfire":
+            material += " (Lord of Eroded Primal Fire)"
+            break
         default:
             material += ""
     }
@@ -654,6 +659,9 @@ export function formatBossMats(material: string) {
             break
         case "Ensnaring Gaze":
             material += " (Tenebrous Papilla)"
+            break
+        case "Talisman of the Enigmatic Land":
+            material += " (Wayward Hermetic Spiritspeaker)"
             break
         default:
             material += ""
