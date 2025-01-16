@@ -62,8 +62,18 @@ function WeaponTableRow({ row }: { row: WeaponTableRowProps }) {
             labelStyle: { marginLeft: "0px" },
         },
         {
-            label: row.subStat,
+            label: row.subStat !== "_" ? row.subStat : "---",
             labelStyle: { marginLeft: "0px" },
+            img:
+                row.subStat !== "_" &&
+                `icons/ascension_stats/${row.subStat
+                    .split(" ")
+                    .slice(0, -1)
+                    .join(" ")}`,
+            imgStyle: {
+                backgroundColor: theme.icon.backgroundColor,
+                borderRadius: "64px",
+            },
         },
     ];
 

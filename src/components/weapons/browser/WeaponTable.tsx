@@ -44,9 +44,11 @@ function WeaponTable({ weapons }: { weapons: Weapon[] }) {
     const rows = weapons.map((weapon) => {
         const baseATK = weapon.stats.atk.toString() as WeaponBaseATK;
         const atk = baseATKScaling[baseATK].slice(-1)[0];
-        const subStat = `${weapon.stats.subStat} ${
-            subStats[baseATK][weapon.stats.subStat]?.slice(-1)[0]
-        }`;
+        const subStat = weapon.stats.subStat
+            ? `${weapon.stats.subStat} ${
+                  subStats[baseATK][weapon.stats.subStat]?.slice(-1)[0]
+              }`
+            : "_";
         return {
             id: weapon.id,
             name: weapon.name,
