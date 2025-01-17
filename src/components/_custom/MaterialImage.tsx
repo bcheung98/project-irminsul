@@ -52,6 +52,7 @@ function MaterialImage({
         height: size,
         backgroundImage: `url(https://assets.irminsul.gg/genshin/backgrounds/Background_${rarity}_Star.png)`,
         backgroundSize: "contain",
+        borderRadius: "0px 0px 8px 0px",
     };
 
     const labelStyle: CSSProperties = {
