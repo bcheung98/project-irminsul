@@ -1,161 +1,327 @@
-import * as React from "react"
-import { useSelector } from "react-redux"
-
 // Component imports
-import CustomCard from "../_custom/CustomCard"
-import Countdown from "../_custom/Countdown"
+import MainContentBox from "custom/MainContentBox";
+import Image from "custom/Image";
+import InfoCard from "custom/InfoCard";
+import Countdown from "custom/Countdown";
+import { FlexBox } from "styled/StyledBox";
+import { TextStyled } from "styled/StyledTypography";
 
 // MUI imports
-import { useTheme, Box, Typography, AppBar, LinearProgress } from "@mui/material"
-import Grid from "@mui/material/Grid2"
+import { Box, Stack, LinearProgress } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 
 // Helper imports
-import { createDateObject, isCurrentBanner } from "../../helpers/dates"
-import { isTBA } from "../../helpers/isTBA"
+import { useAppSelector } from "helpers/hooks";
+import { selectCharacters } from "reducers/character";
+import { selectWeapons } from "reducers/weapon";
+import {
+    selectCharacterBanners,
+    selectChronicledWish,
+    selectWeaponBanners,
+} from "reducers/banner";
+import { selectServer } from "reducers/settings";
+import { createDateObject, isCurrentBanner } from "helpers/dates";
+import { isTBA } from "helpers/utils";
+import { createBannerItems } from "./BannerListRow";
 
 // Type imports
-import { RootState } from "../../redux/store"
-import { BannerData, ChronicledWishBannerData } from "../../types/banner/BannerData"
+import { Rarity } from "types/_common";
+import { Banner, ChronicledWishBanner } from "types/banner";
 
 function CurrentBanners() {
+    const region = useAppSelector(selectServer);
 
-    const theme = useTheme()
+    const characters = useAppSelector(selectCharacters);
+    const weapons = useAppSelector(selectWeapons);
+    const loading = [...characters, ...weapons].length === 0;
 
-    const characterBanners = useSelector((state: RootState) => state.banners.characterBanners)
-    const weaponBanners = useSelector((state: RootState) => state.banners.weaponBanners)
-    const chronicledWish = useSelector((state: RootState) => state.banners.chronicledWish)
+    const characterBanners = useAppSelector(selectCharacterBanners);
+    const weaponBanners = useAppSelector(selectWeaponBanners);
+    const chronicledWish = useAppSelector(selectChronicledWish);
 
-    const currentCharacterBanners = characterBanners.filter((banner: BannerData) => isCurrentBanner(createDateObject(banner.start).obj, createDateObject(banner.end).obj))
-    const currentWeaponBanners = weaponBanners.filter((banner: BannerData) => isCurrentBanner(createDateObject(banner.start).obj, createDateObject(banner.end).obj))
-    const currentChronicledWish = chronicledWish.filter((banner: ChronicledWishBannerData) => isCurrentBanner(createDateObject(banner.start).obj, createDateObject(banner.end).obj))
+    const filterCurrentBanner = (banner: Banner | ChronicledWishBanner) =>
+        isCurrentBanner(
+            createDateObject({ date: banner.start, region: region }).obj,
+            createDateObject({ date: banner.end, region: region }).obj
+        );
 
-    const activeBanners = [...currentCharacterBanners, ...currentWeaponBanners, ...currentChronicledWish].length > 0
-    const [loading, setLoading] = React.useState(true)
+    const currentCharacterBanners =
+        characterBanners.filter(filterCurrentBanner);
+    const currentWeaponBanners = weaponBanners.filter(filterCurrentBanner);
+    const currentChronicledWish = chronicledWish.filter(filterCurrentBanner);
 
-    React.useEffect(() => {
-        if (!activeBanners) {
-            const timer = setTimeout(() => {
-                setLoading(false)
-                clearTimeout(timer)
-            }, 5000)
-        }
-        else {
-            setLoading(false)
-        }
-    }, [activeBanners, setLoading])
+    const activeBanners =
+        [
+            ...currentCharacterBanners,
+            ...currentWeaponBanners,
+            ...currentChronicledWish,
+        ].length > 0;
+
+    const getRarity = (name: string, rarity: Rarity) =>
+        !isTBA(name) ? rarity : 1;
 
     return (
-        <Box
-            sx={{
-                backgroundColor: `${theme.paper.backgroundColor}`,
-                border: `1px solid ${theme.border.color}`,
-                borderRadius: "5px",
-                color: `${theme.text.color}`,
-                mb: "20px"
-            }}
+        <MainContentBox
+            title="Current Banners"
+            contentProps={{ padding: "16px" }}
         >
-            <AppBar position="static"
-                sx={{
-                    backgroundColor: `${theme.appbar.backgroundColor}`,
-                    borderBottom: `1px solid ${theme.border.color}`,
-                    borderRadius: "5px 5px 0px 0px",
-                    p: "10px",
-                    height: "70px"
-                }}
-            >
-                <Typography noWrap sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px", ml: "5px", lineHeight: "45px" }}>
-                    Current Banners
-                </Typography>
-            </AppBar>
-            <Box sx={{ p: 2 }}>
-                {
-                    activeBanners ?
-                        <React.Fragment>
-                            <Grid container rowSpacing={1} columnSpacing={3}>
-                                {
-                                    currentCharacterBanners.length > 0 &&
-                                    <Grid size={{ xs: 12, lg: "auto" }}>
-                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px", mb: "10px" }}>
-                                            Character Banner
-                                        </Typography>
-                                        <Grid container spacing={0.75}>
-                                            {currentCharacterBanners[0].fiveStars.map((item: string, index: number) => <CustomCard key={index} type="character" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
-                                            {currentCharacterBanners[0].fourStars.map((item: string, index: number) => <CustomCard key={index} type="character" name={item} rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
-                                        </Grid>
-                                        <Countdown date={createDateObject(currentCharacterBanners[0].end)} />
-                                    </Grid>
-                                }
-                                {
-                                    currentWeaponBanners.length > 0 &&
-                                    <Grid size={{ xs: 12, lg: "grow" }}>
-                                        <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px", mb: "10px" }}>
-                                            Weapon Banner
-                                        </Typography>
-                                        <Grid container spacing={0.75}>
-                                            {currentWeaponBanners[0].fiveStars.map((item: string, index: number) => <CustomCard key={index} type="weapon" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
-                                            {currentWeaponBanners[0].fourStars.map((item: string, index: number) => <CustomCard key={index} type="weapon" name={item} rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
-                                        </Grid>
-                                        <Countdown date={createDateObject(currentWeaponBanners[0].end)} />
-                                    </Grid>
-                                }
-                            </Grid>
-                            {
-                                currentChronicledWish.length > 0 &&
-                                <Box>
-                                    <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "25px 0px 15px 0px" }} />
-                                    <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, fontSize: "20px", mb: "10px" }}>
-                                        Chronicled Wish
-                                    </Typography>
-                                    <Grid container spacing={0.75}>
-                                        {currentChronicledWish[0].characters.fiveStars.map((item: string, index: number) => <CustomCard key={index} type="character" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
-                                        {currentChronicledWish[0].characters.fourStars.map((item: string, index: number) => <CustomCard key={index} type="character" name={item} rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
-                                    </Grid>
-                                    <br />
-                                    <Grid container spacing={0.75}>
-                                        {currentChronicledWish[0].weapons.fiveStars.map((item: string, index: number) => <CustomCard key={index} type="weapon" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
-                                        {currentChronicledWish[0].weapons.fourStars.map((item: string, index: number) => <CustomCard key={index} type="weapon" name={item} rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
-                                    </Grid>
-                                    <Countdown date={createDateObject(currentChronicledWish[0].end)} />
-                                </Box>
-                            }
-                        </React.Fragment>
-                        :
+            {activeBanners ? (
+                <FlexBox sx={{ flexWrap: "wrap", columnGap: 8, rowGap: 2 }}>
+                    {currentCharacterBanners.length > 0 && (
                         <Box>
-                            <Box sx={{ display: "flex", alignItems: "center" }}>
-                                <Box
-                                    sx={{
-                                        display: loading ? "block" : "none",
-                                        width: "100%",
-                                        color: theme.button.selected
-                                    }}
-                                >
-                                    <LinearProgress color="inherit" />
-                                </Box>
-                                <Typography
-                                    sx={{
-                                        display: !loading && !activeBanners ? "block" : "none",
-                                        fontFamily: theme.font.genshin.family,
-                                        fontSize: "18px",
-                                    }}
-                                >
-                                    There are no active banners.
-                                </Typography>
-                            </Box>
-                            <img
-                                src={`${process.env.REACT_APP_URL}/emotes/error5.png`}
+                            <TextStyled variant="h6-styled" sx={{ mb: "8px" }}>
+                                Character Banner
+                            </TextStyled>
+                            <Stack spacing={1}>
+                                {currentCharacterBanners.map(
+                                    (banner, index) => (
+                                        <Box key={index}>
+                                            <Grid container spacing={1}>
+                                                {createBannerItems(
+                                                    banner.fiveStars,
+                                                    "character"
+                                                ).map((item, i) => (
+                                                    <InfoCard
+                                                        key={`${item.name}-${i}`}
+                                                        id={`${item.displayName}-currentBanner`.toLowerCase()}
+                                                        variant="icon"
+                                                        type="character"
+                                                        name={item.name}
+                                                        displayName={
+                                                            item.displayName
+                                                        }
+                                                        rarity={getRarity(
+                                                            item.name,
+                                                            5
+                                                        )}
+                                                        disableLink={isTBA(
+                                                            item.name
+                                                        )}
+                                                        disableZoomOnHover={isTBA(
+                                                            item.name
+                                                        )}
+                                                        loading={loading}
+                                                        imgLoad="lazy"
+                                                    />
+                                                ))}
+                                                {createBannerItems(
+                                                    banner.fourStars,
+                                                    "character"
+                                                ).map((item, i) => (
+                                                    <InfoCard
+                                                        key={`${item.name}-${i}`}
+                                                        id={`${item.displayName}-currentBanner`.toLowerCase()}
+                                                        variant="icon"
+                                                        type="character"
+                                                        name={item.name}
+                                                        displayName={
+                                                            item.displayName
+                                                        }
+                                                        rarity={getRarity(
+                                                            item.name,
+                                                            4
+                                                        )}
+                                                        disableLink={isTBA(
+                                                            item.name
+                                                        )}
+                                                        disableZoomOnHover={isTBA(
+                                                            item.name
+                                                        )}
+                                                        loading={loading}
+                                                        imgLoad="lazy"
+                                                    />
+                                                ))}
+                                            </Grid>
+                                            <Countdown
+                                                date={createDateObject({
+                                                    date: banner.end,
+                                                    region: region,
+                                                })}
+                                            />
+                                        </Box>
+                                    )
+                                )}
+                            </Stack>
+                        </Box>
+                    )}
+                    {currentWeaponBanners.length > 0 && (
+                        <Box>
+                            <TextStyled variant="h6-styled" sx={{ mb: "8px" }}>
+                                Weapon Banner
+                            </TextStyled>
+                            <Stack spacing={1}>
+                                {currentWeaponBanners.map((banner, index) => (
+                                    <Box key={index}>
+                                        <Grid container spacing={1}>
+                                            {createBannerItems(
+                                                banner.fiveStars,
+                                                "weapon"
+                                            ).map((item, i) => (
+                                                <InfoCard
+                                                    key={`${item.name}-${i}`}
+                                                    id={`${item.displayName}-currentBanner`.toLowerCase()}
+                                                    variant="icon"
+                                                    type="weapon"
+                                                    name={item.name}
+                                                    displayName={
+                                                        item.displayName
+                                                    }
+                                                    rarity={getRarity(
+                                                        item.name,
+                                                        5
+                                                    )}
+                                                    disableLink={isTBA(
+                                                        item.name
+                                                    )}
+                                                    disableZoomOnHover={isTBA(
+                                                        item.name
+                                                    )}
+                                                    loading={loading}
+                                                    imgLoad="lazy"
+                                                />
+                                            ))}
+                                            {createBannerItems(
+                                                banner.fourStars,
+                                                "weapon"
+                                            ).map((item, i) => (
+                                                <InfoCard
+                                                    key={`${item.name}-${i}`}
+                                                    id={`${item.displayName}-currentBanner`.toLowerCase()}
+                                                    variant="icon"
+                                                    type="weapon"
+                                                    name={item.name}
+                                                    displayName={
+                                                        item.displayName
+                                                    }
+                                                    rarity={getRarity(
+                                                        item.name,
+                                                        4
+                                                    )}
+                                                    disableLink={isTBA(
+                                                        item.name
+                                                    )}
+                                                    disableZoomOnHover={isTBA(
+                                                        item.name
+                                                    )}
+                                                    loading={loading}
+                                                    imgLoad="lazy"
+                                                />
+                                            ))}
+                                        </Grid>
+                                        <Countdown
+                                            date={createDateObject({
+                                                date: banner.end,
+                                                region: region,
+                                            })}
+                                        />
+                                    </Box>
+                                ))}
+                            </Stack>
+                        </Box>
+                    )}
+                    {currentChronicledWish.length > 0 && (
+                        <Box>
+                            <TextStyled variant="h6-styled" sx={{ mb: "8px" }}>
+                                Chronicled Wish
+                            </TextStyled>
+                            <Stack spacing={1}>
+                                {currentChronicledWish.map((banner, index) => (
+                                    <Stack key={index} spacing={1}>
+                                        <Grid container spacing={1}>
+                                            {createBannerItems(
+                                                [
+                                                    ...banner.characters
+                                                        .fiveStars,
+                                                    ...banner.characters
+                                                        .fourStars,
+                                                ],
+                                                "character"
+                                            ).map((item, i) => (
+                                                <InfoCard
+                                                    key={`${item.name}-${i}`}
+                                                    id={`${item.displayName}-CW-currentBanner`.toLowerCase()}
+                                                    variant="icon"
+                                                    type="character"
+                                                    name={item.name}
+                                                    displayName={
+                                                        item.displayName
+                                                    }
+                                                    rarity={item.rarity}
+                                                    disableLink={isTBA(
+                                                        item.name
+                                                    )}
+                                                    disableZoomOnHover={isTBA(
+                                                        item.name
+                                                    )}
+                                                    loading={loading}
+                                                    imgLoad="lazy"
+                                                />
+                                            ))}
+                                        </Grid>
+                                        <Grid container spacing={1}>
+                                            {createBannerItems(
+                                                [
+                                                    ...banner.weapons.fiveStars,
+                                                    ...banner.weapons.fourStars,
+                                                ],
+                                                "weapon"
+                                            ).map((item, i) => (
+                                                <InfoCard
+                                                    key={`${item.name}-${i}`}
+                                                    id={`${item.displayName}-CW-currentBanner`.toLowerCase()}
+                                                    variant="icon"
+                                                    type="weapon"
+                                                    name={item.name}
+                                                    displayName={
+                                                        item.displayName
+                                                    }
+                                                    rarity={item.rarity}
+                                                    disableLink={isTBA(
+                                                        item.name
+                                                    )}
+                                                    disableZoomOnHover={isTBA(
+                                                        item.name
+                                                    )}
+                                                    loading={loading}
+                                                    imgLoad="lazy"
+                                                />
+                                            ))}
+                                        </Grid>
+                                        <Countdown
+                                            date={createDateObject({
+                                                date: banner.end,
+                                                region: region,
+                                            })}
+                                        />
+                                    </Stack>
+                                ))}
+                            </Stack>
+                        </Box>
+                    )}
+                </FlexBox>
+            ) : (
+                <>
+                    {loading ? (
+                        <LinearProgress color="info" />
+                    ) : (
+                        <>
+                            <TextStyled>
+                                There are no active banners.
+                            </TextStyled>
+                            <Image
+                                src="emotes/error5"
                                 alt="No banners"
                                 style={{
-                                    display: !loading && !activeBanners ? "block" : "none",
                                     height: "128px",
-                                    marginTop: "20px",
+                                    marginTop: "24px",
                                 }}
                             />
-                        </Box>
-                }
-            </Box>
-        </Box>
-    )
-
+                        </>
+                    )}
+                </>
+            )}
+        </MainContentBox>
+    );
 }
 
-export default CurrentBanners
+export default CurrentBanners;

@@ -4,7 +4,7 @@ import { StyledTableCell, StyledTableRow } from "styled/StyledTable";
 import { TextStyled } from "styled/StyledTypography";
 
 // MUI imports
-import { getContrastRatio, Stack, useTheme } from "@mui/material";
+import { getContrastRatio, useTheme } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 
 // Helper imports
@@ -15,25 +15,25 @@ import { createDateObject, isCurrentBanner } from "helpers/dates";
 import { isTBA } from "helpers/utils";
 
 // Type imports
-import { ChronicledBannerRow } from "./ChronicledWish";
-import { Character } from "types/character";
-import { Weapon } from "types/weapon";
+import { BannerRow } from "./BannerList";
+import { Rarity } from "types/_common";
 
-function ChronicledWishRow({
+function BannerListRow({
     loading,
+    type,
     row,
 }: {
     loading: boolean;
-    row: ChronicledBannerRow;
+    type: "character" | "weapon";
+    row: BannerRow;
 }) {
     const theme = useTheme();
 
     const region = useAppSelector(selectServer);
 
     const { version, subVersion } = row;
-
-    const characters = JSON.parse(row.characters).flat();
-    const weapons = JSON.parse(row.weapons).flat();
+    const fiveStars = createBannerItems(JSON.parse(row.fiveStars), type);
+    const fourStars = createBannerItems(JSON.parse(row.fourStars), type);
     const start = createDateObject({ date: row.start, region: region });
     const end = createDateObject({ date: row.end, region: region });
 
@@ -60,52 +60,49 @@ function ChronicledWishRow({
                         start.date
                     } — ${end.date}`}
                 </TextStyled>
-                <Stack spacing={1}>
-                    <Grid container spacing={1}>
-                        {characters.map((item: Character, index: number) => (
-                            <InfoCard
-                                key={index}
-                                id={`${item.displayName}-${subVersion}-CW-${index}`}
-                                variant="icon"
-                                type="character"
-                                name={item.name}
-                                displayName={item.displayName}
-                                rarity={!isTBA(item.name) ? item.rarity : 1}
-                                disableLink={isTBA(item.name)}
-                                disableZoomOnHover={isTBA(item.name)}
-                                loading={loading}
-                                imgLoad="lazy"
-                            />
-                        ))}
-                    </Grid>
-                    <Grid container spacing={1}>
-                        {weapons.map((item: Weapon, index: number) => (
-                            <InfoCard
-                                key={index}
-                                id={`${item.displayName}-${subVersion}-CW-${index}`}
-                                variant="icon"
-                                type="weapon"
-                                name={item.name}
-                                displayName={item.displayName}
-                                rarity={!isTBA(item.name) ? item.rarity : 1}
-                                disableLink={isTBA(item.name)}
-                                disableZoomOnHover={isTBA(item.name)}
-                                loading={loading}
-                                imgLoad="lazy"
-                            />
-                        ))}
-                    </Grid>
-                </Stack>
+                <Grid container spacing={1}>
+                    {fiveStars.map((item, index: number) => (
+                        <InfoCard
+                            key={index}
+                            id={`${item.displayName}-${subVersion}-${index}`}
+                            variant="icon"
+                            type={type}
+                            name={item.name}
+                            displayName={item.displayName}
+                            rarity={!isTBA(item.name) ? 5 : 1}
+                            disableLink={isTBA(item.name)}
+                            disableZoomOnHover={isTBA(item.name)}
+                            loading={loading}
+                            imgLoad="lazy"
+                        />
+                    ))}
+                    {fourStars.map((item, index: number) => (
+                        <InfoCard
+                            key={index}
+                            id={`${item.displayName}-${subVersion}-${index}`}
+                            variant="icon"
+                            type={type}
+                            name={item.name}
+                            displayName={item.displayName}
+                            rarity={!isTBA(item.name) ? 4 : 1}
+                            disableLink={isTBA(item.name)}
+                            disableZoomOnHover={isTBA(item.name)}
+                            loading={loading}
+                            imgLoad="lazy"
+                        />
+                    ))}
+                </Grid>
             </StyledTableCell>
         </StyledTableRow>
     );
 }
 
-export default ChronicledWishRow;
+export default BannerListRow;
 
 interface BannerItem {
     name: string;
     displayName: string;
+    rarity: Rarity;
 }
 
 export function createBannerItems(
@@ -114,12 +111,12 @@ export function createBannerItems(
 ): BannerItem[] {
     const characters = store.getState().characters.characters;
     const weapons = store.getState().weapons.weapons;
-    console.log(items);
     return items.map((item: string) => {
         if (isTBA(item)) {
             return {
                 name: "",
                 displayName: "",
+                rarity: 1,
             };
         } else {
             if (type === "character") {
@@ -127,12 +124,14 @@ export function createBannerItems(
                 return {
                     name: character?.name || "TBA",
                     displayName: character?.fullName || "TBA",
+                    rarity: character?.rarity || 1,
                 };
             } else {
                 const weapon = weapons.find((wep) => wep.name === item);
                 return {
                     name: weapon?.name || "TBA",
                     displayName: weapon?.displayName || "TBA",
+                    rarity: weapon?.rarity || 1,
                 };
             }
         }
