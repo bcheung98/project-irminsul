@@ -209,8 +209,8 @@ function getCosts({
                             levelUpCost.gemstone.gemstone2,
                         [`${element}3` as Gemstone]:
                             levelUpCost.gemstone.gemstone3,
-                        [`${element}3` as Gemstone]:
-                            levelUpCost.gemstone.gemstone3,
+                        [`${element}4` as Gemstone]:
+                            levelUpCost.gemstone.gemstone4,
                     },
                     commonMat: {
                         [`${mats.commonMat}1` as CommonMaterial]:
