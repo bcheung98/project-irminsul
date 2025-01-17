@@ -1,6 +1,15 @@
-import { elements, weaponTypes, rarity, nations } from "../data/common"
+import { elements, weapons, rarities, nations, arkhe } from "../data/common";
 
-export type Element = typeof elements[number]
-export type WeaponType = typeof weaponTypes[number]
-export type Rarity = typeof rarity[number]
-export type Nation = typeof nations[number]
+// Taken from:
+// https://medium.com/xgeeks/typescript-utility-keyof-nested-object-fa3e457ef2b2
+export type NestedKeyOf<T extends object> = {
+    [K in keyof T & (string | number)]: T[K] extends object
+        ? `${K}` | keyof T[K]
+        : `${K}`;
+}[keyof T & (string | number)];
+
+export type Element = (typeof elements)[number];
+export type WeaponType = (typeof weapons)[number];
+export type Rarity = (typeof rarities)[number];
+export type Nation = (typeof nations)[number];
+export type Arkhe = (typeof arkhe)[number];
