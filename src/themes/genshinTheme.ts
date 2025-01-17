@@ -2,33 +2,33 @@ import { createTheme } from "@mui/material";
 import { getThemeBackgroundColors } from "helpers/utils";
 import { Shade } from "types/theme";
 
-const appbarColors = ["rgb(0, 16, 32)", "rgb(8, 32, 72)", "rgb(32, 56, 96)"];
+const appbarColors = ["rgb(0, 16, 32)", "rgb(0, 23, 47)", "rgb(0, 40, 80)"];
 
 const border = {
-    color: "rgb(168, 147, 105)",
-    highlight: `rgb(233, 194, 39)`,
+    color: "rgb(30, 73, 118)",
+    highlight: `rgb(30, 144, 255)`,
 };
 
 const backgroundColors = [
     {
-        main: "rgb(200, 200, 200)",
-        light: "rgb(210, 210, 210)",
-        dark: "rgb(190, 190, 190)",
+        main: "rgb(0, 40, 80)",
+        light: "rgb(0, 50, 100)",
+        dark: "rgb(0, 30, 60)",
     },
     {
-        main: "rgb(225, 225, 225)",
-        light: "rgb(235, 235, 235)",
-        dark: "rgb(215, 215, 215)",
+        main: "rgb(0, 23, 46)",
+        light: "rgb(0, 33, 66)",
+        dark: "rgb(0, 13, 26)",
     },
     {
-        main: "rgb(250, 250, 250)",
-        light: "rgb(255, 255, 255)",
-        dark: "rgb(240, 240, 240)",
+        main: "rgb(0, 16, 32)",
+        light: "rgb(0, 21, 42)",
+        dark: "rgb(0, 11, 22)",
     },
 ];
 
-export const lightThemeData = {
-    name: "Light",
+export const genshinThemeData = {
+    name: "Genshin",
     background: (index: number, shade?: Shade) =>
         getThemeBackgroundColors({ colors: backgroundColors, index, shade }),
     palette: {
@@ -36,15 +36,15 @@ export const lightThemeData = {
             main: "rgb(0, 16, 32)",
         },
         secondary: {
-            main: "rgb(8, 32, 72)",
+            main: "rgb(0, 23, 47)",
         },
         tertiary: {
-            main: "rgb(32, 56, 96)",
-            light: "rgb(52, 76, 116)",
-            dark: "rgb(22, 46, 86)",
+            main: "rgb(0, 40, 80)",
+            light: "rgb(10, 40, 70)",
+            dark: "rgb(0, 20, 40)",
         },
         info: {
-            main: "rgb(25, 118, 210)",
+            main: "rgb(0, 101, 202)",
         },
         divider: border.color,
     },
@@ -54,7 +54,7 @@ export const lightThemeData = {
             weight: 300,
         },
         styled: {
-            family: "Rowdies, Roboto, sans-serif",
+            family: "Genshin, Roboto, sans-serif",
             weight: 300,
         },
         element: {
@@ -65,32 +65,32 @@ export const lightThemeData = {
         },
         sizes: {
             "h4-styled": {
-                xs: 26,
-                sm: 28,
+                xs: 24,
+                sm: 26,
             },
             "h5-styled": {
-                xs: 22,
-                sm: 24,
+                xs: 20,
+                sm: 22,
             },
             "h6-styled": {
-                xs: 18,
-                sm: 20,
+                xs: 16,
+                sm: 18,
             },
             "body1-styled": {
-                xs: 14,
-                sm: 16,
-            },
-            "subtitle1-styled": {
-                xs: 13,
-                sm: 15,
-            },
-            "body2-styled": {
                 xs: 12,
                 sm: 14,
             },
-            "subtitle2-styled": {
+            "subtitle1-styled": {
                 xs: 11,
                 sm: 13,
+            },
+            "body2-styled": {
+                xs: 10,
+                sm: 12,
+            },
+            "subtitle2-styled": {
+                xs: 9,
+                sm: 11,
             },
             h4: {
                 xs: 26,
@@ -123,23 +123,23 @@ export const lightThemeData = {
         },
     },
     text: {
-        primary: "rgb(0, 0, 0)",
-        contrast: "rgb(255, 255, 255)",
+        primary: "rgb(255, 255, 255)",
+        contrast: "rgb(0, 0, 0)",
         selected: "rgb(30, 175, 255)",
-        description: "rgb(16, 16, 16)",
-        highlight: "#BB8010",
-        highlight2: "#CA9C00",
+        description: "rgb(205, 205, 205)",
+        highlight: "#FFE7B9",
+        highlight2: "#FFFFFF",
         star: "rgb(255, 238, 157)",
         header: "#FFE7B9",
-        refinement: "#0075E8",
-        value: "#0075E8",
-        pyro: "#BF2818",
-        hydro: "#0B4DDA",
-        electro: "#9336B0",
-        cryo: "#4878A8",
-        anemo: "#26A684",
-        geo: "#B68D07",
-        dendro: "#618D24",
+        refinement: "#3BB1FF",
+        value: "#3BB1FF",
+        pyro: "#E46052",
+        hydro: "#4FAAFF",
+        electro: "#D85DD8",
+        cryo: "#90E1FA",
+        anemo: "#4BCFA3",
+        geo: "#ECD133",
+        dendro: "#9CDF3F",
     },
     appbar: {
         backgroundColor: appbarColors[0],
@@ -160,7 +160,7 @@ export const lightThemeData = {
         backgroundColor: backgroundColors[2].main,
     },
     icon: {
-        backgroundColor: appbarColors[2],
+        backgroundColor: appbarColors[1],
     },
     mainContentBox: {
         borderWidth: 0,
@@ -169,10 +169,10 @@ export const lightThemeData = {
         backgroundColor: backgroundColors[1].main,
     },
     menu: {
-        primary: backgroundColors[2].dark,
-        hover: backgroundColors[2].light,
-        selected: backgroundColors[0].dark,
-        selectedHover: backgroundColors[0].light,
+        primary: backgroundColors[0].dark,
+        hover: backgroundColors[0].light,
+        selected: backgroundColors[1].dark,
+        selectedHover: backgroundColors[1].light,
     },
     table: {
         body: {
@@ -182,4 +182,4 @@ export const lightThemeData = {
     },
 };
 
-export const lightTheme = createTheme(lightThemeData);
+export const genshinTheme = createTheme(genshinThemeData);
