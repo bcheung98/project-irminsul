@@ -37,5 +37,5 @@ export const updates = [
     { version: "1.3", name: "All That Glitters" },
     { version: "1.2", name: "The Chalk Prince and the Dragon" },
     { version: "1.1", name: "A New Star Approaches" },
-    { version: "1.0", name: "Welcome to Teyvat" }
-]
+    { version: "1.0", name: "Welcome to Teyvat" },
+];
