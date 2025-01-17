@@ -1,69 +1,92 @@
-import { Element, Rarity, WeaponType } from "./_common"
-import { CharacterMaterials, WeaponMaterials } from "./materials"
+import { characterLevel, characterSkill, weaponLevel } from "data/levelUpCosts";
+import { NestedKeyOf } from "./_common";
+import {
+    BossMaterial,
+    CharacterXPMaterial,
+    CommonMaterial,
+    EliteMaterial,
+    Gemstone,
+    LocalMaterial,
+    TalentMaterial,
+    WeaponAscensionMaterial,
+    WeaponXPMaterial,
+    WeeklyBossMaterial,
+} from "./materials";
+import { Character } from "./character";
+import { Weapon } from "./weapon";
 
-export interface CostArray {
-    [material: string]: number[]
-}
+export type CostObjectKeys =
+    | NestedKeyOf<TotalCostObject>
+    | keyof typeof characterLevel
+    | keyof typeof characterSkill
+    | keyof ReturnType<typeof weaponLevel>
+    | "Credit"
+    | "Crown";
 
-export interface CostNumber {
-    [material: string]: number
-}
+export type TotalCostObjectKeys = keyof TotalCostObject;
 
 export interface TotalCostObject {
-    mora: number,
-    characterXP: CostNumber,
-    weaponXP: CostNumber,
-    bossMat: CostNumber,
-    weeklyBossMat: CostNumber,
-    crown: number,
-    gemstone: CostNumber,
-    localMat: CostNumber,
-    talentBook: CostNumber,
-    ascensionMat: CostNumber,
-    eliteMat: CostNumber,
-    commonMat: CostNumber
+    credits: Record<"Credit", number>;
+    characterXP: Record<CharacterXPMaterial, number>;
+    weaponXP: Record<WeaponXPMaterial, number>;
+    bossMat: Record<BossMaterial, number>;
+    weeklyBossMat: Record<WeeklyBossMaterial, number>;
+    crown: Record<"Crown", number>;
+    gemstone: Record<Gemstone, number>;
+    localMat: Record<LocalMaterial, number>;
+    talentBook: Record<TalentMaterial, number>;
+    weaponAscensionMat: Record<WeaponAscensionMaterial, number>;
+    eliteMat: Record<EliteMaterial, number>;
+    commonMat: Record<CommonMaterial, number>;
 }
 
-export interface CharacterCostObject {
-    name: string,
-    displayName?: string,
-    fullName?: string,
-    rarity: Rarity,
-    element: Element,
-    weapon: WeaponType,
-    materials: CharacterMaterials
-    costs: CharacterCost
+export type PayloadCostObject = Record<
+    TotalCostObjectKeys,
+    Record<CostObjectKeys, number>
+>;
+
+export enum CostObjectSourceIndex {
+    level,
+    attack,
+    skill,
+    burst,
+}
+
+export interface UpdateCostsPayload {
+    name: string;
+    type: keyof typeof CostObjectSourceIndex;
+    costs: PayloadCostObject;
 }
 
 export interface CharacterCost {
-    mora: number[]
-    characterXP: CostArray,
-    bossMat: CostArray,
-    weeklyBossMat: CostArray,
-    crown: number[],
-    gemstone: CostArray,
-    localMat: CostArray,
-    talentBook: CostArray,
-    commonMat: CostArray
+    credits: Record<"Credit", number[]>;
+    characterXP: Record<CharacterXPMaterial, number[]>;
+    bossMat: Record<BossMaterial, number[]>;
+    weeklyBossMat: Record<WeeklyBossMaterial, number[]>;
+    crown: Record<"Crown", number[]>;
+    gemstone: Record<Gemstone, number[]>;
+    localMat: Record<LocalMaterial, number[]>;
+    talentBook: Record<TalentMaterial, number[]>;
+    commonMat: Record<CommonMaterial, number[]>;
 }
 
-export interface WeaponCostObject {
-    name: string,
-    displayName?: string,
-    rarity: Rarity,
-    type: WeaponType,
-    materials: WeaponMaterials
-    costs: WeaponCost
+export interface CharacterCostObject
+    extends Pick<
+        Character,
+        "name" | "fullName" | "rarity" | "element" | "weapon"
+    > {
+    costs: CharacterCost;
 }
 
 export interface WeaponCost {
-    mora: number,
-    weaponXP: CostNumber,
-    ascensionMat: CostNumber,
-    eliteMat: CostNumber,
-    commonMat: CostNumber
+    credits: Record<"Credit", number>;
+    weaponXP: Record<WeaponXPMaterial, number>;
+    weaponAscensionMat: Record<WeaponAscensionMaterial, number>;
+    eliteMat: Record<EliteMaterial, number>;
+    commonMat: Record<CommonMaterial, number>;
 }
 
-export interface PayloadCostObject {
-    [material: string]: number | CostNumber
+export interface WeaponCostObject
+    extends Pick<Weapon, "name" | "displayName" | "rarity" | "type"> {
+    costs: WeaponCost;
 }

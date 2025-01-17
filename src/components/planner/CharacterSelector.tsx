@@ -1,129 +1,213 @@
-import * as React from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useMemo } from "react";
 
 // Component imports
-import { CustomMenuItem } from "components/_custom/CustomMenu"
-import { CustomTooltip } from "components/_custom/CustomTooltip"
-import SearchBar from "../_custom/SearchBar"
+import Image from "custom/Image";
+import SearchBar from "custom/SearchBar";
+import { StyledMenuItem } from "styled/StyledMenu";
+import { TextStyled } from "styled/StyledTypography";
 
-// MUI Imports
-import { useTheme, useMediaQuery, Box, Typography, Autocomplete } from "@mui/material"
+// MUI imports
+import { useTheme, Autocomplete, Stack } from "@mui/material";
 
 // Helper imports
-import { GetBackgroundColor, GetRarityColor } from "../../helpers/RarityColors"
-import { setPlannerCharacters, updateTotalCosts } from "../../redux/reducers/AscensionPlannerReducer"
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
+import { range } from "helpers/utils";
+import { useAppDispatch, useAppSelector } from "helpers/hooks";
+import { selectCharacters } from "reducers/character";
+import { getSelectedCharacters, setPlannerCharacters } from "reducers/planner";
+import { getBackgroundColor, getRarityColor } from "helpers/rarityColors";
 
 // Type imports
-import { RootState } from "../../redux/store"
-import { Character } from "../../types/character"
+import { Character } from "types/character";
+import { CharacterCostObject } from "types/costs";
+import {
+    BossMaterial,
+    CommonMaterial,
+    Gemstone,
+    LocalMaterial,
+    TalentMaterial,
+    WeeklyBossMaterial,
+} from "types/materials";
 
 function CharacterSelector() {
+    const theme = useTheme();
 
-    const theme = useTheme()
+    const dispatch = useAppDispatch();
 
-    const matches = useMediaQuery(theme.breakpoints.down("md"))
+    const characters = [...useAppSelector(selectCharacters)].sort((a, b) =>
+        a.fullName.localeCompare(b.fullName)
+    );
+    const options = useMemo(
+        () => createOptions(characters),
+        [JSON.stringify(characters)]
+    );
+    const values = useAppSelector(getSelectedCharacters);
 
-    const dispatch = useDispatch()
-
-    const characters = useSelector((state: RootState) => state.characters.characters)
-
-    const [values, setValues] = React.useState<Character[]>([])
-
-    React.useEffect(() => {
-        dispatch(setPlannerCharacters(values))
-        dispatch(updateTotalCosts())
-    }, [JSON.stringify(values)])
-
-    const smallIconStyles = {
-        width: "20px",
-        height: "20px",
-    }
+    const smallIconStyle = { width: "20px", height: "20px" };
 
     return (
-        <Box>
-            <Autocomplete
-                multiple
-                autoComplete
-                disableCloseOnSelect
-                options={characters}
-                getOptionLabel={(option) => option.displayName ? option.displayName : option.name}
-                filterSelectedOptions
-                noOptionsText="No Characters"
-                value={values}
-                onChange={(event: any, newValue: Character[] | null) => {
-                    setValues(newValue as Character[])
-                }}
-                ChipProps={{
-                    sx: {
-                        color: `${theme.text.color}`,
-                        fontFamily: `${theme.font.genshin.family}`,
-                        backgroundColor: `${theme.button.selected}`,
-                        "& .MuiChip-deleteIcon": {
-                            color: `${theme.text.color}`,
-                            ":hover": {
-                                color: `${theme.text.colorAlt}`
-                            }
-                        },
+        <Autocomplete
+            multiple
+            autoComplete
+            filterSelectedOptions
+            options={options}
+            getOptionLabel={(option) => option.fullName}
+            filterOptions={(options, { inputValue }) =>
+                options.filter(
+                    (option) =>
+                        option.name
+                            .toLocaleLowerCase()
+                            .includes(inputValue.toLocaleLowerCase()) ||
+                        option.fullName
+                            .toLocaleLowerCase()
+                            .includes(inputValue.toLocaleLowerCase())
+                )
+            }
+            noOptionsText="No Characters"
+            value={values}
+            isOptionEqualToValue={(option, value) => option.name === value.name}
+            onChange={(_: any, newValue: CharacterCostObject[] | null) =>
+                dispatch(
+                    setPlannerCharacters(newValue as CharacterCostObject[])
+                )
+            }
+            renderInput={(params) => (
+                <SearchBar
+                    params={params}
+                    placeholder="Characters"
+                    inputIcon={
+                        <Image
+                            src="icons/Aether"
+                            alt="Characters"
+                            style={{
+                                width: "32px",
+                                marginLeft: "4px",
+                                backgroundColor: theme.appbar.backgroundColor,
+                                borderRadius: "64px",
+                            }}
+                        />
                     }
-                }}
-                ListboxProps={{
-                    sx: { backgroundColor: `${theme.paper.backgroundColor}`, p: 0 }
-                }}
-                renderInput={(params) => (
-                    <SearchBar params={params} placeholder="Characters" />
-                )}
-                renderOption={(props, option) => (
-                    <CustomMenuItem
-                        {...props}
-                        key={option.name}
-                        sx={{
-                            "&:not(:last-child)": {
-                                borderBottom: `1px solid ${theme.border.color}`,
-                            },
-                        }}
-                    >
-                        <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
-                            <Box sx={{ mr: "10px", mt: "6px" }}>
-                                <Box>
-                                    <CustomTooltip title={option.element} arrow placement="top">
-                                        <img style={smallIconStyles} src={`${process.env.REACT_APP_URL}/elements/${option.element}.png`} alt={option.element} onError={ErrorLoadingImage} />
-                                    </CustomTooltip>
-                                </Box>
-                                <Box>
-                                    <CustomTooltip title={option.weapon} arrow placement="top">
-                                        <img style={smallIconStyles} src={`${process.env.REACT_APP_URL}/weapons/icons/${option.weapon}.png`} alt={option.weapon} onError={ErrorLoadingImage} />
-                                    </CustomTooltip>
-                                </Box>
-                            </Box>
-                            <img
-                                src={`${process.env.REACT_APP_URL}/characters/icons/${option.name.split(" ").join("_")}.png`} alt={option.name}
-                                style={{
-                                    width: matches ? "42px" : "48px",
-                                    marginRight: "20px",
-                                    border: `2px solid ${GetRarityColor(option.rarity)}`,
-                                    borderRadius: "5px",
-                                    boxShadow: `inset 0 0 30px 5px ${GetBackgroundColor(option.rarity)}`
-                                }}
-                                onError={ErrorLoadingImage}
+                />
+            )}
+            renderOption={(props, option) => (
+                <StyledMenuItem
+                    {...props}
+                    key={option.fullName}
+                    sx={{
+                        "&:hover": {
+                            backgroundColor: theme.menu.selectedHover,
+                        },
+                        "&:not(:last-child)": {
+                            borderBottom: `1px solid ${theme.border.color.primary}`,
+                        },
+                    }}
+                >
+                    <Stack spacing={2} direction="row" alignItems="center">
+                        <Stack
+                            spacing={1}
+                            sx={{
+                                p: "4px",
+                                borderRadius: "16px",
+                                backgroundColor: theme.appbar.backgroundColor,
+                            }}
+                        >
+                            <Image
+                                src={`elements/${option.element}`}
+                                alt={option.element}
+                                style={smallIconStyle}
+                                tooltip={option.element}
                             />
-                            <Typography
-                                noWrap
-                                sx={{
-                                    fontFamily: `${theme.font.genshin.family}`,
-                                    fontSize: { xs: "14px", md: "16px" },
-                                    color: `${theme.text.color}`
-                                }}
-                            >
-                                {option.displayName ? option.displayName : option.name}
-                            </Typography>
-                        </Box>
-                    </CustomMenuItem>
-                )}
-            />
-        </Box>
-    )
-
+                            <Image
+                                src={`weapons/icons/${option.weapon}`}
+                                alt={option.weapon}
+                                style={smallIconStyle}
+                                tooltip={option.weapon}
+                            />
+                        </Stack>
+                        <Image
+                            src={`characters/icons/${option.name}`}
+                            alt={option.name}
+                            style={{
+                                width: "48px",
+                                height: "48px",
+                                border: `2px solid ${getRarityColor(
+                                    option.rarity
+                                )}`,
+                                borderRadius: theme.mainContentBox.borderRadius,
+                                backgroundColor: theme.background(2),
+                                boxShadow: `inset 0 0 24px 16px ${getBackgroundColor(
+                                    option.rarity
+                                )}`,
+                            }}
+                        />
+                        <TextStyled noWrap>{option.fullName}</TextStyled>
+                    </Stack>
+                </StyledMenuItem>
+            )}
+        />
+    );
 }
 
-export default CharacterSelector
+export default CharacterSelector;
+
+function createOptions(characters: Character[]) {
+    const costArray = range(0, 4, 0);
+    return characters.map(
+        (char) =>
+            ({
+                name: char.name,
+                fullName: char.fullName,
+                rarity: char.rarity,
+                element: char.element,
+                weapon: char.weapon,
+                costs: {
+                    // Source of each material is mapped to a specific index in the array:
+                    // [Level, Attack, Skill, Burst]
+                    credits: {
+                        Credit: costArray,
+                    },
+                    characterXP: {
+                        CharacterXP1: costArray,
+                        CharacterXP2: costArray,
+                        CharacterXP3: costArray,
+                    },
+                    bossMat: {
+                        [`${char.materials.bossMat}` as BossMaterial]:
+                            costArray,
+                    },
+                    weeklyBossMat: {
+                        [`${char.materials.weeklyBossMat}` as WeeklyBossMaterial]:
+                            costArray,
+                    },
+                    crown: {
+                        Crown: costArray,
+                    },
+                    gemstone: {
+                        [`${char.element}1` as Gemstone]: costArray,
+                        [`${char.element}2` as Gemstone]: costArray,
+                        [`${char.element}3` as Gemstone]: costArray,
+                        [`${char.element}4` as Gemstone]: costArray,
+                    },
+                    localMat: {
+                        [`${char.materials.localMat}` as LocalMaterial]:
+                            costArray,
+                    },
+                    talentBook: {
+                        [`${char.materials.talentBook}1` as TalentMaterial]:
+                            costArray,
+                        [`${char.materials.talentBook}2` as TalentMaterial]:
+                            costArray,
+                        [`${char.materials.talentBook}3` as TalentMaterial]:
+                            costArray,
+                    },
+                    commonMat: {
+                        [`${char.materials.commonMat}1` as CommonMaterial]:
+                            costArray,
+                        [`${char.materials.commonMat}2` as CommonMaterial]:
+                            costArray,
+                        [`${char.materials.commonMat}3` as CommonMaterial]:
+                            costArray,
+                    },
+                },
+            } as CharacterCostObject)
+    );
+}

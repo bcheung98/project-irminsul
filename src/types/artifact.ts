@@ -1,22 +1,30 @@
-import { Rarity } from "./_common"
-import { Version } from "./version"
+import { Rarity } from "./_common";
+import { Version } from "./version";
 
 export interface ArtifactProps {
-    artifact: Artifact
+    artifact: Artifact;
 }
 
 export interface Artifact {
-    name: string,
-    rarity: Rarity,
+    name: string;
+    displayName: string;
+    rarity: Rarity;
     setEffect: {
-        onePiece?: string,
-        twoPiece?: string,
-        fourPiece?: string
-    },
+        onePiece?: string;
+        twoPiece?: string;
+        fourPiece?: string;
+    };
     pieces: {
-        type: string,
-        name: string,
-        description: string
-    }[],
-    release: Version
+        type: ArtifactPiece;
+        name: string;
+        description: string;
+    }[];
+    release: Version;
 }
+
+export type ArtifactPiece =
+    | "flower"
+    | "feather"
+    | "sands"
+    | "goblet"
+    | "circlet";

@@ -1,93 +1,52 @@
-import { useEffect } from "react"
-import { connect } from "react-redux"
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route
-} from "react-router-dom"
-
-// Fetch imports
-import { fetchCharacters, fetchWeapons, fetchArtifacts, fetchCharacterBanners, fetchWeaponBanners, fetchChronicledWish, fetchCards } from "./redux/actions/fetch"
+import { useEffect } from "react";
+import { BrowserRouter } from "react-router";
+import "App.css";
 
 // Component imports
-import Nav from "./components/Nav"
-import NavBottom from "./components/NavBottom"
-import Home from "./components/Home"
-import CharacterBrowser from "./components/characters/CharacterBrowser"
-import CharacterPage from "./components/characters/page/_CharacterPage"
-import WeaponBrowser from "./components/weapons/WeaponBrowser"
-import WeaponPage from "./components/weapons/page/_WeaponPage"
-import ArtifactBrowser from "./components/artifacts/ArtifactBrowser"
-import AscensionPlanner from "./components/planner/_AscensionPlanner"
-import BannerArchive from "./components/banners/BannerArchive"
-import TCGBrowser from "./components/tcg/TCGBrowser"
+import RouteConfig from "components/nav/RouteConfig";
 
 // MUI imports
-import { ThemeProvider, createTheme } from "@mui/material/styles"
-import { Box, CssBaseline } from "@mui/material"
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
 // Helper imports
-import ScrollTopFab from "./components/_custom/ScrollTopFab"
+import {
+    fetchCharacters,
+    fetchWeapons,
+    fetchArtifacts,
+    fetchCharacterBanners,
+    fetchWeaponBanners,
+    fetchChronicledWish,
+} from "rtk/fetchData";
+import { useAppDispatch, useAppSelector } from "helpers/hooks";
+import { selectTheme, setTheme } from "reducers/settings";
+import { getTheme } from "themes/theme";
 
-// Type imports
-import { AppDispatch, RootState } from "./redux/store"
+function App() {
+    const dispatch = useAppDispatch();
 
-function App(props: any) {
+    useEffect(() => {
+        dispatch(fetchCharacters());
+        dispatch(fetchWeapons());
+        dispatch(fetchArtifacts());
+        dispatch(fetchCharacterBanners());
+        dispatch(fetchWeaponBanners());
+        dispatch(fetchChronicledWish());
+    }, []);
 
-	const { fetchCharacters, fetchWeapons, fetchArtifacts, fetchCharacterBanners, fetchWeaponBanners, fetchChronicledWish, fetchCards, theme } = props
+    const theme = useAppSelector(selectTheme);
 
-	useEffect(() => {
-		fetchCharacters()
-		fetchWeapons()
-		fetchArtifacts()
-		fetchCharacterBanners()
-		fetchWeaponBanners()
-		fetchChronicledWish()
-		fetchCards()
-	}, [])
+    useEffect(() => {
+        dispatch(setTheme(theme));
+    }, [theme]);
 
-	return (
-		<ThemeProvider theme={createTheme(theme)}>
-			<CssBaseline />
-			<Router basename={`${process.env.REACT_APP_BASENAME}`}>
-				<Box id="back-to-top-anchor" />
-				<Box sx={{ display: "flex" }}>
-					<Nav />
-					<Box sx={{ minWidth: "50vw", width: "100vw" }}>
-						<Box sx={{ px: "20px", pt: "100px", pb: "50px", minHeight: "100vh" }}>
-							<Switch>
-								<Route exact path="/" component={Home} />
-								<Route exact path="/characters" component={CharacterBrowser} />
-								<Route path="/characters/:char_name" children={<CharacterPage />} />
-								<Route exact path="/weapons" component={WeaponBrowser} />
-								<Route path="/weapons/:weapon_name" children={<WeaponPage />} />
-								<Route exact path="/artifacts" component={ArtifactBrowser} />
-								<Route exact path="/planner" component={AscensionPlanner} />
-								<Route exact path="/banners/" component={BannerArchive} />
-								<Route exact path="/tcg/" component={TCGBrowser} />
-							</Switch>
-						</Box>
-						<NavBottom />
-					</Box>
-				</Box>
-				<ScrollTopFab />
-			</Router>
-		</ThemeProvider>
-	)
+    return (
+        <BrowserRouter>
+            <ThemeProvider theme={getTheme(theme)}>
+                <CssBaseline />
+                <RouteConfig />
+            </ThemeProvider>
+        </BrowserRouter>
+    );
 }
 
-const mapStateToProps = (state: RootState) => ({
-	theme: state.theme.theme
-})
-
-const mapDispatchToProps = (dispatch: AppDispatch) => ({
-	fetchCharacters: () => dispatch(fetchCharacters()),
-	fetchWeapons: () => dispatch(fetchWeapons()),
-	fetchArtifacts: () => dispatch(fetchArtifacts()),
-	fetchCharacterBanners: () => dispatch(fetchCharacterBanners()),
-	fetchWeaponBanners: () => dispatch(fetchWeaponBanners()),
-	fetchChronicledWish: () => dispatch(fetchChronicledWish()),
-	fetchCards: () => dispatch(fetchCards())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App;

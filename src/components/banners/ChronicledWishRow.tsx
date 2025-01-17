@@ -1,45 +1,140 @@
 // Component imports
-import CustomCard from "../_custom/CustomCard"
-import { StyledTableCellNoVert } from "../_custom/CustomTable"
+import InfoCard from "custom/InfoCard";
+import { StyledTableCell, StyledTableRow } from "styled/StyledTable";
+import { TextStyled } from "styled/StyledTypography";
 
 // MUI imports
-import { useTheme, Typography, TableRow } from "@mui/material"
-import Grid from "@mui/material/Grid2"
+import { getContrastRatio, Stack, useTheme } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 
 // Helper imports
-import { createDateObject, isCurrentBanner } from "../../helpers/dates"
-import { isTBA } from "../../helpers/isTBA"
+import store from "rtk/store";
+import { useAppSelector } from "helpers/hooks";
+import { selectServer } from "reducers/settings";
+import { createDateObject, isCurrentBanner } from "helpers/dates";
+import { isTBA } from "helpers/utils";
 
-function ChronicledWishRow(props: any) {
+// Type imports
+import { ChronicledBannerRow } from "./ChronicledWish";
+import { Character } from "types/character";
+import { Weapon } from "types/weapon";
 
-    const theme = useTheme()
+function ChronicledWishRow({
+    loading,
+    row,
+}: {
+    loading: boolean;
+    row: ChronicledBannerRow;
+}) {
+    const theme = useTheme();
 
-    let { version, subVersion, characters, weapons } = props.row
+    const region = useAppSelector(selectServer);
 
-    let start = createDateObject(props.row.start)
-    let end = createDateObject(props.row.end)
+    const { version, subVersion } = row;
+
+    const characters = JSON.parse(row.characters).flat();
+    const weapons = JSON.parse(row.weapons).flat();
+    const start = createDateObject({ date: row.start, region: region });
+    const end = createDateObject({ date: row.end, region: region });
+
+    const backgroundColor = isCurrentBanner(start.obj, end.obj)
+        ? theme.palette.info.dark
+        : theme.palette.background.paper;
 
     return (
-        <TableRow sx={{ backgroundColor: isCurrentBanner(start.obj, end.obj) ? `${theme.button.selected}` : "none" }}>
-            <StyledTableCellNoVert sx={{ py: "10px" }}>
-                <Typography sx={{ fontFamily: `${theme.font.genshin.family}`, textAlign: "left", mb: "10px" }}>
-                    {`${version} Phase ${subVersion.split(".")[2]}: ${start.date} — ${end.date}`}
-                </Typography>
-                { /* Characters */}
-                <Grid container spacing={0.75}>
-                    {characters.fiveStars.map((char: string, index: number) => <CustomCard key={index} type="character" name={char} rarity={!isTBA(char) ? 5 : 1} disableLink={isTBA(char)} />)}
-                    {characters.fourStars.map((char: string, index: number) => <CustomCard key={index} type="character" name={char} rarity={!isTBA(char) ? 4 : 1} disableLink={isTBA(char)} />)}
-                </Grid>
-                <hr style={{ border: `0.75px solid ${theme.border.color}`, margin: "15px 0px 15px 0px" }} />
-                { /* Weapons */}
-                <Grid container spacing={0.75}>
-                    {weapons.fiveStars.map((wep: string, index: number) => <CustomCard key={index} type="weapon" name={wep} rarity={!isTBA(wep) ? 5 : 1} disableLink={isTBA(wep)} />)}
-                    {weapons.fourStars.map((wep: string, index: number) => <CustomCard key={index} type="weapon" name={wep} rarity={!isTBA(wep) ? 4 : 1} disableLink={isTBA(wep)} />)}
-                </Grid>
-            </StyledTableCellNoVert>
-        </TableRow>
-    )
-
+        <StyledTableRow sx={{ backgroundColor: backgroundColor }}>
+            <StyledTableCell>
+                <TextStyled
+                    sx={{
+                        mb: "8px",
+                        color:
+                            getContrastRatio(
+                                backgroundColor,
+                                theme.text.primary
+                            ) > 4.5
+                                ? theme.text.primary
+                                : theme.text.contrast,
+                    }}
+                >
+                    {`${version} Phase ${subVersion.split(".")[2]}: ${
+                        start.date
+                    } — ${end.date}`}
+                </TextStyled>
+                <Stack spacing={1}>
+                    <Grid container spacing={1}>
+                        {characters.map((item: Character, index: number) => (
+                            <InfoCard
+                                key={index}
+                                id={`${item.displayName}-${subVersion}-CW-${index}`}
+                                variant="icon"
+                                type="character"
+                                name={item.name}
+                                displayName={item.displayName}
+                                rarity={!isTBA(item.name) ? item.rarity : 1}
+                                disableLink={isTBA(item.name)}
+                                disableZoomOnHover={isTBA(item.name)}
+                                loading={loading}
+                                imgLoad="lazy"
+                            />
+                        ))}
+                    </Grid>
+                    <Grid container spacing={1}>
+                        {weapons.map((item: Weapon, index: number) => (
+                            <InfoCard
+                                key={index}
+                                id={`${item.displayName}-${subVersion}-CW-${index}`}
+                                variant="icon"
+                                type="weapon"
+                                name={item.name}
+                                displayName={item.displayName}
+                                rarity={!isTBA(item.name) ? item.rarity : 1}
+                                disableLink={isTBA(item.name)}
+                                disableZoomOnHover={isTBA(item.name)}
+                                loading={loading}
+                                imgLoad="lazy"
+                            />
+                        ))}
+                    </Grid>
+                </Stack>
+            </StyledTableCell>
+        </StyledTableRow>
+    );
 }
 
-export default ChronicledWishRow
+export default ChronicledWishRow;
+
+interface BannerItem {
+    name: string;
+    displayName: string;
+}
+
+export function createBannerItems(
+    items: string[],
+    type: "character" | "weapon"
+): BannerItem[] {
+    const characters = store.getState().characters.characters;
+    const weapons = store.getState().weapons.weapons;
+    console.log(items);
+    return items.map((item: string) => {
+        if (isTBA(item)) {
+            return {
+                name: "",
+                displayName: "",
+            };
+        } else {
+            if (type === "character") {
+                const character = characters.find((char) => char.name === item);
+                return {
+                    name: character?.name || "TBA",
+                    displayName: character?.fullName || "TBA",
+                };
+            } else {
+                const weapon = weapons.find((wep) => wep.name === item);
+                return {
+                    name: weapon?.name || "TBA",
+                    displayName: weapon?.displayName || "TBA",
+                };
+            }
+        }
+    });
+}

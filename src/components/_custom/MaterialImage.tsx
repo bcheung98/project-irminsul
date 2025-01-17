@@ -1,70 +1,85 @@
+import { CSSProperties } from "react";
+
+// Component imports
+import Image from "./Image";
+import { TextStyled } from "styled/StyledTypography";
+
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Typography } from "@mui/material"
+import { useTheme, useMediaQuery, Box, Card } from "@mui/material";
 
 // Helper imports
-import { CustomTooltip } from "./CustomTooltip"
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
+import { pxToInt } from "helpers/utils";
+
+// Type imports
+import { Rarity } from "types/_common";
 
 interface MaterialImageProps {
-    name: string,
-    rarity: string,
-    cost: string,
-    img: string,
-    size?: number
+    name: string;
+    rarity: Rarity;
+    cost: number;
+    imgSrc: string;
+    size?: string;
+    labelColor?: string;
 }
 
 function MaterialImage({
     name,
     rarity,
     cost,
-    img,
-    size = 72
+    imgSrc,
+    size = "64px",
+    labelColor,
 }: MaterialImageProps) {
+    const theme = useTheme();
 
-    const theme = useTheme()
+    size = useMediaQuery(theme.breakpoints.up("sm"))
+        ? size
+        : `${pxToInt(size) - 8}px`;
+
+    const intSize = pxToInt(size) / 4;
+    const fontSize =
+        cost.toLocaleString().length < 8
+            ? intSize - 4
+            : intSize - (cost.toLocaleString().length - 4);
+
+    const cardStyle: CSSProperties = {
+        width: size,
+        backgroundColor: theme.appbar.backgroundColor,
+    };
+
+    const imgStyle: CSSProperties = {
+        width: size,
+        height: size,
+        backgroundImage: `url(https://assets.irminsul.gg/genshin/backgrounds/Background_${rarity}_Star.png)`,
+        backgroundSize: "contain",
+    };
+
+    const labelStyle: CSSProperties = {
+        padding: "0px 0px 4px",
+        textAlign: "center",
+        backgroundColor: labelColor || theme.appbar.backgroundColor,
+    };
 
     return (
-        <Box
-            sx={{
-                width: `${size}px`,
-                height: `${size * 1.3}px`,
-                mr: "15px",
-                backgroundColor: `rgb(233, 229, 220)`,
-                borderRadius: "5px",
-            }}
-        >
-            <CustomTooltip title={name} arrow placement="top">
-                <img src={`${process.env.REACT_APP_URL}/materials/${img}.png`} alt={name}
-                    style={{
-                        width: `${size}px`,
-                        backgroundColor: `rgb(20, 20, 20)`,
-                        backgroundSize: "contain",
-                        backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
-                        borderRadius: "4px 4px 15px 0px",
-                    }}
-                    onError={ErrorLoadingImage}
-                />
-            </CustomTooltip>
-            <Box
-                sx={{
-                    textAlign: "center",
-                    mt: "-5px",
-                }}
-            >
-                <Typography
+        <Card sx={cardStyle}>
+            <Image
+                src={`materials/${imgSrc}`}
+                alt={name}
+                style={imgStyle}
+                tooltip={name}
+            />
+            <Box sx={labelStyle}>
+                <TextStyled
                     sx={{
-                        fontFamily: `${theme.font.genshin.family}`,
-                        color: `rgb(32, 32, 32)`,
-                        fontSize: `${size / 6}px`,
+                        fontSize: `${fontSize}px !important`,
+                        color: theme.appbar.color,
                     }}
                 >
-                    {cost}
-                </Typography>
+                    {cost.toLocaleString()}
+                </TextStyled>
             </Box>
-        </Box>
-    )
-
+        </Card>
+    );
 }
 
-export default MaterialImage
+export default MaterialImage;
