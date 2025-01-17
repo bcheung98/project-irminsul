@@ -47,7 +47,7 @@ function WeaponInfo({ weapon }: WeaponProps) {
                         <FlexBox sx={{ flexWrap: "wrap", gap: "8px" }}>
                             <Image
                                 src={`stars/Icon_${rarity}_Stars`}
-                                alt={rarity}
+                                alt={rarity.toString()}
                                 style={{
                                     padding: "4px 8px",
                                     height: "32px",
