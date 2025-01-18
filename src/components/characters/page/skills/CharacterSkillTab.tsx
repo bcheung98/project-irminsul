@@ -50,14 +50,27 @@ function CharacterSkillTab({
     return (
         <Stack spacing={3} divider={<Divider />} sx={{ pb: "16px" }}>
             <Box>
-                <TextStyled sx={{ mb: "8px", fontStyle: "italic" }}>
-                    {formatSkillKey(skillKey)}
-                </TextStyled>
-                <TextStyled variant="h5-styled" sx={{ mb: "16px" }}>
-                    {skill.name}
-                </TextStyled>
-                <Text component="span" sx={{ color: theme.text.description }}>
-                    {parseSkillDescription({ description: skill.description })}
+                <Box sx={{ mb: "24px" }}>
+                    <TextStyled sx={{ mb: "8px", fontStyle: "italic" }}>
+                        {formatSkillKey(skillKey)}
+                    </TextStyled>
+                    <TextStyled variant="h5-styled" sx={{ mb: "16px" }}>
+                        {skill.name}
+                    </TextStyled>
+                    <Text
+                        component="span"
+                        sx={{ color: theme.text.description }}
+                    >
+                        {parseSkillDescription({
+                            description: skill.description,
+                        })}
+                    </Text>
+                </Box>
+                <Text variant="subtitle1" sx={{ fontStyle: "italic" }}>
+                    {skill.splash &&
+                        parseSkillDescription({
+                            description: skill.splash,
+                        })}
                 </Text>
                 <Stack spacing={2} sx={{ mt: "24px" }}>
                     <CharacterSkillScaling
