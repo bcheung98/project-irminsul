@@ -11,7 +11,7 @@ import Grid from "@mui/material/Grid2";
 import { parseSkillDescription } from "helpers/parseSkillDescription";
 
 // Type imports
-import { CharacterPassiveType, CharacterProps } from "types/character";
+import { CharacterProps } from "types/character";
 
 function CharacterPassives({ character }: CharacterProps) {
     const theme = useTheme();
@@ -48,10 +48,11 @@ function CharacterPassives({ character }: CharacterProps) {
                             />
                             <Box>
                                 <TextStyled variant="h6-styled">
-                                    {passive.name}
-                                </TextStyled>
-                                <TextStyled sx={{ fontStyle: "italic" }}>
-                                    {formatPassiveKey(passive.type)}
+                                    {`${
+                                        passive.type === "nightsoul"
+                                            ? "Night Realm's Gift: "
+                                            : ""
+                                    }${passive.name}`}
                                 </TextStyled>
                             </Box>
                         </Stack>
@@ -71,19 +72,3 @@ function CharacterPassives({ character }: CharacterProps) {
 }
 
 export default CharacterPassives;
-
-function formatPassiveKey(type: CharacterPassiveType) {
-    switch (type) {
-        case "a1":
-            return "1st Ascension Passive";
-        case "a4":
-            return "4th Ascension Passive";
-        case "nightsoul":
-            return "Night Realm's Gift Passive";
-        case "util":
-            return "Utility Passive";
-        case "":
-        default:
-            return "Passive Talent";
-    }
-}
