@@ -195,7 +195,7 @@ function BannerList({ type }: BannerListProps) {
                                 <Image
                                     src={
                                         type === "character"
-                                            ? `characters/icons/${option.name}`
+                                            ? `characters/avatars/${option.name}`
                                             : `weapons/${option.name}`
                                     }
                                     alt={option.name}

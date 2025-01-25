@@ -42,7 +42,7 @@ function CharacterSelector() {
     );
     const values = useAppSelector(getSelectedCharacters);
 
-    const smallIconStyle = { width: "20px", height: "20px" };
+    const smallIconStyle = { width: "16px", height: "16px" };
 
     return (
         <Autocomplete
@@ -124,7 +124,7 @@ function CharacterSelector() {
                             />
                         </Stack>
                         <Image
-                            src={`characters/icons/${option.name}`}
+                            src={`characters/avatars/${option.name}`}
                             alt={option.name}
                             style={{
                                 width: "48px",
