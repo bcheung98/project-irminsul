@@ -189,7 +189,6 @@ function NavDesktop({ navItems, linkItems }: NavProps) {
                                 <ExpandMore
                                     sx={styles.listIcon(dropdownOpen)}
                                 />
-
                                 <TextStyled
                                     sx={styles.listItemText(drawerOpen)}
                                 >
@@ -227,6 +226,36 @@ function NavDesktop({ navItems, linkItems }: NavProps) {
                             </Box>
                         ))}
                     </Collapse>
+                </List>
+                <Divider variant="middle" />
+                <List>
+                    <Box sx={styles.listItem("_")}>
+                        <StyledTooltip
+                            title={!drawerOpen ? "Buy me a Ko-Fi" : null}
+                            arrow
+                            placement="right"
+                        >
+                            <ButtonBase
+                                href="https://ko-fi.com/bcheung"
+                                target="_blank"
+                                rel="noopener"
+                                disableRipple
+                                disableTouchRipple
+                                sx={styles.listItemButton()}
+                            >
+                                <Image
+                                    src="https://storage.ko-fi.com/cdn/brandasset/v2/kofi_symbol.png"
+                                    alt="Ko-Fi"
+                                    style={styles.navItem()}
+                                />
+                                <TextStyled
+                                    sx={styles.listItemText(drawerOpen)}
+                                >
+                                    Buy me a Ko-Fi
+                                </TextStyled>
+                            </ButtonBase>
+                        </StyledTooltip>
+                    </Box>
                 </List>
                 <Toolbar />
             </Drawer>
