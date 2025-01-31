@@ -466,7 +466,7 @@ function Search() {
                     disableTouchRipple
                     onClick={handleSearchOpen}
                     sx={{
-                        borderRadius: "64px",
+                        borderRadius: "8px",
                         px: "2px",
                         width: "36px",
                         height: "36px",
