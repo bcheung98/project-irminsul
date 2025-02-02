@@ -44,12 +44,14 @@ function WeaponPassive({ weapon }: WeaponProps) {
 
     if (stats.passive) {
         const targets = document.getElementsByClassName("weapon-passive-value");
-        stats.passive.scaling.forEach((subScaling: string[], index: number) => {
-            let target = targets[index];
-            if (target) {
-                target.innerHTML = subScaling[sliderValue - 1];
+        stats.passive.scaling?.forEach(
+            (subScaling: string[], index: number) => {
+                let target = targets[index];
+                if (target) {
+                    target.innerHTML = subScaling[sliderValue - 1];
+                }
             }
-        });
+        );
 
         return (
             <Card
@@ -68,22 +70,24 @@ function WeaponPassive({ weapon }: WeaponProps) {
                         newClassName: "weapon-passive-value",
                     })}
                 </Text>
-                <Box sx={{ width: { xs: "90%", md: "30vw" }, mt: "16px" }}>
-                    <StyledSlider
-                        value={sliderValue}
-                        marks={marks}
-                        step={1}
-                        min={1}
-                        max={5}
-                        onChange={handleSliderChange}
-                        size={matches_md_up ? "medium" : "small"}
-                        sx={{
-                            minWidth: "100px",
-                            maxWidth: "200px",
-                            ml: "8px",
-                        }}
-                    />
-                </Box>
+                {stats.passive.scaling && (
+                    <Box sx={{ width: { xs: "90%", md: "30vw" }, mt: "16px" }}>
+                        <StyledSlider
+                            value={sliderValue}
+                            marks={marks}
+                            step={1}
+                            min={1}
+                            max={5}
+                            onChange={handleSliderChange}
+                            size={matches_md_up ? "medium" : "small"}
+                            sx={{
+                                minWidth: "100px",
+                                maxWidth: "200px",
+                                ml: "8px",
+                            }}
+                        />
+                    </Box>
+                )}
             </Card>
         );
     } else {
