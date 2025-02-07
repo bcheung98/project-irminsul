@@ -227,6 +227,7 @@ function NavDesktop({ navItems, linkItems }: NavProps) {
                                             style={styles.linkItem()}
                                         />
                                         <TextStyled
+                                            noWrap
                                             sx={styles.listItemText(drawerOpen)}
                                         >
                                             {item.text}
