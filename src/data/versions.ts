@@ -1,5 +1,6 @@
 // MAKE SURE TO CHANGE THIS EVERY UPDATE!
 export const updates = [
+    { version: "5.4", name: "Moonlight Amidst Dreams" },
     { version: "5.3", name: "Incandescent Ode of Resurrection" },
     { version: "5.2", name: "Tapestry of Spirit and Flame" },
     { version: "5.1", name: "The Rainbow Destined to Burn" },
