@@ -8,10 +8,10 @@ import { Banner, ChronicledWishBanner } from "types/banner";
 export type LoadingStatus = "idle" | "pending" | "success" | "error";
 
 // https://api.irminsul.gg/genshin/characters.json
-const charactersURL = "https://api.irminsul.gg/genshin/characters-v2.json";
+const charactersURL = "https://api.irminsul.gg/genshin/characters.json";
 
 // https://api.irminsul.gg/genshin/weapons.json
-const weaponsURL = "https://api.irminsul.gg/genshin/weapons-v2.json";
+const weaponsURL = "https://api.irminsul.gg/genshin/weapons.json";
 
 // https://api.irminsul.gg/genshin/cards.json
 const cardsURL = "https://api.irminsul.gg/genshin/cards.json";
