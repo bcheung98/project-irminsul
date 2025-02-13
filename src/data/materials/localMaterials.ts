@@ -61,13 +61,15 @@ export const localMaterials = <const>{
         "Sprayfeather Gill",
         "Glowing Hornshroom",
         "Withering Purpurbloom",
+        "Dracolite",
+        "Skysplit Gembloom",
     ],
 };
 
 export const localSpecialtyNames = Object.values(localMaterials).flat();
 
 // Add any unreleased materials to this array
-const unreleasedMats: LocalMaterial[] = [];
+const unreleasedMats: LocalMaterial[] = ["Dracolite", "Skysplit Gembloom"];
 
 export const filteredLocalSpecialties = (showUnreleased = false) => {
     if (showUnreleased) {

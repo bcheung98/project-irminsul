@@ -142,6 +142,13 @@ export const eliteMaterials = <const>{
         Leafcoil2: "Bewildering Broadleaf",
         Leafcoil3: "Illusory Leafcoil",
     },
+    Jackal: {
+        unreleased: true,
+        Jackal0: "Keenclaw Jackal Shell",
+        Jackal1: "Cold-Cracked Shellshard",
+        Jackal2: "Warm Back-Shell",
+        Jackal3: "Blazing Prismshell",
+    },
 };
 
 export const filteredEliteMaterials = (showUnreleased = false) => {
