@@ -208,6 +208,12 @@ function createOptions(characters: Character[]) {
                             costArray,
                     },
                 },
+                values: {
+                    level: {},
+                    attack: {},
+                    skill: {},
+                    burst: {},
+                },
             } as CharacterCostObject)
     );
 }

@@ -1,9 +1,16 @@
 import { createSlice, PayloadAction, UnknownAction } from "@reduxjs/toolkit";
+import { startAppListening } from "helpers/hooks";
 import { reduceMaterialCosts } from "helpers/createMaterialCostData";
+import {
+    getCharacterLevelCost,
+    getCharacterSkillCost,
+    getWeaponLevelCost,
+} from "helpers/getLevelUpCosts";
 import { objectKeys } from "helpers/utils";
 import {
     CharacterCostObject,
     CostObjectSourceIndex,
+    PayloadData,
     TotalCostObject,
     UpdateCostsPayload,
     WeaponCostObject,
@@ -14,6 +21,9 @@ interface PlannerState {
     characters: CharacterCostObject[];
     weapons: WeaponCostObject[];
 }
+
+const storedCharacters = localStorage.getItem("planner/characters") || "null";
+const storedWeapons = localStorage.getItem("planner/weapons") || "null";
 
 const initialState: PlannerState = {
     totalCost: {
@@ -42,8 +52,8 @@ const initialState: PlannerState = {
         eliteMat: {},
         commonMat: {},
     } as TotalCostObject,
-    characters: [],
-    weapons: [],
+    characters: storedCharacters !== "null" ? JSON.parse(storedCharacters) : [],
+    weapons: storedWeapons !== "null" ? JSON.parse(storedWeapons) : [],
 };
 
 export const plannerSlice = createSlice({
@@ -71,15 +81,39 @@ export const plannerSlice = createSlice({
             );
             if (charIndex !== -1) {
                 const characterCosts = state.characters[charIndex].costs;
-                const payloadCosts = action.payload.costs;
+                let costs;
+                const { start, stop, selected } = action.payload
+                    .data as Required<PayloadData>;
+                switch (action.payload.type) {
+                    case "level":
+                        costs = getCharacterLevelCost({
+                            start,
+                            stop,
+                            selected,
+                            withXP: true,
+                        });
+                        break;
+                    case "attack":
+                    case "skill":
+                    case "burst":
+                        costs = getCharacterSkillCost({
+                            start,
+                            stop,
+                            selected,
+                        });
+                        break;
+                }
+                state.characters[charIndex].values[action.payload.type] = {
+                    start,
+                    stop,
+                    selected,
+                };
                 const index = CostObjectSourceIndex[action.payload.type];
                 objectKeys(characterCosts).forEach((material) => {
-                    if (payloadCosts[material] !== undefined) {
+                    if (costs[material] !== undefined) {
                         const characterSubCosts = characterCosts[material];
                         objectKeys(characterSubCosts).forEach((mat, idx) => {
-                            const values = Object.values(
-                                payloadCosts[material]
-                            );
+                            const values = Object.values(costs[material]);
                             (characterCosts[material][mat][index] as number) =
                                 values[idx];
                         });
@@ -96,14 +130,25 @@ export const plannerSlice = createSlice({
             );
             if (wepIndex !== -1) {
                 const weaponCosts = state.weapons[wepIndex].costs;
-                const payloadCosts = action.payload.costs;
+                const { rarity, start, stop, selected } = action.payload
+                    .data as Required<PayloadData>;
+                let costs = getWeaponLevelCost({
+                    start,
+                    stop,
+                    selected,
+                    rarity,
+                    withXP: true,
+                });
+                state.weapons[wepIndex].values.level = {
+                    start,
+                    stop,
+                    selected,
+                };
                 objectKeys(weaponCosts).forEach((material) => {
-                    if (payloadCosts[material] !== undefined) {
+                    if (costs[material] !== undefined) {
                         objectKeys(weaponCosts[material]).forEach(
                             (mat, idx) => {
-                                const values = Object.values(
-                                    payloadCosts[material]
-                                );
+                                const values = Object.values(costs[material]);
                                 (weaponCosts[material][mat] as number) =
                                     values[idx];
                             }
@@ -198,3 +243,13 @@ export const { getSelectedCharacters, getSelectedWeapons, getTotalCost } =
     plannerSlice.selectors;
 
 export default plannerSlice.reducer;
+
+startAppListening({
+    actionCreator: updateCharacterCosts,
+    effect: (_, state) => {
+        const data = JSON.stringify(state.getState().planner.characters);
+        if (data !== storedCharacters) {
+            localStorage.setItem("planner/characters", data);
+        }
+    },
+});

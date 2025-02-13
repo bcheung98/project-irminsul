@@ -16,7 +16,12 @@ import { updateCharacterCosts, updateWeaponCosts } from "reducers/planner";
 
 // Type imports
 import { Weapon } from "types/weapon";
-import { UpdateCostsPayload } from "types/costs";
+import {
+    CharacterCostObject,
+    CostSliderData,
+    UpdateCostsPayload,
+    WeaponCostObject,
+} from "types/costs";
 import { CardMode } from "./PlannerCard";
 
 interface LevelSliderProps {
@@ -98,18 +103,46 @@ function LevelSlider({
         ),
     }));
 
+    let storedData;
+    if (variant === "character") {
+        storedData = localStorage.getItem("planner/characters") || "null";
+    } else {
+        storedData = localStorage.getItem("planner/weapons") || "null";
+    }
+
+    let data: CostSliderData;
+    if (storedData !== "null") {
+        const parsedData = JSON.parse(storedData);
+        const item = parsedData.filter(
+            (item: CharacterCostObject | WeaponCostObject) => item.name === name
+        )[0];
+        data = item.values[dispatchProps.type];
+    } else {
+        data = {
+            start: 1,
+            stop: maxValue,
+            selected: true,
+        };
+    }
+
+    // Set initial values based on localStorage data
+    useEffect(() => {
+        setSliderValue([data.start, data.stop]);
+        setSelected(data.selected);
+    }, []);
+
+    // Update costs in redux state when sliders change
     useEffect(() => {
         if (variant === "character") {
             dispatch(
                 updateCharacterCosts({
                     name: name,
                     type: dispatchProps.type,
-                    costs: dispatchProps.getCost({
+                    data: {
                         start: sliderValue[0],
                         stop: sliderValue[1],
                         selected: selected,
-                        withXP: true,
-                    }),
+                    },
                 })
             );
         } else {
@@ -117,13 +150,12 @@ function LevelSlider({
                 updateWeaponCosts({
                     name: name,
                     type: "level",
-                    costs: dispatchProps.getCost({
+                    data: {
                         start: sliderValue[0],
                         stop: sliderValue[1],
                         selected: selected,
                         rarity: rarity,
-                        withXP: true,
-                    }),
+                    },
                 })
             );
         }

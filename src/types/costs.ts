@@ -1,5 +1,5 @@
 import { characterLevel, characterSkill, weaponLevel } from "data/levelUpCosts";
-import { NestedKeyOf } from "./_common";
+import { NestedKeyOf, Rarity } from "./_common";
 import {
     BossMaterial,
     CharacterXPMaterial,
@@ -52,10 +52,28 @@ export enum CostObjectSourceIndex {
     burst,
 }
 
+export interface CostSliderData {
+    start: number;
+    stop: number;
+    selected: boolean;
+}
+
+export type CostSliderValues = Record<
+    keyof typeof CostObjectSourceIndex,
+    CostSliderData
+>;
+
+export type CharacterCostSliderValues = CostSliderValues;
+export type WeaponCostSliderValues = Pick<CostSliderValues, "level">;
+
+export interface PayloadData extends Partial<CostSliderData> {
+    rarity?: Rarity;
+}
+
 export interface UpdateCostsPayload {
     name: string;
     type: keyof typeof CostObjectSourceIndex;
-    costs: PayloadCostObject;
+    data: PayloadData;
 }
 
 export interface CharacterCost {
@@ -76,6 +94,7 @@ export interface CharacterCostObject
         "name" | "fullName" | "rarity" | "element" | "weapon"
     > {
     costs: CharacterCost;
+    values: CharacterCostSliderValues;
 }
 
 export interface WeaponCost {
@@ -89,4 +108,5 @@ export interface WeaponCost {
 export interface WeaponCostObject
     extends Pick<Weapon, "name" | "displayName" | "rarity" | "type"> {
     costs: WeaponCost;
+    values: WeaponCostSliderValues;
 }
