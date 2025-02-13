@@ -35,7 +35,7 @@ export const artifactSlice = createSlice({
                     isUnreleasedContent(item.release.version)
                 );
             }
-            if (JSON.stringify(action.payload) !== storedArtifacts) {
+            if (JSON.stringify(payload) !== storedArtifacts) {
                 state.artifacts = payload;
             }
             state.status = "success";
