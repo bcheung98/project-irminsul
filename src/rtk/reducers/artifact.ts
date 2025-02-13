@@ -36,7 +36,7 @@ export const artifactSlice = createSlice({
                 );
             }
             if (JSON.stringify(action.payload) !== storedArtifacts) {
-                state.artifacts = action.payload;
+                state.artifacts = payload;
             }
             state.status = "success";
         });
