@@ -146,6 +146,11 @@ export const bossMaterials = <const>{
         displayName: "Talisman of the Enigmatic Land",
         source: "Wayward Hermetic Spiritspeaker",
     },
+    "Sparkless Statue Core": {
+        unreleased: true,
+        displayName: "Sparkless Statue Core",
+        source: "Lava Dragon Statue",
+    },
 };
 
 export const bossMatNames = objectKeys(bossMaterials);
