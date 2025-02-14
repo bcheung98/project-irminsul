@@ -58,7 +58,10 @@ function LevelSlider({
 
     const minDistance = 1;
     const maxValue = levels.length;
-    const [sliderValue, setSliderValue] = useState<number[]>([]);
+    const [sliderValue, setSliderValue] = useState([
+        values.start ?? 1,
+        values.stop ?? maxValue,
+    ]);
     const handleSliderChange = (
         _: Event,
         newValue: number | number[],
@@ -97,13 +100,6 @@ function LevelSlider({
         ),
     }));
 
-    // Set initial values
-    useEffect(() => {
-        const { start, stop } = values;
-        setSliderValue([start ?? 1, stop ?? maxValue]);
-    }, []);
-
-    // Update costs in redux state when values change
     useEffect(() => {
         if (variant === "character") {
             dispatch(
