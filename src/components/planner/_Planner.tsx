@@ -19,6 +19,7 @@ import {
     setPlannerWeapons,
 } from "reducers/planner";
 import { selectWidth } from "reducers/settings";
+import { isUnreleasedContent } from "helpers/utils";
 
 function Planner() {
     const documentTitle = `Ascension Planner ${
@@ -36,14 +37,26 @@ function Planner() {
         .querySelector('meta[property="og:description"]')
         ?.setAttribute("content", documentDesc);
 
+    const dispatch = useAppDispatch();
+
     const wideMode = useAppSelector(selectWidth) === "wide";
     const maxWidthLG = wideMode ? 6 : 8;
     const maxWidthXL = wideMode ? 5 : 6;
 
-    const dispatch = useAppDispatch();
+    const storedSettings = localStorage.getItem("settings") || "{}";
+    const { unreleasedContent = false } = JSON.parse(storedSettings);
 
-    const characters = useAppSelector(getSelectedCharacters);
-    const weapons = useAppSelector(getSelectedWeapons);
+    let characters = useAppSelector(getSelectedCharacters);
+    let weapons = useAppSelector(getSelectedWeapons);
+
+    if (!unreleasedContent) {
+        characters = characters.filter((char) =>
+            isUnreleasedContent(char.release?.version ?? "1.0")
+        );
+        weapons = weapons.filter((wep) =>
+            isUnreleasedContent(wep.release?.version ?? "1.0")
+        );
+    }
 
     useEffect(() => {
         dispatch(setPlannerCharacters(characters));

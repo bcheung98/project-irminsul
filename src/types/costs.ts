@@ -91,7 +91,7 @@ export interface CharacterCost {
 export interface CharacterCostObject
     extends Pick<
         Character,
-        "name" | "fullName" | "rarity" | "element" | "weapon"
+        "name" | "fullName" | "rarity" | "element" | "weapon" | "release"
     > {
     costs: CharacterCost;
     values: CharacterCostSliderValues;
@@ -106,7 +106,10 @@ export interface WeaponCost {
 }
 
 export interface WeaponCostObject
-    extends Pick<Weapon, "name" | "displayName" | "rarity" | "type"> {
+    extends Pick<
+        Weapon,
+        "name" | "displayName" | "rarity" | "type" | "release"
+    > {
     costs: WeaponCost;
     values: WeaponCostSliderValues;
 }

@@ -146,6 +146,7 @@ function createOptions(weapons: Weapon[]) {
                 displayName: wep.displayName,
                 rarity: wep.rarity,
                 type: wep.type,
+                release: wep.release,
                 costs: {
                     credits: {
                         Credit: 0,

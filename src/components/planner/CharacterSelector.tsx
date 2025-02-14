@@ -159,6 +159,7 @@ function createOptions(characters: Character[]) {
                 rarity: char.rarity,
                 element: char.element,
                 weapon: char.weapon,
+                release: char.release,
                 costs: {
                     // Source of each material is mapped to a specific index in the array:
                     // [Level, Attack, Skill, Burst]
