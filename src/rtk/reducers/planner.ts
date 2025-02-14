@@ -1,4 +1,9 @@
-import { createSlice, PayloadAction, UnknownAction } from "@reduxjs/toolkit";
+import {
+    createSlice,
+    isAnyOf,
+    PayloadAction,
+    UnknownAction,
+} from "@reduxjs/toolkit";
 import { startAppListening } from "helpers/hooks";
 import { reduceMaterialCosts } from "helpers/createMaterialCostData";
 import {
@@ -245,11 +250,17 @@ export const { getSelectedCharacters, getSelectedWeapons, getTotalCost } =
 export default plannerSlice.reducer;
 
 startAppListening({
-    actionCreator: updateCharacterCosts,
+    matcher: isAnyOf(setPlannerCharacters, updateCharacterCosts),
     effect: (_, state) => {
         const data = JSON.stringify(state.getState().planner.characters);
-        if (data !== storedCharacters) {
-            localStorage.setItem("planner/characters", data);
-        }
+        localStorage.setItem("planner/characters", data);
+    },
+});
+
+startAppListening({
+    matcher: isAnyOf(setPlannerWeapons, updateWeaponCosts),
+    effect: (_, state) => {
+        const data = JSON.stringify(state.getState().planner.weapons);
+        localStorage.setItem("planner/weapons", data);
     },
 });

@@ -45,21 +45,9 @@ function Planner() {
     const characters = useAppSelector(getSelectedCharacters);
     const weapons = useAppSelector(getSelectedWeapons);
 
-    const storedCharacters =
-        localStorage.getItem("planner/characters") || "null";
-    const storedWeapons = localStorage.getItem("planner/weapons") || "null";
-
     useEffect(() => {
-        dispatch(
-            setPlannerCharacters(
-                storedCharacters !== "null" ? JSON.parse(storedCharacters) : []
-            )
-        );
-        dispatch(
-            setPlannerWeapons(
-                storedWeapons !== "null" ? JSON.parse(storedWeapons) : []
-            )
-        );
+        dispatch(setPlannerCharacters(characters));
+        dispatch(setPlannerWeapons(weapons));
     }, []);
 
     return (
