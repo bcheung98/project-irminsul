@@ -7,7 +7,7 @@ import { StyledSwitch } from "styled/StyledSwitch";
 import { TextStyled } from "styled/StyledTypography";
 
 // MUI imports
-import { useTheme, useMediaQuery, Box, Stack } from "@mui/material";
+import { useTheme, useMediaQuery, Box, Stack, Skeleton } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 
 // Helper imports
@@ -16,7 +16,7 @@ import { updateCharacterCosts, updateWeaponCosts } from "reducers/planner";
 
 // Type imports
 import { Weapon } from "types/weapon";
-import { UpdateCostsPayload } from "types/costs";
+import { CostSliderData, UpdateCostsPayload } from "types/costs";
 import { CardMode } from "./PlannerCard";
 
 interface LevelSliderProps {
@@ -26,11 +26,9 @@ interface LevelSliderProps {
     title: string;
     icon?: string;
     levels: (string | number)[];
+    values: CostSliderData;
     rarity?: Weapon["rarity"];
-    dispatchProps: {
-        type: UpdateCostsPayload["type"];
-        getCost: Function;
-    };
+    type: UpdateCostsPayload["type"];
     color?: string;
 }
 
@@ -43,8 +41,9 @@ function LevelSlider({
     title,
     icon,
     levels,
+    values,
     rarity = 3,
-    dispatchProps,
+    type,
     color,
 }: LevelSliderProps) {
     const theme = useTheme();
@@ -52,14 +51,14 @@ function LevelSlider({
 
     const dispatch = useAppDispatch();
 
-    const [selected, setSelected] = useState(true);
+    const [selected, setSelected] = useState(values.selected ?? true);
     const handleSelect = () => {
         setSelected(!selected);
     };
 
     const minDistance = 1;
     const maxValue = levels.length;
-    const [sliderValue, setSliderValue] = useState([1, maxValue]);
+    const [sliderValue, setSliderValue] = useState<number[]>([]);
     const handleSliderChange = (
         _: Event,
         newValue: number | number[],
@@ -98,18 +97,24 @@ function LevelSlider({
         ),
     }));
 
+    // Set initial values
+    useEffect(() => {
+        const { start, stop } = values;
+        setSliderValue([start ?? 1, stop ?? maxValue]);
+    }, []);
+
+    // Update costs in redux state when values change
     useEffect(() => {
         if (variant === "character") {
             dispatch(
                 updateCharacterCosts({
                     name: name,
-                    type: dispatchProps.type,
-                    costs: dispatchProps.getCost({
+                    type: type,
+                    data: {
                         start: sliderValue[0],
                         stop: sliderValue[1],
                         selected: selected,
-                        withXP: true,
-                    }),
+                    },
                 })
             );
         } else {
@@ -117,13 +122,12 @@ function LevelSlider({
                 updateWeaponCosts({
                     name: name,
                     type: "level",
-                    costs: dispatchProps.getCost({
+                    data: {
                         start: sliderValue[0],
                         stop: sliderValue[1],
                         selected: selected,
                         rarity: rarity,
-                        withXP: true,
-                    }),
+                    },
                 })
             );
         }
@@ -167,24 +171,29 @@ function LevelSlider({
                         tooltip={mode === "view" ? title : ""}
                     />
                 )}
-                {mode === "edit" ? (
-                    <TextStyled sx={{ opacity: selected ? 1 : 0.35 }}>
-                        {title}
-                    </TextStyled>
+                {sliderValue[0] !== undefined &&
+                sliderValue[1] !== undefined ? (
+                    mode === "edit" ? (
+                        <TextStyled sx={{ opacity: selected ? 1 : 0.35 }}>
+                            {title}
+                        </TextStyled>
+                    ) : (
+                        <TextStyled
+                            sx={{
+                                opacity: selected ? 1 : 0.35,
+                                textTransform: "capitalize",
+                            }}
+                        >
+                            {type === "level" && `Level: `}
+                            {selected
+                                ? `${levels[sliderValue[0] - 1]} → ${
+                                      levels[sliderValue[1] - 1]
+                                  }`
+                                : "---"}
+                        </TextStyled>
+                    )
                 ) : (
-                    <TextStyled
-                        sx={{
-                            opacity: selected ? 1 : 0.35,
-                            textTransform: "capitalize",
-                        }}
-                    >
-                        {dispatchProps.type === "level" && `Level: `}
-                        {selected
-                            ? `${levels[sliderValue[0] - 1]} → ${
-                                  levels[sliderValue[1] - 1]
-                              }`
-                            : "---"}
-                    </TextStyled>
+                    <Skeleton variant="rounded" width="50%" />
                 )}
             </Stack>
             <Grid

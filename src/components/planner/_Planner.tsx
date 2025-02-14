@@ -36,18 +36,18 @@ function Planner() {
         .querySelector('meta[property="og:description"]')
         ?.setAttribute("content", documentDesc);
 
+    const wideMode = useAppSelector(selectWidth) === "wide";
+    const maxWidthLG = wideMode ? 6 : 8;
+    const maxWidthXL = wideMode ? 5 : 6;
+
     const dispatch = useAppDispatch();
 
     const characters = useAppSelector(getSelectedCharacters);
     const weapons = useAppSelector(getSelectedWeapons);
 
-    const wideMode = useAppSelector(selectWidth) === "wide";
-    const maxWidthLG = wideMode ? 6 : 8;
-    const maxWidthXL = wideMode ? 5 : 6;
-
     useEffect(() => {
-        dispatch(setPlannerCharacters([]));
-        dispatch(setPlannerWeapons([]));
+        dispatch(setPlannerCharacters(characters));
+        dispatch(setPlannerWeapons(weapons));
     }, []);
 
     return (

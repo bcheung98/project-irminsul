@@ -172,6 +172,9 @@ function createOptions(weapons: Weapon[]) {
                         [`${wep.materials.commonMat}3` as CommonMaterial]: 0,
                     },
                 },
+                values: {
+                    level: {},
+                },
             } as WeaponCostObject)
     );
 }

@@ -7,13 +7,13 @@ import Grid from "@mui/material/Grid2";
 
 // Helper imports
 import { range } from "helpers/utils";
-import {
-    getCharacterLevelCost,
-    getCharacterSkillCost,
-} from "helpers/getLevelUpCosts";
 
 // Type imports
-import { CharacterCostObject, UpdateCostsPayload } from "types/costs";
+import {
+    CharacterCostObject,
+    CostSliderData,
+    UpdateCostsPayload,
+} from "types/costs";
 import { CardMode } from "./PlannerCard";
 
 function CharacterSliders({
@@ -26,40 +26,41 @@ function CharacterSliders({
     const theme = useTheme();
 
     const name = character.name.toLowerCase();
+    const values = character.values;
 
     const sliders: {
         title: string;
         icon?: string;
         levels: (string | number)[];
         type: UpdateCostsPayload["type"];
-        fn: Function;
+        values: CostSliderData;
     }[] = [
         {
             title: "Level",
             levels: charLevel,
             type: "level",
-            fn: getCharacterLevelCost,
+            values: values.level,
         },
         {
             title: "Normal Attack",
             icon: `weapons/icons/${character.weapon}`,
             levels: skillLevel,
             type: "attack",
-            fn: getCharacterSkillCost,
+            values: values.attack,
         },
         {
             title: "Elemental Skill",
             icon: `characters/talents/${name}_skill`,
             levels: skillLevel,
             type: "skill",
-            fn: getCharacterSkillCost,
+            values: values.skill,
         },
         {
             title: "Elemental Burst",
             icon: `characters/talents/${name}_burst`,
             levels: skillLevel,
             type: "burst",
-            fn: getCharacterSkillCost,
+            values: values.burst,
         },
     ];
 
@@ -72,11 +73,9 @@ function CharacterSliders({
             title={slider.title}
             icon={slider.icon}
             levels={slider.levels}
+            values={slider.values}
             color={theme.elementColor(character.element)}
-            dispatchProps={{
-                type: slider.type,
-                getCost: slider.fn,
-            }}
+            type={slider.type}
         />
     ));
 
