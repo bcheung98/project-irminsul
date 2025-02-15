@@ -41,7 +41,7 @@ function Planner() {
 
     const wideMode = useAppSelector(selectWidth) === "wide";
     const maxWidthLG = wideMode ? 6 : 8;
-    const maxWidthXL = wideMode ? 5 : 6;
+    const maxWidthXL = wideMode ? 5.5 : 6;
 
     const storedSettings = localStorage.getItem("settings") || "{}";
     const { unreleasedContent = false } = JSON.parse(storedSettings);
