@@ -27,10 +27,12 @@ interface PlannerState {
     totalCost: TotalCostObject;
     characters: CharacterCostObject[];
     weapons: WeaponCostObject[];
+    hidden: string[];
 }
 
 const storedCharacters = localStorage.getItem("planner/characters") || "null";
 const storedWeapons = localStorage.getItem("planner/weapons") || "null";
+const storedHidden = localStorage.getItem("planner/hidden") || "null";
 
 const initialState: PlannerState = {
     totalCost: {
@@ -61,6 +63,7 @@ const initialState: PlannerState = {
     } as TotalCostObject,
     characters: parseLocalStorage(storedCharacters),
     weapons: parseLocalStorage(storedWeapons),
+    hidden: storedHidden !== "null" ? JSON.parse(storedHidden) : [],
 };
 
 export const plannerSlice = createSlice({
@@ -164,6 +167,11 @@ export const plannerSlice = createSlice({
                 });
             }
         },
+        toggleHidden: (state, action: PayloadAction<string>) => {
+            !state.hidden.includes(action.payload)
+                ? state.hidden.push(action.payload)
+                : state.hidden.splice(state.hidden.indexOf(action.payload), 1);
+        },
     },
     extraReducers: (builder) => {
         builder.addMatcher<UnknownAction>(
@@ -195,38 +203,48 @@ export const plannerSlice = createSlice({
                     eliteMat: {},
                     commonMat: {},
                 } as TotalCostObject;
-                state.characters.forEach((character) => {
-                    const costs = reduceMaterialCosts({ ...character.costs });
-                    objectKeys(costs).forEach((material) => {
-                        objectKeys(costs[material]).forEach((mat) => {
-                            if (
-                                !objectKeys(totalCostDraft[material]).includes(
-                                    mat
-                                )
-                            ) {
-                                (totalCostDraft[material][mat] as number) = 0;
-                            }
-                            (totalCostDraft[material][mat] as number) +=
-                                costs[material][mat];
+                state.characters
+                    .filter((character) => !state.hidden.includes(character.id))
+                    .forEach((character) => {
+                        const costs = reduceMaterialCosts({
+                            ...character.costs,
+                        });
+                        objectKeys(costs).forEach((material) => {
+                            objectKeys(costs[material]).forEach((mat) => {
+                                if (
+                                    !objectKeys(
+                                        totalCostDraft[material]
+                                    ).includes(mat)
+                                ) {
+                                    (totalCostDraft[material][
+                                        mat
+                                    ] as number) = 0;
+                                }
+                                (totalCostDraft[material][mat] as number) +=
+                                    costs[material][mat];
+                            });
                         });
                     });
-                });
-                state.weapons.forEach((weapon) => {
-                    const costs = { ...weapon.costs };
-                    objectKeys(costs).forEach((material) => {
-                        objectKeys(costs[material]).forEach((mat) => {
-                            if (
-                                !objectKeys(totalCostDraft[material]).includes(
-                                    mat
-                                )
-                            ) {
-                                (totalCostDraft[material][mat] as number) = 0;
-                            }
-                            (totalCostDraft[material][mat] as number) +=
-                                costs[material][mat];
+                state.weapons
+                    .filter((weapon) => !state.hidden.includes(weapon.id))
+                    .forEach((weapon) => {
+                        const costs = { ...weapon.costs };
+                        objectKeys(costs).forEach((material) => {
+                            objectKeys(costs[material]).forEach((mat) => {
+                                if (
+                                    !objectKeys(
+                                        totalCostDraft[material]
+                                    ).includes(mat)
+                                ) {
+                                    (totalCostDraft[material][
+                                        mat
+                                    ] as number) = 0;
+                                }
+                                (totalCostDraft[material][mat] as number) +=
+                                    costs[material][mat];
+                            });
                         });
                     });
-                });
                 state.totalCost = totalCostDraft;
             }
         );
@@ -236,6 +254,7 @@ export const plannerSlice = createSlice({
             state.characters,
         getSelectedWeapons: (state): WeaponCostObject[] => state.weapons,
         getTotalCost: (state): TotalCostObject => state.totalCost,
+        getHiddenItems: (state): string[] => state.hidden,
     },
 });
 
@@ -244,10 +263,15 @@ export const {
     setPlannerWeapons,
     updateCharacterCosts,
     updateWeaponCosts,
+    toggleHidden,
 } = plannerSlice.actions;
 
-export const { getSelectedCharacters, getSelectedWeapons, getTotalCost } =
-    plannerSlice.selectors;
+export const {
+    getSelectedCharacters,
+    getSelectedWeapons,
+    getTotalCost,
+    getHiddenItems,
+} = plannerSlice.selectors;
 
 export default plannerSlice.reducer;
 
@@ -264,6 +288,14 @@ startAppListening({
     effect: (_, state) => {
         const data = JSON.stringify(state.getState().planner.weapons);
         localStorage.setItem("planner/weapons", data);
+    },
+});
+
+startAppListening({
+    actionCreator: toggleHidden,
+    effect: (_, state) => {
+        const data = JSON.stringify(state.getState().planner.hidden);
+        localStorage.setItem("planner/hidden", data);
     },
 });
 
