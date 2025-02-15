@@ -16,10 +16,11 @@ import {
 import {
     BossMaterial,
     TalentMaterial,
+    WeaponAscensionMaterial,
     WeeklyBossMaterial,
 } from "types/materials";
 import { gemstones } from "data/materials/gemstones";
-import { weaponAscensionMaterials } from "data/materials/weaponAscensionMaterials";
+import { formatWeaponAscensionMaterials } from "data/materials/weaponAscensionMaterials";
 import { formatBossMaterials } from "data/materials/bossMaterials";
 import { eliteMaterials } from "data/materials/eliteMaterials";
 
@@ -118,15 +119,10 @@ function getMaterialData(
                 img: `common/${material}`,
             };
         case "weaponAscensionMat":
-            let weaponMats =
-                weaponAscensionMaterials[
-                    material.slice(
-                        0,
-                        -1
-                    ) as keyof typeof weaponAscensionMaterials
-                ];
             return {
-                name: weaponMats[material as keyof typeof weaponMats],
+                name: formatWeaponAscensionMaterials(
+                    material as WeaponAscensionMaterial
+                ),
                 img: `weapon/${material}`,
             };
         case "eliteMat":

@@ -136,13 +136,14 @@ export const filteredWeaponAscensionMaterials = (showUnreleased = false) => {
 export const formatWeaponAscensionMaterials = (
     material: WeaponAscensionMaterial
 ): string => {
-    if (["1", "2", "3"].includes(material.slice(-1))) {
-        material = material.slice(0, -1) as WeaponAscensionMaterialKeys;
+    let materialKey;
+    if (["1", "2", "3", "4"].includes(material.slice(-1))) {
+        materialKey = material.slice(0, -1) as WeaponAscensionMaterialKeys;
     } else {
-        material = material as WeaponAscensionMaterialKeys;
+        materialKey = material as WeaponAscensionMaterialKeys;
     }
-    const mat = weaponAscensionMaterials[material];
-    const index = weaponAscensionMaterialNames.indexOf(material) % 3;
+    const mat = weaponAscensionMaterials[materialKey];
+    const index = weaponAscensionMaterialNames.indexOf(materialKey) % 3;
     const materialName = mat[material as keyof typeof mat] || material;
     return `${materialName} ${dropDates[index]}`;
 };
