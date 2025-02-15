@@ -93,6 +93,7 @@ export interface CharacterCostObject
         Character,
         "name" | "fullName" | "rarity" | "element" | "weapon" | "release"
     > {
+    id: string;
     costs: CharacterCost;
     values: CharacterCostSliderValues;
 }
@@ -110,6 +111,7 @@ export interface WeaponCostObject
         Weapon,
         "name" | "displayName" | "rarity" | "type" | "release"
     > {
+    id: string;
     costs: WeaponCost;
     values: WeaponCostSliderValues;
 }

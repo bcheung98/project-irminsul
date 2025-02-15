@@ -154,6 +154,7 @@ function createOptions(characters: Character[]) {
     return characters.map(
         (char) =>
             ({
+                id: `character_${char.id}`,
                 name: char.name,
                 fullName: char.fullName,
                 rarity: char.rarity,

@@ -142,6 +142,7 @@ function createOptions(weapons: Weapon[]) {
     return weapons.map(
         (wep) =>
             ({
+                id: `weapon_${wep.id}`,
                 name: wep.name,
                 displayName: wep.displayName,
                 rarity: wep.rarity,

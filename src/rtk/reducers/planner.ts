@@ -20,6 +20,8 @@ import {
     UpdateCostsPayload,
     WeaponCostObject,
 } from "types/costs";
+import { Character } from "types/character";
+import { Weapon } from "types/weapon";
 
 interface PlannerState {
     totalCost: TotalCostObject;
@@ -57,8 +59,8 @@ const initialState: PlannerState = {
         eliteMat: {},
         commonMat: {},
     } as TotalCostObject,
-    characters: storedCharacters !== "null" ? JSON.parse(storedCharacters) : [],
-    weapons: storedWeapons !== "null" ? JSON.parse(storedWeapons) : [],
+    characters: parseLocalStorage(storedCharacters),
+    weapons: parseLocalStorage(storedWeapons),
 };
 
 export const plannerSlice = createSlice({
@@ -264,3 +266,34 @@ startAppListening({
         localStorage.setItem("planner/weapons", data);
     },
 });
+
+function parseLocalStorage<T extends CharacterCostObject | WeaponCostObject>(
+    dataString: string
+) {
+    if (dataString !== "null") {
+        const reformattedData = (JSON.parse(dataString) as T[]).map((item) => {
+            const type = "element" in item ? "character" : "weapon";
+            const data: Character[] | Weapon[] = JSON.parse(
+                localStorage.getItem(`data/${type}s`)!
+            );
+            let target: Character | Weapon;
+            if (!item.id) {
+                target = data.find((d) => d.name === item.name)!;
+            } else {
+                target = data.find(
+                    (d) => d.id === Number(item.id.split("_")[1])
+                )!;
+            }
+            const id = `${type}_${target.id}`;
+            return {
+                ...item,
+                id: id,
+                name: target.name,
+                displayName: target.displayName,
+            };
+        });
+        return reformattedData;
+    } else {
+        return [];
+    }
+}

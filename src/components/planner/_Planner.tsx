@@ -94,7 +94,7 @@ function Planner() {
             >
                 {[...characters, ...weapons].map((item) => (
                     <Grid
-                        key={item.name}
+                        key={item.id}
                         size={{ xs: 12, lg: maxWidthLG, xl: maxWidthXL }}
                     >
                         <PlannerCard data={item} />
