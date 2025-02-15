@@ -18,6 +18,7 @@ interface DropdownProps {
     iconColor?: string;
     contentPadding?: string | number;
     unmountOnExit?: boolean;
+    defaultOpen?: boolean;
 }
 
 function Dropdown({
@@ -29,10 +30,11 @@ function Dropdown({
     iconColor,
     contentPadding = "4px 24px",
     unmountOnExit = false,
+    defaultOpen = false,
 }: DropdownProps) {
     const theme = useTheme();
 
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(defaultOpen);
     const toggleDropdownState = () => {
         setOpen(!open);
     };
