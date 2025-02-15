@@ -46,6 +46,7 @@ function WeaponSelector() {
             multiple
             autoComplete
             filterSelectedOptions
+            disableClearable
             options={options}
             getOptionLabel={(option) => option.displayName}
             filterOptions={(options, { inputValue }) =>
@@ -62,9 +63,18 @@ function WeaponSelector() {
             noOptionsText="No Weapons"
             value={values}
             isOptionEqualToValue={(option, value) => option.name === value.name}
-            onChange={(_: any, newValue: WeaponCostObject[] | null) =>
-                dispatch(setPlannerWeapons(newValue as WeaponCostObject[]))
-            }
+            onChange={(event, newValue: WeaponCostObject[] | null, reason) => {
+                if (
+                    event.type === "keydown" &&
+                    ((event as React.KeyboardEvent).key === "Backspace" ||
+                        (event as React.KeyboardEvent).key === "Delete") &&
+                    reason === "removeOption"
+                ) {
+                    return;
+                }
+                dispatch(setPlannerWeapons(newValue as WeaponCostObject[]));
+            }}
+            renderTags={() => null}
             renderInput={(params) => (
                 <SearchBar
                     params={params}
