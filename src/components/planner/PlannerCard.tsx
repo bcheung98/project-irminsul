@@ -140,7 +140,7 @@ function PlannerCard({ data }: PlannerCardProps) {
     const iconButtonProps: IconButtonProps = {
         disableRipple: true,
         sx: {
-            p: "4px",
+            p: { xs: "2px", sm: "4px" },
             color: theme.appbar.color,
             borderRadius: "4px",
             border: `1px solid ${theme.border.color.primary}`,
