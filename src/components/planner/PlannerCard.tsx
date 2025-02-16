@@ -331,15 +331,15 @@ function PlannerCard({ data }: PlannerCardProps) {
                         alignItems="center"
                         justifyContent="right"
                     >
+                        <Button {...buttonProps} onClick={handleAlertClose}>
+                            Cancel
+                        </Button>
                         <Button
                             {...buttonProps}
                             color="error"
                             onClick={handleDelete}
                         >
                             Delete
-                        </Button>
-                        <Button {...buttonProps} onClick={handleAlertClose}>
-                            Cancel
                         </Button>
                     </Stack>
                 </Card>
