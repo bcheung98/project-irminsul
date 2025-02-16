@@ -32,7 +32,7 @@ interface LevelSliderProps {
     color?: string;
 }
 
-const threshold = "@250";
+const threshold = "@350";
 
 function LevelSlider({
     mode,
