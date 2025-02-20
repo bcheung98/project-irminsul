@@ -4,9 +4,9 @@ import { objectKeys } from "helpers/utils";
 import { Element, Nation, Rarity, WeaponType } from "types/_common";
 import {
     BossMaterial,
-    CommonMaterialKeys,
+    CommonMaterial,
     LocalMaterial,
-    TalentMaterialKeys,
+    TalentMaterial,
     WeeklyBossMaterial,
 } from "types/materials";
 
@@ -15,8 +15,8 @@ export interface CharacterFilterState {
     weapon: WeaponType[];
     rarity: Rarity[];
     ascStat: CharacterAscensionStat[];
-    talentBook: TalentMaterialKeys[];
-    commonMat: CommonMaterialKeys[];
+    talentBook: TalentMaterial[];
+    commonMat: CommonMaterial[];
     bossMat: BossMaterial[];
     weeklyBossMat: WeeklyBossMaterial[];
     localMat: LocalMaterial[];
@@ -57,10 +57,10 @@ export const characterFilterSlice = createSlice({
         ) => {
             state.ascStat = action.payload;
         },
-        setTalentBook: (state, action: PayloadAction<TalentMaterialKeys[]>) => {
+        setTalentBook: (state, action: PayloadAction<TalentMaterial[]>) => {
             state.talentBook = action.payload;
         },
-        setCommonMat: (state, action: PayloadAction<CommonMaterialKeys[]>) => {
+        setCommonMat: (state, action: PayloadAction<CommonMaterial[]>) => {
             state.commonMat = action.payload;
         },
         setBossMat: (state, action: PayloadAction<BossMaterial[]>) => {

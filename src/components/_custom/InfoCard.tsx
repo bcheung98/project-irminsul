@@ -13,20 +13,15 @@ import Grid from "@mui/material/Grid2";
 // Helper imports
 import { getRarityColor } from "helpers/rarityColors";
 import { zoomImageOnHover } from "helpers/utils";
-import { formatWeeklyBossMaterials } from "data/materials/weeklyBossMaterials";
-import { formatTalentBooks } from "data/materials/talentMaterials";
-import { formatCommonMaterials } from "data/materials/commonMaterials";
+import { formatMaterialName } from "helpers/materials";
+import { getTalentMaterial } from "data/materials/talentMaterials";
+import { getWeeklyBossMaterial } from "data/materials/weeklyBossMaterials";
+import { getCommonMaterial } from "data/materials/commonMaterials";
+import { getBossMaterial } from "data/materials/bossMaterials";
 
 // Type imports
 import { Element, Rarity, WeaponType } from "types/_common";
-import {
-    TalentMaterialKeys,
-    CommonMaterialKeys,
-    BossMaterial,
-    WeeklyBossMaterial,
-    Materials,
-} from "types/materials";
-import { formatBossMaterials } from "data/materials/bossMaterials";
+import { CharacterMaterials } from "types/materials";
 
 interface InfoCardProps {
     name: string;
@@ -41,7 +36,7 @@ interface InfoCardProps {
         element?: Element;
         weapon?: WeaponType;
     };
-    materials?: Materials;
+    materials?: CharacterMaterials;
     backgroundColor?: string;
     disableTooltip?: boolean;
     disableLink?: boolean;
@@ -284,7 +279,7 @@ function MaterialGrid({
     materials,
     size,
 }: {
-    materials: Materials;
+    materials: CharacterMaterials;
     size: string;
 }) {
     const theme = useTheme();
@@ -295,19 +290,21 @@ function MaterialGrid({
     const images = [
         {
             src: `materials/talent/${talentBook}3`,
-            tag: formatTalentBooks(talentBook as TalentMaterialKeys),
+            tag: formatMaterialName(getTalentMaterial({ tag: talentBook })),
         },
         {
             src: `materials/weekly/${weeklyBossMat}`,
-            tag: formatWeeklyBossMaterials(weeklyBossMat as WeeklyBossMaterial),
+            tag: formatMaterialName(
+                getWeeklyBossMaterial({ tag: weeklyBossMat })
+            ),
         },
         {
             src: `materials/common/${commonMat}3`,
-            tag: formatCommonMaterials(commonMat as CommonMaterialKeys),
+            tag: formatMaterialName(getCommonMaterial({ tag: commonMat })),
         },
         {
             src: `materials/boss/${bossMat}`,
-            tag: formatBossMaterials(bossMat as BossMaterial),
+            tag: formatMaterialName(getBossMaterial({ tag: bossMat })),
         },
         {
             src: `materials/local/${localMat}`,

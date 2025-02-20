@@ -28,24 +28,25 @@ import {
 import { rarities, weapons } from "data/common";
 import { WeaponSubStat, weaponSubStats } from "data/weaponStats";
 import {
-    filteredWeaponAscensionMaterials,
-    formatWeaponAscensionMaterials,
+    getWeaponAscensionMaterial,
+    weaponAscensionMaterials,
 } from "data/materials/weaponAscensionMaterials";
 import {
-    filteredEliteMaterials,
-    formatEliteMaterials,
+    eliteMaterials,
+    getEliteMaterial,
 } from "data/materials/eliteMaterials";
 import {
-    filteredCommonMaterials,
-    formatCommonMaterials,
+    commonMaterials,
+    getCommonMaterial,
 } from "data/materials/commonMaterials";
+import { formatMaterialName, getMaterialKeyNames } from "helpers/materials";
 
 // Type imports
 import { WeaponType, Rarity } from "types/_common";
 import {
-    WeaponAscensionMaterialKeys,
-    EliteMaterialKeys,
-    CommonMaterialKeys,
+    CommonMaterial,
+    EliteMaterial,
+    WeaponAscensionMaterial,
 } from "types/materials";
 
 function WeaponFilters({ handleClose }: { handleClose: (arg0: any) => void }) {
@@ -95,10 +96,13 @@ function WeaponFilters({ handleClose }: { handleClose: (arg0: any) => void }) {
             value: filters.ascensionMat,
             onChange: (
                 _: BaseSyntheticEvent,
-                newValues: WeaponAscensionMaterialKeys[]
+                newValues: WeaponAscensionMaterial[]
             ) => dispatch(setAscensionMat(newValues)),
             buttons: createButtons(
-                filteredWeaponAscensionMaterials(showUnrelased),
+                getMaterialKeyNames(
+                    [...weaponAscensionMaterials],
+                    showUnrelased
+                ),
                 "materials/weapon"
             ),
             width: "128px",
@@ -106,22 +110,20 @@ function WeaponFilters({ handleClose }: { handleClose: (arg0: any) => void }) {
         {
             name: "Elite Material",
             value: filters.eliteMat,
-            onChange: (_: BaseSyntheticEvent, newValues: EliteMaterialKeys[]) =>
+            onChange: (_: BaseSyntheticEvent, newValues: EliteMaterial[]) =>
                 dispatch(setEliteMat(newValues)),
             buttons: createButtons(
-                filteredEliteMaterials(showUnrelased),
+                getMaterialKeyNames([...eliteMaterials], showUnrelased),
                 "materials/elite"
             ),
         },
         {
             name: "Common Material",
             value: filters.commonMat,
-            onChange: (
-                _: BaseSyntheticEvent,
-                newValues: CommonMaterialKeys[]
-            ) => dispatch(setCommonMat(newValues)),
+            onChange: (_: BaseSyntheticEvent, newValues: CommonMaterial[]) =>
+                dispatch(setCommonMat(newValues)),
             buttons: createButtons(
-                filteredCommonMaterials(showUnrelased),
+                getMaterialKeyNames([...commonMaterials], showUnrelased),
                 "materials/common"
             ),
         },
@@ -184,7 +186,7 @@ function WeaponFilters({ handleClose }: { handleClose: (arg0: any) => void }) {
 
 export default WeaponFilters;
 
-function createButtons<T>(items: readonly T[], url: string) {
+function createButtons<T extends string>(items: readonly T[], url: string) {
     return items.map((item) => ({
         value: item,
         icon: (
@@ -204,16 +206,14 @@ function createButtons<T>(items: readonly T[], url: string) {
     }));
 }
 
-function getTooltip<T>(item: T, url: string) {
+function getTooltip<T extends string>(item: T, url: string) {
     let tooltip;
-    if (url.startsWith("materials/common")) {
-        tooltip = formatCommonMaterials(item as CommonMaterialKeys);
+    if (url.startsWith("materials/weapon")) {
+        tooltip = formatMaterialName(getWeaponAscensionMaterial({ tag: item }));
     } else if (url.startsWith("materials/elite")) {
-        tooltip = formatEliteMaterials(item as EliteMaterialKeys);
-    } else if (url.startsWith("materials/weapon")) {
-        tooltip = formatWeaponAscensionMaterials(
-            item as WeaponAscensionMaterialKeys
-        );
+        tooltip = formatMaterialName(getEliteMaterial({ tag: item }));
+    } else if (url.startsWith("materials/common")) {
+        tooltip = formatMaterialName(getCommonMaterial({ tag: item }));
     } else if (url.startsWith("icons/ascension_stat")) {
         tooltip = `${weaponSubStats[item as WeaponSubStat].title}`;
     } else {

@@ -1,5 +1,7 @@
-import { talentBookNames } from "data/materials/talentMaterials";
-import { weaponAscensionMaterialNames } from "data/materials/weaponAscensionMaterials";
+import { talentMaterials } from "data/materials/talentMaterials";
+import { weaponAscensionMaterials } from "data/materials/weaponAscensionMaterials";
+import { Material } from "types/materials";
+import { getMaterialKeyNames } from "./materials";
 
 export const weekdays = [
     "Sunday",
@@ -13,40 +15,37 @@ export const weekdays = [
 
 export type Weekday = (typeof weekdays)[number];
 
-export const dropDates = ["(Mon/Thu)", "(Tue/Fri)", "(Wed/Sat)"];
+export const dropDates = ["Mon/Thu", "Tue/Fri", "Wed/Sat"];
 
 export function materialDates(day: Weekday) {
     switch (day) {
         case "Monday":
         case "Thursday":
             return {
-                characters: getMaterials(talentBookNames, 0),
-                weapons: getMaterials(weaponAscensionMaterialNames, 0),
+                characters: getMaterials(talentMaterials, 0),
+                weapons: getMaterials(weaponAscensionMaterials, 0),
             };
         case "Tuesday":
         case "Friday":
             return {
-                characters: getMaterials(talentBookNames, 1),
-                weapons: getMaterials(weaponAscensionMaterialNames, 1),
+                characters: getMaterials(talentMaterials, 1),
+                weapons: getMaterials(weaponAscensionMaterials, 1),
             };
         case "Wednesday":
         case "Saturday":
             return {
-                characters: getMaterials(talentBookNames, 2),
-                weapons: getMaterials(weaponAscensionMaterialNames, 2),
+                characters: getMaterials(talentMaterials, 2),
+                weapons: getMaterials(weaponAscensionMaterials, 2),
             };
         default:
             return {
-                characters: talentBookNames,
-                weapons: weaponAscensionMaterialNames,
+                characters: getMaterialKeyNames([...talentMaterials]),
+                weapons: getMaterialKeyNames([...weaponAscensionMaterials]),
             };
     }
 }
 
-export function getMaterials<T extends string>(arr: T[], start: number) {
-    const materials = [] as T[];
-    for (let i = start; i < arr.length; i += 3) {
-        materials.push(arr[i]);
-    }
-    return materials;
+export function getMaterials(arr: readonly Material[], index: number) {
+    const materials = arr.filter((mat) => mat.source === dropDates[index]);
+    return getMaterialKeyNames(materials);
 }
