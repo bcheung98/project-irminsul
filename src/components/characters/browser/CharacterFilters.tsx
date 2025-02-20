@@ -41,29 +41,27 @@ import {
     CharacterAscensionStat,
     characterAscensionStats,
 } from "data/characterAscensionStats";
+import { formatMaterialName, getMaterialKeyNames } from "helpers/materials";
 import {
-    filteredTalentBooks,
-    formatTalentBooks,
+    getTalentMaterial,
+    talentMaterials,
 } from "data/materials/talentMaterials";
 import {
-    filteredCommonMaterials,
-    formatCommonMaterials,
+    commonMaterials,
+    getCommonMaterial,
 } from "data/materials/commonMaterials";
-import {
-    filteredBossMaterials,
-    formatBossMaterials,
-} from "data/materials/bossMaterials";
-import { filteredWeeklyBossMaterials } from "data/materials/weeklyBossMaterials";
-import { filteredLocalSpecialties } from "data/materials/localMaterials";
+import { bossMaterials, getBossMaterial } from "data/materials/bossMaterials";
+import { groupedWeeklyBossMatNames } from "data/materials/weeklyBossMaterials";
+import { groupedLocalMatNames } from "data/materials/localMaterials";
 
 // Type imports
 import { Element, WeaponType, Rarity, Nation } from "types/_common";
 import {
     BossMaterial,
-    TalentMaterialKeys,
-    CommonMaterialKeys,
     WeeklyBossMaterial,
     LocalMaterial,
+    CommonMaterial,
+    TalentMaterial,
 } from "types/materials";
 
 function CharacterFilters({
@@ -124,12 +122,10 @@ function CharacterFilters({
         {
             name: "Talent Book",
             value: filters.talentBook,
-            onChange: (
-                _: BaseSyntheticEvent,
-                newValues: TalentMaterialKeys[]
-            ) => dispatch(setTalentBook(newValues)),
+            onChange: (_: BaseSyntheticEvent, newValues: TalentMaterial[]) =>
+                dispatch(setTalentBook(newValues)),
             buttons: createButtons(
-                Object.values(filteredTalentBooks(showUnrelased)).flat(),
+                getMaterialKeyNames([...talentMaterials], showUnrelased),
                 "materials/talent"
             ),
             width: "128px",
@@ -137,12 +133,10 @@ function CharacterFilters({
         {
             name: "Common Material",
             value: filters.commonMat,
-            onChange: (
-                _: BaseSyntheticEvent,
-                newValues: CommonMaterialKeys[]
-            ) => dispatch(setCommonMat(newValues)),
+            onChange: (_: BaseSyntheticEvent, newValues: CommonMaterial[]) =>
+                dispatch(setCommonMat(newValues)),
             buttons: createButtons(
-                filteredCommonMaterials(showUnrelased),
+                getMaterialKeyNames([...commonMaterials], showUnrelased),
                 "materials/common"
             ),
         },
@@ -152,7 +146,7 @@ function CharacterFilters({
             onChange: (_: BaseSyntheticEvent, newValues: BossMaterial[]) =>
                 dispatch(setBossMat(newValues)),
             buttons: createButtons(
-                filteredBossMaterials(showUnrelased),
+                getMaterialKeyNames([...bossMaterials], showUnrelased),
                 "materials/boss"
             ),
         },
@@ -164,7 +158,7 @@ function CharacterFilters({
                 newValues: WeeklyBossMaterial[]
             ) => dispatch(setWeeklyBossMat(newValues)),
             buttons: createGroupedButtons(
-                filteredWeeklyBossMaterials(showUnrelased),
+                groupedWeeklyBossMatNames(showUnrelased),
                 "bosses",
                 "materials/weekly"
             ),
@@ -176,7 +170,7 @@ function CharacterFilters({
             onChange: (_: BaseSyntheticEvent, newValues: LocalMaterial[]) =>
                 dispatch(setLocalMat(newValues)),
             buttons: createGroupedButtons(
-                filteredLocalSpecialties(showUnrelased),
+                groupedLocalMatNames(showUnrelased),
                 "nations",
                 "materials/local"
             ),
@@ -287,7 +281,7 @@ function CharacterFilters({
 
 export default CharacterFilters;
 
-function createButtons<T>(items: readonly T[], url: string) {
+function createButtons<T extends string>(items: readonly T[], url: string) {
     return items.map((item) => ({
         value: item,
         icon: url && (
@@ -315,14 +309,14 @@ function createGroupedButtons<
     }));
 }
 
-function getTooltip<T>(item: T, url: string) {
+function getTooltip<T extends string>(item: T, url: string) {
     let tooltip;
     if (url.startsWith("materials/common")) {
-        tooltip = formatCommonMaterials(item as CommonMaterialKeys);
+        tooltip = formatMaterialName(getCommonMaterial({ tag: item }));
     } else if (url.startsWith("materials/talent")) {
-        tooltip = formatTalentBooks(item as TalentMaterialKeys);
+        tooltip = formatMaterialName(getTalentMaterial({ tag: item }));
     } else if (url.startsWith("materials/boss")) {
-        tooltip = `${formatBossMaterials(item as BossMaterial)}`;
+        tooltip = formatMaterialName(getBossMaterial({ tag: item }));
     } else if (url.startsWith("icons/ascension_stat")) {
         tooltip = `${
             characterAscensionStats[item as CharacterAscensionStat].title

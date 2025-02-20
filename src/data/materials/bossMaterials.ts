@@ -1,172 +1,378 @@
-import { objectKeys } from "helpers/utils";
-import { BossMaterial } from "types/materials";
-
-export const bossMaterials = <const>{
-    "Basalt Pillar": {
+export const bossMaterials = [
+    {
+        id: "bossMat_0",
+        category: "bossMat",
+        tag: "Basalt Pillar",
+        name: "Basalt Pillar",
         displayName: "Basalt Pillar",
         source: "Geo Hypostasis",
+        rarity: 4,
+        release: { version: "1.0" },
     },
-    "Cleansing Heart": {
+    {
+        id: "bossMat_1",
+        category: "bossMat",
+        tag: "Cleansing Heart",
+        name: "Cleansing Heart",
         displayName: "Cleansing Heart",
         source: "Oceanid",
+        rarity: 4,
+        release: { version: "1.0" },
     },
-    "Crystalline Bloom": {
+    {
+        id: "bossMat_2",
+        category: "bossMat",
+        tag: "Crystalline Bloom",
+        name: "Crystalline Bloom",
         displayName: "Crystalline Bloom",
         source: "Cryo Hypostasis",
+        rarity: 4,
+        release: { version: "1.0" },
     },
-    "Everflame Seed": {
+    {
+        id: "bossMat_3",
+        category: "bossMat",
+        tag: "Everflame Seed",
+        name: "Everflame Seed",
         displayName: "Everflame Seed",
         source: "Pyro Regisvine",
+        rarity: 4,
+        release: { version: "1.0" },
     },
-    "Hoarfrost Core": {
+    {
+        id: "bossMat_4",
+        category: "bossMat",
+        tag: "Hoarfrost Core",
+        name: "Hoarfrost Core",
         displayName: "Hoarfrost Core",
         source: "Cryo Regisvine",
+        rarity: 4,
+        release: { version: "1.0" },
     },
-    "Hurricane Seed": {
+    {
+        id: "bossMat_5",
+        category: "bossMat",
+        tag: "Hurricane Seed",
+        name: "Hurricane Seed",
         displayName: "Hurricane Seed",
         source: "Anemo Hypostasis",
+        rarity: 4,
+        release: { version: "1.0" },
     },
-    "Juvenile Jade": {
-        displayName: "Juvenile Jade",
-        source: "Primo Geovishap",
-    },
-    "Lightning Prism": {
+    {
+        id: "bossMat_6",
+        category: "bossMat",
+        tag: "Lightning Prism",
+        name: "Lightning Prism",
         displayName: "Lightning Prism",
         source: "Electro Hypostasis",
+        rarity: 4,
+        release: { version: "1.0" },
     },
-    "Marionette Core": {
+    {
+        id: "bossMat_7",
+        category: "bossMat",
+        tag: "Juvenile Jade",
+        name: "Juvenile Jade",
+        displayName: "Juvenile Jade",
+        source: "Primo Geovishap",
+        rarity: 4,
+        release: { version: "1.3" },
+    },
+    {
+        id: "bossMat_8",
+        category: "bossMat",
+        tag: "Marionette Core",
+        name: "Marionette Core",
         displayName: "Marionette Core",
         source: "Maguu Kenki",
+        rarity: 4,
+        release: { version: "1.6" },
     },
-    "Perpetual Heart": {
+    {
+        id: "bossMat_9",
+        category: "bossMat",
+        tag: "Perpetual Heart",
+        name: "Perpetual Heart",
         displayName: "Perpetual Heart",
         source: "Perpetual Mechanical Array",
+        rarity: 4,
+        release: { version: "2.0" },
     },
-    "Smoldering Pearl": {
+    {
+        id: "bossMat_10",
+        category: "bossMat",
+        tag: "Smoldering Pearl",
+        name: "Smoldering Pearl",
         displayName: "Smoldering Pearl",
         source: "Pyro Hypostasis",
+        rarity: 4,
+        release: { version: "2.0" },
     },
-    "Storm Beads": {
+    {
+        id: "bossMat_11",
+        category: "bossMat",
+        tag: "Storm Beads",
+        name: "Storm Beads",
         displayName: "Storm Beads",
         source: "Thunder Manifestation",
+        rarity: 4,
+        release: { version: "2.1" },
     },
-    "Dew of Repudiation": {
+    {
+        id: "bossMat_12",
+        category: "bossMat",
+        tag: "Dew of Repudiation",
+        name: "Dew of Repudiation",
         displayName: "Dew of Repudiation",
         source: "Hydro Hypostasis",
+        rarity: 4,
+        release: { version: "2.1" },
     },
-    "Riftborn Regalia": {
+    {
+        id: "bossMat_13",
+        category: "bossMat",
+        tag: "Riftborn Regalia",
+        name: "Riftborn Regalia",
         displayName: "Riftborn Regalia",
         source: "Golden Wolflord",
+        rarity: 4,
+        release: { version: "2.3" },
     },
-    "Dragonheir's False Fin": {
+    {
+        id: "bossMat_14",
+        category: "bossMat",
+        tag: "Dragonheir's False Fin",
+        name: "Dragonheir's False Fin",
         displayName: "Dragonheir's False Fin",
         source: "Bathysmal Vishap Herd",
+        rarity: 4,
+        release: { version: "2.4" },
     },
-    "Runic Fang": {
+    {
+        id: "bossMat_15",
+        category: "bossMat",
+        tag: "Runic Fang",
+        name: "Runic Fang",
         displayName: "Runic Fang",
         source: "Ruin Serpent",
+        rarity: 4,
+        release: { version: "2.6" },
     },
-    "Majestic Hooked Beak": {
+    {
+        id: "bossMat_16",
+        category: "bossMat",
+        tag: "Majestic Hooked Beak",
+        name: "Majestic Hooked Beak",
         displayName: "Majestic Hooked Beak",
         source: "Jadeplume Terrorshroom",
+        rarity: 4,
+        release: { version: "3.0" },
     },
-    "Thunderclap Fruitcore": {
+    {
+        id: "bossMat_17",
+        category: "bossMat",
+        tag: "Thunderclap Fruitcore",
+        name: "Thunderclap Fruitcore",
         displayName: "Thunderclap Fruitcore",
         source: "Electro Regisvine",
+        rarity: 4,
+        release: { version: "3.0" },
     },
-    "Light Guiding Tetrahedron": {
+    {
+        id: "bossMat_18",
+        category: "bossMat",
+        tag: "Light Guiding Tetrahedron",
+        name: "Light Guiding Tetrahedron",
         displayName: "Light Guiding Tetrahedron",
         source: "Semi-Intransient Matrix",
+        rarity: 4,
+        release: { version: "3.1" },
     },
-    "Perpetual Caliber": {
+    {
+        id: "bossMat_19",
+        category: "bossMat",
+        tag: "Perpetual Caliber",
+        name: "Perpetual Caliber",
         displayName: "Perpetual Caliber",
         source: "Aeonblight Drake",
+        rarity: 4,
+        release: { version: "3.1" },
     },
-    "Quelled Creeper": {
+    {
+        id: "bossMat_20",
+        category: "bossMat",
+        tag: "Quelled Creeper",
+        name: "Quelled Creeper",
         displayName: "Quelled Creeper",
         source: "Dendro Hypostasis",
+        rarity: 4,
+        release: { version: "3.2" },
     },
-    "Pseudo-Stamens": {
+    {
+        id: "bossMat_21",
+        category: "bossMat",
+        tag: "Pseudo-Stamens",
+        name: "Pseudo-Stamens",
         displayName: "Pseudo-Stamens",
         source: "Setekh Wenut",
+        rarity: 4,
+        release: { version: "3.4" },
     },
-    "Evergloom Ring": {
+    {
+        id: "bossMat_22",
+        category: "bossMat",
+        tag: "Evergloom Ring",
+        name: "Evergloom Ring",
         displayName: "Evergloom Ring",
         source: "Iniquitous Baptist",
+        rarity: 4,
+        release: { version: "3.6" },
     },
-    "Clockwork Coppelius": {
+    {
+        id: "bossMat_23",
+        category: "bossMat",
+        tag: "Clockwork Coppelius",
+        name: "Artificed Spare Clockwork Component — Coppelius",
         displayName: "Artificed Spare Clockwork Component — Coppelius",
         source: "Icewind Suites: Coppelius",
+        rarity: 4,
+        release: { version: "4.0" },
     },
-    "Clockwork Geppelia": {
+    {
+        id: "bossMat_24",
+        category: "bossMat",
+        tag: "Clockwork Geppelia",
+        name: "Artificed Spare Clockwork Component — Coppelia",
         displayName: "Artificed Spare Clockwork Component — Coppelia",
         source: "Icewind Suites: Coppelia",
+        rarity: 4,
+        release: { version: "4.0" },
     },
-    "Emperor's Resolution": {
+    {
+        id: "bossMat_25",
+        category: "bossMat",
+        tag: "Emperor's Resolution",
+        name: "Emperor's Resolution",
         displayName: "Emperor's Resolution",
         source: "Emperor of Fire and Iron",
+        rarity: 4,
+        release: { version: "4.0" },
     },
-    "Tubion Device": {
+    {
+        id: "bossMat_26",
+        category: "bossMat",
+        tag: "Tubion Device",
+        name: '"Tourbillon Device"',
         displayName: '"Tourbillon Device"',
         source: "Prototype Cal. Breguet",
+        rarity: 4,
+        release: { version: "4.1" },
     },
-    "Fontemer Horn": {
+    {
+        id: "bossMat_27",
+        category: "bossMat",
+        tag: "Fontemer Horn",
+        name: "Fontemer Unihorn",
         displayName: "Fontemer Unihorn",
         source: "Millennial Pearl Seahorse",
+        rarity: 4,
+        release: { version: "4.1" },
     },
-    "Water That Failed To Transcend": {
+    {
+        id: "bossMat_28",
+        category: "bossMat",
+        tag: "Water That Failed To Transcend",
+        name: "Water That Failed To Transcend",
         displayName: "Water That Failed To Transcend",
         source: "Hydro Tulpa",
+        rarity: 4,
+        release: { version: "4.2" },
     },
-    "Cloudseam Scale": {
+    {
+        id: "bossMat_29",
+        category: "bossMat",
+        tag: "Cloudseam Scale",
+        name: "Cloudseam Scale",
         displayName: "Cloudseam Scale",
         source: "Solitary Suanni",
+        rarity: 4,
+        release: { version: "4.4" },
     },
-    "Fragment of a Golden Melody": {
+    {
+        id: "bossMat_30",
+        category: "bossMat",
+        tag: "Fragment of a Golden Melody",
+        name: "Fragment of a Golden Melody",
         displayName: "Fragment of a Golden Melody",
         source: "Legatus Golems",
+        rarity: 4,
+        release: { version: "4.6" },
     },
-    "Mark of the Binding Blessing": {
+    {
+        id: "bossMat_31",
+        category: "bossMat",
+        tag: "Mark of the Binding Blessing",
+        name: "Mark of the Binding Blessing",
         displayName: "Mark of the Binding Blessing",
         source: "Goldflame Qucusaur Tyrant",
+        rarity: 4,
+        release: { version: "5.0" },
     },
-    "Overripe Flamegranate": {
+    {
+        id: "bossMat_32",
+        category: "bossMat",
+        tag: "Overripe Flamegranate",
+        name: "Overripe Flamegranate",
         displayName: "Overripe Flamegranate",
         source: "Gluttonous Yumkasaur Mountain King",
+        rarity: 4,
+        release: { version: "5.0" },
     },
-    "Gold-Inscribed Secret Source Core": {
+    {
+        id: "bossMat_33",
+        category: "bossMat",
+        tag: "Gold-Inscribed Secret Source Core",
+        name: "Gold-Inscribed Secret Source Core",
         displayName: "Gold-Inscribed Secret Source Core",
         source: "Secret Source Automaton: Configuration Device",
+        rarity: 4,
+        release: { version: "5.1" },
     },
-    "Ensnaring Gaze": {
+    {
+        id: "bossMat_34",
+        category: "bossMat",
+        tag: "Ensnaring Gaze",
+        name: "Ensnaring Gaze",
         displayName: "Ensnaring Gaze",
         source: "Tenebrous Papilla",
+        rarity: 4,
+        release: { version: "5.2" },
     },
-    "Talisman of the Enigmatic Land": {
+    {
+        id: "bossMat_35",
+        category: "bossMat",
+        tag: "Talisman of the Enigmatic Land",
+        name: "Talisman of the Enigmatic Land",
         displayName: "Talisman of the Enigmatic Land",
         source: "Wayward Hermetic Spiritspeaker",
+        rarity: 4,
+        release: { version: "5.3" },
     },
-    "Sparkless Statue Core": {
-        unreleased: true,
+    {
+        id: "bossMat_36",
+        category: "bossMat",
+        tag: "Sparkless Statue Core",
+        name: "Sparkless Statue Core",
         displayName: "Sparkless Statue Core",
         source: "Lava Dragon Statue",
+        rarity: 4,
+        release: { version: "5.5" },
     },
-};
+] as const;
 
-export const bossMatNames = objectKeys(bossMaterials);
+export const bossMatNames = bossMaterials.map((mat) => mat.tag);
 
-export const filteredBossMaterials = (showUnreleased = false) => {
-    if (showUnreleased) {
-        return bossMatNames;
-    } else {
-        return bossMatNames.filter(
-            (material) =>
-                !Object.keys(bossMaterials[material]).includes("unreleased")
-        );
-    }
-};
-
-export const formatBossMaterials = (material: BossMaterial) => {
-    const mat = bossMaterials[material] || { displayName: "", source: "?" };
-    return `${mat.displayName} (${mat.source})`;
-};
+export function getBossMaterial({ id, tag }: { id?: string; tag: string }) {
+    return bossMaterials.find((mat) => mat.id === id || mat.tag === tag);
+}

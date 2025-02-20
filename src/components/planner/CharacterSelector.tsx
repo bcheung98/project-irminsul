@@ -15,18 +15,16 @@ import { useAppDispatch, useAppSelector } from "helpers/hooks";
 import { selectCharacters } from "reducers/character";
 import { getSelectedCharacters, setPlannerCharacters } from "reducers/planner";
 import { getBackgroundColor, getRarityColor } from "helpers/rarityColors";
+import { getBossMaterial } from "data/materials/bossMaterials";
+import { getWeeklyBossMaterial } from "data/materials/weeklyBossMaterials";
+import { getGemstone } from "data/materials/gemstones";
+import { getLocalMaterial } from "data/materials/localMaterials";
+import { getTalentMaterial } from "data/materials/talentMaterials";
+import { getCommonMaterial } from "data/materials/commonMaterials";
 
 // Type imports
 import { Character } from "types/character";
 import { CharacterCostObject } from "types/costs";
-import {
-    BossMaterial,
-    CommonMaterial,
-    Gemstone,
-    LocalMaterial,
-    TalentMaterial,
-    WeeklyBossMaterial,
-} from "types/materials";
 
 function CharacterSelector() {
     const theme = useTheme();
@@ -187,41 +185,52 @@ function createOptions(characters: Character[]) {
                         CharacterXP3: costArray,
                     },
                     bossMat: {
-                        [`${char.materials.bossMat}` as BossMaterial]:
+                        [getBossMaterial({ tag: char.materials.bossMat })?.id!]:
                             costArray,
                     },
                     weeklyBossMat: {
-                        [`${char.materials.weeklyBossMat}` as WeeklyBossMaterial]:
-                            costArray,
+                        [getWeeklyBossMaterial({
+                            tag: char.materials.weeklyBossMat,
+                        })?.id!]: costArray,
                     },
                     crown: {
                         Crown: costArray,
                     },
                     gemstone: {
-                        [`${char.element}1` as Gemstone]: costArray,
-                        [`${char.element}2` as Gemstone]: costArray,
-                        [`${char.element}3` as Gemstone]: costArray,
-                        [`${char.element}4` as Gemstone]: costArray,
+                        [getGemstone({ tag: `${char.element}1` })?.id!]:
+                            costArray,
+                        [getGemstone({ tag: `${char.element}2` })?.id!]:
+                            costArray,
+                        [getGemstone({ tag: `${char.element}3` })?.id!]:
+                            costArray,
+                        [getGemstone({ tag: `${char.element}4` })?.id!]:
+                            costArray,
                     },
                     localMat: {
-                        [`${char.materials.localMat}` as LocalMaterial]:
-                            costArray,
+                        [getLocalMaterial({ tag: char.materials.localMat })
+                            ?.id!]: costArray,
                     },
                     talentBook: {
-                        [`${char.materials.talentBook}1` as TalentMaterial]:
-                            costArray,
-                        [`${char.materials.talentBook}2` as TalentMaterial]:
-                            costArray,
-                        [`${char.materials.talentBook}3` as TalentMaterial]:
-                            costArray,
+                        [getTalentMaterial({
+                            tag: `${char.materials.talentBook}1`,
+                        })?.id!]: costArray,
+                        [getTalentMaterial({
+                            tag: `${char.materials.talentBook}2`,
+                        })?.id!]: costArray,
+                        [getTalentMaterial({
+                            tag: `${char.materials.talentBook}3`,
+                        })?.id!]: costArray,
                     },
                     commonMat: {
-                        [`${char.materials.commonMat}1` as CommonMaterial]:
-                            costArray,
-                        [`${char.materials.commonMat}2` as CommonMaterial]:
-                            costArray,
-                        [`${char.materials.commonMat}3` as CommonMaterial]:
-                            costArray,
+                        [getCommonMaterial({
+                            tag: `${char.materials.commonMat}1`,
+                        })?.id!]: costArray,
+                        [getCommonMaterial({
+                            tag: `${char.materials.commonMat}2`,
+                        })?.id!]: costArray,
+                        [getCommonMaterial({
+                            tag: `${char.materials.commonMat}3`,
+                        })?.id!]: costArray,
                     },
                 },
                 values: {
@@ -230,6 +239,7 @@ function createOptions(characters: Character[]) {
                     skill: {},
                     burst: {},
                 },
+                dataFormat: "v2",
             } as CharacterCostObject)
     );
 }

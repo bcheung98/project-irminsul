@@ -3,18 +3,18 @@ import { WeaponSubStat } from "data/weaponStats";
 import { objectKeys } from "helpers/utils";
 import { Rarity, WeaponType } from "types/_common";
 import {
-    CommonMaterialKeys,
-    EliteMaterialKeys,
-    WeaponAscensionMaterialKeys,
+    CommonMaterial,
+    EliteMaterial,
+    WeaponAscensionMaterial,
 } from "types/materials";
 
 export interface WeaponFilterState {
     weaponType: WeaponType[];
     rarity: Rarity[];
     substats: WeaponSubStat[];
-    ascensionMat: WeaponAscensionMaterialKeys[];
-    eliteMat: EliteMaterialKeys[];
-    commonMat: CommonMaterialKeys[];
+    ascensionMat: WeaponAscensionMaterial[];
+    eliteMat: EliteMaterial[];
+    commonMat: CommonMaterial[];
 }
 
 const initialState: WeaponFilterState = {
@@ -41,14 +41,14 @@ export const weaponFilterSlice = createSlice({
         },
         setAscensionMat: (
             state,
-            action: PayloadAction<WeaponAscensionMaterialKeys[]>
+            action: PayloadAction<WeaponAscensionMaterial[]>
         ) => {
             state.ascensionMat = action.payload;
         },
-        setEliteMat: (state, action: PayloadAction<EliteMaterialKeys[]>) => {
+        setEliteMat: (state, action: PayloadAction<EliteMaterial[]>) => {
             state.eliteMat = action.payload;
         },
-        setCommonMat: (state, action: PayloadAction<CommonMaterialKeys[]>) => {
+        setCommonMat: (state, action: PayloadAction<CommonMaterial[]>) => {
             state.commonMat = action.payload;
         },
         clearFilters: (

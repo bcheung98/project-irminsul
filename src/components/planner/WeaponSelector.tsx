@@ -14,15 +14,13 @@ import { useAppDispatch, useAppSelector } from "helpers/hooks";
 import { selectWeapons } from "reducers/weapon";
 import { getSelectedWeapons, setPlannerWeapons } from "reducers/planner";
 import { getBackgroundColor, getRarityColor } from "helpers/rarityColors";
+import { getWeaponAscensionMaterial } from "data/materials/weaponAscensionMaterials";
+import { getEliteMaterial } from "data/materials/eliteMaterials";
+import { getCommonMaterial } from "data/materials/commonMaterials";
 
 // Type imports
 import { Weapon } from "types/weapon";
 import { WeaponCostObject } from "types/costs";
-import {
-    CommonMaterial,
-    WeaponAscensionMaterial,
-    EliteMaterial,
-} from "types/materials";
 
 function WeaponSelector() {
     const theme = useTheme();
@@ -168,25 +166,43 @@ function createOptions(weapons: Weapon[]) {
                         WeaponXP3: 0,
                     },
                     weaponAscensionMat: {
-                        [`${wep.materials.weaponAscensionMat}1` as WeaponAscensionMaterial]: 0,
-                        [`${wep.materials.weaponAscensionMat}2` as WeaponAscensionMaterial]: 0,
-                        [`${wep.materials.weaponAscensionMat}3` as WeaponAscensionMaterial]: 0,
-                        [`${wep.materials.weaponAscensionMat}4` as WeaponAscensionMaterial]: 0,
+                        [getWeaponAscensionMaterial({
+                            tag: `${wep.materials.weaponAscensionMat}1`,
+                        })?.id!]: 0,
+                        [getWeaponAscensionMaterial({
+                            tag: `${wep.materials.weaponAscensionMat}2`,
+                        })?.id!]: 0,
+                        [getWeaponAscensionMaterial({
+                            tag: `${wep.materials.weaponAscensionMat}3`,
+                        })?.id!]: 0,
+                        [getWeaponAscensionMaterial({
+                            tag: `${wep.materials.weaponAscensionMat}4`,
+                        })?.id!]: 0,
                     },
                     eliteMat: {
-                        [`${wep.materials.eliteMat}1` as EliteMaterial]: 0,
-                        [`${wep.materials.eliteMat}2` as EliteMaterial]: 0,
-                        [`${wep.materials.eliteMat}3` as EliteMaterial]: 0,
+                        [getEliteMaterial({ tag: `${wep.materials.eliteMat}1` })
+                            ?.id!]: 0,
+                        [getEliteMaterial({ tag: `${wep.materials.eliteMat}2` })
+                            ?.id!]: 0,
+                        [getEliteMaterial({ tag: `${wep.materials.eliteMat}3` })
+                            ?.id!]: 0,
                     },
                     commonMat: {
-                        [`${wep.materials.commonMat}1` as CommonMaterial]: 0,
-                        [`${wep.materials.commonMat}2` as CommonMaterial]: 0,
-                        [`${wep.materials.commonMat}3` as CommonMaterial]: 0,
+                        [getCommonMaterial({
+                            tag: `${wep.materials.commonMat}1`,
+                        })?.id!]: 0,
+                        [getCommonMaterial({
+                            tag: `${wep.materials.commonMat}2`,
+                        })?.id!]: 0,
+                        [getCommonMaterial({
+                            tag: `${wep.materials.commonMat}3`,
+                        })?.id!]: 0,
                     },
                 },
                 values: {
                     level: {},
                 },
+                dataFormat: "v2",
             } as WeaponCostObject)
     );
 }

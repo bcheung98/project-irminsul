@@ -303,27 +303,29 @@ function parseLocalStorage<T extends CharacterCostObject | WeaponCostObject>(
     dataString: string
 ) {
     if (dataString !== "null") {
-        const reformattedData = (JSON.parse(dataString) as T[]).map((item) => {
-            const type = "element" in item ? "character" : "weapon";
-            const data: Character[] | Weapon[] = JSON.parse(
-                localStorage.getItem(`data/${type}s`)!
-            );
-            let target: Character | Weapon;
-            if (!item.id) {
-                target = data.find((d) => d.name === item.name)!;
-            } else {
-                target = data.find(
+        const reformattedData = (JSON.parse(dataString) as T[])
+            .map((item) => {
+                const type = "element" in item ? "character" : "weapon";
+                const data: Character[] | Weapon[] = JSON.parse(
+                    localStorage.getItem(`data/${type}s`)!
+                );
+                const target: Character | Weapon = data.find(
                     (d) => d.id === Number(item.id.split("_")[1])
                 )!;
-            }
-            const id = `${type}_${target.id}`;
-            return {
-                ...item,
-                id: id,
-                name: target.name,
-                displayName: target.displayName,
-            };
-        });
+                const id = `${type}_${target.id}`;
+                return {
+                    ...item,
+                    id: id,
+                    name: target.name,
+                    displayName: target.displayName,
+                };
+            })
+            .filter((item) => item.dataFormat !== undefined);
+        if (reformattedData.length === 0) {
+            localStorage.removeItem("planner/characters");
+            localStorage.removeItem("planner/weapons");
+            localStorage.removeItem("planner/hidden");
+        }
         return reformattedData;
     } else {
         return [];

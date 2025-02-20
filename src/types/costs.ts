@@ -96,6 +96,7 @@ export interface CharacterCostObject
     id: string;
     costs: CharacterCost;
     values: CharacterCostSliderValues;
+    dataFormat?: string;
 }
 
 export interface WeaponCost {
@@ -114,4 +115,5 @@ export interface WeaponCostObject
     id: string;
     costs: WeaponCost;
     values: WeaponCostSliderValues;
+    dataFormat?: string;
 }

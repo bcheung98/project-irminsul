@@ -1,77 +1,363 @@
-import { objectKeys } from "helpers/utils";
-import { WeeklyBossMaterial } from "types/materials";
+import { isUnreleasedContent } from "helpers/utils";
 
-export const weeklyBossMaterials = <const>{
-    Stormterror: ["Dvalin's Claw", "Dvalin's Plume", "Dvalin's Sigh"],
-    "Lupus Boreas": [
-        "Ring of Boreas",
-        "Spirit Locket of Boreas",
-        "Tail of Boreas",
-    ],
-    Childe: [
-        "Shadow of the Warrior",
-        "Shard of a Foul Legacy",
-        "Tusk of Monoceros Caeli",
-    ],
-    Azhdaha: ["Bloodjade Branch", "Dragon Lord's Crown", "Gilded Scale"],
-    "La Signora": ["Ashen Heart", "Hellfire Butterfly", "Molten Moment"],
-    "Narukami no Mikoto": [
-        "Mudra of the Malefic General",
-        "Tears of the Calamitous God",
-        "The Meaning of Aeons",
-    ],
-    "Shouki no Kami": ["Daka's Bell", "Mirror of Mushin", "Puppet Strings"],
-    "Guardian of Apep's Oasis": [
-        "Everamber",
-        "Primordial Greenbloom",
-        "Worldspan Fern",
-    ],
-    "All-Devouring Narwhal": [
-        "Lightless Eye of the Maelstrom",
-        "Lightless Mass",
-        "Lightless Silk String",
-    ],
-    "The Knave": ["Fading Candle", "Silken Feather", "Denial and Judgment"],
-    "Lord of Eroded Primal Fire": [
-        "Eroded Horn",
-        "Eroded Sunfire",
-        "Eroded Scale-Feather",
-    ],
-};
+export const weeklyBossMaterials = [
+    {
+        id: "weeklyBossMat_0_0",
+        category: "weeklyBossMat",
+        tag: "Dvalin's Claw",
+        name: "Dvalin's Claw",
+        displayName: "Dvalin's Claw",
+        source: "Stormterror",
+        rarity: 5,
+        release: { version: "1.0" },
+    },
+    {
+        id: "weeklyBossMat_0_1",
+        category: "weeklyBossMat",
+        tag: "Dvalin's Plume",
+        name: "Dvalin's Plume",
+        displayName: "Dvalin's Plume",
+        source: "Stormterror",
+        rarity: 5,
+        release: { version: "1.0" },
+    },
+    {
+        id: "weeklyBossMat_0_2",
+        category: "weeklyBossMat",
+        tag: "Dvalin's Sigh",
+        name: "Dvalin's Sigh",
+        displayName: "Dvalin's Sigh",
+        source: "Stormterror",
+        rarity: 5,
+        release: { version: "1.0" },
+    },
+    {
+        id: "weeklyBossMat_1_0",
+        category: "weeklyBossMat",
+        tag: "Ring of Boreas",
+        name: "Ring of Boreas",
+        displayName: "Ring of Boreas",
+        source: "Lupus Boreas",
+        rarity: 5,
+        release: { version: "1.0" },
+    },
+    {
+        id: "weeklyBossMat_1_1",
+        category: "weeklyBossMat",
+        tag: "Spirit Locket of Boreas",
+        name: "Spirit Locket of Boreas",
+        displayName: "Spirit Locket of Boreas",
+        source: "Lupus Boreas",
+        rarity: 5,
+        release: { version: "1.0" },
+    },
+    {
+        id: "weeklyBossMat_1_2",
+        category: "weeklyBossMat",
+        tag: "Tail of Boreas",
+        name: "Tail of Boreas",
+        displayName: "Tail of Boreas",
+        source: "Lupus Boreas",
+        rarity: 5,
+        release: { version: "1.0" },
+    },
+    {
+        id: "weeklyBossMat_2_0",
+        category: "weeklyBossMat",
+        tag: "Shadow of the Warrior",
+        name: "Shadow of the Warrior",
+        displayName: "Shadow of the Warrior",
+        source: "Childe",
+        rarity: 5,
+        release: { version: "1.1" },
+    },
+    {
+        id: "weeklyBossMat_2_1",
+        category: "weeklyBossMat",
+        tag: "Shard of a Foul Legacy",
+        name: "Shard of a Foul Legacy",
+        displayName: "Shard of a Foul Legacy",
+        source: "Childe",
+        rarity: 5,
+        release: { version: "1.1" },
+    },
+    {
+        id: "weeklyBossMat_2_2",
+        category: "weeklyBossMat",
+        tag: "Tusk of Monoceros Caeli",
+        name: "Tusk of Monoceros Caeli",
+        displayName: "Tusk of Monoceros Caeli",
+        source: "Childe",
+        rarity: 5,
+        release: { version: "1.1" },
+    },
+    {
+        id: "weeklyBossMat_3_0",
+        category: "weeklyBossMat",
+        tag: "Bloodjade Branch",
+        name: "Bloodjade Branch",
+        displayName: "Bloodjade Branch",
+        source: "Azhdaha",
+        rarity: 5,
+        release: { version: "1.5" },
+    },
+    {
+        id: "weeklyBossMat_3_1",
+        category: "weeklyBossMat",
+        tag: "Dragon Lord's Crown",
+        name: "Dragon Lord's Crown",
+        displayName: "Dragon Lord's Crown",
+        source: "Azhdaha",
+        rarity: 5,
+        release: { version: "1.5" },
+    },
+    {
+        id: "weeklyBossMat_3_2",
+        category: "weeklyBossMat",
+        tag: "Gilded Scale",
+        name: "Gilded Scale",
+        displayName: "Gilded Scale",
+        source: "Azhdaha",
+        rarity: 5,
+        release: { version: "1.5" },
+    },
+    {
+        id: "weeklyBossMat_4_0",
+        category: "weeklyBossMat",
+        tag: "Ashen Heart",
+        name: "Ashen Heart",
+        displayName: "Ashen Heart",
+        source: "La Signora",
+        rarity: 5,
+        release: { version: "2.1" },
+    },
+    {
+        id: "weeklyBossMat_4_1",
+        category: "weeklyBossMat",
+        tag: "Hellfire Butterfly",
+        name: "Hellfire Butterfly",
+        displayName: "Hellfire Butterfly",
+        source: "La Signora",
+        rarity: 5,
+        release: { version: "2.1" },
+    },
+    {
+        id: "weeklyBossMat_4_2",
+        category: "weeklyBossMat",
+        tag: "Molten Moment",
+        name: "Molten Moment",
+        displayName: "Molten Moment",
+        source: "La Signora",
+        rarity: 5,
+        release: { version: "2.1" },
+    },
+    {
+        id: "weeklyBossMat_5_0",
+        category: "weeklyBossMat",
+        tag: "Mudra of the Malefic General",
+        name: "Mudra of the Malefic General",
+        displayName: "Mudra of the Malefic General",
+        source: "Narukami no Mikoto",
+        rarity: 5,
+        release: { version: "2.5" },
+    },
+    {
+        id: "weeklyBossMat_5_1",
+        category: "weeklyBossMat",
+        tag: "Tears of the Calamitous God",
+        name: "Tears of the Calamitous God",
+        displayName: "Tears of the Calamitous God",
+        source: "Narukami no Mikoto",
+        rarity: 5,
+        release: { version: "2.5" },
+    },
+    {
+        id: "weeklyBossMat_5_2",
+        category: "weeklyBossMat",
+        tag: "The Meaning of Aeons",
+        name: "The Meaning of Aeons",
+        displayName: "The Meaning of Aeons",
+        source: "Narukami no Mikoto",
+        rarity: 5,
+        release: { version: "2.5" },
+    },
+    {
+        id: "weeklyBossMat_6_0",
+        category: "weeklyBossMat",
+        tag: "Daka's Bell",
+        name: "Daka's Bell",
+        displayName: "Daka's Bell",
+        source: "Shouki no Kami",
+        rarity: 5,
+        release: { version: "3.2" },
+    },
+    {
+        id: "weeklyBossMat_6_1",
+        category: "weeklyBossMat",
+        tag: "Mirror of Mushin",
+        name: "Mirror of Mushin",
+        displayName: "Mirror of Mushin",
+        source: "Shouki no Kami",
+        rarity: 5,
+        release: { version: "3.2" },
+    },
+    {
+        id: "weeklyBossMat_6_2",
+        category: "weeklyBossMat",
+        tag: "Puppet Strings",
+        name: "Puppet Strings",
+        displayName: "Puppet Strings",
+        source: "Shouki no Kami",
+        rarity: 5,
+        release: { version: "3.2" },
+    },
+    {
+        id: "weeklyBossMat_7_0",
+        category: "weeklyBossMat",
+        tag: "Everamber",
+        name: "Everamber",
+        displayName: "Everamber",
+        source: "Guardian of Apep's Oasis",
+        rarity: 5,
+        release: { version: "3.6" },
+    },
+    {
+        id: "weeklyBossMat_7_1",
+        category: "weeklyBossMat",
+        tag: "Primordial Greenbloom",
+        name: "Primordial Greenbloom",
+        displayName: "Primordial Greenbloom",
+        source: "Guardian of Apep's Oasis",
+        rarity: 5,
+        release: { version: "3.6" },
+    },
+    {
+        id: "weeklyBossMat_7_2",
+        category: "weeklyBossMat",
+        tag: "Worldspan Fern",
+        name: "Worldspan Fern",
+        displayName: "Worldspan Fern",
+        source: "Guardian of Apep's Oasis",
+        rarity: 5,
+        release: { version: "3.6" },
+    },
+    {
+        id: "weeklyBossMat_8_0",
+        category: "weeklyBossMat",
+        tag: "Lightless Eye of the Maelstrom",
+        name: "Lightless Eye of the Maelstrom",
+        displayName: "Lightless Eye of the Maelstrom",
+        source: "All-Devouring Narwhal",
+        rarity: 5,
+        release: { version: "4.2" },
+    },
+    {
+        id: "weeklyBossMat_8_1",
+        category: "weeklyBossMat",
+        tag: "Lightless Mass",
+        name: "Lightless Mass",
+        displayName: "Lightless Mass",
+        source: "All-Devouring Narwhal",
+        rarity: 5,
+        release: { version: "4.2" },
+    },
+    {
+        id: "weeklyBossMat_8_2",
+        category: "weeklyBossMat",
+        tag: "Lightless Silk String",
+        name: "Lightless Silk String",
+        displayName: "Lightless Silk String",
+        source: "All-Devouring Narwhal",
+        rarity: 5,
+        release: { version: "4.2" },
+    },
+    {
+        id: "weeklyBossMat_9_0",
+        category: "weeklyBossMat",
+        tag: "Fading Candle",
+        name: "Fading Candle",
+        displayName: "Fading Candle",
+        source: "The Knave",
+        rarity: 5,
+        release: { version: "4.6" },
+    },
+    {
+        id: "weeklyBossMat_9_1",
+        category: "weeklyBossMat",
+        tag: "Silken Feather",
+        name: "Silken Feather",
+        displayName: "Silken Feather",
+        source: "The Knave",
+        rarity: 5,
+        release: { version: "4.6" },
+    },
+    {
+        id: "weeklyBossMat_9_2",
+        category: "weeklyBossMat",
+        tag: "Denial and Judgment",
+        name: "Denial and Judgment",
+        displayName: "Denial and Judgment",
+        source: "The Knave",
+        rarity: 5,
+        release: { version: "4.6" },
+    },
+    {
+        id: "weeklyBossMat_10_0",
+        category: "weeklyBossMat",
+        tag: "Eroded Horn",
+        name: "Eroded Horn",
+        displayName: "Eroded Horn",
+        source: "Lord of Eroded Primal Fire",
+        rarity: 5,
+        release: { version: "5.3" },
+    },
+    {
+        id: "weeklyBossMat_10_1",
+        category: "weeklyBossMat",
+        tag: "Eroded Sunfire",
+        name: "Eroded Sunfire",
+        displayName: "Eroded Sunfire",
+        source: "Lord of Eroded Primal Fire",
+        rarity: 5,
+        release: { version: "5.3" },
+    },
+    {
+        id: "weeklyBossMat_10_2",
+        category: "weeklyBossMat",
+        tag: "Eroded Scale-Feather",
+        name: "Eroded Scale-Feather",
+        displayName: "Eroded Scale-Feather",
+        source: "Lord of Eroded Primal Fire",
+        rarity: 5,
+        release: { version: "5.3" },
+    },
+] as const;
 
-export const weeklyBossNames = objectKeys(weeklyBossMaterials);
+export const weeklyBossMatNames = weeklyBossMaterials.map((mat) => mat.tag);
 
-// Add any unreleased materials to this array
-const unreleasedMats: WeeklyBossMaterial[] = [];
-
-export const filteredWeeklyBossMaterials = (showUnreleased = false) => {
-    if (showUnreleased) {
-        return weeklyBossMaterials;
+export function groupedWeeklyBossMatNames(showUnreleased = false) {
+    let materials;
+    if (!showUnreleased) {
+        materials = [...weeklyBossMaterials].filter((mat) =>
+            isUnreleasedContent(mat.release.version)
+        );
     } else {
-        return Object.assign(
-            {},
-            ...Object.entries(weeklyBossMaterials).map(([boss, bossMats]) => {
-                return {
-                    [boss]: bossMats.filter(
-                        (material) =>
-                            !unreleasedMats.some((mat) => material === mat)
-                    ),
-                };
-            })
-        ) as typeof weeklyBossMaterials;
+        materials = weeklyBossMaterials;
     }
-};
+    const groupedMaterials: Record<string, string[]> = {};
+    materials.forEach((mat) => (groupedMaterials[mat.source] = []));
+    materials.forEach((mat) =>
+        groupedMaterials[mat.source].push(mat.displayName)
+    );
+    return groupedMaterials;
+}
 
-export const weeklyBossMatNames = weeklyBossNames
-    .map((boss) => weeklyBossMaterials[boss])
-    .flat();
-
-export const formatWeeklyBossMaterials = (material: WeeklyBossMaterial) => {
-    let bossName = "";
-    weeklyBossNames.forEach((boss) => {
-        if ([...weeklyBossMaterials[boss]].includes(material)) {
-            bossName = ` (${boss})`;
-        }
-    });
-    return `${material}${bossName}`;
-};
+export function getWeeklyBossMaterial({
+    id,
+    tag,
+}: {
+    id?: string;
+    tag: string;
+}) {
+    return weeklyBossMaterials.find((mat) => mat.id === id || mat.tag === tag);
+}
