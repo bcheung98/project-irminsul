@@ -115,7 +115,7 @@ export const commonMaterials = [
     {
         id: "commonMat_3_0",
         category: "commonMat",
-        tag: "Nectar",
+        tag: "Nectar1",
         name: "Whopperflower Nectar",
         displayName: "Whopperflower Nectar",
         rarity: 1,

@@ -599,7 +599,7 @@ export const weaponAscensionMaterials = [
     {
         id: "weaponAscensionMat_12_0",
         category: "weaponAscensionMat",
-        tag: "Scorching Might1",
+        tag: "Chord1",
         name: "Fragment of an Ancient Chord",
         displayName: "Fragment of an Ancient Chord",
         source: "Mon/Thu",
@@ -609,7 +609,7 @@ export const weaponAscensionMaterials = [
     {
         id: "weaponAscensionMat_12_1",
         category: "weaponAscensionMat",
-        tag: "Scorching Might2",
+        tag: "Chord2",
         name: "Chapter of an Ancient Chord",
         displayName: "Chapter of an Ancient Chord",
         source: "Mon/Thu",
@@ -619,7 +619,7 @@ export const weaponAscensionMaterials = [
     {
         id: "weaponAscensionMat_12_2",
         category: "weaponAscensionMat",
-        tag: "Scorching Might3",
+        tag: "Chord3",
         name: "Movement of an Ancient Chord",
         displayName: "Movement of an Ancient Chord",
         source: "Mon/Thu",
@@ -629,7 +629,7 @@ export const weaponAscensionMaterials = [
     {
         id: "weaponAscensionMat_12_3",
         category: "weaponAscensionMat",
-        tag: "Scorching Might4",
+        tag: "Chord4",
         name: "Echo of an Ancient Chord",
         displayName: "Echo of an Ancient Chord",
         source: "Mon/Thu",
