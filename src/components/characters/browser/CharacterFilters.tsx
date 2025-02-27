@@ -1,6 +1,7 @@
 import { BaseSyntheticEvent } from "react";
 
 // Component imports
+import BrowserSort from "custom/BrowserSort";
 import Dropdown from "custom/Dropdown";
 import Image from "custom/Image";
 import ToggleButtons from "custom/ToggleButtons";
@@ -201,6 +202,7 @@ function CharacterFilters({
                             opacity: 0.35,
                             color: theme.appbar.color,
                         },
+                        border: `1px solid ${theme.border.color.primary}`,
                     }}
                 >
                     Reset
@@ -275,6 +277,10 @@ function CharacterFilters({
                     </Dropdown>
                 ))}
             </List>
+            <BrowserSort
+                type="characters"
+                options={["release", "name", "rarity", "element", "weapon"]}
+            />
         </>
     );
 }
